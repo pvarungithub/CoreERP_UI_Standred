@@ -1,0 +1,16 @@
+{
+  "ExpandedNodes": [
+    "",
+    "\\src",
+    "\\src\\app",
+    "\\src\\app\\components",
+    "\\src\\app\\components\\dashboard",
+    "\\src\\app\\components\\dashboard\\generalledger",
+    "\\src\\app\\components\\dashboard\\masters",
+    "\\src\\app\\components\\dashboard\\reports",
+    "\\src\\app\\services",
+    "\\src\\environments"
+  ],
+  "SelectedNode": "\\src\\app\\services\\api-config.service.ts",
+  "PreviewInSolutionExplorer": false
+}
