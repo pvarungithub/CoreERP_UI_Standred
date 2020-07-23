@@ -25,13 +25,31 @@
         </mat-form-field>
 
         <mat-form-field>
-          <mat-label>{{'department.companyCode' | translate }}</mat-label>
-          <mat-select formControlName="companyCode">
-            <mat-option *ngFor="let comp of compList" [value]="comp.id">
-              {{comp.text}}
+          <mat-label>{{'department.responsiblePersonCode' | translate }}</mat-label>
+          <mat-select formControlName="responsiblePersonCode" appFocusOnEnter tabIndex="3">
+            <mat-option *ngFor="let emp of employeesList" [value]="emp.employeeCode">
+              {{emp.employeeCode}}- {{emp.employeeName}}
             </mat-option>
           </mat-select>
         </mat-form-field>
+
+        <mat-form-field>
+          <mat-label [translate]="'department.isActive'"></mat-label>
+          <mat-select formControlName="isActive" appFocusOnEnter tabIndex="4">
+            <mat-option *ngFor="let active of active" [value]="active.value">
+              {{active.viewValue}}
+            </mat-option>
+          </mat-select>
+        </mat-form-field>
+
+        <!--<mat-form-field>
+    <mat-label>{{'department.companyCode' | translate }}</mat-label>
+    <mat-select formControlName="companyCode">
+      <mat-option *ngFor="let comp of compList" [value]="comp.id">
+        {{comp.text}}
+      </mat-option>
+    </mat-select>
+  </mat-form-field>-->
 
 
       </div>

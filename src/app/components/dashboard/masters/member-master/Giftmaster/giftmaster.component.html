@@ -1,4 +1,4 @@
-<div  class="position-relative popup-class" *ngIf="isFormVisible">
+<div  class="position-relative popup-class">
     <mat-card-content class="pt-5 p-2 m-0 overflow-auto ">
         <form [formGroup]="modelFromData">           
             <div class="d--flex">
@@ -24,14 +24,14 @@
                     <mat-datepicker-toggle matSuffix [for]="picker2"></mat-datepicker-toggle>
                     <mat-datepicker #picker2></mat-datepicker>
                 </mat-form-field>
-                <!-- <mat-form-field>
+                <mat-form-field>
                   <mat-label [translate]="'GiftMaster.status'"></mat-label>
                   <select matNativeControl placeholder="{{'select'}}"
                     formControlName="status">
                     <option *ngFor="let s of statusList" [value]="s.value">
                       {{s.viewValue}}</option>
                   </select>
-                </mat-form-field> -->
+                </mat-form-field>
             </div>
         </form>
     </mat-card-content>
@@ -45,5 +45,5 @@
         </button>
       </div>
 </div>
-<app-table *ngIf="!isFormVisible" [tableData]="gifttableDataList" (addOrUpdateEvent)="addOrUpdateEvent($event)" [isGiftmaster]="'true'">
+<app-table [tableData]="gifttableDataList" (addOrUpdateEvent)="addOrUpdateEvent($event)" [isGiftmaster]="'true'">
 </app-table>

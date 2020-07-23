@@ -15,7 +15,7 @@ export class ApiConfigService {
 
    // login Url
    loginUrl = `${this.environment.runtimeConfig.serverUrl}Auth/login`;
-   getMenuUrl = `${this.environment.runtimeConfig.serverUrl}Auth/getMenu`;
+   getMenuUrl = `${this.environment.runtimeConfig.serverUrl}Auth/getMenu/admin`;
    logoutUrl = `${this.environment.runtimeConfig.serverUrl}Auth/logout`;
    shiftTerminate = `${this.environment.runtimeConfig.serverUrl}Auth/ShiftTerminate`;
    shiftStart = `${this.environment.runtimeConfig.serverUrl}Auth/ShiftStart`;
@@ -214,8 +214,8 @@ export class ApiConfigService {
    // UnderSubGroup //
    getGLUnderSubGroupList = `${this.environment.runtimeConfig.serverUrl}gl/GLAccUnderSubGroup/GetTblAccountGroupList`;
    getAccountNamelist = `${this.environment.runtimeConfig.serverUrl}gl/GLAccUnderSubGroup/GetAccountNamelist`;
-   getGLUnderGroupList = `${this.environment.runtimeConfig.serverUrl}gl/GLAccUnderSubGroup/GetAccountGrouplist`;
-   registerGLUnderSubGroup = `${this.environment.runtimeConfig.serverUrl}gl/GLAccUnderSubGroup/RegisterTblAccGroup`;
+   getGLUnderGroupList = `${this.environment.runtimeConfig.serverUrl}/gl/GLAccUnderSubGroup/GetAccountGrouplist`;
+   registerGLUnderSubGroup = `${this.environment.runtimeConfig.serverUrl}/gl/GLAccUnderSubGroup/RegisterTblAccGroup`;
    updateGLAccUnderSubGroup = `${this.environment.runtimeConfig.serverUrl}gl/GLAccUnderSubGroup/UpdateTblAccountGroup`;
    deleteGLAccUnderSubGroup = `${this.environment.runtimeConfig.serverUrl}gl/GLAccUnderSubGroup/DeleteTblAccountGroup`;
    getglAccgrpList = `${this.environment.runtimeConfig.serverUrl}gl/GLAccUnderSubGroup/GetGLAccountGrouplist`;
@@ -273,7 +273,8 @@ export class ApiConfigService {
    registerVoucherTypes = `${this.environment.runtimeConfig.serverUrl}gl/VoucherType/RegisterVoucherTypes`;
    updateVoucherTypes = `${this.environment.runtimeConfig.serverUrl}gl/VoucherType/UpdateVoucherTypes`;
    deleteVoucherTypes = `${this.environment.runtimeConfig.serverUrl}gl/VoucherType/DeleteVoucherTypes`;
-   getVoucherClassList = `${this.environment.runtimeConfig.serverUrl}gl/VoucherType/GetVoucherClassList`;
+  getVoucherClassList = `${this.environment.runtimeConfig.serverUrl}gl/VoucherType/GetVoucherClassList`;
+
    getCompaniesList = `${this.environment.runtimeConfig.serverUrl}gl/VoucherType/GetCompaniesList`;
    getVoucherBranchesList = `${this.environment.runtimeConfig.serverUrl}gl/VoucherType/GetBranchesList`;
 
@@ -282,6 +283,7 @@ export class ApiConfigService {
    // *******************************  Inventory *****************************************
 
    // BrandModel
+  
    getBrandModelList = `${this.environment.runtimeConfig.serverUrl}Inventory/BrandModel/GetBrandModelList`;
    registerBrandModelList = `${this.environment.runtimeConfig.serverUrl}Inventory/BrandModel/RegisterBrandModel`;
    updateBrandModelList = `${this.environment.runtimeConfig.serverUrl}Inventory/BrandModel/UpdateBrandModel`;
@@ -309,12 +311,14 @@ export class ApiConfigService {
    getCompanyList = `${this.environment.runtimeConfig.serverUrl}Inventory/ItemMaster/GetCompanysList`;
 
    // NoAssignment
+ 
    getNoAssignmentList = `${this.environment.runtimeConfig.serverUrl}Inventory/NoAssignment/GetNoAssignmentList`;
    registerNoAssignmentList = `${this.environment.runtimeConfig.serverUrl}Inventory/NoAssignment/RegisterNoAssignment`;
    updateNoAssignmentList = `${this.environment.runtimeConfig.serverUrl}Inventory/NoAssignment/UpdateNoAssignment`;
    deleteNoAssignmentList = `${this.environment.runtimeConfig.serverUrl}Inventory/NoAssignment/DeleteNoAssignment`;
 
    // MaterialGroups
+ 
    getMaterialGroupsList = `${this.environment.runtimeConfig.serverUrl}Inventory/MaterialGroup/GetAllMaterialGroup`;
    registerMaterialGroupsList = `${this.environment.runtimeConfig.serverUrl}Inventory/MaterialGroup/RegisterMaterialGroup`;
    updateMaterialGroupsList = `${this.environment.runtimeConfig.serverUrl}Inventory/MaterialGroup/UpdateMaterialGroup`;
@@ -326,6 +330,11 @@ export class ApiConfigService {
    // ******************************* Start  master *****************************************
 
    // company
+  getlanguageList = `${this.environment.runtimeConfig.serverUrl}masters/Company/GetLanguageList`;
+  getRegionsList = `${this.environment.runtimeConfig.serverUrl}masters/Company/GetRegionList`;
+  getCountrysList =`${this.environment.runtimeConfig.serverUrl}masters/Company/GetCountrysList`;
+  getcurrencyList = `${this.environment.runtimeConfig.serverUrl}masters/Company/GetCurrencyList`;
+  getstatesList = `${this.environment.runtimeConfig.serverUrl}masters/Company/GetStatesList`;
    getCompanysList = `${this.environment.runtimeConfig.serverUrl}masters/Company/GetCompanysList`;
    registerCompany = `${this.environment.runtimeConfig.serverUrl}masters/Company/RegisterCompany`;
    updateCompany = `${this.environment.runtimeConfig.serverUrl}masters/Company/UpdateCompany`;
@@ -338,6 +347,8 @@ export class ApiConfigService {
   deletedepartment = `${this.environment.runtimeConfig.serverUrl}masters/Department/deletedepartment`;
   
    // --- Branches
+
+   GetEmployeesList = `${this.environment.runtimeConfig.serverUrl}masters/Branches/GetEmployeesList`;
    getBranchesList = `${this.environment.runtimeConfig.serverUrl}masters/Branches/GetBranchesList`;
    registerBranch = `${this.environment.runtimeConfig.serverUrl}masters/Branches/RegisterBranch`;
    updateBranch = `${this.environment.runtimeConfig.serverUrl}masters/Branches/UpdateBranch`;
@@ -364,12 +375,13 @@ export class ApiConfigService {
    deleteTaxMaster = `${this.environment.runtimeConfig.serverUrl}masters/TaxMaster/DeleteTaxMaster`;
 
    // --- Employee
-   getEmployeeList = `${this.environment.runtimeConfig.serverUrl}masters/Employee/GetEmployeeList`;
+  getEmployeeList = `${this.environment.runtimeConfig.serverUrl}masters/Employee/GetEmployeeList`;
    registerEmployee = `${this.environment.runtimeConfig.serverUrl}masters/Employee/RegisterEmployee`;
    updateEmployee = `${this.environment.runtimeConfig.serverUrl}masters/Employee/UpdateEmployee`;
    deleteEmployee = `${this.environment.runtimeConfig.serverUrl}masters/Employee/DeleteEmployee`;
 
    // --- EmployeeInBranch
+ 
   getAllEmployeesInBranch = `${this.environment.runtimeConfig.serverUrl}masters/EmployeeInBranch/GetAllEmployeesInBranch`;
   getEmployeeInBranchList = `${this.environment.runtimeConfig.serverUrl}masters/EmployeeInBranch/GetEmployeeList`;
   getBranchesBranchList = `${this.environment.runtimeConfig.serverUrl}masters/EmployeeInBranch/GetBranchesList`;
@@ -400,6 +412,7 @@ export class ApiConfigService {
 
 
    // --- CostCenter
+  
   GetCostCenterList = `${this.environment.runtimeConfig.serverUrl}masters/CostCenter/GetCostCenterList`;
   registerCostCenter = `${this.environment.runtimeConfig.serverUrl}masters/CostCenter/RegisterCostCenter`;
   updateCostCenter = `${this.environment.runtimeConfig.serverUrl}masters/CostCenter/UpdateCostCenter`;
@@ -424,6 +437,37 @@ export class ApiConfigService {
   registerProfitCenters = `${this.environment.runtimeConfig.serverUrl}masters/ProfitCenter/RegisterProfitCenters`;
   updateProfitCenters = `${this.environment.runtimeConfig.serverUrl}masters/ProfitCenter/UpdateProfitCenters`;
   deleteProfitCenters = `${this.environment.runtimeConfig.serverUrl}masters/ProfitCenter/DeleteProfitCenters`;
+
+  //Language
+  getLanguageList = `${this.environment.runtimeConfig.serverUrl}masters/Language/GetLanguageList`;
+  registerLanguage = `${this.environment.runtimeConfig.serverUrl}masters/Language/RegisterLanguage`;
+  updateLanguage = `${this.environment.runtimeConfig.serverUrl}masters/Language/UpdateLanguage`;
+  deleteLabguage = `${this.environment.runtimeConfig.serverUrl}masters/Language/DeleteLanguage`;
+
+  //country
+  getcountryList = `${this.environment.runtimeConfig.serverUrl}masters/Country/GetCountryList`;
+  registerCountry = `${this.environment.runtimeConfig.serverUrl}masters/Country/RegisterCountry`;
+  updateCountry = `${this.environment.runtimeConfig.serverUrl}masters/Country/UpdateCountry`;
+  deleteCountry = `${this.environment.runtimeConfig.serverUrl}masters/Country/DeleteCountry`;
+
+  //Region
+  getregionList = `${this.environment.runtimeConfig.serverUrl}masters/Region/GetRegionList`;
+  registerRegion = `${this.environment.runtimeConfig.serverUrl}masters/Region/RegisterRegion`;
+  updateRegion = `${this.environment.runtimeConfig.serverUrl}masters/Region/UpdateRegion`;
+  deleteRegion = `${this.environment.runtimeConfig.serverUrl}masters/Region/DeleteRegion`;
+
+  //State
+  getstateList = `${this.environment.runtimeConfig.serverUrl}masters/State/GetStateList`;
+  registerState = `${this.environment.runtimeConfig.serverUrl}masters/State/RegisterState`;
+  updateState = `${this.environment.runtimeConfig.serverUrl}masters/State/UpdateState`;
+  deleteState = `${this.environment.runtimeConfig.serverUrl}masters/State/DeleteState`;
+
+  //Currency
+  getCurrencyList = `${this.environment.runtimeConfig.serverUrl}masters/Currency/GetCurrencyList`;
+  registerCurrency = `${this.environment.runtimeConfig.serverUrl}masters/Currency/RegisterCurrency`;
+  updateCurrency = `${this.environment.runtimeConfig.serverUrl}masters/Currency/UpdateCurrency`;
+  deleteCurrency = `${this.environment.runtimeConfig.serverUrl}masters/Currency/DeleteCurrency`;
+
 
    // --- Segment
   getSegmentList = `${this.environment.runtimeConfig.serverUrl}masters/Segment/GetSegmentList`;
@@ -631,10 +675,7 @@ export class ApiConfigService {
   addGift=`${this.environment.runtimeConfig.serverUrl}MemberMaster/AddGifts`;
   updateGift=`${this.environment.runtimeConfig.serverUrl}MemberMaster/UpdateGift`;
 
-//   getGiftProductList=`http://localhost:51414/api/MemberMaster/GetProducts`;
-//   getGiftList=`http://localhost:51414/api/MemberMaster/GetGifts`;
-//   addGift=`http://localhost:51414/api/MemberMaster/AddGifts`;
-//   updateGift=`http://localhost:51414/api/MemberMaster/UpdateGift`;
+//  
   // ******************************* End  master *****************************************
 
 
@@ -642,46 +683,39 @@ export class ApiConfigService {
    getMemberMaster = `${this.environment.runtimeConfig.serverUrl}Reports/MemberMasterReport/GetMemberMasterReportData`;
 
    getEmployeeRegister = `${this.environment.runtimeConfig.serverUrl}Reports/EmployeeRegisterReport/GetEmployeeRegisterReportData`;
-
    getAccountLedger = `${this.environment.runtimeConfig.serverUrl}Reports/AccountLedgerReport/GetAccountLedgerReportData`;
    getAccountLedgersList=`${this.environment.runtimeConfig.serverUrl}Reports/AccountLedgerReport/GetAccountLedgersList`;
 
-   getSaleValueReport = `${this.environment.runtimeConfig.serverUrl}Reports/SaleValueReport/GetSaleValueReportData`;
+  getSaleValueReport = `${this.environment.runtimeConfig.serverUrl}Reports/SaleValueReport/GetSaleValueReportData`;
    getReportBranchList=`${this.environment.runtimeConfig.serverUrl}Reports/SaleValueReport/GetReportBranchList`;
 
-   getDefaultShiftReport=`${this.environment.runtimeConfig.serverUrl}Reports/ShiftViewReport/GetDefaultShiftReportDataTableList`
-   getShiftViewReport = `${this.environment.runtimeConfig.serverUrl}Reports/ShiftViewReport/GetShiftViewReportList`;
+  getDefaultShiftReport = `${this.environment.runtimeConfig.serverUrl}Reports/ShiftViewReport/GetDefaultShiftReportDataTableList`
 
-   getVehicalReport=`${this.environment.runtimeConfig.serverUrl}Reports/VehicalReport/GetVehicalReportData`;
+
+  getShiftViewReport = `${this.environment.runtimeConfig.serverUrl}Reports/ShiftViewReport/GetShiftViewReportList`;
+
+  getVehicalReport = `${this.environment.runtimeConfig.serverUrl}Reports/VehicalReport/GetVehicalReportData`;
 
    getIntimateSaleReport=`${this.environment.runtimeConfig.serverUrl}Reports/IntimateSaleReport/GetIntimateSaleReportData`;
 
-   getSalesGSTReport=`${this.environment.runtimeConfig.serverUrl}Reports/SalesGSTReport/GetSalesGSTReportData`;
+
+   getSalesGSTReport = `${this.environment.runtimeConfig.serverUrl}Reports/SalesGSTReport/GetSalesGSTReportData`;
 
    getDailySalesReport=`${this.environment.runtimeConfig.serverUrl}Reports/DailySalesReport/GetDailySalesReport`;
 
    getStockVerificationReport=`${this.environment.runtimeConfig.serverUrl}Reports/StockVerificationReport/GetStockVerificationReportData`;
 
-   getStockLedgerForAllProducts=`${this.environment.runtimeConfig.serverUrl}Reports/StockLedgerReport/GetStockLedgerReportData`;
-   getStockProducts=`${this.environment.runtimeConfig.serverUrl}Reports/StockLedgerReport/GetProductList`;
+  getStockLedgerForAllProducts = `${this.environment.runtimeConfig.serverUrl}Reports/StockLedgerReport/GetStockLedgerReportData`;
 
+   getStockProducts = `${this.environment.runtimeConfig.serverUrl}Reports/StockLedgerReport/GetProductList`;
    getSalesAnalysisByBranch=`${this.environment.runtimeConfig.serverUrl}Reports/SalesAnalysisByBranch/GetSalesAnalysisByBranchrReportData`;
-
    getTwoFourehrsSalesStockReport=`${this.environment.runtimeConfig.serverUrl}Reports/TwoFourehrsSalesStockReport/Get24hrsSalesStockReportData`;
-
-   getProductWiseMonthlyPurchaseReport=`${this.environment.runtimeConfig.serverUrl}Reports/ProductWiseMonthlyPurchaseReport/GetProductWiseMonthlyPurchaseReportData`;
-
+  getProductWiseMonthlyPurchaseReport=`${this.environment.runtimeConfig.serverUrl}Reports/ProductWiseMonthlyPurchaseReport/GetProductWiseMonthlyPurchaseReportData`;
    getProductPriceListReport=`${this.environment.runtimeConfig.serverUrl}Reports/ProductPriceList/GetProductPriceListReportData`;
-
    getReceiptsAndPyamentDetailedReportData=`${this.environment.runtimeConfig.serverUrl}Reports/ReceiptsAndPyamentDetailedReport/GetReceiptsAndPyamentDetailedReportData`;
-
-   getReceiptsAndPaymentSummaryReportData=`${this.environment.runtimeConfig.serverUrl}Reports/ReceiptsAndPaymentSummaryReport/GetReceiptsAndPaymentSummaryReportData`;
-
-   getSMSSummaryReportData=`${this.environment.runtimeConfig.serverUrl}Reports/SMSSummaryReport/GetSMSSummaryReportData`;
-
-   getOneDaySaleValueReportData=`${this.environment.runtimeConfig.serverUrl}Reports/OneDaySaleValueReport6amTo6am/GetOneDaySaleValueReportData`;
-
-   getTrialBalanceReportData=`${this.environment.runtimeConfig.serverUrl}Reports/TrialBalanceReport/GetTrialBalanceReportData`;
+  getReceiptsAndPaymentSummaryReportData = `${this.environment.runtimeConfig.serverUrl}Reports/ReceiptsAndPaymentSummaryReport/GetReceiptsAndPaymentSummaryReportData`;
+  getSMSSummaryReportData = `${this.environment.runtimeConfig.serverUrl}Reports/ReceiptsAndPyamentDetailedReport/GetReceiptsAndPyamentDetailedReportData`;
+  getOneDaySaleValueReportData=`${this.environment.runtimeConfig.serverUrl}Reports/OneDaySaleValueReport6amTo6am/GetOneDaySaleValueReportData`;
 
    
 

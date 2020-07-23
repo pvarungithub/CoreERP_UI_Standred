@@ -23,10 +23,10 @@ import {
 
 import {
   CompanyComponent, MastersComponent, BranchesComponent,DepartmentComponent, DivisionComponent,DesignationComponent,
-  SegmentComponent, ProfitCenterComponent,  CostCenterComponent,
+  SegmentComponent, ProfitCenterComponent,CountryComponent,CurrencyComponent, RegionComponent, CostCenterComponent,LanguageComponent,
    EmployeeInBranchComponent, EmployeeComponent,
    TanksComponent, PumpComponent, 
- MSHSDRatesComponent
+ MSHSDRatesComponent, StateComponent
 } from './components/dashboard/masters/index';
 
 import {
@@ -101,8 +101,8 @@ export function HttpLoaderFactory(httpClient: HttpClient) {
     AccToAccClassComponent, VoucherTypesComponent,
     InventoryComponent, BrandModelComponent, SizesComponent, AccountingClassComponent,UnitComponent,
     BrandComponent, NumberAssignmentComponent, MaterialGroupsComponent,ProductpackingComponent,
-    CompanyComponent, MastersComponent, BranchesComponent, DepartmentComponent, DivisionComponent,DesignationComponent,
-    SegmentComponent, ProfitCenterComponent,  CostCenterComponent,
+    CompanyComponent, CountryComponent,CurrencyComponent ,RegionComponent,StateComponent, MastersComponent, BranchesComponent, DepartmentComponent, DivisionComponent,DesignationComponent,
+    SegmentComponent, ProfitCenterComponent,  CostCenterComponent,LanguageComponent,
     NoSeriesComponent, PartnerTypeComponent, EmployeeInBranchComponent, EmployeeComponent,PartnerCreationComponent,
     TaxMasterComponent,  TanksComponent, PumpComponent, 
     TaxgroupsComponent, TaxstructuresComponent,
@@ -163,10 +163,10 @@ export function HttpLoaderFactory(httpClient: HttpClient) {
     AccToAccClassComponent, VoucherTypesComponent,
     DeleteItemComponent, InventoryComponent, BrandModelComponent,UnitComponent, SizesComponent, AccountingClassComponent,
     BrandComponent, NumberAssignmentComponent, MaterialGroupsComponent,ProductpackingComponent,
-    CompanyComponent, BranchesComponent, DepartmentComponent, DivisionComponent,DesignationComponent,
-    SegmentComponent, ProfitCenterComponent, CostCenterComponent,
+    CompanyComponent,CountryComponent,RegionComponent,StateComponent, BranchesComponent, DepartmentComponent, DivisionComponent,DesignationComponent,
+    SegmentComponent, ProfitCenterComponent, CostCenterComponent,LanguageComponent,
     NoSeriesComponent, PartnerTypeComponent, EmployeeInBranchComponent, EmployeeComponent,PartnerCreationComponent,
-    TaxMasterComponent,  TanksComponent, PumpComponent, 
+    TaxMasterComponent,  TanksComponent, PumpComponent,CurrencyComponent, 
     TaxgroupsComponent, TaxstructuresComponent,
     LeaveopeningbalancesComponent,
    // LeaveopeningbalanceComponent,

@@ -1,38 +1,30 @@
 import { Component, Inject, Optional, OnInit } from '@angular/core';
-import { String } from 'typescript-string-operations';
-import { ApiService } from '../../../../services/api.service';
-
 import { AlertService } from '../../../../services/alert.service';
-
 import { MatDialogRef, MAT_DIALOG_DATA } from '@angular/material';
 import { isNullOrUndefined } from 'util';
 import { FormBuilder, FormGroup, Validators } from '@angular/forms';
+import { StatusCodes } from '../../../../enums/common/common';
 import { NgxSpinnerService } from 'ngx-spinner';
 import { ApiConfigService } from '../../../../services/api-config.service';
-import { StatusCodes } from '../../../../enums/common/common';
+import { ApiService } from '../../../../services/api.service';
+import { String } from 'typescript-string-operations';
 import { CommonService } from '../../../../services/common.service';
 
-interface Active {
-  value: string;
-  viewValue: string;
-}
+
 @Component({
-  selector: 'app-division',
-  templateUrl: './division.component.html',
-  styleUrls: ['./division.component.scss']
+  selector: 'app-language',
+  templateUrl: './language.component.html',
+  styleUrls: ['./language.component.scss']
 })
-export class DivisionComponent implements OnInit {
+
+export class LanguageComponent implements OnInit {
 
   modelFormData: FormGroup;
-  isSubmitted  =  false;
+  isSubmitted = false;
   formData: any;
   companyList: any;
-  active: Active[] =
-    [
-      { value: 'Y', viewValue: 'Y' },
-      { value: 'N', viewValue: 'N' }
-    ];
-    employeesList: any;
+ 
+  employeesList: any;
 
   constructor(
     private apiService: ApiService,
@@ -40,31 +32,27 @@ export class DivisionComponent implements OnInit {
     private spinner: NgxSpinnerService,
     private alertService: AlertService,
     private formBuilder: FormBuilder,
-    public dialogRef: MatDialogRef<DivisionComponent>,
+    public dialogRef: MatDialogRef<LanguageComponent>,
     private commonService: CommonService,
     // @Optional() is used to prevent error if no data is passed
-    @Optional() @Inject(MAT_DIALOG_DATA) public data: any ) {
+    @Optional() @Inject(MAT_DIALOG_DATA) public data: any) {
 
-      this.modelFormData  =  this.formBuilder.group({
-        code: ['', [Validators.required, Validators.minLength(2), Validators.maxLength(4)]],
-        description: ['', [Validators.required, Validators.minLength(2)]],
-        ext1: [null],
-        ext2: [null],
-        responsiblePerson: [null],
-        active: ['Y'],
-      });
+    this.modelFormData = this.formBuilder.group({
+      languageCode: ['', [Validators.required, Validators.minLength(2), Validators.maxLength(4)]],
+      languageName: ['', [Validators.required, Validators.minLength(2)]],
+      
+    });
 
 
-      this.formData = {...data};
-      if (!isNullOrUndefined(this.formData.item)) {
-        this.modelFormData.patchValue(this.formData.item);
-       this.modelFormData.controls['code'].disable();
-      }
+    this.formData = { ...data };
+    if (!isNullOrUndefined(this.formData.item)) {
+      this.modelFormData.patchValue(this.formData.item);
+    }
 
   }
 
   ngOnInit() {
-   this. getEmployeesList();
+    //this.getEmployeesList();
   }
   getEmployeesList() {
     const getEmployeeList = String.Join('/', this.apiConfigService.getEmployeeList);
@@ -88,7 +76,6 @@ export class DivisionComponent implements OnInit {
     if (this.modelFormData.invalid) {
       return;
     }
-    this.modelFormData.controls['code'].enable();
     this.formData.item = this.modelFormData.value;
     this.dialogRef.close(this.formData);
   }

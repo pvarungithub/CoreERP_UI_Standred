@@ -9,7 +9,7 @@
       <div class="d--flex">
         <mat-form-field class="form-element" [ngClass]="{ 'ng--valid': formControls.code.valid }">
           <input matInput placeholder="{{'division.code' | translate }}" formControlName="code" appFocusOnEnter
-            tabIndex="1">
+                 tabIndex="1">
           <mat-error *ngIf="formControls.code.errors" class="help-block">
             <div *ngIf="formControls.code.errors.required">Code is required </div>
           </mat-error>
@@ -18,20 +18,36 @@
 
         <mat-form-field class="form-element" [ngClass]="{ 'ng--valid': formControls.description.valid }">
           <input matInput placeholder="{{'division.description' | translate }}" formControlName="description"
-            appFocusOnEnter tabIndex="2">
+                 appFocusOnEnter tabIndex="2">
           <mat-error *ngIf="formControls.description.errors" class="help-block">
             <div *ngIf="formControls.description.errors.required">Name is required</div>
           </mat-error>
         </mat-form-field>
-
-        <mat-form-field class="form-element">
+        <mat-form-field>
+          <mat-label>{{'division.responsiblePerson' | translate }}</mat-label>
+          <mat-select formControlName="responsiblePerson" appFocusOnEnter tabIndex="3">
+            <mat-option *ngFor="let emp of employeesList" [value]="emp.employeeCode">
+              {{emp.employeeCode}}- {{emp.employeeName}}
+            </mat-option>
+          </mat-select>
+        </mat-form-field>
+        <!--<mat-form-field class="form-element">
           <input matInput placeholder="{{'division.responsiblePerson' | translate }}"
-            formControlName="responsiblePerson" appFocusOnEnter tabIndex="3">
+                 formControlName="responsiblePerson" appFocusOnEnter tabIndex="3">
+        </mat-form-field>-->
+        <mat-form-field>
+          <mat-label [translate]="'division.active'"></mat-label>
+          <mat-select formControlName="active"appFocusOnEnter tabIndex="4">
+            <mat-option *ngFor="let active of active" [value]="active.value">
+              {{active.viewValue}}
+            </mat-option>
+          </mat-select>
         </mat-form-field>
-        <mat-form-field class="form-element">
-          <input matInput placeholder="{{'division.active' | translate }}" formControlName="active" appFocusOnEnter
-            tabIndex="4">
-        </mat-form-field>
+        <!--<mat-form-field class="form-element">
+    <input matInput placeholder="{{'division.active' | translate }}" formControlName="active" appFocusOnEnter
+      tabIndex="4">
+  </mat-form-field-->
+        >
 
 
       </div>

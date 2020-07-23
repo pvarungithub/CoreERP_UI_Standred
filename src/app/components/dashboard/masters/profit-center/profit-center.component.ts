@@ -26,6 +26,12 @@ export class ProfitCenterComponent implements OnInit {
   isSubmitted  =  false;
   formData: any;
   companyList: any;
+  employeesList: any;
+  stateList: any;
+  currencyList: any;
+  regionsList: any;
+  countrysList: any;
+  languageList: any;
 
 
   constructor(
@@ -42,36 +48,133 @@ export class ProfitCenterComponent implements OnInit {
       this.modelFormData  =  this.formBuilder.group({
         code: [null, [Validators.required, Validators.minLength(1), Validators.maxLength(4)]],
         name: [null, [Validators.required, Validators.minLength(2)]],
-        seqId: ['0'],
-        compCode: [null],
+        description: [null],
         address1: [null],
         address2: [null],
-        address3: [null],
-        address4: [null],
-        place: [null],
+        city: [null],
+        region: [null],
+        country: [null],
         state: [null],
         pinCode: [null],
-        phone1: [null],
-        phone2: [null],
-        phone3: [null],
-        email: [null],
-        addDate:[null],
+        currency: [null],
+        language: [null],
+        phone: [null],
+        mobile: null,
         responsiblePerson: [null],
-        active: ['Y'],
+        email: [null],
+        ext: [null],
+        ext1: [null],
+        active: ['Y']
       });
 
       this.formData = {...data};
       if (!isNullOrUndefined(this.formData.item)) {
         this.modelFormData.patchValue(this.formData.item);
-        this.modelFormData.controls['seqId'].disable();
+        //this.modelFormData.controls['seqId'].disable();
       }
 
   }
 
   ngOnInit() {
     this.companiesListData();
+    this.getstateList();
+    this.getLanguageList();
+    this.getregionsList();
+    this.getcountrysList();
+    this.getcurrencyList();
+    this.getEmployeesList();
   }
 
+  getLanguageList() {
+    const getlanguageList = String.Join('/', this.apiConfigService.getlanguageList);
+    this.apiService.apiGetRequest(getlanguageList)
+      .subscribe(
+        response => {
+          const res = response.body;
+          if (!isNullOrUndefined(res) && res.status === StatusCodes.pass) {
+            if (!isNullOrUndefined(res.response)) {
+              console.log(res);
+              this.languageList = res.response['LanguageList'];
+            }
+          }
+          this.spinner.hide();
+        });
+  }
+  getregionsList() {
+    const getRegionsList = String.Join('/', this.apiConfigService.getRegionsList);
+    this.apiService.apiGetRequest(getRegionsList)
+      .subscribe(
+        response => {
+          const res = response.body;
+          if (!isNullOrUndefined(res) && res.status === StatusCodes.pass) {
+            if (!isNullOrUndefined(res.response)) {
+              console.log(res);
+              this.regionsList = res.response['RegionList'];
+            }
+          }
+          this.spinner.hide();
+        });
+  }
+  getcountrysList() {
+    const getCountrysList = String.Join('/', this.apiConfigService.getCountrysList);
+    this.apiService.apiGetRequest(getCountrysList)
+      .subscribe(
+        response => {
+          const res = response.body;
+          if (!isNullOrUndefined(res) && res.status === StatusCodes.pass) {
+            if (!isNullOrUndefined(res.response)) {
+              console.log(res);
+              this.countrysList = res.response['CountryList'];
+            }
+          }
+          this.spinner.hide();
+        });
+  }
+  getstateList() {
+    const getstateList = String.Join('/', this.apiConfigService.getstatesList);
+    this.apiService.apiGetRequest(getstateList)
+      .subscribe(
+        response => {
+          const res = response.body;
+          if (!isNullOrUndefined(res) && res.status === StatusCodes.pass) {
+            if (!isNullOrUndefined(res.response)) {
+              console.log(res);
+              this.stateList = res.response['StatesList'];
+            }
+          }
+          this.spinner.hide();
+        });
+  }
+  getcurrencyList() {
+    const getcurrencyList = String.Join('/', this.apiConfigService.getcurrencyList);
+    this.apiService.apiGetRequest(getcurrencyList)
+      .subscribe(
+        response => {
+          const res = response.body;
+          if (!isNullOrUndefined(res) && res.status === StatusCodes.pass) {
+            if (!isNullOrUndefined(res.response)) {
+              console.log(res);
+              this.currencyList = res.response['CurrencyList'];
+            }
+          }
+          this.spinner.hide();
+        });
+  }
+  getEmployeesList() {
+    const getEmployeeList = String.Join('/', this.apiConfigService.getEmployeeList);
+    this.apiService.apiGetRequest(getEmployeeList)
+      .subscribe(
+        response => {
+          const res = response.body;
+          if (!isNullOrUndefined(res) && res.status === StatusCodes.pass) {
+            if (!isNullOrUndefined(res.response)) {
+              console.log(res);
+              this.employeesList = res.response['employeesList'];
+            }
+          }
+          this.spinner.hide();
+        });
+  }
   companiesListData() {
     const getCompanyUrl = String.Join('/', this.apiConfigService.getCompanysList);
     this.apiService.apiGetRequest(getCompanyUrl)
@@ -96,7 +199,7 @@ export class ProfitCenterComponent implements OnInit {
     if (this.modelFormData.invalid) {
       return;
     }
-    this.modelFormData.controls['seqId'].enable();
+    //this.modelFormData.controls['seqId'].enable();
     this.formData.item = this.modelFormData.value;
     this.dialogRef.close(this.formData);
   }

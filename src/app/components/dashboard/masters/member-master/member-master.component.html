@@ -189,7 +189,7 @@
         <app-vehicle [vehicleTableData]="vehicleTableData"></app-vehicle>
       </mat-tab>
       <mat-tab label="{{ 'GiftMaster.title' | translate }}" *ngIf="isFormEdit">
-        <gift-master   [membercode]="formData.memberCode"></gift-master>
+        <gift-master  [gifttableDataList]="gifttableDataList" [membercode]="formData.memberCode"></gift-master>
       </mat-tab>
     </mat-tab-group>
 

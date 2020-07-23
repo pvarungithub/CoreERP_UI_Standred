@@ -1,106 +1,91 @@
 import { Component, Inject, Optional, OnInit } from '@angular/core';
+import { String } from 'typescript-string-operations';
+import { ApiService } from '../../../../services/api.service';
+
 import { AlertService } from '../../../../services/alert.service';
+
 import { MatDialogRef, MAT_DIALOG_DATA } from '@angular/material';
 import { isNullOrUndefined } from 'util';
 import { FormBuilder, FormGroup, Validators } from '@angular/forms';
-import { StatusCodes } from '../../../../enums/common/common';
 import { NgxSpinnerService } from 'ngx-spinner';
 import { ApiConfigService } from '../../../../services/api-config.service';
-import { ApiService } from '../../../../services/api.service';
-import { String } from 'typescript-string-operations';
-import { CommonService } from '../../../../services/common.service';
-
-interface Active {
-  value: string;
-  viewValue: string;
-}
+import { StatusCodes } from '../../../../enums/common/common';
 @Component({
-  selector: 'department',
-  templateUrl: './department.component.html',
-  styleUrls: ['./department.component.scss']
+  selector: 'app-state',
+  templateUrl: './state.component.html',
+  styleUrls: ['./state.component.scss']
 })
-
-export class DepartmentComponent implements OnInit {
+export class StateComponent implements OnInit {
 
   modelFormData: FormGroup;
   isSubmitted = false;
   formData: any;
-  voucherClass: any;
-  compList: any;
-    employeesList: any;
-  active: Active[] =
-    [
-      { value: 'Y', viewValue: 'Y' },
-      { value: 'N', viewValue: 'N' }
-    ];
+  companyList: any;
+  countrysList: any;
+    languageList: any;
+
+
   constructor(
+    private apiService: ApiService,
+    private apiConfigService: ApiConfigService,
+    private spinner: NgxSpinnerService,
     private alertService: AlertService,
     private formBuilder: FormBuilder,
-    public dialogRef: MatDialogRef<DepartmentComponent>,
-    private spinner: NgxSpinnerService,
-    private apiConfigService: ApiConfigService,
-    private apiService: ApiService,
-    private commonService: CommonService,
+    public dialogRef: MatDialogRef<StateComponent>,
     // @Optional() is used to prevent error if no data is passed
     @Optional() @Inject(MAT_DIALOG_DATA) public data: any) {
 
     this.modelFormData = this.formBuilder.group({
-      departmentId: ['', [Validators.required, Validators.minLength(2), Validators.maxLength(4)]],
-      departmentName: ['', [Validators.required, Validators.minLength(2)]],
+
+      stateCode: [null, [Validators.required, Validators.minLength(1), Validators.maxLength(4)]],
+      stateName: [null, [Validators.required, Validators.minLength(2), Validators.maxLength(40)]],
       id: ['0'],
-      responsiblePersonCode: [null],
-      isActive: ['Y'],
-      ext1: [null]
-
+      countryCode: [null],
+      language: [null],
     });
-
 
     this.formData = { ...data };
     if (!isNullOrUndefined(this.formData.item)) {
       this.modelFormData.patchValue(this.formData.item);
+      //this.modelFormData.controls['branchCode'].disable();
     }
 
   }
 
   ngOnInit() {
-    this.getCompaniesList();
-    this.getEmployeesList();
+    this.getcountrysList();
+    this.getLanguageList();
   }
-
-  getEmployeesList() {
-    const getEmployeeList = String.Join('/', this.apiConfigService.getEmployeeList);
-    this.apiService.apiGetRequest(getEmployeeList)
+  getLanguageList() {
+    const getlanguageList = String.Join('/', this.apiConfigService.getlanguageList);
+    this.apiService.apiGetRequest(getlanguageList)
       .subscribe(
         response => {
           const res = response.body;
           if (!isNullOrUndefined(res) && res.status === StatusCodes.pass) {
             if (!isNullOrUndefined(res.response)) {
               console.log(res);
-              this.employeesList = res.response['employeesList'];
+              this.languageList = res.response['LanguageList'];
             }
           }
           this.spinner.hide();
         });
   }
-  getCompaniesList() {
-    const getCompaniesList = String.Join('/', this.apiConfigService.getCompaniesList);
-    this.apiService.apiGetRequest(getCompaniesList)
+  getcountrysList() {
+    const getCountrysList = String.Join('/', this.apiConfigService.getCountrysList);
+    this.apiService.apiGetRequest(getCountrysList)
       .subscribe(
         response => {
           const res = response.body;
           if (!isNullOrUndefined(res) && res.status === StatusCodes.pass) {
             if (!isNullOrUndefined(res.response)) {
               console.log(res);
-              this.compList = res.response['CompaniesList'];
+              this.countrysList = res.response['CountryList'];
             }
           }
           this.spinner.hide();
         });
   }
-
-
-
-
   get formControls() { return this.modelFormData.controls; }
 
 
@@ -117,3 +102,4 @@ export class DepartmentComponent implements OnInit {
   }
 
 }
+

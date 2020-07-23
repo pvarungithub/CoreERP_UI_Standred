@@ -1,11 +1,8 @@
 import { Component, Inject, Optional, OnInit } from '@angular/core';
 import { String } from 'typescript-string-operations';
 import { ApiService } from '../../../../services/api.service';
-import { Router, ActivatedRoute } from '@angular/router';
-import { MatDialog } from '@angular/material';
 
 import { AlertService } from '../../../../services/alert.service';
-
 
 import { MatDialogRef, MAT_DIALOG_DATA } from '@angular/material';
 import { isNullOrUndefined } from 'util';
@@ -13,28 +10,18 @@ import { FormBuilder, FormGroup, Validators } from '@angular/forms';
 import { NgxSpinnerService } from 'ngx-spinner';
 import { ApiConfigService } from '../../../../services/api-config.service';
 import { StatusCodes } from '../../../../enums/common/common';
-
-interface Active {
-  value: string;
-  viewValue: string;
-}
-
 @Component({
-  selector: 'app-segment',
-  templateUrl: './segment.component.html',
-  styleUrls: ['./segment.component.scss']
+  selector: 'app-region',
+  templateUrl: './region.component.html',
+  styleUrls: ['./region.component.scss']
 })
-export class SegmentComponent implements OnInit {
-
+export class RegionComponent implements OnInit {
 
   modelFormData: FormGroup;
-  isSubmitted  =  false;
+  isSubmitted = false;
   formData: any;
-  active: Active[] =
-    [
-      { value: 'Y', viewValue: 'Y' },
-      { value: 'N', viewValue: 'N' }
-    ];
+  companyList: any;
+
 
   constructor(
     private apiService: ApiService,
@@ -42,23 +29,22 @@ export class SegmentComponent implements OnInit {
     private spinner: NgxSpinnerService,
     private alertService: AlertService,
     private formBuilder: FormBuilder,
-    public dialogRef: MatDialogRef<SegmentComponent>,
+    public dialogRef: MatDialogRef<RegionComponent>,
     // @Optional() is used to prevent error if no data is passed
-    @Optional() @Inject(MAT_DIALOG_DATA) public data: any ) {
+    @Optional() @Inject(MAT_DIALOG_DATA) public data: any) {
 
-      this.modelFormData  =  this.formBuilder.group({
-       
-        id: [null, [Validators.required, Validators.minLength(1)]],
-        name: [null, [Validators.required, Validators.minLength(0), Validators.maxLength(40)]],
-        seqId: ['0'],
-        active: ['Y']
-      });
+    this.modelFormData = this.formBuilder.group({
 
-      this.formData = {...data};
-      if (!isNullOrUndefined(this.formData.item)) {
-        this.modelFormData.patchValue(this.formData.item);
-       this.modelFormData.controls['id'].disable();
-      }
+      regionCode: [null, [Validators.required, Validators.minLength(1), Validators.maxLength(4)]],
+      regionName: [null, [Validators.required, Validators.minLength(2), Validators.maxLength(40)]],
+      id: ['0']
+    });
+
+    this.formData = { ...data };
+    if (!isNullOrUndefined(this.formData.item)) {
+      this.modelFormData.patchValue(this.formData.item);
+      //this.modelFormData.controls['branchCode'].disable();
+    }
 
   }
 
@@ -72,7 +58,6 @@ export class SegmentComponent implements OnInit {
     if (this.modelFormData.invalid) {
       return;
     }
-    this.modelFormData.controls['id'].enable();
     this.formData.item = this.modelFormData.value;
     this.dialogRef.close(this.formData);
   }
@@ -82,3 +67,4 @@ export class SegmentComponent implements OnInit {
   }
 
 }
+

@@ -1,83 +1,202 @@
-import { Component, Inject, Optional, OnInit } from '@angular/core';
+import { Component, Inject, Optional, OnInit, ViewChild } from '@angular/core';
 import { String } from 'typescript-string-operations';
 import { ApiService } from '../../../../services/api.service';
 import { Router, ActivatedRoute } from '@angular/router';
-import { MatDialog } from '@angular/material';
+import { MatDialog, MatTableDataSource, MatPaginator } from '@angular/material';
 
 import { AlertService } from '../../../../services/alert.service';
-
 import { MatDialogRef, MAT_DIALOG_DATA } from '@angular/material';
 import { isNullOrUndefined } from 'util';
-import { FormBuilder, FormGroup, Validators } from '@angular/forms';
-import { StatusCodes } from '../../../../enums/common/common';
+import { FormBuilder, FormGroup, Validators, FormControl } from '@angular/forms';
 import { CommonService } from '../../../../services/common.service';
+import { StatusCodes } from '../../../../enums/common/common';
+import { DatePipe, formatDate } from '@angular/common';
+import { ApiConfigService } from '../../../../services/api-config.service';
+import { NgxSpinnerService } from 'ngx-spinner';
+import { MatDatepickerInputEvent } from '@angular/material/datepicker';
+
+interface ApprovalType {
+  value: string;
+  viewValue: string;
+}
+
 @Component({
   selector: 'app-company',
   templateUrl: './company.component.html',
   styleUrls: ['./company.component.scss']
+
 })
 
-export class CompanyComponent  implements OnInit {
+export class CompanyComponent   implements OnInit {
+
+
+  dataSource: MatTableDataSource<any>;
+  @ViewChild(MatPaginator, { static: true }) paginator: MatPaginator;
 
   modelFormData: FormGroup;
-  isSubmitted  =  false;
+  isSubmitted = false;
   formData: any;
+  EmpName: any;
+  pipe = new DatePipe('en-US');
+  now = Date.now();
+  branchesList: any;
+  compiniesList: any;
+  employeesList: any;
+    stateList: any;
+    currencyList: any;
+    regionsList: any;
+    countrysList: any;
+    languageList: any;
 
   constructor(
+    private apiService: ApiService,
     private alertService: AlertService,
     private formBuilder: FormBuilder,
+    private spinner: NgxSpinnerService,
     public dialogRef: MatDialogRef<CompanyComponent>,
     private commonService: CommonService,
+    private apiConfigService: ApiConfigService,
     // @Optional() is used to prevent error if no data is passed
-    @Optional() @Inject(MAT_DIALOG_DATA) public data: any ) {
-
+    @Optional() @Inject(MAT_DIALOG_DATA) public data: any) {
+    //id: ['0'],
     this.modelFormData = this.formBuilder.group({
-     //companyId: [null, [Validators.required, Validators.minLength(1), Validators.maxLength(4)]],
-      companyId:0,
-      companyName: [null, [Validators.required, Validators.minLength(4), Validators.maxLength(50)]],
-      mailingName: [null],
+      
+      companyCode: [null, [Validators.required, Validators.minLength(1), Validators.maxLength(4)]],
+      companyName: [null, [Validators.required, Validators.minLength(1), Validators.maxLength(50)]],
+      shortName: [null, [Validators.minLength(1), Validators.maxLength(10)]],
+      city: [null],
+      state: [null, [Validators.required]],
+      region: [null, [Validators.required]],
+      country: [null, [Validators.required]],
+      currency: [null, [Validators.required]],
+      language: [null, [Validators.required]],
       address: [null],
-      phone: [null],
-      emailId: [null],
-      web: [null],
-      country: [null],
-      state: [null],
+      address1: [null],
+      street: [null],
       pin: [null],
-      currencyId: [null],
-      financialYearFrom: [null],
-      booksBeginingFrom: [null],
-      gstin: [null],
-      cst: [null],
-      currentDate: [null],
-      logo: [null],
-      extra1: [null],
-      extra2: [null],
-      extraDate: [null],
-      city: [null],       
-      });
+      telephone: [null],
+      mobile: [null],
+      email: [null],
+      image: [null],
+      webSite: [null],
+      panno: [null],
+      gstno: [null],
+      tanno: [null],
+      ext: null,
+      ext1: null,
+      ext2: null
+    });
 
 
-      this.formData = {...data};
-      if (!isNullOrUndefined(this.formData.item)) {
-        this.modelFormData.patchValue(this.formData.item);
-        this.modelFormData.controls['companyId'].disable();
-      }
+
+    this.formData = { ...data };
+    if (!isNullOrUndefined(this.formData.item)) {
+      this.modelFormData.patchValue(this.formData.item);
+      //this.modelFormData.controls['empCode'].disable();
+    }
 
   }
 
   ngOnInit() {
+    this.getstateList();
+    this.getLanguageList();
+    this.getregionsList();
+    this.getcountrysList();
+    this.getcurrencyList();
+  }
 
+
+  getLanguageList() {
+    const getlanguageList = String.Join('/', this.apiConfigService.getlanguageList);
+    this.apiService.apiGetRequest(getlanguageList)
+      .subscribe(
+        response => {
+          const res = response.body;
+          if (!isNullOrUndefined(res) && res.status === StatusCodes.pass) {
+            if (!isNullOrUndefined(res.response)) {
+              console.log(res);
+              this.languageList = res.response['LanguageList'];
+            }
+          }
+          this.spinner.hide();
+        });
+  }
+  getregionsList() {
+    const getRegionsList = String.Join('/', this.apiConfigService.getRegionsList);
+    this.apiService.apiGetRequest(getRegionsList)
+      .subscribe(
+        response => {
+          const res = response.body;
+          if (!isNullOrUndefined(res) && res.status === StatusCodes.pass) {
+            if (!isNullOrUndefined(res.response)) {
+              console.log(res);
+              this.regionsList = res.response['RegionList'];
+            }
+          }
+          this.spinner.hide();
+        });
+  }
+  getcountrysList() {
+    const getCountrysList = String.Join('/', this.apiConfigService.getCountrysList);
+    this.apiService.apiGetRequest(getCountrysList)
+      .subscribe(
+        response => {
+          const res = response.body;
+          if (!isNullOrUndefined(res) && res.status === StatusCodes.pass) {
+            if (!isNullOrUndefined(res.response)) {
+              console.log(res);
+              this.countrysList = res.response['CountryList'];
+            }
+          }
+          this.spinner.hide();
+        });
+  }
+  getstateList() {
+    const getstateList = String.Join('/', this.apiConfigService.getstatesList);
+    this.apiService.apiGetRequest(getstateList)
+      .subscribe(
+        response => {
+          const res = response.body;
+          if (!isNullOrUndefined(res) && res.status === StatusCodes.pass) {
+            if (!isNullOrUndefined(res.response)) {
+              console.log(res);
+              this.stateList = res.response['StatesList'];
+            }
+          }
+          this.spinner.hide();
+        });
+  }
+  getcurrencyList() {
+    const getcurrencyList = String.Join('/', this.apiConfigService.getcurrencyList);
+    this.apiService.apiGetRequest(getcurrencyList)
+      .subscribe(
+        response => {
+          const res = response.body;
+          if (!isNullOrUndefined(res) && res.status === StatusCodes.pass) {
+            if (!isNullOrUndefined(res.response)) {
+              console.log(res);
+              this.currencyList = res.response['CurrencyList'];
+            }
+          }
+          this.spinner.hide();
+        });
+  }
+
+
+  showErrorAlert(caption: string, message: string) {
+    // this.alertService.openSnackBar(caption, message);
   }
 
   get formControls() { return this.modelFormData.controls; }
 
 
   save() {
+    // debugger;
     if (this.modelFormData.invalid) {
       return;
     }
-    
-    this.modelFormData.controls['companyId'].enable();
+
+    this.modelFormData.controls['companyCode'].enable();
     this.formData.item = this.modelFormData.value;
     this.dialogRef.close(this.formData);
   }
@@ -87,3 +206,4 @@ export class CompanyComponent  implements OnInit {
   }
 
 }
+

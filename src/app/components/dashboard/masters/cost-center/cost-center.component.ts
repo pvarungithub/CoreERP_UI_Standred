@@ -12,6 +12,11 @@ import { ApiConfigService } from '../../../../services/api-config.service';
 import { StatusCodes } from '../../../../enums/common/common';
 import { CommonService } from '../../../../services/common.service';
 
+interface Active {
+  value: string;
+  viewValue: string;
+}
+
 @Component({
   selector: 'app-cost-center',
   templateUrl: './cost-center.component.html',
@@ -23,7 +28,12 @@ export class CostCenterComponent implements OnInit {
   isSubmitted  =  false;
   formData: any;
   companyList: any;
-
+  active: Active[] =
+    [
+      { value: 'Y', viewValue: 'Y' },
+      { value: 'N', viewValue: 'N' }
+    ];
+    employeesList: any;
 
   constructor(
     private apiService: ApiService,
@@ -66,8 +76,23 @@ export class CostCenterComponent implements OnInit {
 
   ngOnInit() {
     this.getTableData();
+    this.getEmployeesList();
   }
-
+  getEmployeesList() {
+    const getEmployeeList = String.Join('/', this.apiConfigService.getEmployeeList);
+    this.apiService.apiGetRequest(getEmployeeList)
+      .subscribe(
+        response => {
+          const res = response.body;
+          if (!isNullOrUndefined(res) && res.status === StatusCodes.pass) {
+            if (!isNullOrUndefined(res.response)) {
+              console.log(res);
+              this.employeesList = res.response['employeesList'];
+            }
+          }
+          this.spinner.hide();
+        });
+  }
   getTableData() {
     const getCompanyUrl = String.Join('/', this.apiConfigService.getCompanysList);
     this.apiService.apiGetRequest(getCompanyUrl)

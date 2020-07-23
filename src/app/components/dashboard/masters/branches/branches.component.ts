@@ -23,7 +23,12 @@ export class BranchesComponent implements OnInit {
   isSubmitted  =  false;
   formData: any;
   companyList: any;
-
+  employeesList: any;
+  stateList: any;
+  currencyList: any;
+  regionsList: any;
+  countrysList: any;
+  languageList: any;
 
   constructor(
     private apiService: ApiService,
@@ -37,54 +42,31 @@ export class BranchesComponent implements OnInit {
     @Optional() @Inject(MAT_DIALOG_DATA) public data: any ) {
 
     this.modelFormData = this.formBuilder.group({
-      branchId: 0,
-      companyId: 0,
-      branchCode: [null, [Validators.required, Validators.minLength(1), Validators.maxLength(4)]],
-      branchName: [null, [Validators.required, Validators.minLength(2), Validators.maxLength(50)]],
+      //"id": 1,
+      branchCode: [null, [Validators.required, Validators.minLength(1), Validators.maxLength(5)]],
+      branchName: [null, [Validators.required, Validators.minLength(1), Validators.maxLength(50)]],
+      companyCode: [null],
       isMainBranch: [null],
       subBranchof: [null],
       branchImage: [null],
       address: [null],
       city: [null],
-      state: [null],
-      country: [null],
-      pinCode:[null],
-      phone: [null],
-      fax: [null],
+      state: [null, [Validators.required]],
+      country: [null, [Validators.required]],
+      pincode: [null],
+      phone: [null, [Validators.required]],
+      mobile: [null],
       email: [null],
-      gstin: [null],
-      narration: [null],
-      sapCode: [null],
-        //branchCode: [null, [Validators.required, Validators.minLength(1), Validators.maxLength(4)]],
-        //name: [null, [Validators.required, Validators.minLength(2), Validators.maxLength(50)]],
-        //address1: [null],
-        //address2: [null],
-        //address3: [null],
-        //address4: [null],
-        //advanceAmount: [null],
-        //bankAccountNumber: [null],
-        //bankBranch: [null],
-        //bankName: [null],
-        //building: [null],
-        //companyCode: [null],
-        //email: [null],
-        //ext1: [null],
-        //ext2: [null],
-        //gstNo: [null],
-        //ifsccode: [null],
-        //leaseAmount: [null],
-        //leaseExpiryDate: [null],
-        //leaseStartDate: [null],
-        //ownerName: [null],
-        //phoneNo: [null],
-        //phone1: [null],
-        //phone2: [null],
-        //phone3: [null],
-        //active: ['Y'],
-        //place: [null],
-        //state: [null],
-        //pinCode: [null],
-        //companyCodeNavigation: [null]
+      region: [null, [Validators.required]],
+      address2: [null],
+      panno: [null],
+      gstno: [null],
+      tanno: [null],
+      ext: [null],
+      ext1: [null],
+      language: [null, [Validators.required]],
+      currency: [null, [Validators.required]],
+      responsiblePerson: [null]
       });
 
       this.formData = {...data};
@@ -97,6 +79,12 @@ export class BranchesComponent implements OnInit {
 
   ngOnInit() {
     this.getTableData();
+    this.getstateList();
+    this.getLanguageList();
+    this.getregionsList();
+    this.getcountrysList();
+    this.getcurrencyList();
+    this.getEmployeesList();
   }
 
   getTableData() {
@@ -115,6 +103,96 @@ export class BranchesComponent implements OnInit {
       });
   }
 
+  getLanguageList() {
+    const getlanguageList = String.Join('/', this.apiConfigService.getlanguageList);
+    this.apiService.apiGetRequest(getlanguageList)
+      .subscribe(
+        response => {
+          const res = response.body;
+          if (!isNullOrUndefined(res) && res.status === StatusCodes.pass) {
+            if (!isNullOrUndefined(res.response)) {
+              console.log(res);
+              this.languageList = res.response['LanguageList'];
+            }
+          }
+          this.spinner.hide();
+        });
+  }
+  getregionsList() {
+    const getRegionsList = String.Join('/', this.apiConfigService.getRegionsList);
+    this.apiService.apiGetRequest(getRegionsList)
+      .subscribe(
+        response => {
+          const res = response.body;
+          if (!isNullOrUndefined(res) && res.status === StatusCodes.pass) {
+            if (!isNullOrUndefined(res.response)) {
+              console.log(res);
+              this.regionsList = res.response['RegionList'];
+            }
+          }
+          this.spinner.hide();
+        });
+  }
+  getcountrysList() {
+    const getCountrysList = String.Join('/', this.apiConfigService.getCountrysList);
+    this.apiService.apiGetRequest(getCountrysList)
+      .subscribe(
+        response => {
+          const res = response.body;
+          if (!isNullOrUndefined(res) && res.status === StatusCodes.pass) {
+            if (!isNullOrUndefined(res.response)) {
+              console.log(res);
+              this.countrysList = res.response['CountryList'];
+            }
+          }
+          this.spinner.hide();
+        });
+  }
+  getstateList() {
+    const getstateList = String.Join('/', this.apiConfigService.getstatesList);
+    this.apiService.apiGetRequest(getstateList)
+      .subscribe(
+        response => {
+          const res = response.body;
+          if (!isNullOrUndefined(res) && res.status === StatusCodes.pass) {
+            if (!isNullOrUndefined(res.response)) {
+              console.log(res);
+              this.stateList = res.response['StatesList'];
+            }
+          }
+          this.spinner.hide();
+        });
+  }
+  getcurrencyList() {
+    const getcurrencyList = String.Join('/', this.apiConfigService.getcurrencyList);
+    this.apiService.apiGetRequest(getcurrencyList)
+      .subscribe(
+        response => {
+          const res = response.body;
+          if (!isNullOrUndefined(res) && res.status === StatusCodes.pass) {
+            if (!isNullOrUndefined(res.response)) {
+              console.log(res);
+              this.currencyList = res.response['CurrencyList'];
+            }
+          }
+          this.spinner.hide();
+        });
+  }
+  getEmployeesList() {
+    const getEmployeeList = String.Join('/', this.apiConfigService.getEmployeeList);
+    this.apiService.apiGetRequest(getEmployeeList)
+      .subscribe(
+        response => {
+          const res = response.body;
+          if (!isNullOrUndefined(res) && res.status === StatusCodes.pass) {
+            if (!isNullOrUndefined(res.response)) {
+              console.log(res);
+              this.employeesList = res.response['employeesList'];
+            }
+          }
+          this.spinner.hide();
+        });
+  }
 
   get formControls() { return this.modelFormData.controls; }
 
