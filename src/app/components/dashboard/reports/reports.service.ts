@@ -103,7 +103,7 @@ export class ReportsService {
         this.dynamicData.listName = 'saleValue';
         return this.dynamicData;
         case 'Trial Balance':
-          this.dynamicData.url = this.apiConfigService.getTrialBalanceReportData;
+          // this.dynamicData.url = this.apiConfigService.getTrialBalanceReportData;
           this.dynamicData.listName = 'trialBalanceList';
           return this.dynamicData;
       default:

@@ -442,7 +442,7 @@ export class ApiConfigService {
   getLanguageList = `${this.environment.runtimeConfig.serverUrl}masters/Language/GetLanguageList`;
   registerLanguage = `${this.environment.runtimeConfig.serverUrl}masters/Language/RegisterLanguage`;
   updateLanguage = `${this.environment.runtimeConfig.serverUrl}masters/Language/UpdateLanguage`;
-  deleteLabguage = `${this.environment.runtimeConfig.serverUrl}masters/Language/DeleteLanguage`;
+  deleteLanguage = `${this.environment.runtimeConfig.serverUrl}masters/Language/DeleteLanguage`;
 
   //country
   getcountryList = `${this.environment.runtimeConfig.serverUrl}masters/Country/GetCountryList`;

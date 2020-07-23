@@ -15,5 +15,8 @@ export { VehicleComponent } from './member-master/vehicle/vehicle.component';
 export { DesignationComponent } from './designation/designation.component';
 export { DepartmentComponent } from './department/department.component';
 export { GiftMasterComponent} from'./member-master/Giftmaster/giftmaster.component';
-
-
+export { CountryComponent} from'./country/country.component';
+export { CurrencyComponent} from'./currency/currency.component';
+export { RegionComponent} from'./region/region.component';
+export { StateComponent} from'./state/state.component';
+export { LanguageComponent} from './language/language.component';
