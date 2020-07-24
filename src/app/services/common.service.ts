@@ -94,17 +94,12 @@ export class CommonService {
   }
 
 
-  public closeNav() {
+  public toggleSidebar() {
     if (!isNullOrUndefined(this.appDrawer)) {
-      this.appDrawer.close();
+      this.appDrawer.toggle();
     }
   }
 
-  public openNav() {
-    if (!isNullOrUndefined(this.appDrawer)) {
-      this.appDrawer.open();
-    }
-  }
 
   //To Set Focus
   setFocus(id) {
@@ -114,6 +109,11 @@ export class CommonService {
         inputElement.focus();
       }
     }, 0);
+  }
+
+  //Object Comparsion
+  IsObjectsMatch(mainObject: any, cloneObject: any) {
+    return (JSON.stringify(mainObject) === JSON.stringify(cloneObject));
   }
 
   // showSpinner() {

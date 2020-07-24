@@ -15,7 +15,6 @@ export class ApiConfigService {
 
    // login Url
    loginUrl = `${this.environment.runtimeConfig.serverUrl}Auth/login`;
-   getMenuUrl = `${this.environment.runtimeConfig.serverUrl}Auth/getMenu/admin`;
    logoutUrl = `${this.environment.runtimeConfig.serverUrl}Auth/logout`;
    shiftTerminate = `${this.environment.runtimeConfig.serverUrl}Auth/ShiftTerminate`;
    shiftStart = `${this.environment.runtimeConfig.serverUrl}Auth/ShiftStart`;
@@ -717,6 +716,12 @@ export class ApiConfigService {
   getSMSSummaryReportData = `${this.environment.runtimeConfig.serverUrl}Reports/ReceiptsAndPyamentDetailedReport/GetReceiptsAndPyamentDetailedReportData`;
   getOneDaySaleValueReportData=`${this.environment.runtimeConfig.serverUrl}Reports/OneDaySaleValueReport6amTo6am/GetOneDaySaleValueReportData`;
 
+  /**************************** Settings ********************************************************* */
+getRoles = `${this.environment.runtimeConfig.serverUrl}Auth/getRoles`;
+getParentMenus = `${this.environment.runtimeConfig.serverUrl}Auth/getParentMenu`;
+getMenuList = `${this.environment.runtimeConfig.serverUrl}Auth/getMenuList`;
+giveAccess = `${this.environment.runtimeConfig.serverUrl}Auth/GiveAccess`;
+getMenuUrl = `${this.environment.runtimeConfig.serverUrl}Auth/getMenu`;
    
 
    

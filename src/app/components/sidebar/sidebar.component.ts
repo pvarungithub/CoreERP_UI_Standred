@@ -55,7 +55,7 @@ export class SidebarComponent implements OnInit {
       console.log( route, item.route);
 
       this.router.navigate([ route, item.route ]);
-      this.commonService.closeNav();
+      this.commonService.toggleSidebar();
     }
     if (item.children && item.children.length) {
       this.expanded = !this.expanded;

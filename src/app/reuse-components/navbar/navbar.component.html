@@ -9,8 +9,8 @@
       <mat-icon>menu</mat-icon>
     </button>
     <div class="container">
-        <img src="../../assets/images/CoreERP_icon.png" alt="hi" height="25" />
-        <span class="pl-2">CoreERP</span>
+        <img  [routerLink]="['/dashboard']" src="../../assets/images/CoreERP_icon.png" alt="hi" height="25" />
+        <span  [routerLink]="['/dashboard']" class="pl-2">CoreERP</span>
     </div>
     <button *ngIf="showExpandButtons" class="ml-2" mat-button (click)="shift()" > {{ shiftButton }} </button>
     <div class="d-flex" *ngIf="showExpandButtons">

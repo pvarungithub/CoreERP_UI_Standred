@@ -96,10 +96,10 @@ export class NavbarComponent implements OnInit {
 
   openCloseMemu() {
     if(this.openMenu) {
-      this.commonService.closeNav();
+      this.commonService.toggleSidebar();
       this.openMenu = false;
     } else { 
-      this.commonService.openNav();
+      this.commonService.toggleSidebar();
       this.openMenu = true;
     }
   }
