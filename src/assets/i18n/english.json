@@ -1137,6 +1137,7 @@
     "title": "Role Previlages",
     "role": "Role",
     "menuName": "Menu Name",
+    "headerMenu": "Header Menu",
     "active": "Active",
     "add": "Add",
     "edit": "Edit",
