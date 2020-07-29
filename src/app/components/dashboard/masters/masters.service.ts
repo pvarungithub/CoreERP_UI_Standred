@@ -1,11 +1,5 @@
 import { Injectable } from '@angular/core';
 import { ApiConfigService } from '../../../services/api-config.service';
-import { CompanyComponent } from './company/company.component';
-import { BranchesComponent } from './branches/branches.component';
-import { DivisionComponent } from './division/division.component';
-import { SegmentComponent } from './segment/segment.component';
-import { ProfitCenterComponent } from './profit-center/profit-center.component';
-import { CostCenterComponent } from './cost-center/cost-center.component';
 import { EmployeeInBranchComponent } from './employee-in-branch/employee-in-branch.component';
 import { EmployeeComponent } from './employee/employee.component';
 import { TanksComponent } from './tank/tank.componet';
@@ -16,11 +10,6 @@ import { VehicleComponent } from './member-master/vehicle/vehicle.component';
 import { DesignationComponent } from './designation/designation.component';
 import { DepartmentComponent } from './department/department.component';
 import { String } from 'typescript-string-operations';
-import { LanguageComponent } from './language/language.component';
-import { CountryComponent } from './country/country.component';
-import { RegionComponent } from './region/region.component';
-import { StateComponent } from './state/state.component';
-import { CurrencyComponent } from './currency/currency.component';
 
 @Injectable({
   providedIn: 'root'
@@ -39,7 +28,6 @@ export class MastersService {
     switch (data) {
      case 'company':
       this.dynamicData.url = this.apiConfigService.getCompanysList;
-      this.dynamicData.component = CompanyComponent;
       this.dynamicData.registerUrl = this.apiConfigService.registerCompany;
       this.dynamicData.updateUrl = this.apiConfigService.updateCompany;
       this.dynamicData.deleteUrl = this.apiConfigService.deleteCompany;
@@ -57,16 +45,6 @@ export class MastersService {
         this.dynamicData.primaryKey = 'departmentId';
         return this.dynamicData;
         break;
-     case 'branches':
-      this.dynamicData.url = this.apiConfigService.getBranchesList;
-      this.dynamicData.component = BranchesComponent;
-      this.dynamicData.registerUrl = this.apiConfigService.registerBranch;
-      this.dynamicData.updateUrl = this.apiConfigService.updateBranch;
-      this.dynamicData.deleteUrl = this.apiConfigService.deleteBranches;
-      this.dynamicData.listName = 'branchesList';
-        this.dynamicData.primaryKey = 'branchCode';
-      return this.dynamicData;
-        break;
       case 'designation':
         this.dynamicData.url = this.apiConfigService.getDesignationsList;
         this.dynamicData.component = DesignationComponent;
@@ -77,97 +55,97 @@ export class MastersService {
         this.dynamicData.primaryKey = 'designationId';
         return this.dynamicData;
         break;
-      case 'country':
-        this.dynamicData.url = this.apiConfigService.getcountryList;
-        this.dynamicData.component = CountryComponent;
-        this.dynamicData.registerUrl = this.apiConfigService.registerCountry;
-        this.dynamicData.updateUrl = this.apiConfigService.updateCountry;
-        this.dynamicData.deleteUrl = this.apiConfigService.deleteCountry;
-        this.dynamicData.listName = 'countryList';
-        this.dynamicData.primaryKey = 'countryCode';
-        return this.dynamicData;
-        break;
-      case 'region':
-        this.dynamicData.url = this.apiConfigService.getregionList;
-        this.dynamicData.component = RegionComponent;
-        this.dynamicData.registerUrl = this.apiConfigService.registerRegion;
-        this.dynamicData.updateUrl = this.apiConfigService.updateRegion;
-        this.dynamicData.deleteUrl = this.apiConfigService.deleteRegion;
-        this.dynamicData.listName = 'regionList';
-        this.dynamicData.primaryKey = 'regionCode';
-        return this.dynamicData;
-        break;
-      case 'state':
-        this.dynamicData.url = this.apiConfigService.getstateList;
-        this.dynamicData.component = StateComponent;
-        this.dynamicData.registerUrl = this.apiConfigService.registerState;
-        this.dynamicData.updateUrl = this.apiConfigService.updateState;
-        this.dynamicData.deleteUrl = this.apiConfigService.deleteState;
-        this.dynamicData.listName = 'stateList';
-        this.dynamicData.primaryKey = 'stateCode';
-        return this.dynamicData;
-        break;
-      case 'currency':
-        this.dynamicData.url = this.apiConfigService.getCurrencyList;
-        this.dynamicData.component = CurrencyComponent;
-        this.dynamicData.registerUrl = this.apiConfigService.registerCurrency;
-        this.dynamicData.updateUrl = this.apiConfigService.updateCurrency;
-        this.dynamicData.deleteUrl = this.apiConfigService.deleteCurrency;
-        this.dynamicData.listName = 'currencyList';
-        this.dynamicData.primaryKey = 'currencySymbol';
-        return this.dynamicData;
-        break;
-     case 'division':
-      this.dynamicData.url = this.apiConfigService.getDivisionsList;
-      this.dynamicData.component = DivisionComponent;
-      this.dynamicData.registerUrl = this.apiConfigService.registerDivision;
-      this.dynamicData.updateUrl = this.apiConfigService.updateDivision;
-      this.dynamicData.deleteUrl = this.apiConfigService.deleteDivision;
-      this.dynamicData.listName = 'divisionsList';
-      this.dynamicData.primaryKey = 'code';
-      return this.dynamicData;
-      break;
-     case 'segment':
-      this.dynamicData.url = this.apiConfigService.getSegmentList;
-      this.dynamicData.component = SegmentComponent;
-      this.dynamicData.registerUrl = this.apiConfigService.registerSegment;
-      this.dynamicData.updateUrl = this.apiConfigService.updateSegment;
-      this.dynamicData.deleteUrl = this.apiConfigService.deleteSegment;
-      this.dynamicData.listName = 'segmentList';
-      this.dynamicData.primaryKey = 'seqId';
-      return this.dynamicData;
-        break;
-      case 'language':
-        this.dynamicData.url = this.apiConfigService.getLanguageList;
-        this.dynamicData.component = LanguageComponent;
-        this.dynamicData.registerUrl = this.apiConfigService.registerLanguage;
-        this.dynamicData.updateUrl = this.apiConfigService.updateLanguage;
-        this.dynamicData.deleteUrl = this.apiConfigService.deleteLanguage;
-        this.dynamicData.listName = 'languageList';
-        this.dynamicData.primaryKey = 'languageCode';
-        return this.dynamicData;
-        break;
-      case 'profitCenter':
-      this.dynamicData.url = this.apiConfigService.getProfitCenterList;
-      this.dynamicData.component = ProfitCenterComponent;
-      this.dynamicData.registerUrl = this.apiConfigService.registerProfitCenters;
-      this.dynamicData.updateUrl = this.apiConfigService.updateProfitCenters;
-      this.dynamicData.deleteUrl = this.apiConfigService.deleteProfitCenters;
-      this.dynamicData.listName = 'profitCenterList';
-        this.dynamicData.primaryKey = 'code';
-      return this.dynamicData;
-      break;
+      // case 'country':
+      //   this.dynamicData.url = this.apiConfigService.getcountryList;
+      //   this.dynamicData.component = CountryComponent;
+      //   this.dynamicData.registerUrl = this.apiConfigService.registerCountry;
+      //   this.dynamicData.updateUrl = this.apiConfigService.updateCountry;
+      //   this.dynamicData.deleteUrl = this.apiConfigService.deleteCountry;
+      //   this.dynamicData.listName = 'countryList';
+      //   this.dynamicData.primaryKey = 'countryCode';
+      //   return this.dynamicData;
+      //   break;
+      // case 'region':
+      //   this.dynamicData.url = this.apiConfigService.getregionList;
+      //   this.dynamicData.component = RegionComponent;
+      //   this.dynamicData.registerUrl = this.apiConfigService.registerRegion;
+      //   this.dynamicData.updateUrl = this.apiConfigService.updateRegion;
+      //   this.dynamicData.deleteUrl = this.apiConfigService.deleteRegion;
+      //   this.dynamicData.listName = 'regionList';
+      //   this.dynamicData.primaryKey = 'regionCode';
+      //   return this.dynamicData;
+      //   break;
+      // case 'state':
+      //   this.dynamicData.url = this.apiConfigService.getstateList;
+      //   this.dynamicData.component = StateComponent;
+      //   this.dynamicData.registerUrl = this.apiConfigService.registerState;
+      //   this.dynamicData.updateUrl = this.apiConfigService.updateState;
+      //   this.dynamicData.deleteUrl = this.apiConfigService.deleteState;
+      //   this.dynamicData.listName = 'stateList';
+      //   this.dynamicData.primaryKey = 'stateCode';
+      //   return this.dynamicData;
+      //   break;
+      // case 'currency':
+      //   this.dynamicData.url = this.apiConfigService.getCurrencyList;
+      //   this.dynamicData.component = CurrencyComponent;
+      //   this.dynamicData.registerUrl = this.apiConfigService.registerCurrency;
+      //   this.dynamicData.updateUrl = this.apiConfigService.updateCurrency;
+      //   this.dynamicData.deleteUrl = this.apiConfigService.deleteCurrency;
+      //   this.dynamicData.listName = 'currencyList';
+      //   this.dynamicData.primaryKey = 'currencySymbol';
+      //   return this.dynamicData;
+      //   break;
+    //  case 'division':
+    //   this.dynamicData.url = this.apiConfigService.getDivisionsList;
+    //   this.dynamicData.component = DivisionComponent;
+    //   this.dynamicData.registerUrl = this.apiConfigService.registerDivision;
+    //   this.dynamicData.updateUrl = this.apiConfigService.updateDivision;
+    //   this.dynamicData.deleteUrl = this.apiConfigService.deleteDivision;
+    //   this.dynamicData.listName = 'divisionsList';
+    //   this.dynamicData.primaryKey = 'code';
+    //   return this.dynamicData;
+    //   break;
+    //  case 'segment':
+    //   this.dynamicData.url = this.apiConfigService.getSegmentList;
+    //   this.dynamicData.component = SegmentComponent;
+    //   this.dynamicData.registerUrl = this.apiConfigService.registerSegment;
+    //   this.dynamicData.updateUrl = this.apiConfigService.updateSegment;
+    //   this.dynamicData.deleteUrl = this.apiConfigService.deleteSegment;
+    //   this.dynamicData.listName = 'segmentList';
+    //   this.dynamicData.primaryKey = 'seqId';
+    //   return this.dynamicData;
+    //     break;
+      // case 'language':
+      //   this.dynamicData.url = this.apiConfigService.getLanguageList;
+      //   this.dynamicData.component = LanguageComponent;
+      //   this.dynamicData.registerUrl = this.apiConfigService.registerLanguage;
+      //   this.dynamicData.updateUrl = this.apiConfigService.updateLanguage;
+      //   this.dynamicData.deleteUrl = this.apiConfigService.deleteLanguage;
+      //   this.dynamicData.listName = 'languageList';
+      //   this.dynamicData.primaryKey = 'languageCode';
+      //   return this.dynamicData;
+      //   break;
+      // case 'profitCenter':
+      // this.dynamicData.url = this.apiConfigService.getProfitCenterList;
+      // this.dynamicData.component = ProfitCenterComponent;
+      // this.dynamicData.registerUrl = this.apiConfigService.registerProfitCenters;
+      // this.dynamicData.updateUrl = this.apiConfigService.updateProfitCenters;
+      // this.dynamicData.deleteUrl = this.apiConfigService.deleteProfitCenters;
+      // this.dynamicData.listName = 'profitCenterList';
+      //   this.dynamicData.primaryKey = 'code';
+      // return this.dynamicData;
+      // break;
      
-     case 'costcenter':
-      this.dynamicData.url = this.apiConfigService.GetCostCenterList;
-      this.dynamicData.component = CostCenterComponent;
-      this.dynamicData.registerUrl = this.apiConfigService.registerCostCenter;
-      this.dynamicData.updateUrl = this.apiConfigService.updateCostCenter;
-      this.dynamicData.deleteUrl = this.apiConfigService.deleteCostCenter;
-        this.dynamicData.listName = 'costcenterList';
-      this.dynamicData.primaryKey = 'code';
-      return this.dynamicData;
-      break;
+    //  case 'costcenter':
+    //   this.dynamicData.url = this.apiConfigService.GetCostCenterList;
+    //   this.dynamicData.component = CostCenterComponent;
+    //   this.dynamicData.registerUrl = this.apiConfigService.registerCostCenter;
+    //   this.dynamicData.updateUrl = this.apiConfigService.updateCostCenter;
+    //   this.dynamicData.deleteUrl = this.apiConfigService.deleteCostCenter;
+    //     this.dynamicData.listName = 'costcenterList';
+    //   this.dynamicData.primaryKey = 'code';
+    //   return this.dynamicData;
+    //   break;
     
       case 'employeeInBranch':
         this.dynamicData.url = String.Join('/', this.apiConfigService.getAllEmployeesInBranch, user.branchCode);

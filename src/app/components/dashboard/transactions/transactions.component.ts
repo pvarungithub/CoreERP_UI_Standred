@@ -3,7 +3,7 @@ import { ApiService } from '../../../services/api.service';
 import { String } from 'typescript-string-operations';
 import { DeleteItemComponent } from '../../../reuse-components/delete-item/delete-item.component';
 import { Router, ActivatedRoute } from '@angular/router';
-import { MatDialog } from '@angular/material';
+import { MatDialog } from '@angular/material/dialog';
 import { isNullOrUndefined } from 'util';
 import { NgxSpinnerService } from 'ngx-spinner';
 import { StatusCodes } from '../../../enums/common/common';

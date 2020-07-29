@@ -1,7 +1,6 @@
 import { Injectable } from '@angular/core';
 import { ApiConfigService } from '../../../services/api-config.service'
 import { BrandModelComponent } from './brandmodel/brandmodel.component'
-import { SizesComponent } from './sizes/sizes.component'
 import { AccountingClassComponent } from './accountingclass/accountingclass.component'
 import { BrandComponent } from './brand/brand.component'
 import { NumberAssignmentComponent } from './numberassignment/numberassignment.component'
@@ -36,16 +35,16 @@ export class InventoryService {
         return this.dynamicData;
         break;
 
-      case 'sizes':
-        this.dynamicData.url = this.apiConfigService.getSizesList;
-        this.dynamicData.component = SizesComponent;
-        this.dynamicData.registerUrl = this.apiConfigService.registerSizesList;
-        this.dynamicData.updateUrl = this.apiConfigService.updateSizesList;
-        this.dynamicData.deleteUrl = this.apiConfigService.deleteSizesList;
-        this.dynamicData.listName = 'sizesList';
-        this.dynamicData.primaryKey = 'code';
-        return this.dynamicData;
-        break;
+      // case 'sizes':
+      //   this.dynamicData.url = this.apiConfigService.getSizesList;
+      //   this.dynamicData.component = SizesComponent;
+      //   this.dynamicData.registerUrl = this.apiConfigService.registerSizesList;
+      //   this.dynamicData.updateUrl = this.apiConfigService.updateSizesList;
+      //   this.dynamicData.deleteUrl = this.apiConfigService.deleteSizesList;
+      //   this.dynamicData.listName = 'sizesList';
+      //   this.dynamicData.primaryKey = 'code';
+      //   return this.dynamicData;
+      //   break;
       case 'accountingclass':
         this.dynamicData.url = this.apiConfigService.getAccountingClassList;
         this.dynamicData.component = AccountingClassComponent;

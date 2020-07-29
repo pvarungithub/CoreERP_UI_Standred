@@ -19,8 +19,7 @@ export class ApiConfigService {
    shiftTerminate = `${this.environment.runtimeConfig.serverUrl}Auth/ShiftTerminate`;
    shiftStart = `${this.environment.runtimeConfig.serverUrl}Auth/ShiftStart`;
    getBranchesForUser = `${this.environment.runtimeConfig.serverUrl}Auth/GetBranchesForUser`;
-
-
+   getComponentInfo = `${this.environment.runtimeConfig.serverUrl}Settings/GetComponentInfo`;
 
    // ******************************** sales *********************************
    getInvoiceList = `${this.environment.runtimeConfig.serverUrl}sales/Billing/GetInvoiceList`;
@@ -345,8 +344,73 @@ export class ApiConfigService {
   updatedepartment = `${this.environment.runtimeConfig.serverUrl}masters/Department/updatedepartment`;
   deletedepartment = `${this.environment.runtimeConfig.serverUrl}masters/Department/deletedepartment`;
   
-   // --- Branches
+  //Fdepartment
+  getfunctionaldeptList = `${this.environment.runtimeConfig.serverUrl}masters/FunctionalDepartment/GetFunctionalDepartment`;
+  registerfunctionaldept = `${this.environment.runtimeConfig.serverUrl}masters/FunctionalDepartment/RegisterFunctionalDepartment`;
+  updatefunctionaldept = `${this.environment.runtimeConfig.serverUrl}masters/FunctionalDepartment/UpdateFunctionalDepartment`;
+  deletefunctionaldept = `${this.environment.runtimeConfig.serverUrl}masters/FunctionalDepartment/DeleteFunctionalDepartment`;
+   
+  //plant
+  getplantList = `${this.environment.runtimeConfig.serverUrl}masters/Plant/GetPlant`;
+  registerPlant = `${this.environment.runtimeConfig.serverUrl}masters/Plant/RegisterPlant`;
+  updatePlant = `${this.environment.runtimeConfig.serverUrl}masters/Plant/UpdatePlant`;
+  deletePlant = `${this.environment.runtimeConfig.serverUrl}masters/Plant/DeletePlant`;
 
+  //location  
+   getPlantList = `${this.environment.runtimeConfig.serverUrl}masters/Location/GetPlantList`;
+   getlocationList = `${this.environment.runtimeConfig.serverUrl}masters/Location/GetLocationList`;
+   registerLocation = `${this.environment.runtimeConfig.serverUrl}masters/Location/RegisterLocation`;
+   updateLocation = `${this.environment.runtimeConfig.serverUrl}masters/Location/UpdateLocation`;
+   deleteLocation = `${this.environment.runtimeConfig.serverUrl}masters/Location/DeleteLocation`;
+
+ //SalesDepartment
+ getsalesdepartmentList = `${this.environment.runtimeConfig.serverUrl}masters/SD/GetSalesDepartment`;
+ registerSalesDepartment = `${this.environment.runtimeConfig.serverUrl}masters/SD/RegisterSalesDepartment`;
+ updateSalesDepartment = `${this.environment.runtimeConfig.serverUrl}masters/SD/UpdateSalesDepartment`;
+ deleteSalesDepartment = `${this.environment.runtimeConfig.serverUrl}masters/SD/DeleteSalesDepartment`;
+
+ //salesgroup
+ getsalesgroupList = `${this.environment.runtimeConfig.serverUrl}masters/SalesGroup/GetSalesGroupList`;
+ registerSalesGroup = `${this.environment.runtimeConfig.serverUrl}masters/SalesGroup/RegisterSalesGroup`;
+ updateSalesGroup = `${this.environment.runtimeConfig.serverUrl}masters/SalesGroup/UpdateSalesGroup`;
+ deleteSalesGroup = `${this.environment.runtimeConfig.serverUrl}masters/SalesGroup/DeleteSalesGroup`;
+
+  ///MaintenanceArea
+  getmaintenanceareaList = `${this.environment.runtimeConfig.serverUrl}masters/MaintenanceArea/GetMaintenanceArea`;
+  registerMaintenanceArea = `${this.environment.runtimeConfig.serverUrl}masters/MaintenanceArea/RegisterMaintenanceArea`;
+  updateMaintenanceArea = `${this.environment.runtimeConfig.serverUrl}masters/MaintenanceArea/UpdateMaintenanceArea`;
+  deleteMaintenanceArea = `${this.environment.runtimeConfig.serverUrl}masters/MaintenanceArea/DeleteMaintenanceArea`;
+  
+     //Purchasedepartment
+     getpurchasedeptList = `${this.environment.runtimeConfig.serverUrl}masters/PurchaseDepartment/GetPurchaseDepartment`;
+     registerPurchaseDepartment = `${this.environment.runtimeConfig.serverUrl}masters/PurchaseDepartment/RegisterPurchaseDepartment`;
+     updatePurchaseDepartment = `${this.environment.runtimeConfig.serverUrl}masters/PurchaseDepartment/UpdatePurchaseDepartment`;
+     deletePurchaseDepartment = `${this.environment.runtimeConfig.serverUrl}masters/PurchaseDepartment/DeletePurchaseDepartment`;
+
+    ///StorageLocation
+    getstoragelocationList = `${this.environment.runtimeConfig.serverUrl}masters/StorageLocation/GetStorageLocation`;
+    registerStorageLocation = `${this.environment.runtimeConfig.serverUrl}masters/StorageLocation/RegisterStorageLocation`;
+    updateStorageLocation = `${this.environment.runtimeConfig.serverUrl}masters/StorageLocation/UpdateStorageLocation`;
+    deleteStorageLocation = `${this.environment.runtimeConfig.serverUrl}masters/StorageLocation/DeleteStorageLocation`;    
+
+  //salesoffice
+  getsalesOfficeList = `${this.environment.runtimeConfig.serverUrl}masters/SalesOffice/GetSalesOfficeList`;
+  registerSalesOffice = `${this.environment.runtimeConfig.serverUrl}masters/SalesOffice/RegisterSalesOffice`;
+  updateSalesOffice = `${this.environment.runtimeConfig.serverUrl}masters/SalesOffice/UpdateSalesOffice`;
+  deleteSalesOffice = `${this.environment.runtimeConfig.serverUrl}masters/SalesOffice/DeleteSalesOffice`;
+  //erpuser
+  getrolelist = `${this.environment.runtimeConfig.serverUrl}masters/UserCreation/GetRoleList`;
+  geterpuserList = `${this.environment.runtimeConfig.serverUrl}masters/UserCreation/GetUserCreation`;
+  registerUserCreation = `${this.environment.runtimeConfig.serverUrl}masters/UserCreation/RegisterUserCreation`;
+  updateUserCreation = `${this.environment.runtimeConfig.serverUrl}masters/UserCreation/UpdateUserCreation`;
+  deleteUserCreation = `${this.environment.runtimeConfig.serverUrl}masters/UserCreation/DeleteUserCreation`;
+
+ //distributionchannel
+getdistributionchannelList = `${this.environment.runtimeConfig.serverUrl}masters/DistributionChannel/GetDistributionChannelList`;
+registerDistributionChannel = `${this.environment.runtimeConfig.serverUrl}masters/DistributionChannel/RegisterDistributionChannel`;
+updateDistributionChannel = `${this.environment.runtimeConfig.serverUrl}masters/DistributionChannel/UpdateDistributionChannel`;
+deleteDistributionChannel = `${this.environment.runtimeConfig.serverUrl}masters/DistributionChannel/DeleteDistributionChannel`;
+  // --- Branches
    GetEmployeesList = `${this.environment.runtimeConfig.serverUrl}masters/Branches/GetEmployeesList`;
    getBranchesList = `${this.environment.runtimeConfig.serverUrl}masters/Branches/GetBranchesList`;
    registerBranch = `${this.environment.runtimeConfig.serverUrl}masters/Branches/RegisterBranch`;

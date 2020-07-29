@@ -266,6 +266,116 @@
     "responsiblePersonCode": "ResponsiblePersonCode",
     "ext1": "Ext1"
   },
+  "functionaldepatment": {
+    "title": "FunctionalDepartment",
+    "id": "Id",
+    "code": "Code",
+    "description": "DepartmentName",
+    "responsiblePersion": "ResponsiblePersion"
+  },
+  "plant": {
+    "title": "Plant",
+    "plantCode": "Code",
+    "plantname": "Name",
+    "city": "City",
+    "state": "State",
+    "region": "Region",
+    "country": "Country",
+    "address1": "Address1",
+    "address2": "Address2",
+    "pin": "PIN",
+    "phone": "Address2",
+    "mobile": "Mobile",
+    "email": "Email",
+    "panno": "Panno",
+    "gstno": "Gstno",
+    "location": "Location",
+    "ext": "Ext",
+    "currency": "Currency",
+    "language": "Language",
+    "responsiblePerson": "ResponsiblePerson"
+  },
+  "salesdepartment": {
+    "title": "SalesDepartment",
+    "departmentCode": "Code",
+    "name": "Name",
+    "city": "City",
+    "state": "State",
+    "region": "Region",
+    "country": "Country",
+    "address1": "Address1",
+    "address2": "Address2",
+    "pin": "PIN",
+    "phone": "phone",
+    "mobile": "Mobile",
+    "email": "Email",
+    "panno": "Panno",
+    "gstno": "Gstno",
+    "tanno": "Tanno",
+    "ext": "Ext",
+    "currency": "Currency",
+    "language": "Language",
+    "responsiblePerson": "ResponsiblePerson"
+  },
+  "salesoffice": {
+    "title": "SalesOffice",
+    "code": "Code",
+    "name": "Name",
+    "city": "City",
+    "state": "State",
+    "region": "Region",
+    "country": "Country",
+    "address1": "Address",
+    "address2": "Address2",
+    "mobile": "Mobile",
+    "email": "Email",
+    "phone": "Phone",
+    "currency": "Currency",
+    "language": "Language",
+    "responsiblePerson": "ResponsiblePerson"
+  },
+  "salesgroup": {
+    "title": "SalesGroup",
+    "code": "Code",
+    "name": "Name"
+  },
+  "distributionchannel": {
+    "title": "DistributionChannel",
+    "code": "Code",
+    "name": "Name"
+  },
+  "purchasedepartment": {
+    "title": "PurchaseDepartment",
+    "code": "Code",
+    "description": "Name"
+  },
+  "location": {
+    "title": "Location",
+    "locationId": "Code",
+    "description": "Name",
+    "plant": "Plant"
+  },
+  "storagelocation": {
+    "title": "StorageLocation",
+    "code": "Code",
+    "name": "Name",
+    "plant": "Plant"
+  },
+  "maintenancearea": {
+    "title": "MaintenanceArea",
+    "code": "Code",
+    "name": "Name",
+    "plant": "Plant"
+  },
+  "erpuser": {
+    "title": "ErpUser",
+    "userName": "userName",
+    "password": "password",
+    "role": "Role",
+    "branchCode": "BranchCode",
+    "companyCode": "CompanyCode",
+    "addDate": "AddDate"
+  },
   "country": {
     "title": "Country",
     "id": "Id",

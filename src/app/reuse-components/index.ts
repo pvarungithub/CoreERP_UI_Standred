@@ -5,3 +5,4 @@ export { SearchFilterTableComponent } from './search-filter-table/search-filter-
 export { ReportTableComponent } from './report-table/report-table.component';
 export { ReportsInnerTableComponent } from './reports-inner-table/reports-inner-table.component';
 export { PrintComponent } from './print/print.component';
+export { AutocompleteComponent } from './autocomplete/autocomplete.component';

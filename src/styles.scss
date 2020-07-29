@@ -12,6 +12,9 @@ body {
   background-color: $color-blue !important;
 }
 
+.mat-option.mat-active {
+  background: lightblue !important
+}
 
 .mat-input-element:disabled {
   color: rgba(0,0,0,.87);

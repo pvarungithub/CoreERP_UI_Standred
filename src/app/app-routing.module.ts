@@ -18,12 +18,14 @@ import {
 import { ReportsComponent } from './components/dashboard/reports/index';
 import { PurchaseReturnViewComponent } from './components/dashboard/sales/purchase-return/purchase-return-view/purchase-return-view.component';
 
+import { CompListComponent } from './components/dashboard/comp-list/comp-list.component';
+
 const routes: Routes = [
   { path: 'login', component: LoginComponent, data: { title: 'Login' } },
   {
     path: 'dashboard', component: DashboardComponent, data: { title: 'Dashboard' }, canActivate: [AuthGuard],
     children: [
-      { path: 'master/:id', component: MastersComponent, data: { title: 'Master' }, canActivate: [AuthGuard] },
+      { path: ':id', component: CompListComponent, data: { title: 'Master' }, canActivate: [AuthGuard] },
       { path: 'sales/:id', component: SalesComponent, data: { title: 'Sales' }, canActivate: [AuthGuard] },
       { path: 'sales/:id/createSale', component: CreateBillComponent, data: { title: 'Create Sale' }, canActivate: [AuthGuard] },
       { path: 'sales/:id/viewSaleInvoice/:id1/:id2', component: CreateBillComponent, data: { title: 'Create Sale' }, canActivate: [AuthGuard] },

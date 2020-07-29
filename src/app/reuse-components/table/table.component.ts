@@ -2,14 +2,17 @@ import {
   Component, OnInit, ViewChild, Input, OnChanges,
   ChangeDetectorRef, Output, EventEmitter, AfterViewInit, OnDestroy
 } from '@angular/core';
-import { MatPaginator, MatTableDataSource, MatSort, MatDialog, MatTable } from '@angular/material';
+import { MatDialog } from '@angular/material/dialog';
+import { MatPaginator } from '@angular/material/paginator';
+import { MatSort } from '@angular/material/sort';
+import { MatTableDataSource, MatTable } from '@angular/material/table';
 import { CommonService } from '../../services/common.service';
 import { isNullOrUndefined } from 'util';
 import { ActivatedRoute } from '@angular/router';
 import { FormControl } from '@angular/forms';
 import { ReplaySubject, Subject } from 'rxjs';
 import { take, takeUntil } from 'rxjs/operators';
-import { MatSelect } from '@angular/material';
+import { MatSelect } from '@angular/material/select';
 import { User } from '../../models/common/user';
 import { TranslateService } from '@ngx-translate/core';
 @Component({
@@ -136,7 +139,7 @@ export class TableComponent implements OnInit, OnChanges, AfterViewInit, OnDestr
 
   ngOnChanges() {
     // this.highlightedRows = [];
-    // debugger
+
     // this.columnDefinitions = [];
 
     this.defaultValues();
@@ -263,7 +266,6 @@ export class TableComponent implements OnInit, OnChanges, AfterViewInit, OnDestr
   }
 
   getDisplayedColumns(): string[] {
-
     if (!isNullOrUndefined(this.tableData)) {
       return this.columnDefinitions.filter(cd => cd.hide).map(cd => cd.def);
     }

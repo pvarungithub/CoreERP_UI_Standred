@@ -4,7 +4,10 @@ import {
   ChangeDetectorRef, Output, EventEmitter, AfterViewInit, OnDestroy
 } from '@angular/core';
 import { DatePipe } from '@angular/common';
-import { MatPaginator, MatTableDataSource, MatSort, MatDialog, MatTable } from '@angular/material';
+import { MatDialog } from '@angular/material/dialog';
+import { MatPaginator } from '@angular/material/paginator';
+import { MatSort } from '@angular/material/sort';
+import { MatTableDataSource, MatTable } from '@angular/material/table';
 import { CommonService } from '../../services/common.service';
 import { isNullOrUndefined } from 'util';
 import { ActivatedRoute } from '@angular/router';
@@ -16,7 +19,8 @@ import { NgxSpinnerService } from 'ngx-spinner';
 import { FormGroup, FormControl, AbstractControl, FormBuilder, Validators } from '@angular/forms';
 import { ReplaySubject, Subject, pipe } from 'rxjs';
 import { take, takeUntil, map } from 'rxjs/operators';
-import { MatDialogRef, MAT_DIALOG_DATA, MatSelect } from '@angular/material';
+import { MatDialogRef, MAT_DIALOG_DATA } from '@angular/material/dialog';
+import { MatSelect } from '@angular/material/select';
 import { User } from '../../models/common/user';
 import { TranslateService } from '@ngx-translate/core';
 import { HttpParams } from '@angular/common/http';

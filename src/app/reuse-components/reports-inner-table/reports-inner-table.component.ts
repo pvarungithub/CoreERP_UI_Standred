@@ -3,7 +3,10 @@ import {
   Component, OnInit, ViewChild, Input, OnChanges,
   ChangeDetectorRef, Output, EventEmitter,Optional,Inject, AfterViewInit, OnDestroy
 } from '@angular/core';
-import { MatPaginator, MatTableDataSource, MatSort, MatDialog, MatTable } from '@angular/material';
+import { MatDialog } from '@angular/material/dialog';
+import { MatPaginator } from '@angular/material/paginator';
+import { MatSort } from '@angular/material/sort';
+import { MatTableDataSource, MatTable } from '@angular/material/table';
 import { CommonService } from '../../services/common.service';
 import { isNullOrUndefined } from 'util';
 import { ActivatedRoute } from '@angular/router';
@@ -12,7 +15,8 @@ import { SearchFilterTableComponent } from '../search-filter-table/search-filter
 import { FormGroup, FormControl, AbstractControl, FormBuilder, Validators } from '@angular/forms';
 import { ReplaySubject, Subject } from 'rxjs';
 import { take, takeUntil } from 'rxjs/operators';
-import { MatDialogRef, MAT_DIALOG_DATA, MatSelect } from '@angular/material';
+import { MatDialogRef, MAT_DIALOG_DATA } from '@angular/material/dialog';
+import { MatSelect } from '@angular/material/select';
 import { User } from '../../models/common/user';
 import { TranslateService } from '@ngx-translate/core';
 import { HttpParams } from '@angular/common/http';

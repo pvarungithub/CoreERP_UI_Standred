@@ -5,6 +5,12 @@ import { AppComponent } from './app.component';
 
 import { SharedImportModule } from './shared/shared-import';
 
+import { 
+  CompListComponent, CompanyComponent, BranchesComponent ,CostCenterComponent,LanguageComponent,CurrencyComponent,CountryComponent,RegionComponent,StateComponent,SizesComponent,SegmentComponent,ProfitCenterComponent,DivisionComponent,FunctionalDepartmentComponent,PlantsComponent,LocationsComponent,SalesDepartmentComponent,DistributionchannelsComponent,SalesofficeComponent,SalesGroupComponent,MaintenceAreaComponent,PurchaseDepartmentComponent,StorageLocationsComponent,ErpUsersComponent
+} from './components/dashboard/comp-list/index';
+import { AutocompleteComponent } from './reuse-components/autocomplete/autocomplete.component';
+
+
 import { NavbarComponent, TableComponent, DeleteItemComponent, ReportTableComponent,ReportsInnerTableComponent ,SearchFilterTableComponent, PrintComponent } from './reuse-components/index';
 import {
   DashboardComponent, LoginComponent, SidebarComponent, NotFoundComponent
@@ -16,17 +22,17 @@ import {
   AccToAccClassComponent, VoucherTypesComponent,PartnerTypeComponent,PartnerCreationComponent
 } from './components/dashboard/generalledger/index';
 import {
-  InventoryComponent, BrandModelComponent, SizesComponent, AccountingClassComponent,UnitComponent,
+  InventoryComponent, BrandModelComponent,  AccountingClassComponent,UnitComponent,
   BrandComponent, NumberAssignmentComponent, MaterialGroupsComponent,ProductpackingComponent,ProductComponent
 }
   from './components/dashboard/Inventory/index';
 
 import {
-  CompanyComponent, MastersComponent, BranchesComponent,DepartmentComponent, DivisionComponent,DesignationComponent,
-  SegmentComponent, ProfitCenterComponent,CountryComponent,CurrencyComponent, RegionComponent, CostCenterComponent,LanguageComponent,
+  MastersComponent,DepartmentComponent, DesignationComponent,     
    EmployeeInBranchComponent, EmployeeComponent,
    TanksComponent, PumpComponent, 
- MSHSDRatesComponent, StateComponent
+ MSHSDRatesComponent
+ 
 } from './components/dashboard/masters/index';
 
 import {
@@ -87,6 +93,24 @@ export function HttpLoaderFactory(httpClient: HttpClient) {
 
 @NgModule({
   declarations: [
+    // main
+
+    // directives
+
+    // pipes
+
+
+    // component
+
+    // component list
+    BranchesComponent,CostCenterComponent,LanguageComponent,CurrencyComponent,CountryComponent,RegionComponent,StateComponent,SizesComponent,SegmentComponent,ProfitCenterComponent,DivisionComponent,FunctionalDepartmentComponent,PlantsComponent,LocationsComponent,SalesDepartmentComponent,DistributionchannelsComponent,SalesofficeComponent,SalesGroupComponent,MaintenceAreaComponent,PurchaseDepartmentComponent,StorageLocationsComponent,ErpUsersComponent,
+
+
+
+
+
+    CompListComponent,
+    AutocompleteComponent,
     AppComponent,
     NavbarComponent,
     FocusOnEnterDirective,
@@ -99,10 +123,9 @@ export function HttpLoaderFactory(httpClient: HttpClient) {
     SubGroupComponent, UndersubGroupComponent,
     GlAccountsComponent, GlSubcodeComponent, TaxIntegrationComponent, CashAccToBranchesComponent,
     AccToAccClassComponent, VoucherTypesComponent,
-    InventoryComponent, BrandModelComponent, SizesComponent, AccountingClassComponent,UnitComponent,
+    InventoryComponent, BrandModelComponent,  AccountingClassComponent,UnitComponent,
     BrandComponent, NumberAssignmentComponent, MaterialGroupsComponent,ProductpackingComponent,
-    CompanyComponent, CountryComponent,CurrencyComponent ,RegionComponent,StateComponent, MastersComponent, BranchesComponent, DepartmentComponent, DivisionComponent,DesignationComponent,
-    SegmentComponent, ProfitCenterComponent,  CostCenterComponent,LanguageComponent,
+    CompanyComponent,  MastersComponent, DepartmentComponent, DesignationComponent,
     NoSeriesComponent, PartnerTypeComponent, EmployeeInBranchComponent, EmployeeComponent,PartnerCreationComponent,
     TaxMasterComponent,  TanksComponent, PumpComponent, 
     TaxgroupsComponent, TaxstructuresComponent,
@@ -157,16 +180,20 @@ export function HttpLoaderFactory(httpClient: HttpClient) {
   ],
   bootstrap: [AppComponent],
   entryComponents: [
+    // component
+
+    // component list
+    BranchesComponent,CostCenterComponent,LanguageComponent,CurrencyComponent,CountryComponent,RegionComponent,StateComponent,SizesComponent,SegmentComponent,ProfitCenterComponent,DivisionComponent,FunctionalDepartmentComponent,PlantsComponent,LocationsComponent,SalesDepartmentComponent,DistributionchannelsComponent,SalesofficeComponent,SalesGroupComponent,MaintenceAreaComponent,PurchaseDepartmentComponent,StorageLocationsComponent,ErpUsersComponent,
+
     GeneralledgerComponent, AccountsGroupComponent,
     SubGroupComponent, UndersubGroupComponent,
     GlAccountsComponent, GlSubcodeComponent, TaxIntegrationComponent, CashAccToBranchesComponent,
     AccToAccClassComponent, VoucherTypesComponent,
-    DeleteItemComponent, InventoryComponent, BrandModelComponent,UnitComponent, SizesComponent, AccountingClassComponent,
+    DeleteItemComponent, InventoryComponent, BrandModelComponent,UnitComponent,  AccountingClassComponent,
     BrandComponent, NumberAssignmentComponent, MaterialGroupsComponent,ProductpackingComponent,
-    CompanyComponent,CountryComponent,RegionComponent,StateComponent, BranchesComponent, DepartmentComponent, DivisionComponent,DesignationComponent,
-    SegmentComponent, ProfitCenterComponent, CostCenterComponent,LanguageComponent,
+    CompanyComponent, DepartmentComponent, DesignationComponent,      
     NoSeriesComponent, PartnerTypeComponent, EmployeeInBranchComponent, EmployeeComponent,PartnerCreationComponent,
-    TaxMasterComponent,  TanksComponent, PumpComponent,CurrencyComponent, 
+    TaxMasterComponent,  TanksComponent, PumpComponent, 
     TaxgroupsComponent, TaxstructuresComponent,
     LeaveopeningbalancesComponent,
    // LeaveopeningbalanceComponent,

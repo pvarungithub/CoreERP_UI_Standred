@@ -22,7 +22,7 @@
             "main": "src/main.ts",
             "polyfills": "src/polyfills.ts",
             "tsConfig": "tsconfig.app.json",
-            "aot": false,
+            "aot": true,
             "assets": [
               "src/favicon.ico",
               "src/assets"
@@ -50,7 +50,6 @@
               "sourceMap": false,
               "extractCss": true,
               "namedChunks": false,
-              "aot": true,
               "extractLicenses": true,
               "vendorChunk": false,
               "buildOptimizer": true,
@@ -138,6 +137,6 @@
   },
   "defaultProject": "coreERP",
   "cli": {
-    "analytics": "add5b62b-7dcb-4781-b278-ffe79cf36598"
+    "analytics": "b8526e2d-e7e4-4ace-9d39-a86779f2fb84"
   }
 }

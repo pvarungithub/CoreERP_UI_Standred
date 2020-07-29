@@ -3,7 +3,7 @@ import { ApiService } from '../../../services/api.service';
 import { String } from 'typescript-string-operations';
 
 import { Router, ActivatedRoute } from '@angular/router';
-import { MatDialog } from '@angular/material';
+import { MatDialog } from '@angular/material/dialog';
 import { ReportsService } from './reports.service';
 import { isNullOrUndefined } from 'util';
 import { NgxSpinnerService } from 'ngx-spinner';
