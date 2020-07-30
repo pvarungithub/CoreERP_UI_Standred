@@ -364,10 +364,10 @@ export class ApiConfigService {
    deleteLocation = `${this.environment.runtimeConfig.serverUrl}masters/Location/DeleteLocation`;
 
  //SalesDepartment
- getsalesdepartmentList = `${this.environment.runtimeConfig.serverUrl}masters/SD/GetSalesDepartment`;
- registerSalesDepartment = `${this.environment.runtimeConfig.serverUrl}masters/SD/RegisterSalesDepartment`;
- updateSalesDepartment = `${this.environment.runtimeConfig.serverUrl}masters/SD/UpdateSalesDepartment`;
- deleteSalesDepartment = `${this.environment.runtimeConfig.serverUrl}masters/SD/DeleteSalesDepartment`;
+ getsalesdepartmentList = `${this.environment.runtimeConfig.serverUrl}masters/SalesDepartment/GetSalesDepartment`;
+ registerSalesDepartment = `${this.environment.runtimeConfig.serverUrl}masters/SalesDepartment/RegisterSalesDepartment`;
+ updateSalesDepartment = `${this.environment.runtimeConfig.serverUrl}masters/SalesDepartment/UpdateSalesDepartment`;
+ deleteSalesDepartment = `${this.environment.runtimeConfig.serverUrl}masters/SalesDepartment/DeleteSalesDepartment`;
 
  //salesgroup
  getsalesgroupList = `${this.environment.runtimeConfig.serverUrl}masters/SalesGroup/GetSalesGroupList`;
