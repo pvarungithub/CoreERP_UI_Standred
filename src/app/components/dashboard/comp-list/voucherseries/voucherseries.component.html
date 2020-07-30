@@ -1,0 +1,71 @@
+<div class="position-relative popup-class">
+
+  <mat-card-title class="boader--color d-flex justify-content-between position-absolute w-100">
+    <span> {{'voucherseries.title' | translate }} </span>
+    <mat-icon class="p-2 cursor--pointer" (click)="cancel()">close</mat-icon>
+  </mat-card-title>
+
+  <mat-card-content class="pt-5 p-2 m-0 overflow-auto">
+    <form [formGroup]="modelFormData" autocomplete="off">
+      <div class="d--flex">
+
+        <mat-form-field class="form-element" [ngClass]="{ 'ng--valid': formControls.voucherSeriesKey.valid }">
+          <input matInput placeholder="{{'voucherseries.voucherSeriesKey' | translate }}" formControlName="voucherSeriesKey" appFocusOnEnter tabIndex="1">
+          <mat-error *ngIf="formControls.voucherSeriesKey.errors" class="help-block">
+            <div *ngIf="formControls.voucherSeriesKey.errors.required">voucherSeriesKey  is required </div>
+          </mat-error>
+        </mat-form-field>
+
+
+        <mat-form-field class="form-element">
+          <input matInput placeholder="{{'voucherseries.fromInterval' | translate }}" formControlName="fromInterval" appFocusOnEnter tabIndex="2">
+        </mat-form-field>
+
+        <mat-form-field class="form-element">
+          <input matInput placeholder="{{'voucherseries.toInterval' | translate }}" formControlName="toInterval" appFocusOnEnter tabIndex="3">
+        </mat-form-field>
+
+        <mat-form-field>
+          <mat-label>{{'voucherseries.plant' | translate }}</mat-label>
+          <mat-select formControlName="plant" appFocusOnEnter tabIndex="4">
+            <mat-option *ngFor="let plants of plantList" [value]="plants.plantCode">
+              {{plants.plantCode}} - {{plants.plantname}}
+            </mat-option>
+          </mat-select>
+        </mat-form-field>
+
+        <mat-form-field>
+          <mat-label>{{'voucherseries.company' | translate }}</mat-label>
+          <mat-select formControlName="company" appFocusOnEnter tabIndex="5">
+            <mat-option *ngFor="let companyList of compList" [value]="companyList.id">
+              {{companyList.id}}-{{companyList.text}}
+            </mat-option>
+          </mat-select>
+        </mat-form-field>
+
+        <mat-form-field>
+          <mat-label>{{'voucherseries.branch' | translate }}</mat-label>
+          <mat-select formControlName="branch" appFocusOnEnter tabIndex="6">
+            <mat-option *ngFor="let branch of branchList" [value]="branch.id">
+              {{branch.id}} - {{branch.text}}
+            </mat-option>
+          </mat-select>
+        </mat-form-field>
+
+
+      </div>
+      <mat-divider></mat-divider>
+    </form>
+
+  </mat-card-content>
+  <div class="form-element p-2 d-flex justify-content-end">
+    <button mat-raised-button class="button-color-red text-white mr-1" (click)="cancel()">
+
+      {{ 'COMMON.CANCEL' | translate }}
+    </button>
+    <button mat-raised-button type="submit" class="button-color-bule text-white ml-1" (click)="save()" appFocusOnEnter tabIndex="4">
+
+      {{ 'COMMON.SAVE' | translate }}
+    </button>
+  </div>
+</div>

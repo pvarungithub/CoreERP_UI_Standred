@@ -1,0 +1,55 @@
+<div class="position-relative popup-class">
+
+  <mat-card-title  class="boader--color d-flex justify-content-between position-absolute w-100" >
+    <span> {{'vouchertypes.title' | translate }} </span>
+    <mat-icon class="p-2 cursor--pointer" (click)="cancel()">close</mat-icon>
+  </mat-card-title>
+
+    <mat-card-content class="pt-5 p-2 m-0 overflow-auto">
+       <form [formGroup]="modelFormData" autocomplete="off">
+
+         <div class="d--flex">
+           <mat-form-field class="form-element" [ngClass]="{ 'ng--valid': formControls.voucherCode.valid }">
+             <input matInput placeholder="{{'vouchertypes.voucherCode' | translate }}" formControlName="voucherCode" appFocusOnEnter tabIndex="1">
+             <mat-error *ngIf="formControls.voucherCode.errors" class="help-block">
+               <div *ngIf="formControls.voucherCode.errors.required">Voucher Type is required </div>
+             </mat-error>
+           </mat-form-field>
+
+
+           <mat-form-field class="form-element" [ngClass]="{ 'ng--valid': formControls.voucherType.valid }">
+             <input matInput placeholder="{{'vouchertypes.voucherType' | translate }}" formControlName="voucherType" appFocusOnEnter tabIndex="2">
+             <mat-error *ngIf="formControls.voucherType.errors" class="help-block">
+               <div *ngIf="formControls.voucherType.errors.required">Voucher Type is required </div>
+             </mat-error>
+           </mat-form-field>
+
+           <mat-form-field>
+             <mat-label>{{'vouchertypes.voucherClass' | translate }}</mat-label>
+             <mat-select formControlName="voucherClass" appFocusOnEnter tabIndex="3">
+               <mat-option *ngFor="let vcList of voucherClass" [value]="vcList.voucherCode">
+                 {{vcList.vouchrType}}
+               </mat-option>
+             </mat-select>
+           </mat-form-field>
+
+           <mat-form-field class="form-element">
+             <input matInput placeholder="{{'vouchertypes.printText' | translate }}" formControlName="printText" appFocusOnEnter tabIndex="4">
+           </mat-form-field>
+         </div>
+      <mat-divider></mat-divider>
+
+
+
+      </form>
+
+    </mat-card-content>
+    <div  class="form-element p-2 d-flex justify-content-end">
+      <button mat-raised-button class="button-color-red text-white mr-1"  (click)="cancel()">        
+        {{ 'COMMON.CANCEL' | translate }}
+      </button>
+          <button mat-raised-button  type="submit" class="button-color-bule text-white ml-1"  (click)="save()" appFocusOnEnter tabIndex="5">
+            {{ 'COMMON.SAVE' | translate }}
+           </button>
+    </div>
+  </div>
