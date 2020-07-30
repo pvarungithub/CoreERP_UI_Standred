@@ -22,3 +22,4 @@ export { MaintenceAreaComponent } from './maintencearea/maintencearea.component'
 export { PurchaseDepartmentComponent } from './purchasedepartment/purchasedepartment.component';
 export { StorageLocationsComponent } from './storagelocation/storagelocation.component';
 export { ErpUsersComponent } from './erpuser/erpuser.componet';
+export { RolesprevilagesComponent } from './rolesprevilages/rolesprevilages.component';

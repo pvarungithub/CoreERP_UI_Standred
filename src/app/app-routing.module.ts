@@ -11,10 +11,6 @@ import { SelfserviceComponent } from './components/dashboard/selfservice/index';
 // import { TransactionsComponent } from './components/dashboard/transactions';
 import { TransactionsComponent,CreateCashpaymentComponent,CreateCashreceiptComponent,CreateBankpaymentComponent,CreateBankreceiptComponent,CreateJournalvoucherComponent,CreateStockissuesComponent, CreateStockreceiptsComponent, CreateStockshortsComponent, CreateOilconversionsComponent,CreateStockExcessComponent } from './components/dashboard/transactions';
 
-import {
-  SettingsComponent
-} from './components/dashboard/settings/index';
-
 import { ReportsComponent } from './components/dashboard/reports/index';
 import { PurchaseReturnViewComponent } from './components/dashboard/sales/purchase-return/purchase-return-view/purchase-return-view.component';
 
@@ -62,7 +58,7 @@ const routes: Routes = [
       { path: 'inventory/:id', component: InventoryComponent, data: { title: 'Inventory' }, canActivate: [AuthGuard] },
       { path: 'selfservice/:id', component: SelfserviceComponent, data: { title: 'Selfservice' }, canActivate: [AuthGuard] },
       { path: 'payroll/:id', component: PayrollComponent, data: { title: 'Payroll' }, canActivate: [AuthGuard] },
-      { path: 'settings/:id', component: SettingsComponent, data: { title: 'Payroll' }, canActivate: [AuthGuard] },
+      // { path: 'settings/:id', component: SettingsComponent, data: { title: 'Payroll' }, canActivate: [AuthGuard] },
       { path: 'reports/:id', component: ReportsComponent, data: { title: 'Report' }, canActivate: [AuthGuard]  }
     ]
   },

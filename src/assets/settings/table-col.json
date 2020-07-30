@@ -886,6 +886,16 @@
     "totalIgst": "Total IGST",
     "userName": "User Name"
   },
+  "rolePrevilages": {
+    "title": "Role Previlages",
+    "role": "Role",
+    "menuName": "Menu Name",
+    "headerMenu": "Header Menu",
+    "active": "Active",
+    "add": "Add",
+    "edit": "Edit",
+    "delete": "Delete"
+  },
   "packageconversion": {
     "title": "PackageConversion List",
     "inputProductId": "Input ProductId",

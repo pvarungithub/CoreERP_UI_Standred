@@ -6,7 +6,7 @@ import { AppComponent } from './app.component';
 import { SharedImportModule } from './shared/shared-import';
 
 import { 
-  CompListComponent, CompanyComponent, BranchesComponent ,CostCenterComponent,LanguageComponent,CurrencyComponent,CountryComponent,RegionComponent,StateComponent,SizesComponent,SegmentComponent,ProfitCenterComponent,DivisionComponent,FunctionalDepartmentComponent,PlantsComponent,LocationsComponent,SalesDepartmentComponent,DistributionchannelsComponent,SalesofficeComponent,SalesGroupComponent,MaintenceAreaComponent,PurchaseDepartmentComponent,StorageLocationsComponent,ErpUsersComponent
+  CompListComponent, CompanyComponent, BranchesComponent ,CostCenterComponent,LanguageComponent,CurrencyComponent,CountryComponent,RegionComponent,StateComponent,SizesComponent,SegmentComponent,ProfitCenterComponent,DivisionComponent,FunctionalDepartmentComponent,PlantsComponent,LocationsComponent,SalesDepartmentComponent,DistributionchannelsComponent,SalesofficeComponent,SalesGroupComponent,MaintenceAreaComponent,PurchaseDepartmentComponent,StorageLocationsComponent,ErpUsersComponent,RolesprevilagesComponent
 } from './components/dashboard/comp-list/index';
 import { AutocompleteComponent } from './reuse-components/autocomplete/autocomplete.component';
 
@@ -62,9 +62,7 @@ import {
     StockExcessComponent,CreateStockExcessComponent,MeterReadingComponent
 } from './components/dashboard/transactions/index';
 
-import {
-  RolesprevilagesComponent,  SettingsComponent
-} from './components/dashboard/settings/index';
+
 
 import { RuntimeConfigService } from './services/runtime-config.service';
 import { HttpClientModule, HttpClient } from '@angular/common/http';
@@ -103,7 +101,7 @@ export function HttpLoaderFactory(httpClient: HttpClient) {
     // component
 
     // component list
-    BranchesComponent,CostCenterComponent,LanguageComponent,CurrencyComponent,CountryComponent,RegionComponent,StateComponent,SizesComponent,SegmentComponent,ProfitCenterComponent,DivisionComponent,FunctionalDepartmentComponent,PlantsComponent,LocationsComponent,SalesDepartmentComponent,DistributionchannelsComponent,SalesofficeComponent,SalesGroupComponent,MaintenceAreaComponent,PurchaseDepartmentComponent,StorageLocationsComponent,ErpUsersComponent,
+    BranchesComponent,CostCenterComponent,LanguageComponent,CurrencyComponent,CountryComponent,RegionComponent,StateComponent,SizesComponent,SegmentComponent,ProfitCenterComponent,DivisionComponent,FunctionalDepartmentComponent,PlantsComponent,LocationsComponent,SalesDepartmentComponent,DistributionchannelsComponent,SalesofficeComponent,SalesGroupComponent,MaintenceAreaComponent,PurchaseDepartmentComponent,StorageLocationsComponent,ErpUsersComponent,RolesprevilagesComponent,
 
 
 
@@ -144,7 +142,7 @@ export function HttpLoaderFactory(httpClient: HttpClient) {
     TransactionsComponent, CashPaymentComponent, CreateCashpaymentComponent, CashReceiptComponent,
     CreateCashreceiptComponent, BankPaymentComponent, CreateBankpaymentComponent,BankReceiptComponent,
     CreateBankreceiptComponent,JournalVoucherComponent,CreateJournalvoucherComponent,
-    RolesprevilagesComponent, SettingsComponent, StocktransferComponent, CreateStockTransferComponent, PurchaseComponent, PurchaseCreateComponent, PurchaseReturnComponent, PurchaseReturnViewComponent,
+      StocktransferComponent, CreateStockTransferComponent, PurchaseComponent, PurchaseCreateComponent, PurchaseReturnComponent, PurchaseReturnViewComponent,
     ReportTableComponent,ReportsInnerTableComponent, ReportsComponent, SearchFilterTableComponent,
     CreateStockissuesComponent , StockissuesComponent, CreateStockreceiptsComponent, StockreceiptsComponent
     ,CreateStockshortsComponent, StockshortComponent, CreateOilconversionsComponent, OilconversionComponent,
@@ -183,7 +181,7 @@ export function HttpLoaderFactory(httpClient: HttpClient) {
     // component
 
     // component list
-    BranchesComponent,CostCenterComponent,LanguageComponent,CurrencyComponent,CountryComponent,RegionComponent,StateComponent,SizesComponent,SegmentComponent,ProfitCenterComponent,DivisionComponent,FunctionalDepartmentComponent,PlantsComponent,LocationsComponent,SalesDepartmentComponent,DistributionchannelsComponent,SalesofficeComponent,SalesGroupComponent,MaintenceAreaComponent,PurchaseDepartmentComponent,StorageLocationsComponent,ErpUsersComponent,
+    BranchesComponent,CostCenterComponent,LanguageComponent,CurrencyComponent,CountryComponent,RegionComponent,StateComponent,SizesComponent,SegmentComponent,ProfitCenterComponent,DivisionComponent,FunctionalDepartmentComponent,PlantsComponent,LocationsComponent,SalesDepartmentComponent,DistributionchannelsComponent,SalesofficeComponent,SalesGroupComponent,MaintenceAreaComponent,PurchaseDepartmentComponent,StorageLocationsComponent,ErpUsersComponent,RolesprevilagesComponent,
 
     GeneralledgerComponent, AccountsGroupComponent,
     SubGroupComponent, UndersubGroupComponent,
