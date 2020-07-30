@@ -64,8 +64,8 @@ export class CompListComponent implements OnInit {
   }
 
   getTableData() {
-    const getUrl = String.Join(this.environment.runtimeConfig.serverUrl, this.tableUrl.url);
-    this.apiService.apiGetRequest(`${this.environment.runtimeConfig.serverUrl}${this.tableUrl.url}`)
+    const getUrl = String.Join('',this.environment.runtimeConfig.serverUrl, this.tableUrl.url);
+    this.apiService.apiGetRequest(getUrl)
       .subscribe(
         response => {
           const res = response.body;
@@ -117,7 +117,7 @@ export class CompListComponent implements OnInit {
     dialogRef.afterClosed().subscribe(result => {
       if (!isNullOrUndefined(result)) {
         this.spinner.show();
-        const deleteCompanyUrl = String.Join('/', this.environment.runtimeConfig.serverUrl, this.tableUrl.deleteUrl,
+        const deleteCompanyUrl = String.Join('', this.environment.runtimeConfig.serverUrl, this.tableUrl.deleteUrl,
           result.item[this.tableUrl.primaryKey]);
         this.apiService.apiDeleteRequest(deleteCompanyUrl, result.item)
           .subscribe(
@@ -138,7 +138,7 @@ export class CompListComponent implements OnInit {
   }
 
   addRecord(result) {
-    const addCompanyUrl = String.Join('/', this.environment.runtimeConfig.serverUrl, this.tableUrl.registerUrl);
+    const addCompanyUrl = String.Join('', this.environment.runtimeConfig.serverUrl, this.tableUrl.registerUrl);
     this.apiService.apiPostRequest(addCompanyUrl, result.item)
       .subscribe(
         response => {
@@ -155,7 +155,7 @@ export class CompListComponent implements OnInit {
   }
 
   editRecord(result) {
-    const updateCompanyUrl = String.Join('/', this.environment.runtimeConfig.serverUrl, this.tableUrl.updateUrl);
+    const updateCompanyUrl = String.Join('', this.environment.runtimeConfig.serverUrl, this.tableUrl.updateUrl);
     this.apiService.apiUpdateRequest(updateCompanyUrl, result.item)
       .subscribe(
         response => {
