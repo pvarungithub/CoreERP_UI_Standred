@@ -111,15 +111,9 @@
   "vouchertypes": {
     "title": "Voucher Type",
     "voucherCode": "Voucher Code",
-    "branch": "Branch",
-    "company": "Company",
-    "noSeries": "No Series",
-    "period": "Period",
-    "transaction": "Transaction",
     "voucherType": "Voucher Type",
-    "active": "Active",
-    "addDate": "Add Date",
-    "prefix": "Prefix"
+    "voucherClass": "VoucherClass",
+    "printText": "PrintText"
   },
   "brandmodel": {
     "title": "BrandModel",
@@ -1390,6 +1384,56 @@
     "department": "Department",
     "fromDate": "Fromdate",
     "todate": "Todate"
+  },
+  "ledger": {
+    "title": " Ledger",
+    "code": "code",
+    "description": "Description",
+    "ledgerType": "LedgerType"
+  },
+  "openledger": {
+    "title": "Open Ledger",
+    "ledgerKey": "LedgerKey",
+    "financialYearStartFrom": "FinancialYearStartFrom",
+    "financialYearEndTo": "FinancialYearEndTo",
+    "accountingYear": "AccountingYear"
+  },
+  "voucherclass": {
+    "title": "VocherClass",
+    "voucherCode": "Code",
+    "vouchrType": "vocherType"
+  },
+  "voucherseries": {
+    "title": "Voucher Series",
+    "voucherSeriesKey": "VoucherSeriesKey",
+    "branch": "Branch",
+    "company": "Company",
+    "fromInterval": "FromInterval",
+    "toInterval": "ToInterval",
+    "plant": "Plant"
+  },
+  "assignmentvoucherseriestovouchertype": {
+    "title": "AssignmentVoucherSeriestoVoucherType",
+    "code": "code",
+    "voucherType": "voucherType",
+    "voucherClass": "voucherSeries"
+  },
+  "taxrates": {
+    "title": "Tax Rates",
+    "taxRateCode": "Code",
+    "description": "Description",
+    "taxType": "TaxType",
+    "taxTransaction": "TaxTransaction",
+    "taxCondition": "TaxCondition",
+    "sgst": "Sgst",
+    "cgst": "Cgst",
+    "igst": "Igst",
+    "ugst": "Ugst"
+  },
+  "taxtransaction": {
+    "title": "Tax Transaction",
+    "code": "Code",
+    "description": "Description"
   }
 }
 

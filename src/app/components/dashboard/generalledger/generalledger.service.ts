@@ -5,10 +5,8 @@ import { SubGroupComponent } from './subgroup/subgroup.component';
 import {UndersubGroupComponent} from './undersubgroup/undersubgroup.component';
 import {GlAccountsComponent} from './glaccounts/glaccounts.component';
 import {GlSubcodeComponent } from './glsubcode/glsubcode.component';
-import {TaxIntegrationComponent } from './taxintegration/taxintegration.component';
 import {CashAccToBranchesComponent } from './cashacctobranches/cashacctobranches.component';
 import {AccToAccClassComponent} from './acctoaccclass/acctoaccclass.component';
-import { VoucherTypesComponent } from './vouchertypes/vouchertypes.component';
 import { String } from 'typescript-string-operations';
 import { PartnerTypeComponent } from './partner-type/partner-type.component';
 import { PartnerCreationComponent } from './partner-creation/partner-creation.component';
@@ -103,18 +101,7 @@ export class GeneralledgerService {
             this.dynamicData.primaryKey = 'subCode';
             return this.dynamicData;
             break;
-      case 'taxintegration':
-            this.dynamicData.url = this.apiConfigService.getTaxintigrationList;
-            this.dynamicData.component = TaxIntegrationComponent;
-            this.dynamicData.registerUrl = String.Join('/', this.apiConfigService.registerTaxIntegration, user.branchCode, user.companyCode ? user.companyCode : "0");
-       //    this.dynamicData.registerUrl = String.Join('/', this.apiConfigService.registerTaxIntegration, user.branchCode, user.companyCode);
-           // this.dynamicData.registerUrl = this.apiConfigService.registerTaxIntegration;
-            this.dynamicData.updateUrl = this.apiConfigService.updateTaxIntegration;
-            this.dynamicData.deleteUrl = this.apiConfigService.deleteTaxIntegration;
-            this.dynamicData.listName = 'TaxintigrationList';
-            this.dynamicData.primaryKey = 'taxCode';
-            return this.dynamicData;
-            break;
+     
             case 'cashacctobranches':
             this.dynamicData.url = this.apiConfigService.getAsignCashAccBranchList;
             this.dynamicData.component = CashAccToBranchesComponent;
@@ -135,16 +122,7 @@ export class GeneralledgerService {
               this.dynamicData.primaryKey = 'code';
               return this.dynamicData;
               break;
-              case 'vouchertypes':
-                this.dynamicData.url = this.apiConfigService.getVoucherTypeList;
-                this.dynamicData.component = VoucherTypesComponent;
-                this.dynamicData.registerUrl = this.apiConfigService.registerVoucherTypes;
-                this.dynamicData.updateUrl = this.apiConfigService.updateVoucherTypes;
-                this.dynamicData.deleteUrl = this.apiConfigService.deleteVoucherTypes;
-                this.dynamicData.listName = 'GLSubCodeList';
-                this.dynamicData.primaryKey = 'voucherCode';
-                return this.dynamicData;
-                break;
+              
                 case 'noSeries':
       this.dynamicData.url = this.apiConfigService.getNoSeriesList;
       this.dynamicData.component = NoSeriesComponent;

@@ -23,3 +23,13 @@ export { PurchaseDepartmentComponent } from './purchasedepartment/purchasedepart
 export { StorageLocationsComponent } from './storagelocation/storagelocation.component';
 export { ErpUsersComponent } from './erpuser/erpuser.componet';
 export { RolesprevilagesComponent } from './rolesprevilages/rolesprevilages.component';
+export { LedgerComponent } from './ledger/ledger.component';
+export { OpenLedgerComponent } from './openledger/openledger.component';
+export { VoucherClassComponent } from './voucherclass/voucherclass.component';
+export {VoucherTypesComponent} from './vouchertypes/vouchertypes.component';
+export { VoucherSeriesComponents } from './voucherseries/voucherseries.component';
+export { AssignmentVoucherSeriestoVoucherTypesComponent } from './assignmentvoucherseriestovouchertype/assignmentvoucherseriestovouchertype.component';
+export { TaxRatesComponents } from './taxrates/taxrates.component';
+export { TaxTransactionComponent } from './taxtransaction/taxtransaction.component';
+export {TaxIntegrationComponent } from './taxintegration/taxintegration.component';
+

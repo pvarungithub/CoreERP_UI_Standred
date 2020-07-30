@@ -195,7 +195,24 @@ export class ApiConfigService {
 
 
    // ******************************** GeneralLedger *********************************
+//Ledger
+getLedgerList = `${this.environment.runtimeConfig.serverUrl}gl/Ledger/GetLedgerList`;
+registerLedger = `${this.environment.runtimeConfig.serverUrl}gl/Ledger/RegisterLedger`;
+updateLedger = `${this.environment.runtimeConfig.serverUrl}gl/Ledger/UpdateLedger`;
+deleteLedger = `${this.environment.runtimeConfig.serverUrl}gl/Ledger/DeletLedger`;
 
+//open Ledger
+getOpenLedgerList = `${this.environment.runtimeConfig.serverUrl}gl/OpenLedger/GetOpenLedgerList`;
+registerOpenLedger = `${this.environment.runtimeConfig.serverUrl}gl/OpenLedger/RegisterOpenLedger`;
+updateOpenLedger = `${this.environment.runtimeConfig.serverUrl}gl/OpenLedger/UpdateOpenLedgerList`;
+deleteOpenLedger = `${this.environment.runtimeConfig.serverUrl}gl/OpenLedger/DeleteOpenLedgerList`;
+
+ //vocherclass
+ getvocherclassList = `${this.environment.runtimeConfig.serverUrl}gl/VoucherClass /GetVoucherrClassList`;
+ registerVoucherClass = `${this.environment.runtimeConfig.serverUrl}gl/VoucherClass /RegisterVoucherClass`;
+ updateVoucherClass = `${this.environment.runtimeConfig.serverUrl}gl/VoucherClass /UpdateVoucherClass`;
+ deleteVoucherClass = `${this.environment.runtimeConfig.serverUrl}gl/VoucherClass /DeleteVoucherClass`;
+ 
    // AccountsGroup //
    getAccountsGroupList = `${this.environment.runtimeConfig.serverUrl}gl/AccGroup/GetAccountGroupList`;
    registerGlaccGroup = `${this.environment.runtimeConfig.serverUrl}gl/AccGroup/RegisterGlaccGroup`;
@@ -459,7 +476,38 @@ deleteDistributionChannel = `${this.environment.runtimeConfig.serverUrl}masters/
   registerPartnerType = `${this.environment.runtimeConfig.serverUrl}masters/PartnerType/RegisterPartnerType`;
   updatePartnerType = `${this.environment.runtimeConfig.serverUrl}masters/PartnerType/UpdatePartnerType`;
   deletePartnerType = `${this.environment.runtimeConfig.serverUrl}masters/PartnerType/DeletePartnerType`;
+ 
+  //vocherseries
+ getvocherseriesList = `${this.environment.runtimeConfig.serverUrl}gl/VoucherSeries/GetVoucherSeriesList`;
+ registerVoucherSeries = `${this.environment.runtimeConfig.serverUrl}gl/VoucherSeries/RegisterVoucherSeries`; 
+ updateVoucherSeries = `${this.environment.runtimeConfig.serverUrl}gl/VoucherSeries/UpdateVoucherSeries`; 
+ deleteVoucherSeries = `${this.environment.runtimeConfig.serverUrl}gl/VoucherSeries/DeleteVoucherSeries`; 
 
+ //getassignmentvoucherseriestovouchertypeList
+ getassignmentvoucherseriestovouchertypeList = `${this.environment.runtimeConfig.serverUrl}gl/AssignmentVoucherSeriestoVoucherType/GetAssignmentVoucherSeriestoVoucherTypeList`;
+ registerAssignmentVoucherSeriestoVoucherType = `${this.environment.runtimeConfig.serverUrl}gl/AssignmentVoucherSeriestoVoucherType/RegisterAssignmentVoucherSeriestoVoucherType`;
+ updateAssignmentVoucherSeriestoVoucherType = `${this.environment.runtimeConfig.serverUrl}gl/AssignmentVoucherSeriestoVoucherType/UpdateAssignmentVoucherSeriestoVoucherType`;
+ deleteAssignmentVoucherSeriestoVoucherType = `${this.environment.runtimeConfig.serverUrl}gl/AssignmentVoucherSeriestoVoucherType/DeleteAssignmentVoucherSeriestoVoucherType`;
+
+    // Tax Types //
+    getTaxTypesList = `${this.environment.runtimeConfig.serverUrl}gl/TaxTypes/GetTaxTypesList`;
+    registerTaxTypes = `${this.environment.runtimeConfig.serverUrl}gl/TaxTypes/RegisterTaxTypes`;
+    updateTaxTypes = `${this.environment.runtimeConfig.serverUrl}gl/TaxTypes/UpdateTaxTypes`;
+    deleteTaxTypes = `${this.environment.runtimeConfig.serverUrl}gl/TaxTypes/DeleteTaxTypes`;
+   // getTaxCodesList = `${this.environment.runtimeConfig.serverUrl}gl/TaxIntegration/GetTaxCodesList`;
+    //getGLTaxAccountList = `${this.environment.runtimeConfig.serverUrl}gl/TaxIntegration/GetGLTaxAccountList`;
+
+   //TaxRates
+   gettaxratesList = `${this.environment.runtimeConfig.serverUrl}masters/TaxRates/GetTaxRatesList`;
+   registerTaxRates = `${this.environment.runtimeConfig.serverUrl}masters/TaxRates/RegisterTaxRates`;
+   updateTaxRates = `${this.environment.runtimeConfig.serverUrl}masters/TaxRates/UpdateTaxRates`;
+   deleteTaxRates = `${this.environment.runtimeConfig.serverUrl}masters/TaxRates/DeleteTaxRates`;
+
+      // Tax transaction //
+  getTaxTransactionList = `${this.environment.runtimeConfig.serverUrl}gl/TaxTransaction/GetTaxTransactionList`;
+  registerTaxTransaction = `${this.environment.runtimeConfig.serverUrl}gl/TaxTransaction/RegisterTaxTransaction`;
+  updateTaxTransaction = `${this.environment.runtimeConfig.serverUrl}gl/TaxTransaction/UpdateTaxTransaction`;
+  deleteTaxTransaction = `${this.environment.runtimeConfig.serverUrl}gl/TaxTransaction/DeleteTaxTransaction`;
 
    // --- NoSeries
   getNoSeriesList = `${this.environment.runtimeConfig.serverUrl}masters/NoSeries/GetNoSeriesList`;

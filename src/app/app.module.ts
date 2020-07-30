@@ -6,7 +6,11 @@ import { AppComponent } from './app.component';
 import { SharedImportModule } from './shared/shared-import';
 
 import { 
-  CompListComponent, CompanyComponent, BranchesComponent ,CostCenterComponent,LanguageComponent,CurrencyComponent,CountryComponent,RegionComponent,StateComponent,SizesComponent,SegmentComponent,ProfitCenterComponent,DivisionComponent,FunctionalDepartmentComponent,PlantsComponent,LocationsComponent,SalesDepartmentComponent,DistributionchannelsComponent,SalesofficeComponent,SalesGroupComponent,MaintenceAreaComponent,PurchaseDepartmentComponent,StorageLocationsComponent,ErpUsersComponent,RolesprevilagesComponent
+  CompListComponent, CompanyComponent, BranchesComponent ,CostCenterComponent,LanguageComponent,CurrencyComponent,CountryComponent,RegionComponent,StateComponent,SizesComponent,
+  SegmentComponent,ProfitCenterComponent,DivisionComponent,FunctionalDepartmentComponent,PlantsComponent,LocationsComponent,SalesDepartmentComponent,DistributionchannelsComponent,
+  SalesofficeComponent,SalesGroupComponent,MaintenceAreaComponent,PurchaseDepartmentComponent,StorageLocationsComponent,ErpUsersComponent,RolesprevilagesComponent,LedgerComponent,
+  OpenLedgerComponent,VoucherClassComponent,VoucherTypesComponent,VoucherSeriesComponents,AssignmentVoucherSeriestoVoucherTypesComponent,TaxRatesComponents,TaxTransactionComponent,
+  TaxIntegrationComponent
 } from './components/dashboard/comp-list/index';
 import { AutocompleteComponent } from './reuse-components/autocomplete/autocomplete.component';
 
@@ -18,8 +22,8 @@ import {
 import {
   GeneralledgerComponent, AccountsGroupComponent,NoSeriesComponent,TaxMasterComponent,
   SubGroupComponent, UndersubGroupComponent, TaxgroupsComponent, TaxstructuresComponent,
-  GlAccountsComponent, GlSubcodeComponent, TaxIntegrationComponent, CashAccToBranchesComponent,
-  AccToAccClassComponent, VoucherTypesComponent,PartnerTypeComponent,PartnerCreationComponent
+  GlAccountsComponent, GlSubcodeComponent,  CashAccToBranchesComponent,
+  AccToAccClassComponent, PartnerTypeComponent,PartnerCreationComponent
 } from './components/dashboard/generalledger/index';
 import {
   InventoryComponent, BrandModelComponent,  AccountingClassComponent,UnitComponent,
@@ -101,7 +105,11 @@ export function HttpLoaderFactory(httpClient: HttpClient) {
     // component
 
     // component list
-    BranchesComponent,CostCenterComponent,LanguageComponent,CurrencyComponent,CountryComponent,RegionComponent,StateComponent,SizesComponent,SegmentComponent,ProfitCenterComponent,DivisionComponent,FunctionalDepartmentComponent,PlantsComponent,LocationsComponent,SalesDepartmentComponent,DistributionchannelsComponent,SalesofficeComponent,SalesGroupComponent,MaintenceAreaComponent,PurchaseDepartmentComponent,StorageLocationsComponent,ErpUsersComponent,RolesprevilagesComponent,
+    BranchesComponent,CostCenterComponent,LanguageComponent,CurrencyComponent,CountryComponent,RegionComponent,StateComponent,SizesComponent,
+    SegmentComponent,ProfitCenterComponent,DivisionComponent,FunctionalDepartmentComponent,PlantsComponent,LocationsComponent,SalesDepartmentComponent,
+    DistributionchannelsComponent,SalesofficeComponent,SalesGroupComponent,MaintenceAreaComponent,PurchaseDepartmentComponent,StorageLocationsComponent,
+    ErpUsersComponent,RolesprevilagesComponent,LedgerComponent,OpenLedgerComponent,VoucherClassComponent,VoucherTypesComponent,VoucherSeriesComponents,
+    AssignmentVoucherSeriestoVoucherTypesComponent,TaxRatesComponents,TaxTransactionComponent,TaxIntegrationComponent,
 
 
 
@@ -120,7 +128,7 @@ export function HttpLoaderFactory(httpClient: HttpClient) {
     GeneralledgerComponent, AccountsGroupComponent,
     SubGroupComponent, UndersubGroupComponent,
     GlAccountsComponent, GlSubcodeComponent, TaxIntegrationComponent, CashAccToBranchesComponent,
-    AccToAccClassComponent, VoucherTypesComponent,
+    AccToAccClassComponent, 
     InventoryComponent, BrandModelComponent,  AccountingClassComponent,UnitComponent,
     BrandComponent, NumberAssignmentComponent, MaterialGroupsComponent,ProductpackingComponent,
     CompanyComponent,  MastersComponent, DepartmentComponent, DesignationComponent,
@@ -181,12 +189,16 @@ export function HttpLoaderFactory(httpClient: HttpClient) {
     // component
 
     // component list
-    BranchesComponent,CostCenterComponent,LanguageComponent,CurrencyComponent,CountryComponent,RegionComponent,StateComponent,SizesComponent,SegmentComponent,ProfitCenterComponent,DivisionComponent,FunctionalDepartmentComponent,PlantsComponent,LocationsComponent,SalesDepartmentComponent,DistributionchannelsComponent,SalesofficeComponent,SalesGroupComponent,MaintenceAreaComponent,PurchaseDepartmentComponent,StorageLocationsComponent,ErpUsersComponent,RolesprevilagesComponent,
+    BranchesComponent,CostCenterComponent,LanguageComponent,CurrencyComponent,CountryComponent,RegionComponent,StateComponent,SizesComponent,
+    SegmentComponent,ProfitCenterComponent,DivisionComponent,FunctionalDepartmentComponent,PlantsComponent,LocationsComponent,SalesDepartmentComponent,
+    DistributionchannelsComponent,SalesofficeComponent,SalesGroupComponent,MaintenceAreaComponent,PurchaseDepartmentComponent,StorageLocationsComponent,
+    ErpUsersComponent,RolesprevilagesComponent,LedgerComponent,OpenLedgerComponent,VoucherClassComponent,VoucherTypesComponent,VoucherSeriesComponents,
+    AssignmentVoucherSeriestoVoucherTypesComponent,TaxRatesComponents,TaxTransactionComponent,TaxIntegrationComponent,
 
     GeneralledgerComponent, AccountsGroupComponent,
     SubGroupComponent, UndersubGroupComponent,
     GlAccountsComponent, GlSubcodeComponent, TaxIntegrationComponent, CashAccToBranchesComponent,
-    AccToAccClassComponent, VoucherTypesComponent,
+    AccToAccClassComponent, 
     DeleteItemComponent, InventoryComponent, BrandModelComponent,UnitComponent,  AccountingClassComponent,
     BrandComponent, NumberAssignmentComponent, MaterialGroupsComponent,ProductpackingComponent,
     CompanyComponent, DepartmentComponent, DesignationComponent,      
