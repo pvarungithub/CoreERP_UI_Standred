@@ -51,8 +51,8 @@ export class BranchesComponent implements OnInit {
       branchImage: [null],
       address: [null],
       city: [null],
-      state: [null, [Validators.required]],
-      country: [null, [Validators.required]],
+      state: [null],
+      country: [null],
       pincode: [null],
       phone: [null, [Validators.required]],
       mobile: [null],
@@ -64,8 +64,8 @@ export class BranchesComponent implements OnInit {
       tanno: [null],
       ext: [null],
       ext1: [null],
-      language: [null, [Validators.required]],
-      currency: [null, [Validators.required]],
+      language: [null],
+      currency: [null],
       responsiblePerson: [null]
       });
 

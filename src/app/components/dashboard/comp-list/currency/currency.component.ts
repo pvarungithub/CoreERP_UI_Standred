@@ -37,7 +37,6 @@ export class CurrencyComponent implements OnInit {
 
       currencySymbol: [null, [Validators.required, Validators.minLength(1), Validators.maxLength(5)]],
       currencyName: [null, [Validators.required, Validators.minLength(2), Validators.maxLength(40)]],
-      // currencyId: ['0'],
       subunitName: [null],
       noOfDecimalPlaces:[null],
       narration: [null],

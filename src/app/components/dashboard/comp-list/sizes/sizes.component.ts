@@ -4,6 +4,11 @@ import { MatDialogRef, MAT_DIALOG_DATA } from '@angular/material/dialog';
 import { isNullOrUndefined } from 'util';
 import { FormBuilder, FormGroup, Validators } from '@angular/forms';
 import { StatusCodes } from '../../../../enums/common/common';
+
+interface Active {
+  value: string;
+  viewValue: string;
+}
 @Component({
   selector: 'app-sizes',
   templateUrl: './sizes.component.html',
@@ -15,6 +20,11 @@ export class SizesComponent implements OnInit {
   modelFormData: FormGroup;
   isSubmitted = false;
   formData: any;
+  active: Active[] =
+    [
+      { value: 'Y', viewValue: 'Y' },
+      { value: 'N', viewValue: 'N' }
+    ];
 
   constructor(
     private alertService: AlertService,
@@ -28,7 +38,7 @@ export class SizesComponent implements OnInit {
       description: [null, [Validators.required, Validators.minLength(4), Validators.maxLength(50)]],
       ext1: [null],
       ext2: [null],
-      active: [null]
+      active: ['Y']
     });
 
 
