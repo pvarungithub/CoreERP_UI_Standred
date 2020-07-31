@@ -377,8 +377,7 @@
     "countryName": "countryName"
   },
   "currency": {
-    "title": "Currency",
-    "id": "Id",
+    "title": "Currency",    
     "currencySymbol": "CurrencySymbol",
     "currencyName": "CurrencyName",
     "subunitName": "SubunitName",

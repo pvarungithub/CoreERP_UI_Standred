@@ -40,7 +40,7 @@ export class LanguageComponent implements OnInit {
     this.modelFormData = this.formBuilder.group({
       languageCode: ['', [Validators.required, Validators.minLength(2), Validators.maxLength(4)]],
       languageName: ['', [Validators.required, Validators.minLength(2)]],
-      //id:['0']
+      id:['0']
     });
 
 
