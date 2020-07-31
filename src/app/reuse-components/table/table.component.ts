@@ -56,7 +56,7 @@ export class TableComponent implements OnInit, OnChanges, AfterViewInit, OnDestr
   filterColData = [];
   doubleClick = 0;
   keys = [];
-  showDataNotFound = false;
+  showDataNotFound = true;
   user: User;
   routeParam: any;
 
@@ -97,7 +97,7 @@ export class TableComponent implements OnInit, OnChanges, AfterViewInit, OnDestr
     this.columnDefinitions = [];
     this.filterColData = [];
     this.keys = [];
-    this.showDataNotFound = false;
+    this.showDataNotFound = true;
   }
 
   highlightRows(row?) {

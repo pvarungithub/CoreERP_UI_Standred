@@ -13,13 +13,13 @@
         <mat-form-field class="form-element" [ngClass]="{ 'ng--valid': formControls.voucherCode.valid }">
           <input matInput placeholder="{{'voucherclass.voucherCode' | translate }}" formControlName="voucherCode" appFocusOnEnter tabIndex="1">
           <mat-error *ngIf="formControls.voucherCode.errors" class="help-block">
-            <div *ngIf="formControls.voucherCode.errors.required">Voucher Type is required </div>
+            <div *ngIf="formControls.voucherCode.errors.required">Voucher Class Code is required </div>
           </mat-error>
         </mat-form-field>
-        <mat-form-field class="form-element" [ngClass]="{ 'ng--valid': formControls.vouchrType.valid }">
-          <input matInput placeholder="{{'voucherclass.vouchrType' | translate }}" formControlName="vouchrType" appFocusOnEnter tabIndex="1">
-          <mat-error *ngIf="formControls.vouchrType.errors" class="help-block">
-            <div *ngIf="formControls.vouchrType.errors.required">Voucher Type is required </div>
+        <mat-form-field class="form-element" [ngClass]="{ 'ng--valid': formControls.vouchrClass.valid }">
+          <input matInput placeholder="{{'voucherclass.vouchrClass' | translate }}" formControlName="vouchrClass" appFocusOnEnter tabIndex="1">
+          <mat-error *ngIf="formControls.vouchrClass.errors" class="help-block">
+            <div *ngIf="formControls.vouchrClass.errors.required">Voucher Class Name is required </div>
           </mat-error>
         </mat-form-field>
       </div>

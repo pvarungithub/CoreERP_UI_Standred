@@ -357,7 +357,7 @@
     "active": "Active",
     "addDate": "Date"
   },
-  "vouchertypes": {
+  "vouchertype": {
     "title": "Voucher Type",
     "voucherCode": "Voucher Code",
     "voucherType": "Voucher Type",
@@ -964,7 +964,7 @@
     "toInterval": "ToInterval",
     "plant": "Plant"
   },
-  "assignmentvoucherseriestovouchertype": {
+  "assignmentofvoucherseriestovouchertype": {
     "title": "AssignmentVoucherSeriestoVoucherType",
     "code": "code",
     "voucherType": "voucherType",
@@ -982,7 +982,7 @@
     "igst": "Igst",
     "ugst": "Ugst"
   },
-  "taxtransaction": {
+  "taxtransactions": {
     "title": "Tax Transaction",
     "code": "Code",
     "description": "Description"

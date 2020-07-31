@@ -155,7 +155,7 @@ export class CompListService {
         this.dynamicComp.component = VoucherClassComponent;
         return this.dynamicComp.component;
         break;
-      case 'vouchertypes':
+      case 'vouchertype':
         this.dynamicComp.component = VoucherTypesComponent;
         return this.dynamicComp.component;
         break;

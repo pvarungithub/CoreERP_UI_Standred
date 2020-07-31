@@ -4,7 +4,7 @@
 
 <mat-card *ngIf="routeParam == 'membermaster'">
   <div class="background-header-boarder">
-    <div class="d-flex justify-content-between align-items-center">
+    <div class="d-flex justify-content-between align-items-center ">
 
       <div class="btn-group align-items-center pt-3 pb-3" dropdown #dropdown="bs-dropdown" [autoClose]="false">
 
@@ -38,7 +38,7 @@
       {{ ( routeParam + '.title') | translate }}
     </mat-card-title> -->
   <div class="background-header-boarder">
-    <div class="d-flex justify-content-between align-items-center" *ngIf="routeParam != 'membermaster' && !isVehicle">
+    <div class="d-flex justify-content-between align-items-center border" *ngIf="routeParam != 'membermaster' && !isVehicle">
       <div class="">
         <button class="ml-2" mat-raised-button (click)="openDialog('Add')" [disabled]="user.canAdd">
           <mat-icon>add</mat-icon> New

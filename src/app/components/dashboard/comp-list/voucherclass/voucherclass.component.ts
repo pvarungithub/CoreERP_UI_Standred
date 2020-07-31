@@ -42,7 +42,7 @@ export class VoucherClassComponent implements OnInit {
       ext2: [null],
       class: [null],
       addDate: [null],
-      vouchrType: [null, [Validators.required, Validators.minLength(2), Validators.maxLength(50)]]
+      vouchrClass: [null, [Validators.required, Validators.minLength(2), Validators.maxLength(50)]]
     });
 
 

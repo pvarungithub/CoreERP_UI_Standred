@@ -208,7 +208,7 @@ updateOpenLedger = `${this.environment.runtimeConfig.serverUrl}gl/OpenLedger/Upd
 deleteOpenLedger = `${this.environment.runtimeConfig.serverUrl}gl/OpenLedger/DeleteOpenLedgerList`;
 
  //vocherclass
- getvocherclassList = `${this.environment.runtimeConfig.serverUrl}gl/VoucherClass /GetVoucherrClassList`;
+ getvocherclassList = `${this.environment.runtimeConfig.serverUrl}gl/VoucherClass /GetVoucherClassList`;
  registerVoucherClass = `${this.environment.runtimeConfig.serverUrl}gl/VoucherClass /RegisterVoucherClass`;
  updateVoucherClass = `${this.environment.runtimeConfig.serverUrl}gl/VoucherClass /UpdateVoucherClass`;
  deleteVoucherClass = `${this.environment.runtimeConfig.serverUrl}gl/VoucherClass /DeleteVoucherClass`;
