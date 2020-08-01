@@ -107,7 +107,7 @@ export class CompListComponent implements OnInit {
   }
   
   deleteRecord(value) {
-
+    value.primary = this.tableUrl.ext;
     const dialogRef = this.dialog.open(DeleteItemComponent, {
       width: '1024px',
       data: value,

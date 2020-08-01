@@ -1,6 +1,6 @@
 import {
   Component, OnInit, ViewChild, Input, OnChanges,
-  ChangeDetectorRef, Output, EventEmitter, AfterViewInit, OnDestroy
+  ChangeDetectorRef, Output, EventEmitter, AfterViewInit, OnDestroy, HostListener
 } from '@angular/core';
 import { MatDialog } from '@angular/material/dialog';
 import { MatPaginator } from '@angular/material/paginator';
@@ -53,6 +53,7 @@ export class TableComponent implements OnInit, OnChanges, AfterViewInit, OnDestr
   showDataNotFound = true;
   user: User;
   routeParam: any;
+  tableIndex: any;
 
   constructor(
     public dialog: MatDialog,
@@ -62,7 +63,7 @@ export class TableComponent implements OnInit, OnChanges, AfterViewInit, OnDestr
   ) {
     this.user = JSON.parse(localStorage.getItem('user'));
     activatedRoute.params.subscribe(params => {
-        this.routeParam = params.id;
+      this.routeParam = params.id;
     });
   }
 
@@ -75,18 +76,23 @@ export class TableComponent implements OnInit, OnChanges, AfterViewInit, OnDestr
     this.showDataNotFound = true;
   }
 
-  highlightRows(row?) {
-    if (!isNullOrUndefined(row)) {
-          this.highlightedRows = [];
-          this.highlightedRows.push(row);
+  setIndex(row, i) {
+    this.tableIndex = i;
+    this.highlightedRows = [];
+    this.highlightedRows.push(row);
+  }
+
+  @HostListener('document:keydown', ['$event'])
+  handleKeyboardEvent(event: KeyboardEvent) {
+    if (this.highlightedRows.length) {
+      if (event.keyCode == 40) {
+        this.tableIndex = this.tableIndex + 1;
+      } else if (event.keyCode == 38) {
+        this.tableIndex = this.tableIndex - 1;
+      }
+      this.setIndex(this.dataSource.data[this.tableIndex], this.tableIndex);
     }
   }
-
-  setIndex(row) {
-      this.highlightedRows = [];
-      this.highlightedRows.push(row);
-  }
-
 
   openDialog(val, row?) {
     let data;
@@ -114,7 +120,7 @@ export class TableComponent implements OnInit, OnChanges, AfterViewInit, OnDestr
 
   ngOnChanges() {
     this.highlightedRows = [];
-    
+
     if (!isNullOrUndefined(this.tableData)) {
       if (this.tableData.length) {
         this.showDataNotFound = false;
@@ -128,43 +134,43 @@ export class TableComponent implements OnInit, OnChanges, AfterViewInit, OnDestr
       this.dataSource.sort = this.sort;
     }
 
-      if (!isNullOrUndefined(this.tableData) && this.tableData.length > 0) {
-        // tslint:disable-next-line:forin
-        for (const key in this.tableData[0]) {
-          this.keys.push({ col: key });
-        }
-        const col = [];
-        this.keys.forEach(cols => {
-          const obj = {
-            def: cols.col, label: cols.col, hide: true
-          };
-          col.push(obj);
-        });
+    if (!isNullOrUndefined(this.tableData) && this.tableData.length > 0) {
+      // tslint:disable-next-line:forin
+      for (const key in this.tableData[0]) {
+        this.keys.push({ col: key });
+      }
+      const col = [];
+      this.keys.forEach(cols => {
+        const obj = {
+          def: cols.col, label: cols.col, hide: true
+        };
+        col.push(obj);
+      });
 
-        this.translate.get(this.routeParam).subscribe(res => {
-          let key;
-          // tslint:disable-next-line: forin
-          for (key in res) {
-            // tslint:disable-next-line: prefer-for-of
-            for (let c = 0; c < col.length; c++) {
-              if (key == col[c].def) {
-                this.columnDefinitions.push(col[c]);
-              }
+      this.translate.get(this.routeParam).subscribe(res => {
+        let key;
+        // tslint:disable-next-line: forin
+        for (key in res) {
+          // tslint:disable-next-line: prefer-for-of
+          for (let c = 0; c < col.length; c++) {
+            if (key == col[c].def) {
+              this.columnDefinitions.push(col[c]);
             }
           }
+        }
+      });
+    }
+
+
+    if (!isNullOrUndefined(this.tableData) && this.tableData.length > 0) {
+      this.filteredTableMulti.next(this.columnDefinitions.slice());
+      this.tableMultiFilterCtrl.valueChanges
+        .pipe(takeUntil(this.onDestroy))
+        .subscribe(() => {
+          this.filterBanksMulti();
         });
-      }
+    }
 
-
-      if (!isNullOrUndefined(this.tableData) && this.tableData.length > 0) {
-        this.filteredTableMulti.next(this.columnDefinitions.slice());
-        this.tableMultiFilterCtrl.valueChanges
-          .pipe(takeUntil(this.onDestroy))
-          .subscribe(() => {
-            this.filterBanksMulti();
-          });
-      }
-    
   }
 
 
