@@ -86,7 +86,6 @@ import { MemberMasterComponent } from './components/dashboard/masters/member-mas
 import { VehicleComponent } from './components/dashboard/masters/member-master/vehicle/vehicle.component';
 import { TokenInterceptor } from './token-interceptor';
 import { HTTP_INTERCEPTORS } from '@angular/common/http';
-import { GiftMasterComponent} from'./components/dashboard/masters/member-master/Giftmaster/giftmaster.component';
   import { from } from 'rxjs';
 // AoT requires an exported function for factories
 export function HttpLoaderFactory(httpClient: HttpClient) {
@@ -154,7 +153,7 @@ export function HttpLoaderFactory(httpClient: HttpClient) {
     ReportTableComponent,ReportsInnerTableComponent, ReportsComponent, SearchFilterTableComponent,
     CreateStockissuesComponent , StockissuesComponent, CreateStockreceiptsComponent, StockreceiptsComponent
     ,CreateStockshortsComponent, StockshortComponent, CreateOilconversionsComponent, OilconversionComponent,
-    PrintComponent,PackageconversionComponent,MSHSDRatesComponent,StockExcessComponent,CreateStockExcessComponent,MeterReadingComponent,ProductComponent,MemberMasterComponent, VehicleComponent,GiftMasterComponent
+    PrintComponent,PackageconversionComponent,MSHSDRatesComponent,StockExcessComponent,CreateStockExcessComponent,MeterReadingComponent,ProductComponent,MemberMasterComponent, VehicleComponent
   ],
   imports: [
     AppRoutingModule,

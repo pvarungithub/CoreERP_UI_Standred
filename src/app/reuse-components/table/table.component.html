@@ -2,43 +2,13 @@
   <h5> {{ ( routeParam + '.title') | translate }} </h5>
 </div> -->
 
-<mat-card *ngIf="routeParam == 'membermaster'">
-  <div class="background-header-boarder">
-    <div class="d-flex justify-content-between align-items-center ">
-
-      <div class="btn-group align-items-center pt-3 pb-3" dropdown #dropdown="bs-dropdown" [autoClose]="false">
-
-        <mat-form-field class="pl-2 filter">
-          <input matInput placeholder="{{'membermaster.memberCode' | translate }}"
-            [(ngModel)]="searchMemberObj.invoiceNo">
-        </mat-form-field>
-        <mat-form-field class="pl-2 filter">
-          <input matInput placeholder="{{'membermaster.memberName' | translate }}" [(ngModel)]="searchMemberObj.Name">
-        </mat-form-field>
-        <div>
-          <button class="button-color-bule text-white ml-2" mat-raised-button (click)="searchMember()">
-            <mat-icon>search</mat-icon> Search
-          </button>
-        </div>
-
-      </div>
-      <div>
-        <button class="button-color-bule text-white ml-2" mat-raised-button (click)="addMember()">
-          Add New Member
-        </button>
-      </div>
-    </div>
-  </div>
-
-</mat-card>
-
 <mat-card>
-  <!-- <div class="background-header-boarder"> -->
+    <!-- <div class="background-header-boarder"> -->
     <!-- <mat-card-title class="background-header-style">
       {{ ( routeParam + '.title') | translate }}
     </mat-card-title> -->
   <div class="background-header-boarder">
-    <div class="d-flex justify-content-between align-items-center border" *ngIf="routeParam != 'membermaster' && !isVehicle">
+    <div class="d-flex justify-content-between align-items-center border">
       <div class="">
         <button class="ml-2" mat-raised-button (click)="openDialog('Add')" [disabled]="user.canAdd">
           <mat-icon>add</mat-icon> New
@@ -108,12 +78,11 @@
             </td>
           </ng-container>
           <tr mat-header-row *matHeaderRowDef="getDisplayedColumns()"></tr>
-          <tr mat-row  *matRowDef="let row; columns: getDisplayedColumns(); let i = index"
-            (dblclick)="openDialog('Edit', row)"  [ngStyle]="{'background-color':row.backgroundColor}"></tr>        
+          <tr mat-row *matRowDef="let row; columns: getDisplayedColumns(); let i = index"
+            (dblclick)="openDialog('Edit', row)" [style.background]="
+          highlightedRows.indexOf(row) != -1 ? 'lightblue' : ''
+        "></tr>
         </table>
-      </div>
-      <div *ngIf="!dataSource" class="d-flex justify-content-center p-2">
-        <strong> No records found </strong>
       </div>
       <mat-paginator [pageSizeOptions]="[8 ,10, 15]" showFirstLastButtons></mat-paginator>
     </div>
