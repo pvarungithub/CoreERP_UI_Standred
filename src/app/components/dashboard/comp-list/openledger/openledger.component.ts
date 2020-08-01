@@ -50,7 +50,7 @@ export class OpenLedgerComponent implements OnInit {
     this.formData = { ...data };
     if (!isNullOrUndefined(this.formData.item)) {
       this.modelFormData.patchValue(this.formData.item);
-      //this.modelFormData.controls['ledgerKey'].disable();
+      this.modelFormData.controls['ledgerKey'].disable();
     }
 
   }
@@ -67,7 +67,7 @@ export class OpenLedgerComponent implements OnInit {
     }
     this.formData.item = this.modelFormData.value;
     this.dialogRef.close(this.formData);
-    //this.modelFormData.controls['ledgerKey'].enable();
+    this.modelFormData.controls['ledgerKey'].enable();
   }
 
   cancel() {

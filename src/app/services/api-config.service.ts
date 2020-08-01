@@ -208,7 +208,7 @@ updateOpenLedger = `${this.environment.runtimeConfig.serverUrl}gl/OpenLedger/Upd
 deleteOpenLedger = `${this.environment.runtimeConfig.serverUrl}gl/OpenLedger/DeleteOpenLedgerList`;
 
  //vocherclass
- getvocherclassList = `${this.environment.runtimeConfig.serverUrl}gl/VoucherClass /GetVoucherClassList`;
+ getvocherclassList = `${this.environment.runtimeConfig.serverUrl}VoucherClass/GetVoucherClassList`;
  registerVoucherClass = `${this.environment.runtimeConfig.serverUrl}gl/VoucherClass /RegisterVoucherClass`;
  updateVoucherClass = `${this.environment.runtimeConfig.serverUrl}gl/VoucherClass /UpdateVoucherClass`;
  deleteVoucherClass = `${this.environment.runtimeConfig.serverUrl}gl/VoucherClass /DeleteVoucherClass`;
@@ -284,14 +284,15 @@ deleteOpenLedger = `${this.environment.runtimeConfig.serverUrl}gl/OpenLedger/Del
    
 
    // Voucher Types //
-   getVoucherTypeList = `${this.environment.runtimeConfig.serverUrl}gl/VoucherType/GetVoucherTypeList`;
-   registerVoucherTypes = `${this.environment.runtimeConfig.serverUrl}gl/VoucherType/RegisterVoucherTypes`;
-   updateVoucherTypes = `${this.environment.runtimeConfig.serverUrl}gl/VoucherType/UpdateVoucherTypes`;
-   deleteVoucherTypes = `${this.environment.runtimeConfig.serverUrl}gl/VoucherType/DeleteVoucherTypes`;
-  getVoucherClassList = `${this.environment.runtimeConfig.serverUrl}gl/VoucherType/GetVoucherClassList`;
+   //getVoucherTypeList='http://localhost:51414/api/VoucherType/GetVoucherTypeList';
+   getVoucherTypeList = `${this.environment.runtimeConfig.serverUrl}VoucherType/GetVoucherTypeList`;
+   registerVoucherTypes = `${this.environment.runtimeConfig.serverUrl}VoucherType/RegisterVoucherTypes`;
+   updateVoucherTypes = `${this.environment.runtimeConfig.serverUrl}VoucherType/UpdateVoucherTypes`;
+   deleteVoucherTypes = `${this.environment.runtimeConfig.serverUrl}VoucherType/DeleteVoucherTypes`;
+  getVoucherClassList = `${this.environment.runtimeConfig.serverUrl}VoucherType/GetVoucherClassList`;
 
-   getCompaniesList = `${this.environment.runtimeConfig.serverUrl}gl/VoucherType/GetCompaniesList`;
-   getVoucherBranchesList = `${this.environment.runtimeConfig.serverUrl}gl/VoucherType/GetBranchesList`;
+   getCompaniesList = `${this.environment.runtimeConfig.serverUrl}VoucherType/GetCompaniesList`;
+   getVoucherBranchesList = `${this.environment.runtimeConfig.serverUrl}VoucherType/GetBranchesList`;
 
    // ******************************** END GeneralLedger *********************************
 
@@ -368,10 +369,10 @@ deleteOpenLedger = `${this.environment.runtimeConfig.serverUrl}gl/OpenLedger/Del
   deletefunctionaldept = `${this.environment.runtimeConfig.serverUrl}masters/FunctionalDepartment/DeleteFunctionalDepartment`;
    
   //plant
-  getplantList = `${this.environment.runtimeConfig.serverUrl}masters/Plant/GetPlant`;
-  registerPlant = `${this.environment.runtimeConfig.serverUrl}masters/Plant/RegisterPlant`;
-  updatePlant = `${this.environment.runtimeConfig.serverUrl}masters/Plant/UpdatePlant`;
-  deletePlant = `${this.environment.runtimeConfig.serverUrl}masters/Plant/DeletePlant`;
+  getplantList = `${this.environment.runtimeConfig.serverUrl}Plant/GetPlant`;
+  registerPlant = `${this.environment.runtimeConfig.serverUrl}Plant/RegisterPlant`;
+  updatePlant = `${this.environment.runtimeConfig.serverUrl}Plant/UpdatePlant`;
+  deletePlant = `${this.environment.runtimeConfig.serverUrl}Plant/DeletePlant`;
 
   //location  
   
@@ -479,10 +480,10 @@ deleteDistributionChannel = `${this.environment.runtimeConfig.serverUrl}masters/
   deletePartnerType = `${this.environment.runtimeConfig.serverUrl}masters/PartnerType/DeletePartnerType`;
  
   //vocherseries
- getvocherseriesList = `${this.environment.runtimeConfig.serverUrl}gl/VoucherSeries/GetVoucherSeriesList`;
- registerVoucherSeries = `${this.environment.runtimeConfig.serverUrl}gl/VoucherSeries/RegisterVoucherSeries`; 
- updateVoucherSeries = `${this.environment.runtimeConfig.serverUrl}gl/VoucherSeries/UpdateVoucherSeries`; 
- deleteVoucherSeries = `${this.environment.runtimeConfig.serverUrl}gl/VoucherSeries/DeleteVoucherSeries`; 
+ getvocherseriesList = `${this.environment.runtimeConfig.serverUrl}VoucherSeries/GetVoucherSeriesList`;
+ registerVoucherSeries = `${this.environment.runtimeConfig.serverUrl}VoucherSeries/RegisterVoucherSeries`; 
+ updateVoucherSeries = `${this.environment.runtimeConfig.serverUrl}VoucherSeries/UpdateVoucherSeries`; 
+ deleteVoucherSeries = `${this.environment.runtimeConfig.serverUrl}VoucherSeries/DeleteVoucherSeries`; 
 
  //getassignmentvoucherseriestovouchertypeList
  getassignmentvoucherseriestovouchertypeList = `${this.environment.runtimeConfig.serverUrl}gl/AssignmentVoucherSeriestoVoucherType/GetAssignmentVoucherSeriestoVoucherTypeList`;

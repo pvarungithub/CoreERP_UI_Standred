@@ -108,12 +108,12 @@
     "active": "Active",
     "addDate": "Add Date"
   },
-  "vouchertype": {
+  "vouchertypes": {
     "title": "Voucher Type",
-    "voucherCode": "Voucher Code",
-    "voucherType": "Voucher Type",
-    "voucherClass": "VoucherClass",
-    "printText": "PrintText"
+    "voucherTypeId": "voucherTypeId",
+    "voucherTypeName": "voucherTypeName",
+    "printText": "printText",
+    "voucherClass": "voucherClass"
   },
   "brandmodel": {
     "title": "BrandModel",
@@ -1390,8 +1390,8 @@
   },
   "voucherclass": {
     "title": "VocherClass",
-    "voucherCode": "Code",
-    "vouchrType": "vocherType"
+    "voucherKey": "Code",
+    "description": "Description"
   },
   "voucherseries": {
     "title": "Voucher Series",

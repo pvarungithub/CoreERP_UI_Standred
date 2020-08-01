@@ -36,20 +36,15 @@ export class VoucherClassComponent implements OnInit {
     @Optional() @Inject(MAT_DIALOG_DATA) public data: any) {
 
     this.modelFormData = this.formBuilder.group({
-      voucherCode: [null, [Validators.required, Validators.minLength(1), Validators.maxLength(5)]],
-      active: [null],
-      ext1: [null],
-      ext2: [null],
-      class: [null],
-      addDate: [null],
-      vouchrClass: [null, [Validators.required, Validators.minLength(2), Validators.maxLength(50)]]
+      voucherKey: [null, [Validators.required, Validators.minLength(1), Validators.maxLength(5)]],
+      description: [null, [Validators.required, Validators.minLength(2), Validators.maxLength(50)]]
     });
 
 
     this.formData = { ...data };
     if (!isNullOrUndefined(this.formData.item)) {
       this.modelFormData.patchValue(this.formData.item);
-      this.modelFormData.controls['voucherCode'].disable();
+      this.modelFormData.controls['voucherKey'].disable();
     }
 
   }
@@ -63,11 +58,11 @@ export class VoucherClassComponent implements OnInit {
 
 
   save() {
-    debugger;
+    //debugger;
     if (this.modelFormData.invalid) {
       return;
     }
-     this.modelFormData.controls['voucherCode'].enable();
+     this.modelFormData.controls['voucherKey'].enable();
     this.formData.item = this.modelFormData.value;
     this.dialogRef.close(this.formData);
   }

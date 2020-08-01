@@ -9,7 +9,8 @@
 
       <div class="d--flex">
         <mat-form-field class="form-element" [ngClass]="{ 'ng--valid': formControls.ledgerKey.valid }">
-          <input matInput placeholder="{{'openledger.ledgerKey' | translate }}" formControlName="ledgerKey" maxlength="4" appFocusOnEnter tabIndex="1">
+          <input matInput placeholder="{{'openledger.ledgerKey' | translate }}" formControlName="ledgerKey" 
+           maxlength="4" appFocusOnEnter tabIndex="1">
           <mat-error *ngIf="formControls.ledgerKey.errors" class="help-block">
             <div *ngIf="formControls.ledgerKey.errors.required">code  is required </div>
           </mat-error>
@@ -17,21 +18,22 @@
 
         <mat-form-field>
           <input matInput [matDatepicker]="picker3" placeholder="{{'openledger.financialYearStartFrom' | translate }}"
-                 formControlName="financialYearStartFrom">
+                 formControlName="financialYearStartFrom" appFocusOnEnter tabIndex="2">
           <mat-datepicker-toggle matSuffix [for]="picker3"></mat-datepicker-toggle>
           <mat-datepicker #picker3></mat-datepicker>
         </mat-form-field>
 
         <mat-form-field>
           <input matInput [matDatepicker]="picker4" placeholder="{{'openledger.financialYearEndTo' | translate }}"
-                 formControlName="financialYearEndTo">
+                 formControlName="financialYearEndTo" appFocusOnEnter tabIndex="3">
           <mat-datepicker-toggle matSuffix [for]="picker4"></mat-datepicker-toggle>
           <mat-datepicker #picker4></mat-datepicker>
         </mat-form-field>
 
 
         <mat-form-field class="form-element">
-          <input matInput placeholder="{{'openledger.accountingYear' | translate }}" formControlName="accountingYear" maxlength="4" appFocusOnEnter tabIndex="4">
+          <input matInput placeholder="{{'openledger.accountingYear' | translate }}" formControlName="accountingYear"
+           maxlength="4" appFocusOnEnter tabIndex="4">
         </mat-form-field>
 
       </div>

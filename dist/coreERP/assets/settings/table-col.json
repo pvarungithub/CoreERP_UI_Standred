@@ -357,12 +357,12 @@
     "active": "Active",
     "addDate": "Date"
   },
-  "vouchertype": {
+  "vouchertypes": {
     "title": "Voucher Type",
-    "voucherCode": "Voucher Code",
-    "voucherType": "Voucher Type",
-    "voucherClass": "VoucherClass",
-    "printText": "PrintText"
+    "voucherTypeId": "voucherTypeId",
+    "voucherTypeName": "voucherTypeName",
+    "printText": "printText",
+    "voucherClass": "voucherClass"
   },
   "acctoaccclass": {
     "title": "Assignment of Accounts to Accounting Class",
@@ -952,8 +952,8 @@
   },
   "voucherclass": {
     "title": "VocherClass",
-    "voucherCode": "Code",
-    "vouchrType": "vocherType"
+    "voucherKey": "Code",
+    "description": "Description"
   },
   "voucherseries": {
     "title": "Voucher Series",

@@ -10,16 +10,18 @@
 
       <div class="d--flex">
 
-        <mat-form-field class="form-element" [ngClass]="{ 'ng--valid': formControls.voucherCode.valid }">
-          <input matInput placeholder="{{'voucherclass.voucherCode' | translate }}" formControlName="voucherCode" appFocusOnEnter tabIndex="1">
-          <mat-error *ngIf="formControls.voucherCode.errors" class="help-block">
-            <div *ngIf="formControls.voucherCode.errors.required">Voucher Class Code is required </div>
+        <mat-form-field class="form-element" [ngClass]="{ 'ng--valid': formControls.voucherKey.valid }">
+          <input matInput placeholder="{{'voucherclass.voucherKey' | translate }}" formControlName="voucherKey"
+          maxlength="4" appFocusOnEnter tabIndex="1">
+          <mat-error *ngIf="formControls.voucherKey.errors" class="help-block">
+            <div *ngIf="formControls.voucherKey.errors.required">Voucher Class Code is required </div>
           </mat-error>
         </mat-form-field>
-        <mat-form-field class="form-element" [ngClass]="{ 'ng--valid': formControls.vouchrClass.valid }">
-          <input matInput placeholder="{{'voucherclass.vouchrClass' | translate }}" formControlName="vouchrClass" appFocusOnEnter tabIndex="1">
-          <mat-error *ngIf="formControls.vouchrClass.errors" class="help-block">
-            <div *ngIf="formControls.vouchrClass.errors.required">Voucher Class Name is required </div>
+        <mat-form-field class="form-element" [ngClass]="{ 'ng--valid': formControls.description.valid }">
+          <input matInput placeholder="{{'voucherclass.description' | translate }}" formControlName="description"
+          maxlength="30" appFocusOnEnter tabIndex="1">
+          <mat-error *ngIf="formControls.description.errors" class="help-block">
+            <div *ngIf="formControls.description.errors.required">Voucher Class Name is required </div>
           </mat-error>
         </mat-form-field>
       </div>

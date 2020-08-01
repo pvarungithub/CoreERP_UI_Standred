@@ -10,7 +10,7 @@ import { ApiService } from '../../../../services/api.service';
 import { String } from 'typescript-string-operations';
 import { CommonService } from '../../../../services/common.service';
 @Component({
-  selector: 'assignmentvoucherseriestovouchertype',
+  selector: 'assignmentofvoucherseriestovouchertype',
   templateUrl: './assignmentvoucherseriestovouchertype.component.html',
   styleUrls: ['./assignmentvoucherseriestovouchertype.component.scss']
 })
@@ -36,11 +36,10 @@ export class AssignmentVoucherSeriestoVoucherTypesComponent implements OnInit {
     @Optional() @Inject(MAT_DIALOG_DATA) public data: any) {
 
     this.modelFormData = this.formBuilder.group({
-      id: ['0'],
-      code: [null, [Validators.required, Validators.minLength(1), Validators.maxLength(50)]],
-      voucherType: [null] ,
-      voucherClass: [null] ,
-       ext:[null] 
+      code: [null, [Validators.required, Validators.minLength(1), Validators.maxLength(5)]],
+      voucherType: [null],
+      voucherSeries:  [null],
+      ext: null        
     });
 
 
@@ -96,7 +95,7 @@ export class AssignmentVoucherSeriestoVoucherTypesComponent implements OnInit {
 
 
   save() {
-    debugger;
+    //debugger;
     if (this.modelFormData.invalid) {
       return;
     }
