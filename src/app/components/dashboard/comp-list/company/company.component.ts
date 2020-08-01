@@ -88,7 +88,7 @@ export class CompanyComponent   implements OnInit {
     this.formData = { ...data };
     if (!isNullOrUndefined(this.formData.item)) {
       this.modelFormData.patchValue(this.formData.item);
-      //this.modelFormData.controls['empCode'].disable();
+      this.modelFormData.controls['companyCode'].disable();
     }
 
   }

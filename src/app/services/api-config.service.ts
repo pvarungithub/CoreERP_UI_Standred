@@ -345,12 +345,12 @@ deleteOpenLedger = `${this.environment.runtimeConfig.serverUrl}gl/OpenLedger/Del
    // ******************************* Start  master *****************************************
 
    // company
-  getlanguageList = `${this.environment.runtimeConfig.serverUrl}masters/Company/GetLanguageList`;
-  getRegionsList = `${this.environment.runtimeConfig.serverUrl}masters/Company/GetRegionList`;
-  getCountrysList =`${this.environment.runtimeConfig.serverUrl}masters/Company/GetCountrysList`;
-  getcurrencyList = `${this.environment.runtimeConfig.serverUrl}masters/Company/GetCurrencyList`;
-  getstatesList = `${this.environment.runtimeConfig.serverUrl}masters/Company/GetStatesList`;
-   getCompanysList = `${this.environment.runtimeConfig.serverUrl}masters/Company/GetCompanysList`;
+  getlanguageList = `${this.environment.runtimeConfig.serverUrl}Company/GetLanguageList`;
+  getRegionsList = `${this.environment.runtimeConfig.serverUrl}Company/GetRegionList`;
+  getCountrysList =`${this.environment.runtimeConfig.serverUrl}Company/GetCountrysList`;
+  getcurrencyList = `${this.environment.runtimeConfig.serverUrl}Company/GetCurrencyList`;
+  getstatesList = `${this.environment.runtimeConfig.serverUrl}Company/GetStatesList`;
+  getCompanysList = `${this.environment.runtimeConfig.serverUrl}masters/Company/GetCompanysList`;
    registerCompany = `${this.environment.runtimeConfig.serverUrl}masters/Company/RegisterCompany`;
    updateCompany = `${this.environment.runtimeConfig.serverUrl}masters/Company/UpdateCompany`;
    deleteCompany = `${this.environment.runtimeConfig.serverUrl}masters/Company/DeleteCompany`;
@@ -374,8 +374,9 @@ deleteOpenLedger = `${this.environment.runtimeConfig.serverUrl}gl/OpenLedger/Del
   deletePlant = `${this.environment.runtimeConfig.serverUrl}masters/Plant/DeletePlant`;
 
   //location  
-   getPlantList = `${this.environment.runtimeConfig.serverUrl}masters/Location/GetPlantList`;
-   getlocationList = `${this.environment.runtimeConfig.serverUrl}masters/Location/GetLocationList`;
+  
+   getPlantList = `${this.environment.runtimeConfig.serverUrl}Location/GetPlantList`;
+   getlocationList = `${this.environment.runtimeConfig.serverUrl}Location/GetLocationList`;
    registerLocation = `${this.environment.runtimeConfig.serverUrl}masters/Location/RegisterLocation`;
    updateLocation = `${this.environment.runtimeConfig.serverUrl}masters/Location/UpdateLocation`;
    deleteLocation = `${this.environment.runtimeConfig.serverUrl}masters/Location/DeleteLocation`;

@@ -43,7 +43,6 @@ export class PlantsComponent implements OnInit {
     @Optional() @Inject(MAT_DIALOG_DATA) public data: any) {
 
     this.modelFormData = this.formBuilder.group({
-      //"id": 1,
       plantCode: [null, [Validators.required, Validators.minLength(1), Validators.maxLength(5)]],
       plantname: [null, [Validators.required, Validators.minLength(1), Validators.maxLength(50)]],
       city: [null], 

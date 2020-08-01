@@ -94,7 +94,7 @@ export class CompListService {
         this.dynamicComp.component = DivisionComponent;
         return this.dynamicComp.component;
         break;
-      case 'functionalDepatment':
+      case 'functionaldepatment':
         this.dynamicComp.component = FunctionalDepartmentComponent;
         return this.dynamicComp.component;
         break;

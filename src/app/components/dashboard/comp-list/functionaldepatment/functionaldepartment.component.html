@@ -1,6 +1,6 @@
 <div class="position-relative popup-class">
   <mat-card-title class="boader--color d-flex justify-content-between position-absolute w-100">
-    <span> {{'functionaldept.title' | translate }} </span>
+    <span> {{'functionaldepatment.title' | translate }} </span>
     <mat-icon class="p-2  cursor--pointer" (click)="cancel()">close</mat-icon>
   </mat-card-title>
 
@@ -8,13 +8,13 @@
     <form [formGroup]="modelFormData" autocomplete="off">
       <div class="d--flex">
         <mat-form-field class="form-element" [ngClass]="{ 'ng--valid': formControls.code.valid }">
-          <input matInput placeholder="{{'functionaldept.code' | translate }}" formControlName="code" maxlength="5" appFocusOnEnter tabIndex="1">
+          <input matInput placeholder="{{'functionaldepatment.code' | translate }}" formControlName="code" maxlength="5" appFocusOnEnter tabIndex="1">
           <mat-error *ngIf="formControls.code.errors" class="help-block">
             <div *ngIf="formControls.code.errors.required">Code is required </div>
           </mat-error>
         </mat-form-field>
         <mat-form-field class="form-element" [ngClass]="{ 'ng--valid': formControls.description.valid }">
-          <input matInput placeholder="{{'functionaldept.description' | translate }}" formControlName="description" maxlength="50" appFocusOnEnter tabIndex="2">
+          <input matInput placeholder="{{'functionaldepatment.description' | translate }}" formControlName="description" maxlength="50" appFocusOnEnter tabIndex="2">
           <mat-error *ngIf="formControls.description.errors" class="help-block">
             <div *ngIf="formControls.description.errors.required">Name is required</div>
           </mat-error>
@@ -22,7 +22,7 @@
        
       
         <mat-form-field>
-          <mat-label>{{'functionaldept.responsiblePerson' | translate }}</mat-label>
+          <mat-label>{{'functionaldepatment.responsiblePersion' | translate }}</mat-label>
           <mat-select formControlName="responsiblePerson" appFocusOnEnter tabIndex="20">
             <mat-option *ngFor="let emp of employeesList" [value]="emp.employeeCode">
               {{emp.employeeCode}}-{{emp.employeeName}}

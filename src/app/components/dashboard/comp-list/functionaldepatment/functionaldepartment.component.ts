@@ -13,7 +13,7 @@ import { StatusCodes } from '../../../../enums/common/common';
 import { CommonService } from '../../../../services/common.service';
 
 @Component({
-  selector: 'app-functionaldepartment',
+  selector: 'app-functionaldepatment',
   templateUrl: './functionaldepartment.component.html',
   styleUrls: ['./functionaldepartment.component.scss']
 })
@@ -42,7 +42,6 @@ export class FunctionalDepartmentComponent implements OnInit {
     @Optional() @Inject(MAT_DIALOG_DATA) public data: any) {
 
     this.modelFormData = this.formBuilder.group({
-      //"id": 1,
       code: [null, [Validators.required, Validators.minLength(1), Validators.maxLength(5)]],
       description: [null, [Validators.required, Validators.minLength(1), Validators.maxLength(50)]],
       id: ['0'],
