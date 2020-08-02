@@ -49,7 +49,7 @@ export class CurrencyComponent implements OnInit {
     this.formData = { ...data };
     if (!isNullOrUndefined(this.formData.item)) {
       this.modelFormData.patchValue(this.formData.item);
-      //this.modelFormData.controls['branchCode'].disable();
+      this.modelFormData.controls['currencySymbol'].disable();
     }
 
   }
@@ -64,6 +64,7 @@ export class CurrencyComponent implements OnInit {
     if (this.modelFormData.invalid) {
       return;
     }
+    this.modelFormData.controls['currencySymbol'].enable();
     this.formData.item = this.modelFormData.value;
     this.dialogRef.close(this.formData);
   }

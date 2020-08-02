@@ -20,8 +20,7 @@ export class RegionComponent implements OnInit {
   modelFormData: FormGroup;
   isSubmitted = false;
   formData: any;
-  companyList: any;
-
+  countrysList: any;
 
   constructor(
     private apiService: ApiService,
@@ -37,7 +36,7 @@ export class RegionComponent implements OnInit {
 
       regionCode: [null, [Validators.required, Validators.minLength(1), Validators.maxLength(4)]],
       regionName: [null, [Validators.required, Validators.minLength(2), Validators.maxLength(40)]],
-      id: ['0']
+      country:[null]
     });
 
     this.formData = { ...data };
@@ -49,6 +48,7 @@ export class RegionComponent implements OnInit {
   }
 
   ngOnInit() {
+    this.getcountrysList();
   }
 
   get formControls() { return this.modelFormData.controls; }
@@ -65,6 +65,20 @@ export class RegionComponent implements OnInit {
   cancel() {
     this.dialogRef.close();
   }
-
+  getcountrysList() {
+    const getCountrysList = String.Join('/', this.apiConfigService.getCountrysList);
+    this.apiService.apiGetRequest(getCountrysList)
+      .subscribe(
+        response => {
+          const res = response.body;
+          if (!isNullOrUndefined(res) && res.status === StatusCodes.pass) {
+            if (!isNullOrUndefined(res.response)) {
+              console.log(res);
+              this.countrysList = res.response['CountryList'];
+            }
+          }
+          this.spinner.hide();
+        });
+  }
 }
 

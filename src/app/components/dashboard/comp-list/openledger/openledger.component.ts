@@ -65,9 +65,10 @@ export class OpenLedgerComponent implements OnInit {
     if (this.modelFormData.invalid) {
       return;
     }
+    this.modelFormData.controls['ledgerKey'].enable();
     this.formData.item = this.modelFormData.value;
     this.dialogRef.close(this.formData);
-    this.modelFormData.controls['ledgerKey'].enable();
+   
   }
 
   cancel() {

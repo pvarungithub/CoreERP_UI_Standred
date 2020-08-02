@@ -22,7 +22,14 @@
             <div *ngIf="formControls.regionName.errors.required">RegionName is required</div>
           </mat-error>
         </mat-form-field>
-
+        <mat-form-field>
+          <mat-label>{{'region.country' | translate }}</mat-label>
+          <mat-select formControlName="country" appFocusOnEnter tabIndex="3">
+            <mat-option *ngFor="let ctry of countrysList" [value]="ctry.id">
+              {{ctry.id}}- {{ctry.text}}
+            </mat-option>
+          </mat-select>
+        </mat-form-field>
       </div>
       <mat-divider></mat-divider>
 

@@ -38,8 +38,7 @@ export class StateComponent implements OnInit {
     this.modelFormData = this.formBuilder.group({
 
       stateCode: [null, [Validators.required, Validators.minLength(1), Validators.maxLength(4)]],
-      stateName: [null, [Validators.required, Validators.minLength(2), Validators.maxLength(40)]],
-      id: ['0'],
+      stateName: [null, [Validators.required, Validators.minLength(2), Validators.maxLength(40)]],      
       countryCode: [null],
       language: [null],
     });

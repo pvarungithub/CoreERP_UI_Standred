@@ -492,10 +492,10 @@ deleteDistributionChannel = `${this.environment.runtimeConfig.serverUrl}masters/
  deleteAssignmentVoucherSeriestoVoucherType = `${this.environment.runtimeConfig.serverUrl}gl/AssignmentVoucherSeriestoVoucherType/DeleteAssignmentVoucherSeriestoVoucherType`;
 
     // Tax Types //
-    getTaxTypesList = `${this.environment.runtimeConfig.serverUrl}gl/TaxTypes/GetTaxTypesList`;
-    registerTaxTypes = `${this.environment.runtimeConfig.serverUrl}gl/TaxTypes/RegisterTaxTypes`;
-    updateTaxTypes = `${this.environment.runtimeConfig.serverUrl}gl/TaxTypes/UpdateTaxTypes`;
-    deleteTaxTypes = `${this.environment.runtimeConfig.serverUrl}gl/TaxTypes/DeleteTaxTypes`;
+    getTaxTypesList = `${this.environment.runtimeConfig.serverUrl}TaxTypes/GetTaxTypesList`;
+    registerTaxTypes = `${this.environment.runtimeConfig.serverUrl}TaxTypes/RegisterTaxTypes`;
+    updateTaxTypes = `${this.environment.runtimeConfig.serverUrl}TaxTypes/UpdateTaxTypes`;
+    deleteTaxTypes = `${this.environment.runtimeConfig.serverUrl}TaxTypes/DeleteTaxTypes`;
    // getTaxCodesList = `${this.environment.runtimeConfig.serverUrl}gl/TaxIntegration/GetTaxCodesList`;
     //getGLTaxAccountList = `${this.environment.runtimeConfig.serverUrl}gl/TaxIntegration/GetGLTaxAccountList`;
 
@@ -506,10 +506,10 @@ deleteDistributionChannel = `${this.environment.runtimeConfig.serverUrl}masters/
    deleteTaxRates = `${this.environment.runtimeConfig.serverUrl}masters/TaxRates/DeleteTaxRates`;
 
       // Tax transaction //
-  getTaxTransactionList = `${this.environment.runtimeConfig.serverUrl}gl/TaxTransaction/GetTaxTransactionList`;
-  registerTaxTransaction = `${this.environment.runtimeConfig.serverUrl}gl/TaxTransaction/RegisterTaxTransaction`;
-  updateTaxTransaction = `${this.environment.runtimeConfig.serverUrl}gl/TaxTransaction/UpdateTaxTransaction`;
-  deleteTaxTransaction = `${this.environment.runtimeConfig.serverUrl}gl/TaxTransaction/DeleteTaxTransaction`;
+  getTaxTransactionList = `${this.environment.runtimeConfig.serverUrl}TaxTransaction/GetTaxTransactionList`;
+  registerTaxTransaction = `${this.environment.runtimeConfig.serverUrl}TaxTransaction/RegisterTaxTransaction`;
+  updateTaxTransaction = `${this.environment.runtimeConfig.serverUrl}TaxTransaction/UpdateTaxTransaction`;
+  deleteTaxTransaction = `${this.environment.runtimeConfig.serverUrl}TaxTransaction/DeleteTaxTransaction`;
 
    // --- NoSeries
   getNoSeriesList = `${this.environment.runtimeConfig.serverUrl}masters/NoSeries/GetNoSeriesList`;

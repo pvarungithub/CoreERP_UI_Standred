@@ -388,12 +388,12 @@
     "id": "Id",
     "stateCode": "StateCode",
     "stateName": "StateName",
-    "countryCode": "countryCode",
+    "countryCode": "CountryCode",
     "language": "Language"
   },
   "region": {
     "title": "Region",
-    "id": "Id",
+    "country": "Country",
     "regionCode": "RegionCode",
     "regionName": "RegionName"
   },
@@ -784,7 +784,6 @@
  
   "segment": {
     "title": "Segment",
-    "seqId": "Seq Id",
     "id": "Code",
     "name": "Name",
     "active": "Active",

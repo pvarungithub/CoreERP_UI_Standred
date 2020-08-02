@@ -31,5 +31,5 @@ export { VoucherSeriesComponents } from './voucherseries/voucherseries.component
 export { AssignmentVoucherSeriestoVoucherTypesComponent } from './assignmentvoucherseriestovouchertype/assignmentvoucherseriestovouchertype.component';
 export { TaxRatesComponents } from './taxrates/taxrates.component';
 export { TaxTransactionComponent } from './taxtransaction/taxtransaction.component';
-export {TaxIntegrationComponent } from './taxintegration/taxintegration.component';
+export { TaxIntegrationComponent } from './taxintegration/taxintegration.component';
 

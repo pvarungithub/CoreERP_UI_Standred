@@ -50,6 +50,7 @@ export class CompListService {
         this.dynamicComp.component = CompanyComponent;
         return this.dynamicComp.component;
         break;
+      
       case 'branches':
         this.dynamicComp.component = BranchesComponent;
         return this.dynamicComp.component;
@@ -155,7 +156,7 @@ export class CompListService {
         this.dynamicComp.component = VoucherClassComponent;
         return this.dynamicComp.component;
         break;
-      case 'vouchertypes':
+      case 'vouchertype':
         this.dynamicComp.component = VoucherTypesComponent;
         return this.dynamicComp.component;
         break;
@@ -171,11 +172,11 @@ export class CompListService {
         this.dynamicComp.component = TaxRatesComponents;
         return this.dynamicComp.component;
         break;
-      case 'taxtransaction':
+      case 'taxtransactions':
         this.dynamicComp.component = TaxTransactionComponent;
         return this.dynamicComp.component;
         break;
-      case 'taxintegration':
+       case 'taxintegration':
         this.dynamicComp.component = TaxIntegrationComponent;
         return this.dynamicComp.component;
         break;

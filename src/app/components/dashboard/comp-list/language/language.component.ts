@@ -40,13 +40,14 @@ export class LanguageComponent implements OnInit {
     this.modelFormData = this.formBuilder.group({
       languageCode: ['', [Validators.required, Validators.minLength(2), Validators.maxLength(4)]],
       languageName: ['', [Validators.required, Validators.minLength(2)]],
-      id:['0']
+      //id:['0']
     });
 
 
     this.formData = { ...data };
     if (!isNullOrUndefined(this.formData.item)) {
       this.modelFormData.patchValue(this.formData.item);
+      this.modelFormData.controls['languageCode'].disable();
     }
 
   }
@@ -76,6 +77,7 @@ export class LanguageComponent implements OnInit {
     if (this.modelFormData.invalid) {
       return;
     }
+    this.modelFormData.controls['languageCode'].enable();
     this.formData.item = this.modelFormData.value;
     this.dialogRef.close(this.formData);
   }

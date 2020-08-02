@@ -40,6 +40,7 @@ export class VoucherTypesComponent  implements OnInit {
       voucherTypeName: [null, [Validators.required, Validators.minLength(2), Validators.maxLength(50)]],
       voucherClass: [null],
       printText: [null]
+     
       });
 
 
@@ -80,7 +81,6 @@ this.getVoucherClassList();
 
   save()
   {
-    debugger;
     if (this.modelFormData.invalid) {
       return;
     }

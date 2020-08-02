@@ -44,7 +44,8 @@
   "region": {
     "title": "Region",
     "regionCode": "RegionCode",
-    "regionName": "RegionName"
+    "regionName": "RegionName",
+    "country": "Country"
   },
   "language": {
     "title": "Language",
@@ -91,7 +92,6 @@
   },
   "segment": {
     "title": "Segment",
-    "seqId": "Seq Id",
     "id": "Id",
     "name": "Name",
     "active": "Active",
