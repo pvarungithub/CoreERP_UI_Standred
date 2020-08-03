@@ -32,7 +32,7 @@ import { AssignmentVoucherSeriestoVoucherTypesComponent } from './assignmentvouc
 import { TaxRatesComponents } from './taxrates/taxrates.component';
 import { TaxTransactionComponent } from './taxtransaction/taxtransaction.component';
 import { TaxIntegrationComponent } from './taxintegration/taxintegration.component';
-
+import { AssignmentoftaxaccountstotaxcodesComponent } from './assignmentoftaxaccountstotaxcodes/assignmentoftaxaccountstotaxcodes.component';
 
 
 
@@ -180,6 +180,10 @@ export class CompListService {
         this.dynamicComp.component = TaxIntegrationComponent;
         return this.dynamicComp.component;
         break;
+      case 'assignmentoftaxaccountstotaxcodes':
+        this.dynamicComp.component = AssignmentoftaxaccountstotaxcodesComponent;
+        return this.dynamicComp.component;
+        break; 
       default:
     }
   }

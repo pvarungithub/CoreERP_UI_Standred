@@ -10,7 +10,7 @@ import {
   SegmentComponent,ProfitCenterComponent,DivisionComponent,FunctionalDepartmentComponent,PlantsComponent,LocationsComponent,SalesDepartmentComponent,DistributionchannelsComponent,
   SalesofficeComponent,SalesGroupComponent,MaintenceAreaComponent,PurchaseDepartmentComponent,StorageLocationsComponent,ErpUsersComponent,RolesprevilagesComponent,LedgerComponent,
   OpenLedgerComponent,VoucherClassComponent,VoucherTypesComponent,VoucherSeriesComponents,AssignmentVoucherSeriestoVoucherTypesComponent,TaxRatesComponents,TaxTransactionComponent,
-  TaxIntegrationComponent
+  TaxIntegrationComponent,AssignmentoftaxaccountstotaxcodesComponent
 } from './components/dashboard/comp-list/index';
 import { AutocompleteComponent } from './reuse-components/autocomplete/autocomplete.component';
 
@@ -108,7 +108,7 @@ export function HttpLoaderFactory(httpClient: HttpClient) {
     SegmentComponent,ProfitCenterComponent,DivisionComponent,FunctionalDepartmentComponent,PlantsComponent,LocationsComponent,SalesDepartmentComponent,
     DistributionchannelsComponent,SalesofficeComponent,SalesGroupComponent,MaintenceAreaComponent,PurchaseDepartmentComponent,StorageLocationsComponent,
     ErpUsersComponent,RolesprevilagesComponent,LedgerComponent,OpenLedgerComponent,VoucherClassComponent,VoucherTypesComponent,VoucherSeriesComponents,
-    AssignmentVoucherSeriestoVoucherTypesComponent,TaxRatesComponents,TaxTransactionComponent,TaxIntegrationComponent,
+    AssignmentVoucherSeriestoVoucherTypesComponent,TaxRatesComponents,TaxTransactionComponent,TaxIntegrationComponent,AssignmentoftaxaccountstotaxcodesComponent,
 
 
 
@@ -126,7 +126,7 @@ export function HttpLoaderFactory(httpClient: HttpClient) {
     TableComponent, DeleteItemComponent,
     GeneralledgerComponent, AccountsGroupComponent,
     SubGroupComponent, UndersubGroupComponent,
-    GlAccountsComponent, GlSubcodeComponent, TaxIntegrationComponent, CashAccToBranchesComponent,
+    GlAccountsComponent, GlSubcodeComponent, TaxIntegrationComponent, CashAccToBranchesComponent,AssignmentoftaxaccountstotaxcodesComponent,
     AccToAccClassComponent, 
     InventoryComponent, BrandModelComponent,  AccountingClassComponent,UnitComponent,
     BrandComponent, NumberAssignmentComponent, MaterialGroupsComponent,ProductpackingComponent,

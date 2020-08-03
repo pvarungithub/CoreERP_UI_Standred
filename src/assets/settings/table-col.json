@@ -986,5 +986,19 @@
     "title": "Tax Transaction",
     "code": "Code",
     "description": "Description"
+  },
+  "assignmentoftaxaccountstotaxcodes": {
+    "title": "Tax Types",
+    "code": "Code",
+    "description": "Description",
+    "sgstgl": "sgstgl",
+    "cgstgl": "cgstgl",
+    "igstgl": "igstgl",
+    "ugstgl": "1ugstgl"
+  },
+  "taxtypes": {
+    "title": "Tax Types",
+    "taxKey": "Code",
+    "description": "Description"
   }
 }
