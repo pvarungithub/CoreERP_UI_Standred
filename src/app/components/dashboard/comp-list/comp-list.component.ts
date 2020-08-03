@@ -117,9 +117,9 @@ export class CompListComponent implements OnInit {
     dialogRef.afterClosed().subscribe(result => {
       if (!isNullOrUndefined(result)) {
         this.spinner.show();
-        const deleteCompanyUrl = String.Join('', this.environment.runtimeConfig.serverUrl, this.tableUrl.deleteUrl,
-          result.item[this.tableUrl.primaryKey]);
-        this.apiService.apiDeleteRequest(deleteCompanyUrl, result.item)
+        const deleteUrl = String.Join('', this.environment.runtimeConfig.serverUrl, this.tableUrl.deleteUrl);
+        const deleteParamUrl = String.Join('/', deleteUrl, result.item[this.tableUrl.primaryKey]);
+        this.apiService.apiDeleteRequest(deleteParamUrl, result.item)
           .subscribe(
             response => {
               const res = response.body;
