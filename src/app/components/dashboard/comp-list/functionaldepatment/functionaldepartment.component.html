@@ -18,14 +18,13 @@
           <mat-error *ngIf="formControls.description.errors" class="help-block">
             <div *ngIf="formControls.description.errors.required">Name is required</div>
           </mat-error>
-        </mat-form-field>
-       
+        </mat-form-field>       
       
         <mat-form-field>
           <mat-label>{{'functionaldepatment.responsiblePersion' | translate }}</mat-label>
-          <mat-select formControlName="responsiblePerson" appFocusOnEnter tabIndex="20">
+          <mat-select formControlName="responsiblePerson" appFocusOnEnter tabIndex="3">
             <mat-option *ngFor="let emp of employeesList" [value]="emp.employeeCode">
-              {{emp.employeeCode}}-{{emp.employeeName}}
+              {{emp.employeeCode}} - {{emp.employeeName}}
             </mat-option>
           </mat-select>
         </mat-form-field>
@@ -36,11 +35,11 @@
   </mat-card-content>
 
   <div class="form-element p-2 d-flex justify-content-end">
-    <button mat-raised-button class="button-color-red text-white mr-1" (click)="cancel()">
+    <button mat-raised-button class="button-color-red text-white mr-1" (click)="cancel()"appFocusOnEnter tabIndex="4">
 
       {{ 'COMMON.CANCEL' | translate }}
     </button>
-    <button mat-raised-button type="submit" class="button-color-bule text-white ml-1" (click)="save()" appFocusOnEnter tabIndex="25">
+    <button mat-raised-button type="submit" class="button-color-bule text-white ml-1" (click)="save()" appFocusOnEnter tabIndex="5">
 
       {{ 'COMMON.SAVE' | translate }}
     </button>

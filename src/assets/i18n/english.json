@@ -88,6 +88,103 @@
     "name": "Name",
     "active": "Active"
   },
+  "profitCenter": {
+    "title": "ProfitCenter",
+    "code": "Code",
+    "name": "Name",
+    "description": "Description",
+    "address1": "Address1",
+    "address2": "Address2",
+    "city": "City",
+    "region": "Region",
+    "country": "Country",
+    "state": "State",
+    "pinCode": "pinCode",
+    "currency": "currency",
+    "language": "Language",
+    "phone": "phone",
+    "mobile": "Mobile",
+    "responsiblePerson": "ResponsiblePerson",
+    "email": "Email",
+    "active": "Active"
+  },
+  "branches": {
+    "title": "Branch",
+    "branchCode": "BranchCode",
+    "branchName": "BranchName",
+    "companyCode": "Company",
+    "address": "Address",    
+    "address2": "Address",
+    "city": "City",
+    "state": "State",
+    "country": "Country",
+    "pincode": "Pin",
+    "phone": "Phone",
+    "mobile": "Mobile",
+    "email": "Email",
+    "region": "Region",
+    "panno": "PanNo",
+    "gstno": "GST",
+    "tanno": "TAN",
+    "language": "Language",
+    "currency": "Currency",
+    "responsiblePerson": "ResponsiblePerson"
+  },
+  "division": {
+    "title": "Division",
+    "code": "Code",
+    "description": "Description",
+    "responsiblePerson": "ResponsiblePerson",
+    "active": "Active"
+  }, 
+  "functionaldepatment": {
+    "title": "FunctionalDepartment",
+    "code": "Code",
+    "description": "DepartmentName",
+    "responsiblePerson": "ResponsiblePerson"
+  },  
+  "costcenter": {
+    "title": "CostCenter",
+    "code": "Code",
+    "name": "Name",
+    "compCode": "CompCode",
+    "address1": "Address",
+    "address2": "Address2",
+    "place": "Place",
+    "state": "State",
+    "pinCode": "PinCode",
+    "phone1": "Phone",
+    "email": "Email",
+    "responsiblePerson": "ResponsiblePerson",
+    "active": "Active"
+  },
+  "plant": {
+    "title": "Plant",
+    "plantCode": "Code",
+    "plantname": "Name",
+    "city": "City",
+    "state": "State",
+    "region": "Region",
+    "country": "Country",    
+    "currency": "Currency",
+    "language": "Language",
+    "location": "Location",
+    "address1": "Address1",
+    "address2": "Address2",
+    "pin": "PIN",
+    "phone": "Phone",
+    "mobile": "Mobile",
+    "email": "Email",
+    "panno": "Panno",
+    "gstno": "Gstno",    
+    "responsiblePerson": "ResponsiblePerson"
+  },
+  "location": {
+    "title": "Location",
+    "locationId": "Code",
+    "description": "Name",
+    "plant": "Plant"
+  },
   "accountsgroup": {
     "title": "Accounts Group",
     "groupCode": "Code",
@@ -254,36 +351,7 @@
     "groupName": "GroupName",
     "narration": "Narration",
     "extraDate": "Product Group Date"
-  },  
-
-  "branches": {
-    "title": "Branch",
-    "branchCode": "BranchCode",
-    "branchName": "BranchName",
-    "companyCode": "companyCode",
-    "isMainBranch": "isMainBranch",
-    "subBranchof": "SubBranchof",
-    "branchImage": "BranchImage",
-    "address": "Address",
-    "city": "city",
-    "state": "state",
-    "country": "country",
-    "pincode": "pincode",
-    "phone": "phone",
-    "mobile": "Mobile",
-    "email": "Email",
-    "region": "Region",
-    "address2": "Address",
-    "panno": "PanNo",
-    "gstno": "gstno",
-    "tanno": "tanno",
-    "ext": "ext",
-    "ext1": "ext1",
-    "language": "Language",
-    "currency": "Currency",
-    "responsiblePerson": "ResponsiblePerson"
-
-  },
+  },    
   "department": {
     "title": "Department",
     "id": "Id",
@@ -292,36 +360,7 @@
     "isActive": "isActive",
     "responsiblePersonCode": "ResponsiblePersonCode",
     "ext1": "Ext1"
-  },
-  "functionaldepatment": {
-    "title": "FunctionalDepartment",
-    "id": "Id",
-    "code": "Code",
-    "description": "DepartmentName",
-    "responsiblePersion": "ResponsiblePersion"
-  },
-  "plant": {
-    "title": "Plant",
-    "plantCode": "Code",
-    "plantname": "Name",
-    "city": "City",
-    "state": "State",
-    "region": "Region",
-    "country": "Country",
-    "address1": "Address1",
-    "address2": "Address2",
-    "pin": "PIN",
-    "phone": "Address2",
-    "mobile": "Mobile",
-    "email": "Email",
-    "panno": "Panno",
-    "gstno": "Gstno",
-    "location": "Location",
-    "ext": "Ext",
-    "currency": "Currency",
-    "language": "Language",
-    "responsiblePerson": "ResponsiblePerson"
-  },
+  },   
   "salesdepartment": {
     "title": "SalesDepartment",
     "departmentCode": "Code",
@@ -375,13 +414,7 @@
     "title": "PurchaseDepartment",
     "code": "Code",
     "description": "Name"
-  },
-  "location": {
-    "title": "Location",
-    "locationId": "Code",
-    "description": "Name",
-    "plant": "Plant"
-  },
+  },  
   "storagelocation": {
     "title": "StorageLocation",
     "code": "Code",
@@ -457,27 +490,6 @@
     "department": "Department"
   },
 
-  "costcenter": {
-    "title": "CostCenter",
-    "code": "Code",
-    "name": "Name",
-    "compCode": "CompCode",
-    "address1": "Address",
-    "address2": "Address2",
-    "address3": "Address3",
-    "address4": "Address4",
-    "place": "Place",
-    "state": "State",
-    "pinCode": "PinCode",
-    "phone1": "Phone1",
-    "phone2": "Phone2",
-    "phone3": "Phone3",
-    "email": "Email",
-    "responsiblePerson": "ResponsiblePerson",
-    "active": "Active",
-    "compCodeNavigation": "CompanyCodeNavigation",
-    "addDate": "AddDate"
-  },
   "stockissues": {
     "title": "Stackissues List",
     "issueNo": "IssueNo",
@@ -578,15 +590,6 @@
     "damageQty": "Damage Qty",
     "newQty": "New Qty",
     "batchNo": "BatchNo"
-  },
-
-  "division": {
-    "title": "Division",
-    "code": "Code",
-    "description": "Description",
-    "responsiblePerson": "ResponsiblePerson",
-    "active": "Active",
-    "addDate": "AddDate"
   },
   "designation": {
     "title": "Designation",
@@ -704,26 +707,7 @@
     "batchVerify": "BatchVerify",
     "barrelVerify": "BarrelVerify"
   },
-  "profitCenter": {
-    "title": "ProfitCenter",
-    "code": "Code",
-    "name": "Name",
-    "description": "Description",
-    "address1": "Address1",
-    "address2": "Address2",
-    "city": "City",
-    "region": "Region",
-    "country": "Country",
-    "state": "State",
-    "pinCode": "pinCode",
-    "currency": "currency",
-    "language": "Language",
-    "phone": "phone",
-    "mobile": "Mobile",
-    "responsiblePerson": "ResponsiblePerson",
-    "email": "Email",
-    "active": "Active"
-  },
+  
   "pump": {
     "title": "Pump",
     "branchName": "BranchName",

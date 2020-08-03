@@ -26,7 +26,6 @@
           <input matInput placeholder="{{'profitCenter.description' | translate }}" formControlName="description" maxlength="50" appFocusOnEnter tabIndex="3">
         </mat-form-field>
 
-
         <mat-form-field class="form-element">
           <input matInput placeholder="{{'profitCenter.address1' | translate }}" formControlName="address1" maxlength="50" appFocusOnEnter tabIndex="4">
         </mat-form-field>
@@ -42,62 +41,46 @@
           <mat-label>{{'company.state' | translate }}</mat-label>
           <mat-select formControlName="state" appFocusOnEnter tabIndex="7">
             <mat-option *ngFor="let state of stateList" [value]="state.id">
-              {{state.text}}
+              {{state.id}} - {{state.text}}
             </mat-option>
-          </mat-select>
-          <mat-error *ngIf="formControls.state.errors" class="help-block">
-            <div *ngIf="formControls.state.errors.required">state is required</div>
-          </mat-error>
+          </mat-select>        
         </mat-form-field>
 
         <mat-form-field>
           <mat-label>{{'company.region' | translate }}</mat-label>
           <mat-select formControlName="region" appFocusOnEnter tabIndex="8">
             <mat-option *ngFor="let rgn of regionsList" [value]="rgn.id">
-              {{rgn.text}}
+              {{rgn.id}} - {{rgn.text}}
             </mat-option>
-          </mat-select>
-          <mat-error *ngIf="formControls.region.errors" class="help-block">
-            <div *ngIf="formControls.region.errors.required">region is required</div>
-          </mat-error>
+          </mat-select>          
         </mat-form-field>
 
         <mat-form-field>
           <mat-label>{{'company.country' | translate }}</mat-label>
           <mat-select formControlName="country" appFocusOnEnter tabIndex="9">
             <mat-option *ngFor="let cntry of countrysList" [value]="cntry.id">
-              {{cntry.text}}
+              {{cntry.id}} - {{cntry.text}}
             </mat-option>
-          </mat-select>
-          <mat-error *ngIf="formControls.country.errors" class="help-block">
-            <div *ngIf="formControls.country.errors.required">country is required</div>
-          </mat-error>
+          </mat-select>         
         </mat-form-field>
 
         <mat-form-field>
           <mat-label>{{'company.currency' | translate }}</mat-label>
           <mat-select formControlName="currency" appFocusOnEnter tabIndex="10">
             <mat-option *ngFor="let cncy of currencyList" [value]="cncy.id">
-              {{cncy.text}}
+              {{cncy.id}} - {{cncy.text}}
             </mat-option>
-          </mat-select>
-          <mat-error *ngIf="formControls.currency.errors" class="help-block">
-            <div *ngIf="formControls.currency.errors.required">currency is required</div>
-          </mat-error>
+          </mat-select>         
         </mat-form-field>
 
         <mat-form-field>
           <mat-label>{{'company.language' | translate }}</mat-label>
           <mat-select formControlName="language" appFocusOnEnter tabIndex="11">
             <mat-option *ngFor="let lng of languageList" [value]="lng.id">
-              {{lng.text}}
+              {{lng.id}} - {{lng.text}}
             </mat-option>
-          </mat-select>
-          <mat-error *ngIf="formControls.language.errors" class="help-block">
-            <div *ngIf="formControls.language.errors.required">language is required</div>
-          </mat-error>
+          </mat-select>         
         </mat-form-field>
-
 
         <mat-form-field class="form-element">
           <input matInput placeholder="{{'profitCenter.pinCode' | translate }}" formControlName="pinCode" maxlength="6" appFocusOnEnter tabIndex="12">
@@ -128,11 +111,11 @@
     </form>
   </mat-card-content>
     <div  class="form-element p-2 d-flex justify-content-end">
-    <button mat-raised-button class="button-color-red text-white mr-1"  (click)="cancel()">
+    <button mat-raised-button class="button-color-red text-white mr-1"  (click)="cancel()"appFocusOnEnter tabIndex="18">
       
       {{ 'COMMON.CANCEL' | translate }}
     </button>
-        <button mat-raised-button  type="submit" class="button-color-bule text-white ml-1"  (click)="save()" appFocusOnEnter tabIndex="17">
+        <button mat-raised-button  type="submit" class="button-color-bule text-white ml-1"  (click)="save()" appFocusOnEnter tabIndex="19">
           
           {{ 'COMMON.SAVE' | translate }}
          </button>

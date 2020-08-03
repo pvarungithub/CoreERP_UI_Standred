@@ -26,7 +26,7 @@
           <mat-label>{{'region.country' | translate }}</mat-label>
           <mat-select formControlName="country" appFocusOnEnter tabIndex="3">
             <mat-option *ngFor="let ctry of countrysList" [value]="ctry.id">
-              {{ctry.id}}- {{ctry.text}}
+              {{ctry.id}} - {{ctry.text}}
             </mat-option>
           </mat-select>
         </mat-form-field>

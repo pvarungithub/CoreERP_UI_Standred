@@ -1,18 +1,12 @@
 import { Component, Inject, Optional, OnInit } from '@angular/core';
 import { String } from 'typescript-string-operations';
 import { ApiService } from '../../../../services/api.service';
-import { Router, ActivatedRoute } from '@angular/router';
-import { MatDialog } from '@angular/material/dialog';
-
-import { AlertService } from '../../../../services/alert.service';
-
 import { MatDialogRef, MAT_DIALOG_DATA } from '@angular/material/dialog';
 import { isNullOrUndefined } from 'util';
 import { FormBuilder, FormGroup, Validators } from '@angular/forms';
 import { NgxSpinnerService } from 'ngx-spinner';
 import { ApiConfigService } from '../../../../services/api-config.service';
 import { StatusCodes } from '../../../../enums/common/common';
-import { CommonService } from '../../../../services/common.service';
 
 interface Active {
   value: string;
@@ -40,10 +34,8 @@ export class DivisionComponent implements OnInit {
     private apiService: ApiService,
     private apiConfigService: ApiConfigService,
     private spinner: NgxSpinnerService,
-    private alertService: AlertService,
     private formBuilder: FormBuilder,
     public dialogRef: MatDialogRef<DivisionComponent>,
-    private commonService: CommonService,
     // @Optional() is used to prevent error if no data is passed
     @Optional() @Inject(MAT_DIALOG_DATA) public data: any ) {
 
@@ -85,7 +77,6 @@ export class DivisionComponent implements OnInit {
   }
   get formControls() { return this.modelFormData.controls; }
 
-
   save() {
     if (this.modelFormData.invalid) {
       return;
@@ -98,5 +89,4 @@ export class DivisionComponent implements OnInit {
   cancel() {
     this.dialogRef.close();
   }
-
 }

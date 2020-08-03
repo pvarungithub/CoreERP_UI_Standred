@@ -1,16 +1,12 @@
 import { Component, Inject, Optional, OnInit } from '@angular/core';
 import { String } from 'typescript-string-operations';
 import { ApiService } from '../../../../services/api.service';
-
-import { AlertService } from '../../../../services/alert.service';
-
 import { MatDialogRef, MAT_DIALOG_DATA } from '@angular/material/dialog';
 import { isNullOrUndefined } from 'util';
 import { FormBuilder, FormGroup, Validators } from '@angular/forms';
 import { NgxSpinnerService } from 'ngx-spinner';
 import { ApiConfigService } from '../../../../services/api-config.service';
 import { StatusCodes } from '../../../../enums/common/common';
-import { CommonService } from '../../../../services/common.service';
 
 interface Active {
   value: string;
@@ -34,15 +30,14 @@ export class CostCenterComponent implements OnInit {
       { value: 'N', viewValue: 'N' }
     ];
     employeesList: any;
-
+    stateList: any;
+    
   constructor(
     private apiService: ApiService,
     private apiConfigService: ApiConfigService,
     private spinner: NgxSpinnerService,
-    private alertService: AlertService,
     private formBuilder: FormBuilder,
     public dialogRef: MatDialogRef<CostCenterComponent>,
-    private commonService: CommonService,
     // @Optional() is used to prevent error if no data is passed
     @Optional() @Inject(MAT_DIALOG_DATA) public data: any ) {
 
@@ -52,18 +47,13 @@ export class CostCenterComponent implements OnInit {
         compCode: [null],
         address1: [null],
         address2: [null],
-        address3: [null],
-        address4: [null],
         place: [null],
         state: [null],
         pinCode: [null],
         phone1: [null],
-        phone2: [null],
-        phone3: [null],
         email: [null],
         responsiblePerson: [null],
         active: ['Y'],
-        //compCodeNavigation: [null]
       });
 
       this.formData = {...data};
@@ -77,6 +67,7 @@ export class CostCenterComponent implements OnInit {
   ngOnInit() {
     this.getTableData();
     this.getEmployeesList();
+    this.getstateList();
   }
   getEmployeesList() {
     const getEmployeeList = String.Join('/', this.apiConfigService.getEmployeeList);
@@ -107,6 +98,22 @@ export class CostCenterComponent implements OnInit {
         }
           this.spinner.hide();
       });
+  }
+
+  getstateList() {
+    const getstateList = String.Join('/', this.apiConfigService.getstatesList);
+    this.apiService.apiGetRequest(getstateList)
+      .subscribe(
+        response => {
+          const res = response.body;
+          if (!isNullOrUndefined(res) && res.status === StatusCodes.pass) {
+            if (!isNullOrUndefined(res.response)) {
+              console.log(res);
+              this.stateList = res.response['StatesList'];
+            }
+          }
+          this.spinner.hide();
+        });
   }
 
   get formControls() { return this.modelFormData.controls; }

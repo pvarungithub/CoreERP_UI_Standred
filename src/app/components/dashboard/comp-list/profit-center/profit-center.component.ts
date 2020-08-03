@@ -1,18 +1,12 @@
 import { Component, Inject, Optional, OnInit } from '@angular/core';
 import { String } from 'typescript-string-operations';
 import { ApiService } from '../../../../services/api.service';
-import { Router, ActivatedRoute } from '@angular/router';
-import { MatDialog } from '@angular/material/dialog';
-
-import { AlertService } from '../../../../services/alert.service';
-
 import { MatDialogRef, MAT_DIALOG_DATA } from '@angular/material/dialog';
 import { isNullOrUndefined } from 'util';
 import { FormBuilder, FormGroup, Validators } from '@angular/forms';
 import { NgxSpinnerService } from 'ngx-spinner';
 import { ApiConfigService } from '../../../../services/api-config.service';
 import { StatusCodes } from '../../../../enums/common/common';
-import { CommonService } from '../../../../services/common.service';
 
 @Component({
   selector: 'app-profit-center',
@@ -20,7 +14,6 @@ import { CommonService } from '../../../../services/common.service';
   styleUrls: ['./profit-center.component.scss']
 })
 export class ProfitCenterComponent implements OnInit {
-
 
   modelFormData: FormGroup;
   isSubmitted  =  false;
@@ -33,15 +26,12 @@ export class ProfitCenterComponent implements OnInit {
   countrysList: any;
   languageList: any;
 
-
   constructor(
     private apiService: ApiService,
     private apiConfigService: ApiConfigService,
     private spinner: NgxSpinnerService,
-    private alertService: AlertService,
     private formBuilder: FormBuilder,
     public dialogRef: MatDialogRef<ProfitCenterComponent>,
-    private commonService: CommonService,
     // @Optional() is used to prevent error if no data is passed
     @Optional() @Inject(MAT_DIALOG_DATA) public data: any ) {
 
@@ -62,15 +52,13 @@ export class ProfitCenterComponent implements OnInit {
         mobile: null,
         responsiblePerson: [null],
         email: [null],
-        ext: [null],
-        ext1: [null],
         active: ['Y']
       });
 
       this.formData = {...data};
       if (!isNullOrUndefined(this.formData.item)) {
         this.modelFormData.patchValue(this.formData.item);
-        //this.modelFormData.controls['seqId'].disable();
+        this.modelFormData.controls['code'].disable();
       }
 
   }
@@ -191,15 +179,13 @@ export class ProfitCenterComponent implements OnInit {
       });
   }
 
-
   get formControls() { return this.modelFormData.controls; }
-
 
   save() {
     if (this.modelFormData.invalid) {
       return;
     }
-    //this.modelFormData.controls['seqId'].enable();
+    this.modelFormData.controls['code'].enable();
     this.formData.item = this.modelFormData.value;
     this.dialogRef.close(this.formData);
   }

@@ -64,7 +64,7 @@ getRegionsList = `${this.environment.runtimeConfig.serverUrl}Company/GetRegionLi
 getCountrysList =`${this.environment.runtimeConfig.serverUrl}Company/GetCountrysList`;
 getcurrencyList = `${this.environment.runtimeConfig.serverUrl}Company/GetCurrencyList`;
 getstatesList = `${this.environment.runtimeConfig.serverUrl}Company/GetStatesList`;
-getCompanysList = `${this.environment.runtimeConfig.serverUrl}masters/Company/GetCompanysList`;
+getCompanysList = `${this.environment.runtimeConfig.serverUrl}Company/GetCompanysList`;
 registerCompany = `${this.environment.runtimeConfig.serverUrl}masters/Company/RegisterCompany`;
 updateCompany = `${this.environment.runtimeConfig.serverUrl}masters/Company/UpdateCompany`;
 deleteCompany = `${this.environment.runtimeConfig.serverUrl}masters/Company/DeleteCompany`;
@@ -74,6 +74,50 @@ deleteCompany = `${this.environment.runtimeConfig.serverUrl}masters/Company/Dele
  registerSegment = `${this.environment.runtimeConfig.serverUrl}masters/Segment/RegisterSegment`;
  updateSegment = `${this.environment.runtimeConfig.serverUrl}masters/Segment/UpdateSegment`;
  deleteSegment = `${this.environment.runtimeConfig.serverUrl}masters/Segment/DeleteSegment`;
+
+// --- ProfitCenter
+getProfitCenterList = `${this.environment.runtimeConfig.serverUrl}masters/ProfitCenter/GetProfitCenterList`;
+registerProfitCenters = `${this.environment.runtimeConfig.serverUrl}masters/ProfitCenter/RegisterProfitCenters`;
+updateProfitCenters = `${this.environment.runtimeConfig.serverUrl}masters/ProfitCenter/UpdateProfitCenters`;
+deleteProfitCenters = `${this.environment.runtimeConfig.serverUrl}masters/ProfitCenter/DeleteProfitCenters`;
+
+// --- Branches
+GetEmployeesList = `${this.environment.runtimeConfig.serverUrl}masters/Branches/GetEmployeesList`;
+getBranchesList = `${this.environment.runtimeConfig.serverUrl}masters/Branches/GetBranchesList`;
+registerBranch = `${this.environment.runtimeConfig.serverUrl}masters/Branches/RegisterBranch`;
+updateBranch = `${this.environment.runtimeConfig.serverUrl}masters/Branches/UpdateBranch`;
+deleteBranches = `${this.environment.runtimeConfig.serverUrl}masters/Branches/DeleteBranches`;
+
+// --- division
+getDivisionsList = `${this.environment.runtimeConfig.serverUrl}masters/Division/GetDivisionsList`;
+registerDivision = `${this.environment.runtimeConfig.serverUrl}masters/Division/RegisterDivision`;
+updateDivision = `${this.environment.runtimeConfig.serverUrl}masters/Division/UpdateDivision`;
+deleteDivision = `${this.environment.runtimeConfig.serverUrl}masters/Division/DeleteDivision`;
+
+  //Fdepartment
+getfunctionaldeptList = `${this.environment.runtimeConfig.serverUrl}masters/FunctionalDepartment/GetFunctionalDepartment`;
+registerfunctionaldept = `${this.environment.runtimeConfig.serverUrl}masters/FunctionalDepartment/RegisterFunctionalDepartment`;
+updatefunctionaldept = `${this.environment.runtimeConfig.serverUrl}masters/FunctionalDepartment/UpdateFunctionalDepartment`;
+deletefunctionaldept = `${this.environment.runtimeConfig.serverUrl}masters/FunctionalDepartment/DeleteFunctionalDepartment`;
+
+// --- CostCenter  
+GetCostCenterList = `${this.environment.runtimeConfig.serverUrl}masters/CostCenter/GetCostCenterList`;
+registerCostCenter = `${this.environment.runtimeConfig.serverUrl}masters/CostCenter/RegisterCostCenter`;
+updateCostCenter = `${this.environment.runtimeConfig.serverUrl}masters/CostCenter/UpdateCostCenter`;
+deleteCostCenter = `${this.environment.runtimeConfig.serverUrl}masters/CostCenter/DeleteCostCenter`;
+
+//plant
+getplantList = `${this.environment.runtimeConfig.serverUrl}Plant/GetPlant`;
+registerPlant = `${this.environment.runtimeConfig.serverUrl}Plant/RegisterPlant`;
+updatePlant = `${this.environment.runtimeConfig.serverUrl}Plant/UpdatePlant`;
+deletePlant = `${this.environment.runtimeConfig.serverUrl}Plant/DeletePlant`;
+
+//location   
+getPlantList = `${this.environment.runtimeConfig.serverUrl}Location/GetPlantList`;
+getlocationList = `${this.environment.runtimeConfig.serverUrl}Location/GetLocationList`;
+registerLocation = `${this.environment.runtimeConfig.serverUrl}masters/Location/RegisterLocation`;
+updateLocation = `${this.environment.runtimeConfig.serverUrl}masters/Location/UpdateLocation`;
+deleteLocation = `${this.environment.runtimeConfig.serverUrl}masters/Location/DeleteLocation`;
 
    // ******************************** sales *********************************
    getInvoiceList = `${this.environment.runtimeConfig.serverUrl}sales/Billing/GetInvoiceList`;
@@ -403,27 +447,7 @@ deleteOpenLedger = `${this.environment.runtimeConfig.serverUrl}gl/OpenLedger/Del
   getdepartmentlist = `${this.environment.runtimeConfig.serverUrl}masters/Department/getdepartmentlist`;
   registerdepartment = `${this.environment.runtimeConfig.serverUrl}masters/Department/registerdepartment`;
   updatedepartment = `${this.environment.runtimeConfig.serverUrl}masters/Department/updatedepartment`;
-  deletedepartment = `${this.environment.runtimeConfig.serverUrl}masters/Department/deletedepartment`;
-  
-  //Fdepartment
-  getfunctionaldeptList = `${this.environment.runtimeConfig.serverUrl}masters/FunctionalDepartment/GetFunctionalDepartment`;
-  registerfunctionaldept = `${this.environment.runtimeConfig.serverUrl}masters/FunctionalDepartment/RegisterFunctionalDepartment`;
-  updatefunctionaldept = `${this.environment.runtimeConfig.serverUrl}masters/FunctionalDepartment/UpdateFunctionalDepartment`;
-  deletefunctionaldept = `${this.environment.runtimeConfig.serverUrl}masters/FunctionalDepartment/DeleteFunctionalDepartment`;
-   
-  //plant
-  getplantList = `${this.environment.runtimeConfig.serverUrl}Plant/GetPlant`;
-  registerPlant = `${this.environment.runtimeConfig.serverUrl}Plant/RegisterPlant`;
-  updatePlant = `${this.environment.runtimeConfig.serverUrl}Plant/UpdatePlant`;
-  deletePlant = `${this.environment.runtimeConfig.serverUrl}Plant/DeletePlant`;
-
-  //location  
-  
-   getPlantList = `${this.environment.runtimeConfig.serverUrl}Location/GetPlantList`;
-   getlocationList = `${this.environment.runtimeConfig.serverUrl}Location/GetLocationList`;
-   registerLocation = `${this.environment.runtimeConfig.serverUrl}masters/Location/RegisterLocation`;
-   updateLocation = `${this.environment.runtimeConfig.serverUrl}masters/Location/UpdateLocation`;
-   deleteLocation = `${this.environment.runtimeConfig.serverUrl}masters/Location/DeleteLocation`;
+  deletedepartment = `${this.environment.runtimeConfig.serverUrl}masters/Department/deletedepartment`; 
 
  //SalesDepartment
  getsalesdepartmentList = `${this.environment.runtimeConfig.serverUrl}masters/SalesDepartment/GetSalesDepartment`;
@@ -472,25 +496,13 @@ getdistributionchannelList = `${this.environment.runtimeConfig.serverUrl}masters
 registerDistributionChannel = `${this.environment.runtimeConfig.serverUrl}masters/DistributionChannel/RegisterDistributionChannel`;
 updateDistributionChannel = `${this.environment.runtimeConfig.serverUrl}masters/DistributionChannel/UpdateDistributionChannel`;
 deleteDistributionChannel = `${this.environment.runtimeConfig.serverUrl}masters/DistributionChannel/DeleteDistributionChannel`;
-  // --- Branches
-   GetEmployeesList = `${this.environment.runtimeConfig.serverUrl}masters/Branches/GetEmployeesList`;
-   getBranchesList = `${this.environment.runtimeConfig.serverUrl}masters/Branches/GetBranchesList`;
-   registerBranch = `${this.environment.runtimeConfig.serverUrl}masters/Branches/RegisterBranch`;
-   updateBranch = `${this.environment.runtimeConfig.serverUrl}masters/Branches/UpdateBranch`;
-   deleteBranches = `${this.environment.runtimeConfig.serverUrl}masters/Branches/DeleteBranches`;
+  
   // --- designation
 
   getDesignationsList = `${this.environment.runtimeConfig.serverUrl}masters/Designation/GetDesignationsList`;
   registerDesignations = `${this.environment.runtimeConfig.serverUrl}masters/Designation/RegisterDesignation`;
   updateDesignations = `${this.environment.runtimeConfig.serverUrl}masters/Designation/UpdateDesignation`;
-  deleteDesignations = `${this.environment.runtimeConfig.serverUrl}masters/Designation/DeleteDesignation`;
-
-   // --- division
-  getDivisionsList = `${this.environment.runtimeConfig.serverUrl}masters/Division/GetDivisionsList`;
-  registerDivision = `${this.environment.runtimeConfig.serverUrl}masters/Division/RegisterDivision`;
-  updateDivision = `${this.environment.runtimeConfig.serverUrl}masters/Division/UpdateDivision`;
-  deleteDivision = `${this.environment.runtimeConfig.serverUrl}masters/Division/DeleteDivision`;
-  
+  deleteDesignations = `${this.environment.runtimeConfig.serverUrl}masters/Designation/DeleteDesignation`;  
 
    // --- Tax Master
    GetTaxTypes = `${this.environment.runtimeConfig.serverUrl}masters/TaxMaster/GetTaxTypes`;
@@ -500,10 +512,10 @@ deleteDistributionChannel = `${this.environment.runtimeConfig.serverUrl}masters/
    deleteTaxMaster = `${this.environment.runtimeConfig.serverUrl}masters/TaxMaster/DeleteTaxMaster`;
 
    // --- Employee
-  getEmployeeList = `${this.environment.runtimeConfig.serverUrl}masters/Employee/GetEmployeeList`;
-   registerEmployee = `${this.environment.runtimeConfig.serverUrl}masters/Employee/RegisterEmployee`;
-   updateEmployee = `${this.environment.runtimeConfig.serverUrl}masters/Employee/UpdateEmployee`;
-   deleteEmployee = `${this.environment.runtimeConfig.serverUrl}masters/Employee/DeleteEmployee`;
+  getEmployeeList = `${this.environment.runtimeConfig.serverUrl}Employee/GetEmployeeList`;
+   registerEmployee = `${this.environment.runtimeConfig.serverUrl}Employee/RegisterEmployee`;
+   updateEmployee = `${this.environment.runtimeConfig.serverUrl}Employee/UpdateEmployee`;
+   deleteEmployee = `${this.environment.runtimeConfig.serverUrl}Employee/DeleteEmployee`;
 
    // --- EmployeeInBranch
  
@@ -564,16 +576,7 @@ deleteDistributionChannel = `${this.environment.runtimeConfig.serverUrl}masters/
    // --- NoSeries - company
    getCompanyNoSeriesList = `${this.environment.runtimeConfig.serverUrl}masters/NoSeries/GetCompanyList`;
    getBranchesNoSeriesList = `${this.environment.runtimeConfig.serverUrl}masters/NoSeries/GetBranchesList`;
-   getPartnerTypeNoSeriesList = `${this.environment.runtimeConfig.serverUrl}masters/NoSeries/GetPartnerTypeList`;
-
-
-   // --- CostCenter
-  
-  GetCostCenterList = `${this.environment.runtimeConfig.serverUrl}masters/CostCenter/GetCostCenterList`;
-  registerCostCenter = `${this.environment.runtimeConfig.serverUrl}masters/CostCenter/RegisterCostCenter`;
-  updateCostCenter = `${this.environment.runtimeConfig.serverUrl}masters/CostCenter/UpdateCostCenter`;
-  deleteCostCenter = `${this.environment.runtimeConfig.serverUrl}masters/CostCenter/DeleteCostCenter`;
-   
+   getPartnerTypeNoSeriesList = `${this.environment.runtimeConfig.serverUrl}masters/NoSeries/GetPartnerTypeList`;   
 
    // --- PartnerCreation
 
@@ -587,13 +590,7 @@ deleteDistributionChannel = `${this.environment.runtimeConfig.serverUrl}masters/
    registerPartnerCreation = `${this.environment.runtimeConfig.serverUrl}masters/PartnerCreation/RegisterCreation`;
    updatePartnerCreation = `${this.environment.runtimeConfig.serverUrl}masters/PartnerCreation/UpdatePartnerCreation`;
    deletePartnerCreation = `${this.environment.runtimeConfig.serverUrl}masters/PartnerCreation/DeletePartnerCreation`;
-
-   // --- ProfitCenter
-  getProfitCenterList = `${this.environment.runtimeConfig.serverUrl}masters/ProfitCenter/GetProfitCenterList`;
-  registerProfitCenters = `${this.environment.runtimeConfig.serverUrl}masters/ProfitCenter/RegisterProfitCenters`;
-  updateProfitCenters = `${this.environment.runtimeConfig.serverUrl}masters/ProfitCenter/UpdateProfitCenters`;
-  deleteProfitCenters = `${this.environment.runtimeConfig.serverUrl}masters/ProfitCenter/DeleteProfitCenters`;
-   
+ 
    // --- unit
    getunitList = `${this.environment.runtimeConfig.serverUrl}masters/Unit/GetUnitList`;
    registerunit = `${this.environment.runtimeConfig.serverUrl}masters/Unit/RegisterUnit`;

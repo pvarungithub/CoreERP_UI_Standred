@@ -27,7 +27,7 @@
           <mat-label>{{'state.countryCode' | translate }}</mat-label>
           <mat-select formControlName="countryCode" appFocusOnEnter tabIndex="3">
             <mat-option *ngFor="let ctry of countrysList" [value]="ctry.id">
-              {{ctry.id}}- {{ctry.text}}
+              {{ctry.id}} - {{ctry.text}}
             </mat-option>
           </mat-select>
         </mat-form-field>
@@ -35,7 +35,7 @@
           <mat-label>{{'state.language' | translate }}</mat-label>
           <mat-select formControlName="language" appFocusOnEnter tabIndex="4">
             <mat-option *ngFor="let lng of languageList" [value]="lng.id">
-              {{lng.text}}
+              {{lng.id}} - {{lng.text}}
             </mat-option>
           </mat-select>
         </mat-form-field>
