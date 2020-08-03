@@ -1,9 +1,7 @@
 import { Component, Inject, Optional, OnInit } from '@angular/core';
 import { String } from 'typescript-string-operations';
 import { ApiService } from '../../../../services/api.service';
-
 import { AlertService } from '../../../../services/alert.service';
-
 import { MatDialogRef, MAT_DIALOG_DATA } from '@angular/material/dialog';
 import { isNullOrUndefined } from 'util';
 import { FormBuilder, FormGroup, Validators } from '@angular/forms';
@@ -22,8 +20,7 @@ export class StateComponent implements OnInit {
   formData: any;
   companyList: any;
   countrysList: any;
-    languageList: any;
-
+  languageList: any;
 
   constructor(
     private apiService: ApiService,
@@ -46,7 +43,7 @@ export class StateComponent implements OnInit {
     this.formData = { ...data };
     if (!isNullOrUndefined(this.formData.item)) {
       this.modelFormData.patchValue(this.formData.item);
-      //this.modelFormData.controls['branchCode'].disable();
+      this.modelFormData.controls['stateCode'].disable();
     }
 
   }
@@ -89,9 +86,10 @@ export class StateComponent implements OnInit {
 
 
   save() {
-    if (this.modelFormData.invalid) {
+    if (this.modelFormData.invalid) {     
       return;
     }
+    this.modelFormData.controls['stateCode'].enable();
     this.formData.item = this.modelFormData.value;
     this.dialogRef.close(this.formData);
   }

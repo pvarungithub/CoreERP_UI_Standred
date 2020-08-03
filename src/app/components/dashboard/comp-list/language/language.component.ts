@@ -1,5 +1,4 @@
 import { Component, Inject, Optional, OnInit } from '@angular/core';
-import { AlertService } from '../../../../services/alert.service';
 import { MatDialogRef, MAT_DIALOG_DATA } from '@angular/material/dialog';
 import { isNullOrUndefined } from 'util';
 import { FormBuilder, FormGroup, Validators } from '@angular/forms';
@@ -8,8 +7,6 @@ import { NgxSpinnerService } from 'ngx-spinner';
 import { ApiConfigService } from '../../../../services/api-config.service';
 import { ApiService } from '../../../../services/api.service';
 import { String } from 'typescript-string-operations';
-import { CommonService } from '../../../../services/common.service';
-
 
 @Component({
   selector: 'app-language',
@@ -18,31 +15,25 @@ import { CommonService } from '../../../../services/common.service';
 })
 
 export class LanguageComponent implements OnInit {
-
   modelFormData: FormGroup;
   isSubmitted = false;
   formData: any;
   companyList: any;
- 
   employeesList: any;
 
   constructor(
     private apiService: ApiService,
     private apiConfigService: ApiConfigService,
     private spinner: NgxSpinnerService,
-    private alertService: AlertService,
     private formBuilder: FormBuilder,
     public dialogRef: MatDialogRef<LanguageComponent>,
-    private commonService: CommonService,
     // @Optional() is used to prevent error if no data is passed
     @Optional() @Inject(MAT_DIALOG_DATA) public data: any) {
 
     this.modelFormData = this.formBuilder.group({
       languageCode: ['', [Validators.required, Validators.minLength(2), Validators.maxLength(4)]],
       languageName: ['', [Validators.required, Validators.minLength(2)]],
-      //id:['0']
     });
-
 
     this.formData = { ...data };
     if (!isNullOrUndefined(this.formData.item)) {
@@ -53,7 +44,6 @@ export class LanguageComponent implements OnInit {
   }
 
   ngOnInit() {
-    //this.getEmployeesList();
   }
   getEmployeesList() {
     const getEmployeeList = String.Join('/', this.apiConfigService.getEmployeeList);

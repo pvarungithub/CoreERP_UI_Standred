@@ -1,15 +1,8 @@
 import { Component, Inject, Optional, OnInit } from '@angular/core';
-import { String } from 'typescript-string-operations';
-import { ApiService } from '../../../../services/api.service';
-
-import { AlertService } from '../../../../services/alert.service';
-
 import { MatDialogRef, MAT_DIALOG_DATA } from '@angular/material/dialog';
 import { isNullOrUndefined } from 'util';
 import { FormBuilder, FormGroup, Validators } from '@angular/forms';
-import { NgxSpinnerService } from 'ngx-spinner';
-import { ApiConfigService } from '../../../../services/api-config.service';
-import { StatusCodes } from '../../../../enums/common/common';
+
 @Component({
   selector: 'app-currency',
   templateUrl: './currency.component.html',
@@ -22,12 +15,7 @@ export class CurrencyComponent implements OnInit {
   formData: any;
   companyList: any;
 
-
   constructor(
-    private apiService: ApiService,
-    private apiConfigService: ApiConfigService,
-    private spinner: NgxSpinnerService,
-    private alertService: AlertService,
     private formBuilder: FormBuilder,
     public dialogRef: MatDialogRef<CurrencyComponent>,
     // @Optional() is used to prevent error if no data is passed
@@ -37,13 +25,7 @@ export class CurrencyComponent implements OnInit {
 
       currencySymbol: [null, [Validators.required, Validators.minLength(1), Validators.maxLength(5)]],
       currencyName: [null, [Validators.required, Validators.minLength(2), Validators.maxLength(40)]],
-      subunitName: [null],
       noOfDecimalPlaces:[null],
-      narration: [null],
-      isDefault: [null],
-      dateTime: [null],
-      extra1: [null],
-      extra2: [null],
     });
 
     this.formData = { ...data };

@@ -21,6 +21,44 @@
     "PASSWORD": "Password",
     "LOGIN": "Login"
   },
+  "currency": {
+    "title": "Currency",    
+    "currencySymbol": "CurrencySymbol",
+    "currencyName": "CurrencyName",
+    "noOfDecimalPlaces": "NoOfDecimalPlaces"
+  },
+  "language": {
+    "title": "Language",
+    "languageCode": "LanguageCode",
+    "languageName": "LanguageName"
+  },
+  "sizes": {
+    "title": "Sizes",
+    "unitId": "UOMCode",
+    "unitName": "UnitName",
+    "noOfDecimalplaces": "NoOfDecimalplaces",
+    "narration": "Description"
+  },
+  "country": {
+    "title": "Country",
+    "countryCode": "CountryCode",
+    "countryName": "CountryName",
+    "language" :"Language",
+    "currency" :"Currency"
+  },
+  "region": {
+    "title": "Region",
+    "regionCode": "RegionCode",
+    "regionName": "RegionName",
+    "country": "Country"
+  }, 
+  "state": {
+    "title": "State",
+    "stateCode": "StateCode",
+    "stateName": "stateName",
+    "countryCode": "CountryCode",
+    "language": "Language"
+  },  
   "accountsgroup": {
     "title": "Accounts Group",
     "groupCode": "Code",
@@ -134,15 +172,7 @@
     "active": "Active",
     "addDate": "Add Date"
   },
-  "sizes": {
-    "title": "Sizes",
-    "code": "Code",
-    "ext1": "ext1",
-    "ext2": "ext2",
-    "description": "Description",
-    "active": "Active",
-    "addDate": "Add Date"
-  },
+  
   "accountingclass": {
     "title": "Accounting Class",
     "code": "Code",
@@ -370,39 +400,7 @@
     "companyCode": "CompanyCode",
     "addDate": "AddDate"
   },
-  "country": {
-    "title": "Country",
-    "id": "Id",
-    "countryCode": "countryCode",
-    "countryName": "countryName"
-  },
-  "currency": {
-    "title": "Currency",    
-    "currencySymbol": "CurrencySymbol",
-    "currencyName": "CurrencyName",
-    "subunitName": "SubunitName",
-    "narration": "Narration"
-  },
-  "state": {
-    "title": "State",
-    "id": "Id",
-    "stateCode": "StateCode",
-    "stateName": "StateName",
-    "countryCode": "CountryCode",
-    "language": "Language"
-  },
-  "region": {
-    "title": "Region",
-    "country": "Country",
-    "regionCode": "RegionCode",
-    "regionName": "RegionName"
-  },
-  "language": {
-    "title": "Language",
-    "id": "Id",
-    "languageCode": "LanguageCode",
-    "languageName": "LanguageName"
-  },
+  
   "advance": {
     "title": "Advance",
     "id": "id",

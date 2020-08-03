@@ -1,9 +1,6 @@
 import { Component, Inject, Optional, OnInit } from '@angular/core';
 import { String } from 'typescript-string-operations';
 import { ApiService } from '../../../../services/api.service';
-
-import { AlertService } from '../../../../services/alert.service';
-
 import { MatDialogRef, MAT_DIALOG_DATA } from '@angular/material/dialog';
 import { isNullOrUndefined } from 'util';
 import { FormBuilder, FormGroup, Validators } from '@angular/forms';
@@ -26,7 +23,6 @@ export class RegionComponent implements OnInit {
     private apiService: ApiService,
     private apiConfigService: ApiConfigService,
     private spinner: NgxSpinnerService,
-    private alertService: AlertService,
     private formBuilder: FormBuilder,
     public dialogRef: MatDialogRef<RegionComponent>,
     // @Optional() is used to prevent error if no data is passed
@@ -42,7 +38,7 @@ export class RegionComponent implements OnInit {
     this.formData = { ...data };
     if (!isNullOrUndefined(this.formData.item)) {
       this.modelFormData.patchValue(this.formData.item);
-      //this.modelFormData.controls['branchCode'].disable();
+      this.modelFormData.controls['regionCode'].disable();
     }
 
   }
@@ -53,9 +49,9 @@ export class RegionComponent implements OnInit {
 
   get formControls() { return this.modelFormData.controls; }
 
-
   save() {
     if (this.modelFormData.invalid) {
+      this.modelFormData.controls['regionCode'].enable();
       return;
     }
     this.formData.item = this.modelFormData.value;
@@ -81,4 +77,3 @@ export class RegionComponent implements OnInit {
         });
   }
 }
-

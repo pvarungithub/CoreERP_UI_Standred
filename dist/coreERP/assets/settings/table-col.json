@@ -1,4 +1,42 @@
 {
+  "currency": {
+    "title": "Currency",
+    "currencySymbol": "CurrencySymbol",
+    "currencyName": "CurrencyName",
+    "noOfDecimalPlaces": "NoOfDecimalPlaces"
+  },
+  "language": {
+    "title": "Language",
+    "languageCode": "LanguageCode",
+    "languageName": "LanguageName"
+  },
+  "sizes": {
+    "title": "Sizes",
+    "unitId": "UOMCode",
+    "unitName": "UnitName",
+    "noOfDecimalplaces": "NoOfDecimalplaces",
+    "narration": "Description"
+  },
+  "country": {
+    "title": "Country",
+    "countryCode": "CountryCode",
+    "countryName": "CountryName",
+    "language" :"Language"
+  },
+  "region": {
+    "title": "Region",
+    "regionCode": "RegionCode",
+    "regionName": "RegionName",
+    "country": "Country",
+    "currency" :"Currency"
+  }, 
+  "state": {
+    "title": "State",
+    "stateCode": "StateCode",
+    "stateName": "stateName",
+    "countryCode": "CountryCode",
+    "language": "Language"
+  },  
   "company": {
     "companyId": "Code",
     "companyName": "Name",
@@ -35,37 +73,7 @@
     "responsiblePerson": "ResponsiblePerson",
     "active": "Active",
     "addDate": "Date"
-  },
-  "country": {
-    "title": "Country",
-    "countryCode": "CountryCode",
-    "countryName": "CountryName"
-  },
-  "region": {
-    "title": "Region",
-    "regionCode": "RegionCode",
-    "regionName": "RegionName",
-    "country": "Country"
-  },
-  "language": {
-    "title": "Language",
-    "languageCode": "LanguageCode",
-    "languageName": "LanguageName"
-  },
-  "state": {
-    "title": "State",
-    "stateCode": "StateCode",
-    "stateName": "stateName",
-    "countryCode": "CountryCode",
-    "language": "Language"
-  },
-  "currency": {
-    "title": "Currency",
-    "currencySymbol": "CurrencySymbol",
-    "currencyName": "CurrencyName",
-    "subunitName": "SubunitName",
-    "narration": "Narration"
-  },
+  },  
   "designation": {
     "designationId": "DesignationId",
     "designationName": "DesignationName",
@@ -536,14 +544,7 @@
     "size": "Size",
     "active": "Active",
     "addDate": "Date"
-  },
-  "sizes": {
-    "title": "Sizes",
-    "code": "Code",
-    "description": "Description",
-    "active": "Active",
-    "addDate": "Date"
-  },
+  }, 
   "accountingclass": {
     "title": "Accounting Class",
     "code": "Code",

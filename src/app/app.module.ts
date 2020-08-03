@@ -6,7 +6,7 @@ import { AppComponent } from './app.component';
 import { SharedImportModule } from './shared/shared-import';
 
 import { 
-  CompListComponent, CompanyComponent, BranchesComponent ,CostCenterComponent,LanguageComponent,CurrencyComponent,CountryComponent,RegionComponent,StateComponent,SizesComponent,
+  CompListComponent, CompanyComponent, BranchesComponent ,CostCenterComponent,LanguageComponent,CurrencyComponent,CountryComponent,RegionComponent,StateComponent,UOMComponent,
   SegmentComponent,ProfitCenterComponent,DivisionComponent,FunctionalDepartmentComponent,PlantsComponent,LocationsComponent,SalesDepartmentComponent,DistributionchannelsComponent,
   SalesofficeComponent,SalesGroupComponent,MaintenceAreaComponent,PurchaseDepartmentComponent,StorageLocationsComponent,ErpUsersComponent,RolesprevilagesComponent,LedgerComponent,
   OpenLedgerComponent,VoucherClassComponent,VoucherTypesComponent,VoucherSeriesComponents,AssignmentVoucherSeriestoVoucherTypesComponent,TaxRatesComponents,TaxTransactionComponent,
@@ -104,7 +104,7 @@ export function HttpLoaderFactory(httpClient: HttpClient) {
     // component
 
     // component list
-    BranchesComponent,CostCenterComponent,LanguageComponent,CurrencyComponent,CountryComponent,RegionComponent,StateComponent,SizesComponent,
+    BranchesComponent,CostCenterComponent,LanguageComponent,CurrencyComponent,CountryComponent,RegionComponent,StateComponent,UOMComponent,
     SegmentComponent,ProfitCenterComponent,DivisionComponent,FunctionalDepartmentComponent,PlantsComponent,LocationsComponent,SalesDepartmentComponent,
     DistributionchannelsComponent,SalesofficeComponent,SalesGroupComponent,MaintenceAreaComponent,PurchaseDepartmentComponent,StorageLocationsComponent,
     ErpUsersComponent,RolesprevilagesComponent,LedgerComponent,OpenLedgerComponent,VoucherClassComponent,VoucherTypesComponent,VoucherSeriesComponents,
@@ -188,7 +188,7 @@ export function HttpLoaderFactory(httpClient: HttpClient) {
     // component
 
     // component list
-    BranchesComponent,CostCenterComponent,LanguageComponent,CurrencyComponent,CountryComponent,RegionComponent,StateComponent,SizesComponent,
+    BranchesComponent,CostCenterComponent,LanguageComponent,CurrencyComponent,CountryComponent,RegionComponent,StateComponent,UOMComponent,
     SegmentComponent,ProfitCenterComponent,DivisionComponent,FunctionalDepartmentComponent,PlantsComponent,LocationsComponent,SalesDepartmentComponent,
     DistributionchannelsComponent,SalesofficeComponent,SalesGroupComponent,MaintenceAreaComponent,PurchaseDepartmentComponent,StorageLocationsComponent,
     ErpUsersComponent,RolesprevilagesComponent,LedgerComponent,OpenLedgerComponent,VoucherClassComponent,VoucherTypesComponent,VoucherSeriesComponents,

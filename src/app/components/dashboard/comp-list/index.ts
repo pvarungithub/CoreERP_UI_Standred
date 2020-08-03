@@ -7,7 +7,7 @@ export { CurrencyComponent } from './currency/currency.component';
 export { CountryComponent } from './country/country.component';
 export { RegionComponent } from './region/region.component';
 export { StateComponent } from './state/state.component';
-export { SizesComponent } from './sizes/sizes.component';
+export { UOMComponent } from './sizes/sizes.component';
 export { SegmentComponent } from './segment/segment.component';
 export { ProfitCenterComponent } from './profit-center/profit-center.component';
 export { DivisionComponent } from './division/division.component';

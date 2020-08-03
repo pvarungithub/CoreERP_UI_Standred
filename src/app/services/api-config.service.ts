@@ -21,6 +21,42 @@ export class ApiConfigService {
    getBranchesForUser = `${this.environment.runtimeConfig.serverUrl}Auth/GetBranchesForUser`;
    getComponentInfo = `${this.environment.runtimeConfig.serverUrl}Settings/GetComponentInfo`;
 
+   //************************ IMG General  ****************************************/
+     // Currency
+  getCurrencyList = `${this.environment.runtimeConfig.serverUrl}masters/Currency/GetCurrencyList`;
+  registerCurrency = `${this.environment.runtimeConfig.serverUrl}masters/Currency/RegisterCurrency`;
+  updateCurrency = `${this.environment.runtimeConfig.serverUrl}masters/Currency/UpdateCurrency`;
+  deleteCurrency = `${this.environment.runtimeConfig.serverUrl}masters/Currency/DeleteCurrency`;
+
+  // Language
+  getLanguageList = `${this.environment.runtimeConfig.serverUrl}masters/Language/GetLanguageList`;
+  registerLanguage = `${this.environment.runtimeConfig.serverUrl}masters/Language/RegisterLanguage`;
+  updateLanguage = `${this.environment.runtimeConfig.serverUrl}masters/Language/UpdateLanguage`;
+  deleteLanguage = `${this.environment.runtimeConfig.serverUrl}masters/Language/DeleteLanguage`;
+
+   // Sizes
+   getSizesList = `${this.environment.runtimeConfig.serverUrl}Inventory/UOM/GetAllSizes`;
+   registerSizesList = `${this.environment.runtimeConfig.serverUrl}Inventory/UOM/RegisterSizes`;
+   updateSizesList = `${this.environment.runtimeConfig.serverUrl}Inventory/UOM/UpdateSize`;
+   deleteSizesList = `${this.environment.runtimeConfig.serverUrl}Inventory/UOM/DeleteSize`;
+
+   //country
+getcountryList = `${this.environment.runtimeConfig.serverUrl}masters/Country/GetCountryList`;
+registerCountry = `${this.environment.runtimeConfig.serverUrl}masters/Country/RegisterCountry`;
+updateCountry = `${this.environment.runtimeConfig.serverUrl}masters/Country/UpdateCountry`;
+deleteCountry = `${this.environment.runtimeConfig.serverUrl}masters/Country/DeleteCountry`;
+
+//Region
+getregionList = `${this.environment.runtimeConfig.serverUrl}masters/Region/GetRegionList`;
+registerRegion = `${this.environment.runtimeConfig.serverUrl}masters/Region/RegisterRegion`;
+updateRegion = `${this.environment.runtimeConfig.serverUrl}masters/Region/UpdateRegion`;
+deleteRegion = `${this.environment.runtimeConfig.serverUrl}masters/Region/DeleteRegion`;
+
+//State
+getstateList = `${this.environment.runtimeConfig.serverUrl}masters/State/GetStateList`;
+registerState = `${this.environment.runtimeConfig.serverUrl}masters/State/RegisterState`;
+updateState = `${this.environment.runtimeConfig.serverUrl}masters/State/UpdateState`;
+deleteState = `${this.environment.runtimeConfig.serverUrl}masters/State/DeleteState`;
    // ******************************** sales *********************************
    getInvoiceList = `${this.environment.runtimeConfig.serverUrl}sales/Billing/GetInvoiceList`;
    getCashPartyAccountList = `${this.environment.runtimeConfig.serverUrl}sales/Billing/GetCashPartyAccountList`;
@@ -308,10 +344,10 @@ deleteOpenLedger = `${this.environment.runtimeConfig.serverUrl}gl/OpenLedger/Del
    getOutputTypeCodeList = `${this.environment.runtimeConfig.serverUrl}Inventory/BrandModel/GetOutPutTaxes`;
 
    // Sizes
-   getSizesList = `${this.environment.runtimeConfig.serverUrl}Inventory/Sizes/GetAllSizes`;
-   registerSizesList = `${this.environment.runtimeConfig.serverUrl}Inventory/Sizes/RegisterSizes`;
-   updateSizesList = `${this.environment.runtimeConfig.serverUrl}Inventory/Sizes/UpdateSize`;
-   deleteSizesList = `${this.environment.runtimeConfig.serverUrl}Inventory/Sizes/DeleteSize`;
+   // getSizesList = `${this.environment.runtimeConfig.serverUrl}Inventory/Sizes/GetAllSizes`;
+   // registerSizesList = `${this.environment.runtimeConfig.serverUrl}Inventory/Sizes/RegisterSizes`;
+   // updateSizesList = `${this.environment.runtimeConfig.serverUrl}Inventory/Sizes/UpdateSize`;
+   // deleteSizesList = `${this.environment.runtimeConfig.serverUrl}Inventory/Sizes/DeleteSize`;
 
    // AccountingClass
    getAccountingClassList = `${this.environment.runtimeConfig.serverUrl}Inventory/AccountingClass/GetAllAccountingClass`;
@@ -550,37 +586,7 @@ deleteDistributionChannel = `${this.environment.runtimeConfig.serverUrl}masters/
   registerProfitCenters = `${this.environment.runtimeConfig.serverUrl}masters/ProfitCenter/RegisterProfitCenters`;
   updateProfitCenters = `${this.environment.runtimeConfig.serverUrl}masters/ProfitCenter/UpdateProfitCenters`;
   deleteProfitCenters = `${this.environment.runtimeConfig.serverUrl}masters/ProfitCenter/DeleteProfitCenters`;
-
-  //Language
-  getLanguageList = `${this.environment.runtimeConfig.serverUrl}masters/Language/GetLanguageList`;
-  registerLanguage = `${this.environment.runtimeConfig.serverUrl}masters/Language/RegisterLanguage`;
-  updateLanguage = `${this.environment.runtimeConfig.serverUrl}masters/Language/UpdateLanguage`;
-  deleteLanguage = `${this.environment.runtimeConfig.serverUrl}masters/Language/DeleteLanguage`;
-
-  //country
-  getcountryList = `${this.environment.runtimeConfig.serverUrl}masters/Country/GetCountryList`;
-  registerCountry = `${this.environment.runtimeConfig.serverUrl}masters/Country/RegisterCountry`;
-  updateCountry = `${this.environment.runtimeConfig.serverUrl}masters/Country/UpdateCountry`;
-  deleteCountry = `${this.environment.runtimeConfig.serverUrl}masters/Country/DeleteCountry`;
-
-  //Region
-  getregionList = `${this.environment.runtimeConfig.serverUrl}masters/Region/GetRegionList`;
-  registerRegion = `${this.environment.runtimeConfig.serverUrl}masters/Region/RegisterRegion`;
-  updateRegion = `${this.environment.runtimeConfig.serverUrl}masters/Region/UpdateRegion`;
-  deleteRegion = `${this.environment.runtimeConfig.serverUrl}masters/Region/DeleteRegion`;
-
-  //State
-  getstateList = `${this.environment.runtimeConfig.serverUrl}masters/State/GetStateList`;
-  registerState = `${this.environment.runtimeConfig.serverUrl}masters/State/RegisterState`;
-  updateState = `${this.environment.runtimeConfig.serverUrl}masters/State/UpdateState`;
-  deleteState = `${this.environment.runtimeConfig.serverUrl}masters/State/DeleteState`;
-
-  //Currency
-  getCurrencyList = `${this.environment.runtimeConfig.serverUrl}masters/Currency/GetCurrencyList`;
-  registerCurrency = `${this.environment.runtimeConfig.serverUrl}masters/Currency/RegisterCurrency`;
-  updateCurrency = `${this.environment.runtimeConfig.serverUrl}masters/Currency/UpdateCurrency`;
-  deleteCurrency = `${this.environment.runtimeConfig.serverUrl}masters/Currency/DeleteCurrency`;
-
+    
 
    // --- Segment
   getSegmentList = `${this.environment.runtimeConfig.serverUrl}masters/Segment/GetSegmentList`;

@@ -9,50 +9,41 @@
     <form [formGroup]="modelFormData" autocomplete="off">
 
       <div class="d--flex">
-        <mat-form-field class="form-element" [ngClass]="{ 'ng--valid': formControls.code.valid }">
-          <input matInput placeholder="{{'sizes.code' | translate }}" disabled formControlName="code" appFocusOnEnter tabIndex="1">
-          <mat-error *ngIf="formControls.code.errors" class="help-block">
-            <div *ngIf="formControls.code.errors.required">Code is required Min-2 Letters</div>
+        <mat-form-field class="form-element" [ngClass]="{ 'ng--valid': formControls.unitId.valid }">
+          <input matInput placeholder="{{'sizes.unitId' | translate }}" disabled formControlName="unitId" maxlength="5" appFocusOnEnter tabIndex="1">
+          <mat-error *ngIf="formControls.unitId.errors" class="help-block">
+            <div *ngIf="formControls.unitId.errors.required">Code is required </div>
           </mat-error>
 
         </mat-form-field>
 
-        <mat-form-field class="form-element" [ngClass]="{ 'ng--valid': formControls.description.valid }">
-          <input matInput placeholder="{{'sizes.description' | translate }}" formControlName="description" appFocusOnEnter tabIndex="2">
-          <mat-error *ngIf="formControls.description.errors" class="help-block">
-            <div *ngIf="formControls.description.errors.required">Description is required</div>
+        <mat-form-field class="form-element" [ngClass]="{ 'ng--valid': formControls.unitName.valid }">
+          <input matInput placeholder="{{'sizes.unitName' | translate }}" formControlName="unitName" maxlength="50" appFocusOnEnter tabIndex="2">
+          <mat-error *ngIf="formControls.unitName.errors" class="help-block">
+            <div *ngIf="formControls.unitName.errors.required">unitName is required</div>
           </mat-error>
         </mat-form-field>
 
 
-        <!-- <mat-form-field class="form-element">
-          <input matInput placeholder="{{'sizes.ext1' | translate }}" formControlName="ext1" appFocusOnEnter tabIndex="3">
+        <mat-form-field class="form-element">
+          <input  matInput placeholder="{{'sizes.noOfDecimalplaces' | translate }}" formControlName="noOfDecimalplaces" maxlength="5" appFocusOnEnter tabIndex="3">
         </mat-form-field>
 
         <mat-form-field class="form-element">
-          <input matInput placeholder="{{'sizes.ext2' | translate }}" formControlName="ext2" appFocusOnEnter tabIndex="4">
-        </mat-form-field> -->
-        <mat-form-field>
-          <mat-label [translate]="'sizes.active'"></mat-label>
-          <mat-select formControlName="active" appFocusOnEnter tabIndex="5" maxlength="1">
-            <mat-option *ngFor="let active of active" [value]="active.value">
-              {{active.viewValue}}
-            </mat-option>
-          </mat-select>
+          <input matInput placeholder="{{'sizes.narration' | translate }}" formControlName="narration" maxlength="50" appFocusOnEnter tabIndex="4">
         </mat-form-field>
-      </div>
+        </div>
       <mat-divider></mat-divider>
     </form>
 
   </mat-card-content>
 
-
   <div  class="form-element p-2 d-flex justify-content-end">
-    <button mat-raised-button class="button-color-red text-white mr-1"  (click)="cancel()">
+    <button mat-raised-button class="button-color-red text-white mr-1" tabindex="5"  (click)="cancel()">
       
       {{ 'COMMON.CANCEL' | translate }}
     </button>
-        <button mat-raised-button  type="submit" class="button-color-bule text-white ml-1"  (click)="save()" appFocusOnEnter tabIndex="6">
+        <button mat-raised-button  type="submit" class="button-color-bule text-white ml-1" tabindex="6"  (click)="save()" appFocusOnEnter tabIndex="6">
           
           {{ 'COMMON.SAVE' | translate }}
          </button>

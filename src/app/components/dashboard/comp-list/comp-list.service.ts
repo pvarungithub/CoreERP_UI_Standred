@@ -7,7 +7,7 @@ import { CurrencyComponent } from './currency/currency.component';
 import { CountryComponent } from './country/country.component';
 import { RegionComponent } from './region/region.component';
 import { StateComponent } from './state/state.component';
-import { SizesComponent } from './sizes/sizes.component';
+import { UOMComponent } from './sizes/sizes.component';
 import { SegmentComponent } from './segment/segment.component';
 import { ProfitCenterComponent } from './profit-center/profit-center.component';
 import { DivisionComponent } from './division/division.component';
@@ -80,7 +80,7 @@ export class CompListService {
         return this.dynamicComp.component;
         break;
       case 'sizes':
-        this.dynamicComp.component = SizesComponent;
+        this.dynamicComp.component = UOMComponent;
         return this.dynamicComp.component;
         break;
       case 'segment':
