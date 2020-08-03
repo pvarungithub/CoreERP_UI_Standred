@@ -1,18 +1,7 @@
 import { Component, Inject, Optional, OnInit } from '@angular/core';
-import { String } from 'typescript-string-operations';
-import { ApiService } from '../../../../services/api.service';
-import { Router, ActivatedRoute } from '@angular/router';
-import { MatDialog } from '@angular/material/dialog';
-
-import { AlertService } from '../../../../services/alert.service';
-
-
 import { MatDialogRef, MAT_DIALOG_DATA } from '@angular/material/dialog';
 import { isNullOrUndefined } from 'util';
 import { FormBuilder, FormGroup, Validators } from '@angular/forms';
-import { NgxSpinnerService } from 'ngx-spinner';
-import { ApiConfigService } from '../../../../services/api-config.service';
-import { StatusCodes } from '../../../../enums/common/common';
 
 interface Active {
   value: string;
@@ -26,7 +15,6 @@ interface Active {
 })
 export class SegmentComponent implements OnInit {
 
-
   modelFormData: FormGroup;
   isSubmitted  =  false;
   formData: any;
@@ -37,10 +25,6 @@ export class SegmentComponent implements OnInit {
     ];
 
   constructor(
-    private apiService: ApiService,
-    private apiConfigService: ApiConfigService,
-    private spinner: NgxSpinnerService,
-    private alertService: AlertService,
     private formBuilder: FormBuilder,
     public dialogRef: MatDialogRef<SegmentComponent>,
     // @Optional() is used to prevent error if no data is passed
@@ -50,7 +34,6 @@ export class SegmentComponent implements OnInit {
        
         id: [null, [Validators.required, Validators.minLength(1)]],
         name: [null, [Validators.required, Validators.minLength(0), Validators.maxLength(40)]],
-        seqId: ['0'],
         active: ['Y']
       });
 
@@ -66,7 +49,6 @@ export class SegmentComponent implements OnInit {
   }
 
   get formControls() { return this.modelFormData.controls; }
-
 
   save() {
     if (this.modelFormData.invalid) {

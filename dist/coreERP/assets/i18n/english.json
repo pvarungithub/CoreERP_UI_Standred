@@ -59,6 +59,35 @@
     "countryCode": "CountryCode",
     "language": "Language"
   },  
+  "company": {
+    "title": "Company",
+    "companyCode": "CompanyCode",
+    "companyName": "CompanyName",
+    "shortName": "ShortName",
+    "city": "City",
+    "state": "State",
+    "region": "Region",
+    "country": "Country",
+    "currency": "Currency",
+    "language": "Language",
+    "address": "Address",
+    "address1": "Address1",
+    "street": "Street",
+    "pin": "Pin",
+    "telephone": "Telephone",
+    "mobile": "Mobile",
+    "email": "Email",
+    "webSite": "WebSite",
+    "panno": "PanNo",
+    "gstno": "GstNo",
+    "tanno": "TanNo"
+  },
+  "segment": {
+    "title": "Segment",
+    "id": "SegmentCode",
+    "name": "Name",
+    "active": "Active"
+  },
   "accountsgroup": {
     "title": "Accounts Group",
     "groupCode": "Code",
@@ -225,34 +254,8 @@
     "groupName": "GroupName",
     "narration": "Narration",
     "extraDate": "Product Group Date"
-  },
-  "company": {
-    "title": "Company",
-    "companyCode": "CompanyCode",
-    "companyName": "CompanyName",
-    "shortName": "ShortName",
-    "city": "City",
-    "state": "State",
-    "region": "Region",
-    "country": "Country",
-    "currency": "Currency",
-    "language": "Language",
-    "address": "Address",
-    "address1": "Address1",
-    "street": "Street",
-    "pin": "Pin",
-    "telephone": "Telephone",
-    "mobile": "Mobile",
-    "email": "Email",
-    "image": "Image",
-    "webSite": "WebSite",
-    "panno": "PanNo",
-    "gstno": "GstNo",
-    "tanno": "TanNo",
-    "ext": "Ext",
-    "ext1": "Ext1",
-    "ext2": "Ext2"
-  },
+  },  
+
   "branches": {
     "title": "Branch",
     "branchCode": "BranchCode",
@@ -780,13 +783,7 @@
     "vehicleType": "vehicleType"
   },
  
-  "segment": {
-    "title": "Segment",
-    "id": "Code",
-    "name": "Name",
-    "active": "Active",
-    "addDate": "AddDate"
-  },
+  
   "tank": {
     "title": "Tank",
     "branchName": "BranchName",

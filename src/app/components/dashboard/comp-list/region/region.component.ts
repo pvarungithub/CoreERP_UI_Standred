@@ -50,10 +50,10 @@ export class RegionComponent implements OnInit {
   get formControls() { return this.modelFormData.controls; }
 
   save() {
-    if (this.modelFormData.invalid) {
-      this.modelFormData.controls['regionCode'].enable();
+    if (this.modelFormData.invalid) {     
       return;
     }
+    this.modelFormData.controls['regionCode'].enable();
     this.formData.item = this.modelFormData.value;
     this.dialogRef.close(this.formData);
   }

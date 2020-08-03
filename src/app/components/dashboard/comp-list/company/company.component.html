@@ -118,24 +118,20 @@
         <mat-form-field class="form-element">
           <input matInput placeholder="{{'company.email' | translate }}" formControlName="email"  maxlength="50" appFocusOnEnter tabIndex="16">
         </mat-form-field>
-
         <mat-form-field class="form-element">
-          <input matInput placeholder="{{'company.image' | translate }}" formControlName="image" appFocusOnEnter tabIndex="17">
-        </mat-form-field>
-        <mat-form-field class="form-element">
-          <input matInput placeholder="{{'company.webSite' | translate }}" formControlName="webSite" maxlength="50" appFocusOnEnter tabIndex="18">
+          <input matInput placeholder="{{'company.webSite' | translate }}" formControlName="webSite" maxlength="50" appFocusOnEnter tabIndex="17">
         </mat-form-field>
 
         <mat-form-field class="form-element">
-          <input matInput placeholder="{{'company.panno' | translate }}" formControlName="panno" maxlength="50" appFocusOnEnter tabIndex="19">
+          <input matInput placeholder="{{'company.panno' | translate }}" formControlName="panno" maxlength="50" appFocusOnEnter tabIndex="18">
         </mat-form-field>
 
         <mat-form-field class="form-element">
-          <input matInput placeholder="{{'company.gstno' | translate }}" formControlName="gstno" maxlength="50" appFocusOnEnter tabIndex="20">
+          <input matInput placeholder="{{'company.gstno' | translate }}" formControlName="gstno" maxlength="50" appFocusOnEnter tabIndex="19">
         </mat-form-field>
 
         <mat-form-field class="form-element">
-          <input matInput placeholder="{{'company.tanno' | translate }}" formControlName="tanno" maxlength="50" appFocusOnEnter tabIndex="21">
+          <input matInput placeholder="{{'company.tanno' | translate }}" formControlName="tanno" maxlength="50" appFocusOnEnter tabIndex="20">
         </mat-form-field>
 
       </div>
@@ -147,11 +143,11 @@
 
 
     <div  class="form-element p-2 d-flex justify-content-end">
-    <button mat-raised-button class="button-color-red text-white mr-1"  (click)="cancel()">
+    <button mat-raised-button class="button-color-red text-white mr-1"  (click)="cancel()" appFocusOnEnter tabIndex="21">
       
       {{ 'COMMON.CANCEL' | translate }}
     </button>
-        <button mat-raised-button  type="submit" class="button-color-bule text-white ml-1"  (click)="save()" appFocusOnEnter tabIndex="21">
+        <button mat-raised-button  type="submit" class="button-color-bule text-white ml-1"  (click)="save()" appFocusOnEnter tabIndex="22">
           
           {{ 'COMMON.SAVE' | translate }}
          </button>

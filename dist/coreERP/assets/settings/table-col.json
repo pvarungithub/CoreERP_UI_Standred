@@ -54,6 +54,12 @@
     "booksBeginingFrom": "Date",
     "gstin": "GST"
   },
+  "segment": {
+    "title": "Segment",
+    "id": "SegmentCode",
+    "name": "Name",
+    "active": "Active"
+  },
   "branches": {
     "branchCode": "Code",
     "branchName": "Name",
@@ -97,14 +103,7 @@
     "active": "Active",
     "calculateOn": "Calculate On",
     "effectiveFrom": "Date"
-  },
-  "segment": {
-    "title": "Segment",
-    "id": "Id",
-    "name": "Name",
-    "active": "Active",
-    "addDate": "Date"
-  },
+  },  
   "costcenter": {
     "title": "CostCenter",
     "code": "Code",

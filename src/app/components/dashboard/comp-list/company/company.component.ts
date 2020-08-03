@@ -1,23 +1,16 @@
-import { Component, Inject, Optional, OnInit, ViewChild } from '@angular/core';
+import { Component, Inject, Optional, OnInit } from '@angular/core';
 import { String } from 'typescript-string-operations';
 import { ApiService } from '../../../../services/api.service';
-import { Router, ActivatedRoute } from '@angular/router';
-
 import { AlertService } from '../../../../services/alert.service';
 import { MatDialogRef, MAT_DIALOG_DATA } from '@angular/material/dialog';
 import { isNullOrUndefined } from 'util';
-import { FormBuilder, FormGroup, Validators, FormControl } from '@angular/forms';
+import { FormBuilder, FormGroup, Validators } from '@angular/forms';
 import { CommonService } from '../../../../services/common.service';
 import { StatusCodes } from '../../../../enums/common/common';
-import { DatePipe, formatDate } from '@angular/common';
+import { DatePipe } from '@angular/common';
 import { ApiConfigService } from '../../../../services/api-config.service';
 import { NgxSpinnerService } from 'ngx-spinner';
-import { MatDatepickerInputEvent } from '@angular/material/datepicker';
 
-interface ApprovalType {
-  value: string;
-  viewValue: string;
-}
 
 @Component({
   selector: 'app-company',
@@ -28,7 +21,6 @@ interface ApprovalType {
 
 export class CompanyComponent   implements OnInit {
 
-
   modelFormData: FormGroup;
   isSubmitted = false;
   formData: any;
@@ -38,11 +30,11 @@ export class CompanyComponent   implements OnInit {
   branchesList: any;
   compiniesList: any;
   employeesList: any;
-    stateList: any;
-    currencyList: any;
-    regionsList: any;
-    countrysList: any;
-    languageList: any;
+  stateList: any;
+  currencyList: any;
+  regionsList: any;
+  countrysList: any;
+  languageList: any;
 
   constructor(
     private apiService: ApiService,
@@ -54,18 +46,17 @@ export class CompanyComponent   implements OnInit {
     private apiConfigService: ApiConfigService,
     // @Optional() is used to prevent error if no data is passed
     @Optional() @Inject(MAT_DIALOG_DATA) public data: any) {
-    //id: ['0'],
     this.modelFormData = this.formBuilder.group({
       
       companyCode: [null, [Validators.required, Validators.minLength(1), Validators.maxLength(4)]],
       companyName: [null, [Validators.required, Validators.minLength(1), Validators.maxLength(50)]],
       shortName: [null, [Validators.minLength(1), Validators.maxLength(10)]],
       city: [null],
-      state: [null, [Validators.required]],
-      region: [null, [Validators.required]],
-      country: [null, [Validators.required]],
-      currency: [null, [Validators.required]],
-      language: [null, [Validators.required]],
+      state: [null], 
+      region: [null], 
+      country: [null], 
+      currency: [null], 
+      language: [null], 
       address: [null],
       address1: [null],
       street: [null],
@@ -73,24 +64,17 @@ export class CompanyComponent   implements OnInit {
       telephone: [null],
       mobile: [null],
       email: [null],
-      image: [null],
       webSite: [null],
       panno: [null],
       gstno: [null],
-      tanno: [null],
-      ext: null,
-      ext1: null,
-      ext2: null
+      tanno: [null]
     });
-
-
 
     this.formData = { ...data };
     if (!isNullOrUndefined(this.formData.item)) {
       this.modelFormData.patchValue(this.formData.item);
       this.modelFormData.controls['companyCode'].disable();
     }
-
   }
 
   ngOnInit() {
@@ -100,7 +84,6 @@ export class CompanyComponent   implements OnInit {
     this.getcountrysList();
     this.getcurrencyList();
   }
-
 
   getLanguageList() {
     const getlanguageList = String.Join('/', this.apiConfigService.getlanguageList);
@@ -180,14 +163,11 @@ export class CompanyComponent   implements OnInit {
 
 
   showErrorAlert(caption: string, message: string) {
-    // this.alertService.openSnackBar(caption, message);
   }
 
   get formControls() { return this.modelFormData.controls; }
 
-
   save() {
-    // debugger;
     if (this.modelFormData.invalid) {
       return;
     }

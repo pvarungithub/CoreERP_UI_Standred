@@ -57,6 +57,24 @@ getstateList = `${this.environment.runtimeConfig.serverUrl}masters/State/GetStat
 registerState = `${this.environment.runtimeConfig.serverUrl}masters/State/RegisterState`;
 updateState = `${this.environment.runtimeConfig.serverUrl}masters/State/UpdateState`;
 deleteState = `${this.environment.runtimeConfig.serverUrl}masters/State/DeleteState`;
+
+// company
+getlanguageList = `${this.environment.runtimeConfig.serverUrl}Company/GetLanguageList`;
+getRegionsList = `${this.environment.runtimeConfig.serverUrl}Company/GetRegionList`;
+getCountrysList =`${this.environment.runtimeConfig.serverUrl}Company/GetCountrysList`;
+getcurrencyList = `${this.environment.runtimeConfig.serverUrl}Company/GetCurrencyList`;
+getstatesList = `${this.environment.runtimeConfig.serverUrl}Company/GetStatesList`;
+getCompanysList = `${this.environment.runtimeConfig.serverUrl}masters/Company/GetCompanysList`;
+registerCompany = `${this.environment.runtimeConfig.serverUrl}masters/Company/RegisterCompany`;
+updateCompany = `${this.environment.runtimeConfig.serverUrl}masters/Company/UpdateCompany`;
+deleteCompany = `${this.environment.runtimeConfig.serverUrl}masters/Company/DeleteCompany`;
+
+ // --- Segment
+ getSegmentList = `${this.environment.runtimeConfig.serverUrl}masters/Segment/GetSegmentList`;
+ registerSegment = `${this.environment.runtimeConfig.serverUrl}masters/Segment/RegisterSegment`;
+ updateSegment = `${this.environment.runtimeConfig.serverUrl}masters/Segment/UpdateSegment`;
+ deleteSegment = `${this.environment.runtimeConfig.serverUrl}masters/Segment/DeleteSegment`;
+
    // ******************************** sales *********************************
    getInvoiceList = `${this.environment.runtimeConfig.serverUrl}sales/Billing/GetInvoiceList`;
    getCashPartyAccountList = `${this.environment.runtimeConfig.serverUrl}sales/Billing/GetCashPartyAccountList`;
@@ -381,17 +399,6 @@ deleteOpenLedger = `${this.environment.runtimeConfig.serverUrl}gl/OpenLedger/Del
 
    // ******************************* Start  master *****************************************
 
-   // company
-  getlanguageList = `${this.environment.runtimeConfig.serverUrl}Company/GetLanguageList`;
-  getRegionsList = `${this.environment.runtimeConfig.serverUrl}Company/GetRegionList`;
-  getCountrysList =`${this.environment.runtimeConfig.serverUrl}Company/GetCountrysList`;
-  getcurrencyList = `${this.environment.runtimeConfig.serverUrl}Company/GetCurrencyList`;
-  getstatesList = `${this.environment.runtimeConfig.serverUrl}Company/GetStatesList`;
-  getCompanysList = `${this.environment.runtimeConfig.serverUrl}masters/Company/GetCompanysList`;
-   registerCompany = `${this.environment.runtimeConfig.serverUrl}masters/Company/RegisterCompany`;
-   updateCompany = `${this.environment.runtimeConfig.serverUrl}masters/Company/UpdateCompany`;
-   deleteCompany = `${this.environment.runtimeConfig.serverUrl}masters/Company/DeleteCompany`;
-
   // department
   getdepartmentlist = `${this.environment.runtimeConfig.serverUrl}masters/Department/getdepartmentlist`;
   registerdepartment = `${this.environment.runtimeConfig.serverUrl}masters/Department/registerdepartment`;
@@ -586,13 +593,6 @@ deleteDistributionChannel = `${this.environment.runtimeConfig.serverUrl}masters/
   registerProfitCenters = `${this.environment.runtimeConfig.serverUrl}masters/ProfitCenter/RegisterProfitCenters`;
   updateProfitCenters = `${this.environment.runtimeConfig.serverUrl}masters/ProfitCenter/UpdateProfitCenters`;
   deleteProfitCenters = `${this.environment.runtimeConfig.serverUrl}masters/ProfitCenter/DeleteProfitCenters`;
-    
-
-   // --- Segment
-  getSegmentList = `${this.environment.runtimeConfig.serverUrl}masters/Segment/GetSegmentList`;
-  registerSegment = `${this.environment.runtimeConfig.serverUrl}masters/Segment/RegisterSegment`;
-  updateSegment = `${this.environment.runtimeConfig.serverUrl}masters/Segment/UpdateSegment`;
-  deleteSegment = `${this.environment.runtimeConfig.serverUrl}masters/Segment/DeleteSegment`;
    
    // --- unit
    getunitList = `${this.environment.runtimeConfig.serverUrl}masters/Unit/GetUnitList`;
