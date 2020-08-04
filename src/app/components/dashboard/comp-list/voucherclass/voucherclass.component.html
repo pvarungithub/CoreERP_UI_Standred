@@ -24,6 +24,15 @@
             <div *ngIf="formControls.description.errors.required">Voucher Class Name is required </div>
           </mat-error>
         </mat-form-field>
+        
+        <mat-form-field>
+          <mat-label [translate]="'voucherclass.voucherNature'"></mat-label>
+          <mat-select formControlName="voucherNature" appFocusOnEnter tabIndex="3">
+            <mat-option *ngFor="let ltype of voucherNatures" [value]="ltype.value">
+              {{ltype.viewValue}}
+            </mat-option>
+          </mat-select>
+        </mat-form-field>
       </div>
       <mat-divider></mat-divider>
 

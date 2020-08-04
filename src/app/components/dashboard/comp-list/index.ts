@@ -33,5 +33,5 @@ export { TaxRatesComponents } from './taxrates/taxrates.component';
 export { TaxTransactionComponent } from './taxtransaction/taxtransaction.component';
 export { TaxIntegrationComponent } from './taxintegration/taxintegration.component';
 export { AssignmentoftaxaccountstotaxcodesComponent } from './assignmentoftaxaccountstotaxcodes/assignmentoftaxaccountstotaxcodes.component';
-
+export { HsnSacComponent } from './hsnsac/hsnsac.component';
 

@@ -185,6 +185,40 @@
     "description": "Name",
     "plant": "Plant"
   },
+  "vouchertype": {
+    "title": "Voucher Type",
+    "voucherTypeId": "voucherTypeId",
+    "voucherTypeName": "voucherTypeName",
+    "printText": "printText",
+    "voucherClass": "voucherClass"
+  },
+"voucherclass": {
+    "title": "VocherClass",
+    "voucherKey": "Code",
+    "description": "Description",
+    "voucherNature":"voucherNature"
+  },
+  "voucherseries": {
+    "title": "Voucher Series",
+    "voucherSeriesKey": "VoucherSeriesKey",
+    "branch": "Branch",
+    "company": "Company",
+    "fromInterval": "FromInterval",
+    "toInterval": "ToInterval",
+    "suffix": "suffix",
+    "plant": "Plant"
+  },
+  "assignmentofvoucherseriestovouchertype": {
+    "title": "AssignmentVoucherSeriestoVoucherType",
+    "code": "code",
+    "voucherType": "voucherType",
+    "voucherSeries": "voucherSeries"
+  },
+ "hsnsac": {
+    "title": "Hsn Sac",
+    "code": "Code",
+    "description": "Description"
+  },
   "accountsgroup": {
     "title": "Accounts Group",
     "groupCode": "Code",
@@ -1365,27 +1399,7 @@
     "financialYearStartFrom": "FinancialYearStartFrom",
     "financialYearEndTo": "FinancialYearEndTo",
     "accountingYear": "AccountingYear"
-  },
-  "voucherclass": {
-    "title": "VocherClass",
-    "voucherKey": "Code",
-    "description": "Description"
-  },
-  "voucherseries": {
-    "title": "Voucher Series",
-    "voucherSeriesKey": "VoucherSeriesKey",
-    "branch": "Branch",
-    "company": "Company",
-    "fromInterval": "FromInterval",
-    "toInterval": "ToInterval",
-    "plant": "Plant"
-  },
-  "assignmentofvoucherseriestovouchertype": {
-    "title": "AssignmentVoucherSeriestoVoucherType",
-    "code": "code",
-    "voucherType": "voucherType",
-    "voucherClass": "voucherSeries"
-  },
+  },  
   "taxrates": {
     "title": "Tax Rates",
     "taxRateCode": "Code",

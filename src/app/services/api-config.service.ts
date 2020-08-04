@@ -533,7 +533,18 @@ deleteDistributionChannel = `${this.environment.runtimeConfig.serverUrl}masters/
   registerPartnerType = `${this.environment.runtimeConfig.serverUrl}masters/PartnerType/RegisterPartnerType`;
   updatePartnerType = `${this.environment.runtimeConfig.serverUrl}masters/PartnerType/UpdatePartnerType`;
   deletePartnerType = `${this.environment.runtimeConfig.serverUrl}masters/PartnerType/DeletePartnerType`;
- 
+ //taxacctotaxcode
+getAssignTaxacctoTaxcodeList = `${this.environment.runtimeConfig.serverUrl}AssignTaxacctoTaxcode/GetAssignTaxacctoTaxcodeList`;
+registerAssignTaxacctoTaxcode = `${this.environment.runtimeConfig.serverUrl}AssignTaxacctoTaxcode/RegisterAssignTaxacctoTaxcode`;
+updateAssignTaxacctoTaxcode = `${this.environment.runtimeConfig.serverUrl}AssignTaxacctoTaxcode/UpdateAssignTaxacctoTaxcode`;
+deleteAssignTaxacctoTaxcode = `${this.environment.runtimeConfig.serverUrl}AssignTaxacctoTaxcode/DeletAssignTaxacctoTaxcode`;
+
+ // HSNSAC
+   getHsnSacList = `${this.environment.runtimeConfig.serverUrl}HsnSac/GetHsnSacList`;
+   registerHsnSac = `${this.environment.runtimeConfig.serverUrl}HsnSac/RegisterHsnSac`;
+   updateHsnSac = `${this.environment.runtimeConfig.serverUrl}HsnSac/UpdateHsnSac`;
+   deleteHsnSac = `${this.environment.runtimeConfig.serverUrl}HsnSac/DeleteHsnSac`;
+
   //vocherseries
  getvocherseriesList = `${this.environment.runtimeConfig.serverUrl}VoucherSeries/GetVoucherSeriesList`;
  registerVoucherSeries = `${this.environment.runtimeConfig.serverUrl}VoucherSeries/RegisterVoucherSeries`; 

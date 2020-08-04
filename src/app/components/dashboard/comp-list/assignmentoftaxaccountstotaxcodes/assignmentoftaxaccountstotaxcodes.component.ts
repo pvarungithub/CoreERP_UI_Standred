@@ -37,7 +37,7 @@ export class AssignmentoftaxaccountstotaxcodesComponent implements OnInit {
     this.formData = { ...data };
     if (!isNullOrUndefined(this.formData.item)) {
       this.modelFormData.patchValue(this.formData.item);
-      this.modelFormData.controls['voucherKey'].disable();
+      this.modelFormData.controls['code'].disable();
     }
 
   }
@@ -55,7 +55,7 @@ export class AssignmentoftaxaccountstotaxcodesComponent implements OnInit {
     if (this.modelFormData.invalid) {
       return;
     }
-     this.modelFormData.controls['voucherKey'].enable();
+     this.modelFormData.controls['code'].enable();
     this.formData.item = this.modelFormData.value;
     this.dialogRef.close(this.formData);
   }

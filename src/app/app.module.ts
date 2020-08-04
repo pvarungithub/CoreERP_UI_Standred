@@ -10,7 +10,7 @@ import {
   SegmentComponent,ProfitCenterComponent,DivisionComponent,FunctionalDepartmentComponent,PlantsComponent,LocationsComponent,SalesDepartmentComponent,DistributionchannelsComponent,
   SalesofficeComponent,SalesGroupComponent,MaintenceAreaComponent,PurchaseDepartmentComponent,StorageLocationsComponent,ErpUsersComponent,RolesprevilagesComponent,LedgerComponent,
   OpenLedgerComponent,VoucherClassComponent,VoucherTypesComponent,VoucherSeriesComponents,AssignmentVoucherSeriestoVoucherTypesComponent,TaxRatesComponents,TaxTransactionComponent,
-  TaxIntegrationComponent,AssignmentoftaxaccountstotaxcodesComponent
+  TaxIntegrationComponent,AssignmentoftaxaccountstotaxcodesComponent,HsnSacComponent
 } from './components/dashboard/comp-list/index';
 import { AutocompleteComponent } from './reuse-components/autocomplete/autocomplete.component';
 
@@ -109,6 +109,7 @@ export function HttpLoaderFactory(httpClient: HttpClient) {
     DistributionchannelsComponent,SalesofficeComponent,SalesGroupComponent,MaintenceAreaComponent,PurchaseDepartmentComponent,StorageLocationsComponent,
     ErpUsersComponent,RolesprevilagesComponent,LedgerComponent,OpenLedgerComponent,VoucherClassComponent,VoucherTypesComponent,VoucherSeriesComponents,
     AssignmentVoucherSeriestoVoucherTypesComponent,TaxRatesComponents,TaxTransactionComponent,TaxIntegrationComponent,AssignmentoftaxaccountstotaxcodesComponent,
+    HsnSacComponent,
 
 
 
@@ -127,7 +128,7 @@ export function HttpLoaderFactory(httpClient: HttpClient) {
     GeneralledgerComponent, AccountsGroupComponent,
     SubGroupComponent, UndersubGroupComponent,
     GlAccountsComponent, GlSubcodeComponent, TaxIntegrationComponent, CashAccToBranchesComponent,AssignmentoftaxaccountstotaxcodesComponent,
-    AccToAccClassComponent, 
+    HsnSacComponent,AccToAccClassComponent, 
     InventoryComponent, BrandModelComponent,  AccountingClassComponent,UnitComponent,
     BrandComponent, NumberAssignmentComponent, MaterialGroupsComponent,ProductpackingComponent,
     CompanyComponent,  MastersComponent, DepartmentComponent, DesignationComponent,

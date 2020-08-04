@@ -9,6 +9,12 @@ import { ApiConfigService } from '../../../../services/api-config.service';
 import { ApiService } from '../../../../services/api.service';
 import { String } from 'typescript-string-operations';
 import { CommonService } from '../../../../services/common.service';
+
+interface voucherNature {
+  value: string;
+  viewValue: string;
+}
+
 @Component({
   selector: 'voucherclass',
   templateUrl: './voucherclass.component.html',
@@ -24,6 +30,15 @@ export class VoucherClassComponent implements OnInit {
   compList: any;
   branchList: any;
 
+  voucherNatures: voucherNature[] =
+  [
+    { value: 'Invoice', viewValue: 'Invoice' },
+    { value: 'memo', viewValue: 'memo' },
+    { value: 'general', viewValue: 'general' },
+    { value: 'payments', viewValue: 'payments' },
+    { value: 'recipts', viewValue: 'recipts' },
+    { value: 'general memo', viewValue: 'general memo' }
+  ];
   constructor(
     private alertService: AlertService,
     private formBuilder: FormBuilder,
@@ -37,7 +52,8 @@ export class VoucherClassComponent implements OnInit {
 
     this.modelFormData = this.formBuilder.group({
       voucherKey: [null, [Validators.required, Validators.minLength(1), Validators.maxLength(5)]],
-      description: [null, [Validators.required, Validators.minLength(2), Validators.maxLength(50)]]
+      description: [null, [Validators.required, Validators.minLength(2), Validators.maxLength(50)]],
+      voucherNature:[null]
     });
 
 
