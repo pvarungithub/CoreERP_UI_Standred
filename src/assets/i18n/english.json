@@ -329,6 +329,38 @@
     "code": "Code",
     "description": "Description"
   },
+  "tdstypes": {
+    "title": "TDS Types",
+    "tdsCode": "Code",
+    "desctiption": "Description"
+  },
+  "incometypes": {
+    "title": "Income Types",
+    "code": "Code",
+    "desctiption": "Description",
+    "sectionCode": "SectionCode",
+    "thresholdLimit":  "ThresholdLimit",
+    "thresholdContract": "ThresholdContract"
+  },
+  "tdsrates": {
+    "title": "TDS Rates",
+    "code": "Code",
+    "desctiption": "Description",
+    "tdstype": "Tdstype",
+    "incomeType": "IncomeType",
+    "status": "Status",
+    "effectiveFrom":  "EffectiveFrom"      
+  },
+  "posting": {
+    "title": "Posting",
+    "code": "Code",
+    "description": "Description",
+    "tdstype": "Tdstype",
+    "incomeType": "IncomeType",
+    "tdsrate": "TdsRate",
+    "glaccount": "glaccount",
+    "date":  "Date"  
+  },
   "accountsgroup": {
     "title": "Accounts Group",
     "groupCode": "Code",

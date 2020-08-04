@@ -34,7 +34,10 @@ import { TaxTransactionComponent } from './taxtransaction/taxtransaction.compone
 import { TaxIntegrationComponent } from './taxintegration/taxintegration.component';
 import { AssignmentoftaxaccountstotaxcodesComponent } from './assignmentoftaxaccountstotaxcodes/assignmentoftaxaccountstotaxcodes.component';
 import { HsnSacComponent } from './hsnsac/hsnsac.component';
-
+import { TDSComponent } from './tdstype/tdstype.component';
+import { IncomeTypeComponent } from './incometypes/incometypes.component';
+import { TdsRatesComponent } from './tdsrates/tdsrates.component';
+import { PostingComponent } from './posting/posting.component';
 
 @Injectable({
   providedIn: 'root'
@@ -187,7 +190,23 @@ export class CompListService {
         case 'hsnsac':
         this.dynamicComp.component = HsnSacComponent;
         return this.dynamicComp.component;
+        break;
+      case 'tdstypes':
+        this.dynamicComp.component = TDSComponent;
+        return this.dynamicComp.component;
         break; 
+        case 'incometypes':
+        this.dynamicComp.component = IncomeTypeComponent;
+        return this.dynamicComp.component;
+        break; 
+        case 'tdsrates':
+          this.dynamicComp.component = TdsRatesComponent;
+          return this.dynamicComp.component;
+          break; 
+          case 'posting':
+          this.dynamicComp.component = PostingComponent;
+          return this.dynamicComp.component;
+          break; 
       default:
     }
   }

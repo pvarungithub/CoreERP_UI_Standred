@@ -231,6 +231,30 @@ registerTaxTransaction = `${this.environment.runtimeConfig.serverUrl}TaxTransact
 updateTaxTransaction = `${this.environment.runtimeConfig.serverUrl}TaxTransaction/UpdateTaxTransaction`;
 deleteTaxTransaction = `${this.environment.runtimeConfig.serverUrl}TaxTransaction/DeleteTaxTransaction`;
 
+//tdstypes
+getTDStypeList = `${this.environment.runtimeConfig.serverUrl}TDStype/GetTDStypeList`;
+registerTDStype = `${this.environment.runtimeConfig.serverUrl}TDStype/RegisterTDStype`;
+updateTDStype = `${this.environment.runtimeConfig.serverUrl}TDStype/UpdateTDStype`;
+deleteTDStype = `${this.environment.runtimeConfig.serverUrl}TDStype/DeleteTDStype`;
+
+//incometype
+getIncomeTypeList = `${this.environment.runtimeConfig.serverUrl}IncomeType/GetIncomeTypeList`;
+registerIncomeType = `${this.environment.runtimeConfig.serverUrl}IncomeType/RegisterIncomeType`;
+updateIncomeType = `${this.environment.runtimeConfig.serverUrl}IncomeType/UpdateIncomeType`;
+deleteIncomeType= `${this.environment.runtimeConfig.serverUrl}IncomeType/DeleteIncomeType`;
+
+//tdsrates
+getTDSRatesList = `${this.environment.runtimeConfig.serverUrl}TDSRates/GetTDSRatesList`;
+registerTDSRates = `${this.environment.runtimeConfig.serverUrl}TDSRates/RegisterTDSRates`;
+updateTDSRates = `${this.environment.runtimeConfig.serverUrl}TDSRates/UpdateTDSRates`;
+deleteTDSRates= `${this.environment.runtimeConfig.serverUrl}TDSRates/DeleteTDSRates`;
+
+//posting
+getPostingList = `${this.environment.runtimeConfig.serverUrl}Posting/GetPostingList`;
+registerPosting = `${this.environment.runtimeConfig.serverUrl}Posting/RegisterPosting`;
+updatePosting = `${this.environment.runtimeConfig.serverUrl}Posting/UpdatePosting`;
+deletePosting= `${this.environment.runtimeConfig.serverUrl}Posting/DeletePosting`;
+
 // ******************************** sales *********************************
    getInvoiceList = `${this.environment.runtimeConfig.serverUrl}sales/Billing/GetInvoiceList`;
    getCashPartyAccountList = `${this.environment.runtimeConfig.serverUrl}sales/Billing/GetCashPartyAccountList`;

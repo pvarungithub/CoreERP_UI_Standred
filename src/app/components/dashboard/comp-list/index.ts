@@ -34,4 +34,7 @@ export { TaxTransactionComponent } from './taxtransaction/taxtransaction.compone
 export { TaxIntegrationComponent } from './taxintegration/taxintegration.component';
 export { AssignmentoftaxaccountstotaxcodesComponent } from './assignmentoftaxaccountstotaxcodes/assignmentoftaxaccountstotaxcodes.component';
 export { HsnSacComponent } from './hsnsac/hsnsac.component';
-
+export { TDSComponent } from './tdstype/tdstype.component';
+export { IncomeTypeComponent } from './incometypes/incometypes.component';
+export { TdsRatesComponent } from './tdsrates/tdsrates.component';
+export { PostingComponent } from './posting/posting.component';
