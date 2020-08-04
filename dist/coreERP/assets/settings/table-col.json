@@ -154,34 +154,144 @@
     "description": "Name",
     "plant": "Plant"
   },
+  "salesdepartment": {
+    "title": "SalesDepartment",
+    "departmentCode": "Code",
+    "name": "Name",
+    "city": "City",
+    "state": "State",
+    "region": "Region",
+    "country": "Country",
+    "currency": "Currency",
+    "language": "Language",
+    "address1": "Address1",
+    "address2": "Address2",
+    "pin": "PIN",
+    "phone": "phone",
+    "mobile": "Mobile",
+    "email": "Email",
+    "panno": "Panno",
+    "gstno": "Gstno",
+    "tanno": "Tanno",   
+    "responsiblePerson": "ResponsiblePerson"
+  },
+  "salesoffice": {
+    "title": "SalesOffice",
+    "code": "Code",
+    "name": "Name",
+    "city": "City",
+    "state": "State",
+    "region": "Region",
+    "country": "Country",
+    "address1": "Address",
+    "address2": "Address2",
+    "mobile": "Mobile",
+    "email": "Email",
+    "phone": "Phone",
+    "currency": "Currency",
+    "language": "Language",
+    "responsiblePerson": "ResponsiblePerson"
+  },
+  "salesgroup": {
+    "title": "SalesGroup",
+    "code": "Code",
+    "name": "Name"
+  },
+  "distributionchannel": {
+    "title": "DistributionChannel",
+    "code": "Code",
+    "name": "Name"
+  },
+  "purchasedepartment": {
+    "title": "PurchaseDepartment",
+    "code": "Code",
+    "description": "Name"
+  },  
+  "storagelocation": {
+    "title": "StorageLocation",
+    "code": "Code",
+    "name": "Name",
+    "plant": "Plant"
+  },
+  "maintenancearea": {
+    "title": "MaintenanceArea",
+    "code": "Code",
+    "name": "Name",
+    "plant": "Plant"
+  },
+  "ledger": {
+    "title": " Ledger",
+    "code": "code",
+    "description": "Description",
+    "ledgerType": "LedgerType"
+  },
+  "openledger": {
+    "title": "Open Ledger",
+    "ledgerKey": "LedgerKey",
+    "financialYearStartFrom": "FinancialYearStartFrom",
+    "financialYearEndTo": "FinancialYearEndTo",
+    "accountingYear": "AccountingYear"
+  },  
   "vouchertype": {
     "title": "Voucher Type",
-    "voucherTypeId": "voucherTypeId",
-    "voucherTypeName": "voucherTypeName",
-    "printText": "printText",
-    "voucherClass": "voucherClass"
+    "voucherTypeId": "VoucherTypeID",
+    "voucherTypeName": "VoucherTypeName",
+    "printText": "PrintText",
+    "voucherClass": "VoucherClass"
   },
 "voucherclass": {
     "title": "VocherClass",
     "voucherKey": "Code",
     "description": "Description",
-    "voucherNature":"voucherNature"
+    "voucherNature":"VoucherNature"
   },
   "voucherseries": {
     "title": "Voucher Series",
     "voucherSeriesKey": "VoucherSeriesKey",
-    "branch": "Branch",
-    "company": "Company",
     "fromInterval": "FromInterval",
     "toInterval": "ToInterval",
-    "suffix": "suffix",
-    "plant": "Plant"
+    "branch": "Branch",
+    "company": "Company",
+    "plant": "Plant",   
+    "suffix": "Suffix",
+    "prefix":"Prefix"
   },
   "assignmentofvoucherseriestovouchertype": {
     "title": "AssignmentVoucherSeriestoVoucherType",
-    "code": "code",
-    "voucherType": "voucherType",
-    "voucherSeries": "voucherSeries"
+    "code": "Code",
+    "voucherType": "VoucherType",
+    "voucherSeries": "VoucherSeries"
+  },
+  "taxrates": {
+    "title": "Tax Rates",
+    "taxRateCode": "Code",
+    "description": "Description",
+    "taxType": "TaxType",
+    "taxTransaction": "TaxTransaction",
+    "taxCondition": "TaxCondition",
+    "sgst": "Sgst",
+    "cgst": "Cgst",
+    "igst": "Igst",
+    "ugst": "Ugst"
+  },
+  "taxtransactions": {
+    "title": "Tax Transaction",
+    "code": "Code",
+    "description": "Description"
+  },
+  "assignmentoftaxaccountstotaxcodes": {
+    "title": "Assignment of Taxaccounts to Taxcodes",
+    "code": "Code",
+    "description": "Description",
+    "sgstgl": "sgstgl",
+    "cgstgl": "cgstgl",
+    "igstgl": "igstgl",
+    "ugstgl": "ugstgl"
+  },
+  "taxtypes": {
+    "title": "Tax Types",
+    "taxKey": "Code",
+    "description": "Description"
   },
  "hsnsac": {
     "title": "Hsn Sac",
@@ -224,74 +334,8 @@
     "companyCode": "CompanyCode",
     "companyDesc": "CompanyDesc",
     "companyGroupCode": "CompanyGroupCode"
-  }, 
-    "salesdepartment": {
-    "title": "SalesDepartment",
-    "departmentCode": "Code",
-    "name": "Name",
-    "city": "City",
-    "state": "State",
-    "region": "Region",
-    "country": "Country",
-    "address1": "Address1",
-    "address2": "Address2",
-    "pin": "PIN",
-    "phone": "phone",
-    "mobile": "Mobile",
-    "email": "Email",
-    "panno": "Panno",
-    "gstno": "Gstno",
-    "tanno": "Tanno",
-    "ext": "Ext",
-    "currency": "Currency",
-    "language": "Language",
-    "responsiblePerson": "ResponsiblePerson"
-  },
-  "salesoffice": {
-    "title": "SalesOffice",
-    "code": "Code",
-    "name": "Name",
-    "city": "City",
-    "state": "State",
-    "region": "Region",
-    "country": "Country",
-    "address1": "Address",
-    "address2": "Address2",
-    "mobile": "Mobile",
-    "email": "Email",
-    "phone": "Phone",
-    "currency": "Currency",
-    "language": "Language",
-    "responsiblePerson": "ResponsiblePerson"
-  },
-  "salesgroup": {
-    "title": "SalesGroup",
-    "code": "Code",
-    "name": "Name"
-  },
-  "distributionchannel": {
-    "title": "DistributionChannel",
-    "code": "Code",
-    "name": "Name"
-  },
-  "purchasedepartment": {
-    "title": "PurchaseDepartment",
-    "code": "Code",
-    "description": "Name"
-  },
+  },    
   
-  "storagelocation": {
-    "title": "StorageLocation",
-    "code": "Code",
-    "name": "Name",
-    "plant": "Plant"
-  },
-  "maintenancearea": {
-    "title": "MaintenanceArea",
-    "code": "Code",
-    "name": "Name",
-    "plant": "Plant"
-  },
   "erpuser": {
     "title": "ErpUser",
     "userName": "userName",
@@ -972,49 +1016,6 @@
     "consumption": "Consumption",
     "variation": "Variation",
     "invoiceSales": "Saled Units"
-  },
-  "ledger": {
-    "title": " Ledger",
-    "code": "code",
-    "description": "Description",
-    "ledgerType": "LedgerType"
-  },
-  "openledger": {
-    "title": "Open Ledger",
-    "ledgerKey": "LedgerKey",
-    "financialYearStartFrom": "FinancialYearStartFrom",
-    "financialYearEndTo": "FinancialYearEndTo",
-    "accountingYear": "AccountingYear"
-  },  
-  "taxrates": {
-    "title": "Tax Rates",
-    "taxRateCode": "Code",
-    "description": "Description",
-    "taxType": "TaxType",
-    "taxTransaction": "TaxTransaction",
-    "taxCondition": "TaxCondition",
-    "sgst": "Sgst",
-    "cgst": "Cgst",
-    "igst": "Igst",
-    "ugst": "Ugst"
-  },
-  "taxtransactions": {
-    "title": "Tax Transaction",
-    "code": "Code",
-    "description": "Description"
-  },
-  "assignmentoftaxaccountstotaxcodes": {
-    "title": "Tax Types",
-    "code": "Code",
-    "description": "Description",
-    "sgstgl": "sgstgl",
-    "cgstgl": "cgstgl",
-    "igstgl": "igstgl",
-    "ugstgl": "1ugstgl"
-  },
-  "taxtypes": {
-    "title": "Tax Types",
-    "taxKey": "Code",
-    "description": "Description"
-  }
+  } 
+  
 }

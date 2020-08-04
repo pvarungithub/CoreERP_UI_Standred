@@ -16,7 +16,6 @@
                <div *ngIf="formControls.voucherTypeId.errors.required">Voucher Type is required </div>
              </mat-error>
            </mat-form-field>
-
            <mat-form-field class="form-element" [ngClass]="{ 'ng--valid': formControls.voucherTypeName.valid }">
              <input matInput placeholder="{{'vouchertype.voucherTypeName' | translate }}"
               formControlName="voucherTypeName"   maxlength="40" appFocusOnEnter tabIndex="2">
@@ -24,7 +23,6 @@
                <div *ngIf="formControls.voucherTypeName.errors.required">Voucher Type is required </div>
              </mat-error>
            </mat-form-field>
-
            <mat-form-field>
              <mat-label>{{'vouchertype.voucherClass' | translate }}</mat-label>
              <mat-select formControlName="voucherClass" appFocusOnEnter tabIndex="3">
@@ -33,24 +31,19 @@
                </mat-option>
              </mat-select>
            </mat-form-field>
-
            <mat-form-field class="form-element">
              <input matInput placeholder="{{'vouchertype.printText' | translate }}" formControlName="printText"
              maxlength="40"  appFocusOnEnter tabIndex="4">
            </mat-form-field>
          </div>
       <mat-divider></mat-divider>
-
-
-
       </form>
-
     </mat-card-content>
     <div  class="form-element p-2 d-flex justify-content-end">
-      <button mat-raised-button class="button-color-red text-white mr-1"  (click)="cancel()">        
+      <button mat-raised-button class="button-color-red text-white mr-1"  (click)="cancel()"appFocusOnEnter tabIndex="5">        
         {{ 'COMMON.CANCEL' | translate }}
       </button>
-          <button mat-raised-button  type="submit" class="button-color-bule text-white ml-1"  (click)="save()" appFocusOnEnter tabIndex="5">
+          <button mat-raised-button  type="submit" class="button-color-bule text-white ml-1"  (click)="save()" appFocusOnEnter tabIndex="6">
             {{ 'COMMON.SAVE' | translate }}
            </button>
     </div>

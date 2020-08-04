@@ -1,16 +1,12 @@
 import { Component, Inject, Optional, OnInit } from '@angular/core';
 import { String } from 'typescript-string-operations';
 import { ApiService } from '../../../../services/api.service';
-
-import { AlertService } from '../../../../services/alert.service';
-
 import { MatDialogRef, MAT_DIALOG_DATA } from '@angular/material/dialog';
 import { isNullOrUndefined } from 'util';
 import { FormBuilder, FormGroup, Validators } from '@angular/forms';
 import { NgxSpinnerService } from 'ngx-spinner';
 import { ApiConfigService } from '../../../../services/api-config.service';
 import { StatusCodes } from '../../../../enums/common/common';
-import { CommonService } from '../../../../services/common.service';
 
 @Component({
   selector: 'app-salesoffice',
@@ -34,10 +30,8 @@ export class SalesofficeComponent implements OnInit {
     private apiService: ApiService,
     private apiConfigService: ApiConfigService,
     private spinner: NgxSpinnerService,
-    private alertService: AlertService,
     private formBuilder: FormBuilder,
     public dialogRef: MatDialogRef<SalesofficeComponent>,
-    private commonService: CommonService,
     // @Optional() is used to prevent error if no data is passed
     @Optional() @Inject(MAT_DIALOG_DATA) public data: any) {
 
@@ -63,20 +57,16 @@ export class SalesofficeComponent implements OnInit {
       this.modelFormData.patchValue(this.formData.item);
       this.modelFormData.controls['code'].disable();
     }
-
   }
 
   ngOnInit() {
-    //this.getTableData();
     this.getstateList();
     this.getLanguageList();
     this.getregionsList();
     this.getcountrysList();
     this.getcurrencyList();
     this.getEmployeesList();
-  }
-
-  
+  }  
 
   getLanguageList() {
     const getlanguageList = String.Join('/', this.apiConfigService.getlanguageList);
@@ -171,7 +161,6 @@ export class SalesofficeComponent implements OnInit {
 
   get formControls() { return this.modelFormData.controls; }
 
-
   save() {
     if (this.modelFormData.invalid) {
       return;
@@ -184,6 +173,4 @@ export class SalesofficeComponent implements OnInit {
   cancel() {
     this.dialogRef.close();
   }
-
 }
-

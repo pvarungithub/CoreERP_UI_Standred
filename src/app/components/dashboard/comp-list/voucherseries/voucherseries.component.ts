@@ -1,5 +1,4 @@
 import { Component, Inject, Optional, OnInit } from '@angular/core';
-import { AlertService } from '../../../../services/alert.service';
 import { MatDialogRef, MAT_DIALOG_DATA } from '@angular/material/dialog';
 import { isNullOrUndefined } from 'util';
 import { FormBuilder, FormGroup, Validators } from '@angular/forms';
@@ -8,7 +7,7 @@ import { NgxSpinnerService } from 'ngx-spinner';
 import { ApiConfigService } from '../../../../services/api-config.service';
 import { ApiService } from '../../../../services/api.service';
 import { String } from 'typescript-string-operations';
-import { CommonService } from '../../../../services/common.service';
+
 @Component({
   selector: 'voucherseries',
   templateUrl: './voucherseries.component.html',
@@ -23,16 +22,14 @@ export class VoucherSeriesComponents implements OnInit {
   voucherClass: any;
   compList: any;
   branchList: any;
-    plantList: any;
+  plantList: any;
 
   constructor(
-    private alertService: AlertService,
     private formBuilder: FormBuilder,
     public dialogRef: MatDialogRef<VoucherSeriesComponents>,
     private spinner: NgxSpinnerService,
     private apiConfigService: ApiConfigService,
     private apiService: ApiService,
-    private commonService: CommonService,
     // @Optional() is used to prevent error if no data is passed
     @Optional() @Inject(MAT_DIALOG_DATA) public data: any) {
 
@@ -40,23 +37,19 @@ export class VoucherSeriesComponents implements OnInit {
       voucherSeriesKey: [null, [Validators.required, Validators.minLength(1), Validators.maxLength(50)]],
       branch: [null],
       company: [null],
-      ext: [null],
-      ext1: [null],
       suffix: [null],
       prefix:[null],
       fromInterval: [null],
       toInterval: [null],
       plant: [null],
-      year: [null]
+      year:[null]
     });
-
 
     this.formData = { ...data };
     if (!isNullOrUndefined(this.formData.item)) {
       this.modelFormData.patchValue(this.formData.item);
       this.modelFormData.controls['voucherSeriesKey'].disable();
     }
-
   }
 
   ngOnInit() {
@@ -116,10 +109,7 @@ export class VoucherSeriesComponents implements OnInit {
         });
   }
 
-
-
   get formControls() { return this.modelFormData.controls; }
-
 
   save() {
     if (this.modelFormData.invalid) {

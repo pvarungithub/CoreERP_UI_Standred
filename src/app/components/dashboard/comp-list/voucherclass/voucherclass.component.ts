@@ -1,14 +1,7 @@
 import { Component, Inject, Optional, OnInit } from '@angular/core';
-import { AlertService } from '../../../../services/alert.service';
 import { MatDialogRef, MAT_DIALOG_DATA } from '@angular/material/dialog';
 import { isNullOrUndefined } from 'util';
 import { FormBuilder, FormGroup, Validators } from '@angular/forms';
-import { StatusCodes } from '../../../../enums/common/common';
-import { NgxSpinnerService } from 'ngx-spinner';
-import { ApiConfigService } from '../../../../services/api-config.service';
-import { ApiService } from '../../../../services/api.service';
-import { String } from 'typescript-string-operations';
-import { CommonService } from '../../../../services/common.service';
 
 interface voucherNature {
   value: string;
@@ -24,29 +17,21 @@ interface voucherNature {
 export class VoucherClassComponent implements OnInit {
 
   modelFormData: FormGroup;
-  isSubmitted = false;
   formData: any;
   voucherClass: any;
-  compList: any;
-  branchList: any;
 
   voucherNatures: voucherNature[] =
   [
-    { value: 'Invoice', viewValue: 'Invoice' },
-    { value: 'memo', viewValue: 'memo' },
-    { value: 'general', viewValue: 'general' },
-    { value: 'payments', viewValue: 'payments' },
-    { value: 'recipts', viewValue: 'recipts' },
-    { value: 'general memo', viewValue: 'general memo' }
+    { value: '1', viewValue: 'Invoice' },
+    { value: '2', viewValue: 'Memo' },
+    { value: '3', viewValue: 'General' },
+    { value: '4', viewValue: 'Payments' },
+    { value: '5', viewValue: 'Receipts' },
+    { value: '6', viewValue: 'General Memo' }
   ];
   constructor(
-    private alertService: AlertService,
     private formBuilder: FormBuilder,
     public dialogRef: MatDialogRef<VoucherClassComponent>,
-    private spinner: NgxSpinnerService,
-    private apiConfigService: ApiConfigService,
-    private apiService: ApiService,
-    private commonService: CommonService,
     // @Optional() is used to prevent error if no data is passed
     @Optional() @Inject(MAT_DIALOG_DATA) public data: any) {
 
@@ -56,7 +41,6 @@ export class VoucherClassComponent implements OnInit {
       voucherNature:[null]
     });
 
-
     this.formData = { ...data };
     if (!isNullOrUndefined(this.formData.item)) {
       this.modelFormData.patchValue(this.formData.item);
@@ -65,16 +49,12 @@ export class VoucherClassComponent implements OnInit {
 
   }
 
-  ngOnInit() {
-   
+  ngOnInit() {   
   }
-
 
   get formControls() { return this.modelFormData.controls; }
 
-
   save() {
-    //debugger;
     if (this.modelFormData.invalid) {
       return;
     }

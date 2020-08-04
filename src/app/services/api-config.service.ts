@@ -119,7 +119,119 @@ registerLocation = `${this.environment.runtimeConfig.serverUrl}masters/Location/
 updateLocation = `${this.environment.runtimeConfig.serverUrl}masters/Location/UpdateLocation`;
 deleteLocation = `${this.environment.runtimeConfig.serverUrl}masters/Location/DeleteLocation`;
 
-   // ******************************** sales *********************************
+//SalesDepartment
+getsalesdepartmentList = `${this.environment.runtimeConfig.serverUrl}masters/SalesDepartment/GetSalesDepartment`;
+registerSalesDepartment = `${this.environment.runtimeConfig.serverUrl}masters/SalesDepartment/RegisterSalesDepartment`;
+updateSalesDepartment = `${this.environment.runtimeConfig.serverUrl}masters/SalesDepartment/UpdateSalesDepartment`;
+deleteSalesDepartment = `${this.environment.runtimeConfig.serverUrl}masters/SalesDepartment/DeleteSalesDepartment`;
+
+//salesgroup
+getsalesgroupList = `${this.environment.runtimeConfig.serverUrl}masters/SalesGroup/GetSalesGroupList`;
+registerSalesGroup = `${this.environment.runtimeConfig.serverUrl}masters/SalesGroup/RegisterSalesGroup`;
+updateSalesGroup = `${this.environment.runtimeConfig.serverUrl}masters/SalesGroup/UpdateSalesGroup`;
+deleteSalesGroup = `${this.environment.runtimeConfig.serverUrl}masters/SalesGroup/DeleteSalesGroup`;
+
+//salesoffice
+getsalesOfficeList = `${this.environment.runtimeConfig.serverUrl}masters/SalesOffice/GetSalesOfficeList`;
+registerSalesOffice = `${this.environment.runtimeConfig.serverUrl}masters/SalesOffice/RegisterSalesOffice`;
+updateSalesOffice = `${this.environment.runtimeConfig.serverUrl}masters/SalesOffice/UpdateSalesOffice`;
+deleteSalesOffice = `${this.environment.runtimeConfig.serverUrl}masters/SalesOffice/DeleteSalesOffice`;
+
+//distributionchannel
+getdistributionchannelList = `${this.environment.runtimeConfig.serverUrl}masters/DistributionChannel/GetDistributionChannelList`;
+registerDistributionChannel = `${this.environment.runtimeConfig.serverUrl}masters/DistributionChannel/RegisterDistributionChannel`;
+updateDistributionChannel = `${this.environment.runtimeConfig.serverUrl}masters/DistributionChannel/UpdateDistributionChannel`;
+deleteDistributionChannel = `${this.environment.runtimeConfig.serverUrl}masters/DistributionChannel/DeleteDistributionChannel`;
+
+///MaintenanceArea
+getmaintenanceareaList = `${this.environment.runtimeConfig.serverUrl}masters/MaintenanceArea/GetMaintenanceArea`;
+registerMaintenanceArea = `${this.environment.runtimeConfig.serverUrl}masters/MaintenanceArea/RegisterMaintenanceArea`;
+updateMaintenanceArea = `${this.environment.runtimeConfig.serverUrl}masters/MaintenanceArea/UpdateMaintenanceArea`;
+deleteMaintenanceArea = `${this.environment.runtimeConfig.serverUrl}masters/MaintenanceArea/DeleteMaintenanceArea`;
+
+//Purchasedepartment
+getpurchasedeptList = `${this.environment.runtimeConfig.serverUrl}masters/PurchaseDepartment/GetPurchaseDepartment`;
+registerPurchaseDepartment = `${this.environment.runtimeConfig.serverUrl}masters/PurchaseDepartment/RegisterPurchaseDepartment`;
+updatePurchaseDepartment = `${this.environment.runtimeConfig.serverUrl}masters/PurchaseDepartment/UpdatePurchaseDepartment`;
+deletePurchaseDepartment = `${this.environment.runtimeConfig.serverUrl}masters/PurchaseDepartment/DeletePurchaseDepartment`;
+
+///StorageLocation
+getstoragelocationList = `${this.environment.runtimeConfig.serverUrl}masters/StorageLocation/GetStorageLocation`;
+registerStorageLocation = `${this.environment.runtimeConfig.serverUrl}masters/StorageLocation/RegisterStorageLocation`;
+updateStorageLocation = `${this.environment.runtimeConfig.serverUrl}masters/StorageLocation/UpdateStorageLocation`;
+deleteStorageLocation = `${this.environment.runtimeConfig.serverUrl}masters/StorageLocation/DeleteStorageLocation`;   
+///************************ GL ************************** */
+//Ledger
+getLedgerList = `${this.environment.runtimeConfig.serverUrl}Ledger/GetLedgerList`;
+registerLedger = `${this.environment.runtimeConfig.serverUrl}Ledger/RegisterLedger`;
+updateLedger = `${this.environment.runtimeConfig.serverUrl}Ledger/UpdateLedger`;
+deleteLedger = `${this.environment.runtimeConfig.serverUrl}Ledger/DeletLedger`;
+
+//open Ledger
+getOpenLedgerList = `${this.environment.runtimeConfig.serverUrl}gl/OpenLedger/GetOpenLedgerList`;
+registerOpenLedger = `${this.environment.runtimeConfig.serverUrl}gl/OpenLedger/RegisterOpenLedger`;
+updateOpenLedger = `${this.environment.runtimeConfig.serverUrl}gl/OpenLedger/UpdateOpenLedgerList`;
+deleteOpenLedger = `${this.environment.runtimeConfig.serverUrl}gl/OpenLedger/DeleteOpenLedgerList`;
+
+//vocherclass
+getvocherclassList = `${this.environment.runtimeConfig.serverUrl}VoucherClass/GetVoucherClassList`;
+registerVoucherClass = `${this.environment.runtimeConfig.serverUrl}gl/VoucherClass /RegisterVoucherClass`;
+updateVoucherClass = `${this.environment.runtimeConfig.serverUrl}gl/VoucherClass /UpdateVoucherClass`;
+deleteVoucherClass = `${this.environment.runtimeConfig.serverUrl}gl/VoucherClass /DeleteVoucherClass`;
+
+//vocherseries
+getvocherseriesList = `${this.environment.runtimeConfig.serverUrl}VoucherSeries/GetVoucherSeriesList`;
+registerVoucherSeries = `${this.environment.runtimeConfig.serverUrl}VoucherSeries/RegisterVoucherSeries`; 
+updateVoucherSeries = `${this.environment.runtimeConfig.serverUrl}VoucherSeries/UpdateVoucherSeries`; 
+deleteVoucherSeries = `${this.environment.runtimeConfig.serverUrl}VoucherSeries/DeleteVoucherSeries`; 
+
+//getassignmentvoucherseriestovouchertypeList
+getassignmentvoucherseriestovouchertypeList = `${this.environment.runtimeConfig.serverUrl}gl/AssignmentVoucherSeriestoVoucherType/GetAssignmentVoucherSeriestoVoucherTypeList`;
+registerAssignmentVoucherSeriestoVoucherType = `${this.environment.runtimeConfig.serverUrl}gl/AssignmentVoucherSeriestoVoucherType/RegisterAssignmentVoucherSeriestoVoucherType`;
+updateAssignmentVoucherSeriestoVoucherType = `${this.environment.runtimeConfig.serverUrl}gl/AssignmentVoucherSeriestoVoucherType/UpdateAssignmentVoucherSeriestoVoucherType`;
+deleteAssignmentVoucherSeriestoVoucherType = `${this.environment.runtimeConfig.serverUrl}gl/AssignmentVoucherSeriestoVoucherType/DeleteAssignmentVoucherSeriestoVoucherType`;
+
+// Voucher Types //
+getVoucherTypeList = `${this.environment.runtimeConfig.serverUrl}VoucherType/GetVoucherTypeList`;
+registerVoucherTypes = `${this.environment.runtimeConfig.serverUrl}VoucherType/RegisterVoucherTypes`;
+updateVoucherTypes = `${this.environment.runtimeConfig.serverUrl}VoucherType/UpdateVoucherTypes`;
+deleteVoucherTypes = `${this.environment.runtimeConfig.serverUrl}VoucherType/DeleteVoucherTypes`;
+getVoucherClassList = `${this.environment.runtimeConfig.serverUrl}VoucherType/GetVoucherClassList`;
+getCompaniesList = `${this.environment.runtimeConfig.serverUrl}VoucherType/GetCompaniesList`;
+getVoucherBranchesList = `${this.environment.runtimeConfig.serverUrl}VoucherType/GetBranchesList`;
+
+////***************TAX***************** */
+//taxacctotaxcode
+getAssignTaxacctoTaxcodeList = `${this.environment.runtimeConfig.serverUrl}AssignTaxacctoTaxcode/GetAssignTaxacctoTaxcodeList`;
+registerAssignTaxacctoTaxcode = `${this.environment.runtimeConfig.serverUrl}AssignTaxacctoTaxcode/RegisterAssignTaxacctoTaxcode`;
+updateAssignTaxacctoTaxcode = `${this.environment.runtimeConfig.serverUrl}AssignTaxacctoTaxcode/UpdateAssignTaxacctoTaxcode`;
+deleteAssignTaxacctoTaxcode = `${this.environment.runtimeConfig.serverUrl}AssignTaxacctoTaxcode/DeletAssignTaxacctoTaxcode`;
+
+ // HSNSAC
+getHsnSacList = `${this.environment.runtimeConfig.serverUrl}HsnSac/GetHsnSacList`;
+registerHsnSac = `${this.environment.runtimeConfig.serverUrl}HsnSac/RegisterHsnSac`;
+updateHsnSac = `${this.environment.runtimeConfig.serverUrl}HsnSac/UpdateHsnSac`;
+deleteHsnSac = `${this.environment.runtimeConfig.serverUrl}HsnSac/DeleteHsnSac`;
+
+// Tax Types //
+getTaxTypesList = `${this.environment.runtimeConfig.serverUrl}TaxTypes/GetTaxTypesList`;
+registerTaxTypes = `${this.environment.runtimeConfig.serverUrl}TaxTypes/RegisterTaxTypes`;
+updateTaxTypes = `${this.environment.runtimeConfig.serverUrl}TaxTypes/UpdateTaxTypes`;
+deleteTaxTypes = `${this.environment.runtimeConfig.serverUrl}TaxTypes/DeleteTaxTypes`;
+
+//TaxRates
+gettaxratesList = `${this.environment.runtimeConfig.serverUrl}masters/TaxRates/GetTaxRatesList`;
+registerTaxRates = `${this.environment.runtimeConfig.serverUrl}masters/TaxRates/RegisterTaxRates`;
+updateTaxRates = `${this.environment.runtimeConfig.serverUrl}masters/TaxRates/UpdateTaxRates`;
+deleteTaxRates = `${this.environment.runtimeConfig.serverUrl}masters/TaxRates/DeleteTaxRates`;
+
+   // Tax transaction //
+getTaxTransactionList = `${this.environment.runtimeConfig.serverUrl}TaxTransaction/GetTaxTransactionList`;
+registerTaxTransaction = `${this.environment.runtimeConfig.serverUrl}TaxTransaction/RegisterTaxTransaction`;
+updateTaxTransaction = `${this.environment.runtimeConfig.serverUrl}TaxTransaction/UpdateTaxTransaction`;
+deleteTaxTransaction = `${this.environment.runtimeConfig.serverUrl}TaxTransaction/DeleteTaxTransaction`;
+
+// ******************************** sales *********************************
    getInvoiceList = `${this.environment.runtimeConfig.serverUrl}sales/Billing/GetInvoiceList`;
    getCashPartyAccountList = `${this.environment.runtimeConfig.serverUrl}sales/Billing/GetCashPartyAccountList`;
    getBillingBranchesList = `${this.environment.runtimeConfig.serverUrl}sales/Billing/GetBranchesList`;
@@ -293,23 +405,8 @@ deleteLocation = `${this.environment.runtimeConfig.serverUrl}masters/Location/De
 
 
    // ******************************** GeneralLedger *********************************
-//Ledger
-getLedgerList = `${this.environment.runtimeConfig.serverUrl}gl/Ledger/GetLedgerList`;
-registerLedger = `${this.environment.runtimeConfig.serverUrl}gl/Ledger/RegisterLedger`;
-updateLedger = `${this.environment.runtimeConfig.serverUrl}gl/Ledger/UpdateLedger`;
-deleteLedger = `${this.environment.runtimeConfig.serverUrl}gl/Ledger/DeletLedger`;
 
-//open Ledger
-getOpenLedgerList = `${this.environment.runtimeConfig.serverUrl}gl/OpenLedger/GetOpenLedgerList`;
-registerOpenLedger = `${this.environment.runtimeConfig.serverUrl}gl/OpenLedger/RegisterOpenLedger`;
-updateOpenLedger = `${this.environment.runtimeConfig.serverUrl}gl/OpenLedger/UpdateOpenLedgerList`;
-deleteOpenLedger = `${this.environment.runtimeConfig.serverUrl}gl/OpenLedger/DeleteOpenLedgerList`;
 
- //vocherclass
- getvocherclassList = `${this.environment.runtimeConfig.serverUrl}VoucherClass/GetVoucherClassList`;
- registerVoucherClass = `${this.environment.runtimeConfig.serverUrl}gl/VoucherClass /RegisterVoucherClass`;
- updateVoucherClass = `${this.environment.runtimeConfig.serverUrl}gl/VoucherClass /UpdateVoucherClass`;
- deleteVoucherClass = `${this.environment.runtimeConfig.serverUrl}gl/VoucherClass /DeleteVoucherClass`;
  
    // AccountsGroup //
    getAccountsGroupList = `${this.environment.runtimeConfig.serverUrl}gl/AccGroup/GetAccountGroupList`;
@@ -378,19 +475,8 @@ deleteOpenLedger = `${this.environment.runtimeConfig.serverUrl}gl/OpenLedger/Del
   getMatTranTypes = `${this.environment.runtimeConfig.serverUrl}gl/AsignmentAcctoAccClass/GetMatTranTypes`;
   getSalesGlAccounts = `${this.environment.runtimeConfig.serverUrl}gl/AsignmentAcctoAccClass/GetSalesGlAccounts`;
   getPurchaseGlAccounts = `${this.environment.runtimeConfig.serverUrl}gl/AsignmentAcctoAccClass/GetPurchaseGlAccounts`;
-  getInventoryGlAccounts = `${this.environment.runtimeConfig.serverUrl}gl/AsignmentAcctoAccClass/GetInventoryGlAccounts`;
-   
+  getInventoryGlAccounts = `${this.environment.runtimeConfig.serverUrl}gl/AsignmentAcctoAccClass/GetInventoryGlAccounts`;   
 
-   // Voucher Types //
-   //getVoucherTypeList='http://localhost:51414/api/VoucherType/GetVoucherTypeList';
-   getVoucherTypeList = `${this.environment.runtimeConfig.serverUrl}VoucherType/GetVoucherTypeList`;
-   registerVoucherTypes = `${this.environment.runtimeConfig.serverUrl}VoucherType/RegisterVoucherTypes`;
-   updateVoucherTypes = `${this.environment.runtimeConfig.serverUrl}VoucherType/UpdateVoucherTypes`;
-   deleteVoucherTypes = `${this.environment.runtimeConfig.serverUrl}VoucherType/DeleteVoucherTypes`;
-  getVoucherClassList = `${this.environment.runtimeConfig.serverUrl}VoucherType/GetVoucherClassList`;
-
-   getCompaniesList = `${this.environment.runtimeConfig.serverUrl}VoucherType/GetCompaniesList`;
-   getVoucherBranchesList = `${this.environment.runtimeConfig.serverUrl}VoucherType/GetBranchesList`;
 
    // ******************************** END GeneralLedger *********************************
 
@@ -447,55 +533,15 @@ deleteOpenLedger = `${this.environment.runtimeConfig.serverUrl}gl/OpenLedger/Del
   getdepartmentlist = `${this.environment.runtimeConfig.serverUrl}masters/Department/getdepartmentlist`;
   registerdepartment = `${this.environment.runtimeConfig.serverUrl}masters/Department/registerdepartment`;
   updatedepartment = `${this.environment.runtimeConfig.serverUrl}masters/Department/updatedepartment`;
-  deletedepartment = `${this.environment.runtimeConfig.serverUrl}masters/Department/deletedepartment`; 
+  deletedepartment = `${this.environment.runtimeConfig.serverUrl}masters/Department/deletedepartment`;   
 
- //SalesDepartment
- getsalesdepartmentList = `${this.environment.runtimeConfig.serverUrl}masters/SalesDepartment/GetSalesDepartment`;
- registerSalesDepartment = `${this.environment.runtimeConfig.serverUrl}masters/SalesDepartment/RegisterSalesDepartment`;
- updateSalesDepartment = `${this.environment.runtimeConfig.serverUrl}masters/SalesDepartment/UpdateSalesDepartment`;
- deleteSalesDepartment = `${this.environment.runtimeConfig.serverUrl}masters/SalesDepartment/DeleteSalesDepartment`;
-
- //salesgroup
- getsalesgroupList = `${this.environment.runtimeConfig.serverUrl}masters/SalesGroup/GetSalesGroupList`;
- registerSalesGroup = `${this.environment.runtimeConfig.serverUrl}masters/SalesGroup/RegisterSalesGroup`;
- updateSalesGroup = `${this.environment.runtimeConfig.serverUrl}masters/SalesGroup/UpdateSalesGroup`;
- deleteSalesGroup = `${this.environment.runtimeConfig.serverUrl}masters/SalesGroup/DeleteSalesGroup`;
-
-  ///MaintenanceArea
-  getmaintenanceareaList = `${this.environment.runtimeConfig.serverUrl}masters/MaintenanceArea/GetMaintenanceArea`;
-  registerMaintenanceArea = `${this.environment.runtimeConfig.serverUrl}masters/MaintenanceArea/RegisterMaintenanceArea`;
-  updateMaintenanceArea = `${this.environment.runtimeConfig.serverUrl}masters/MaintenanceArea/UpdateMaintenanceArea`;
-  deleteMaintenanceArea = `${this.environment.runtimeConfig.serverUrl}masters/MaintenanceArea/DeleteMaintenanceArea`;
   
-     //Purchasedepartment
-     getpurchasedeptList = `${this.environment.runtimeConfig.serverUrl}masters/PurchaseDepartment/GetPurchaseDepartment`;
-     registerPurchaseDepartment = `${this.environment.runtimeConfig.serverUrl}masters/PurchaseDepartment/RegisterPurchaseDepartment`;
-     updatePurchaseDepartment = `${this.environment.runtimeConfig.serverUrl}masters/PurchaseDepartment/UpdatePurchaseDepartment`;
-     deletePurchaseDepartment = `${this.environment.runtimeConfig.serverUrl}masters/PurchaseDepartment/DeletePurchaseDepartment`;
-
-    ///StorageLocation
-    getstoragelocationList = `${this.environment.runtimeConfig.serverUrl}masters/StorageLocation/GetStorageLocation`;
-    registerStorageLocation = `${this.environment.runtimeConfig.serverUrl}masters/StorageLocation/RegisterStorageLocation`;
-    updateStorageLocation = `${this.environment.runtimeConfig.serverUrl}masters/StorageLocation/UpdateStorageLocation`;
-    deleteStorageLocation = `${this.environment.runtimeConfig.serverUrl}masters/StorageLocation/DeleteStorageLocation`;    
-
-  //salesoffice
-  getsalesOfficeList = `${this.environment.runtimeConfig.serverUrl}masters/SalesOffice/GetSalesOfficeList`;
-  registerSalesOffice = `${this.environment.runtimeConfig.serverUrl}masters/SalesOffice/RegisterSalesOffice`;
-  updateSalesOffice = `${this.environment.runtimeConfig.serverUrl}masters/SalesOffice/UpdateSalesOffice`;
-  deleteSalesOffice = `${this.environment.runtimeConfig.serverUrl}masters/SalesOffice/DeleteSalesOffice`;
   //erpuser
   getrolelist = `${this.environment.runtimeConfig.serverUrl}masters/UserCreation/GetRoleList`;
   geterpuserList = `${this.environment.runtimeConfig.serverUrl}masters/UserCreation/GetUserCreation`;
   registerUserCreation = `${this.environment.runtimeConfig.serverUrl}masters/UserCreation/RegisterUserCreation`;
   updateUserCreation = `${this.environment.runtimeConfig.serverUrl}masters/UserCreation/UpdateUserCreation`;
-  deleteUserCreation = `${this.environment.runtimeConfig.serverUrl}masters/UserCreation/DeleteUserCreation`;
-
- //distributionchannel
-getdistributionchannelList = `${this.environment.runtimeConfig.serverUrl}masters/DistributionChannel/GetDistributionChannelList`;
-registerDistributionChannel = `${this.environment.runtimeConfig.serverUrl}masters/DistributionChannel/RegisterDistributionChannel`;
-updateDistributionChannel = `${this.environment.runtimeConfig.serverUrl}masters/DistributionChannel/UpdateDistributionChannel`;
-deleteDistributionChannel = `${this.environment.runtimeConfig.serverUrl}masters/DistributionChannel/DeleteDistributionChannel`;
+  deleteUserCreation = `${this.environment.runtimeConfig.serverUrl}masters/UserCreation/DeleteUserCreation`; 
   
   // --- designation
 
@@ -533,49 +579,7 @@ deleteDistributionChannel = `${this.environment.runtimeConfig.serverUrl}masters/
   registerPartnerType = `${this.environment.runtimeConfig.serverUrl}masters/PartnerType/RegisterPartnerType`;
   updatePartnerType = `${this.environment.runtimeConfig.serverUrl}masters/PartnerType/UpdatePartnerType`;
   deletePartnerType = `${this.environment.runtimeConfig.serverUrl}masters/PartnerType/DeletePartnerType`;
- //taxacctotaxcode
-getAssignTaxacctoTaxcodeList = `${this.environment.runtimeConfig.serverUrl}AssignTaxacctoTaxcode/GetAssignTaxacctoTaxcodeList`;
-registerAssignTaxacctoTaxcode = `${this.environment.runtimeConfig.serverUrl}AssignTaxacctoTaxcode/RegisterAssignTaxacctoTaxcode`;
-updateAssignTaxacctoTaxcode = `${this.environment.runtimeConfig.serverUrl}AssignTaxacctoTaxcode/UpdateAssignTaxacctoTaxcode`;
-deleteAssignTaxacctoTaxcode = `${this.environment.runtimeConfig.serverUrl}AssignTaxacctoTaxcode/DeletAssignTaxacctoTaxcode`;
-
- // HSNSAC
-   getHsnSacList = `${this.environment.runtimeConfig.serverUrl}HsnSac/GetHsnSacList`;
-   registerHsnSac = `${this.environment.runtimeConfig.serverUrl}HsnSac/RegisterHsnSac`;
-   updateHsnSac = `${this.environment.runtimeConfig.serverUrl}HsnSac/UpdateHsnSac`;
-   deleteHsnSac = `${this.environment.runtimeConfig.serverUrl}HsnSac/DeleteHsnSac`;
-
-  //vocherseries
- getvocherseriesList = `${this.environment.runtimeConfig.serverUrl}VoucherSeries/GetVoucherSeriesList`;
- registerVoucherSeries = `${this.environment.runtimeConfig.serverUrl}VoucherSeries/RegisterVoucherSeries`; 
- updateVoucherSeries = `${this.environment.runtimeConfig.serverUrl}VoucherSeries/UpdateVoucherSeries`; 
- deleteVoucherSeries = `${this.environment.runtimeConfig.serverUrl}VoucherSeries/DeleteVoucherSeries`; 
-
- //getassignmentvoucherseriestovouchertypeList
- getassignmentvoucherseriestovouchertypeList = `${this.environment.runtimeConfig.serverUrl}gl/AssignmentVoucherSeriestoVoucherType/GetAssignmentVoucherSeriestoVoucherTypeList`;
- registerAssignmentVoucherSeriestoVoucherType = `${this.environment.runtimeConfig.serverUrl}gl/AssignmentVoucherSeriestoVoucherType/RegisterAssignmentVoucherSeriestoVoucherType`;
- updateAssignmentVoucherSeriestoVoucherType = `${this.environment.runtimeConfig.serverUrl}gl/AssignmentVoucherSeriestoVoucherType/UpdateAssignmentVoucherSeriestoVoucherType`;
- deleteAssignmentVoucherSeriestoVoucherType = `${this.environment.runtimeConfig.serverUrl}gl/AssignmentVoucherSeriestoVoucherType/DeleteAssignmentVoucherSeriestoVoucherType`;
-
-    // Tax Types //
-    getTaxTypesList = `${this.environment.runtimeConfig.serverUrl}TaxTypes/GetTaxTypesList`;
-    registerTaxTypes = `${this.environment.runtimeConfig.serverUrl}TaxTypes/RegisterTaxTypes`;
-    updateTaxTypes = `${this.environment.runtimeConfig.serverUrl}TaxTypes/UpdateTaxTypes`;
-    deleteTaxTypes = `${this.environment.runtimeConfig.serverUrl}TaxTypes/DeleteTaxTypes`;
-   // getTaxCodesList = `${this.environment.runtimeConfig.serverUrl}gl/TaxIntegration/GetTaxCodesList`;
-    //getGLTaxAccountList = `${this.environment.runtimeConfig.serverUrl}gl/TaxIntegration/GetGLTaxAccountList`;
-
-   //TaxRates
-   gettaxratesList = `${this.environment.runtimeConfig.serverUrl}masters/TaxRates/GetTaxRatesList`;
-   registerTaxRates = `${this.environment.runtimeConfig.serverUrl}masters/TaxRates/RegisterTaxRates`;
-   updateTaxRates = `${this.environment.runtimeConfig.serverUrl}masters/TaxRates/UpdateTaxRates`;
-   deleteTaxRates = `${this.environment.runtimeConfig.serverUrl}masters/TaxRates/DeleteTaxRates`;
-
-      // Tax transaction //
-  getTaxTransactionList = `${this.environment.runtimeConfig.serverUrl}TaxTransaction/GetTaxTransactionList`;
-  registerTaxTransaction = `${this.environment.runtimeConfig.serverUrl}TaxTransaction/RegisterTaxTransaction`;
-  updateTaxTransaction = `${this.environment.runtimeConfig.serverUrl}TaxTransaction/UpdateTaxTransaction`;
-  deleteTaxTransaction = `${this.environment.runtimeConfig.serverUrl}TaxTransaction/DeleteTaxTransaction`;
+ 
 
    // --- NoSeries
   getNoSeriesList = `${this.environment.runtimeConfig.serverUrl}masters/NoSeries/GetNoSeriesList`;

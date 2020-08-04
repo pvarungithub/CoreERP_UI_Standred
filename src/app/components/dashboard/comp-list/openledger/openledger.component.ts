@@ -1,16 +1,12 @@
 import { Component, Inject, Optional, OnInit } from '@angular/core';
-import { String } from 'typescript-string-operations';
-import { ApiService } from '../../../../services/api.service';
-
-import { AlertService } from '../../../../services/alert.service';
 import { FormBuilder, FormGroup, Validators, FormControl } from '@angular/forms';
 import { MatDialogRef, MAT_DIALOG_DATA } from '@angular/material/dialog';
 import { isNullOrUndefined } from 'util';
+import { ApiService } from '../../../../services/api.service';
 import { NgxSpinnerService } from 'ngx-spinner';
 import { ApiConfigService } from '../../../../services/api-config.service';
-import { StatusCodes } from '../../../../enums/common/common';
-import { CommonService } from '../../../../services/common.service';
-
+import { StatusCodes } from 'src/app/enums/common/common';
+import { String } from 'typescript-string-operations';
 
 @Component({
   selector: 'app-openledger',
@@ -19,63 +15,66 @@ import { CommonService } from '../../../../services/common.service';
 })
 export class OpenLedgerComponent implements OnInit {
 
-
   modelFormData: FormGroup;
   isSubmitted = false;
   formData: any;
-  companyList: any;
-  branchesList: any;
+  ledgerList: any;
   
-  getEmployeeCodeList = [];
-
   constructor(
     private apiService: ApiService,
     private apiConfigService: ApiConfigService,
     private spinner: NgxSpinnerService,
-    private alertService: AlertService,
     private formBuilder: FormBuilder,
     public dialogRef: MatDialogRef<OpenLedgerComponent>,
-    private commonService: CommonService,
     // @Optional() is used to prevent error if no data is passed
     @Optional() @Inject(MAT_DIALOG_DATA) public data: any) {
 
     this.modelFormData = this.formBuilder.group({
-      id: ['0'],
       ledgerKey: [null, [Validators.required, Validators.minLength(1), Validators.maxLength(5)]],
+      id:['0'],
       financialYearEndTo: [null],
       accountingYear: [null],
-       financialYearStartFrom: [null]
+      financialYearStartFrom: [null]
     });
 
     this.formData = { ...data };
     if (!isNullOrUndefined(this.formData.item)) {
       this.modelFormData.patchValue(this.formData.item);
-      this.modelFormData.controls['ledgerKey'].disable();
     }
 
   }
 
   ngOnInit() {
+    this.getLedgerList();
   }
 
   get formControls() { return this.modelFormData.controls; }
-
 
   save() {
     if (this.modelFormData.invalid) {
       return;
     }
-    this.modelFormData.controls['ledgerKey'].enable();
     this.formData.item = this.modelFormData.value;
-    this.dialogRef.close(this.formData);
-   
+    this.dialogRef.close(this.formData);   
   }
 
   cancel() {
     this.dialogRef.close();
   }
-
   
-
+  getLedgerList() {
+    const getLedgerList = String.Join('/', this.apiConfigService.getLedgerList);
+    this.apiService.apiGetRequest(getLedgerList)
+      .subscribe(
+        response => {
+          const res = response.body;
+          if (!isNullOrUndefined(res) && res.status === StatusCodes.pass) {
+            if (!isNullOrUndefined(res.response)) {
+              console.log(res);
+              this.ledgerList = res.response['ledgerList'];
+            }
+          }
+          this.spinner.hide();
+        });
+  }
 }
-

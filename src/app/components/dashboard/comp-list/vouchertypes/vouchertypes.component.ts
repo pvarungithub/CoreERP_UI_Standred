@@ -1,5 +1,4 @@
 import { Component, Inject, Optional, OnInit } from '@angular/core';
-import { AlertService } from '../../../../services/alert.service';
 import { MatDialogRef, MAT_DIALOG_DATA } from '@angular/material/dialog';
 import { isNullOrUndefined } from 'util';
 import { FormBuilder, FormGroup, Validators } from '@angular/forms';
@@ -8,7 +7,7 @@ import { NgxSpinnerService } from 'ngx-spinner';
 import { ApiConfigService } from '../../../../services/api-config.service';
 import { ApiService } from '../../../../services/api.service';
 import { String } from 'typescript-string-operations';
-import { CommonService } from '../../../../services/common.service';
+
 @Component({
   selector: 'vouchertypes',
   templateUrl: './vouchertypes.component.html',
@@ -21,17 +20,13 @@ export class VoucherTypesComponent  implements OnInit {
   isSubmitted  =  false;
   formData: any;
   voucherClass:any;
-  compList:any;
-  branchList:any;
 
   constructor(
-    private alertService: AlertService,
     private formBuilder: FormBuilder,
     public dialogRef: MatDialogRef<VoucherTypesComponent>,
     private spinner: NgxSpinnerService,
     private apiConfigService: ApiConfigService,
     private apiService: ApiService,
-    private commonService:CommonService,
     // @Optional() is used to prevent error if no data is passed
     @Optional() @Inject(MAT_DIALOG_DATA) public data: any ) {
 
@@ -39,22 +34,19 @@ export class VoucherTypesComponent  implements OnInit {
       voucherTypeId: [null, [Validators.required, Validators.minLength(1), Validators.maxLength(50)]],
       voucherTypeName: [null, [Validators.required, Validators.minLength(2), Validators.maxLength(50)]],
       voucherClass: [null],
-      printText: [null]
-     
+      printText: [null]     
       });
-
 
       this.formData = {...data};
       if (!isNullOrUndefined(this.formData.item)) {
         this.modelFormData.patchValue(this.formData.item);
         this.modelFormData.controls['voucherTypeId'].disable();
       }
-
   }
 
   ngOnInit()
   {
-this.getVoucherClassList();
+  this.getVoucherClassList();
   }
 
   getVoucherClassList() {
@@ -72,12 +64,9 @@ this.getVoucherClassList();
         }
         this.spinner.hide();
       });
-  }
-
- 
+  } 
 
   get formControls() { return this.modelFormData.controls; }
-
 
   save()
   {
