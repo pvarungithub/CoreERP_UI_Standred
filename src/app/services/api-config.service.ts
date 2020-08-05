@@ -255,6 +255,22 @@ registerPosting = `${this.environment.runtimeConfig.serverUrl}Posting/RegisterPo
 updatePosting = `${this.environment.runtimeConfig.serverUrl}Posting/UpdatePosting`;
 deletePosting= `${this.environment.runtimeConfig.serverUrl}Posting/DeletePosting`;
 
+// AccountsGroup //
+getAccountsGroupList = `${this.environment.runtimeConfig.serverUrl}AccGroup/GetAccountGroupList`;
+registerGlaccGroup = `${this.environment.runtimeConfig.serverUrl}AccGroup/RegisterGlaccGroup`;
+updateAccountGroup = `${this.environment.runtimeConfig.serverUrl}AccGroup/UpdateAccountGroup`;
+deleteAccountGroup = `${this.environment.runtimeConfig.serverUrl}AccGroup/DeleteAccountGroup`;
+
+// UnderSubGroup //
+getGLUnderSubGroupList = `${this.environment.runtimeConfig.serverUrl}GLAccUnderSubGroup/GetTblAccountGroupList`;
+getAccountNamelist = `${this.environment.runtimeConfig.serverUrl}GLAccUnderSubGroup/GetAccountNamelist`;
+getGLUnderGroupList = `${this.environment.runtimeConfig.serverUrl}GLAccUnderSubGroup/GetAccountGrouplist`;
+registerGLUnderSubGroup = `${this.environment.runtimeConfig.serverUrl}GLAccUnderSubGroup/RegisterTblAccGroup`;
+updateGLAccUnderSubGroup = `${this.environment.runtimeConfig.serverUrl}GLAccUnderSubGroup/UpdateTblAccountGroup`;
+deleteGLAccUnderSubGroup = `${this.environment.runtimeConfig.serverUrl}GLAccUnderSubGroup/DeleteTblAccountGroup`;
+getglAccgrpList = `${this.environment.runtimeConfig.serverUrl}GLAccUnderSubGroup/GetGLAccountGrouplist`;
+getAccountSubGrouplist = `${this.environment.runtimeConfig.serverUrl}GLAccUnderSubGroup/GetAccountSubGrouplist`;
+
 // ******************************** sales *********************************
    getInvoiceList = `${this.environment.runtimeConfig.serverUrl}sales/Billing/GetInvoiceList`;
    getCashPartyAccountList = `${this.environment.runtimeConfig.serverUrl}sales/Billing/GetCashPartyAccountList`;
@@ -429,14 +445,7 @@ deletePosting= `${this.environment.runtimeConfig.serverUrl}Posting/DeletePosting
 
 
    // ******************************** GeneralLedger *********************************
-
-
  
-   // AccountsGroup //
-   getAccountsGroupList = `${this.environment.runtimeConfig.serverUrl}gl/AccGroup/GetAccountGroupList`;
-   registerGlaccGroup = `${this.environment.runtimeConfig.serverUrl}gl/AccGroup/RegisterGlaccGroup`;
-   updateAccountGroup = `${this.environment.runtimeConfig.serverUrl}gl/AccGroup/UpdateAccountGroup`;
-   deleteAccountGroup = `${this.environment.runtimeConfig.serverUrl}gl/AccGroup/DeleteAccountGroup`;
 
    // SubGroup //
    getGLAccountSubGroupList = `${this.environment.runtimeConfig.serverUrl}gl/GLAccSubGroup/GetGLAccountSubGroupList`;
@@ -444,16 +453,6 @@ deletePosting= `${this.environment.runtimeConfig.serverUrl}Posting/DeletePosting
    updateGLAccSubGroup = `${this.environment.runtimeConfig.serverUrl}gl/GLAccSubGroup/UpdateGLAccSubGroup`;
    deleteAccountSubGroup = `${this.environment.runtimeConfig.serverUrl}gl/GLAccSubGroup/DeleteAccountSubGroup`;
    getAccgrpList = `${this.environment.runtimeConfig.serverUrl}gl/GLAccSubGroup/GetGLAccountGroupList`;
-
-   // UnderSubGroup //
-   getGLUnderSubGroupList = `${this.environment.runtimeConfig.serverUrl}gl/GLAccUnderSubGroup/GetTblAccountGroupList`;
-   getAccountNamelist = `${this.environment.runtimeConfig.serverUrl}gl/GLAccUnderSubGroup/GetAccountNamelist`;
-   getGLUnderGroupList = `${this.environment.runtimeConfig.serverUrl}/gl/GLAccUnderSubGroup/GetAccountGrouplist`;
-   registerGLUnderSubGroup = `${this.environment.runtimeConfig.serverUrl}/gl/GLAccUnderSubGroup/RegisterTblAccGroup`;
-   updateGLAccUnderSubGroup = `${this.environment.runtimeConfig.serverUrl}gl/GLAccUnderSubGroup/UpdateTblAccountGroup`;
-   deleteGLAccUnderSubGroup = `${this.environment.runtimeConfig.serverUrl}gl/GLAccUnderSubGroup/DeleteTblAccountGroup`;
-   getglAccgrpList = `${this.environment.runtimeConfig.serverUrl}gl/GLAccUnderSubGroup/GetGLAccountGrouplist`;
-   getAccountSubGrouplist = `${this.environment.runtimeConfig.serverUrl}gl/GLAccUnderSubGroup/GetAccountSubGrouplist`;
 
    // GL Accounts //
    getTblAccountLedgerList = `${this.environment.runtimeConfig.serverUrl}gl/AccountLedger/GetTblAccountLedgerList`;

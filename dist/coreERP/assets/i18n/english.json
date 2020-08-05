@@ -361,14 +361,24 @@
     "glaccount": "glaccount",
     "date":  "Date"  
   },
-  "accountsgroup": {
+  "accountgroup": {
     "title": "Accounts Group",
     "groupCode": "Code",
-    "groupName": "Group Name",
-    "numberRange": "Number Range",
-    "active": "Active"
+    "groupName": "GroupName",
+    "numberRangeFrom": "NumberRangeFrom",
+    "numberRangeTo": "NumberRangeTo",
+    "groupType" :"GroupType"
   },
-  "subgroup": {
+  "glsubgroups": {
+    "title": "General Ledger",
+    "accountGroupId": "Account Group Id",
+    "accountGroupName": "Account Group Name",
+    "nature": "Group",
+    "groupUnder": "Under Account",
+    "narration": "Narration",
+    "Undersubaccount": "Under SubAccount"
+  },
+   "subgroup": {
     "title": "Account Subgroups",
     "subGroupCode": "Code",
     "accGroup": "Account Group",
@@ -376,16 +386,7 @@
     "active": "Active",
     "addDate": "Add Date"
   },
-  "undersubgroup": {
-    "title": "General Ledger",
-    "accountGroupId": "Account Group Id",
-    "accountGroupName": "Account Group Name",
-    "nature": "Nature",
-    "groupUnder": "Under Account",
-    "affectGrossProfit": "Affect Gross Profit",
-    "narration": "Narration",
-    "Undersubaccount": "Under SubAccount"
-  },
+ 
   "glaccounts": {
     "title": "Account Ledger",
     "ledgerCode": "Ledger Code",

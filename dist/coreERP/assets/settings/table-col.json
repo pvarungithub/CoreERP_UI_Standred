@@ -330,6 +330,22 @@
     "glaccount": "glaccount",
     "date":  "Date"  
   },
+  "accountgroup": {
+    "title": "Accounts Group",
+    "groupCode": "Code",
+    "groupName": "GroupName",
+    "numberRangeFrom": "NumberRangeFrom",
+    "numberRangeTo": "NumberRangeTo",
+    "groupType" :"GroupType"
+  },
+  "glsubgroups": {
+    "title": "General Ledger",
+    "accountGroupId": "Account Group Id",
+    "accountGroupName": "Account Group Name",
+    "nature": "Group",
+    "groupUnder": "Under Account",
+    "narration": "Narration"
+  },
   "designation": {
     "designationId": "DesignationId",
     "designationName": "DesignationName",
@@ -449,24 +465,7 @@
     "productCode": "Product Code",
     "productName": "Product Name",
     "rate": "Rate"
-  },
-  "accountsgroup": {
-    "title": "Accounts Group",
-    "groupCode": "Code",
-    "groupName": "Group Name",
-    "numberRange": "Number Range",
-    "active": "Active"
-  },
-  "undersubgroup": {
-    "title": "General Ledger",
-    "accountGroupId": "Account Group Id",
-    "accountGroupName": "Account Group Name",
-    "nature": "Nature",
-    "groupUnder": "Under Account",
-    "affectGrossProfit": "Affect Gross Profit",
-    "narration": "Narration",
-    "Undersubaccount": "Under SubAccount"
-  },
+  },    
   "cashacctobranches": {
     "title": "Assignment of Cash Accounts to Branches",
     "code": "Code",

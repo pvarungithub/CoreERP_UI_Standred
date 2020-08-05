@@ -1,8 +1,6 @@
 import { Injectable } from '@angular/core';
 import { ApiConfigService } from '../../../services/api-config.service';
-import {AccountsGroupComponent} from './accountsgroup/accountsgroup.component';
 import { SubGroupComponent } from './subgroup/subgroup.component';
-import {UndersubGroupComponent} from './undersubgroup/undersubgroup.component';
 import {GlAccountsComponent} from './glaccounts/glaccounts.component';
 import {GlSubcodeComponent } from './glsubcode/glsubcode.component';
 import {CashAccToBranchesComponent } from './cashacctobranches/cashacctobranches.component';
@@ -31,16 +29,16 @@ export class GeneralledgerService {
   
     const user = JSON.parse(localStorage.getItem('user'));
     switch (data) {
-     case 'accountsgroup':
-      this.dynamicData.url = this.apiConfigService.getAccountsGroupList;
-      this.dynamicData.component = AccountsGroupComponent;
-      this.dynamicData.registerUrl = this.apiConfigService.registerGlaccGroup;
-      this.dynamicData.updateUrl = this.apiConfigService.updateAccountGroup;
-      this.dynamicData.deleteUrl = this.apiConfigService.deleteAccountGroup;
-      this.dynamicData.listName = 'GLAccountGroupList';
-      this.dynamicData.primaryKey = 'groupCode';
-      return this.dynamicData;
-      break;
+    //  case 'accountsgroup':
+    //   this.dynamicData.url = this.apiConfigService.getAccountsGroupList;
+    //   this.dynamicData.component = AccountsGroupComponent;
+    //   this.dynamicData.registerUrl = this.apiConfigService.registerGlaccGroup;
+    //   this.dynamicData.updateUrl = this.apiConfigService.updateAccountGroup;
+    //   this.dynamicData.deleteUrl = this.apiConfigService.deleteAccountGroup;
+    //   this.dynamicData.listName = 'GLAccountGroupList';
+    //   this.dynamicData.primaryKey = 'groupCode';
+    //   return this.dynamicData;
+    //   break;
       case 'subgroup':
         this.dynamicData.url = this.apiConfigService.getGLAccountSubGroupList;
         this.dynamicData.component = SubGroupComponent;
@@ -51,16 +49,16 @@ export class GeneralledgerService {
         this.dynamicData.primaryKey = 'subGroupCode';
         return this.dynamicData;
         break;
-        case 'undersubgroup':
-          this.dynamicData.url = this.apiConfigService.getGLUnderSubGroupList;
-          this.dynamicData.component = UndersubGroupComponent;
-          this.dynamicData.registerUrl = this.apiConfigService.registerGLUnderSubGroup;
-          this.dynamicData.updateUrl = this.apiConfigService.updateGLAccUnderSubGroup;
-          this.dynamicData.deleteUrl = this.apiConfigService.deleteGLAccUnderSubGroup;
-          this.dynamicData.listName = 'tblAccountGroupList';
-          this.dynamicData.primaryKey = 'accountGroupId';
-          return this.dynamicData;
-          break;
+        // case 'undersubgroup':
+        //   this.dynamicData.url = this.apiConfigService.getGLUnderSubGroupList;
+        //   this.dynamicData.component = UndersubGroupComponent;
+        //   this.dynamicData.registerUrl = this.apiConfigService.registerGLUnderSubGroup;
+        //   this.dynamicData.updateUrl = this.apiConfigService.updateGLAccUnderSubGroup;
+        //   this.dynamicData.deleteUrl = this.apiConfigService.deleteGLAccUnderSubGroup;
+        //   this.dynamicData.listName = 'tblAccountGroupList';
+        //   this.dynamicData.primaryKey = 'accountGroupId';
+        //   return this.dynamicData;
+        //   break;
      case 'partnerType':
       this.dynamicData.url = this.apiConfigService.getPartnerTypesList;
       this.dynamicData.component = PartnerTypeComponent;

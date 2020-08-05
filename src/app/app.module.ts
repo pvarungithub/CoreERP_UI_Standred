@@ -10,7 +10,8 @@ import {
   SegmentComponent,ProfitCenterComponent,DivisionComponent,FunctionalDepartmentComponent,PlantsComponent,LocationsComponent,SalesDepartmentComponent,DistributionchannelsComponent,
   SalesofficeComponent,SalesGroupComponent,MaintenceAreaComponent,PurchaseDepartmentComponent,StorageLocationsComponent,ErpUsersComponent,RolesprevilagesComponent,LedgerComponent,
   OpenLedgerComponent,VoucherClassComponent,VoucherTypesComponent,VoucherSeriesComponents,AssignmentVoucherSeriestoVoucherTypesComponent,TaxRatesComponents,TaxTransactionComponent,
-  TaxIntegrationComponent, AssignmentoftaxaccountstotaxcodesComponent, HsnSacComponent, TDSComponent,IncomeTypeComponent,TdsRatesComponent,PostingComponent
+  TaxIntegrationComponent, AssignmentoftaxaccountstotaxcodesComponent, HsnSacComponent, TDSComponent,IncomeTypeComponent,TdsRatesComponent,PostingComponent,AccountsGroupComponent,
+  UndersubGroupComponent
   
 } from './components/dashboard/comp-list/index';
 import { AutocompleteComponent } from './reuse-components/autocomplete/autocomplete.component';
@@ -21,8 +22,8 @@ import {
   DashboardComponent, LoginComponent, SidebarComponent, NotFoundComponent
 } from './components/index';
 import {
-  GeneralledgerComponent, AccountsGroupComponent,NoSeriesComponent,TaxMasterComponent,
-  SubGroupComponent, UndersubGroupComponent, TaxgroupsComponent, TaxstructuresComponent,
+  GeneralledgerComponent, NoSeriesComponent,TaxMasterComponent,
+  SubGroupComponent,  TaxgroupsComponent, TaxstructuresComponent,
   GlAccountsComponent, GlSubcodeComponent,  CashAccToBranchesComponent,
   AccToAccClassComponent, PartnerTypeComponent,PartnerCreationComponent
 } from './components/dashboard/generalledger/index';
@@ -110,7 +111,7 @@ export function HttpLoaderFactory(httpClient: HttpClient) {
     DistributionchannelsComponent,SalesofficeComponent,SalesGroupComponent,MaintenceAreaComponent,PurchaseDepartmentComponent,StorageLocationsComponent,
     ErpUsersComponent,RolesprevilagesComponent,LedgerComponent,OpenLedgerComponent,VoucherClassComponent,VoucherTypesComponent,VoucherSeriesComponents,
     AssignmentVoucherSeriestoVoucherTypesComponent,TaxRatesComponents,TaxTransactionComponent,TaxIntegrationComponent,AssignmentoftaxaccountstotaxcodesComponent,
-    HsnSacComponent,TDSComponent,IncomeTypeComponent,TdsRatesComponent,PostingComponent,
+    HsnSacComponent,TDSComponent,IncomeTypeComponent,TdsRatesComponent,PostingComponent,AccountsGroupComponent,UndersubGroupComponent,
 
 
 
@@ -126,10 +127,10 @@ export function HttpLoaderFactory(httpClient: HttpClient) {
     SidebarComponent,
     NotFoundComponent,
     TableComponent, DeleteItemComponent,
-    GeneralledgerComponent, AccountsGroupComponent,
-    SubGroupComponent, UndersubGroupComponent,
+    GeneralledgerComponent, 
+    SubGroupComponent, 
     GlAccountsComponent, GlSubcodeComponent, TaxIntegrationComponent, CashAccToBranchesComponent,AssignmentoftaxaccountstotaxcodesComponent,
-    HsnSacComponent,AccToAccClassComponent, TDSComponent,IncomeTypeComponent,TdsRatesComponent,PostingComponent,
+    HsnSacComponent,AccToAccClassComponent, TDSComponent,IncomeTypeComponent,TdsRatesComponent,PostingComponent,AccountsGroupComponent,UndersubGroupComponent,
     InventoryComponent, BrandModelComponent,  AccountingClassComponent,UnitComponent,
     BrandComponent, NumberAssignmentComponent, MaterialGroupsComponent,ProductpackingComponent,
     CompanyComponent,  MastersComponent, DepartmentComponent, DesignationComponent,
@@ -196,7 +197,7 @@ export function HttpLoaderFactory(httpClient: HttpClient) {
     ErpUsersComponent,RolesprevilagesComponent,LedgerComponent,OpenLedgerComponent,VoucherClassComponent,VoucherTypesComponent,VoucherSeriesComponents,
     AssignmentVoucherSeriestoVoucherTypesComponent,TaxRatesComponents,TaxTransactionComponent,TaxIntegrationComponent,
 
-    GeneralledgerComponent, AccountsGroupComponent,
+    GeneralledgerComponent, 
     SubGroupComponent, UndersubGroupComponent,
     GlAccountsComponent, GlSubcodeComponent, TaxIntegrationComponent, CashAccToBranchesComponent,
     AccToAccClassComponent, 

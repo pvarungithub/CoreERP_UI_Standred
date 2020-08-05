@@ -38,3 +38,5 @@ export { TDSComponent } from './tdstype/tdstype.component';
 export { IncomeTypeComponent } from './incometypes/incometypes.component';
 export { TdsRatesComponent } from './tdsrates/tdsrates.component';
 export { PostingComponent } from './posting/posting.component';
+export {AccountsGroupComponent} from './accountsgroup/accountsgroup.component';
+export {UndersubGroupComponent} from './undersubgroup/undersubgroup.component';

@@ -1,5 +1,4 @@
 import { Component, Inject, Optional, OnInit } from '@angular/core';
-import { AlertService } from '../../../../services/alert.service';
 import { MatDialogRef, MAT_DIALOG_DATA } from '@angular/material/dialog';
 import { isNullOrUndefined } from 'util';
 import { FormBuilder, FormGroup, Validators } from '@angular/forms';
@@ -8,12 +7,6 @@ import { NgxSpinnerService } from 'ngx-spinner';
 import { ApiConfigService } from '../../../../services/api-config.service';
 import { String } from 'typescript-string-operations';
 import { ApiService } from '../../../../services/api.service';
-import { CommonService } from '../../../../services/common.service';
-
-interface affectGrossProfit {
-  value: string;
-  viewValue: string;
-}
 
 @Component({
   selector: 'app-undersubgroup',
@@ -24,43 +17,29 @@ interface affectGrossProfit {
 export class UndersubGroupComponent implements OnInit {
 
   modelFormData: FormGroup;
-  isSubmitted = false;
   formData: any;
   glAccgrpList: any;
   getAccSubGrpList: any;
   glAccNameList: any;
-  glsubAccNameList: any;
-
-  affectGrossProfit: affectGrossProfit[] =
-    [
-      { value: 'Yes', viewValue: 'Yes' },
-      { value: 'No', viewValue: 'No' }
-    ];
-
+  
   constructor(
-    private alertService: AlertService,
     private formBuilder: FormBuilder,
     public dialogRef: MatDialogRef<UndersubGroupComponent>,
     private spinner: NgxSpinnerService,
     private apiConfigService: ApiConfigService,
     private apiService: ApiService,
-    private commonService: CommonService,
     // @Optional() is used to prevent error if no data is passed
     @Optional() @Inject(MAT_DIALOG_DATA) public data: any) {
 
     this.modelFormData = this.formBuilder.group({
-      accountGroupId: 0,
+      accountGroupId: [null,[Validators.required]],
       accountGroupName: [null, [Validators.required]],
       nature: [null, [Validators.required]],
       narration: [null],
       affectGrossProfit: [null],
-      extraDate: [null],
-      extra1: [null],
-      extra2: [null],
       groupUnder: [null],
       Undersubaccount: [null]
     });
-
 
     this.formData = { ...data };
     if (!isNullOrUndefined(this.formData.item)) {
@@ -69,12 +48,10 @@ export class UndersubGroupComponent implements OnInit {
       this.getGLUnderGroupList();
       this.getAccountNamelist();
     }
-
   }
 
   ngOnInit() {
     this.getglAccgrpList();
-    //this.getAccountNamelist();
   }
 
   getglAccgrpList() {
@@ -139,10 +116,7 @@ export class UndersubGroupComponent implements OnInit {
         });
   }
 
-
-
   get formControls() { return this.modelFormData.controls; }
-
 
   save() {
     if (this.modelFormData.invalid) {

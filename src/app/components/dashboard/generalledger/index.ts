@@ -1,7 +1,5 @@
 export {GeneralledgerComponent} from './generalledger.component';
-export {AccountsGroupComponent} from './accountsgroup/accountsgroup.component';
 export {SubGroupComponent} from './subgroup/subgroup.component';
-export {UndersubGroupComponent} from './undersubgroup/undersubgroup.component';
 export {GlAccountsComponent} from './glaccounts/glaccounts.component';
 export {GlSubcodeComponent } from './glsubcode/glsubcode.component';
 export {CashAccToBranchesComponent } from './cashacctobranches/cashacctobranches.component';

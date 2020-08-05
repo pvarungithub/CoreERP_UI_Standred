@@ -47,7 +47,6 @@ export class TaxRatesComponents implements OnInit {
       description: [null, [Validators.required, Validators.minLength(1), Validators.maxLength(30)]],
       taxType: [null],
       taxTransaction: [null],
-      taxCondition: [null],
       sgst: [null],
       cgst: [null],
       igst: [null],

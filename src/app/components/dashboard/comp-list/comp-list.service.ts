@@ -38,6 +38,8 @@ import { TDSComponent } from './tdstype/tdstype.component';
 import { IncomeTypeComponent } from './incometypes/incometypes.component';
 import { TdsRatesComponent } from './tdsrates/tdsrates.component';
 import { PostingComponent } from './posting/posting.component';
+import {AccountsGroupComponent} from './accountsgroup/accountsgroup.component';
+import {UndersubGroupComponent} from './undersubgroup/undersubgroup.component';
 
 @Injectable({
   providedIn: 'root'
@@ -199,14 +201,22 @@ export class CompListService {
         this.dynamicComp.component = IncomeTypeComponent;
         return this.dynamicComp.component;
         break; 
-        case 'tdsrates':
-          this.dynamicComp.component = TdsRatesComponent;
-          return this.dynamicComp.component;
-          break; 
-          case 'posting':
-          this.dynamicComp.component = PostingComponent;
-          return this.dynamicComp.component;
-          break; 
+      case 'tdsrates':
+        this.dynamicComp.component = TdsRatesComponent;
+        return this.dynamicComp.component;
+        break; 
+      case 'posting':
+        this.dynamicComp.component = PostingComponent;
+        return this.dynamicComp.component;
+        break; 
+      case 'accountgroup':
+        this.dynamicComp.component = AccountsGroupComponent;
+        return this.dynamicComp.component;
+        break; 
+      case 'glsubgroups':
+        this.dynamicComp.component = UndersubGroupComponent;
+        return this.dynamicComp.component;
+      break;    
       default:
     }
   }
