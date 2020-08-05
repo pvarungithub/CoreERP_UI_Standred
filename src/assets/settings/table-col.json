@@ -346,6 +346,47 @@
     "groupUnder": "Under Account",
     "narration": "Narration"
   },
+  "accountchart": {
+    "title": "Accountchart",
+    "code": "Code",
+    "desctiption": "Description",
+    "type": "Type"
+  },  
+  "partnertype": {
+    "title": "Partnertype",
+    "code": "Code",
+    "description": "Description",
+    "bpcategory": "bpcategory"
+  },
+  "partnergroup": {
+    "title": "Busieness PartnerGroup",
+    "bpgroup": "Code",
+    "description": "Description",
+    "bptype": "bpType"
+  },
+  "numberrange": {
+    "title": "Number Range",
+    "code": "Code",
+    "description": "Description",
+    "rangeFrom": "rangeFrom",
+    "rangeTo": "rangeTo",
+    "nonNumaric": "NonNumaric"
+  },
+  "assignment": {
+    "title": "Assignment",
+    "code": "Code",
+    "desctiption": "Description",
+    "bpgroup": "BPgroup",
+    "numberRangeKey": "NumberRangeKey"
+  },
+  "AssignmentChartAccounttoCompany": {
+    "title": "AssignmentChartAccounttoCompany",
+    "code": "Code",
+    "description": "Description",
+    "operationCoa": "operationCoa",
+    "groupCoa": "groupCoa",
+    "company":"company"
+  },
   "designation": {
     "designationId": "DesignationId",
     "designationName": "DesignationName",

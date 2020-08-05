@@ -271,6 +271,41 @@ deleteGLAccUnderSubGroup = `${this.environment.runtimeConfig.serverUrl}GLAccUnde
 getglAccgrpList = `${this.environment.runtimeConfig.serverUrl}GLAccUnderSubGroup/GetGLAccountGrouplist`;
 getAccountSubGrouplist = `${this.environment.runtimeConfig.serverUrl}GLAccUnderSubGroup/GetAccountSubGrouplist`;
 
+//assignment
+getAssignmentList = `${this.environment.runtimeConfig.serverUrl}Assignment/GetAssignmentList`;
+registerAssignment = `${this.environment.runtimeConfig.serverUrl}Assignment/RegisterAssignment`;
+updateAssignment = `${this.environment.runtimeConfig.serverUrl}Assignment/UpdateAssignment`;
+deleteAssignment = `${this.environment.runtimeConfig.serverUrl}Assignment/DeleteAssignment`;
+
+  //numberrange
+getNumberRangeList = `${this.environment.runtimeConfig.serverUrl}NumberRange/GetNumberRangeList`;
+registerNumberRange= `${this.environment.runtimeConfig.serverUrl}NumberRange/RegisterNumberRange`;
+updateNumberRange = `${this.environment.runtimeConfig.serverUrl}NumberRange/UpdateNumberRange`;
+ deleteNumberRange = `${this.environment.runtimeConfig.serverUrl}NumberRange/DeleteNumberRange`;
+
+  //partnertype
+getPartnerTypeList = `${this.environment.runtimeConfig.serverUrl}PartnerType/GetPartnerTypeList`;
+registerPartnerType= `${this.environment.runtimeConfig.serverUrl}PartnerType/RegisterPartnerType`;
+updatePartnerType = `${this.environment.runtimeConfig.serverUrl}PartnerType/UpdatePartnerType`;
+ deletePartnerType = `${this.environment.runtimeConfig.serverUrl}PartnerType/DeletePartnerType`;
+
+ //partnergroup
+getBusienessPartnerGroupsList = `${this.environment.runtimeConfig.serverUrl}BusienessPartnerGroups/GetBusienessPartnerGroupsList`;
+registerBusienessPartnerGroups= `${this.environment.runtimeConfig.serverUrl}BusienessPartnerGroups/RegisterBusienessPartnerGroups`;
+updateBusienessPartnerGroups = `${this.environment.runtimeConfig.serverUrl}BusienessPartnerGroups/UpdateBusienessPartnerGroups`;
+ deleteBusienessPartnerGroups = `${this.environment.runtimeConfig.serverUrl}BusienessPartnerGroups/DeleteBusienessPartnerGroups`;
+  
+  //chartofaccount
+  getChartOfAccountList = `${this.environment.runtimeConfig.serverUrl}ChartOfAccount/GetChartOfAccountList`;
+  registerChartOfAccount = `${this.environment.runtimeConfig.serverUrl}ChartOfAccount/RegisterChartOfAccount`;
+  updateChartOfAccount = `${this.environment.runtimeConfig.serverUrl}ChartOfAccount/UpdateChartOfAccount`;
+  deleteChartOfAccount = `${this.environment.runtimeConfig.serverUrl}ChartOfAccount/DeleteChartOfAccount`;
+   //chartofaccounttotax code to compcode
+   getAssiignChartAcctoCompanyCodeList = `${this.environment.runtimeConfig.serverUrl}AssiignChartAcctoCompanyCode/GetAssiignChartAcctoCompanyCodeList`;
+   registerAssiignChartAcctoCompanyCode = `${this.environment.runtimeConfig.serverUrl}AssiignChartAcctoCompanyCode/RegisterAssiignChartAcctoCompanyCode`;
+   updateAssiignChartAcctoCompanyCode = `${this.environment.runtimeConfig.serverUrl}AssiignChartAcctoCompanyCode/UpdateAssiignChartAcctoCompanyCode`;
+   deleteAssiignChartAcctoCompanyCode = `${this.environment.runtimeConfig.serverUrl}AssiignChartAcctoCompanyCode/DeleteAssiignChartAcctoCompanyCode`;
+
 // ******************************** sales *********************************
    getInvoiceList = `${this.environment.runtimeConfig.serverUrl}sales/Billing/GetInvoiceList`;
    getCashPartyAccountList = `${this.environment.runtimeConfig.serverUrl}sales/Billing/GetCashPartyAccountList`;
@@ -599,9 +634,9 @@ getAccountSubGrouplist = `${this.environment.runtimeConfig.serverUrl}GLAccUnderS
    // --- PartnerType
   getaccounttypelist = `${this.environment.runtimeConfig.serverUrl}masters/PartnerType/GetAccountTypesList`;
   getPartnerTypesList = `${this.environment.runtimeConfig.serverUrl}masters/PartnerType/GetPartnerTypeList`;
-  registerPartnerType = `${this.environment.runtimeConfig.serverUrl}masters/PartnerType/RegisterPartnerType`;
-  updatePartnerType = `${this.environment.runtimeConfig.serverUrl}masters/PartnerType/UpdatePartnerType`;
-  deletePartnerType = `${this.environment.runtimeConfig.serverUrl}masters/PartnerType/DeletePartnerType`;
+//   registerPartnerType = `${this.environment.runtimeConfig.serverUrl}masters/PartnerType/RegisterPartnerType`;
+//   updatePartnerType = `${this.environment.runtimeConfig.serverUrl}masters/PartnerType/UpdatePartnerType`;
+//   deletePartnerType = `${this.environment.runtimeConfig.serverUrl}masters/PartnerType/DeletePartnerType`;
  
 
    // --- NoSeries

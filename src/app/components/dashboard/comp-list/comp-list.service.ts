@@ -40,6 +40,12 @@ import { TdsRatesComponent } from './tdsrates/tdsrates.component';
 import { PostingComponent } from './posting/posting.component';
 import {AccountsGroupComponent} from './accountsgroup/accountsgroup.component';
 import {UndersubGroupComponent} from './undersubgroup/undersubgroup.component';
+import { AccountchartComponent } from './chartofaccount/chartofaccount.component';
+import { PartnerTypesComponent } from './partnertype/partnertype.component';
+import{AssignmentChartAccounttoCompanyComponent} from './AssignmentChartAccounttoCompany/AssignmentChartAccounttoCompany.component';
+import { BusienessPartnerGroupsComponent } from './partnergroup/partnergroup.component';
+import { NumberRangeComponent } from './numberrange/numberrange.component';
+import { AssignmentComponent } from './assignment/assignment.component';
 
 @Injectable({
   providedIn: 'root'
@@ -216,7 +222,31 @@ export class CompListService {
       case 'glsubgroups':
         this.dynamicComp.component = UndersubGroupComponent;
         return this.dynamicComp.component;
-      break;    
+      break; 
+      case 'accountchart':
+        this.dynamicComp.component = AccountchartComponent;
+        return this.dynamicComp.component;
+      break; 
+      case 'AssignmentChartAccounttoCompany':
+        this.dynamicComp.component = AssignmentChartAccounttoCompanyComponent;
+        return this.dynamicComp.component;
+      break; 
+      case 'partnertype':
+        this.dynamicComp.component = PartnerTypesComponent;
+        return this.dynamicComp.component;
+      break; 
+      case 'partnergroup':
+        this.dynamicComp.component = BusienessPartnerGroupsComponent;
+        return this.dynamicComp.component;
+      break; 
+      case 'numberrange':
+        this.dynamicComp.component = NumberRangeComponent;
+        return this.dynamicComp.component;
+      break; 
+      case 'assignment':
+        this.dynamicComp.component = AssignmentComponent;
+        return this.dynamicComp.component;
+      break;         
       default:
     }
   }
