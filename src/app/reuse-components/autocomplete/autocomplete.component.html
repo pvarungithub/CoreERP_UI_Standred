@@ -1,8 +1,0 @@
-<mat-form-field class="w-100">
-    <input type="text" matInput [formControl]="objectControl" [matAutocomplete]="autoObject" />
-    <mat-autocomplete #autoObject="matAutocomplete" [displayWith]="displayFn">
-        <mat-option *ngFor="let option of filteredObjectOptions$ | async" [value]="option.Sku">
-            {{ option.Sku }}
-        </mat-option>
-    </mat-autocomplete>
-</mat-form-field>

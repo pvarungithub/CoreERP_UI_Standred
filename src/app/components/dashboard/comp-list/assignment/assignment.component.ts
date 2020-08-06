@@ -10,7 +10,6 @@ import { ApiService } from '../../../../services/api.service';
 import { String } from 'typescript-string-operations';
 import { CommonService } from '../../../../services/common.service';
 
-
 @Component({
   selector: 'app-assignment',
   templateUrl: './assignment.component.html',
