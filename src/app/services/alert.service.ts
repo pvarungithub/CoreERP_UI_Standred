@@ -15,7 +15,7 @@ export class AlertService {
 
   openSnackBar(message: string, action: string, style) {
     this.snackBar.open(message, null, {
-      duration: 2000,
+      duration: 6000,
       verticalPosition: 'top',
       horizontalPosition: 'right',
       panelClass : [style]

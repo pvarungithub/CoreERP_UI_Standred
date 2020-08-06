@@ -23,47 +23,47 @@
   },
   "currency": {
     "title": "Currency",    
-    "currencySymbol": "CurrencySymbol",
-    "currencyName": "CurrencyName",
-    "noOfDecimalPlaces": "NoOfDecimalPlaces"
+    "currencySymbol": "Currency Symbol",
+    "currencyName": "Currency Name",
+    "noOfDecimalPlaces": "Decimal"
   },
   "language": {
     "title": "Language",
-    "languageCode": "LanguageCode",
-    "languageName": "LanguageName"
+    "languageCode": "Language Code",
+    "languageName": "Language Name"
   },
   "sizes": {
     "title": "Sizes",
-    "unitId": "UOMCode",
-    "unitName": "UnitName",
-    "noOfDecimalplaces": "NoOfDecimalplaces",
+    "unitId": "UOM Code",
+    "unitName": "Unit Name",
+    "noOfDecimalplaces": "Decimal",
     "narration": "Description"
   },
   "country": {
     "title": "Country",
-    "countryCode": "CountryCode",
-    "countryName": "CountryName",
+    "countryCode": "Country Code",
+    "countryName": "Country Name",
     "language" :"Language",
     "currency" :"Currency"
   },
   "region": {
     "title": "Region",
-    "regionCode": "RegionCode",
-    "regionName": "RegionName",
+    "regionCode": "Region Code",
+    "regionName": "Region Name",
     "country": "Country"
   }, 
   "state": {
     "title": "State",
-    "stateCode": "StateCode",
-    "stateName": "stateName",
-    "countryCode": "CountryCode",
+    "stateCode": "State Code",
+    "stateName": "State Name",
+    "countryCode": "Country",
     "language": "Language"
   },  
   "company": {
     "title": "Company",
-    "companyCode": "CompanyCode",
-    "companyName": "CompanyName",
-    "shortName": "ShortName",
+    "companyCode": "Company Code",
+    "companyName": "Company Name",
+    "shortName": "Short Name",
     "city": "City",
     "state": "State",
     "region": "Region",
@@ -84,12 +84,12 @@
   },
   "segment": {
     "title": "Segment",
-    "id": "SegmentCode",
+    "id": "Segment Code",
     "name": "Name",
     "active": "Active"
   },
   "profitCenter": {
-    "title": "ProfitCenter",
+    "title": "Profit Center",
     "code": "Code",
     "name": "Name",
     "description": "Description",
@@ -104,14 +104,14 @@
     "language": "Language",
     "phone": "phone",
     "mobile": "Mobile",
-    "responsiblePerson": "ResponsiblePerson",
+    "responsiblePerson": "Responsible Person",
     "email": "Email",
     "active": "Active"
   },
   "branches": {
     "title": "Branch",
-    "branchCode": "BranchCode",
-    "branchName": "BranchName",
+    "branchCode": "Branch Code",
+    "branchName": "Branch Name",
     "companyCode": "Company",
     "address": "Address",    
     "address2": "Address",
@@ -128,23 +128,23 @@
     "tanno": "TAN",
     "language": "Language",
     "currency": "Currency",
-    "responsiblePerson": "ResponsiblePerson"
+    "responsiblePerson": "Responsible Person"
   },
   "division": {
     "title": "Division",
     "code": "Code",
     "description": "Description",
-    "responsiblePerson": "ResponsiblePerson",
+    "responsiblePerson": "Responsible Person",
     "active": "Active"
   }, 
   "functionaldepatment": {
-    "title": "FunctionalDepartment",
+    "title": "Functional Department",
     "code": "Code",
-    "description": "DepartmentName",
-    "responsiblePerson": "ResponsiblePerson"
+    "description": "Department Name",
+    "responsiblePerson": "Responsible Person"
   },  
   "costcenter": {
-    "title": "CostCenter",
+    "title": "Cost Center",
     "code": "Code",
     "name": "Name",
     "compCode": "CompCode",
@@ -155,7 +155,7 @@
     "pinCode": "PinCode",
     "phone1": "Phone",
     "email": "Email",
-    "responsiblePerson": "ResponsiblePerson",
+    "responsiblePerson": "Responsible Person",
     "active": "Active"
   },
   "plant": {
@@ -177,7 +177,7 @@
     "email": "Email",
     "panno": "Panno",
     "gstno": "Gstno",    
-    "responsiblePerson": "ResponsiblePerson"
+    "responsiblePerson": "Responsible Person"
   },
   "location": {
     "title": "Location",
@@ -186,7 +186,7 @@
     "plant": "Plant"
   },
   "salesdepartment": {
-    "title": "SalesDepartment",
+    "title": "Sales Department",
     "departmentCode": "Code",
     "name": "Name",
     "city": "City",
@@ -204,10 +204,10 @@
     "panno": "Panno",
     "gstno": "Gstno",
     "tanno": "Tanno",   
-    "responsiblePerson": "ResponsiblePerson"
+    "responsiblePerson": "Responsible Person"
   },
   "salesoffice": {
-    "title": "SalesOffice",
+    "title": "Sales Office",
     "code": "Code",
     "name": "Name",
     "city": "City",
@@ -221,31 +221,31 @@
     "phone": "Phone",
     "currency": "Currency",
     "language": "Language",
-    "responsiblePerson": "ResponsiblePerson"
+    "responsiblePerson": "Responsible Person"
   },
   "salesgroup": {
-    "title": "SalesGroup",
+    "title": "Sales Group",
     "code": "Code",
     "name": "Name"
   },
   "distributionchannel": {
-    "title": "DistributionChannel",
+    "title": "Distribution Channel",
     "code": "Code",
     "name": "Name"
   },
   "purchasedepartment": {
-    "title": "PurchaseDepartment",
+    "title": "Purchase Department",
     "code": "Code",
     "description": "Name"
   },  
   "storagelocation": {
-    "title": "StorageLocation",
+    "title": "Storage Location",
     "code": "Code",
     "name": "Name",
     "plant": "Plant"
   },
   "maintenancearea": {
-    "title": "MaintenanceArea",
+    "title": "Maintenance Area",
     "code": "Code",
     "name": "Name",
     "plant": "Plant"
