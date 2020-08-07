@@ -46,3 +46,8 @@ export { PartnerTypesComponent } from './partnertype/partnertype.component';
 export { BusienessPartnerGroupsComponent } from './partnergroup/partnergroup.component';
 export { NumberRangeComponent } from './numberrange/numberrange.component';
 export { AssignmentComponent } from './assignment/assignment.component';
+export { AlternateControlAccountComponent } from './AlternateControlAccount/AlternateControlAccount.component';
+export { DepreciationareasComponent } from './Depreciationareas/Depreciationareas.component';
+export { AssetClassComponent } from './AssetClass/AssetClass.component';
+export { AssetBlockComponent } from './assetblock/assetblock.component';
+export { PaymentTermsComponent } from './paymentterms/paymentterms.component';

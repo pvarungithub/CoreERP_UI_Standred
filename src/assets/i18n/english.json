@@ -288,18 +288,18 @@
     "prefix":"Prefix"
   },
   "assignmentofvoucherseriestovouchertype": {
-    "title": "AssignmentVoucherSeriestoVoucherType",
+    "title": "Assignment Voucher Series to Voucher Type",
     "code": "Code",
-    "voucherType": "VoucherType",
-    "voucherSeries": "VoucherSeries"
+    "voucherType": "Voucher Type",
+    "voucherSeries": "Voucher Series"
   },
   "taxrates": {
     "title": "Tax Rates",
     "taxRateCode": "Code",
     "description": "Description",
     "taxType": "TaxType",
-    "taxTransaction": "TaxTransaction",
-    "taxCondition": "TaxCondition",
+    "taxTransaction": "Tax Transaction",
+    "taxCondition": "Tax Condition",
     "sgst": "Sgst",
     "cgst": "Cgst",
     "igst": "Igst",
@@ -314,10 +314,10 @@
     "title": "Assignment of Taxaccounts to Taxcodes",
     "code": "Code",
     "description": "Description",
-    "sgstgl": "sgstgl",
-    "cgstgl": "cgstgl",
-    "igstgl": "igstgl",
-    "ugstgl": "ugstgl"
+    "sgstgl": "Sgst Gl",
+    "cgstgl": "Cgst Gl",
+    "igstgl": "Igst Gl",
+    "ugstgl": "Ugst Gl"
   },
   "taxtypes": {
     "title": "Tax Types",
@@ -339,34 +339,34 @@
     "code": "Code",
     "desctiption": "Description",
     "sectionCode": "SectionCode",
-    "thresholdLimit":  "ThresholdLimit",
-    "thresholdContract": "ThresholdContract"
+    "thresholdLimit":  "Threshold Limit",
+    "thresholdContract": "Threshold Contract"
   },
   "tdsrates": {
     "title": "TDS Rates",
     "code": "Code",
     "desctiption": "Description",
     "tdstype": "Tdstype",
-    "incomeType": "IncomeType",
+    "incomeType": "Income Type",
     "status": "Status",
-    "effectiveFrom":  "EffectiveFrom"      
+    "effectiveFrom":  "Effective From"      
   },
   "posting": {
     "title": "Posting",
     "code": "Code",
     "description": "Description",
     "tdstype": "Tdstype",
-    "incomeType": "IncomeType",
-    "tdsrate": "TdsRate",
-    "glaccount": "glaccount",
+    "incomeType": "Income Type",
+    "tdsrate": "Tds Rate",
+    "glaccount": "GL Account",
     "date":  "Date"  
   },
   "accountgroup": {
     "title": "Accounts Group",
     "groupCode": "Code",
     "groupName": "GroupName",
-    "numberRangeFrom": "NumberRangeFrom",
-    "numberRangeTo": "NumberRangeTo",
+    "numberRangeFrom": "Number Range From",
+    "numberRangeTo": "Number Range To",
     "groupType" :"GroupType"
   },
   "glsubgroups": {
@@ -375,31 +375,22 @@
     "accountGroupName": "Account Group Name",
     "nature": "Group",
     "groupUnder": "Under Account",
-    "narration": "Narration",
-    "Undersubaccount": "Under SubAccount"
-  },
-   "subgroup": {
-    "title": "Account Subgroups",
-    "subGroupCode": "Code",
-    "accGroup": "Account Group",
-    "subGroupName": "Subgroup Name",
-    "active": "Active",
-    "addDate": "Add Date"
+    "narration": "Narration"
   },
   "accountchart": {
-    "title": "Accountchart",
+    "title": "Account chart",
     "code": "Code",
     "desctiption": "Description",
     "type": "Type"
-  }, 
+  },  
   "partnertype": {
-    "title": "Partnertype",
+    "title": "Partner type",
     "code": "Code",
     "description": "Description",
-    "bpcategory": "bpcategory"
+    "bpcategory": "BP Category"
   },
   "partnergroup": {
-    "title": "Busieness PartnerGroup",
+    "title": "Busieness Partner Group",
     "bpgroup": "Code",
     "description": "Description",
     "bptype": "bpType"
@@ -410,7 +401,7 @@
     "description": "Description",
     "rangeFrom": "rangeFrom",
     "rangeTo": "rangeTo",
-    "nonNumaric": "NonNumaric"
+    "nonNumaric": "Non Numaric"
   },
   "assignment": {
     "title": "Assignment",
@@ -420,12 +411,47 @@
     "numberRangeKey": "NumberRangeKey"
   },
   "AssignmentChartAccounttoCompany": {
-    "title": "AssignmentChartAccounttoCompany",
+    "title": "Assignment ChartAccount to Company",
     "code": "Code",
     "description": "Description",
     "operationCoa": "operationCoa",
     "groupCoa": "groupCoa",
     "company":"company"
+  },
+  "AlternateControlAccount": {
+    "title": "Alternate Control Account",
+    "code": "Code",
+    "description": "Description",
+    "normalControlAccount":" Normal Control Account",
+    "alternativeControlAccount": "Alternative Control Account"
+  },
+  "Depreciationareas": {
+    "title": "Depreciation Areas",
+    "code": "Code",
+    "description": "Description",
+    "depreciationType":" Normal Control Account"
+  },
+  "AssetClass": {
+    "title": "Asset Class",
+    "code": "Code",
+    "description": "Description",
+    "numberRange":"Number Range",
+    "classType": "ClassType",
+    "lowValueAssetClass": "Low Value Asset Class",
+    "assetLowValue": "Asset Low Value"
+  },
+  "assetblock": {
+    "title": "AssetBlock",
+    "code": "Code",
+    "description": "Description",
+    "depreciationKey":"Depreciation Key"
+  },
+  "paymentterms": {
+    "title": "Payment Terms",
+    "code": "Code",
+    "days": "Days",
+    "discount":"Discount",
+    "narration":"Narration"
   },
   "glaccounts": {
     "title": "Account Ledger",

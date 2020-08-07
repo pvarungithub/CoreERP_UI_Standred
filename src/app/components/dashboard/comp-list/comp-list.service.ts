@@ -46,7 +46,11 @@ import{AssignmentChartAccounttoCompanyComponent} from './AssignmentChartAccountt
 import { BusienessPartnerGroupsComponent } from './partnergroup/partnergroup.component';
 import { NumberRangeComponent } from './numberrange/numberrange.component';
 import { AssignmentComponent } from './assignment/assignment.component';
-
+import { AlternateControlAccountComponent } from './AlternateControlAccount/AlternateControlAccount.component';
+import { DepreciationareasComponent } from './Depreciationareas/Depreciationareas.component';
+import { AssetClassComponent } from './AssetClass/AssetClass.component';
+import { AssetBlockComponent } from './assetblock/assetblock.component';
+import { PaymentTermsComponent } from './paymentterms/paymentterms.component';
 @Injectable({
   providedIn: 'root'
 })
@@ -246,7 +250,28 @@ export class CompListService {
       case 'assignment':
         this.dynamicComp.component = AssignmentComponent;
         return this.dynamicComp.component;
-      break;         
+      break;  
+      case 'AlternateControlAccount':
+        this.dynamicComp.component = AlternateControlAccountComponent;
+        return this.dynamicComp.component;
+      break; 
+      case 'Depreciationareas':
+        this.dynamicComp.component = DepreciationareasComponent;
+        return this.dynamicComp.component;
+      break;  
+      case 'AssetClass':
+        this.dynamicComp.component = AssetClassComponent;
+        return this.dynamicComp.component;
+      break;  
+      case 'assetblock':
+        this.dynamicComp.component = AssetBlockComponent;
+        return this.dynamicComp.component;
+      break;  
+      
+      case 'paymentterms':
+        this.dynamicComp.component = PaymentTermsComponent;
+        return this.dynamicComp.component;
+      break; 
       default:
     }
   }

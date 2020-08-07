@@ -212,6 +212,26 @@ getHsnSacList = `${this.environment.runtimeConfig.serverUrl}HsnSac/GetHsnSacList
 registerHsnSac = `${this.environment.runtimeConfig.serverUrl}HsnSac/RegisterHsnSac`;
 updateHsnSac = `${this.environment.runtimeConfig.serverUrl}HsnSac/UpdateHsnSac`;
 deleteHsnSac = `${this.environment.runtimeConfig.serverUrl}HsnSac/DeleteHsnSac`;
+ // AlternateControlAccount
+ getAlternateControlAccountList = `${this.environment.runtimeConfig.serverUrl}AlternateControlAccount/GetAlternateControlAccountList`;
+ registerAlternateControlAccount = `${this.environment.runtimeConfig.serverUrl}AlternateControlAccount/RegisterAlternateControlAccount`;
+ updateAlternateControlAccount= `${this.environment.runtimeConfig.serverUrl}AlternateControlAccount/UpdateAlternateControlAccount`;
+ deleteAlternateControlAccount = `${this.environment.runtimeConfig.serverUrl}AlternateControlAccount/DeleteAlternateControlAccount`;
+ //Depreciationareas
+ getDepreciationAreasList = `${this.environment.runtimeConfig.serverUrl}DepreciationAreas/GetDepreciationAreasList`;
+ registerDepreciationAreas = `${this.environment.runtimeConfig.serverUrl}DepreciationAreas/RegisterDepreciationAreas`;
+ updateDepreciationAreas= `${this.environment.runtimeConfig.serverUrl}DepreciationAreas/UpdateDepreciationAreas`;
+ deleteDepreciationAreas = `${this.environment.runtimeConfig.serverUrl}DepreciationAreas/DeleteDepreciationAreas`;
+  //Assetclass
+  getAssetClassList = `${this.environment.runtimeConfig.serverUrl}AssetClass/GetAssetClassList`;
+  registerAssetClass = `${this.environment.runtimeConfig.serverUrl}AssetClass/RegisterAssetClass`;
+  updateAssetClass= `${this.environment.runtimeConfig.serverUrl}AssetClass/UpdateAssetClass`;
+  deleteAssetClass = `${this.environment.runtimeConfig.serverUrl}AssetClass/DeleteAssetClass`;
+  //Assetblock
+  getAssetBlockList=`${this.environment.runtimeConfig.serverUrl}AssetBlock/GetAssetBlockList`;
+  registerAssetBlock = `${this.environment.runtimeConfig.serverUrl}AssetBlock/RegisterAssetBlock`;
+  updateAssetBlock= `${this.environment.runtimeConfig.serverUrl}AssetBlock/UpdateAssetBlock`;
+  deleteAssetBlock = `${this.environment.runtimeConfig.serverUrl}AssetBlock/DeleteAssetBlock`;
 
 // Tax Types //
 getTaxTypesList = `${this.environment.runtimeConfig.serverUrl}TaxTypes/GetTaxTypesList`;
