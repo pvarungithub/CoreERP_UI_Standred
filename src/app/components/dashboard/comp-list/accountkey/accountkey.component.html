@@ -1,0 +1,106 @@
+<div class="position-relative popup-class">
+  <mat-card-title class="boader--color d-flex justify-content-between position-absolute w-100">
+    <span>  {{'accountkey.title' | translate }} </span>
+    <mat-icon class="p-2 cursor--pointer" (click)="cancel()">close</mat-icon>
+  </mat-card-title>
+
+  <mat-card-content class="pt-5 p-2 m-0 overflow-auto">
+    <form [formGroup]="modelFormData" autocomplete="off">
+
+      <div class="d--flex">
+        <mat-form-field class="form-element" [ngClass]="{ 'ng--valid': formControls.code.valid }">
+          <input matInput placeholder="{{'accountkey.code' | translate }}" formControlName="code" maxlength="4" appFocusOnEnter tabIndex="1">
+          <mat-error *ngIf="formControls.code.errors" class="help-block">
+            <div *ngIf="formControls.code.errors.required">code  is required </div>
+          </mat-error>
+        </mat-form-field>
+       
+        <mat-form-field>
+          <mat-label [translate]="'accountkey.acquisitionsGl'"></mat-label>
+          <mat-select formControlName="acquisitionsGl" appFocusOnEnter tabIndex="3">
+            <mat-option *ngFor="let agl of AcquisitionsGl" [value]="agl.value">
+              {{agl.viewValue}}
+            </mat-option>
+          </mat-select>
+        </mat-form-field>
+
+        <mat-form-field>
+          <mat-label [translate]="'accountkey.accumulatedGl'"></mat-label>
+          <mat-select formControlName="accumulatedGl" appFocusOnEnter tabIndex="4">
+            <mat-option *ngFor="let cltype of AcquisitionsGl" [value]="cltype.value">
+              {{cltype.viewValue}}
+            </mat-option>
+          </mat-select>
+        </mat-form-field>
+
+        <mat-form-field>
+          <mat-label [translate]="'accountkey.depreciationGl'"></mat-label>
+          <mat-select formControlName="depreciationGl" appFocusOnEnter tabIndex="5">
+            <mat-option *ngFor="let cltype of AcquisitionsGl" [value]="cltype.value">
+              {{cltype.viewValue}}
+            </mat-option>
+          </mat-select>
+        </mat-form-field>
+
+        <mat-form-field>
+          <mat-label [translate]="'accountkey.salesRevenueGl'"></mat-label>
+          <mat-select formControlName="salesRevenueGl" appFocusOnEnter tabIndex="6">
+            <mat-option *ngFor="let cltype of AcquisitionsGl" [value]="cltype.value">
+              {{cltype.viewValue}}
+            </mat-option>
+          </mat-select>
+        </mat-form-field>
+
+        <mat-form-field>
+          <mat-label [translate]="'accountkey.lossOnSaleGl'"></mat-label>
+          <mat-select formControlName="lossOnSaleGl" appFocusOnEnter tabIndex="7">
+            <mat-option *ngFor="let cltype of AcquisitionsGl" [value]="cltype.value">
+              {{cltype.viewValue}}
+            </mat-option>
+          </mat-select>
+        </mat-form-field>
+
+        <mat-form-field>
+          <mat-label [translate]="'accountkey.gainOnSaleGl'"></mat-label>
+          <mat-select formControlName="gainOnSaleGl" appFocusOnEnter tabIndex="8">
+            <mat-option *ngFor="let cltype of AcquisitionsGl" [value]="cltype.value">
+              {{cltype.viewValue}}
+            </mat-option>
+          </mat-select>
+        </mat-form-field>
+
+        <mat-form-field>
+          <mat-label [translate]="'accountkey.scrappingGl'"></mat-label>
+          <mat-select formControlName="scrappingGl" appFocusOnEnter tabIndex="9">
+            <mat-option *ngFor="let cltype of AcquisitionsGl" [value]="cltype.value">
+              {{cltype.viewValue}}
+            </mat-option>
+          </mat-select>
+        </mat-form-field>
+
+        <mat-form-field>
+          <mat-label [translate]="'accountkey.auggl'"></mat-label>
+          <mat-select formControlName="auggl" appFocusOnEnter tabIndex="10">
+            <mat-option *ngFor="let cltype of AcquisitionsGl" [value]="cltype.value">
+              {{cltype.viewValue}}
+            </mat-option>
+          </mat-select>
+        </mat-form-field>
+       
+      </div>
+      <mat-divider></mat-divider>
+
+    </form>
+
+  </mat-card-content>
+  <div class="form-element p-2 d-flex justify-content-end">
+    <button mat-raised-button class="button-color-red text-white mr-1" (click)="cancel()">
+
+      {{ 'COMMON.CANCEL' | translate }}
+    </button>
+    <button mat-raised-button type="submit" class="button-color-bule text-white ml-1" (click)="save()">
+
+      {{ 'COMMON.SAVE' | translate }}
+    </button>
+  </div>
+</div>

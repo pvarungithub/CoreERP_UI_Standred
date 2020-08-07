@@ -482,6 +482,67 @@
     "active": "Active",
     "addDate": "Add Date"
   },
+  "assetnumberrange": {
+    "title": "Asset NumberRange",
+    "code": "Code",
+    "description": "Description",
+    "fromRange": "FromRange",
+    "toRange": "ToRange",
+    "nonNumaric": "Non Numaric"
+  },
+  "AssignmentAssetClasstoAssetBlock": {
+    "title": "Assignment AssetClass to AssetBlock",
+    "code": "Code",
+    "description": "Description",
+    "assetClass": "AssetClass",
+    "assetBlock": "AssetBlock"
+  },
+  "assettransactiontypes": {
+    "title": "Asset Transaction Types",
+    "code": "Code",
+    "description": "Description"
+  },
+  "accountkey": {
+    "title": "Account Key",
+    "code": "Code",
+    "acquisitionsGl": "AcquisitionsGl",
+    "accumulatedGl": "AccumulatedGl",
+    "depreciationGl":  "DepreciationGl",
+    "salesRevenueGl": "SalesRevenueGl",
+    "lossOnSaleGl":  "LossOnSaleGl",
+    "gainOnSaleGl": "GainOnSaleGl",
+    "scrappingGl":  "ScrappingGl",
+    "auggl":  "Auggl"          
+  },
+  "AssignmentsAccountKeytoAssetClass": {
+    "title": "AssiAssignmentsAccountKeytoAssetClassgnment",
+    "code": "Code",
+    "description": "Description",
+    "assetClass": "AssetClass",
+    "accountKey": "AccountKey"
+  },
+"bankmaster": {
+    "title": "Bank Master",
+    "bankCode": "BankCode",
+    "bankName": "BankName",
+    "accountType": "AccountType",
+    "branchNumber": "BranchNumber",
+    "accountNumber": "AccountNumber",
+    "currency":  "Currency",
+    "ifsccode": "Ifsccode",
+    "swiftkey":  "Swiftkey",
+    "address":  "Address",
+    "address1":  "Address1",
+    "place":  "Place",
+    "city": "City",
+    "state": "State",
+    "region": "Region",
+    "country": "Country",
+    "phone": "Phone",
+    "contactPersion": "ContactPersion",
+    "bankLimits":  "BankLimits"
+
+  },
   "taxintegration": {
     "title": "Tax Integration",
     "taxCode": "Tax Code",

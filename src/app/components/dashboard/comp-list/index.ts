@@ -51,3 +51,9 @@ export { DepreciationareasComponent } from './Depreciationareas/Depreciationarea
 export { AssetClassComponent } from './AssetClass/AssetClass.component';
 export { AssetBlockComponent } from './assetblock/assetblock.component';
 export { PaymentTermsComponent } from './paymentterms/paymentterms.component';
+export { AssetNumberRangeComponent } from './assetnumberrange/assetnumberrange.component';
+export{AseetClassToAssetBlockComponent} from './AssignmentAssetClasstoAssetBlock/AssignmentAssetClasstoAssetBlock.component';
+export{AssetTransactionTypeComponent} from './assettransactiontypes/assettransactiontypes.component';
+export{AccountKeyComponent} from './accountkey/accountkey.component';
+export{AssignmentAccountKeytoAssetClassComponent} from './AssignmentsAccountKeytoAssetClass/AssignmentsAccountKeytoAssetClass.component';
+export{BankMasterComponent} from './bankmaster/bankmaster.component';

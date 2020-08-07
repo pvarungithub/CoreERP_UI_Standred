@@ -325,7 +325,38 @@ updateBusienessPartnerGroups = `${this.environment.runtimeConfig.serverUrl}Busie
    registerAssiignChartAcctoCompanyCode = `${this.environment.runtimeConfig.serverUrl}AssiignChartAcctoCompanyCode/RegisterAssiignChartAcctoCompanyCode`;
    updateAssiignChartAcctoCompanyCode = `${this.environment.runtimeConfig.serverUrl}AssiignChartAcctoCompanyCode/UpdateAssiignChartAcctoCompanyCode`;
    deleteAssiignChartAcctoCompanyCode = `${this.environment.runtimeConfig.serverUrl}AssiignChartAcctoCompanyCode/DeleteAssiignChartAcctoCompanyCode`;
+//assetnumberrange
+getAssetNumberRangeList= `${this.environment.runtimeConfig.serverUrl}AssetNumberRange/GetAssetNumberRangeList`;
+registerAssetNumberRange= `${this.environment.runtimeConfig.serverUrl}AssetNumberRange/RegisterAssetNumberRange`;
+updateAssetNumberRange = `${this.environment.runtimeConfig.serverUrl}AssetNumberRange/UpdateAssetNumberRange`;
+ deleteAssetNumberRange = `${this.environment.runtimeConfig.serverUrl}AssetNumberRange/DeleteAssetNumberRange`;
+  
+  //accountkey
+getAccountKeyList= `${this.environment.runtimeConfig.serverUrl}AccountKey/GetAccountKeyList`;
+registerAccountKey= `${this.environment.runtimeConfig.serverUrl}AccountKey/RegisterAccountKey`;
+updateAccountKey = `${this.environment.runtimeConfig.serverUrl}AccountKey/UpdateAccountKey`;
+ deleteAccountKey = `${this.environment.runtimeConfig.serverUrl}AccountKey/DeleteAccountKey`;
+   //bankmaster
+getBankMasterList= `${this.environment.runtimeConfig.serverUrl}BankMaster/GetBankMasterList`;
+registerBankMaster= `${this.environment.runtimeConfig.serverUrl}BankMaster/RegisterBankMaster`;
+updateBankMaster = `${this.environment.runtimeConfig.serverUrl}BankMaster/UpdateBankMaster`;
+ deleteBankMaster = `${this.environment.runtimeConfig.serverUrl}BankMaster/DeleteBankMaster`;
+   //AssignmentsAccountKeytoAssetClass
+getAssignmentAccountKeytoAssetClassList= `${this.environment.runtimeConfig.serverUrl}AssignmentAccountKeytoAssetClass/GetAssignmentAccountKeytoAssetClassList`;
+registerAssignmentAccountKeytoAssetClass= `${this.environment.runtimeConfig.serverUrl}AssignmentAccountKeytoAssetClass/RegisterAssignmentAccountKeytoAssetClass`;
+updateAssignmentAccountKeytoAssetClass = `${this.environment.runtimeConfig.serverUrl}AssignmentAccountKeytoAssetClass/UpdateAssignmentAccountKeytoAssetClass`;
+ deleteAssignmentAccountKeytoAssetClass = `${this.environment.runtimeConfig.serverUrl}AssignmentAccountKeytoAssetClass/DeleteAssignmentAccountKeytoAssetClass`;
 
+   //assetransactiontype
+getAssetTransactionTypeList= `${this.environment.runtimeConfig.serverUrl}AssetTransactionType/GetAssetTransactionTypeList`;
+registerAssetTransactionType= `${this.environment.runtimeConfig.serverUrl}AssetTransactionType/RegisterAssetTransactionType`;
+updateAssetTransactionType = `${this.environment.runtimeConfig.serverUrl}AssetTransactionType/UpdateAssetTransactionType`;
+ deleteAssetTransactionType = `${this.environment.runtimeConfig.serverUrl}AssetTransactionType/DeleteAssetTransactionType`;
+   //AssignmentAssetClasstoAssetBlock
+getAseetClassToAssetBlockList= `${this.environment.runtimeConfig.serverUrl}AseetClassToAssetBlock/GetAseetClassToAssetBlockList`;
+registerAseetClassToAssetBlock= `${this.environment.runtimeConfig.serverUrl}AseetClassToAssetBlock/RegisterAseetClassToAssetBlock`;
+updateAseetClassToAssetBlock = `${this.environment.runtimeConfig.serverUrl}AseetClassToAssetBlock/UpdateAseetClassToAssetBlock`;
+ deleteAseetClassToAssetBlock = `${this.environment.runtimeConfig.serverUrl}AseetClassToAssetBlock/DeleteAseetClassToAssetBlock`;
 // ******************************** sales *********************************
    getInvoiceList = `${this.environment.runtimeConfig.serverUrl}sales/Billing/GetInvoiceList`;
    getCashPartyAccountList = `${this.environment.runtimeConfig.serverUrl}sales/Billing/GetCashPartyAccountList`;

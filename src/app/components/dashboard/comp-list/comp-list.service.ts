@@ -51,6 +51,12 @@ import { DepreciationareasComponent } from './Depreciationareas/Depreciationarea
 import { AssetClassComponent } from './AssetClass/AssetClass.component';
 import { AssetBlockComponent } from './assetblock/assetblock.component';
 import { PaymentTermsComponent } from './paymentterms/paymentterms.component';
+import { AssetNumberRangeComponent } from './assetnumberrange/assetnumberrange.component';
+import{AseetClassToAssetBlockComponent} from './AssignmentAssetClasstoAssetBlock/AssignmentAssetClasstoAssetBlock.component';
+import{AssetTransactionTypeComponent} from './assettransactiontypes/assettransactiontypes.component';
+import{AccountKeyComponent} from './accountkey/accountkey.component';
+import{BankMasterComponent} from './bankmaster/bankmaster.component';
+import{AssignmentAccountKeytoAssetClassComponent} from './AssignmentsAccountKeytoAssetClass/AssignmentsAccountKeytoAssetClass.component';
 @Injectable({
   providedIn: 'root'
 })
@@ -272,6 +278,31 @@ export class CompListService {
         this.dynamicComp.component = PaymentTermsComponent;
         return this.dynamicComp.component;
       break; 
+
+      case 'assetnumberrange':
+        this.dynamicComp.component = AssetNumberRangeComponent;
+        return this.dynamicComp.component;
+      break;
+      case 'AssignmentAssetClasstoAssetBlock':
+        this.dynamicComp.component = AseetClassToAssetBlockComponent;
+        return this.dynamicComp.component;
+      break;
+      case 'assettransactiontypes':
+        this.dynamicComp.component = AssetTransactionTypeComponent;
+        return this.dynamicComp.component;
+      break;
+      case 'accountkey':
+        this.dynamicComp.component = AccountKeyComponent;
+        return this.dynamicComp.component;
+      break;
+      case 'AssignmentsAccountKeytoAssetClass':
+        this.dynamicComp.component = AssignmentAccountKeytoAssetClassComponent;
+        return this.dynamicComp.component;
+      break;
+      case 'bankmaster':
+        this.dynamicComp.component = BankMasterComponent;
+        return this.dynamicComp.component;
+      break;
       default:
     }
   }

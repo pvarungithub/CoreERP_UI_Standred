@@ -12,7 +12,8 @@ import {
   OpenLedgerComponent,VoucherClassComponent,VoucherTypesComponent,VoucherSeriesComponents,AssignmentVoucherSeriestoVoucherTypesComponent,TaxRatesComponents,TaxTransactionComponent,
   TaxIntegrationComponent, AssignmentoftaxaccountstotaxcodesComponent, HsnSacComponent, TDSComponent,IncomeTypeComponent,TdsRatesComponent,PostingComponent,AccountsGroupComponent,
   UndersubGroupComponent,AccountchartComponent,AssignmentChartAccounttoCompanyComponent,PartnerTypesComponent, BusienessPartnerGroupsComponent,NumberRangeComponent, AssignmentComponent,
-  AssetClassComponent,PaymentTermsComponent,AlternateControlAccountComponent,DepreciationareasComponent,AssetBlockComponent
+  AssetClassComponent,PaymentTermsComponent,AlternateControlAccountComponent,DepreciationareasComponent,AssetBlockComponent,AssetNumberRangeComponent,AseetClassToAssetBlockComponent,
+  AssetTransactionTypeComponent,AccountKeyComponent,AssignmentAccountKeytoAssetClassComponent,BankMasterComponent,
   
 } from './components/dashboard/comp-list/index';
 
@@ -62,7 +63,10 @@ export function HttpLoaderFactory(httpClient: HttpClient) {
     AssignmentVoucherSeriestoVoucherTypesComponent,TaxRatesComponents,TaxTransactionComponent,TaxIntegrationComponent,AssignmentoftaxaccountstotaxcodesComponent,
     HsnSacComponent,TDSComponent,IncomeTypeComponent,TdsRatesComponent,PostingComponent,AccountsGroupComponent,UndersubGroupComponent,AssignmentComponent,
     AccountchartComponent,CompanyComponent,PartnerTypesComponent,  NumberRangeComponent,BusienessPartnerGroupsComponent ,PaymentTermsComponent,
-    AssetClassComponent,AlternateControlAccountComponent,DepreciationareasComponent,AssetBlockComponent,
+    AssetClassComponent,AlternateControlAccountComponent,DepreciationareasComponent,AssetBlockComponent,AssetNumberRangeComponent
+    
+    ,AseetClassToAssetBlockComponent,AssetTransactionTypeComponent,AccountKeyComponent,
+    AssignmentAccountKeytoAssetClassComponent,BankMasterComponent,
 
 
 
@@ -77,8 +81,10 @@ export function HttpLoaderFactory(httpClient: HttpClient) {
     NotFoundComponent,
     TableComponent, DeleteItemComponent, TaxIntegrationComponent,AssignmentoftaxaccountstotaxcodesComponent,
     HsnSacComponent, TDSComponent,IncomeTypeComponent,TdsRatesComponent,PostingComponent,AccountsGroupComponent,UndersubGroupComponent,
-    AccountchartComponent,AssignmentChartAccounttoCompanyComponent,PartnerTypesComponent, BusienessPartnerGroupsComponent,NumberRangeComponent, 
+    AccountchartComponent,AssignmentChartAccounttoCompanyComponent,PartnerTypesComponent, BusienessPartnerGroupsComponent,NumberRangeComponent,AseetClassToAssetBlockComponent, 
     AssignmentComponent,AssetClassComponent,PaymentTermsComponent,AlternateControlAccountComponent,DepreciationareasComponent,AssetBlockComponent,
+    AssetNumberRangeComponent,AssetTransactionTypeComponent,AccountKeyComponent,AssignmentAccountKeytoAssetClassComponent,
+    BankMasterComponent,
     //LeaveopeningbalanceComponent,
     //selfserviceComponent,
     
