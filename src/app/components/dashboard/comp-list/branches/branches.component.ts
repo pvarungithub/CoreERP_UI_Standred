@@ -40,7 +40,7 @@ export class BranchesComponent implements OnInit {
       branchCode: [null, [Validators.required, Validators.minLength(1), Validators.maxLength(5)]],
       branchName: [null, [Validators.required, Validators.minLength(1), Validators.maxLength(50)]],
       companyCode: [null],
-      branchImage: [null],
+      location: [null],
       address: [null],
       city: [null],
       state: [null],

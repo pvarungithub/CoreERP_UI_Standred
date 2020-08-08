@@ -52,6 +52,7 @@ export class ProfitCenterComponent implements OnInit {
         mobile: null,
         responsiblePerson: [null],
         email: [null],
+        location:[null],
         active: ['Y']
       });
 
