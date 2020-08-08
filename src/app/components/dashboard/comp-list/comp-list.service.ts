@@ -57,6 +57,10 @@ import{AssetTransactionTypeComponent} from './assettransactiontypes/assettransac
 import{AccountKeyComponent} from './accountkey/accountkey.component';
 import{BankMasterComponent} from './bankmaster/bankmaster.component';
 import{AssignmentAccountKeytoAssetClassComponent} from './AssignmentsAccountKeytoAssetClass/AssignmentsAccountKeytoAssetClass.component';
+import{DepreciationcodeComponent} from './depreciationcode/depreciationcode.component';
+
+import{GLAccountComponent} from './glaccount/glaccount.component';
+
 @Injectable({
   providedIn: 'root'
 })
@@ -301,6 +305,14 @@ export class CompListService {
       break;
       case 'bankmaster':
         this.dynamicComp.component = BankMasterComponent;
+        return this.dynamicComp.component;
+      break;
+        case 'depreciationcode':
+        this.dynamicComp.component = DepreciationcodeComponent;
+        return this.dynamicComp.component;
+      break;
+      case 'glaccount':
+        this.dynamicComp.component = GLAccountComponent;
         return this.dynamicComp.component;
       break;
       default:

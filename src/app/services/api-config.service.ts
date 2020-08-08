@@ -281,6 +281,18 @@ registerGlaccGroup = `${this.environment.runtimeConfig.serverUrl}AccGroup/Regist
 updateAccountGroup = `${this.environment.runtimeConfig.serverUrl}AccGroup/UpdateAccountGroup`;
 deleteAccountGroup = `${this.environment.runtimeConfig.serverUrl}AccGroup/DeleteAccountGroup`;
 
+// glaccount //
+getGLAccountList = `${this.environment.runtimeConfig.serverUrl}GLAccount/GetGLAccountList`;
+registerGLAccount = `${this.environment.runtimeConfig.serverUrl}GLAccount/RegisterGLAccount`;
+updateGLAccount = `${this.environment.runtimeConfig.serverUrl}GLAccount/UpdateGLAccount`;
+deleteGLAccount = `${this.environment.runtimeConfig.serverUrl}GLAccount/DeleteGLAccount`;
+
+// Deprecitioncode //
+getDepreciationcodeList = `${this.environment.runtimeConfig.serverUrl}Depreciationcode/GetDepreciationcodeList`;
+registerDepreciationcode = `${this.environment.runtimeConfig.serverUrl}Depreciationcode/RegisterDepreciationcode`;
+updateDepreciationcode = `${this.environment.runtimeConfig.serverUrl}Depreciationcode/UpdateDepreciationcode`;
+deleteDepreciationcode = `${this.environment.runtimeConfig.serverUrl}Depreciationcode/DeleteDepreciationcode`;
+
 // UnderSubGroup //
 getGLUnderSubGroupList = `${this.environment.runtimeConfig.serverUrl}GLAccUnderSubGroup/GetTblAccountGroupList`;
 getAccountNamelist = `${this.environment.runtimeConfig.serverUrl}GLAccUnderSubGroup/GetAccountNamelist`;

@@ -13,7 +13,8 @@ import {
   TaxIntegrationComponent, AssignmentoftaxaccountstotaxcodesComponent, HsnSacComponent, TDSComponent,IncomeTypeComponent,TdsRatesComponent,PostingComponent,AccountsGroupComponent,
   UndersubGroupComponent,AccountchartComponent,AssignmentChartAccounttoCompanyComponent,PartnerTypesComponent, BusienessPartnerGroupsComponent,NumberRangeComponent, AssignmentComponent,
   AssetClassComponent,PaymentTermsComponent,AlternateControlAccountComponent,DepreciationareasComponent,AssetBlockComponent,AssetNumberRangeComponent,AseetClassToAssetBlockComponent,
-  AssetTransactionTypeComponent,AccountKeyComponent,AssignmentAccountKeytoAssetClassComponent,BankMasterComponent,
+  AssetTransactionTypeComponent,AccountKeyComponent,AssignmentAccountKeytoAssetClassComponent,BankMasterComponent
+  ,DepreciationcodeComponent,GLAccountComponent,
   
 } from './components/dashboard/comp-list/index';
 
@@ -66,7 +67,7 @@ export function HttpLoaderFactory(httpClient: HttpClient) {
     AssetClassComponent,AlternateControlAccountComponent,DepreciationareasComponent,AssetBlockComponent,AssetNumberRangeComponent
     
     ,AseetClassToAssetBlockComponent,AssetTransactionTypeComponent,AccountKeyComponent,
-    AssignmentAccountKeytoAssetClassComponent,BankMasterComponent,
+    AssignmentAccountKeytoAssetClassComponent,BankMasterComponent,DepreciationcodeComponent,GLAccountComponent,
 
 
 
@@ -84,7 +85,7 @@ export function HttpLoaderFactory(httpClient: HttpClient) {
     AccountchartComponent,AssignmentChartAccounttoCompanyComponent,PartnerTypesComponent, BusienessPartnerGroupsComponent,NumberRangeComponent,AseetClassToAssetBlockComponent, 
     AssignmentComponent,AssetClassComponent,PaymentTermsComponent,AlternateControlAccountComponent,DepreciationareasComponent,AssetBlockComponent,
     AssetNumberRangeComponent,AssetTransactionTypeComponent,AccountKeyComponent,AssignmentAccountKeytoAssetClassComponent,
-    BankMasterComponent,
+    BankMasterComponent,DepreciationcodeComponent,GLAccountComponent,
     //LeaveopeningbalanceComponent,
     //selfserviceComponent,
     

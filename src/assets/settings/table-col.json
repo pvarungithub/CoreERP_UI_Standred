@@ -510,5 +510,39 @@
     "branchCode": "BranchCode",
     "companyCode": "CompanyCode",
     "addDate": "AddDate"
-  }  
+  }  ,
+  "depreciationcode": {
+    "title": "Depreciation Code",
+    "code": "Code",
+    "description": "Name",
+    "depreciationMethod": "Depreciation Method",
+    "purchaseWithin": "Purchase Within",
+    "ratePercentage":   "Rate Percentage",
+    "maxDepreciationAmount":  "Max Depreciation Amount",
+    "uptoDate":  "UptoDate",
+    "depreciationDuringLife": "Depreciation During Life",
+    "maxDepreciationRate": "Max Depreciation Rate",
+    "upto":   "Upto",
+    "noofYears":  "No of Years",
+    "noofMonths":  "No of Months",
+    "rate":  "Rate"
+  },
+  "glaccount": {
+    "title": "GL Account",
+    "chartAccount": "Chart Account",
+    "accGroup": "Account Group",
+    "glaccountName":"Gl Account Name",
+    "accountNumber":  "Account Number",
+    "company":  "Company",
+    "consolidatedAccount": "Consolidated Account",
+    "currency":  "Currency",
+    "taxCategory": "Tax Category",
+    "controlAccount":"Control Account",
+    "clearingAccount":  "Clearing Account",
+    "noPostingAllowed": "No Posting Allowed",
+    "relevantCashFlow":"Relevant Cash Flow",
+    "bankKey":  "Bank Key",
+    "legacyGl":"Legacy Gl",
+    "costElementCategory":"Cost Element Category"
+  }
 }

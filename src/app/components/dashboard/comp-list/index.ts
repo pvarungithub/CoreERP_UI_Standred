@@ -57,3 +57,6 @@ export{AssetTransactionTypeComponent} from './assettransactiontypes/assettransac
 export{AccountKeyComponent} from './accountkey/accountkey.component';
 export{AssignmentAccountKeytoAssetClassComponent} from './AssignmentsAccountKeytoAssetClass/AssignmentsAccountKeytoAssetClass.component';
 export{BankMasterComponent} from './bankmaster/bankmaster.component';
+export{DepreciationcodeComponent} from './depreciationcode/depreciationcode.component';
+
+export{GLAccountComponent} from './glaccount/glaccount.component';
