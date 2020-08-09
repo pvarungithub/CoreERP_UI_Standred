@@ -353,6 +353,7 @@
     "accountGroupName": "Account Group Name",
     "nature": "Group",
     "groupUnder": "Under Account",
+    "Undersubaccount":"Under Sub Account",
     "narration": "Narration"
   },
   "assetnumberrange": {
