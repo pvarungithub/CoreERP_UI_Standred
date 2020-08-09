@@ -88,10 +88,10 @@ export class CountryComponent implements OnInit {
   }
 
   save() {
-    if (this.modelFormData.invalid) {
-      this.modelFormData.controls['countryCode'].enable();
+    if (this.modelFormData.invalid) {     
       return;
     }
+    this.modelFormData.controls['countryCode'].enable();
     this.formData.item = this.modelFormData.value;
     this.dialogRef.close(this.formData);
   }

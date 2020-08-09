@@ -24,7 +24,7 @@ export class VoucherClassComponent implements OnInit {
   [
     { value: '1', viewValue: 'Invoice' },
     { value: '2', viewValue: 'Memo' },
-    { value: '3', viewValue: 'General' },
+    { value: '3', viewValue: 'Journal' },
     { value: '4', viewValue: 'Payments' },
     { value: '5', viewValue: 'Receipts' },
     { value: '6', viewValue: 'General Memo' }

@@ -198,7 +198,8 @@ updateVoucherTypes = `${this.environment.runtimeConfig.serverUrl}VoucherType/Upd
 deleteVoucherTypes = `${this.environment.runtimeConfig.serverUrl}VoucherType/DeleteVoucherTypes`;
 getVoucherClassList = `${this.environment.runtimeConfig.serverUrl}VoucherType/GetVoucherClassList`;
 getCompaniesList = `${this.environment.runtimeConfig.serverUrl}VoucherType/GetCompaniesList`;
-getVoucherBranchesList = `${this.environment.runtimeConfig.serverUrl}VoucherType/GetBranchesList`;
+getVoucherBranchesList = `${this.environment.runtimeConfig.serverUrl}Branches/GetBranchesList`;
+// getVoucherBranchesList = `${this.environment.runtimeConfig.serverUrl}VoucherType/GetBranchesList`;
 
 ////***************TAX***************** */
 //taxacctotaxcode

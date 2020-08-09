@@ -12,7 +12,10 @@ interface TaxCondition {
   value: string;
   viewValue: string;
 }
-
+interface TaxType {
+  value: string;
+  viewValue: string;
+}
 @Component({
   selector: 'app-taxrates',
   templateUrl: './taxrates.component.html',
@@ -22,15 +25,19 @@ interface TaxCondition {
 export class TaxRatesComponents implements OnInit {
 
   modelFormData: FormGroup;
-  formData: any;
-  Taxtype: any;
+  formData: any; 
   Taxtransaction: any;
 
   TaxConditions: TaxCondition[] =
   [
     { value: '1', viewValue: 'Normal(Exempted)' },
-    { value: '2', viewValue: 'Not Deducible/Exempted' },
+    { value: '2', viewValue: 'Not Deducible/Not Exempted' },
     { value: '3', viewValue: 'Reverse Chargeable' },
+  ];
+  TaxTypess: TaxType[] =
+  [
+    { value: '1', viewValue: 'Input' },
+    { value: '2', viewValue: 'Output' },    
   ];
   constructor(
     private apiService: ApiService,
@@ -51,7 +58,8 @@ export class TaxRatesComponents implements OnInit {
       cgst: [null],
       igst: [null],
       ugst:[null],
-      TaxCondition:[null]
+      taxCondition:[null],
+      compositeCess:[null]
     });
 
     this.formData = { ...data };
@@ -62,25 +70,8 @@ export class TaxRatesComponents implements OnInit {
   }
 
   ngOnInit() {
-    this.GetTaxTypesList();
     this.GetTaxTransactionList();
-  }
- 
-  GetTaxTypesList() {
-    const gettaxtypelist = String.Join('/', this.apiConfigService.getTaxTypesList);
-    this.apiService.apiGetRequest(gettaxtypelist)
-      .subscribe(
-        response => {
-          const res = response.body;
-          console.log(res);
-          if (!isNullOrUndefined(res) && res.status === StatusCodes.pass) {
-            if (!isNullOrUndefined(res.response)) {
-              this.Taxtype = res.response['TaxtypesList'];
-            }
-          }
-          this.spinner.hide();
-        });
-  }
+  }  
 
   GetTaxTransactionList() {
     const gettaxtransactinlist = String.Join('/', this.apiConfigService.getTaxTransactionList);

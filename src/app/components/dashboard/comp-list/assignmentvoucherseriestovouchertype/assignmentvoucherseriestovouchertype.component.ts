@@ -32,7 +32,7 @@ export class AssignmentVoucherSeriestoVoucherTypesComponent implements OnInit {
     @Optional() @Inject(MAT_DIALOG_DATA) public data: any) {
 
     this.modelFormData = this.formBuilder.group({
-      code: [null, [Validators.required, Validators.minLength(1), Validators.maxLength(5)]],
+       code: [0],
       voucherType: [null],
       voucherSeries:  [null],
       ext: null        
@@ -41,7 +41,7 @@ export class AssignmentVoucherSeriestoVoucherTypesComponent implements OnInit {
     this.formData = { ...data };
     if (!isNullOrUndefined(this.formData.item)) {
       this.modelFormData.patchValue(this.formData.item);
-      this.modelFormData.controls['code'].disable();
+      // this.modelFormData.controls['code'].disable();
     }
   }
 
@@ -88,7 +88,7 @@ export class AssignmentVoucherSeriestoVoucherTypesComponent implements OnInit {
     if (this.modelFormData.invalid) {
       return;
     }
-    this.modelFormData.controls['code'].enable();
+    // this.modelFormData.controls['code'].enable();
     this.formData.item = this.modelFormData.value;
     this.dialogRef.close(this.formData);
   }

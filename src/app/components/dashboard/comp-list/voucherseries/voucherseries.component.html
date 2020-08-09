@@ -40,8 +40,8 @@
         <mat-form-field>
           <mat-label>{{'voucherseries.branch' | translate }}</mat-label>
           <mat-select formControlName="branch" appFocusOnEnter tabIndex="6">
-            <mat-option *ngFor="let branch of branchList" [value]="branch.id">
-              {{branch.id}} - {{branch.text}}
+            <mat-option *ngFor="let branch of branchList" [value]="branch.branchCode">
+              {{branch.branchCode}} - {{branch.branchName}}
             </mat-option>
           </mat-select>
         </mat-form-field>

@@ -254,22 +254,22 @@
   "ledger": {
     "title": " Ledger",
     "code": "code",
-    "description": "Description",
+    "description": "Ledger Name",
     "ledgerType": "Ledger Type"
   },
   "openledger": {
     "title": "Open Ledger",
-    "ledgerKey": "LedgerKey",
-    "financialYearStartFrom": "Financial Year Start From",
-    "financialYearEndTo": "Financial Year End To",
+    "ledgerKey": "Ledger Key",
+    "financialYearStartFrom": "FY Start",
+    "financialYearEndTo": "FY End",
     "accountingYear": "Accounting Year"
   },  
   "vouchertype": {
     "title": "Voucher Type",
     "voucherTypeId": "Voucher Type ID",
     "voucherTypeName": "Voucher Type Name",
-    "printText": "PrintText",
-    "voucherClass": "Voucher Class"
+    "voucherClass": "Voucher Class",
+    "printText": "PrintText"    
   },
 "voucherclass": {
     "title": "Vocher Class",
@@ -279,7 +279,7 @@
   },
   "voucherseries": {
     "title": "Voucher Series",
-    "voucherSeriesKey": "Voucher SeriesKey",
+    "voucherSeriesKey": "Voucher Series Key",
     "fromInterval": "From Interval",
     "toInterval": "To Interval",
     "branch": "Branch",
@@ -290,7 +290,6 @@
   },
   "assignmentofvoucherseriestovouchertype": {
     "title": "Assignment Voucher Series to Voucher Type",
-    "code": "Code",
     "voucherType": "Voucher Type",
     "voucherSeries": "Voucher Series"
   },
@@ -298,13 +297,14 @@
     "title": "Tax Rates",
     "taxRateCode": "Code",
     "description": "Description",
-    "taxType": "TaxType",
+    "taxType": "Tax Type",
     "taxTransaction": "Tax Transaction",
     "taxCondition": "Tax Condition",
-    "sgst": "Sgst",
-    "cgst": "Cgst",
-    "igst": "Igst",
-    "ugst": "Ugst"
+    "sgst": "SGST",
+    "cgst": "CGST",
+    "igst": "IGST",
+    "ugst": "UGST",
+    "compositeCess":"Composite Cess"
   },
   "taxtransactions": {
     "title": "Tax Transaction",
@@ -323,7 +323,7 @@
   "taxtypes": {
     "title": "Tax Types",
     "taxKey": "Code",
-    "description": "Description"
+    "description": "Tax Type"
   },
  "hsnsac": {
     "title": "Hsn Sac",
@@ -339,9 +339,9 @@
     "title": "Income Types",
     "code": "Code",
     "desctiption": "Description",
-    "sectionCode": "SectionCode",
-    "thresholdLimit":  "Threshold Limit",
-    "thresholdContract": "Threshold Contract"
+    "sectionCode": "Section Code",
+    "thresholdLimit":  "Threshold  Aggregate Limit",
+    "thresholdContract": "Threshold Limit Per Contract"
   },
   "tdsrates": {
     "title": "TDS Rates",
@@ -353,14 +353,13 @@
     "effectiveFrom":  "Effective From"      
   },
   "posting": {
-    "title": "Posting",
-    "code": "Code",
-    "description": "Description",
-    "tdstype": "Tdstype",
-    "incomeType": "Income Type",
-    "tdsrate": "Tds Rate",
+    "title": "Posting",   
+    "tdstype": "TDS Type",   
+    "tdsrate": "TDS Rate",
     "glaccount": "GL Account",
-    "date":  "Date"  
+    "branch": "Branch",
+    "company": "Company",
+    "plant": "Plant"   
   },
   "accountgroup": {
     "title": "Accounts Group",

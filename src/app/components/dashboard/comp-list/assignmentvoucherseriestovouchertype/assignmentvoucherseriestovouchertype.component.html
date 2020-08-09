@@ -8,12 +8,12 @@
   <mat-card-content class="pt-5 p-2 m-0 overflow-auto">
     <form [formGroup]="modelFormData" autocomplete="off">
       <div class="d--flex">
-        <mat-form-field class="form-element" [ngClass]="{ 'ng--valid': formControls.code.valid }">
+        <!-- <mat-form-field class="form-element" [ngClass]="{ 'ng--valid': formControls.code.valid }">
           <input matInput placeholder="{{'assignmentofvoucherseriestovouchertype.code' | translate }}" formControlName="code" appFocusOnEnter tabIndex="1">
           <mat-error *ngIf="formControls.code.errors" class="help-block">
             <div *ngIf="formControls.code.errors.required">code  is required </div>
           </mat-error>
-        </mat-form-field>
+        </mat-form-field> -->
         <mat-form-field>
           <mat-label>{{'assignmentofvoucherseriestovouchertype.voucherType' | translate }}</mat-label>
           <mat-select formControlName="voucherType" appFocusOnEnter tabIndex="2">

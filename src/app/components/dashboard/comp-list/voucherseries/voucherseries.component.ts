@@ -84,7 +84,7 @@ export class VoucherSeriesComponents implements OnInit {
           if (!isNullOrUndefined(res) && res.status === StatusCodes.pass) {
             if (!isNullOrUndefined(res.response)) {
               console.log(res);
-              this.branchList = res.response['BranchesList'];
+              this.branchList = res.response['branchesList'];
               console.log(this.voucherClass);
             }
           }

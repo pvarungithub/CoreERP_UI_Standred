@@ -23,7 +23,9 @@ export class PostingComponent implements OnInit {
   modelFormData: FormGroup;
   formData: any;
   tdsList:any;
-  incmList:any;
+  compList: any;
+  branchList: any;
+  plantList: any;
   
   status: Status[] =
   [
@@ -41,28 +43,30 @@ export class PostingComponent implements OnInit {
     @Optional() @Inject(MAT_DIALOG_DATA) public data: any) {
 
     this.modelFormData = this.formBuilder.group({
-      code: [null, [Validators.required, Validators.minLength(1), Validators.maxLength(4)]],
-      description: [null, [Validators.required, Validators.minLength(1), Validators.maxLength(30)]],
+      code: [0],
       tdstype: [null],
-      incomeType: [null],
       tdsrate: [null],
       glaccount:[null],
-      date: null
+      branch: [null],
+      company: [null],
+      plant: [null]
     });
 
 
     this.formData = { ...data };
     if (!isNullOrUndefined(this.formData.item)) {
       this.modelFormData.patchValue(this.formData.item);
-      this.modelFormData.controls['code'].disable();
+      // this.modelFormData.controls['code'].disable();
     }
 
   }
 
   ngOnInit() {
     this.getTdsTypeList();
-    this.getIncomeTypeList();
     this.getTDSTypeList();
+    this.getcompaniesList();
+    this.getbranchessList();
+    this.getplantsList();
   }
   getTdsTypeList() {
     const getTDSList = String.Join('/', this.apiConfigService.getTDStypeList);
@@ -78,22 +82,7 @@ export class PostingComponent implements OnInit {
           }
           this.spinner.hide();
         });
-  }
-  getIncomeTypeList() {
-    const getIncomeList = String.Join('/', this.apiConfigService.getIncomeTypeList);
-    this.apiService.apiGetRequest(getIncomeList)
-      .subscribe(
-        response => {
-          const res = response.body;
-          if (!isNullOrUndefined(res) && res.status === StatusCodes.pass) {
-            if (!isNullOrUndefined(res.response)) {
-              console.log(res);
-              this.incmList = res.response['incmList'];
-            }
-          }
-          this.spinner.hide();
-        });
-  }
+  } 
   getTDSTypeList() {
     const getTDSList = String.Join('/', this.apiConfigService.getTDSRatesList);
     this.apiService.apiGetRequest(getTDSList)
@@ -110,13 +99,61 @@ export class PostingComponent implements OnInit {
         });
   }
 
+  getcompaniesList() {
+    const getcompanyList = String.Join('/', this.apiConfigService.getCompaniesList);
+    this.apiService.apiGetRequest(getcompanyList)
+      .subscribe(
+        response => {
+          const res = response.body;
+          if (!isNullOrUndefined(res) && res.status === StatusCodes.pass) {
+            if (!isNullOrUndefined(res.response)) {
+              console.log(res);
+              this.compList = res.response['CompaniesList'];
+            }
+          }
+          this.spinner.hide();
+        });
+  }
+
+  getbranchessList() {
+    const getbranchList = String.Join('/', this.apiConfigService.getVoucherBranchesList);
+    this.apiService.apiGetRequest(getbranchList)
+      .subscribe(
+        response => {
+          const res = response.body;
+          if (!isNullOrUndefined(res) && res.status === StatusCodes.pass) {
+            if (!isNullOrUndefined(res.response)) {
+              console.log(res);
+              this.branchList = res.response['branchesList'];
+            }
+          }
+          this.spinner.hide();
+        });
+  }
+
+  getplantsList() {
+    const getplantsList = String.Join('/', this.apiConfigService.getplantList);
+    this.apiService.apiGetRequest(getplantsList)
+      .subscribe(
+        response => {
+          const res = response.body;
+          if (!isNullOrUndefined(res) && res.status === StatusCodes.pass) {
+            if (!isNullOrUndefined(res.response)) {
+              console.log(res);
+              this.plantList = res.response['plantList'];
+            }
+          }
+          this.spinner.hide();
+        });
+  }
+
   get formControls() { return this.modelFormData.controls; }
 
   save() {
     if (this.modelFormData.invalid) {
       return;
     }
-    this.modelFormData.controls['code'].enable();
+    // this.modelFormData.controls['code'].enable();
     this.formData.item = this.modelFormData.value;
     this.dialogRef.close(this.formData);
   }

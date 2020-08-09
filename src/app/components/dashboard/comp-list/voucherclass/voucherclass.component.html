@@ -27,7 +27,7 @@
         <mat-form-field>
           <mat-label [translate]="'voucherclass.voucherNature'"></mat-label>
           <mat-select formControlName="voucherNature" appFocusOnEnter tabIndex="3">
-            <mat-option *ngFor="let ltype of voucherNatures" [value]="ltype.value">
+            <mat-option *ngFor="let ltype of voucherNatures" [value]="ltype.viewValue">
               {{ltype.viewValue}}
             </mat-option>
           </mat-select>
