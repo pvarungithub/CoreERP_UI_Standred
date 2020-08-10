@@ -57,5 +57,7 @@ export{AccountKeyComponent} from './accountkey/accountkey.component';
 export{AssignmentAccountKeytoAssetClassComponent} from './AssignmentsAccountKeytoAssetClass/AssignmentsAccountKeytoAssetClass.component';
 export{BankMasterComponent} from './bankmaster/bankmaster.component';
 export{DepreciationcodeComponent} from './depreciationcode/depreciationcode.component';
-
 export{GLAccountComponent} from './glaccount/glaccount.component';
+export{BusienessPartnerAccountComponent} from './businesspartner/businesspartner.component';
+export{MainAssetMasterComponent} from './mainassetmasters/mainassetmasters.component';
+export{SubAssetsComponent} from './subassets/subassets.component';

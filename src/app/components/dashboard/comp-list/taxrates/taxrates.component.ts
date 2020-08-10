@@ -61,7 +61,8 @@ export class TaxRatesComponents implements OnInit {
       igst: [null],
       ugst:[null],
       taxCondition:[null],
-      compositeCess:[null]
+      compositeCess:[null],
+      effectiveFrom: [null]
     });
 
     this.formData = { ...data };

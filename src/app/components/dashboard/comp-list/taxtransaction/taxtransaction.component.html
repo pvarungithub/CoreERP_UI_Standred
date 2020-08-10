@@ -19,6 +19,14 @@
             <div *ngIf="formControls.description.errors.required">description  is required </div>
           </mat-error>
         </mat-form-field>
+        <mat-form-field>
+          <mat-label>{{'taxtransactions.taxType' | translate }}</mat-label>
+          <mat-select placeholder="{{'taxtransactions.taxType' | translate }}" formControlName="taxType" appFocusOnEnter tabIndex="4">
+            <mat-option *ngFor="let taxtrnsn of taxTypelist" [value]="taxtrnsn.taxKey">
+              {{taxtrnsn.taxKey}} - {{taxtrnsn.description}}
+            </mat-option>
+          </mat-select>
+        </mat-form-field> 
       </div>
       <mat-divider></mat-divider>
     </form>

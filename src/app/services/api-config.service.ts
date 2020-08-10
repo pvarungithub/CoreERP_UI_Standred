@@ -22,6 +22,21 @@ export class ApiConfigService {
    getComponentInfo = `${this.environment.runtimeConfig.serverUrl}Settings/GetComponentInfo`;
 
    //************************ IMG General  ****************************************/
+
+
+ // BusienesspartnerAccount
+ getBusienessPartnerAccountList = `${this.environment.runtimeConfig.serverUrl}BusienessPartnerAccount/GetBusienessPartnerAccountList`;
+ registerBusienessPartnerAccount = `${this.environment.runtimeConfig.serverUrl}BusienessPartnerAccount/RegisterBusienessPartnerAccount`;
+ updateBusienessPartnerAccount = `${this.environment.runtimeConfig.serverUrl}BusienessPartnerAccount/UpdateBusienessPartnerAccount`;
+ deleteBusienessPartnerAccount = `${this.environment.runtimeConfig.serverUrl}BusienessPartnerAccount/DeleteBusienessPartnerAccount`;
+ getPaymentTermsList = `${this.environment.runtimeConfig.serverUrl}PaymentTerms/GetPaymentTermsList`;
+   
+ // MainAssetMaster
+    getMainAssetMasterList= `${this.environment.runtimeConfig.serverUrl}MainAssetMaster/GetMainAssetMasterList`;
+    registerMainAssetMaster = `${this.environment.runtimeConfig.serverUrl}MainAssetMaster/RegisterMainAssetMaster`;
+    updateMainAssetMaster = `${this.environment.runtimeConfig.serverUrl}MainAssetMaster/UpdateMainAssetMaster`;
+    deleteMainAssetMaster = `${this.environment.runtimeConfig.serverUrl}MainAssetMaster/DeleteMainAssetMaster`;
+   
      // Currency
   getCurrencyList = `${this.environment.runtimeConfig.serverUrl}masters/Currency/GetCurrencyList`;
   registerCurrency = `${this.environment.runtimeConfig.serverUrl}masters/Currency/RegisterCurrency`;
@@ -70,29 +85,29 @@ updateCompany = `${this.environment.runtimeConfig.serverUrl}masters/Company/Upda
 deleteCompany = `${this.environment.runtimeConfig.serverUrl}masters/Company/DeleteCompany`;
 
  // --- Segment
- getSegmentList = `${this.environment.runtimeConfig.serverUrl}masters/Segment/GetSegmentList`;
- registerSegment = `${this.environment.runtimeConfig.serverUrl}masters/Segment/RegisterSegment`;
- updateSegment = `${this.environment.runtimeConfig.serverUrl}masters/Segment/UpdateSegment`;
- deleteSegment = `${this.environment.runtimeConfig.serverUrl}masters/Segment/DeleteSegment`;
+ getSegmentList = `${this.environment.runtimeConfig.serverUrl}Segment/GetSegmentList`;
+ registerSegment = `${this.environment.runtimeConfig.serverUrl}Segment/RegisterSegment`;
+ updateSegment = `${this.environment.runtimeConfig.serverUrl}Segment/UpdateSegment`;
+ deleteSegment = `${this.environment.runtimeConfig.serverUrl}Segment/DeleteSegment`;
 
 // --- ProfitCenter
-getProfitCenterList = `${this.environment.runtimeConfig.serverUrl}masters/ProfitCenter/GetProfitCenterList`;
-registerProfitCenters = `${this.environment.runtimeConfig.serverUrl}masters/ProfitCenter/RegisterProfitCenters`;
-updateProfitCenters = `${this.environment.runtimeConfig.serverUrl}masters/ProfitCenter/UpdateProfitCenters`;
-deleteProfitCenters = `${this.environment.runtimeConfig.serverUrl}masters/ProfitCenter/DeleteProfitCenters`;
+getProfitCenterList = `${this.environment.runtimeConfig.serverUrl}ProfitCenter/GetProfitCenterList`;
+registerProfitCenters = `${this.environment.runtimeConfig.serverUrl}ProfitCenter/RegisterProfitCenters`;
+updateProfitCenters = `${this.environment.runtimeConfig.serverUrl}ProfitCenter/UpdateProfitCenters`;
+deleteProfitCenters = `${this.environment.runtimeConfig.serverUrl}ProfitCenter/DeleteProfitCenters`;
 
 // --- Branches
-GetEmployeesList = `${this.environment.runtimeConfig.serverUrl}masters/Branches/GetEmployeesList`;
-getBranchesList = `${this.environment.runtimeConfig.serverUrl}masters/Branches/GetBranchesList`;
-registerBranch = `${this.environment.runtimeConfig.serverUrl}masters/Branches/RegisterBranch`;
-updateBranch = `${this.environment.runtimeConfig.serverUrl}masters/Branches/UpdateBranch`;
-deleteBranches = `${this.environment.runtimeConfig.serverUrl}masters/Branches/DeleteBranches`;
+GetEmployeesList = `${this.environment.runtimeConfig.serverUrl}Branches/GetEmployeesList`;
+getBranchesList = `${this.environment.runtimeConfig.serverUrl}Branches/GetBranchesList`;
+registerBranch = `${this.environment.runtimeConfig.serverUrl}Branches/RegisterBranch`;
+updateBranch = `${this.environment.runtimeConfig.serverUrl}Branches/UpdateBranch`;
+deleteBranches = `${this.environment.runtimeConfig.serverUrl}Branches/DeleteBranches`;
 
 // --- division
-getDivisionsList = `${this.environment.runtimeConfig.serverUrl}masters/Division/GetDivisionsList`;
-registerDivision = `${this.environment.runtimeConfig.serverUrl}masters/Division/RegisterDivision`;
-updateDivision = `${this.environment.runtimeConfig.serverUrl}masters/Division/UpdateDivision`;
-deleteDivision = `${this.environment.runtimeConfig.serverUrl}masters/Division/DeleteDivision`;
+getDivisionsList = `${this.environment.runtimeConfig.serverUrl}Division/GetDivisionsList`;
+registerDivision = `${this.environment.runtimeConfig.serverUrl}Division/RegisterDivision`;
+updateDivision = `${this.environment.runtimeConfig.serverUrl}Division/UpdateDivision`;
+deleteDivision = `${this.environment.runtimeConfig.serverUrl}Division/DeleteDivision`;
 
   //Fdepartment
 getfunctionaldeptList = `${this.environment.runtimeConfig.serverUrl}masters/FunctionalDepartment/GetFunctionalDepartment`;
@@ -349,6 +364,13 @@ getAccountKeyList= `${this.environment.runtimeConfig.serverUrl}AccountKey/GetAcc
 registerAccountKey= `${this.environment.runtimeConfig.serverUrl}AccountKey/RegisterAccountKey`;
 updateAccountKey = `${this.environment.runtimeConfig.serverUrl}AccountKey/UpdateAccountKey`;
  deleteAccountKey = `${this.environment.runtimeConfig.serverUrl}AccountKey/DeleteAccountKey`;
+
+  //subasset
+  getSubAssetsList= `${this.environment.runtimeConfig.serverUrl}SubAssetsList/GetSubAssetsListList`;
+  registerSubAssetsList= `${this.environment.runtimeConfig.serverUrl}SubAssetsList/RegisterSubAssetsList`;
+  updateSubAssetsList= `${this.environment.runtimeConfig.serverUrl}SubAssetsList/UpdateSubAssetsList`;
+   deleteSubAssetsList = `${this.environment.runtimeConfig.serverUrl}SubAssetsList/DeleteSubAssetsList`;
+
    //bankmaster
 getBankMasterList= `${this.environment.runtimeConfig.serverUrl}BankMaster/GetBankMasterList`;
 registerBankMaster= `${this.environment.runtimeConfig.serverUrl}BankMaster/RegisterBankMaster`;

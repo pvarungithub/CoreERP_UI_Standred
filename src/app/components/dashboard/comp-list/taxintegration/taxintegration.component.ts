@@ -4,6 +4,11 @@ import { isNullOrUndefined } from 'util';
 import { FormBuilder, FormGroup, Validators } from '@angular/forms';
 import { AddOrEditService } from '../add-or-edit.service';
 
+interface Nature {
+  value: string;
+  viewValue: string;
+}
+
 @Component({
   selector: 'app-taxintegration',
   templateUrl: './taxintegration.component.html',
@@ -15,6 +20,12 @@ export class TaxIntegrationComponent  implements OnInit {
   modelFormData: FormGroup;
   isSubmitted  =  false;
   formData: any;
+  
+  TaxTypess: Nature[] =
+  [
+    { value: '1', viewValue: 'Input' },
+    { value: '2', viewValue: 'Output' },    
+  ];
 
   constructor(
     private formBuilder: FormBuilder,
@@ -26,6 +37,7 @@ export class TaxIntegrationComponent  implements OnInit {
       this.modelFormData  =  this.formBuilder.group({
         taxKey: [null, [Validators.required, Validators.minLength(1), Validators.maxLength(4)]],
         description: [null, [Validators.required, Validators.minLength(1), Validators.maxLength(30)]],
+        nature: [null]
       });
 
       this.formData = {...data};

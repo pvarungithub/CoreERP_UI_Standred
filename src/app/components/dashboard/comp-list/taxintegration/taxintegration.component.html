@@ -18,6 +18,14 @@
                <div *ngIf="formControls.description.errors.required">description  is required </div>
              </mat-error>
            </mat-form-field>
+           <mat-form-field>
+            <mat-label [translate]="'taxtypes.nature'"></mat-label>
+            <mat-select formControlName="nature" appFocusOnEnter tabIndex="5">
+              <mat-option *ngFor="let taxtype of TaxTypess" [value]="taxtype.viewValue">
+                {{taxtype.viewValue}}
+              </mat-option>
+            </mat-select>
+          </mat-form-field>
          </div>
       <mat-divider></mat-divider>
       </form>

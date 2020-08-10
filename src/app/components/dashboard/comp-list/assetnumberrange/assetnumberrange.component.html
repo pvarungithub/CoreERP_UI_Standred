@@ -15,13 +15,13 @@
           </mat-error>
         </mat-form-field>
 
-        <mat-form-field class="form-element" [ngClass]="{ 'ng--valid': formControls.description.valid }">
+        <!-- <mat-form-field class="form-element" [ngClass]="{ 'ng--valid': formControls.description.valid }">
           <input matInput placeholder="{{'assetnumberrange.description' | translate }}"
            formControlName="description" maxlength="30" appFocusOnEnter tabIndex="2">
           <mat-error *ngIf="formControls.description.errors" class="help-block">
             <div *ngIf="formControls.description.errors.required">description  is required </div>
           </mat-error>
-        </mat-form-field>
+        </mat-form-field> -->
         <mat-form-field class="form-element">
           <input matInput placeholder="{{'assetnumberrange.fromRange' | translate }}"
            formControlName="fromRange" maxlength="7" appFocusOnEnter tabIndex="3">

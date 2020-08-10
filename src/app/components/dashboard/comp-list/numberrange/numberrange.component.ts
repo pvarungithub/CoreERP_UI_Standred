@@ -25,7 +25,7 @@ export class NumberRangeComponent implements OnInit {
 
     this.modelFormData = this.formBuilder.group({
       code: [null, [Validators.required, Validators.minLength(1), Validators.maxLength(4)]],
-      description: [null, [Validators.required, Validators.minLength(1), Validators.maxLength(30)]],
+      // description: [null, [Validators.required, Validators.minLength(1), Validators.maxLength(30)]],
       rangeFrom: [null],
       rangeTo: [null],
       nonNumaric: [null]

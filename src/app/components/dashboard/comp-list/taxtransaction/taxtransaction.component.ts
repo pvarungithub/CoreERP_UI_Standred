@@ -1,8 +1,13 @@
 import { Component, Inject, Optional, OnInit } from '@angular/core';
 import { MatDialogRef, MAT_DIALOG_DATA } from '@angular/material/dialog';
 import { isNullOrUndefined } from 'util';
+import { StatusCodes } from '../../../../enums/common/common';
 import { FormBuilder, FormGroup, Validators } from '@angular/forms';
+import { ApiService } from 'src/app/services/api.service';
+import { ApiConfigService } from 'src/app/services/api-config.service';
 import { AddOrEditService } from '../add-or-edit.service';
+import { NgxSpinnerService } from 'ngx-spinner';
+import { String } from 'typescript-string-operations';
 
 @Component({
   selector: 'app-taxtransaction',
@@ -14,8 +19,14 @@ export class TaxTransactionComponent implements OnInit {
 
   modelFormData: FormGroup;
   formData: any;
+  // spinner: any;
+  taxTypelist: any;
+
 
   constructor(
+    private apiService: ApiService,
+    private apiConfigService: ApiConfigService,
+    private spinner: NgxSpinnerService,
     private formBuilder: FormBuilder,
     private addOrEditService: AddOrEditService,
     public dialogRef: MatDialogRef<TaxTransactionComponent>,
@@ -25,6 +36,8 @@ export class TaxTransactionComponent implements OnInit {
     this.modelFormData = this.formBuilder.group({
       code: [null, [Validators.required, Validators.minLength(1), Validators.maxLength(5)]],
       description: [null, [Validators.required, Validators.minLength(1), Validators.maxLength(50)]],
+      taxType:[null],
+      
     });
 
     this.formData = { ...data };
@@ -35,9 +48,26 @@ export class TaxTransactionComponent implements OnInit {
   }
 
   ngOnInit() {
+    this.GetTaxTypeList();
   }
 
   get formControls() { return this.modelFormData.controls; }
+
+  GetTaxTypeList() {
+    const getTypeList = String.Join('/', this.apiConfigService.getTaxTypesList);
+    this.apiService.apiGetRequest(getTypeList)
+      .subscribe(
+        response => {
+          const res = response.body;
+          if (!isNullOrUndefined(res) && res.status === StatusCodes.pass) {
+            if (!isNullOrUndefined(res.response)) {
+              this.taxTypelist = res.response['TaxtypesList'];
+            }
+          }
+          this.spinner.hide();
+        });
+  }
+
 
   save() {
     if (this.modelFormData.invalid) {

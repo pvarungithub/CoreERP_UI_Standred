@@ -57,8 +57,10 @@ import{AccountKeyComponent} from './accountkey/accountkey.component';
 import{BankMasterComponent} from './bankmaster/bankmaster.component';
 import{AssignmentAccountKeytoAssetClassComponent} from './AssignmentsAccountKeytoAssetClass/AssignmentsAccountKeytoAssetClass.component';
 import{DepreciationcodeComponent} from './depreciationcode/depreciationcode.component';
-
+import{BusienessPartnerAccountComponent} from './businesspartner/businesspartner.component';
 import{GLAccountComponent} from './glaccount/glaccount.component';
+import{MainAssetMasterComponent} from './mainassetmasters/mainassetmasters.component';
+import{SubAssetsComponent} from './subassets/subassets.component';
 
 @Injectable({
   providedIn: 'root'
@@ -308,6 +310,18 @@ export class CompListService {
       break;
       case 'glaccount':
         this.dynamicComp.component = GLAccountComponent;
+        return this.dynamicComp.component;
+      break;
+      case 'businesspartner':
+        this.dynamicComp.component = BusienessPartnerAccountComponent;
+        return this.dynamicComp.component;
+      break;
+      case 'mainassetmaster':
+        this.dynamicComp.component = MainAssetMasterComponent;
+        return this.dynamicComp.component;
+      break;
+      case 'subassets':
+        this.dynamicComp.component = SubAssetsComponent;
         return this.dynamicComp.component;
       break;
       default:

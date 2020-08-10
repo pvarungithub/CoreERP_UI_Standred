@@ -8,35 +8,19 @@
     <form [formGroup]="modelFormData" autocomplete="off">
 
       <div class="d--flex">
-        <mat-form-field>
+        <!-- <mat-form-field>
           <mat-label>{{'posting.tdstype' | translate }}</mat-label>
           <mat-select formControlName="tdstype" appFocusOnEnter tabIndex="3">
             <mat-option *ngFor="let tdstype of tdsList" [value]="tdstype.tdsCode">
               {{tdstype.tdsCode}} - {{tdstype.desctiption}}
             </mat-option>
           </mat-select>
-        </mat-form-field>        
+        </mat-form-field>         -->
         <mat-form-field>
           <mat-label>{{'posting.tdsrate' | translate }}</mat-label>
           <mat-select formControlName="tdsrate" appFocusOnEnter tabIndex="5">
             <mat-option *ngFor="let tdsrate of tdsratesList" [value]="tdsrate.code">
               {{tdsrate.code}} - {{tdsrate.desctiption}}
-            </mat-option>
-          </mat-select>
-        </mat-form-field>
-        <mat-form-field>
-          <mat-label [translate]="'posting.glaccount'"></mat-label>
-          <mat-select formControlName="glaccount" appFocusOnEnter tabIndex="6">
-            <mat-option *ngFor="let ltype of status" [value]="ltype.value">
-              {{ltype.viewValue}}
-            </mat-option>
-          </mat-select>
-        </mat-form-field>     
-        <mat-form-field>
-          <mat-label>{{'posting.plant' | translate }}</mat-label>
-          <mat-select formControlName="plant" appFocusOnEnter tabIndex="4">
-            <mat-option *ngFor="let plants of plantList" [value]="plants.plantCode">
-              {{plants.plantCode}} - {{plants.plantname}}
             </mat-option>
           </mat-select>
         </mat-form-field>
@@ -48,6 +32,7 @@
             </mat-option>
           </mat-select>
         </mat-form-field>
+
         <mat-form-field>
           <mat-label>{{'posting.branch' | translate }}</mat-label>
           <mat-select formControlName="branch" appFocusOnEnter tabIndex="6">
@@ -56,6 +41,24 @@
             </mat-option>
           </mat-select>
         </mat-form-field>
+         
+        <mat-form-field>
+          <mat-label>{{'posting.plant' | translate }}</mat-label>
+          <mat-select formControlName="plant" appFocusOnEnter tabIndex="4">
+            <mat-option *ngFor="let plants of plantList" [value]="plants.plantCode">
+              {{plants.plantCode}} - {{plants.plantname}}
+            </mat-option>
+          </mat-select>
+        </mat-form-field>        
+        
+        <mat-form-field>
+          <mat-label [translate]="'posting.glaccount'"></mat-label>
+          <mat-select formControlName="glaccount" appFocusOnEnter tabIndex="6">
+            <mat-option *ngFor="let ltype of status" [value]="ltype.value">
+              {{ltype.viewValue}}
+            </mat-option>
+          </mat-select>
+        </mat-form-field>   
       </div>
       <mat-divider></mat-divider>
 

@@ -46,7 +46,7 @@ export class PostingComponent implements OnInit {
 
     this.modelFormData = this.formBuilder.group({
       code: [0],
-      tdstype: [null],
+      // tdstype: [null],
       tdsrate: [null],
       glaccount:[null],
       branch: [null],
@@ -64,27 +64,27 @@ export class PostingComponent implements OnInit {
   }
 
   ngOnInit() {
-    this.getTdsTypeList();
+    // this.getTdsTypeList();
     this.getTDSTypeList();
     this.getcompaniesList();
     this.getbranchessList();
     this.getplantsList();
   }
-  getTdsTypeList() {
-    const getTDSList = String.Join('/', this.apiConfigService.getTDStypeList);
-    this.apiService.apiGetRequest(getTDSList)
-      .subscribe(
-        response => {
-          const res = response.body;
-          if (!isNullOrUndefined(res) && res.status === StatusCodes.pass) {
-            if (!isNullOrUndefined(res.response)) {
-              console.log(res);
-              this.tdsList = res.response['tdsList'];
-            }
-          }
-          this.spinner.hide();
-        });
-  } 
+  // getTdsTypeList() {
+  //   const getTDSList = String.Join('/', this.apiConfigService.getTDStypeList);
+  //   this.apiService.apiGetRequest(getTDSList)
+  //     .subscribe(
+  //       response => {
+  //         const res = response.body;
+  //         if (!isNullOrUndefined(res) && res.status === StatusCodes.pass) {
+  //           if (!isNullOrUndefined(res.response)) {
+  //             console.log(res);
+  //             this.tdsList = res.response['tdsList'];
+  //           }
+  //         }
+  //         this.spinner.hide();
+  //       });
+  // } 
   getTDSTypeList() {
     const getTDSList = String.Join('/', this.apiConfigService.getTDSRatesList);
     this.apiService.apiGetRequest(getTDSList)
@@ -124,8 +124,7 @@ export class PostingComponent implements OnInit {
         response => {
           const res = response.body;
           if (!isNullOrUndefined(res) && res.status === StatusCodes.pass) {
-            if (!isNullOrUndefined(res.response)) {
-              console.log(res);
+            if (!isNullOrUndefined(res.response)) {             
               this.branchList = res.response['branchesList'];
             }
           }

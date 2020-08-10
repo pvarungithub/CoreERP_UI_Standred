@@ -304,12 +304,14 @@
     "cgst": "CGST",
     "igst": "IGST",
     "ugst": "UGST",
-    "compositeCess":"Composite Cess"
+    "compositeCess":"Composite Cess",
+    "effectiveFrom":  "Effective From" 
   },
   "taxtransactions": {
     "title": "Tax Transaction",
     "code": "Code",
-    "description": "Description"
+    "description": "Description",
+    "taxType":"Tax Type"
   },
   "assignmentoftaxaccountstotaxcodes": {
     "title": "Assignment of Taxaccounts to Taxcodes",
@@ -323,7 +325,8 @@
   "taxtypes": {
     "title": "Tax Types",
     "taxKey": "Code",
-    "description": "Tax Type"
+    "description": "Tax Type",
+    "nature":"Nature of Tax"
   },
  "hsnsac": {
     "title": "Hsn Sac",
@@ -353,13 +356,12 @@
     "effectiveFrom":  "Effective From"      
   },
   "posting": {
-    "title": "Posting",   
-    "tdstype": "TDS Type",   
-    "tdsrate": "TDS Rate",
-    "glaccount": "GL Account",
-    "branch": "Branch",
+    "title": "Posting",  
+    "tdsrate": "TDS Rate",    
     "company": "Company",
-    "plant": "Plant"   
+    "branch": "Branch",
+    "plant": "Plant" ,
+    "glaccount": "GL Account"
   },
   "accountgroup": {
     "title": "Accounts Group",
@@ -381,7 +383,6 @@
   "assetnumberrange": {
     "title": "Asset NumberRange",
     "code": "Code",
-    "description": "Description",
     "fromRange": "FromRange",
     "toRange": "ToRange",
     "nonNumaric": "Non Numaric"
@@ -460,7 +461,6 @@
   "numberrange": {
     "title": "Number Range",
     "code": "Code",
-    "description": "Description",
     "rangeFrom": "Range From",
     "rangeTo": "Range To",
     "nonNumaric": "Non Numaric"
@@ -491,7 +491,7 @@
     "title": "Depreciation Areas",
     "code": "Code",
     "description": "Description",
-    "depreciationType":" Normal Control Account"
+    "depreciationType":"Nature of Depreciation"
   },
   "AssetClass": {
     "title": "Asset Class",
@@ -566,6 +566,79 @@
     "bankKey":  "Bank Key",
     "legacyGl":"Legacy Gl",
     "costElementCategory":"Cost Element Category"
+  },
+  "businesspartner": {
+    "title": "Busieness PartnerMaster",
+    "code": "Code",
+    "bptype":"Bptype",
+    "bpnumber": "Bp Number",
+    "name":"Name",
+    "name1": "Name1",
+    "search":  "Search",
+    "address":  "Address",
+    "address1":  "Address1",
+    "location":  "Location",
+    "city":  "City",
+    "state": "State",
+    "region": "Region",
+    "country":  "Country",
+    "email": "Email",
+    "phone":"Phone",
+    "mobile": "Mobile",
+    "gstno": "Gstno",
+    "panno": "Panno",
+    "tanno": "Tanno",
+    "taxClassification":  "TaxClassification",
+    "company":  "Company",
+    "controlAccount": "ControlAccount",
+    "paymentTerms": "PaymentTerms",
+    "tdstype":  "Tdstype",
+    "tdstate": "Tdstate",
+    "baseAmount": "BaseAmount",
+    "obligationFrom": "ObligationFrom",
+    "obligationTo":  "ObligationTo",
+    "bankKey": "BankKey",
+    "bankName": "BankName",
+    "bankAccountNo":  "BankAccountNo",
+    "ifsccode": "Ifsccode",
+    "swiftcode": "Swiftcode",
+    "bankBranch": "BankBranch",
+    "bankBranchNo": "BankBranchNo",
+    "contactPersion":  "ContactPersion",
+    "contactPersionMobile": "ContactPersionMobile",
+    "narration": "Narration"
+
+  },
+  "mainassetmaster": {
+    "title": "Main asset Master",
+    "assetNumber": "AssetNumber",
+    "name":  "Name",
+    "name1":"Name1",
+    "accountKey":"AccountKey",
+    "materialNo":  "MaterialNo",
+    "quantity": "Quantity",
+    "serialNo": "SerialNo",
+    "branch": "Branch",
+    "profitCenter":  "ProfitCenter",
+    "segment": "Segment",
+    "division":  "Division",
+    "plant": "Plant",
+    "location":  "Location",
+    "room": "Room",
+    "supplier": "Supplier",
+    "acquisitionDate":  "AcquisitionDate",
+    "usefulLifeYears": "UsefulLifeYears",
+    "usefulLifeDays": "UsefulLifeDays",
+    "depreciationData": "DepreciationData",
+    "depreciationArea":  "DepreciationArea",
+    "depreciationCode": "DepreciationCode",
+    "depreciationStartDate": "DepreciationStartDate"
+  },
+  "subassets": {
+    "title": "Sub assets",
+    "subAssetNumber": "subAssetNumber",
+    "mainAssetNo": "mainAssetNo",
+    "description": "description"          
   }
 }
 
