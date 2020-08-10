@@ -3,6 +3,7 @@ import { MatDialogRef, MAT_DIALOG_DATA } from '@angular/material/dialog';
 import { isNullOrUndefined } from 'util';
 import { FormBuilder, FormGroup, Validators } from '@angular/forms';
 import { NgxSpinnerService } from 'ngx-spinner';
+import { AddOrEditService } from '../add-or-edit.service';
 @Component({
   selector: 'app-assignmentoftaxaccountstotaxcodes',
   templateUrl: './assignmentoftaxaccountstotaxcodes.component.html',
@@ -19,6 +20,7 @@ export class AssignmentoftaxaccountstotaxcodesComponent implements OnInit {
 
   constructor(
     private formBuilder: FormBuilder,
+    private addOrEditService: AddOrEditService,
     public dialogRef: MatDialogRef<AssignmentoftaxaccountstotaxcodesComponent>,
     private spinner: NgxSpinnerService,
     // @Optional() is used to prevent error if no data is passed
@@ -57,7 +59,12 @@ export class AssignmentoftaxaccountstotaxcodesComponent implements OnInit {
     }
      this.modelFormData.controls['code'].enable();
     this.formData.item = this.modelFormData.value;
-    this.dialogRef.close(this.formData);
+    this.addOrEditService[this.formData.action](this.formData, (res) => {
+      this.dialogRef.close(this.formData);
+    });
+    if (this.formData.action == 'Edit') {
+      this.modelFormData.controls['code'].disable();
+    }
   }
 
   cancel() {

@@ -1,5 +1,4 @@
 import { Component, Inject, Optional, OnInit } from '@angular/core';
-import { AlertService } from '../../../../services/alert.service';
 import { MatDialogRef, MAT_DIALOG_DATA } from '@angular/material/dialog';
 import { isNullOrUndefined } from 'util';
 import { FormBuilder, FormGroup, Validators } from '@angular/forms';
@@ -8,7 +7,7 @@ import { NgxSpinnerService } from 'ngx-spinner';
 import { ApiConfigService } from '../../../../services/api-config.service';
 import { ApiService } from '../../../../services/api.service';
 import { String } from 'typescript-string-operations';
-import { CommonService } from '../../../../services/common.service';
+import { AddOrEditService } from '../add-or-edit.service';
 
 interface classType {
   value: string;
@@ -29,13 +28,12 @@ export class AssignmentAccountKeytoAssetClassComponent implements OnInit {
   assetList:any;
   acckeyList: any;
   constructor(
-    private alertService: AlertService,
+    private addOrEditService: AddOrEditService,
     private formBuilder: FormBuilder,
     public dialogRef: MatDialogRef<AssignmentAccountKeytoAssetClassComponent>,
     private spinner: NgxSpinnerService,
     private apiConfigService: ApiConfigService,
     private apiService: ApiService,
-    private commonService: CommonService,
     // @Optional() is used to prevent error if no data is passed
     @Optional() @Inject(MAT_DIALOG_DATA) public data: any) {
 
@@ -46,7 +44,6 @@ export class AssignmentAccountKeytoAssetClassComponent implements OnInit {
       accountKey: [null]
       
     });
-
 
     this.formData = { ...data };
     if (!isNullOrUndefined(this.formData.item)) {
@@ -93,14 +90,18 @@ export class AssignmentAccountKeytoAssetClassComponent implements OnInit {
 
   get formControls() { return this.modelFormData.controls; }
 
-
   save() {
     if (this.modelFormData.invalid) {
       return;
     }
     this.modelFormData.controls['code'].enable();
     this.formData.item = this.modelFormData.value;
-    this.dialogRef.close(this.formData);
+    this.addOrEditService[this.formData.action](this.formData, (res) => {
+      this.dialogRef.close(this.formData);
+    });
+    if (this.formData.action == 'Edit') {
+      this.modelFormData.controls['code'].disable();
+    }
   }
 
   cancel() {

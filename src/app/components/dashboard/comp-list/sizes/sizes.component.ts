@@ -3,6 +3,7 @@ import { AlertService } from '../../../../services/alert.service';
 import { MatDialogRef, MAT_DIALOG_DATA } from '@angular/material/dialog';
 import { isNullOrUndefined } from 'util';
 import { FormBuilder, FormGroup, Validators } from '@angular/forms';
+import { AddOrEditService } from '../add-or-edit.service';
 
 @Component({
   selector: 'app-sizes',
@@ -17,6 +18,7 @@ export class UOMComponent implements OnInit {
 
   constructor(
     private alertService: AlertService,
+    private addOrEditService: AddOrEditService,
     private formBuilder: FormBuilder,
     public dialogRef: MatDialogRef<UOMComponent>,
     // @Optional() is used to prevent error if no data is passed
@@ -49,7 +51,12 @@ export class UOMComponent implements OnInit {
     }
     this.modelFormData.controls['unitId'].enable();
     this.formData.item = this.modelFormData.value;
-    this.dialogRef.close(this.formData);
+    this.addOrEditService[this.formData.action](this.formData, (res) => {
+      this.dialogRef.close(this.formData);
+    });
+    if (this.formData.action == 'Edit') {
+      this.modelFormData.controls['unitId'].disable();
+    }
   }
 
   cancel() {

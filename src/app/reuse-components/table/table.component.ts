@@ -15,6 +15,8 @@ import { take, takeUntil } from 'rxjs/operators';
 import { MatSelect } from '@angular/material/select';
 import { User } from '../../models/common/user';
 import { TranslateService } from '@ngx-translate/core';
+import { RuntimeConfigService } from '../../services/runtime-config.service';
+
 @Component({
   selector: 'app-table',
   templateUrl: './table.component.html',
@@ -59,7 +61,9 @@ export class TableComponent implements OnInit, OnChanges, AfterViewInit, OnDestr
     public dialog: MatDialog,
     private cdr: ChangeDetectorRef,
     private activatedRoute: ActivatedRoute,
-    private translate: TranslateService
+    private translate: TranslateService,
+    private runtimeConfigService: RuntimeConfigService,
+    private commonService: CommonService
   ) {
     this.user = JSON.parse(localStorage.getItem('user'));
     activatedRoute.params.subscribe(params => {
@@ -152,6 +156,9 @@ export class TableComponent implements OnInit, OnChanges, AfterViewInit, OnDestr
         // tslint:disable-next-line: forin
         for (key in res) {
           // tslint:disable-next-line: prefer-for-of
+          if (this.runtimeConfigService.tableColumnsData[this.routeParam][key] == 'Date') {
+            this.formatDate(key)
+          }
           for (let c = 0; c < col.length; c++) {
             if (key == col[c].def) {
               this.columnDefinitions.push(col[c]);
@@ -171,6 +178,10 @@ export class TableComponent implements OnInit, OnChanges, AfterViewInit, OnDestr
         });
     }
 
+  }
+  
+  formatDate(col) {
+    this.tableData.map(res => !isNullOrUndefined(res[col]) ? res[col] = this.commonService.formatDateValue(res[col]) : '');
   }
 
 

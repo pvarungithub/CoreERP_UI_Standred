@@ -14,6 +14,7 @@ import { SnackBar } from '../../../enums/common/common';
 import { CompListService } from './comp-list.service';
 import { RuntimeConfigService } from '../../../services/runtime-config.service';
 import { ApiConfigService } from '../../../services/api-config.service';
+import { AddOrEditService } from './add-or-edit.service';
 
 @Component({
   selector: 'app-comp-list',
@@ -36,7 +37,8 @@ export class CompListComponent implements OnInit {
     private alertService: AlertService,
     private compListService: CompListService,
     private environment: RuntimeConfigService,
-    private apiConfigService: ApiConfigService
+    private apiConfigService: ApiConfigService,
+    private addOrEditService: AddOrEditService
   ) {
     activatedRoute.params.subscribe(params => {
       this.getTableParameters(params.id);
@@ -55,6 +57,7 @@ export class CompListComponent implements OnInit {
           if (!isNullOrUndefined(res) && res.status === StatusCodes.pass) {
             if (!isNullOrUndefined(res.response)) {
               this.tableUrl = res.response;
+              this.addOrEditService.tableParameters = this.tableUrl;
               if (!isNullOrUndefined(this.tableUrl)) {
                 this.getTableData();
               }
@@ -64,7 +67,7 @@ export class CompListComponent implements OnInit {
   }
 
   getTableData() {
-    const getUrl = String.Join('',this.environment.runtimeConfig.serverUrl, this.tableUrl.url);
+    const getUrl = String.Join('', this.environment.runtimeConfig.serverUrl, this.tableUrl.url);
     this.apiService.apiGetRequest(getUrl)
       .subscribe(
         response => {
@@ -95,17 +98,13 @@ export class CompListComponent implements OnInit {
 
       dialogRef.afterClosed().subscribe(result => {
         if (!isNullOrUndefined(result)) {
-          this.spinner.show();
-          if (result.action === 'Add') {
-            this.addRecord(result);
-          } else if (result.action === 'Edit') {
-            this.editRecord(result);
-          }
+          this.tableComponent.defaultValues();
+          this.getTableData();
         }
       });
     }
   }
-  
+
   deleteRecord(value) {
     value.primary = this.tableUrl.ext;
     const dialogRef = this.dialog.open(DeleteItemComponent, {
@@ -137,38 +136,6 @@ export class CompListComponent implements OnInit {
 
   }
 
-  addRecord(result) {
-    const addCompanyUrl = String.Join('', this.environment.runtimeConfig.serverUrl, this.tableUrl.registerUrl);
-    this.apiService.apiPostRequest(addCompanyUrl, result.item)
-      .subscribe(
-        response => {
-          const res = response.body;
-          if (!isNullOrUndefined(res) && res.status === StatusCodes.pass) {
-            if (!isNullOrUndefined(res.response)) {
-              this.tableComponent.defaultValues();
-              this.getTableData();
-              this.alertService.openSnackBar('Record Added...', 'close', SnackBar.success);
-            }
-          }
-          this.spinner.hide();
-        });
-  }
-
-  editRecord(result) {
-    const updateCompanyUrl = String.Join('', this.environment.runtimeConfig.serverUrl, this.tableUrl.updateUrl);
-    this.apiService.apiUpdateRequest(updateCompanyUrl, result.item)
-      .subscribe(
-        response => {
-          const res = response.body;
-          this.spinner.hide();
-          if (!isNullOrUndefined(res) && res.status === StatusCodes.pass) {
-            if (!isNullOrUndefined(res.response)) {
-              this.tableComponent.defaultValues();
-              this.getTableData();
-              this.alertService.openSnackBar('Record Updated...', 'close', SnackBar.success);
-            }
-          }
-        });
-  }
+  
 
 }

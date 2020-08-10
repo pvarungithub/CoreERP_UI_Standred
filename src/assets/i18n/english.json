@@ -455,14 +455,14 @@
     "title": "Busieness Partner Group",
     "bpgroup": "Code",
     "description": "Description",
-    "bptype": "bpType"
+    "bptype": "BP Type"
   },
   "numberrange": {
     "title": "Number Range",
     "code": "Code",
     "description": "Description",
-    "rangeFrom": "rangeFrom",
-    "rangeTo": "rangeTo",
+    "rangeFrom": "Range From",
+    "rangeTo": "Range To",
     "nonNumaric": "Non Numaric"
   },
   "assignment": {

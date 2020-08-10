@@ -7,6 +7,7 @@ import { NgxSpinnerService } from 'ngx-spinner';
 import { ApiConfigService } from '../../../../services/api-config.service';
 import { ApiService } from '../../../../services/api.service';
 import { String } from 'typescript-string-operations';
+import { AddOrEditService } from '../add-or-edit.service';
 
 interface Status {
   value: string;
@@ -32,6 +33,7 @@ export class TdsRatesComponent implements OnInit {
   ];
   constructor(
     private formBuilder: FormBuilder,
+    private addOrEditService: AddOrEditService,
     public dialogRef: MatDialogRef<TdsRatesComponent>,
     private spinner: NgxSpinnerService,
     private apiConfigService: ApiConfigService,
@@ -99,7 +101,12 @@ export class TdsRatesComponent implements OnInit {
     }
     this.modelFormData.controls['code'].enable();
     this.formData.item = this.modelFormData.value;
-    this.dialogRef.close(this.formData);
+    this.addOrEditService[this.formData.action](this.formData, (res) => {
+      this.dialogRef.close(this.formData);
+    });
+    if (this.formData.action == 'Edit') {
+      this.modelFormData.controls['code'].disable();
+    }
   }
 
   cancel() {

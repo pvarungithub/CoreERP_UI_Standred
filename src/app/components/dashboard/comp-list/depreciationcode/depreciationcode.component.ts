@@ -1,12 +1,8 @@
 import { Component, Inject, Optional, OnInit } from '@angular/core';
-import { String } from 'typescript-string-operations';
-import { ApiService } from '../../../../services/api.service';
 import { MatDialogRef, MAT_DIALOG_DATA } from '@angular/material/dialog';
 import { isNullOrUndefined } from 'util';
 import { FormBuilder, FormGroup, Validators } from '@angular/forms';
-import { NgxSpinnerService } from 'ngx-spinner';
-import { ApiConfigService } from '../../../../services/api-config.service';
-import { StatusCodes } from '../../../../enums/common/common';
+import { AddOrEditService } from '../add-or-edit.service';
 
 interface Methodofdepreciation {
   value: string;
@@ -42,9 +38,7 @@ values: Upto[] =
     { value: '6', viewValue: 'Upto-6' } 
   ];
   constructor(
-    private apiService: ApiService,
-    private apiConfigService: ApiConfigService,
-    private spinner: NgxSpinnerService,
+    private addOrEditService: AddOrEditService,
     private formBuilder: FormBuilder,
     public dialogRef: MatDialogRef<DepreciationcodeComponent>,
     // @Optional() is used to prevent error if no data is passed
@@ -86,7 +80,12 @@ values: Upto[] =
     }
     this.modelFormData.controls['code'].enable();
     this.formData.item = this.modelFormData.value;
-    this.dialogRef.close(this.formData);
+    this.addOrEditService[this.formData.action](this.formData, (res) => {
+      this.dialogRef.close(this.formData);
+    });
+    if (this.formData.action == 'Edit') {
+      this.modelFormData.controls['code'].disable();
+    }
   }
 
   cancel() {

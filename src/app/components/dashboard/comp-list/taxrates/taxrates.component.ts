@@ -7,6 +7,7 @@ import { ApiService } from '../../../../services/api.service';
 import { ApiConfigService } from '../../../../services/api-config.service';
 import { NgxSpinnerService } from 'ngx-spinner';
 import { String } from 'typescript-string-operations';
+import { AddOrEditService } from '../add-or-edit.service';
 
 interface TaxCondition {
   value: string;
@@ -41,6 +42,7 @@ export class TaxRatesComponents implements OnInit {
   ];
   constructor(
     private apiService: ApiService,
+    private addOrEditService: AddOrEditService,
     private apiConfigService: ApiConfigService,
     private spinner: NgxSpinnerService,
     private formBuilder: FormBuilder,
@@ -97,7 +99,12 @@ export class TaxRatesComponents implements OnInit {
     }
     this.modelFormData.controls['taxRateCode'].enable();
     this.formData.item = this.modelFormData.value;
-    this.dialogRef.close(this.formData);    
+    this.addOrEditService[this.formData.action](this.formData, (res) => {
+      this.dialogRef.close(this.formData);
+    });
+    if (this.formData.action == 'Edit') {
+      this.modelFormData.controls['taxRateCode'].disable();
+    }  
   }
 
   cancel() {

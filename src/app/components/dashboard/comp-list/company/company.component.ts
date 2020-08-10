@@ -10,6 +10,7 @@ import { StatusCodes } from '../../../../enums/common/common';
 import { DatePipe } from '@angular/common';
 import { ApiConfigService } from '../../../../services/api-config.service';
 import { NgxSpinnerService } from 'ngx-spinner';
+import { AddOrEditService } from '../add-or-edit.service';
 
 
 @Component({
@@ -38,6 +39,7 @@ export class CompanyComponent   implements OnInit {
 
   constructor(
     private apiService: ApiService,
+    private addOrEditService: AddOrEditService,
     private alertService: AlertService,
     private formBuilder: FormBuilder,
     private spinner: NgxSpinnerService,
@@ -175,7 +177,12 @@ export class CompanyComponent   implements OnInit {
 
     this.modelFormData.controls['companyCode'].enable();
     this.formData.item = this.modelFormData.value;
-    this.dialogRef.close(this.formData);
+    this.addOrEditService[this.formData.action](this.formData, (res) => {
+      this.dialogRef.close(this.formData);
+    });
+    if (this.formData.action == 'Edit') {
+      this.modelFormData.controls['companyCode'].disable();
+    }
   }
 
   cancel() {

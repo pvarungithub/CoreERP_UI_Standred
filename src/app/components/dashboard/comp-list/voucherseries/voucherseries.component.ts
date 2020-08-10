@@ -7,6 +7,7 @@ import { NgxSpinnerService } from 'ngx-spinner';
 import { ApiConfigService } from '../../../../services/api-config.service';
 import { ApiService } from '../../../../services/api.service';
 import { String } from 'typescript-string-operations';
+import { AddOrEditService } from '../add-or-edit.service';
 
 @Component({
   selector: 'voucherseries',
@@ -26,6 +27,7 @@ export class VoucherSeriesComponents implements OnInit {
 
   constructor(
     private formBuilder: FormBuilder,
+    private addOrEditService: AddOrEditService,
     public dialogRef: MatDialogRef<VoucherSeriesComponents>,
     private spinner: NgxSpinnerService,
     private apiConfigService: ApiConfigService,
@@ -116,8 +118,13 @@ export class VoucherSeriesComponents implements OnInit {
       return;
     }
     this.modelFormData.controls['voucherSeriesKey'].enable();
-    this.formData.item = this.modelFormData.value;
-    this.dialogRef.close(this.formData);
+    this.formData.item = this.modelFormData.value;   
+this.addOrEditService[this.formData.action](this.formData, (res) => {
+  this.dialogRef.close(this.formData);
+});
+if (this.formData.action == 'Edit') {
+  this.modelFormData.controls['voucherSeriesKey'].disable();
+}
   }
 
   cancel() {

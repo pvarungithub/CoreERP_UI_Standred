@@ -7,6 +7,7 @@ import { NgxSpinnerService } from 'ngx-spinner';
 import { ApiConfigService } from '../../../../services/api-config.service';
 import { StatusCodes } from 'src/app/enums/common/common';
 import { String } from 'typescript-string-operations';
+import { AddOrEditService } from '../add-or-edit.service';
 
 @Component({
   selector: 'app-openledger',
@@ -22,6 +23,7 @@ export class OpenLedgerComponent implements OnInit {
   
   constructor(
     private apiService: ApiService,
+    private addOrEditService: AddOrEditService,
     private apiConfigService: ApiConfigService,
     private spinner: NgxSpinnerService,
     private formBuilder: FormBuilder,
@@ -54,8 +56,13 @@ export class OpenLedgerComponent implements OnInit {
     if (this.modelFormData.invalid) {
       return;
     }
-    this.formData.item = this.modelFormData.value;
-    this.dialogRef.close(this.formData);   
+    this.formData.item = this.modelFormData.value;    
+this.addOrEditService[this.formData.action](this.formData, (res) => {
+  this.dialogRef.close(this.formData);
+});
+if (this.formData.action == 'Edit') {
+  this.modelFormData.controls['id'].disable();
+}
   }
 
   cancel() {

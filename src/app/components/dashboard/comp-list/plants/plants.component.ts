@@ -7,6 +7,7 @@ import { FormBuilder, FormGroup, Validators } from '@angular/forms';
 import { NgxSpinnerService } from 'ngx-spinner';
 import { ApiConfigService } from '../../../../services/api-config.service';
 import { StatusCodes } from '../../../../enums/common/common';
+import { AddOrEditService } from '../add-or-edit.service';
 
 @Component({
   selector: 'app-plants',
@@ -29,6 +30,7 @@ export class PlantsComponent implements OnInit {
 
   constructor(
     private apiService: ApiService,
+    private addOrEditService: AddOrEditService,
     private apiConfigService: ApiConfigService,
     private spinner: NgxSpinnerService,
     private formBuilder: FormBuilder,
@@ -191,7 +193,12 @@ export class PlantsComponent implements OnInit {
     }
     this.modelFormData.controls['plantCode'].enable();
     this.formData.item = this.modelFormData.value;
-    this.dialogRef.close(this.formData);
+    this.addOrEditService[this.formData.action](this.formData, (res) => {
+      this.dialogRef.close(this.formData);
+    });
+    if (this.formData.action == 'Edit') {
+      this.modelFormData.controls['plantCode'].disable();
+    }
   }
 
   cancel() {

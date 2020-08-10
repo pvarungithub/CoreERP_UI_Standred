@@ -238,8 +238,8 @@
   "openledger": {
     "title": "Open Ledger",
     "ledgerKey": "Ledger Key",
-    "financialYearStartFrom": "FY Start",
-    "financialYearEndTo": "FY End",
+    "financialYearStartFrom": "Date",
+    "financialYearEndTo": "Date",
     "accountingYear": "Accounting Year"
   }, 
   "vouchertype": {
@@ -328,7 +328,7 @@
     "tdstype": "Tdstype",
     "incomeType": "Income Type",
     "status": "Status",
-    "effectiveFrom":  "Effective From"      
+    "effectiveFrom":  "Date"      
   },
   "posting": {
     "title": "Posting",   
@@ -433,14 +433,14 @@
     "title": "Busieness Partner Group",
     "bpgroup": "Code",
     "description": "Description",
-    "bptype": "bpType"
+    "bptype": "BP Type"
   },
   "numberrange": {
     "title": "Number Range",
     "code": "Code",
     "description": "Description",
-    "rangeFrom": "rangeFrom",
-    "rangeTo": "rangeTo",
+    "rangeFrom": "Range From",
+    "rangeTo": "Range To",
     "nonNumaric": "Non Numaric"
   },
   "assignment": {
@@ -516,10 +516,10 @@
     "code": "Code",
     "description": "Name",
     "depreciationMethod": "Depreciation Method",
-    "purchaseWithin": "Purchase Within",
+    "purchaseWithin": "Date",
     "ratePercentage":   "Rate Percentage",
     "maxDepreciationAmount":  "Max Depreciation Amount",
-    "uptoDate":  "UptoDate",
+    "uptoDate":  "Date",
     "depreciationDuringLife": "Depreciation During Life",
     "maxDepreciationRate": "Max Depreciation Rate",
     "upto":   "Upto",

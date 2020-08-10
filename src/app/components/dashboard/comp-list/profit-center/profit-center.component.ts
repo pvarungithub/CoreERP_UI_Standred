@@ -7,6 +7,7 @@ import { FormBuilder, FormGroup, Validators } from '@angular/forms';
 import { NgxSpinnerService } from 'ngx-spinner';
 import { ApiConfigService } from '../../../../services/api-config.service';
 import { StatusCodes } from '../../../../enums/common/common';
+import { AddOrEditService } from '../add-or-edit.service';
 
 @Component({
   selector: 'app-profit-center',
@@ -28,6 +29,7 @@ export class ProfitCenterComponent implements OnInit {
 
   constructor(
     private apiService: ApiService,
+    private addOrEditService: AddOrEditService,
     private apiConfigService: ApiConfigService,
     private spinner: NgxSpinnerService,
     private formBuilder: FormBuilder,
@@ -36,7 +38,7 @@ export class ProfitCenterComponent implements OnInit {
     @Optional() @Inject(MAT_DIALOG_DATA) public data: any ) {
 
       this.modelFormData  =  this.formBuilder.group({
-        code: [null, [Validators.required, Validators.minLength(1), Validators.maxLength(4)]],
+        code: [null, [Validators.required, Validators.minLength(1), Validators.maxLength(5)]],
         name: [null, [Validators.required, Validators.minLength(2)]],
         description: [null],
         address1: [null],
@@ -188,7 +190,12 @@ export class ProfitCenterComponent implements OnInit {
     }
     this.modelFormData.controls['code'].enable();
     this.formData.item = this.modelFormData.value;
-    this.dialogRef.close(this.formData);
+    this.addOrEditService[this.formData.action](this.formData, (res) => {
+      this.dialogRef.close(this.formData);
+    });
+    if (this.formData.action == 'Edit') {
+      this.modelFormData.controls['code'].disable();
+    }
   }
 
   cancel() {

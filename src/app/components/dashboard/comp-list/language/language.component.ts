@@ -7,6 +7,7 @@ import { NgxSpinnerService } from 'ngx-spinner';
 import { ApiConfigService } from '../../../../services/api-config.service';
 import { ApiService } from '../../../../services/api.service';
 import { String } from 'typescript-string-operations';
+import { AddOrEditService } from '../add-or-edit.service';
 
 @Component({
   selector: 'app-language',
@@ -26,6 +27,7 @@ export class LanguageComponent implements OnInit {
     private apiConfigService: ApiConfigService,
     private spinner: NgxSpinnerService,
     private formBuilder: FormBuilder,
+    private addOrEditService: AddOrEditService,
     public dialogRef: MatDialogRef<LanguageComponent>,
     // @Optional() is used to prevent error if no data is passed
     @Optional() @Inject(MAT_DIALOG_DATA) public data: any) {
@@ -69,7 +71,12 @@ export class LanguageComponent implements OnInit {
     }
     this.modelFormData.controls['languageCode'].enable();
     this.formData.item = this.modelFormData.value;
-    this.dialogRef.close(this.formData);
+    this.addOrEditService[this.formData.action](this.formData, (res) => {
+      this.dialogRef.close(this.formData);
+    });
+    if (this.formData.action == 'Edit') {
+      this.modelFormData.controls['languageCode'].disable();
+    }
   }
 
   cancel() {

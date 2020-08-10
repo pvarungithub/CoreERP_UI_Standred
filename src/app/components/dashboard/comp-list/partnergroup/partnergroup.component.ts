@@ -9,6 +9,7 @@ import { ApiConfigService } from '../../../../services/api-config.service';
 import { ApiService } from '../../../../services/api.service';
 import { String } from 'typescript-string-operations';
 import { CommonService } from '../../../../services/common.service';
+import { AddOrEditService } from '../add-or-edit.service';
 
 interface Status {
   value: string;
@@ -38,6 +39,7 @@ export class BusienessPartnerGroupsComponent implements OnInit {
   ptypeList: any;
   constructor(
     private alertService: AlertService,
+    private addOrEditService: AddOrEditService,
     private formBuilder: FormBuilder,
     public dialogRef: MatDialogRef<BusienessPartnerGroupsComponent>,
     private spinner: NgxSpinnerService,
@@ -91,7 +93,12 @@ export class BusienessPartnerGroupsComponent implements OnInit {
     }
     this.modelFormData.controls['bpgroup'].enable();
     this.formData.item = this.modelFormData.value;
-    this.dialogRef.close(this.formData);
+    this.addOrEditService[this.formData.action](this.formData, (res) => {
+      this.dialogRef.close(this.formData);
+    });
+    if (this.formData.action == 'Edit') {
+      this.modelFormData.controls['bpgroup'].disable();
+    }
   }
 
   cancel() {

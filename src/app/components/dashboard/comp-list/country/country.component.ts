@@ -1,13 +1,13 @@
 import { Component, Inject, Optional, OnInit } from '@angular/core';
 import { String } from 'typescript-string-operations';
 import { ApiService } from '../../../../services/api.service';
-import { AlertService } from '../../../../services/alert.service';
 import { MatDialogRef, MAT_DIALOG_DATA } from '@angular/material/dialog';
 import { isNullOrUndefined } from 'util';
 import { FormBuilder, FormGroup, Validators } from '@angular/forms';
 import { NgxSpinnerService } from 'ngx-spinner';
 import { ApiConfigService } from '../../../../services/api-config.service';
 import { StatusCodes } from '../../../../enums/common/common';
+import { AddOrEditService } from '../add-or-edit.service';
 
 @Component({
   selector: 'app-country',
@@ -25,9 +25,9 @@ export class CountryComponent implements OnInit {
 
   constructor(
     private apiService: ApiService,
+    private addOrEditService: AddOrEditService,
     private apiConfigService: ApiConfigService,
     private spinner: NgxSpinnerService,
-    private alertService: AlertService,
     private formBuilder: FormBuilder,
     public dialogRef: MatDialogRef<CountryComponent>,
     // @Optional() is used to prevent error if no data is passed
@@ -93,7 +93,12 @@ export class CountryComponent implements OnInit {
     }
     this.modelFormData.controls['countryCode'].enable();
     this.formData.item = this.modelFormData.value;
-    this.dialogRef.close(this.formData);
+    this.addOrEditService[this.formData.action](this.formData, (res) => {
+      this.dialogRef.close(this.formData);
+    });
+    if (this.formData.action == 'Edit') {
+      this.modelFormData.controls['countryCode'].disable();
+    }
   }
 
   cancel() {

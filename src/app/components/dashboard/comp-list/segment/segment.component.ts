@@ -2,6 +2,7 @@ import { Component, Inject, Optional, OnInit } from '@angular/core';
 import { MatDialogRef, MAT_DIALOG_DATA } from '@angular/material/dialog';
 import { isNullOrUndefined } from 'util';
 import { FormBuilder, FormGroup, Validators } from '@angular/forms';
+import { AddOrEditService } from '../add-or-edit.service';
 
 interface Active {
   value: string;
@@ -26,6 +27,7 @@ export class SegmentComponent implements OnInit {
 
   constructor(
     private formBuilder: FormBuilder,
+    private addOrEditService: AddOrEditService,
     public dialogRef: MatDialogRef<SegmentComponent>,
     // @Optional() is used to prevent error if no data is passed
     @Optional() @Inject(MAT_DIALOG_DATA) public data: any ) {
@@ -56,7 +58,12 @@ export class SegmentComponent implements OnInit {
     }
     this.modelFormData.controls['id'].enable();
     this.formData.item = this.modelFormData.value;
-    this.dialogRef.close(this.formData);
+    this.addOrEditService[this.formData.action](this.formData, (res) => {
+      this.dialogRef.close(this.formData);
+    });
+    if (this.formData.action == 'Edit') {
+      this.modelFormData.controls['id'].disable();
+    }
   }
 
   cancel() {

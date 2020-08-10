@@ -5,13 +5,13 @@
 }
 
 :host ::ng-deep table {
-  font-family: "Helvetica Neue",Helvetica,Arial,sans-serif;
+  font-family: sans-serif;
   & > tbody  {
     & tr {
       border-bottom: 1px solid $color-ddd;
     }
     & td {
-      font-size: 12px;
+      font-size: 11px;
       vertical-align: middle;
       border: none !important;
     }
@@ -36,7 +36,7 @@
 
 
 .mat-header-cell, .mat-cell {
-  min-width: 150px;
+  min-width: 100px;
 }
 
 .table th, .table td {
@@ -45,12 +45,13 @@
 }
 
 .table th {
+  font-size: 11px;
   background-color: $color-blue;
   color: $color-white;
 }
 
 .table tr {
-  height: 40px !important;
+  height: 25px !important;
   cursor: pointer;
 }
 

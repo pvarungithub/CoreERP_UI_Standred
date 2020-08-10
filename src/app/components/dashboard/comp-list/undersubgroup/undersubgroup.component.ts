@@ -7,6 +7,7 @@ import { NgxSpinnerService } from 'ngx-spinner';
 import { ApiConfigService } from '../../../../services/api-config.service';
 import { String } from 'typescript-string-operations';
 import { ApiService } from '../../../../services/api.service';
+import { AddOrEditService } from '../add-or-edit.service';
 
 @Component({
   selector: 'app-undersubgroup',
@@ -24,6 +25,7 @@ export class UndersubGroupComponent implements OnInit {
   
   constructor(
     private formBuilder: FormBuilder,
+    private addOrEditService: AddOrEditService,
     public dialogRef: MatDialogRef<UndersubGroupComponent>,
     private spinner: NgxSpinnerService,
     private apiConfigService: ApiConfigService,
@@ -125,8 +127,12 @@ export class UndersubGroupComponent implements OnInit {
     this.modelFormData.controls['accountGroupId'].enable();
     this.formData.item = this.modelFormData.value;
     (!isNullOrUndefined(this.formData.item.Undersubaccount)) ? this.formData.item.groupUnder = this.formData.item.Undersubaccount : null;
-    console.log(this.formData)
-    this.dialogRef.close(this.formData);
+    this.addOrEditService[this.formData.action](this.formData, (res) => {
+      this.dialogRef.close(this.formData);
+    });
+    if (this.formData.action == 'Edit') {
+      this.modelFormData.controls['accountGroupId'].disable();
+    }
   }
 
   cancel() {
