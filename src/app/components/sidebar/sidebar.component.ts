@@ -40,7 +40,7 @@ export class SidebarComponent implements OnInit {
       if (this.item.route && url) {
         this.expanded = url.indexOf(`/${this.item.route}`) === 0;
         this.ariaExpanded = this.expanded;
-      }
+      }     
     });
   }
 
@@ -51,10 +51,10 @@ export class SidebarComponent implements OnInit {
 
     }
     if (!item.children || !item.children.length) {
-      // const route = String.Join('/', 'dashboard');
+      const route = String.Join('/', 'dashboard', item.screenType, item.route  );
       // console.log( route, item.route);
 
-      this.router.navigate([ 'dashboard', item.route ]);
+      this.router.navigate([ route ]);
       this.commonService.toggleSidebar();
     }
     if (item.children && item.children.length) {

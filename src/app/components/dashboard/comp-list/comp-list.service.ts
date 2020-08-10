@@ -22,7 +22,6 @@ import { MaintenceAreaComponent } from './maintencearea/maintencearea.component'
 import { PurchaseDepartmentComponent } from './purchasedepartment/purchasedepartment.component';
 import { StorageLocationsComponent } from './storagelocation/storagelocation.component';
 import { ErpUsersComponent } from './erpuser/erpuser.componet';
-import { RolesprevilagesComponent } from './rolesprevilages/rolesprevilages.component';
 import { LedgerComponent } from './ledger/ledger.component';
 import { OpenLedgerComponent } from './openledger/openledger.component';
 import { VoucherClassComponent } from './voucherclass/voucherclass.component';
@@ -163,10 +162,6 @@ export class CompListService {
         break;
       case 'erpuser':
         this.dynamicComp.component = ErpUsersComponent;
-        return this.dynamicComp.component;
-        break;
-      case 'rolePrevilages':
-        this.dynamicComp.component = RolesprevilagesComponent;
         return this.dynamicComp.component;
         break;
       case 'ledger':

@@ -8,7 +8,7 @@ import { SharedImportModule } from './shared/shared-import';
 import { 
   CompListComponent, CompanyComponent, BranchesComponent ,CostCenterComponent,LanguageComponent,CurrencyComponent,CountryComponent,RegionComponent,StateComponent,UOMComponent,
   SegmentComponent,ProfitCenterComponent,DivisionComponent,FunctionalDepartmentComponent,PlantsComponent,LocationsComponent,SalesDepartmentComponent,DistributionchannelsComponent,
-  SalesofficeComponent,SalesGroupComponent,MaintenceAreaComponent,PurchaseDepartmentComponent,StorageLocationsComponent,ErpUsersComponent,RolesprevilagesComponent,LedgerComponent,
+  SalesofficeComponent,SalesGroupComponent,MaintenceAreaComponent,PurchaseDepartmentComponent,StorageLocationsComponent,ErpUsersComponent,LedgerComponent,
   OpenLedgerComponent,VoucherClassComponent,VoucherTypesComponent,VoucherSeriesComponents,AssignmentVoucherSeriestoVoucherTypesComponent,TaxRatesComponents,TaxTransactionComponent,
   TaxIntegrationComponent, AssignmentoftaxaccountstotaxcodesComponent, HsnSacComponent, TDSComponent,IncomeTypeComponent,TdsRatesComponent,PostingComponent,AccountsGroupComponent,
   UndersubGroupComponent,AccountchartComponent,AssignmentChartAccounttoCompanyComponent,PartnerTypesComponent, BusienessPartnerGroupsComponent,NumberRangeComponent, AssignmentComponent,
@@ -19,12 +19,12 @@ import {
 } from './components/dashboard/comp-list/index';
 
 
-import { NavbarComponent, TableComponent, DeleteItemComponent, SearchFilterTableComponent  } from './reuse-components/index';
+import { NavbarComponent, TableComponent, DeleteItemComponent, SearchFilterTableComponent , TransTableComponent } from './reuse-components/index';
 import {
   DashboardComponent, LoginComponent, SidebarComponent, NotFoundComponent
 } from './components/index';
 
-
+import { RolesprevilagesComponent, TransListComponent } from './components/dashboard/index';
 
 import { RuntimeConfigService } from './services/runtime-config.service';
 import { HttpClientModule, HttpClient } from '@angular/common/http';
@@ -69,8 +69,8 @@ export function HttpLoaderFactory(httpClient: HttpClient) {
     ,AseetClassToAssetBlockComponent,AssetTransactionTypeComponent,AccountKeyComponent,
     AssignmentAccountKeytoAssetClassComponent,BankMasterComponent,DepreciationcodeComponent,GLAccountComponent,
 
-
-
+    TransListComponent,
+    TransTableComponent,
     SearchFilterTableComponent,
     CompListComponent,
     AppComponent,

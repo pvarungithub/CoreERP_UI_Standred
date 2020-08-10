@@ -22,7 +22,6 @@ export { MaintenceAreaComponent } from './maintencearea/maintencearea.component'
 export { PurchaseDepartmentComponent } from './purchasedepartment/purchasedepartment.component';
 export { StorageLocationsComponent } from './storagelocation/storagelocation.component';
 export { ErpUsersComponent } from './erpuser/erpuser.componet';
-export { RolesprevilagesComponent } from './rolesprevilages/rolesprevilages.component';
 export { LedgerComponent } from './ledger/ledger.component';
 export { OpenLedgerComponent } from './openledger/openledger.component';
 export { VoucherClassComponent } from './voucherclass/voucherclass.component';

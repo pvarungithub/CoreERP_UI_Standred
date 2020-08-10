@@ -1,0 +1,19 @@
+.menu-list-item {
+    height: 35px !important;
+}
+.menu-list-item:hover {
+    background-color: lightblue !important;
+}
+.active {
+    background-color: lightblue !important;
+}
+
+::ng-deep .mat-list-item-content{
+    justify-content: space-between;
+    width: 100%;
+}
+
+.font-style {
+    font-size: 12px;
+    font-weight: 500;
+}

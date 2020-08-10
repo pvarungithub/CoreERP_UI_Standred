@@ -2,15 +2,15 @@ import { Component, OnInit, ViewChild } from '@angular/core';
 import { FormGroup, FormBuilder } from '@angular/forms';
 import { MatTableDataSource } from '@angular/material/table';
 import { MatPaginator } from '@angular/material/paginator';
-import { ApiConfigService } from '../../../../services/api-config.service';
-import { ApiService } from '../../../../services/api.service';
-import { AlertService } from '../../../../services/alert.service';
+import { ApiConfigService } from '../../../services/api-config.service';
+import { ApiService } from '../../../services/api.service';
+import { AlertService } from '../../../services/alert.service';
 import { isNullOrUndefined } from 'util';
-import { SnackBar, StatusCodes } from '../../../../enums/common/common';
-import { Static } from '../../../../enums/common/static';
+import { SnackBar, StatusCodes } from '../../../enums/common/common';
+import { Static } from '../../../enums/common/static';
 import { NgxSpinnerService } from 'ngx-spinner';
 import { String } from 'typescript-string-operations';
-import { CommonService } from '../../../../services/common.service';
+import { CommonService } from '../../../services/common.service';
 
 @Component({
   selector: 'app-rolesprevilages',
