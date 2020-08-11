@@ -316,11 +316,13 @@
   "assignmentoftaxaccountstotaxcodes": {
     "title": "Assignment of Taxaccounts to Taxcodes",
     "code": "Code",
-    "description": "Description",
     "sgstgl": "Sgst Gl",
     "cgstgl": "Cgst Gl",
     "igstgl": "Igst Gl",
-    "ugstgl": "Ugst Gl"
+    "ugstgl": "Ugst Gl",
+    "company": "Company",
+    "branch": "Branch",
+    "plant": "Plant" 
   },
   "taxtypes": {
     "title": "Tax Types",

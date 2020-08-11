@@ -256,10 +256,10 @@ updateTaxTypes = `${this.environment.runtimeConfig.serverUrl}TaxTypes/UpdateTaxT
 deleteTaxTypes = `${this.environment.runtimeConfig.serverUrl}TaxTypes/DeleteTaxTypes`;
 
 //TaxRates
-gettaxratesList = `${this.environment.runtimeConfig.serverUrl}masters/TaxRates/GetTaxRatesList`;
-registerTaxRates = `${this.environment.runtimeConfig.serverUrl}masters/TaxRates/RegisterTaxRates`;
-updateTaxRates = `${this.environment.runtimeConfig.serverUrl}masters/TaxRates/UpdateTaxRates`;
-deleteTaxRates = `${this.environment.runtimeConfig.serverUrl}masters/TaxRates/DeleteTaxRates`;
+gettaxratesList = `${this.environment.runtimeConfig.serverUrl}TaxRates/GetTaxRatesList`;
+registerTaxRates = `${this.environment.runtimeConfig.serverUrl}TaxRates/RegisterTaxRates`;
+updateTaxRates = `${this.environment.runtimeConfig.serverUrl}TaxRates/UpdateTaxRates`;
+deleteTaxRates = `${this.environment.runtimeConfig.serverUrl}TaxRates/DeleteTaxRates`;
 
    // Tax transaction //
 getTaxTransactionList = `${this.environment.runtimeConfig.serverUrl}TaxTransaction/GetTaxTransactionList`;

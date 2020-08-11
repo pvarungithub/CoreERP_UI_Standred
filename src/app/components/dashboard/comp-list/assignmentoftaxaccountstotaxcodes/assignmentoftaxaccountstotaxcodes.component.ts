@@ -1,9 +1,14 @@
 import { Component, Inject, Optional, OnInit } from '@angular/core';
 import { MatDialogRef, MAT_DIALOG_DATA } from '@angular/material/dialog';
 import { isNullOrUndefined } from 'util';
+import { StatusCodes } from '../../../../enums/common/common';
 import { FormBuilder, FormGroup, Validators } from '@angular/forms';
 import { NgxSpinnerService } from 'ngx-spinner';
 import { AddOrEditService } from '../add-or-edit.service';
+import { ApiService } from 'src/app/services/api.service';
+import { ApiConfigService } from 'src/app/services/api-config.service';
+import { String } from 'typescript-string-operations';
+
 @Component({
   selector: 'app-assignmentoftaxaccountstotaxcodes',
   templateUrl: './assignmentoftaxaccountstotaxcodes.component.html',
@@ -17,9 +22,12 @@ export class AssignmentoftaxaccountstotaxcodesComponent implements OnInit {
   voucherClass: any;
   compList: any;
   branchList: any;
-
+  TaxTypeList: any;
+  plantList: any;
   constructor(
     private formBuilder: FormBuilder,
+    private apiService: ApiService,
+    private apiConfigService: ApiConfigService,
     private addOrEditService: AddOrEditService,
     public dialogRef: MatDialogRef<AssignmentoftaxaccountstotaxcodesComponent>,
     private spinner: NgxSpinnerService,
@@ -28,11 +36,14 @@ export class AssignmentoftaxaccountstotaxcodesComponent implements OnInit {
 
     this.modelFormData = this.formBuilder.group({
       code: [null, [Validators.required, Validators.minLength(1), Validators.maxLength(5)]],
-      description: [null, [Validators.required, Validators.minLength(2), Validators.maxLength(50)]],
+      // description: [null, [Validators.required, Validators.minLength(2), Validators.maxLength(50)]],
       sgstgl:[null],
       cgstgl:[null],
       igstgl:[null],
-      ugstgl:[null]
+      ugstgl:[null],
+      branch: [null],
+      company: [null],
+      plant: [null]
     });
 
 
@@ -45,10 +56,72 @@ export class AssignmentoftaxaccountstotaxcodesComponent implements OnInit {
   }
 
   ngOnInit() {
-   
+   this.GetTaxRateList();
+   this.getcompaniesList();
+    this.getbranchessList();
+    this.getplantsList();
+  }
+GetTaxRateList() {
+    const gettaxtransactinlist = String.Join('/', this.apiConfigService.gettaxratesList);
+    this.apiService.apiGetRequest(gettaxtransactinlist)
+      .subscribe(
+        response => {
+          const res = response.body;
+          console.log(res);
+          if (!isNullOrUndefined(res) && res.status === StatusCodes.pass) {
+            if (!isNullOrUndefined(res.response)) {
+              this.TaxTypeList = res.response['TaxratesList'];
+            }
+          }
+          this.spinner.hide();
+        });
+  }
+  getcompaniesList() {
+    const getcompanyList = String.Join('/', this.apiConfigService.getCompaniesList);
+    this.apiService.apiGetRequest(getcompanyList)
+      .subscribe(
+        response => {
+          const res = response.body;
+          if (!isNullOrUndefined(res) && res.status === StatusCodes.pass) {
+            if (!isNullOrUndefined(res.response)) {
+              console.log(res);
+              this.compList = res.response['CompaniesList'];
+            }
+          }
+          this.spinner.hide();
+        });
   }
 
+  getbranchessList() {
+    const getbranchList = String.Join('/', this.apiConfigService.getVoucherBranchesList);
+    this.apiService.apiGetRequest(getbranchList)
+      .subscribe(
+        response => {
+          const res = response.body;
+          if (!isNullOrUndefined(res) && res.status === StatusCodes.pass) {
+            if (!isNullOrUndefined(res.response)) {             
+              this.branchList = res.response['branchesList'];
+            }
+          }
+          this.spinner.hide();
+        });
+  }
 
+  getplantsList() {
+    const getplantsList = String.Join('/', this.apiConfigService.getplantList);
+    this.apiService.apiGetRequest(getplantsList)
+      .subscribe(
+        response => {
+          const res = response.body;
+          if (!isNullOrUndefined(res) && res.status === StatusCodes.pass) {
+            if (!isNullOrUndefined(res.response)) {
+              console.log(res);
+              this.plantList = res.response['plantList'];
+            }
+          }
+          this.spinner.hide();
+        });
+  }
   get formControls() { return this.modelFormData.controls; }
 
 

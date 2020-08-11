@@ -8,14 +8,7 @@
     <form [formGroup]="modelFormData" autocomplete="off">
 
       <div class="d--flex">
-        <!-- <mat-form-field>
-          <mat-label>{{'posting.tdstype' | translate }}</mat-label>
-          <mat-select formControlName="tdstype" appFocusOnEnter tabIndex="3">
-            <mat-option *ngFor="let tdstype of tdsList" [value]="tdstype.tdsCode">
-              {{tdstype.tdsCode}} - {{tdstype.desctiption}}
-            </mat-option>
-          </mat-select>
-        </mat-form-field>         -->
+       
         <mat-form-field>
           <mat-label>{{'posting.tdsrate' | translate }}</mat-label>
           <mat-select formControlName="tdsrate" appFocusOnEnter tabIndex="5">
