@@ -40,12 +40,16 @@ export class UndersubGroupComponent implements OnInit {
       narration: [null],
       affectGrossProfit: [null],
       groupUnder: [null],
-      Undersubaccount: [null]
+      Undersubaccount: [null],
+      isDefault:[false]
     });
 
     this.formData = { ...data };
     if (!isNullOrUndefined(this.formData.item)) {
       this.modelFormData.patchValue(this.formData.item);
+      this.modelFormData.patchValue({
+        isDefault: this.formData.item['isDefault'] == 1 ? true : false
+      })
       this.modelFormData.controls['accountGroupId'].disable();
       this.getGLUnderGroupList();
       this.getAccountNamelist();
@@ -125,6 +129,9 @@ export class UndersubGroupComponent implements OnInit {
       return;
     }
     this.modelFormData.controls['accountGroupId'].enable();
+    this.modelFormData.patchValue({
+      isDefault: this.modelFormData.get('isDefault').value ? 1 : 0
+    })
     this.formData.item = this.modelFormData.value;
     (!isNullOrUndefined(this.formData.item.Undersubaccount)) ? this.formData.item.groupUnder = this.formData.item.Undersubaccount : null;
     this.addOrEditService[this.formData.action](this.formData, (res) => {
