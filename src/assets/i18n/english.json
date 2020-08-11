@@ -480,8 +480,6 @@
   },
   "AlternateControlAccount": {
     "title": "Alternate Control Account",
-    "code": "Code",
-    "description": "Description",
     "normalControlAccount": " Normal Control Account",
     "alternativeControlAccount": "Alternative Control Account",
     "chartofAccount": "ChartofAccount",
