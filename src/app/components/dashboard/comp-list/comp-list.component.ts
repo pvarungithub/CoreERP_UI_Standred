@@ -38,7 +38,8 @@ export class CompListComponent implements OnInit {
     private compListService: CompListService,
     private environment: RuntimeConfigService,
     private apiConfigService: ApiConfigService,
-    private addOrEditService: AddOrEditService
+    private addOrEditService: AddOrEditService,
+    private router: Router
   ) {
     activatedRoute.params.subscribe(params => {
       this.getTableParameters(params.id);
@@ -57,7 +58,7 @@ export class CompListComponent implements OnInit {
           if (!isNullOrUndefined(res) && res.status === StatusCodes.pass) {
             if (!isNullOrUndefined(res.response)) {
               this.tableUrl = res.response;
-              this.addOrEditService.tableParameters = this.tableUrl;
+              this.addOrEditService.tableParameters = res.response;
               if (!isNullOrUndefined(this.tableUrl)) {
                 this.getTableData();
               }
@@ -89,24 +90,32 @@ export class CompListComponent implements OnInit {
       this.deleteRecord(value);
     } else {
 
-      const dialogRef = this.dialog.open(this.compListService.getDynComponents(this.tableUrl.formName), {
-        width: '80%',
-        data: value,
-        panelClass: 'custom-dialog-container',
-        disableClose: true
-      });
+      if (this.tableUrl.tabScreen == 'True') {
+        console.log(this.activatedRoute.snapshot['_routerState'].url);
+        this.addOrEditService.editData = value;
+        this.router.navigate([this.activatedRoute.snapshot['_routerState'].url, value.action]);
+      } else {
 
-      dialogRef.afterClosed().subscribe(result => {
-        if (!isNullOrUndefined(result)) {
-          this.tableComponent.defaultValues();
-          this.getTableData();
-        }
-      });
+        const dialogRef = this.dialog.open(this.compListService.getDynComponents(this.tableUrl.formName), {
+          width: '80%',
+          data: value,
+          panelClass: 'custom-dialog-container',
+          disableClose: true
+        });
+
+        dialogRef.afterClosed().subscribe(result => {
+          if (!isNullOrUndefined(result)) {
+            this.tableComponent.defaultValues();
+            this.getTableData();
+          }
+        });
+
+      }
     }
   }
 
   deleteRecord(value) {
-    value.primary = this.tableUrl.ext;
+    value.primary = this.tableUrl.delete;
     const dialogRef = this.dialog.open(DeleteItemComponent, {
       width: '1024px',
       data: value,
@@ -135,7 +144,5 @@ export class CompListComponent implements OnInit {
     });
 
   }
-
-  
 
 }

@@ -13,6 +13,7 @@ import { NgxSpinnerService } from 'ngx-spinner';
 export class AddOrEditService {
 
   tableParameters: any;
+  editData: any;
 
   constructor(
     private environment: RuntimeConfigService,

@@ -26,6 +26,8 @@ import {
 
 import { RolesprevilagesComponent, TransListComponent } from './components/dashboard/index';
 
+import { CompTabsComponent } from './components/dashboard/comp-list/comp-tabs/index';
+
 import { RuntimeConfigService } from './services/runtime-config.service';
 import { HttpClientModule, HttpClient } from '@angular/common/http';
 
@@ -69,7 +71,7 @@ export function HttpLoaderFactory(httpClient: HttpClient) {
     ,AseetClassToAssetBlockComponent,AssetTransactionTypeComponent,AccountKeyComponent,
     AssignmentAccountKeytoAssetClassComponent,BankMasterComponent,DepreciationcodeComponent,GLAccountComponent,BusienessPartnerAccountComponent,MainAssetMasterComponent,SubAssetsComponent,
 
-
+    CompTabsComponent,
     TransListComponent,
     TransTableComponent,
     SearchFilterTableComponent,

@@ -9,7 +9,7 @@ import { tap, map, catchError } from 'rxjs/operators';
 import { HttpClient, HttpHeaders, HttpErrorResponse } from '@angular/common/http';
 import { String } from 'typescript-string-operations';
 import { ApiConfigService } from './services/api-config.service';
-
+import { AddOrEditService } from './components/dashboard/comp-list/add-or-edit.service';
 @Injectable({
   providedIn: 'root'
 })
@@ -20,11 +20,11 @@ export class AuthGuard implements CanActivate {
     private authService: AuthService,
     private router: Router,
     private http: HttpClient,
-    private apiConfigService: ApiConfigService
+    private apiConfigService: ApiConfigService,
+    private addOrEditService: AddOrEditService
   ) {
     this.options = { headers: new HttpHeaders({ 'Content-Type': 'application/json' }) };
   }
-
 
   canActivate(
     next: ActivatedRouteSnapshot,
@@ -33,14 +33,24 @@ export class AuthGuard implements CanActivate {
     // const getMenuUrl = String.Join('/', this.apiConfigService.getMenuUrl, obj.role);
     // return this.http.get(getMenuUrl, { headers: this.options, observe: 'response', params: obj })
     //   .pipe((map(res => {
-        // console.log(res.body['response'], next.params.id)
-        // if (this.authorizedUser(res.body.response)) {
-          if (this.authService.isLoggedIn()) {
-            return true;
-          }
-        // }
-        this.router.navigate(['/login']);
-        return false;
-      // })));
+    // console.log(res.body['response'], next.params.id)
+    // if (this.authorizedUser(res.body.response)) {
+    if (this.authService.isLoggedIn()) {
+      return true;
+    }
+    // }
+    this.router.navigate(['/login']);
+    return false;
+    // })));
   }
+
+  checkAddEdit(url) {
+    if (url.includes('Edit') || url.includes('Add')) {
+      if (!this.addOrEditService.editData) {
+        return false;
+      }
+    }
+    return true;
+  }
+
 }

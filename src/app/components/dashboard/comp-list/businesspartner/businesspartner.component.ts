@@ -1,4 +1,4 @@
-import { Component, Inject, Optional, OnInit } from '@angular/core';
+import { Component, Inject, Optional, OnInit, OnDestroy } from '@angular/core';
 import { String } from 'typescript-string-operations';
 import { ApiService } from '../../../../services/api.service';
 import { MatDialogRef, MAT_DIALOG_DATA } from '@angular/material/dialog';
@@ -8,13 +8,14 @@ import { NgxSpinnerService } from 'ngx-spinner';
 import { ApiConfigService } from '../../../../services/api-config.service';
 import { StatusCodes } from '../../../../enums/common/common';
 import { AddOrEditService } from '../add-or-edit.service';
+import { Router, ActivatedRoute } from '@angular/router';
 
 @Component({
   selector: 'app-businesspartner',
   templateUrl: './businesspartner.component.html',
   styleUrls: ['./businesspartner.component.scss']
 })
-export class BusienessPartnerAccountComponent implements OnInit {
+export class BusienessPartnerAccountComponent implements OnInit, OnDestroy {
 
   modelFormData: FormGroup;
   isSubmitted  =  false;
@@ -33,9 +34,9 @@ export class BusienessPartnerAccountComponent implements OnInit {
     private apiConfigService: ApiConfigService,
     private spinner: NgxSpinnerService,
     private formBuilder: FormBuilder,
-    public dialogRef: MatDialogRef<BusienessPartnerAccountComponent>,
-    // @Optional() is used to prevent error if no data is passed
-    @Optional() @Inject(MAT_DIALOG_DATA) public data: any ) {
+    private router: Router,
+    private activatedRoute: ActivatedRoute
+    ) {
 
     this.modelFormData = this.formBuilder.group({
       //"id": 1,
@@ -81,7 +82,7 @@ export class BusienessPartnerAccountComponent implements OnInit {
                
       });
 
-      this.formData = {...data};
+      this.formData = {...this.addOrEditService.editData};
       if (!isNullOrUndefined(this.formData.item)) {
         this.modelFormData.patchValue(this.formData.item);
        this.modelFormData.controls['code'].disable();
@@ -215,7 +216,7 @@ export class BusienessPartnerAccountComponent implements OnInit {
     this.modelFormData.controls['code'].enable();
     this.formData.item = this.modelFormData.value;
     this.addOrEditService[this.formData.action](this.formData, (res) => {
-      this.dialogRef.close(this.formData);
+      this.router.navigate(['/dashboard/master/businesspartner']);
     });
     if (this.formData.action == 'Edit') {
       this.modelFormData.controls['code'].disable();
@@ -223,6 +224,10 @@ export class BusienessPartnerAccountComponent implements OnInit {
   }
 
   cancel() {
-    this.dialogRef.close();
+    this.router.navigate(['/dashboard/master/businesspartner']);
+  }
+
+  ngOnDestroy() {
+    this.addOrEditService.editData = null;
   }
 }
