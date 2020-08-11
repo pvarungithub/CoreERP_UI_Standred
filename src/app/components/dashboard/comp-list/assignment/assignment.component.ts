@@ -38,8 +38,8 @@ export class AssignmentComponent implements OnInit {
     @Optional() @Inject(MAT_DIALOG_DATA) public data: any) {
 
     this.modelFormData = this.formBuilder.group({
-      code: [null, [Validators.required, Validators.minLength(1), Validators.maxLength(4)]],
-      desctiption: [null, [Validators.required, Validators.minLength(1), Validators.maxLength(30)]],
+      code: [0],
+      // desctiption: [null, [Validators.required, Validators.minLength(1), Validators.maxLength(30)]],
       bpgroup: [null],
       numberRangeKey: [null]
     });

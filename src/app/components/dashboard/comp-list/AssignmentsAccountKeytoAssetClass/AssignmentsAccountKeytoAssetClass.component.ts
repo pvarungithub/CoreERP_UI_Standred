@@ -38,8 +38,8 @@ export class AssignmentAccountKeytoAssetClassComponent implements OnInit {
     @Optional() @Inject(MAT_DIALOG_DATA) public data: any) {
 
     this.modelFormData = this.formBuilder.group({
-      code: [null, [Validators.required, Validators.minLength(1), Validators.maxLength(4)]],
-      description: [null, [Validators.required, Validators.minLength(1), Validators.maxLength(30)]],
+      code: [0],
+      // description: [null, [Validators.required, Validators.minLength(1), Validators.maxLength(30)]],
       assetClass: [null],
       accountKey: [null]
       

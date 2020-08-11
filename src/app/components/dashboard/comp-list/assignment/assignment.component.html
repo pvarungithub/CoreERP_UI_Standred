@@ -8,20 +8,7 @@
     <form [formGroup]="modelFormData" autocomplete="off">
 
       <div class="d--flex">
-        <mat-form-field class="form-element" [ngClass]="{ 'ng--valid': formControls.code.valid }">
-          <input matInput placeholder="{{'assignment.code' | translate }}" formControlName="code" maxlength="4" appFocusOnEnter tabIndex="1">
-          <mat-error *ngIf="formControls.code.errors" class="help-block">
-            <div *ngIf="formControls.code.errors.required">code  is required </div>
-          </mat-error>
-        </mat-form-field>
-
-        <mat-form-field class="form-element" [ngClass]="{ 'ng--valid': formControls.desctiption.valid }">
-          <input matInput placeholder="{{'assignment.desctiption' | translate }}"
-           formControlName="desctiption" maxlength="30" appFocusOnEnter tabIndex="2">
-          <mat-error *ngIf="formControls.desctiption.errors" class="help-block">
-            <div *ngIf="formControls.desctiption.errors.required">description  is required </div>
-          </mat-error>
-        </mat-form-field>
+       
         
         <mat-form-field>
           <mat-label>{{'assignment.bpgroup' | translate }}</mat-label>
@@ -36,7 +23,7 @@
           <mat-label>{{'assignment.numberRangeKey' | translate }}</mat-label>
           <mat-select formControlName="numberRangeKey" appFocusOnEnter tabIndex="4">
             <mat-option *ngFor="let nrr of nrrList" [value]="nrr.code">
-              {{nrr.code}}- {{nrr.code}}
+              {{nrr.code}}
             </mat-option>
           </mat-select>
         </mat-form-field>

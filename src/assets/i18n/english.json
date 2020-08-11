@@ -413,10 +413,8 @@
   },
   "AssignmentAssetClasstoAssetBlock": {
     "title": "Assignment AssetClass to AssetBlock",
-    "code": "Code",
-    "description": "Description",
-    "assetClass": "AssetClass",
-    "assetBlock": "AssetBlock"
+    "assetClass": "Asset Class",
+    "assetBlock": "Asset Block"
   },
   "assettransactiontypes": {
     "title": "Asset Transaction Types",
@@ -436,11 +434,9 @@
     "auggl":  "Auggl"          
   },
   "AssignmentsAccountKeytoAssetClass": {
-    "title": "AssiAssignmentsAccountKeytoAssetClassgnment",
-    "code": "Code",
-    "description": "Description",
-    "assetClass": "AssetClass",
-    "accountKey": "AccountKey"
+    "title": "Assignments AccountKey to AssetClass",
+    "assetClass": "Asset Class",
+    "accountKey": "Account Key"
   },
   "accountchart": {
     "title": "Account chart",
@@ -469,10 +465,8 @@
   },
   "assignment": {
     "title": "Assignment",
-    "code": "Code",
-    "desctiption": "Description",
-    "bpgroup": "BPgroup",
-    "numberRangeKey": "NumberRangeKey"
+    "bpgroup": "BP Group",
+    "numberRangeKey": "Number Range Key"
   },
   "AssignmentChartAccounttoCompany": {
     "title": "Assignment ChartAccount to Company",

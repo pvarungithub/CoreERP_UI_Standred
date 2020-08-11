@@ -35,8 +35,8 @@ export class AseetClassToAssetBlockComponent implements OnInit {
     @Optional() @Inject(MAT_DIALOG_DATA) public data: any) {
 
     this.modelFormData = this.formBuilder.group({
-      code: [null, [Validators.required, Validators.minLength(1), Validators.maxLength(5)]],
-      description: [null, [Validators.required, Validators.minLength(1), Validators.maxLength(50)]],
+      code: [0],
+      // description: [null, [Validators.required, Validators.minLength(1), Validators.maxLength(50)]],
       assetClass: [null],
       assetBlock: [null]
      
