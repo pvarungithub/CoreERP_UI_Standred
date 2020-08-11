@@ -49,15 +49,22 @@ values: Upto[] =
       description: [null, [Validators.required, Validators.minLength(1), Validators.maxLength(50)]],
       depreciationMethod: [null],
       purchaseWithin: [null],
-      ratePercentage: [null],
+      rate: [null],
       maxDepreciationAmount: [null],
-      uptoDate :[null],
-      depreciationDuringLife:[null],
       maxDepreciationRate:[null],
-      upto:   [null],     
-      noofYears:[null],
-      noofMonths  :[null],
-      rate:[null]
+      upto1Years : [null],
+      upto1Months: [null],
+      upto1Rate: [null],     
+      upto2Years: [null],
+      upto2Months: [null],
+      upto2Rate: [null],
+      upto3Years: [null],
+      upto3Months: [null],
+      upto3Rate: [null],
+      upto4Years: [null],
+      upto4Months: [null],
+      upto4Rate: [null]
+     
       });
 
       this.formData = {...data};

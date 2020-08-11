@@ -43,10 +43,18 @@ export class PaymentTermsComponent implements OnInit {
     @Optional() @Inject(MAT_DIALOG_DATA) public data: any) {
 
     this.modelFormData = this.formBuilder.group({
-      code: [null],
-      days: [null],
-      discount: [null],
-      narration: [null]
+      code: [null, [Validators.required, Validators.minLength(1), Validators.maxLength(4)]],
+      description: [null, [Validators.required, Validators.minLength(1), Validators.maxLength(30)]],
+      term1Days:  [null],
+      term1Discount: [null],
+      term2Days: [null],
+      term2Discount: [null],
+      term3Days: [null],
+      term3Discount:  [null],
+      term4Days: [null],
+      term4Discount:  [null],
+      term5Days:  [null],
+      term5Discount: [null]
       
     });
 

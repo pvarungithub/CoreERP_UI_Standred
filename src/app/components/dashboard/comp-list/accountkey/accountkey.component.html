@@ -14,7 +14,7 @@
             <div *ngIf="formControls.code.errors.required">code  is required </div>
           </mat-error>
         </mat-form-field>
-       
+
         <mat-form-field>
           <mat-label [translate]="'accountkey.acquisitionsGl'"></mat-label>
           <mat-select formControlName="acquisitionsGl" appFocusOnEnter tabIndex="3">
@@ -86,7 +86,24 @@
             </mat-option>
           </mat-select>
         </mat-form-field>
-       
+        <mat-form-field>
+          <mat-label [translate]="'accountkey.companyCode'"></mat-label>
+          <mat-select formControlName="companyCode" appFocusOnEnter tabIndex="3">
+            <mat-option *ngFor="let comp of companyList" [value]="comp.companyCode">
+              {{comp.companyCode}}- {{comp.companyName}}
+            </mat-option>
+          </mat-select>
+        </mat-form-field>
+
+        <mat-form-field>
+          <mat-label [translate]="'accountkey.chartofAccount'"></mat-label>
+          <mat-select formControlName="chartofAccount" appFocusOnEnter tabIndex="3">
+            <mat-option *ngFor="let coa of coaList" [value]="coa.code">
+              {{coa.code}}- {{coa.desctiption}}
+            </mat-option>
+          </mat-select>
+        </mat-form-field>
+
       </div>
       <mat-divider></mat-divider>
 

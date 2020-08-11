@@ -17,7 +17,7 @@
 
         <mat-form-field class="form-element" [ngClass]="{ 'ng--valid': formControls.description.valid }">
           <input matInput placeholder="{{'AssetClass.description' | translate }}"
-           formControlName="description" maxlength="30" appFocusOnEnter tabIndex="2">
+                 formControlName="description" maxlength="30" appFocusOnEnter tabIndex="2">
           <mat-error *ngIf="formControls.description.errors" class="help-block">
             <div *ngIf="formControls.description.errors.required">description  is required </div>
           </mat-error>
@@ -40,13 +40,22 @@
           </mat-select>
         </mat-form-field>
 
+        <mat-form-field>
+          <mat-label [translate]="'AssetClass.nature'"></mat-label>
+          <mat-select formControlName="nature" appFocusOnEnter tabIndex="5">
+            <mat-option *ngFor="let nature of Nature" [value]="nature.value">
+              {{nature.viewValue}}
+            </mat-option>
+          </mat-select>
+        </mat-form-field>
+
         <mat-form-field class="form-element" [ngClass]="{ 'ng--valid': formControls.description.valid }">
           <input matInput placeholder="{{'AssetClass.assetLowValue' | translate }}"
-           formControlName="assetLowValue" maxlength="30" appFocusOnEnter tabIndex="5">
-          </mat-form-field>
-           
-        <mat-checkbox  formControlName="lowValueAssetClass" appFocusOnEnter tabIndex="6">non Numaric</mat-checkbox>
-       
+                 formControlName="assetLowValue" maxlength="30" appFocusOnEnter tabIndex="5">
+        </mat-form-field>
+
+        <mat-checkbox formControlName="lowValueAssetClass" appFocusOnEnter tabIndex="6">non Numaric</mat-checkbox>
+
 
       </div>
       <mat-divider></mat-divider>

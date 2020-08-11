@@ -44,6 +44,7 @@ export class AlternateControlAccountComponent implements OnInit {
     { value: 'Non test', viewValue: 'Non test' }
   ];
   companyList: any;
+    coaList: any;
   constructor(
     private addOrEditService: AddOrEditService,
     private formBuilder: FormBuilder,
@@ -55,11 +56,13 @@ export class AlternateControlAccountComponent implements OnInit {
     @Optional() @Inject(MAT_DIALOG_DATA) public data: any) {
 
     this.modelFormData = this.formBuilder.group({
-      code: [null, [Validators.required, Validators.minLength(1), Validators.maxLength(4)]],
-      description: [null, [Validators.required, Validators.minLength(1), Validators.maxLength(30)]],
+      code: ['0'],
+        //[Validators.required, Validators.minLength(1), Validators.maxLength(4)]],
+      //description: [null, [Validators.required, Validators.minLength(1), Validators.maxLength(30)]],
       normalControlAccount: [null],
-      alternativeControlAccount: [null]
-               
+      alternativeControlAccount: [null],
+      chartofAccount: [null],
+      company: [null]     
     });
 
 
@@ -72,9 +75,12 @@ export class AlternateControlAccountComponent implements OnInit {
   }
 
   ngOnInit() {
-    //this.getcompanyData();
+    this.getTableData();
+    this.getchartofAccountData();
   }
-  getcompanyData() {
+
+
+  getTableData() {
     const getCompanyUrl = String.Join('/', this.apiConfigService.getCompanysList);
     this.apiService.apiGetRequest(getCompanyUrl)
       .subscribe(
@@ -89,6 +95,22 @@ export class AlternateControlAccountComponent implements OnInit {
           this.spinner.hide();
         });
   }
+  getchartofAccountData() {
+    const getchartofAccountUrl = String.Join('/', this.apiConfigService.getChartOfAccountList);
+    this.apiService.apiGetRequest(getchartofAccountUrl)
+      .subscribe(
+        response => {
+          const res = response.body;
+          if (!isNullOrUndefined(res) && res.status === StatusCodes.pass) {
+            if (!isNullOrUndefined(res.response)) {
+              console.log(res);
+              this.coaList = res.response['coaList'];
+            }
+          }
+          this.spinner.hide();
+        });
+  }
+ 
 
   get formControls() { return this.modelFormData.controls; }
 

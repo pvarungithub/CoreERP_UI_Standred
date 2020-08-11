@@ -13,6 +13,10 @@ interface classType {
   value: string;
   viewValue: string;
 }
+interface nature {
+  value: string;
+  viewValue: string;
+}
 @Component({
   selector: 'app-AssetClass',
   templateUrl: './AssetClass.component.html',
@@ -31,9 +35,14 @@ export class AssetClassComponent implements OnInit {
 
   classtype: classType[] =
   [
-    { value: 'Normal', viewValue: 'Normal' },
+      { value: 'Normal', viewValue: 'Normal' },
     { value: 'AUC', viewValue: 'AUC' }
-  ];
+    ];
+  Nature: nature[] =
+    [
+      { value: 'Tangable', viewValue: 'Tangable' },
+      { value: 'Intangable', viewValue: 'Intangable' }
+    ];
   companyList: any;
   constructor(
     private addOrEditService: AddOrEditService,
@@ -51,8 +60,8 @@ export class AssetClassComponent implements OnInit {
       numberRange: [null],
       classType: [null],
       lowValueAssetClass: [null],
-      assetLowValue: [null]
-      
+      assetLowValue: [null],
+      nature: [null]
     });
 
 

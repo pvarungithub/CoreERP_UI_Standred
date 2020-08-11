@@ -28,7 +28,7 @@ export class AccountKeyComponent implements OnInit {
   taxaccList: any;
   tdsList:any;
   nrrList:any;   
-
+  coaList: any;  
   AcquisitionsGl: AcquisitionsGl[] =
   [
     { value: 'Normal', viewValue: 'Normal' },
@@ -54,7 +54,9 @@ export class AccountKeyComponent implements OnInit {
       lossOnSaleGl: [null],
       gainOnSaleGl: [null],
       scrappingGl: [null],
-      auggl: [null]
+      auggl: [null],
+      companyCode: [null],
+      chartofAccount: [null]
 
     });
 
@@ -68,6 +70,38 @@ export class AccountKeyComponent implements OnInit {
 
   ngOnInit() {
     this.getyNumberrangeData();
+    this.getTableData();
+    this.getchartofAccountData();
+  }
+  getTableData() {
+    const getCompanyUrl = String.Join('/', this.apiConfigService.getCompanysList);
+    this.apiService.apiGetRequest(getCompanyUrl)
+      .subscribe(
+        response => {
+          const res = response.body;
+          if (!isNullOrUndefined(res) && res.status === StatusCodes.pass) {
+            if (!isNullOrUndefined(res.response)) {
+              console.log(res);
+              this.companyList = res.response['companiesList'];
+            }
+          }
+          this.spinner.hide();
+        });
+  }
+  getchartofAccountData() {
+    const getchartofAccountUrl = String.Join('/', this.apiConfigService.getChartOfAccountList);
+    this.apiService.apiGetRequest(getchartofAccountUrl)
+      .subscribe(
+        response => {
+          const res = response.body;
+          if (!isNullOrUndefined(res) && res.status === StatusCodes.pass) {
+            if (!isNullOrUndefined(res.response)) {
+              console.log(res);
+              this.coaList = res.response['coaList'];
+            }
+          }
+          this.spinner.hide();
+        });
   }
   getyNumberrangeData() {
     const getnumrangeUrl = String.Join('/', this.apiConfigService.getNumberRangeList);
