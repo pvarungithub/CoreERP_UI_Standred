@@ -47,7 +47,8 @@ export class TdsRatesComponent implements OnInit {
       tdstype: [null],
       incomeType: [null],
       status: [null],
-      effectiveFrom: [null]
+      effectiveFrom: [null],
+      baseAmount:[null]
     });
 
     this.formData = { ...data };

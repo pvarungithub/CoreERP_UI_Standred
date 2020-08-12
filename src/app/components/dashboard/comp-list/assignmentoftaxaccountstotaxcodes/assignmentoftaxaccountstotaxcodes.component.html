@@ -8,31 +8,7 @@
   <mat-card-content class="pt-5 p-2 m-0 overflow-auto">
     <form [formGroup]="modelFormData" autocomplete="off">
 
-      <div class="d--flex">       
-        <mat-form-field>
-          <mat-label>Tax Rate</mat-label>
-          <mat-select placeholder="{{'assignmentoftaxaccountstotaxcodes.code' | translate }}" formControlName="code" appFocusOnEnter tabIndex="1">
-            <mat-option *ngFor="let taxtrnsn of TaxTypeList" [value]="taxtrnsn.taxRateCode">
-              {{taxtrnsn.taxRateCode}} - {{taxtrnsn.description}}
-            </mat-option>
-          </mat-select>
-        </mat-form-field>          
-        <mat-form-field class="form-element">
-          <input matInput placeholder="{{'assignmentoftaxaccountstotaxcodes.sgstgl' | translate }}" formControlName="sgstgl"
-          maxlength="50" appFocusOnEnter tabIndex="2">
-        </mat-form-field>
-        <mat-form-field class="form-element">
-          <input matInput placeholder="{{'assignmentoftaxaccountstotaxcodes.cgstgl' | translate }}" formControlName="cgstgl"
-          maxlength="50" appFocusOnEnter tabIndex="3">
-        </mat-form-field>
-        <mat-form-field class="form-element">
-          <input matInput placeholder="{{'assignmentoftaxaccountstotaxcodes.igstgl' | translate }}" formControlName="igstgl"
-          maxlength="50" appFocusOnEnter tabIndex="4">
-        </mat-form-field>       
-        <mat-form-field class="form-element">
-          <input matInput placeholder="{{'assignmentoftaxaccountstotaxcodes.ugstgl' | translate }}" formControlName="ugstgl"
-          maxlength="50" appFocusOnEnter tabIndex="5">
-        </mat-form-field>
+      <div class="d--flex">   
         <mat-form-field>
           <mat-label>{{'posting.company' | translate }}</mat-label>
           <mat-select formControlName="company" appFocusOnEnter tabIndex="6">
@@ -58,7 +34,43 @@
               {{plants.plantCode}} - {{plants.plantname}}
             </mat-option>
           </mat-select>
-        </mat-form-field>        
+        </mat-form-field>      
+        <mat-form-field>
+          <mat-label>Tax Rate</mat-label>
+          <mat-select placeholder="{{'assignmentoftaxaccountstotaxcodes.code' | translate }}" formControlName="code" appFocusOnEnter tabIndex="1">
+            <mat-option *ngFor="let taxtrnsn of TaxTypeList" [value]="taxtrnsn.taxRateCode">
+              {{taxtrnsn.taxRateCode}} - {{taxtrnsn.description}}
+            </mat-option>
+          </mat-select>
+        </mat-form-field>          
+        <mat-form-field class="form-element">
+          <input matInput placeholder="{{'assignmentoftaxaccountstotaxcodes.sgstgl' | translate }}" formControlName="sgstgl"
+          maxlength="50" appFocusOnEnter tabIndex="2">
+        </mat-form-field>
+        <mat-form-field class="form-element">
+          <input matInput placeholder="{{'assignmentoftaxaccountstotaxcodes.cgstgl' | translate }}" formControlName="cgstgl"
+          maxlength="50" appFocusOnEnter tabIndex="3">
+        </mat-form-field>
+        <mat-form-field class="form-element">
+          <input matInput placeholder="{{'assignmentoftaxaccountstotaxcodes.igstgl' | translate }}" formControlName="igstgl"
+          maxlength="50" appFocusOnEnter tabIndex="4">
+        </mat-form-field>       
+        <mat-form-field class="form-element">
+          <input matInput placeholder="{{'assignmentoftaxaccountstotaxcodes.ugstgl' | translate }}" formControlName="ugstgl"
+          maxlength="50" appFocusOnEnter tabIndex="5">
+        </mat-form-field>
+        <mat-form-field class="form-element">
+          <input matInput placeholder="{{'assignmentoftaxaccountstotaxcodes.compositeAccount' | translate }}" formControlName="compositeAccount"
+          maxlength="50" appFocusOnEnter tabIndex="5">
+        </mat-form-field>
+        <mat-form-field>
+          <mat-label [translate]="'AlternateControlAccount.chartofAccount'"></mat-label>
+          <mat-select formControlName="chartofAccount" appFocusOnEnter tabIndex="3">
+            <mat-option *ngFor="let coa of coaList" [value]="coa.code">
+              {{coa.code}}- {{coa.desctiption}}
+            </mat-option>
+          </mat-select>
+        </mat-form-field>    
       </div>
       <mat-divider></mat-divider>
 

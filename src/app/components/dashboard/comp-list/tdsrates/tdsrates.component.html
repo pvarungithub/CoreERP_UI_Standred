@@ -39,9 +39,13 @@
             </mat-option>
           </mat-select>
         </mat-form-field>
+        <mat-form-field class="form-element">
+          <input matInput placeholder="{{'tdsrates.baseAmount' | translate }}" formControlName="baseAmount"
+          maxlength="50" appFocusOnEnter tabIndex="5">
+        </mat-form-field>
         <mat-form-field>
           <mat-label [translate]="'tdsrates.status'"></mat-label>
-          <mat-select formControlName="status" appFocusOnEnter tabIndex="5">
+          <mat-select formControlName="status" appFocusOnEnter tabIndex="6">
             <mat-option *ngFor="let ltype of status" [value]="ltype.value">
               {{ltype.viewValue}}
             </mat-option>
@@ -49,7 +53,7 @@
         </mat-form-field>
         <mat-form-field>
           <input matInput [matDatepicker]="picker3" placeholder="{{'tdsrates.effectiveFrom' | translate }}"
-                 formControlName="effectiveFrom" appFocusOnEnter tabIndex="6">
+                 formControlName="effectiveFrom" appFocusOnEnter tabIndex="7">
           <mat-datepicker-toggle matSuffix [for]="picker3"></mat-datepicker-toggle>
           <mat-datepicker #picker3></mat-datepicker>
         </mat-form-field>
@@ -59,10 +63,10 @@
 
   </mat-card-content>
   <div class="form-element p-2 d-flex justify-content-end">
-    <button mat-raised-button class="button-color-red text-white mr-1" (click)="cancel()"appFocusOnEnter tabIndex="7">
+    <button mat-raised-button class="button-color-red text-white mr-1" (click)="cancel()"appFocusOnEnter tabIndex="8">
       {{ 'COMMON.CANCEL' | translate }}
     </button>
-    <button mat-raised-button type="submit" class="button-color-bule text-white ml-1" (click)="save()"appFocusOnEnter tabIndex="8">
+    <button mat-raised-button type="submit" class="button-color-bule text-white ml-1" (click)="save()"appFocusOnEnter tabIndex="9">
       {{ 'COMMON.SAVE' | translate }}
     </button>
   </div>

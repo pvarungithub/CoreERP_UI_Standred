@@ -278,10 +278,10 @@
     "taxType": "Tax Type",
     "taxTransaction": "Tax Transaction",
     "taxCondition": "Tax Condition",
-    "sgst": "SGST",
-    "cgst": "CGST",
-    "igst": "IGST",
-    "ugst": "UGST",
+    "sgst": "SGST %",
+    "cgst": "CGST %",
+    "igst": "IGST %",
+    "ugst": "UGST %",
     "compositeCess":"Composite Cess",
     "effectiveFrom":  "Date" 
   },
@@ -294,13 +294,15 @@
   "assignmentoftaxaccountstotaxcodes": {
     "title": "Assignment of Taxaccounts to Taxcodes",
     "code": "Code",
-    "sgstgl": "Sgst Gl",
-    "cgstgl": "Cgst Gl",
-    "igstgl": "Igst Gl",
-    "ugstgl": "Ugst Gl",
+    "sgstgl": "SGST GL",
+    "cgstgl": "CGST GL",
+    "igstgl": "IGST GL",
+    "ugstgl": "UGST GL",
     "company": "Company",
     "branch": "Branch",
-    "plant": "Plant" 
+    "plant": "Plant",
+    "compositeAccount" :"Composite GL",
+    "chartofAccount":"ChartofAccount"
   },
   "taxtypes": {
     "title": "Tax Types",
@@ -332,8 +334,10 @@
     "desctiption": "Description",
     "tdstype": "Tdstype",
     "incomeType": "Income Type",
+    "baseAmount":"Base Amount %" , 
     "status": "Status",
-    "effectiveFrom":  "Date"      
+    "effectiveFrom":  "Date"
+     
   },
   "posting": {
     "title": "Posting",  
@@ -525,20 +529,18 @@
     "depreciationMethod": "Depreciation Method",
     "purchaseWithin": "Purchase Within",
     "rate": "Rate",
-    "maxDepreciationAmount": "Max Depreciation Amount",
-    "maxDepreciationRate": "Max Depreciation Rate",
-    "upto1Years": "upto1Years",
-    "upto1Months": "upto1Months",
-    "upto1Rate": "upto1Rate",
-    "upto2Years": "upto2Years",
-    "upto2Months": "upto2Months",
-    "upto2Rate": "upto2Rate",
-    "upto3Years": "upto 3Years",
-    "upto3Months": "upto 3Months",
-    "upto3Rate": "upto 3Rate",
-    "upto4Years": "upto 4Years",
-    "upto4Months": "upto 4Months",
-    "upto4Rate": "upto 4Rate"
+    "upto1Years": "Depreciation Upto 1 Years",
+    "upto1Months": "Depreciation Upto 1 Months",
+    "upto1Rate": "Depreciation Upto 1 Rate",
+    "upto2Years": "Depreciation Upto 2 Years",
+    "upto2Months": "Depreciation Upto 2 Months",
+    "upto2Rate": "Depreciation Upto 2 Rate",
+    "upto3Years": "Depreciation Upto 3 Years",
+    "upto3Months": "Depreciation Upto 3 Months",
+    "upto3Rate": "Depreciation Upto 3 Rate",
+    "upto4Years": "Depreciation Upto 4 Years",
+    "upto4Months": "Depreciation Upto 4 Months",
+    "upto4Rate": "Depreciation Upto 4 Rate"
   },
   "glaccount": {
     "title": "GL Account",

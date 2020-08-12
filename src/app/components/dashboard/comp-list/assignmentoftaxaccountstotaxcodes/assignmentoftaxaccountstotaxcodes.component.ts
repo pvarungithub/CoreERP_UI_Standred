@@ -24,6 +24,8 @@ export class AssignmentoftaxaccountstotaxcodesComponent implements OnInit {
   branchList: any;
   TaxTypeList: any;
   plantList: any;
+  coaList: any;
+
   constructor(
     private formBuilder: FormBuilder,
     private apiService: ApiService,
@@ -43,7 +45,9 @@ export class AssignmentoftaxaccountstotaxcodesComponent implements OnInit {
       ugstgl:[null],
       branch: [null],
       company: [null],
-      plant: [null]
+      plant: [null],
+      compositeAccount:[null],
+      chartofAccount:[null]
     });
 
 
@@ -60,6 +64,7 @@ export class AssignmentoftaxaccountstotaxcodesComponent implements OnInit {
    this.getcompaniesList();
     this.getbranchessList();
     this.getplantsList();
+    this.getchartofAccountData();
   }
 GetTaxRateList() {
     const gettaxtransactinlist = String.Join('/', this.apiConfigService.gettaxratesList);
@@ -117,6 +122,22 @@ GetTaxRateList() {
             if (!isNullOrUndefined(res.response)) {
               console.log(res);
               this.plantList = res.response['plantList'];
+            }
+          }
+          this.spinner.hide();
+        });
+  }
+
+  getchartofAccountData() {
+    const getchartofAccountUrl = String.Join('/', this.apiConfigService.getChartOfAccountList);
+    this.apiService.apiGetRequest(getchartofAccountUrl)
+      .subscribe(
+        response => {
+          const res = response.body;
+          if (!isNullOrUndefined(res) && res.status === StatusCodes.pass) {
+            if (!isNullOrUndefined(res.response)) {
+              console.log(res);
+              this.coaList = res.response['coaList'];
             }
           }
           this.spinner.hide();
