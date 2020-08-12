@@ -7,31 +7,52 @@
   <mat-card-content class="pt-5 p-2 m-0 overflow-auto ">
     <form [formGroup]="modelFormData" autocomplete="off">
       <div class="d--flex">
-        <mat-form-field class="form-element" [ngClass]="{ 'ng--valid': formControls.assetNumber.valid }">
-          <input matInput placeholder="{{'mainassetmaster.assetNumber' | translate }}" formControlName="assetNumber" maxlength="5" appFocusOnEnter tabIndex="1">
-          <mat-error *ngIf="formControls.assetNumber.errors" class="help-block">
-            <div *ngIf="formControls.assetNumber.errors.required">Code is required </div>
-          </mat-error>
-        </mat-form-field>
-        <mat-form-field class="form-element" [ngClass]="{ 'ng--valid': formControls.name.valid }">
-          <input matInput placeholder="{{'mainassetmaster.name' | translate }}" formControlName="name"maxlength="50" appFocusOnEnter tabIndex="2">
-          <mat-error *ngIf="formControls.name.errors" class="help-block">
-            <div *ngIf="formControls.name.errors.required">Name is required</div>
-          </mat-error>
-        </mat-form-field>
+
 
         <mat-form-field>
-          <mat-label [translate]="'mainassetmaster.name1'"></mat-label>
-          <mat-select formControlName="name1" appFocusOnEnter tabIndex="3">
-            <mat-option *ngFor="let asset of assetList" [value]="asset.code">
-              {{asset.code}}- {{asset.description}}
+          <mat-label [translate]="'mainassetmaster.company'"></mat-label>
+          <mat-select formControlName="company" appFocusOnEnter tabIndex="1">
+            <mat-option *ngFor="let comp of companyList" [value]="comp.companyCode">
+              {{comp.companyCode}} - {{comp.companyName}}
             </mat-option>
           </mat-select>
         </mat-form-field>  
 
         <mat-form-field>
+          <mat-label [translate]="'mainassetmaster.assetclass'"></mat-label>
+          <mat-select formControlName="assetclass" (selectionChange)= "getchartAccount()"  appFocusOnEnter tabIndex="2">
+            <mat-option *ngFor="let asset of assetList" [value]="asset.code">
+              {{asset.code}} - {{asset.description}}
+            </mat-option>
+          </mat-select>
+        </mat-form-field> 
+
+
+        <mat-form-field class="form-element" [ngClass]="{ 'ng--valid': formControls.assetNumber.valid }">
+          <input matInput placeholder="{{'mainassetmaster.assetNumber' | translate }}" formControlName="assetNumber" 
+          maxlength="5" appFocusOnEnter tabIndex="3">
+          <mat-error *ngIf="formControls.assetNumber.errors" class="help-block">
+            <div *ngIf="formControls.assetNumber.errors.required">Code is required </div>
+          </mat-error>
+        </mat-form-field>
+        <mat-form-field class="form-element" [ngClass]="{ 'ng--valid': formControls.name.valid }">
+          <input matInput placeholder="{{'mainassetmaster.name' | translate }}" formControlName="name"maxlength="50" 
+          appFocusOnEnter tabIndex="4">
+          <mat-error *ngIf="formControls.name.errors" class="help-block">
+            <div *ngIf="formControls.name.errors.required">Name is required</div>
+          </mat-error>
+        </mat-form-field>
+
+
+        <mat-form-field class="form-element">
+          <input matInput placeholder="{{'mainassetmaster.name1' | translate }}" formControlName="name1" 
+          maxlength="50" appFocusOnEnter tabIndex="5">
+        </mat-form-field>
+       
+
+        <mat-form-field>
           <mat-label [translate]="'mainassetmaster.accountKey'"></mat-label>
-          <mat-select formControlName="accountKey" appFocusOnEnter tabIndex="4">
+          <mat-select formControlName="accountKey" appFocusOnEnter tabIndex="6">
             <mat-option *ngFor="let ackey of acckeyList" [value]="ackey.code">
               {{ackey.code}}- {{ackey.code}}
             </mat-option>
@@ -41,22 +62,22 @@
 
         <mat-form-field class="form-element">
           <input matInput placeholder="{{'mainassetmaster.materialNo' | translate }}" formControlName="materialNo" 
-          maxlength="50" appFocusOnEnter tabIndex="5">
+          maxlength="50" appFocusOnEnter tabIndex="7">
         </mat-form-field>
 
         <mat-form-field class="form-element">
           <input matInput placeholder="{{'mainassetmaster.quantity' | translate }}" formControlName="quantity" 
-          maxlength="50" appFocusOnEnter tabIndex="6">
+          maxlength="50" appFocusOnEnter tabIndex="8">
         </mat-form-field>
 
         <mat-form-field class="form-element">
           <input matInput placeholder="{{'mainassetmaster.serialNo' | translate }}" formControlName="serialNo" 
-          maxlength="50" appFocusOnEnter tabIndex="7">
+          maxlength="50" appFocusOnEnter tabIndex="9">
         </mat-form-field>
 
         <mat-form-field>
           <mat-label>{{'mainassetmaster.branch' | translate }}</mat-label>
-          <mat-select formControlName="branch" appFocusOnEnter tabIndex="8">
+          <mat-select formControlName="branch" appFocusOnEnter tabIndex="10">
             <mat-option *ngFor="let branch of branchesList" [value]="branch.branchCode">
               {{branch.branchCode}} - {{branch.branchName}}
             </mat-option>
@@ -65,7 +86,7 @@
 
         <mat-form-field>
           <mat-label>{{'mainassetmaster.profitCenter' | translate }}</mat-label>
-          <mat-select formControlName="profitCenter" appFocusOnEnter tabIndex="9">
+          <mat-select formControlName="profitCenter" appFocusOnEnter tabIndex="11">
             <mat-option *ngFor="let profit of profitCenterList" [value]="profit.code">
               {{profit.code}} - {{profit.description}}
             </mat-option>
@@ -75,7 +96,7 @@
         
         <mat-form-field>
           <mat-label>{{'mainassetmaster.segment' | translate }}</mat-label>
-          <mat-select formControlName="segment" appFocusOnEnter tabIndex="10">
+          <mat-select formControlName="segment" appFocusOnEnter tabIndex="12">
             <mat-option *ngFor="let seg of segmentList" [value]="seg.id">
               {{seg.id}} - {{seg.name}}
             </mat-option>
@@ -84,7 +105,7 @@
 
         <mat-form-field>
           <mat-label>{{'mainassetmaster.division' | translate }}</mat-label>
-          <mat-select formControlName="division" appFocusOnEnter tabIndex="11">
+          <mat-select formControlName="division" appFocusOnEnter tabIndex="13">
             <mat-option *ngFor="let div of divisionsList" [value]="div.code">
               {{div.code}} - {{div.description}}
             </mat-option>
@@ -93,7 +114,7 @@
 
         <mat-form-field>
           <mat-label>{{'mainassetmaster.plant' | translate }}</mat-label>
-          <mat-select formControlName="plant" appFocusOnEnter tabIndex="12">
+          <mat-select formControlName="plant" appFocusOnEnter tabIndex="14">
             <mat-option *ngFor="let pnt of plantList" [value]="pnt.plantCode">
               {{pnt.plantCode}} - {{pnt.plantname}}
             </mat-option>
@@ -103,7 +124,7 @@
 
         <mat-form-field>
           <mat-label>{{'mainassetmaster.location' | translate }}</mat-label>
-          <mat-select formControlName="location" appFocusOnEnter tabIndex="13">
+          <mat-select formControlName="location" appFocusOnEnter tabIndex="15">
             <mat-option *ngFor="let loc of locationList" [value]="loc.locationId">
               {{loc.locationId}} - {{loc.description}}
             </mat-option>
@@ -112,17 +133,17 @@
 
         <mat-form-field class="form-element">
           <input matInput placeholder="{{'mainassetmaster.room' | translate }}" formControlName="room" maxlength="50"
-           appFocusOnEnter tabIndex="14">
+           appFocusOnEnter tabIndex="16">
         </mat-form-field>
 
         <mat-form-field class="form-element">
           <input matInput placeholder="{{'mainassetmaster.supplier' | translate }}" formControlName="supplier"
-           maxlength="50" appFocusOnEnter tabIndex="15">
+           maxlength="50" appFocusOnEnter tabIndex="17">
         </mat-form-field>
 
         <mat-form-field>
           <input matInput [matDatepicker]="picker3" placeholder="{{'mainassetmaster.acquisitionDate' | translate }}"
-                 formControlName="acquisitionDate" appFocusOnEnter tabIndex="16">
+                 formControlName="acquisitionDate" appFocusOnEnter tabIndex="18">
           <mat-datepicker-toggle matSuffix [for]="picker3"></mat-datepicker-toggle>
           <mat-datepicker #picker3></mat-datepicker>
         </mat-form-field>
@@ -131,33 +152,31 @@
 
         <mat-form-field class="form-element">
           <input matInput placeholder="{{'mainassetmaster.usefulLifeYears' | translate }}"
-           formControlName="usefulLifeYears" maxlength="5" appFocusOnEnter tabIndex="17">
+           formControlName="usefulLifeYears" maxlength="5" appFocusOnEnter tabIndex="19">
         </mat-form-field>  
 
         <mat-form-field class="form-element">
           <input matInput placeholder="{{'mainassetmaster.usefulLifeDays' | translate }}" formControlName="usefulLifeDays"
-           maxlength="6" appFocusOnEnter tabIndex="18">
+           maxlength="6" appFocusOnEnter tabIndex="20">
         </mat-form-field>
 
-        <mat-form-field>
-          <mat-label [translate]="'mainassetmaster.depreciationData'"></mat-label>
-          <mat-select formControlName="depreciationData" appFocusOnEnter tabIndex="19">
-            <mat-option *ngFor="let dpc of depreciationDatas" [value]="dpc.value">
-              {{dpc.viewValue}}
-            </mat-option>
-          </mat-select>
+       
+        <mat-form-field class="form-element">
+          <input matInput placeholder="{{'mainassetmaster.depreciationData' | translate }}" formControlName="depreciationData"
+           maxlength="30" appFocusOnEnter tabIndex="21">
         </mat-form-field>
        
 
         <mat-form-field>
           <mat-label>{{'mainassetmaster.depreciationArea' | translate }}</mat-label>
-          <mat-select formControlName="depreciationArea" appFocusOnEnter tabIndex="20">
+          <mat-select formControlName="depreciationArea" appFocusOnEnter tabIndex="22">
             <mat-option *ngFor="let dpr of dpareaList" [value]="dpr.code">
               {{dpr.code}} - {{dpr.description}}
             </mat-option>
           </mat-select>
         </mat-form-field>
 
+       
        
         <mat-form-field>
           <input matInput [matDatepicker]="picker4" placeholder="{{'mainassetmaster.depreciationStartDate' | translate }}"

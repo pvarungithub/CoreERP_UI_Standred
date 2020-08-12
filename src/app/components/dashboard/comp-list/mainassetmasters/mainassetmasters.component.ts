@@ -35,6 +35,7 @@ export class MainAssetMasterComponent implements OnInit {
   locationList:any;
   dpareaList:any;
   dpList:any;
+  companyList:any;
   depreciationDatas: depreciationData[] =
   [
     { value: 'Multiple ', viewValue: 'Multiple ' },
@@ -73,8 +74,9 @@ export class MainAssetMasterComponent implements OnInit {
       depreciationData: [null],
       depreciationArea: [null],
       depreciationCode: [null],
-      depreciationStartDate: [null]
-     
+      depreciationStartDate: [null],
+      assetclass: [null],
+      company: [null]
       });
 
       this.formData = {...data};
@@ -96,6 +98,46 @@ export class MainAssetMasterComponent implements OnInit {
     this. getLocationList() ;
     this.getdepreciationCodeTableData();
     this.getdepreciationAreaTableData();
+    this.getTableData();
+    this.getassetTableData();
+  }
+
+  getchartAccount()
+  {
+    this.modelFormData.patchValue({
+      assetNumber:(this.modelFormData.get('assetclass').value)
+    });
+  }
+
+  getTableData() {
+    const getCompanyUrl = String.Join('/', this.apiConfigService.getCompanysList);
+    this.apiService.apiGetRequest(getCompanyUrl)
+      .subscribe(
+        response => {
+        const res = response.body;
+        if (!isNullOrUndefined(res) && res.status === StatusCodes.pass) {
+          if (!isNullOrUndefined(res.response)) {
+            console.log(res);
+            this.companyList = res.response['companiesList'];
+          }
+        }
+          this.spinner.hide();
+      });
+  }
+  getassetTableData() {
+    const getassetyUrl = String.Join('/', this.apiConfigService.getAssetClassList);
+    this.apiService.apiGetRequest(getassetyUrl)
+      .subscribe(
+        response => {
+        const res = response.body;
+        if (!isNullOrUndefined(res) && res.status === StatusCodes.pass) {
+          if (!isNullOrUndefined(res.response)) {
+            console.log(res);
+            this.assetList = res.response['assetList'];
+          }
+        }
+          this.spinner.hide();
+      });
   }
 
   getassetclassTableData() {

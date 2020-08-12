@@ -10,6 +10,10 @@ import { StatusCodes } from '../../../../enums/common/common';
 import { AddOrEditService } from '../add-or-edit.service';
 import { Router, ActivatedRoute } from '@angular/router';
 
+interface TaxClassification {
+  value: string;
+  viewValue: string;
+}
 @Component({
   selector: 'app-businesspartner',
   templateUrl: './businesspartner.component.html',
@@ -27,7 +31,14 @@ export class BusienessPartnerAccountComponent implements OnInit, OnDestroy {
   regionsList: any;
   countrysList: any;
   ptermsList: any;
-
+  bpgList:any;
+  taxClassification: TaxClassification[] =
+  [
+    { value: 'Registered', viewValue: 'Registered' } ,  
+    { value: 'UnRegistered', viewValue: 'UnRegistered' } 
+  ];
+  tdsList: any;
+  tdsratesList:any;
   constructor(
     private apiService: ApiService,
     private addOrEditService: AddOrEditService,
@@ -40,8 +51,11 @@ export class BusienessPartnerAccountComponent implements OnInit, OnDestroy {
 
     this.modelFormData = this.formBuilder.group({
       //"id": 1,
-      code: [null, [Validators.required, Validators.minLength(1), Validators.maxLength(5)]],
-      name: [null, [Validators.required, Validators.minLength(1), Validators.maxLength(50)]],
+      //code: [null, [Validators.required, Validators.minLength(1), Validators.maxLength(5)]],
+     // code: ['0'],
+     //code: [null, [Validators.required, Validators.minLength(1), Validators.maxLength(50)]],
+     code:[null],
+      name:[null],
       bpnumber:[null],
       bptype: [null],
       name1: [null],
@@ -77,7 +91,8 @@ export class BusienessPartnerAccountComponent implements OnInit, OnDestroy {
       bankBranchNo:[null],  
       contactPersion: [null],  
       contactPersionMobile:[null],  
-      narration: [null],  
+      narration: [null], 
+      bpgroup : [null],
       ext:[null]        
                
       });
@@ -85,7 +100,7 @@ export class BusienessPartnerAccountComponent implements OnInit, OnDestroy {
       this.formData = {...this.addOrEditService.editData};
       if (!isNullOrUndefined(this.formData.item)) {
         this.modelFormData.patchValue(this.formData.item);
-       this.modelFormData.controls['code'].disable();
+       ///this.modelFormData.controls['code'].disable();
       }
 
   }
@@ -98,6 +113,9 @@ export class BusienessPartnerAccountComponent implements OnInit, OnDestroy {
     this.getcountrysList();
     this.getptypeList();
     this.getEmployeesList();
+    this.getPartnerGroupsTableData();
+    this.getTDSTableData();
+    this.getTDSRateTableData();
   }
 
   getTableData() {
@@ -110,6 +128,51 @@ export class BusienessPartnerAccountComponent implements OnInit, OnDestroy {
           if (!isNullOrUndefined(res.response)) {
             console.log(res);
             this.companyList = res.response['companiesList'];
+          }
+        }
+          this.spinner.hide();
+      });
+  }
+  getTDSTableData() {
+    const getTDSUrl = String.Join('/', this.apiConfigService.getTDStypeList);
+    this.apiService.apiGetRequest(getTDSUrl)
+      .subscribe(
+        response => {
+        const res = response.body;
+        if (!isNullOrUndefined(res) && res.status === StatusCodes.pass) {
+          if (!isNullOrUndefined(res.response)) {
+            console.log(res);
+            this.tdsList = res.response['tdsList'];
+          }
+        }
+          this.spinner.hide();
+      });
+  }
+  getTDSRateTableData() {
+    const getTDSRateUrl = String.Join('/', this.apiConfigService.getTDSRatesList);
+    this.apiService.apiGetRequest(getTDSRateUrl)
+      .subscribe(
+        response => {
+        const res = response.body;
+        if (!isNullOrUndefined(res) && res.status === StatusCodes.pass) {
+          if (!isNullOrUndefined(res.response)) {
+            console.log(res);
+            this.tdsratesList = res.response['tdsratesList'];
+          }
+        }
+          this.spinner.hide();
+      });
+  }
+  getPartnerGroupsTableData() {
+    const gettPartnerGroupsUrl = String.Join('/', this.apiConfigService.getBusienessPartnerGroupsList);
+    this.apiService.apiGetRequest(gettPartnerGroupsUrl)
+      .subscribe(
+        response => {
+        const res = response.body;
+        if (!isNullOrUndefined(res) && res.status === StatusCodes.pass) {
+          if (!isNullOrUndefined(res.response)) {
+            console.log(res);
+            this.bpgList = res.response['bpgList'];
           }
         }
           this.spinner.hide();
@@ -209,17 +272,21 @@ export class BusienessPartnerAccountComponent implements OnInit, OnDestroy {
 
   get formControls() { return this.modelFormData.controls; }
 
-  save() {
+  save() 
+  {
+
+
     if (this.modelFormData.invalid) {
       return;
     }
-    this.modelFormData.controls['code'].enable();
+    this.modelFormData.controls['bpnumber'].enable();
     this.formData.item = this.modelFormData.value;
-    this.addOrEditService[this.formData.action](this.formData, (res) => {
+    this.addOrEditService[this.formData.action](this.formData, (res) =>
+     {
       this.router.navigate(['/dashboard/master/businesspartner']);
     });
     if (this.formData.action == 'Edit') {
-      this.modelFormData.controls['code'].disable();
+      this.modelFormData.controls[''].disable();
     }
   }
 

@@ -6,10 +6,21 @@
 
   <mat-card-content class="pt-5 p-2 m-0 overflow-auto">
     <form [formGroup]="modelFormData" autocomplete="off">
-
       <div class="d--flex">
+
+        <mat-form-field>
+          <mat-label [translate]="'subassets.mainAssetNo'"></mat-label>
+          <mat-select formControlName="mainAssetNo" (selectionChange)= "getchartAccount()" appFocusOnEnter tabIndex="1">
+            <mat-option *ngFor="let mam of mamList" [value]="mam.assetNumber">
+              {{mam.assetNumber}}- {{mam.name}}
+            </mat-option>
+          </mat-select>
+        </mat-form-field> 
+
+
         <mat-form-field class="form-element" [ngClass]="{ 'ng--valid': formControls.subAssetNumber.valid }">
-          <input matInput placeholder="{{'subassets.subAssetNumber' | translate }}" formControlName="subAssetNumber" maxlength="4" appFocusOnEnter tabIndex="1">
+          <input matInput placeholder="{{'subassets.subAssetNumber' | translate }}" formControlName="subAssetNumber" 
+          maxlength="5" appFocusOnEnter tabIndex="2">
           <mat-error *ngIf="formControls.subAssetNumber.errors" class="help-block">
             <div *ngIf="formControls.subAssetNumber.errors.required">code  is required </div>
           </mat-error>
@@ -17,20 +28,146 @@
 
         <mat-form-field class="form-element" [ngClass]="{ 'ng--valid': formControls.description.valid }">
           <input matInput placeholder="{{'subassets.description' | translate }}"
-           formControlName="description" maxlength="50" appFocusOnEnter tabIndex="2">
+           formControlName="description" maxlength="50" appFocusOnEnter tabIndex="3">
           <mat-error *ngIf="formControls.description.errors" class="help-block">
             <div *ngIf="formControls.description.errors.required">description  is required </div>
           </mat-error>
         </mat-form-field>
       
         <mat-form-field>
-          <mat-label [translate]="'subassets.mainAssetNo'"></mat-label>
-          <mat-select formControlName="mainAssetNo" appFocusOnEnter tabIndex="3">
-            <mat-option *ngFor="let mam of mamList" [value]="mam.assetNumber">
-              {{mam.assetNumber}}- {{mam.name}}
+          <mat-label [translate]="'subassets.accountKey'"></mat-label>
+          <mat-select formControlName="accountKey" appFocusOnEnter tabIndex="4">
+            <mat-option *ngFor="let ackey of acckeyList" [value]="ackey.code">
+              {{ackey.code}}- {{ackey.code}}
             </mat-option>
           </mat-select>
-        </mat-form-field> 
+        </mat-form-field>  
+
+
+        <mat-form-field class="form-element">
+          <input matInput placeholder="{{'subassets.materialNo' | translate }}" formControlName="materialNo" 
+          maxlength="50" appFocusOnEnter tabIndex="5">
+        </mat-form-field>
+
+        <mat-form-field class="form-element">
+          <input matInput placeholder="{{'subassets.quantity' | translate }}" formControlName="quantity" 
+          maxlength="50" appFocusOnEnter tabIndex="6">
+        </mat-form-field>
+
+        <mat-form-field class="form-element">
+          <input matInput placeholder="{{'subassets.serialNumber' | translate }}" formControlName="serialNumber" 
+          maxlength="50" appFocusOnEnter tabIndex="7">
+        </mat-form-field>
+
+        <mat-form-field>
+          <mat-label>{{'subassets.branch' | translate }}</mat-label>
+          <mat-select formControlName="branch" appFocusOnEnter tabIndex="8">
+            <mat-option *ngFor="let branch of branchesList" [value]="branch.branchCode">
+              {{branch.branchCode}} - {{branch.branchName}}
+            </mat-option>
+          </mat-select>
+        </mat-form-field>
+
+        <mat-form-field>
+          <mat-label>{{'subassets.profitCenter' | translate }}</mat-label>
+          <mat-select formControlName="profitCenter" appFocusOnEnter tabIndex="9">
+            <mat-option *ngFor="let profit of profitCenterList" [value]="profit.code">
+              {{profit.code}} - {{profit.description}}
+            </mat-option>
+          </mat-select>         
+        </mat-form-field>
+
+        
+        <mat-form-field>
+          <mat-label>{{'subassets.segment' | translate }}</mat-label>
+          <mat-select formControlName="segment" appFocusOnEnter tabIndex="10">
+            <mat-option *ngFor="let seg of segmentList" [value]="seg.id">
+              {{seg.id}} - {{seg.name}}
+            </mat-option>
+          </mat-select>         
+        </mat-form-field>
+
+        <mat-form-field>
+          <mat-label>{{'subassets.division' | translate }}</mat-label>
+          <mat-select formControlName="division" appFocusOnEnter tabIndex="11">
+            <mat-option *ngFor="let div of divisionsList" [value]="div.code">
+              {{div.code}} - {{div.description}}
+            </mat-option>
+          </mat-select>
+        </mat-form-field>
+
+        <mat-form-field>
+          <mat-label>{{'subassets.plant' | translate }}</mat-label>
+          <mat-select formControlName="plant" appFocusOnEnter tabIndex="12">
+            <mat-option *ngFor="let pnt of plantList" [value]="pnt.plantCode">
+              {{pnt.plantCode}} - {{pnt.plantname}}
+            </mat-option>
+          </mat-select>
+        </mat-form-field>
+
+
+        <mat-form-field>
+          <mat-label>{{'subassets.location' | translate }}</mat-label>
+          <mat-select formControlName="location" appFocusOnEnter tabIndex="13">
+            <mat-option *ngFor="let loc of locationList" [value]="loc.locationId">
+              {{loc.locationId}} - {{loc.description}}
+            </mat-option>
+          </mat-select>
+        </mat-form-field>
+
+        <mat-form-field class="form-element">
+          <input matInput placeholder="{{'subassets.room' | translate }}" formControlName="room" maxlength="50"
+           appFocusOnEnter tabIndex="14">
+        </mat-form-field>
+
+        <mat-form-field class="form-element">
+          <input matInput placeholder="{{'subassets.supplier' | translate }}" formControlName="supplier"
+           maxlength="50" appFocusOnEnter tabIndex="15">
+        </mat-form-field>
+
+        <mat-form-field>
+          <input matInput [matDatepicker]="picker3" placeholder="{{'subassets.acquisitionDate' | translate }}"
+                 formControlName="acquisitionDate" appFocusOnEnter tabIndex="16">
+          <mat-datepicker-toggle matSuffix [for]="picker3"></mat-datepicker-toggle>
+          <mat-datepicker #picker3></mat-datepicker>
+        </mat-form-field>
+
+
+
+        <mat-form-field class="form-element">
+          <input matInput placeholder="{{'subassets.usefulLifeInYears' | translate }}"
+           formControlName="usefulLifeInYears" maxlength="5" appFocusOnEnter tabIndex="17">
+        </mat-form-field>  
+
+        <mat-form-field class="form-element">
+          <input matInput placeholder="{{'subassets.usefullLifeInDays' | translate }}" formControlName="usefullLifeInDays"
+           maxlength="6" appFocusOnEnter tabIndex="18">
+        </mat-form-field>
+
+       
+        <mat-form-field class="form-element">
+          <input matInput placeholder="{{'subassets.depreciationData' | translate }}" formControlName="depreciationData"
+           maxlength="30" appFocusOnEnter tabIndex="19">
+        </mat-form-field>
+       
+
+        <mat-form-field>
+          <mat-label>{{'subassets.depreciationArea' | translate }}</mat-label>
+          <mat-select formControlName="depreciationArea" appFocusOnEnter tabIndex="20">
+            <mat-option *ngFor="let dpr of dpareaList" [value]="dpr.code">
+              {{dpr.code}} - {{dpr.description}}
+            </mat-option>
+          </mat-select>
+        </mat-form-field>
+
+       
+       
+        <mat-form-field>
+          <input matInput [matDatepicker]="picker4" placeholder="{{'subassets.depreciationStartDate' | translate }}"
+                 formControlName="depreciationStartDate" appFocusOnEnter tabIndex="21">
+          <mat-datepicker-toggle matSuffix [for]="picker4"></mat-datepicker-toggle>
+          <mat-datepicker #picker4></mat-datepicker>
+        </mat-form-field>
         
       </div>
       <mat-divider></mat-divider>

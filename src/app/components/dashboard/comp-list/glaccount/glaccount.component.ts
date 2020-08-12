@@ -39,14 +39,18 @@ export class GLAccountComponent implements OnInit {
   regionsList: any;
   countrysList: any;
   languageList: any;
-  
+  tblAccountGroupList:any;
+  getAccSubGrpList:any;
+  glAccgrpList:any;
+  glAccNameList:any;
+  coaList:any;
   accounts: account[] =
   [
-    { value: '1', viewValue: 'account' },
-    { value: '3', viewValue: 'account3' },
-    { value: '4', viewValue: 'account4' } ,  
-    { value: '5', viewValue: 'account5' } ,  
-    { value: '6', viewValue: 'account6' } 
+    { value: 'Customer', viewValue: 'Customer' },
+    { value: 'Vendor', viewValue: 'Vendor' },
+    { value: 'Contractor', viewValue: 'Contractor' } ,  
+    { value: 'ServiceProvider', viewValue: 'ServiceProvider' } ,  
+    { value: 'Material', viewValue: 'Material' } 
   ];
   
   
@@ -64,6 +68,7 @@ export class GLAccountComponent implements OnInit {
     { value: 'Internal settlement', viewValue: 'Internal settlement' } ,
     { value: 'External settlement', viewValue: 'External settlement' } 
   ];
+  GLAccountGroupList: any;
   
   constructor(
     private apiService: ApiService,
@@ -91,7 +96,9 @@ export class GLAccountComponent implements OnInit {
       bankKey: [null],
       legacyGl: [null],
       costElementCategory: [null],
-      
+      subgroup: [null],
+      Undersubaccount:[null],
+      groupUnder:[null]
       });
 
       this.formData = {...data};
@@ -105,7 +112,78 @@ export class GLAccountComponent implements OnInit {
   ngOnInit() {
     this.getcurrencyList();
     this.getTableData();
+    this.getchartAccountTableData();
+    this.getglAccgrpList();
   }
+  getchartAccount()
+  {
+    this.modelFormData.patchValue({
+      accountNumber:  (this.modelFormData.get('chartAccount').value)
+    });
+  }
+  getchartAccountTableData() {
+    const getchartAccountUrl = String.Join('/', this.apiConfigService.getChartOfAccountList);
+    this.apiService.apiGetRequest(getchartAccountUrl)
+      .subscribe(
+        response => {
+        const res = response.body;
+        if (!isNullOrUndefined(res) && res.status === StatusCodes.pass) {
+          if (!isNullOrUndefined(res.response)) {
+            console.log(res);
+            this.coaList = res.response['coaList'];
+          }
+        }
+          this.spinner.hide();
+      });
+  }
+
+  getglAccgrpList() {
+    const getglAccgrpList = String.Join('/', this.apiConfigService.getglAccgrpList);
+    this.apiService.apiGetRequest(getglAccgrpList)
+      .subscribe(
+        response => {
+          const res = response.body;
+          if (!isNullOrUndefined(res) && res.status === StatusCodes.pass) {
+            if (!isNullOrUndefined(res.response)) {
+              this.glAccgrpList = res.response['GLAccGroupList'];
+            }
+          }
+          this.spinner.hide();
+        });
+  }
+
+  getAccountNamelist() {
+
+    const getAccountNamelist = String.Join('/', this.apiConfigService.getAccountNamelist, this.modelFormData.get('accGroup').value);
+    this.apiService.apiGetRequest(getAccountNamelist)
+      .subscribe(
+        response => {
+          const res = response.body;
+          if (!isNullOrUndefined(res) && res.status === StatusCodes.pass) {
+            if (!isNullOrUndefined(res.response)) {
+              this.glAccNameList = res.response['GetAccountNamelist'];
+            }
+          }
+          this.spinner.hide();
+        });
+  }
+
+  getGLUnderGroupList() {
+    const getGLUnderGroupList = String.Join('/', this.apiConfigService.getGLUnderGroupList, this.modelFormData.get('subgroup').value);
+    this.apiService.apiGetRequest(getGLUnderGroupList)
+      .subscribe(
+        response => {
+          const res = response.body;
+          if (!isNullOrUndefined(res) && res.status === StatusCodes.pass) {
+            if (!isNullOrUndefined(res.response)) {
+              this.getAccSubGrpList = res.response['GetAccountSubGrouplist'];
+            }
+          }
+          this.spinner.hide();
+        });
+  }
+
+ 
 
   getTableData() {
     const getCompanyUrl = String.Join('/', this.apiConfigService.getCompanysList);

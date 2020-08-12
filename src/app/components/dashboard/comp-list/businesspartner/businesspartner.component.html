@@ -11,13 +11,41 @@
 
           <div class="d--flex">
 
-            <mat-form-field class="form-element" [ngClass]="{ 'ng--valid': formControls.code.valid }">
+            <!-- <mat-form-field class="form-element" [ngClass]="{ 'ng--valid': formControls.code.valid }">
               <input matInput placeholder="{{'businesspartner.code' | translate }}" formControlName="code" maxlength="5"
                 appFocusOnEnter tabIndex="1">
               <mat-error *ngIf="formControls.code.errors" class="help-block">
                 <div *ngIf="formControls.code.errors.required">Code is required </div>
               </mat-error>
+            </mat-form-field> -->
+
+            <mat-form-field>
+              <mat-label [translate]="'glaccount.company'"></mat-label>
+              <mat-select formControlName="company" appFocusOnEnter tabIndex="1">
+                <mat-option *ngFor="let comp of companyList" [value]="comp.companyCode">
+                  {{comp.companyCode}} - {{comp.companyName}}
+                </mat-option>
+              </mat-select>
+            </mat-form-field>  
+    
+            <mat-form-field>
+              <mat-label [translate]="'businesspartner.bptype'"></mat-label>
+              <mat-select formControlName="bptype" appFocusOnEnter tabIndex="2">
+                <mat-option *ngFor="let bptype of ptypeList" [value]="bptype.code">
+                  {{bptype.code}}-{{bptype.description}}
+                </mat-option>
+              </mat-select>
             </mat-form-field>
+
+            <mat-form-field>
+              <mat-label [translate]="'businesspartner.bpgroup'"></mat-label>
+              <mat-select formControlName="bpgroup" appFocusOnEnter tabIndex="3">
+                <mat-option *ngFor="let bpg of bpgList" [value]="bpg.bpgroup">
+                  {{bpg.bpgroup}}-{{bpg.description}}
+                </mat-option>
+              </mat-select>
+            </mat-form-field>
+
 
             <mat-form-field class="form-element" [ngClass]="{ 'ng--valid': formControls.name.valid }">
               <input matInput placeholder="{{'businesspartner.name' | translate }}" formControlName="name"
@@ -27,13 +55,9 @@
               </mat-error>
             </mat-form-field>
 
-            <mat-form-field>
-              <mat-label [translate]="'businesspartner.bptype'"></mat-label>
-              <mat-select formControlName="bptype" appFocusOnEnter tabIndex="3">
-                <mat-option *ngFor="let bptype of ptypeList" [value]="bptype.code">
-                  {{bptype.code}}-{{bptype.description}}
-                </mat-option>
-              </mat-select>
+            <mat-form-field class="form-element">
+              <input matInput placeholder="{{'businesspartner.name1' | translate }}" formControlName="name1"
+                maxlength="50" appFocusOnEnter tabIndex="3">
             </mat-form-field>
 
 
@@ -42,34 +66,30 @@
                 maxlength="50" appFocusOnEnter tabIndex="4">
             </mat-form-field>
 
+           
             <mat-form-field class="form-element">
-              <input matInput placeholder="{{'businesspartner.name1' | translate }}" formControlName="name1"
+              <input matInput placeholder="{{'businesspartner.search' | translate }}" formControlName="search"
                 maxlength="50" appFocusOnEnter tabIndex="5">
             </mat-form-field>
 
             <mat-form-field class="form-element">
-              <input matInput placeholder="{{'businesspartner.search' | translate }}" formControlName="search"
+              <input matInput placeholder="{{'businesspartner.address' | translate }}" formControlName="address"
                 maxlength="50" appFocusOnEnter tabIndex="6">
             </mat-form-field>
 
             <mat-form-field class="form-element">
-              <input matInput placeholder="{{'businesspartner.address' | translate }}" formControlName="address"
+              <input matInput placeholder="{{'businesspartner.address1' | translate }}" formControlName="address1"
                 maxlength="50" appFocusOnEnter tabIndex="7">
             </mat-form-field>
 
             <mat-form-field class="form-element">
-              <input matInput placeholder="{{'businesspartner.address1' | translate }}" formControlName="address1"
+              <input matInput placeholder="{{'businesspartner.location' | translate }}" formControlName="location"
                 maxlength="50" appFocusOnEnter tabIndex="8">
             </mat-form-field>
 
             <mat-form-field class="form-element">
-              <input matInput placeholder="{{'businesspartner.location' | translate }}" formControlName="location"
-                maxlength="50" appFocusOnEnter tabIndex="9">
-            </mat-form-field>
-
-            <mat-form-field class="form-element">
               <input matInput placeholder="{{'businesspartner.city' | translate }}" formControlName="city"
-                maxlength="50" appFocusOnEnter tabIndex="10">
+                maxlength="50" appFocusOnEnter tabIndex="9">
             </mat-form-field>
 
 
@@ -81,7 +101,7 @@
 
             <mat-form-field>
               <mat-label>{{'businesspartner.state' | translate }}</mat-label>
-              <mat-select formControlName="state" appFocusOnEnter tabIndex="12">
+              <mat-select formControlName="state" appFocusOnEnter tabIndex="10">
                 <mat-option *ngFor="let state of stateList" [value]="state.id">
                   {{state.id}} - {{state.text}}
                 </mat-option>
@@ -90,7 +110,7 @@
 
             <mat-form-field>
               <mat-label>{{'businesspartner.region' | translate }}</mat-label>
-              <mat-select formControlName="region" appFocusOnEnter tabIndex="13">
+              <mat-select formControlName="region" appFocusOnEnter tabIndex="11">
                 <mat-option *ngFor="let rgn of regionsList" [value]="rgn.id">
                   {{rgn.id}} - {{rgn.text}}
                 </mat-option>
@@ -99,7 +119,7 @@
 
             <mat-form-field>
               <mat-label>{{'businesspartner.country' | translate }}</mat-label>
-              <mat-select formControlName="country" appFocusOnEnter tabIndex="14">
+              <mat-select formControlName="country" appFocusOnEnter tabIndex="12">
                 <mat-option *ngFor="let cntry of countrysList" [value]="cntry.id">
                   {{cntry.id}} - {{cntry.text}}
                 </mat-option>
@@ -107,17 +127,17 @@
             </mat-form-field>
             <mat-form-field class="form-element">
               <input matInput placeholder="{{'businesspartner.email' | translate }}" formControlName="email"
-                maxlength="50" appFocusOnEnter tabIndex="15">
+                maxlength="50" appFocusOnEnter tabIndex="13">
             </mat-form-field>
 
             <mat-form-field class="form-element">
               <input matInput placeholder="{{'businesspartner.phone' | translate }}" formControlName="phone"
-                maxlength="10" appFocusOnEnter tabIndex="16">
+                maxlength="10" appFocusOnEnter tabIndex="14">
 
             </mat-form-field>
             <mat-form-field class="form-element">
               <input matInput placeholder="{{'businesspartner.mobile' | translate }}" formControlName="mobile"
-                maxlength="10" appFocusOnEnter tabIndex="17">
+                maxlength="10" appFocusOnEnter tabIndex="15">
             </mat-form-field>
 
 
@@ -134,22 +154,31 @@
 
             <mat-form-field class="form-element">
               <input matInput placeholder="{{'businesspartner.gstno' | translate }}" formControlName="gstno"
-                maxlength="12" appFocusOnEnter tabIndex="18">
+                maxlength="12" appFocusOnEnter tabIndex="16">
             </mat-form-field>
 
             <mat-form-field class="form-element">
               <input matInput placeholder="{{'businesspartner.panno' | translate }}" formControlName="panno"
-                maxlength="12" appFocusOnEnter tabIndex="19">
+                maxlength="12" appFocusOnEnter tabIndex="17">
             </mat-form-field>
 
             <mat-form-field class="form-element">
               <input matInput placeholder="{{'businesspartner.tanno' | translate }}" formControlName="tanno"
-                maxlength="12" appFocusOnEnter tabIndex="20">
+                maxlength="12" appFocusOnEnter tabIndex="18">
             </mat-form-field>
 
-            <mat-form-field class="form-element">
+            <!-- <mat-form-field class="form-element">
               <input matInput placeholder="{{'businesspartner.taxClassification' | translate }}"
                 formControlName="taxClassification" maxlength="50" appFocusOnEnter tabIndex="21">
+            </mat-form-field> -->
+
+            <mat-form-field>
+              <mat-label [translate]="'businesspartner.taxClassification'"></mat-label>
+              <mat-select formControlName="taxClassification" appFocusOnEnter tabIndex="19">
+                <mat-option *ngFor="let act of taxClassification" [value]="act.value">
+                  {{act.viewValue}}
+                </mat-option>
+              </mat-select>
             </mat-form-field>
 
           </div>
@@ -159,23 +188,23 @@
       <mat-tab label="Company Code Data">
         <mat-card-content class="pt-5 p-2 m-0">
           <div class="d--flex">
-            <mat-form-field>
+            <!-- <mat-form-field>
               <mat-label>{{'businesspartner.company' | translate }}</mat-label>
-              <mat-select formControlName="company" appFocusOnEnter tabIndex="22">
+              <mat-select formControlName="company" appFocusOnEnter tabIndex="20">
                 <mat-option *ngFor="let cmp of companyList" [value]="cmp.companyCode">
                   {{cmp.companyCode}} - {{cmp.companyName}}
                 </mat-option>
               </mat-select>
-            </mat-form-field>
+            </mat-form-field> -->
 
             <mat-form-field class="form-element">
               <input matInput placeholder="{{'businesspartner.controlAccount' | translate }}"
-                formControlName="controlAccount" maxlength="50" appFocusOnEnter tabIndex="23">
+                formControlName="controlAccount" maxlength="50" appFocusOnEnter tabIndex="21">
             </mat-form-field>
 
             <mat-form-field>
               <mat-label>{{'businesspartner.paymentTerms' | translate }}</mat-label>
-              <mat-select formControlName="paymentTerms" appFocusOnEnter tabIndex="24">
+              <mat-select formControlName="paymentTerms" appFocusOnEnter tabIndex="22">
                 <mat-option *ngFor="let pterms of ptermsList" [value]="pterms.code">
                   {{pterms.code}} - {{pterms.code}}
                 </mat-option>
@@ -191,29 +220,45 @@
         <mat-card-content class="pt-5 p-2 m-0">
           <div class="d--flex">
 
-            <mat-form-field class="form-element">
+            <!-- <mat-form-field class="form-element">
               <input matInput placeholder="{{'businesspartner.tdstype' | translate }}" formControlName="tdstype"
+                maxlength="50" appFocusOnEnter tabIndex="25">
+            </mat-form-field> -->
+            <mat-form-field>
+              <mat-label>{{'businesspartner.tdstype' | translate }}</mat-label>
+              <mat-select formControlName="tdstype" appFocusOnEnter tabIndex="23">
+                <mat-option *ngFor="let tds of tdsList" [value]="tds.tdsCode">
+                  {{tds.tdsCode}} - {{tds.desctiption}}
+                </mat-option>
+              </mat-select>
+            </mat-form-field> 
+<!-- 
+            <mat-form-field class="form-element">
+              <input matInput placeholder="{{'businesspartner.tdstate' | translate }}" formControlName="tdstate"
+                maxlength="50" appFocusOnEnter tabIndex="26">
+            </mat-form-field> -->
+            <mat-form-field>
+              <mat-label>{{'businesspartner.tdstate' | translate }}</mat-label>
+              <mat-select formControlName="tdstate" appFocusOnEnter tabIndex="24">
+                <mat-option *ngFor="let tdsrate of tdsratesList" [value]="tdsrate.code">
+                  {{tdsrate.code}} - {{tdsrate.desctiption}}
+                </mat-option>
+              </mat-select>
+            </mat-form-field> 
+
+            <mat-form-field class="form-element">
+              <input matInput placeholder="{{'businesspartner.baseAmount' | translate }}" formControlName="baseAmount"
                 maxlength="50" appFocusOnEnter tabIndex="25">
             </mat-form-field>
 
             <mat-form-field class="form-element">
-              <input matInput placeholder="{{'businesspartner.tdstate' | translate }}" formControlName="tdstate"
-                maxlength="50" appFocusOnEnter tabIndex="26">
-            </mat-form-field>
-
-            <mat-form-field class="form-element">
-              <input matInput placeholder="{{'businesspartner.baseAmount' | translate }}" formControlName="baseAmount"
-                maxlength="50" appFocusOnEnter tabIndex="27">
-            </mat-form-field>
-
-            <mat-form-field class="form-element">
               <input matInput placeholder="{{'businesspartner.obligationFrom' | translate }}"
-                formControlName="obligationFrom" maxlength="50" appFocusOnEnter tabIndex="28">
+                formControlName="obligationFrom" maxlength="50" appFocusOnEnter tabIndex="26">
             </mat-form-field>
 
             <mat-form-field class="form-element">
               <input matInput placeholder="{{'businesspartner.obligationTo' | translate }}"
-                formControlName="obligationTo" maxlength="50" appFocusOnEnter tabIndex="29">
+                formControlName="obligationTo" maxlength="50" appFocusOnEnter tabIndex="27">
             </mat-form-field>
           </div>
         </mat-card-content>
@@ -224,39 +269,39 @@
         <mat-card-content class="pt-5 p-2 m-0">
           <div class="d--flex">
 
-            <mat-form-field class="form-element">
+            <!-- <mat-form-field class="form-element">
               <input matInput placeholder="{{'businesspartner.bankKey' | translate }}" formControlName="bankKey"
                 maxlength="50" appFocusOnEnter tabIndex="30">
-            </mat-form-field>
+            </mat-form-field> -->
             <mat-form-field class="form-element">
               <input matInput placeholder="{{'businesspartner.bankName' | translate }}" formControlName="bankName"
-                maxlength="50" appFocusOnEnter tabIndex="31">
+                maxlength="50" appFocusOnEnter tabIndex="28">
             </mat-form-field>
 
             <mat-form-field class="form-element">
               <input matInput placeholder="{{'businesspartner.bankAccountNo' | translate }}"
-                formControlName="bankAccountNo" maxlength="20" appFocusOnEnter tabIndex="32">
+                formControlName="bankAccountNo" maxlength="20" appFocusOnEnter tabIndex="29">
             </mat-form-field>
 
             <mat-form-field class="form-element">
               <input matInput placeholder="{{'businesspartner.ifsccode' | translate }}" formControlName="ifsccode"
-                maxlength="20" appFocusOnEnter tabIndex="33">
+                maxlength="20" appFocusOnEnter tabIndex="30">
             </mat-form-field>
 
             <mat-form-field class="form-element">
               <input matInput placeholder="{{'businesspartner.swiftcode' | translate }}" formControlName="swiftcode"
-                maxlength="20" appFocusOnEnter tabIndex="34">
+                maxlength="20" appFocusOnEnter tabIndex="31">
             </mat-form-field>
 
             <mat-form-field class="form-element">
               <input matInput placeholder="{{'businesspartner.bankBranch' | translate }}" formControlName="bankBranch"
-                maxlength="50" appFocusOnEnter tabIndex="35">
+                maxlength="50" appFocusOnEnter tabIndex="32">
             </mat-form-field>
 
 
             <mat-form-field class="form-element">
               <input matInput placeholder="{{'businesspartner.bankBranchNo' | translate }}"
-                formControlName="bankBranchNo" maxlength="15" appFocusOnEnter tabIndex="36">
+                formControlName="bankBranchNo" maxlength="15" appFocusOnEnter tabIndex="33">
             </mat-form-field>
           </div>
         </mat-card-content>
@@ -269,17 +314,17 @@
 
             <mat-form-field class="form-element">
               <input matInput placeholder="{{'businesspartner.contactPersion' | translate }}"
-                formControlName="contactPersion" maxlength="50" appFocusOnEnter tabIndex="37">
+                formControlName="contactPersion" maxlength="50" appFocusOnEnter tabIndex="34">
             </mat-form-field>
 
             <mat-form-field class="form-element">
               <input matInput placeholder="{{'businesspartner.contactPersionMobile' | translate }}"
-                formControlName="contactPersionMobile" maxlength="12" appFocusOnEnter tabIndex="38">
+                formControlName="contactPersionMobile" maxlength="12" appFocusOnEnter tabIndex="35">
             </mat-form-field>
 
             <mat-form-field class="form-element">
               <input matInput placeholder="{{'businesspartner.narration' | translate }}" formControlName="narration"
-                maxlength="50" appFocusOnEnter tabIndex="39">
+                maxlength="50" appFocusOnEnter tabIndex="36">
             </mat-form-field>
 
           </div>
