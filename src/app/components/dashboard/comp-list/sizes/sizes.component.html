@@ -10,7 +10,7 @@
 
       <div class="d--flex">
         <mat-form-field class="form-element" [ngClass]="{ 'ng--valid': formControls.unitId.valid }">
-          <input matInput placeholder="{{'sizes.unitId' | translate }}" disabled formControlName="unitId" maxlength="5" appFocusOnEnter tabIndex="1">
+          <input matInput placeholder="{{'sizes.unitId' | translate }}" disabled formControlName="unitId"   maxlength="5" type="number" appFocusOnEnter tabIndex="1">
           <mat-error *ngIf="formControls.unitId.errors" class="help-block">
             <div *ngIf="formControls.unitId.errors.required">Code is required </div>
           </mat-error>

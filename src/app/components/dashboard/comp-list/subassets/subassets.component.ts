@@ -52,7 +52,7 @@ export class SubAssetsComponent implements OnInit {
     @Optional() @Inject(MAT_DIALOG_DATA) public data: any) {
 
     this.modelFormData = this.formBuilder.group({
-      subAssetNumber: [null, [Validators.required, Validators.minLength(1), Validators.maxLength(5)]],
+      subAssetNumber: [null, [Validators.required, Validators.minLength(1), Validators.maxLength(7)]],
       description: [null, [Validators.required, Validators.minLength(1), Validators.maxLength(30)]],
       mainAssetNo: [null],
       accountKey: [null],
@@ -124,7 +124,7 @@ export class SubAssetsComponent implements OnInit {
   }
 
   getdepreciationCodeTableData() {
-    const getdepreciationCodeUrl = String.Join('/', this.apiConfigService.getDepreciationAreasList);
+    const getdepreciationCodeUrl = String.Join('/', this.apiConfigService.getDepreciationcodeList);
     this.apiService.apiGetRequest(getdepreciationCodeUrl)
       .subscribe(
         response => {

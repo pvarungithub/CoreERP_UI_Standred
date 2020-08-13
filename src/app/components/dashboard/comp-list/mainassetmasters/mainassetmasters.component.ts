@@ -53,7 +53,7 @@ export class MainAssetMasterComponent implements OnInit {
     @Optional() @Inject(MAT_DIALOG_DATA) public data: any ) {
 
     this.modelFormData = this.formBuilder.group({
-      assetNumber: [null, [Validators.required, Validators.minLength(1), Validators.maxLength(5)]],
+      assetNumber: [null, [Validators.required, Validators.minLength(1), Validators.maxLength(7)]],
       name: [null, [Validators.required, Validators.minLength(1), Validators.maxLength(50)]],
       name1: [null],
       accountKey: [null],
@@ -105,9 +105,32 @@ export class MainAssetMasterComponent implements OnInit {
   getchartAccount()
   {
     this.modelFormData.patchValue({
-      assetNumber:(this.modelFormData.get('assetclass').value)
+      //assetNumber:(this.modelFormData.get('assetclass').value)
     });
   }
+  onChange(event: any) {
+    const getAccountSubGrouplist = String.Join('/', this.apiConfigService.getAssetnumber ,
+    this.modelFormData.get('assetclass').value,this.modelFormData.get('assetNumber').value);
+  this.apiService.apiGetRequest(getAccountSubGrouplist)
+    .subscribe(
+      response => {
+        const res = response.body;
+        if (!isNullOrUndefined(res) && res.status === StatusCodes.pass) {
+          if (!isNullOrUndefined(res.response)) {
+            console.log(res);
+            //this.glAccNameList = res.response['GLAccSubGroupList'];
+          }
+        }
+        this.spinner.hide();
+      });
+ };
+
+  //Newcode
+  onChangeEvent() {
+    debugger;
+  
+  }
+
 
   getTableData() {
     const getCompanyUrl = String.Join('/', this.apiConfigService.getCompanysList);
@@ -157,7 +180,7 @@ export class MainAssetMasterComponent implements OnInit {
   }
 
   getdepreciationCodeTableData() {
-    const getdepreciationCodeUrl = String.Join('/', this.apiConfigService.getDepreciationAreasList);
+    const getdepreciationCodeUrl = String.Join('/', this.apiConfigService.getDepreciationcodeList);
     this.apiService.apiGetRequest(getdepreciationCodeUrl)
       .subscribe(
         response => {

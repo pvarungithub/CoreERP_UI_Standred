@@ -118,6 +118,23 @@ export class BusienessPartnerAccountComponent implements OnInit, OnDestroy {
     this.getTDSRateTableData();
   }
 
+  onChange(event: any) {
+    const getAccountSubGrouplist = String.Join('/', this.apiConfigService.getAssetNumbers,
+    this.modelFormData.get('bpgroup').value,this.modelFormData.get('bpnumber').value);
+  this.apiService.apiGetRequest(getAccountSubGrouplist)
+    .subscribe(
+      response => {
+        const res = response.body;
+        if (!isNullOrUndefined(res) && res.status === StatusCodes.pass) {
+          if (!isNullOrUndefined(res.response)) {
+            console.log(res);
+            //this.glAccNameList = res.response['GLAccSubGroupList'];
+          }
+        }
+        this.spinner.hide();
+      });
+ };
+
   getTableData() {
     const getCompanyUrl = String.Join('/', this.apiConfigService.getCompanysList);
     this.apiService.apiGetRequest(getCompanyUrl)

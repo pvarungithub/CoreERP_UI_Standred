@@ -30,7 +30,7 @@
 
         <mat-form-field class="form-element" [ngClass]="{ 'ng--valid': formControls.assetNumber.valid }">
           <input matInput placeholder="{{'mainassetmaster.assetNumber' | translate }}" formControlName="assetNumber" 
-          maxlength="5" appFocusOnEnter tabIndex="3">
+          maxlength="7" (change)="onChange($event)"  appFocusOnEnter tabIndex="3">
           <mat-error *ngIf="formControls.assetNumber.errors" class="help-block">
             <div *ngIf="formControls.assetNumber.errors.required">Code is required </div>
           </mat-error>
@@ -161,11 +161,19 @@
         </mat-form-field>
 
        
-        <mat-form-field class="form-element">
+        <!-- <mat-form-field class="form-element">
           <input matInput placeholder="{{'mainassetmaster.depreciationData' | translate }}" formControlName="depreciationData"
            maxlength="30" appFocusOnEnter tabIndex="21">
         </mat-form-field>
-       
+        -->
+        <mat-form-field>
+          <mat-label [translate]="'mainassetmaster.depreciationData'"></mat-label>
+          <mat-select formControlName="depreciationData" appFocusOnEnter tabIndex="21">
+            <mat-option *ngFor="let dpc of dpList" [value]="dpc.code">
+              {{dpc.code}}- {{dpc.description}}
+            </mat-option>
+          </mat-select>
+        </mat-form-field>  
 
         <mat-form-field>
           <mat-label>{{'mainassetmaster.depreciationArea' | translate }}</mat-label>

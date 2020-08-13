@@ -36,7 +36,7 @@ export class ApiConfigService {
     registerMainAssetMaster = `${this.environment.runtimeConfig.serverUrl}MainAssetMaster/RegisterMainAssetMaster`;
     updateMainAssetMaster = `${this.environment.runtimeConfig.serverUrl}MainAssetMaster/UpdateMainAssetMaster`;
     deleteMainAssetMaster = `${this.environment.runtimeConfig.serverUrl}MainAssetMaster/DeleteMainAssetMaster`;
-   
+    getAssetnumber = `${this.environment.runtimeConfig.serverUrl}MainAssetMaster/GetAssetNumber`;
      // Currency
   getCurrencyList = `${this.environment.runtimeConfig.serverUrl}masters/Currency/GetCurrencyList`;
   registerCurrency = `${this.environment.runtimeConfig.serverUrl}masters/Currency/RegisterCurrency`;
@@ -302,7 +302,8 @@ getGLAccountList = `${this.environment.runtimeConfig.serverUrl}GLAccount/GetGLAc
 registerGLAccount = `${this.environment.runtimeConfig.serverUrl}GLAccount/RegisterGLAccount`;
 updateGLAccount = `${this.environment.runtimeConfig.serverUrl}GLAccount/UpdateGLAccount`;
 deleteGLAccount = `${this.environment.runtimeConfig.serverUrl}GLAccount/DeleteGLAccount`;
-
+GLAccountinChartAccountList = `${this.environment.runtimeConfig.serverUrl}GLAccount/GetChartAccountList`;
+getaccountNumber=`${this.environment.runtimeConfig.serverUrl}GLAccount/GetaccountNumberList`;
 // Deprecitioncode //
 getDepreciationcodeList = `${this.environment.runtimeConfig.serverUrl}Depreciationcode/GetDepreciationcodeList`;
 registerDepreciationcode = `${this.environment.runtimeConfig.serverUrl}Depreciationcode/RegisterDepreciationcode`;
@@ -342,7 +343,7 @@ getBusienessPartnerGroupsList = `${this.environment.runtimeConfig.serverUrl}Busi
 registerBusienessPartnerGroups= `${this.environment.runtimeConfig.serverUrl}BusienessPartnerGroups/RegisterBusienessPartnerGroups`;
 updateBusienessPartnerGroups = `${this.environment.runtimeConfig.serverUrl}BusienessPartnerGroups/UpdateBusienessPartnerGroups`;
  deleteBusienessPartnerGroups = `${this.environment.runtimeConfig.serverUrl}BusienessPartnerGroups/DeleteBusienessPartnerGroups`;
-  
+ getAssetNumbers = `${this.environment.runtimeConfig.serverUrl}BusienessPartnerGroups/GetAssetNumber`;
   //chartofaccount
   getChartOfAccountList = `${this.environment.runtimeConfig.serverUrl}ChartOfAccount/GetChartOfAccountList`;
   registerChartOfAccount = `${this.environment.runtimeConfig.serverUrl}ChartOfAccount/RegisterChartOfAccount`;
