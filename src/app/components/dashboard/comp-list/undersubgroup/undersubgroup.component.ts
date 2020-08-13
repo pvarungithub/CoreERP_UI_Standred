@@ -41,7 +41,8 @@ export class UndersubGroupComponent implements OnInit {
       affectGrossProfit: [null],
       groupUnder: [null],
       Undersubaccount: [null],
-      isDefault:[false]
+      isDefault:[false],
+      structureKey:[null],
     });
 
     this.formData = { ...data };

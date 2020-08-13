@@ -62,9 +62,9 @@ export class AssignmentoftaxaccountstotaxcodesComponent implements OnInit {
   ngOnInit() {
    this.GetTaxRateList();
    this.getcompaniesList();
-    this.getbranchessList();
-    this.getplantsList();
-    this.getchartofAccountData();
+   this.getbranchessList();
+   this.getplantsList();
+   this.getchartofAccountData();
   }
 GetTaxRateList() {
     const gettaxtransactinlist = String.Join('/', this.apiConfigService.gettaxratesList);
@@ -136,7 +136,6 @@ GetTaxRateList() {
           const res = response.body;
           if (!isNullOrUndefined(res) && res.status === StatusCodes.pass) {
             if (!isNullOrUndefined(res.response)) {
-              console.log(res);
               this.coaList = res.response['coaList'];
             }
           }

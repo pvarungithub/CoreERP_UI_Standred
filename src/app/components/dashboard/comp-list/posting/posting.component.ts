@@ -27,6 +27,7 @@ export class PostingComponent implements OnInit {
   compList: any;
   branchList: any;
   plantList: any;
+  coaList: any;
   
   status: Status[] =
   [
@@ -51,7 +52,8 @@ export class PostingComponent implements OnInit {
       glaccount:[null],
       branch: [null],
       company: [null],
-      plant: [null]
+      plant: [null],
+      chartofAccount:[null]
     });
 
 
@@ -68,8 +70,25 @@ export class PostingComponent implements OnInit {
     this.getcompaniesList();
     this.getbranchessList();
     this.getplantsList();
+    this.getchartofAccountData();
   }
   
+  getchartofAccountData() {
+    const getchartofAccountUrl = String.Join('/', this.apiConfigService.getChartOfAccountList);
+    this.apiService.apiGetRequest(getchartofAccountUrl)
+      .subscribe(
+        response => {
+          const res = response.body;
+          if (!isNullOrUndefined(res) && res.status === StatusCodes.pass) {
+            if (!isNullOrUndefined(res.response)) {
+              console.log(res);
+              this.coaList = res.response['coaList'];
+            }
+          }
+          this.spinner.hide();
+        });
+  }
+
   getTDSTypeList() {
     const getTDSList = String.Join('/', this.apiConfigService.getTDSRatesList);
     this.apiService.apiGetRequest(getTDSList)

@@ -10,6 +10,14 @@
 
       <div class="d--flex">   
         <mat-form-field>
+          <mat-label [translate]="'AlternateControlAccount.chartofAccount'"></mat-label>
+          <mat-select formControlName="chartofAccount" appFocusOnEnter tabIndex="3">
+            <mat-option *ngFor="let coa of coaList" [value]="coa.code">
+              {{coa.code}}- {{coa.desctiption}}
+            </mat-option>
+          </mat-select>
+        </mat-form-field>    
+        <mat-form-field>
           <mat-label>{{'posting.company' | translate }}</mat-label>
           <mat-select formControlName="company" appFocusOnEnter tabIndex="6">
             <mat-option *ngFor="let companyList of compList" [value]="companyList.id">
@@ -62,15 +70,7 @@
         <mat-form-field class="form-element">
           <input matInput placeholder="{{'assignmentoftaxaccountstotaxcodes.compositeAccount' | translate }}" formControlName="compositeAccount"
           maxlength="50" appFocusOnEnter tabIndex="5">
-        </mat-form-field>
-        <mat-form-field>
-          <mat-label [translate]="'AlternateControlAccount.chartofAccount'"></mat-label>
-          <mat-select formControlName="chartofAccount" appFocusOnEnter tabIndex="3">
-            <mat-option *ngFor="let coa of coaList" [value]="coa.code">
-              {{coa.code}}- {{coa.desctiption}}
-            </mat-option>
-          </mat-select>
-        </mat-form-field>    
+        </mat-form-field>        
       </div>
       <mat-divider></mat-divider>
 

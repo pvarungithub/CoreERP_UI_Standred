@@ -30,11 +30,11 @@ export class AssignmentChartAccounttoCompanyComponent implements OnInit {
   taxaccList: any;
   tdsList:any;
   incmList:any;
-  
+  coaList: any;
   status: Status[] =
   [
-    { value: 'Resident', viewValue: 'Resident' },
-    { value: 'Non Resident', viewValue: 'Non Resident' }
+    { value: '1', viewValue: 'Resident' },
+    { value: '2', viewValue: 'Non Resident' }
   ];
   companyList: any;
   constructor(
@@ -50,8 +50,8 @@ export class AssignmentChartAccounttoCompanyComponent implements OnInit {
     @Optional() @Inject(MAT_DIALOG_DATA) public data: any) {
 
     this.modelFormData = this.formBuilder.group({
-      code: [null, [Validators.required, Validators.minLength(1), Validators.maxLength(4)]],
-      description: [null, [Validators.required, Validators.minLength(1), Validators.maxLength(30)]],
+      code: [0],
+      // description: [null, [Validators.required, Validators.minLength(1), Validators.maxLength(30)]],
       operationCoa: [null],
       groupCoa: [null],
       company: [null]
@@ -69,6 +69,7 @@ export class AssignmentChartAccounttoCompanyComponent implements OnInit {
 
   ngOnInit() {
     this.getcompanyData();
+    this.getchartofAccountData();
   }
   getcompanyData() {
     const getCompanyUrl = String.Join('/', this.apiConfigService.getCompanysList);
@@ -80,6 +81,21 @@ export class AssignmentChartAccounttoCompanyComponent implements OnInit {
             if (!isNullOrUndefined(res.response)) {
               console.log(res);
               this.companyList = res.response['companiesList'];
+            }
+          }
+          this.spinner.hide();
+        });
+  }
+
+  getchartofAccountData() {
+    const getchartofAccountUrl = String.Join('/', this.apiConfigService.getChartOfAccountList);
+    this.apiService.apiGetRequest(getchartofAccountUrl)
+      .subscribe(
+        response => {
+          const res = response.body;
+          if (!isNullOrUndefined(res) && res.status === StatusCodes.pass) {
+            if (!isNullOrUndefined(res.response)) {
+              this.coaList = res.response['coaList'];
             }
           }
           this.spinner.hide();

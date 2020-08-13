@@ -8,7 +8,14 @@
     <form [formGroup]="modelFormData" autocomplete="off">
 
       <div class="d--flex">
-       
+        <mat-form-field>
+          <mat-label [translate]="'AlternateControlAccount.chartofAccount'"></mat-label>
+          <mat-select formControlName="chartofAccount" appFocusOnEnter tabIndex="3">
+            <mat-option *ngFor="let coa of coaList" [value]="coa.code">
+              {{coa.code}}- {{coa.desctiption}}
+            </mat-option>
+          </mat-select>
+        </mat-form-field>    
         <mat-form-field>
           <mat-label>{{'posting.tdsrate' | translate }}</mat-label>
           <mat-select formControlName="tdsrate" appFocusOnEnter tabIndex="5">

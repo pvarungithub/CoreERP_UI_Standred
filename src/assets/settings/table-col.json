@@ -340,7 +340,8 @@
      
   },
   "posting": {
-    "title": "Posting",  
+    "title": "Posting", 
+    "chartofAccount":"ChartofAccount", 
     "tdsrate": "TDS Rate",    
     "company": "Company",
     "branch": "Branch",
@@ -358,6 +359,7 @@
   "glsubgroups": {
     "title": "General Ledger",
     "accountGroupId": "Account Group Id",
+    "structureKey":"Structure Key",
     "accountGroupName": "Account Group Name",
     "nature": "Group",
     "groupUnder": "Under Account",
@@ -454,11 +456,9 @@
   },
   "AssignmentChartAccounttoCompany": {
     "title": "Assignment ChartAccount to Company",
-    "code": "Code",
-    "description": "Description",
-    "operationCoa": "operationCoa",
-    "groupCoa": "groupCoa",
-    "company":"company"
+    "company":"Company",
+    "operationCoa": "Operation COA",
+    "groupCoa": "Group COA"
   },
   "AlternateControlAccount": {
     "title": "Alternate Control Account",
