@@ -62,3 +62,5 @@ export{BusienessPartnerAccountComponent} from './businesspartner/businesspartner
 export{MainAssetMasterComponent} from './mainassetmasters/mainassetmasters.component';
 export{SubAssetsComponent} from './subassets/subassets.component';
 export{AssignGLaccounttoSubGroupComponent} from './assignglaccount/assignglaccount.component';
+export{GLSubAccountComponent} from './glsubaccount/glsubaccount.component';
+export{BusienessTransactionTypeComponent} from './businesstransactiontypes/businesstransactiontypes.component';

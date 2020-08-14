@@ -685,6 +685,18 @@
     "subAccount": "Sub Account",
     "fromGl": "From GL",
     "toGl": "To GL"          
+  },
+  "glsubaccount": {
+    "title": "GL subaccount",
+    "glaccount": "GLAccount",
+    "glsubCode": "GL SubCode",
+    "glsubName": "GL SubName"                 
+  },
+  "businesstransactiontypes": {
+    "title": "Busieness Transaction Types",
+    "code": "Code",
+    "description": "Description"
   }
+
 }
 

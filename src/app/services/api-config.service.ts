@@ -400,7 +400,19 @@ getAseetClassToAssetBlockList= `${this.environment.runtimeConfig.serverUrl}Aseet
 registerAseetClassToAssetBlock= `${this.environment.runtimeConfig.serverUrl}AseetClassToAssetBlock/RegisterAseetClassToAssetBlock`;
 updateAseetClassToAssetBlock = `${this.environment.runtimeConfig.serverUrl}AseetClassToAssetBlock/UpdateAseetClassToAssetBlock`;
  deleteAseetClassToAssetBlock = `${this.environment.runtimeConfig.serverUrl}AseetClassToAssetBlock/DeleteAseetClassToAssetBlock`;
-// ******************************** sales *********************************
+
+//glsubaccount
+getGLSubAccountList = `${this.environment.runtimeConfig.serverUrl}GLSubAccount/GetGLSubAccountList`;
+registerGLSubAccount = `${this.environment.runtimeConfig.serverUrl}GLSubAccount/RegisterGLSubAccount`;
+updateGLSubAccount = `${this.environment.runtimeConfig.serverUrl}GLSubAccount/UpdateGLSubAccount`;
+deleteGLSubAccount = `${this.environment.runtimeConfig.serverUrl}GLSubAccount/DeleteGLSubAccount`;
+
+//businesstransactiontypes
+getBusienessTransactionTypeList = `${this.environment.runtimeConfig.serverUrl}BusienessTransactionType/GetBusienessTransactionTypeList`;
+registerBusienessTransactionType = `${this.environment.runtimeConfig.serverUrl}BusienessTransactionType/RegisterBusienessTransactionType`;
+updateBusienessTransactionType = `${this.environment.runtimeConfig.serverUrl}BusienessTransactionType/UpdateBusienessTransactionType`;
+deleteBusienessTransactionType = `${this.environment.runtimeConfig.serverUrl}BusienessTransactionType/DeleteBusienessTransactionType`;
+ // ******************************** sales *********************************
    getInvoiceList = `${this.environment.runtimeConfig.serverUrl}sales/Billing/GetInvoiceList`;
    getCashPartyAccountList = `${this.environment.runtimeConfig.serverUrl}sales/Billing/GetCashPartyAccountList`;
    getBillingBranchesList = `${this.environment.runtimeConfig.serverUrl}sales/Billing/GetBranchesList`;
