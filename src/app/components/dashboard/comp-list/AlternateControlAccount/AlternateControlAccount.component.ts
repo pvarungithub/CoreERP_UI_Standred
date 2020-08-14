@@ -9,14 +9,7 @@ import { ApiService } from '../../../../services/api.service';
 import { String } from 'typescript-string-operations';
 import { AddOrEditService } from '../add-or-edit.service';
 
-interface NormalControlAcc {
-  value: string;
-  viewValue: string;
-}
-interface AlternativeControlAccount {
-  value: string;
-  viewValue: string;
-}
+
 @Component({
   selector: 'app-AlternateControlAccount',
   templateUrl: './AlternateControlAccount.component.html',
@@ -26,25 +19,11 @@ interface AlternativeControlAccount {
 export class AlternateControlAccountComponent implements OnInit {
 
   modelFormData: FormGroup;
-  isSubmitted = false;
   formData: any;
-  taxcodeList: any;
-  taxaccList: any;
-  tdsList:any;
-  incmList:any;
-  
-  NormalControlAcc: NormalControlAcc[] =
-  [
-    { value: 'test', viewValue: 'test' },
-    { value: 'Non test', viewValue: 'Non test' }
-  ];
-  AlternativeControlAccount: AlternativeControlAccount[] =
-  [
-    { value: 'test', viewValue: 'test' },
-    { value: 'Non test', viewValue: 'Non test' }
-  ];
+  glList: any;  
   companyList: any;
-    coaList: any;
+  coaList: any;
+
   constructor(
     private addOrEditService: AddOrEditService,
     private formBuilder: FormBuilder,
@@ -77,8 +56,22 @@ export class AlternateControlAccountComponent implements OnInit {
   ngOnInit() {
     this.getTableData();
     this.getchartofAccountData();
+    this.getGLAccountData();
   }
-
+  getGLAccountData() {
+    const getGLAccountUrl = String.Join('/', this.apiConfigService.getGLAccountList);
+    this.apiService.apiGetRequest(getGLAccountUrl)
+      .subscribe(
+        response => {
+          const res = response.body;
+          if (!isNullOrUndefined(res) && res.status === StatusCodes.pass) {
+            if (!isNullOrUndefined(res.response)) {
+              this.glList = res.response['glList'].filter(res => res.controlAccount == 'Vendor' || res.controlAccount == 'Customer');
+            }
+          }
+          this.spinner.hide();
+        });
+  }
 
   getTableData() {
     const getCompanyUrl = String.Join('/', this.apiConfigService.getCompanysList);

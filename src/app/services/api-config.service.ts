@@ -406,6 +406,7 @@ getGLSubAccountList = `${this.environment.runtimeConfig.serverUrl}GLSubAccount/G
 registerGLSubAccount = `${this.environment.runtimeConfig.serverUrl}GLSubAccount/RegisterGLSubAccount`;
 updateGLSubAccount = `${this.environment.runtimeConfig.serverUrl}GLSubAccount/UpdateGLSubAccount`;
 deleteGLSubAccount = `${this.environment.runtimeConfig.serverUrl}GLSubAccount/DeleteGLSubAccount`;
+getStructurekeyList= `${this.environment.runtimeConfig.serverUrl}AssignGLaccounttoSubGroup/GetStructurekeyList`;
 
 //businesstransactiontypes
 getBusienessTransactionTypeList = `${this.environment.runtimeConfig.serverUrl}BusienessTransactionType/GetBusienessTransactionTypeList`;

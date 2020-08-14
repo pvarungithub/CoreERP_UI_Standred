@@ -47,7 +47,7 @@ export class GLAccountComponent implements OnInit {
   bankList:any;
   accounts: account[] =
   [
-    { value: 'Asset,', viewValue: 'Asset' } ,
+    { value: 'Asset', viewValue: 'Asset' } ,
     { value: 'Contractor', viewValue: 'Contractor' } ,  
     { value: 'Customer', viewValue: 'Customer' },
     { value: 'Material', viewValue: 'Material' } ,

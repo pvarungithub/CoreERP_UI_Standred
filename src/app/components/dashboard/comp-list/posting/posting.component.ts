@@ -9,10 +9,6 @@ import { ApiService } from '../../../../services/api.service';
 import { String } from 'typescript-string-operations';
 import { AddOrEditService } from '../add-or-edit.service';
 
-interface Status {
-  value: string;
-  viewValue: string;
-}
 @Component({
   selector: 'app-posting',
   templateUrl: './posting.component.html',
@@ -23,18 +19,13 @@ export class PostingComponent implements OnInit {
 
   modelFormData: FormGroup;
   formData: any;
-  tdsList:any;
   compList: any;
   branchList: any;
   plantList: any;
-  coaList: any;
-  
-  status: Status[] =
-  [
-    { value: '1', viewValue: 'Resident' },
-    { value: '2', viewValue: 'Non Resident' }
-  ];
+  coaList: any; 
   tdsratesList: any;
+  glList: any;
+  
   constructor(
     private formBuilder: FormBuilder,
     private addOrEditService: AddOrEditService,
@@ -60,7 +51,7 @@ export class PostingComponent implements OnInit {
     this.formData = { ...data };
     if (!isNullOrUndefined(this.formData.item)) {
       this.modelFormData.patchValue(this.formData.item);
-      // this.modelFormData.controls['code'].disable();
+       this.modelFormData.controls['code'].disable();
     }
 
   }
@@ -71,8 +62,24 @@ export class PostingComponent implements OnInit {
     this.getbranchessList();
     this.getplantsList();
     this.getchartofAccountData();
+    this.getGLAccountData();
   }
   
+  getGLAccountData() {
+    const getGLAccountUrl = String.Join('/', this.apiConfigService.getGLAccountList);
+    this.apiService.apiGetRequest(getGLAccountUrl)
+      .subscribe(
+        response => {
+          const res = response.body;
+          if (!isNullOrUndefined(res) && res.status === StatusCodes.pass) {
+            if (!isNullOrUndefined(res.response)) {
+              this.glList = res.response['glList'].filter(res => res.taxCategory == 'TDS');
+            }
+          }
+          this.spinner.hide();
+        });
+  }
+
   getchartofAccountData() {
     const getchartofAccountUrl = String.Join('/', this.apiConfigService.getChartOfAccountList);
     this.apiService.apiGetRequest(getchartofAccountUrl)
@@ -97,7 +104,6 @@ export class PostingComponent implements OnInit {
           const res = response.body;
           if (!isNullOrUndefined(res) && res.status === StatusCodes.pass) {
             if (!isNullOrUndefined(res.response)) {
-              console.log(res);
               this.tdsratesList = res.response['tdsratesList'];
             }
           }
@@ -113,7 +119,6 @@ export class PostingComponent implements OnInit {
           const res = response.body;
           if (!isNullOrUndefined(res) && res.status === StatusCodes.pass) {
             if (!isNullOrUndefined(res.response)) {
-              console.log(res);
               this.compList = res.response['CompaniesList'];
             }
           }
@@ -144,7 +149,6 @@ export class PostingComponent implements OnInit {
           const res = response.body;
           if (!isNullOrUndefined(res) && res.status === StatusCodes.pass) {
             if (!isNullOrUndefined(res.response)) {
-              console.log(res);
               this.plantList = res.response['plantList'];
             }
           }
@@ -158,7 +162,7 @@ export class PostingComponent implements OnInit {
     if (this.modelFormData.invalid) {
       return;
     }
-    // this.modelFormData.controls['code'].enable();
+    this.modelFormData.controls['code'].enable();
     this.formData.item = this.modelFormData.value;
     this.addOrEditService[this.formData.action](this.formData, (res) => {
       this.dialogRef.close(this.formData);

@@ -18,13 +18,7 @@ import { AddOrEditService } from '../add-or-edit.service';
 export class GLSubAccountComponent implements OnInit {
 
   modelFormData: FormGroup;
-  isSubmitted = false;
   formData: any;
-  taxcodeList: any;
-  taxaccList: any;
-  tdsList:any;
-  incmList:any;
-  dpareaList: any;
   glList: any;
   constructor(
     private addOrEditService: AddOrEditService,
@@ -64,7 +58,6 @@ export class GLSubAccountComponent implements OnInit {
           const res = response.body;
           if (!isNullOrUndefined(res) && res.status === StatusCodes.pass) {
             if (!isNullOrUndefined(res.response)) {
-              console.log(res);
               this.glList = res.response['glList'];
             }
           }

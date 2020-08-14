@@ -6,9 +6,20 @@
     <mat-card-content class="pt-5 p-2 m-0 overflow-auto">
        <form [formGroup]="modelFormData" autocomplete="off">
         <div class="d--flex">
+
+
+          <mat-form-field>
+            <mat-label>{{'assignglaccount.toGl' | translate }}</mat-label>
+            <mat-select formControlName="toGl"  appFocusOnEnter tabIndex="1">
+              <mat-option *ngFor="let stkey of structkeyList" [value]="stkey">
+                {{stkey}}
+              </mat-option>
+            </mat-select>
+          </mat-form-field>
+
           <mat-form-field>
             <mat-label>{{'assignglaccount.glgroup' | translate }}</mat-label>
-            <mat-select formControlName="glgroup" appFocusOnEnter tabIndex="1" (selectionChange)= "getSubacclist()">
+            <mat-select formControlName="glgroup" appFocusOnEnter tabIndex="2" (selectionChange)= "getSubacclist()">
               <mat-option *ngFor="let accgrp of glAccgrpList" [value]="accgrp.groupName">
                 {{accgrp.groupName}}
               </mat-option>
@@ -17,7 +28,7 @@
 
           <mat-form-field>
             <mat-label>{{'assignglaccount.subAccount' | translate }}</mat-label>
-            <mat-select formControlName="subAccount"  appFocusOnEnter tabIndex="2">
+            <mat-select formControlName="subAccount"  appFocusOnEnter tabIndex="3">
               <mat-option *ngFor="let under of subaccList" [value]="under.accountGroupId">
                 {{under.accountGroupId}} - {{under.accountGroupName}}
               </mat-option>
@@ -27,23 +38,13 @@
 
           <mat-form-field>
             <mat-label>{{'assignglaccount.fromGl' | translate }}</mat-label>
-            <mat-select formControlName="fromGl"  appFocusOnEnter tabIndex="3">
+            <mat-select formControlName="fromGl"  appFocusOnEnter tabIndex="4">
               <mat-option *ngFor="let gl of glList" [value]="gl.accountNumber">
                 {{gl.accountNumber}} - {{gl.glaccountName}}
               </mat-option>
             </mat-select>
           </mat-form-field>
 
-
-          <mat-form-field>
-            <mat-label>{{'assignglaccount.toGl' | translate }}</mat-label>
-            <mat-select formControlName="toGl"  appFocusOnEnter tabIndex="4">
-              <mat-option *ngFor="let gl of glList" [value]="gl.accountNumber">
-                {{gl.accountNumber}} - {{gl.glaccountName}}
-              </mat-option>
-            </mat-select>
-          </mat-form-field>
-         
       </div>
       <mat-divider></mat-divider>
       </form>

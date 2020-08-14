@@ -9,10 +9,7 @@ import { ApiService } from '../../../../services/api.service';
 import { String } from 'typescript-string-operations';
 import { AddOrEditService } from '../add-or-edit.service';
 
-interface AcquisitionsGl {
-  value: string;
-  viewValue: string;
-}
+
 @Component({
   selector: 'app-accountkey',
   templateUrl: './accountkey.component.html',
@@ -22,19 +19,12 @@ interface AcquisitionsGl {
 export class AccountKeyComponent implements OnInit {
 
   modelFormData: FormGroup;
-  isSubmitted = false;
   formData: any;
-  taxcodeList: any;
-  taxaccList: any;
-  tdsList:any;
   nrrList:any;   
-  coaList: any;  
-  AcquisitionsGl: AcquisitionsGl[] =
-  [
-    { value: 'Normal', viewValue: 'Normal' },
-    { value: 'AUC', viewValue: 'AUC' }
-  ];
+  coaList: any;   
   companyList: any;
+  glList: any;
+
   constructor(
     private addOrEditService: AddOrEditService,
     private formBuilder: FormBuilder,
@@ -72,6 +62,21 @@ export class AccountKeyComponent implements OnInit {
     this.getyNumberrangeData();
     this.getTableData();
     this.getchartofAccountData();
+    this.getGLAccountData();
+  }
+  getGLAccountData() {
+    const getGLAccountUrl = String.Join('/', this.apiConfigService.getGLAccountList);
+    this.apiService.apiGetRequest(getGLAccountUrl)
+      .subscribe(
+        response => {
+          const res = response.body;
+          if (!isNullOrUndefined(res) && res.status === StatusCodes.pass) {
+            if (!isNullOrUndefined(res.response)) {
+              this.glList = res.response['glList'].filter(res => res.controlAccount == 'Asset');
+            }
+          }
+          this.spinner.hide();
+        });
   }
   getTableData() {
     const getCompanyUrl = String.Join('/', this.apiConfigService.getCompanysList);

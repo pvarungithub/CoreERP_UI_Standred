@@ -18,16 +18,11 @@ import { AddOrEditService } from '../add-or-edit.service';
 export class AssignGLaccounttoSubGroupComponent implements OnInit {
 
   modelFormData: FormGroup;
-  isSubmitted = false;
   formData: any;
-  taxcodeList: any;
-  taxaccList: any;
-  tdsList:any;
-  incmList:any;
-  dpareaList: any;
   glAccgrpList: any;
   subaccList: any;
   glList: any;
+  structkeyList: any;
   constructor(
     private addOrEditService: AddOrEditService,
     private formBuilder: FormBuilder,
@@ -39,27 +34,25 @@ export class AssignGLaccounttoSubGroupComponent implements OnInit {
     @Optional() @Inject(MAT_DIALOG_DATA) public data: any) {
 
     this.modelFormData = this.formBuilder.group({
-      code: ['0'],
+      code: [0],
       glgroup: [null],
       subAccount: [null],
       fromGl: [null],
       toGl: [null]
     });
 
-
     this.formData = { ...data };
-    if (!isNullOrUndefined(this.formData.item)) {
+    if (!isNullOrUndefined(this.formData.item))
+     {
       this.modelFormData.patchValue(this.formData.item);
-      // this.modelFormData.controls['glgroup'].disable();
+      this.getSubacclist();
     }
-
-    // this.modelFormData.controls['glgroup'].disable();
-    this.getSubacclist();
   }
 
   ngOnInit() {
     this.getGLaccData();
     this.getglAccgrpList();
+    this.geStructurekeyData();
   }
   getglAccgrpList() {
     const getglAccgrpList = String.Join('/', this.apiConfigService.getglAccgrpList);
@@ -98,27 +91,37 @@ export class AssignGLaccounttoSubGroupComponent implements OnInit {
           const res = response.body;
           if (!isNullOrUndefined(res) && res.status === StatusCodes.pass) {
             if (!isNullOrUndefined(res.response)) {
-              console.log(res);
               this.glList = res.response['glList'];
             }
           }
           this.spinner.hide();
         });
   }
-
+  geStructurekeyData() {
+    const geStructurekeynUrl = String.Join('/', this.apiConfigService.getStructurekeyList);
+    this.apiService.apiGetRequest(geStructurekeynUrl)
+      .subscribe(
+        response => {
+          const res = response.body;
+          if (!isNullOrUndefined(res) && res.status === StatusCodes.pass) {
+            if (!isNullOrUndefined(res.response)) {
+              this.structkeyList = res.response['structkeyList'];
+            }
+          }
+          this.spinner.hide();
+        });
+  }
   get formControls() { return this.modelFormData.controls; }
 
   save() {
     if (this.modelFormData.invalid) {
       return;
     }
-    // this.modelFormData.controls['glgroup'].enable();
     this.formData.item = this.modelFormData.value;
     this.addOrEditService[this.formData.action](this.formData, (res) => {
       this.dialogRef.close(this.formData);
     });
     if (this.formData.action == 'Edit') {
-      // this.modelFormData.controls['glgroup'].disable();
     }
   }
 

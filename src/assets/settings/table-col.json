@@ -662,8 +662,8 @@
     "title": "Assign GLaccount To SubGroup",
     "glgroup": "GL Group",
     "subAccount": "Sub Account",
-    "fromGl": "From GL",
-    "toGl": "To GL"          
+    "fromGl": "GL Account",
+    "toGl": "Structure Key"         
   },
   "glsubaccount": {
     "title": "GL subaccount",

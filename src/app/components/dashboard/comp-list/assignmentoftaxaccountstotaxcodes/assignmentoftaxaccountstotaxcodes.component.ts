@@ -17,14 +17,13 @@ import { String } from 'typescript-string-operations';
 export class AssignmentoftaxaccountstotaxcodesComponent implements OnInit {
 
   modelFormData: FormGroup;
-  isSubmitted = false;
   formData: any;
-  voucherClass: any;
   compList: any;
   branchList: any;
   TaxTypeList: any;
   plantList: any;
   coaList: any;
+  glList: any;
 
   constructor(
     private formBuilder: FormBuilder,
@@ -39,15 +38,15 @@ export class AssignmentoftaxaccountstotaxcodesComponent implements OnInit {
     this.modelFormData = this.formBuilder.group({
       code: [null, [Validators.required, Validators.minLength(1), Validators.maxLength(5)]],
       // description: [null, [Validators.required, Validators.minLength(2), Validators.maxLength(50)]],
-      sgstgl:[null],
-      cgstgl:[null],
-      igstgl:[null],
-      ugstgl:[null],
+      sgstgl: [null],
+      cgstgl: [null],
+      igstgl: [null],
+      ugstgl: [null],
       branch: [null],
       company: [null],
       plant: [null],
-      compositeAccount:[null],
-      chartofAccount:[null]
+      compositeAccount: [null],
+      chartofAccount: [null]
     });
 
 
@@ -60,13 +59,30 @@ export class AssignmentoftaxaccountstotaxcodesComponent implements OnInit {
   }
 
   ngOnInit() {
-   this.GetTaxRateList();
-   this.getcompaniesList();
-   this.getbranchessList();
-   this.getplantsList();
-   this.getchartofAccountData();
+    this.GetTaxRateList();
+    this.getcompaniesList();
+    this.getbranchessList();
+    this.getplantsList();
+    this.getchartofAccountData();
+    this.getGLAccountData();
   }
-GetTaxRateList() {
+
+  getGLAccountData() {
+    const getGLAccountUrl = String.Join('/', this.apiConfigService.getGLAccountList);
+    this.apiService.apiGetRequest(getGLAccountUrl)
+      .subscribe(
+        response => {
+          const res = response.body;
+          if (!isNullOrUndefined(res) && res.status === StatusCodes.pass) {
+            if (!isNullOrUndefined(res.response)) {
+              this.glList = res.response['glList'].filter(res => res.taxCategory == 'Input' || res.taxCategory == 'Output');
+            }
+          }
+          this.spinner.hide();
+        });
+  }
+
+  GetTaxRateList() {
     const gettaxtransactinlist = String.Join('/', this.apiConfigService.gettaxratesList);
     this.apiService.apiGetRequest(gettaxtransactinlist)
       .subscribe(
@@ -104,7 +120,7 @@ GetTaxRateList() {
         response => {
           const res = response.body;
           if (!isNullOrUndefined(res) && res.status === StatusCodes.pass) {
-            if (!isNullOrUndefined(res.response)) {             
+            if (!isNullOrUndefined(res.response)) {
               this.branchList = res.response['branchesList'];
             }
           }
@@ -150,7 +166,7 @@ GetTaxRateList() {
     if (this.modelFormData.invalid) {
       return;
     }
-     this.modelFormData.controls['code'].enable();
+    this.modelFormData.controls['code'].enable();
     this.formData.item = this.modelFormData.value;
     this.addOrEditService[this.formData.action](this.formData, (res) => {
       this.dialogRef.close(this.formData);

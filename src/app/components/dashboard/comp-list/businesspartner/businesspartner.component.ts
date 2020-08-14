@@ -22,7 +22,6 @@ interface TaxClassification {
 export class BusienessPartnerAccountComponent implements OnInit, OnDestroy {
 
   modelFormData: FormGroup;
-  isSubmitted  =  false;
   formData: any;
   companyList: any;
   employeesList: any;
@@ -31,14 +30,16 @@ export class BusienessPartnerAccountComponent implements OnInit, OnDestroy {
   regionsList: any;
   countrysList: any;
   ptermsList: any;
-  bpgList:any;
+  bpgList:any;  
+  tdsList: any;
+  tdsratesList:any;
+  glList: any;  
   taxClassification: TaxClassification[] =
   [
     { value: 'Registered', viewValue: 'Registered' } ,  
     { value: 'UnRegistered', viewValue: 'UnRegistered' } 
   ];
-  tdsList: any;
-  tdsratesList:any;
+
   constructor(
     private apiService: ApiService,
     private addOrEditService: AddOrEditService,
@@ -116,6 +117,7 @@ export class BusienessPartnerAccountComponent implements OnInit, OnDestroy {
     this.getPartnerGroupsTableData();
     this.getTDSTableData();
     this.getTDSRateTableData();
+    this.getGLAccountData();
   }
 
   onChange(event: any) {
@@ -134,6 +136,22 @@ export class BusienessPartnerAccountComponent implements OnInit, OnDestroy {
         this.spinner.hide();
       });
  };
+
+ getGLAccountData() {
+  const getGLAccountUrl = String.Join('/', this.apiConfigService.getGLAccountList);
+  this.apiService.apiGetRequest(getGLAccountUrl)
+    .subscribe(
+      response => {
+        const res = response.body;
+        if (!isNullOrUndefined(res) && res.status === StatusCodes.pass) {
+          if (!isNullOrUndefined(res.response)) {
+            this.glList = res.response['glList'].filter(res => res.controlAccount == 'Asset' ||  res.controlAccount == 'Material');
+          }
+        }
+        this.spinner.hide();
+      });
+}
+
 
   getTableData() {
     const getCompanyUrl = String.Join('/', this.apiConfigService.getCompanysList);
