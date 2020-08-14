@@ -47,18 +47,20 @@ export class GLAccountComponent implements OnInit {
   bankList:any;
   accounts: account[] =
   [
-    { value: 'Customer', viewValue: 'Customer' },
-    { value: 'Vendor', viewValue: 'Vendor' },
+    { value: 'Asset,', viewValue: 'Asset' } ,
     { value: 'Contractor', viewValue: 'Contractor' } ,  
+    { value: 'Customer', viewValue: 'Customer' },
+    { value: 'Material', viewValue: 'Material' } ,
     { value: 'ServiceProvider', viewValue: 'ServiceProvider' } ,  
-    { value: 'Material', viewValue: 'Material' } 
+    { value: 'Vendor', viewValue: 'Vendor' }    
   ];
   
   
   taxCategorys: TaxCategory[] =
   [
     { value: 'Input', viewValue: 'Input' } ,  
-    { value: 'Output', viewValue: 'Output' } 
+    { value: 'Output', viewValue: 'Output' } ,
+    { value: 'TDS', viewValue: 'TDS' } 
   ];
  
   costElementCategorys: CostElementCategory[] =
@@ -113,17 +115,11 @@ export class GLAccountComponent implements OnInit {
   ngOnInit() {
     this.getcurrencyList();
     this.getTableData();
-    this.getchartAccountTableData();
+    this.getchartofAccountData();
     this.getglAccgrpList();
     this.getBankData();
   }
-  getchartAccount()
-  {
-    this.modelFormData.patchValue({
-     // accountNumber:  (this.modelFormData.get('chartAccount').value)
-    });
-  }
-
+  
   onChange(event: any) {
     const getAccountSubGrouplist = String.Join('/', this.apiConfigService.getaccountNumber,
     this.modelFormData.get('accGroup').value,this.modelFormData.get('accountNumber').value);
@@ -132,29 +128,26 @@ export class GLAccountComponent implements OnInit {
       response => {
         const res = response.body;
         if (!isNullOrUndefined(res) && res.status === StatusCodes.pass) {
-          if (!isNullOrUndefined(res.response)) {
-            console.log(res);
-            //this.glAccNameList = res.response['GLAccSubGroupList'];
+          if (!isNullOrUndefined(res.response)) {           
           }
         }
         this.spinner.hide();
       });
  };
-  getchartAccountTableData() {
-    const getchartAccountUrl = String.Join('/', this.apiConfigService.GLAccountinChartAccountList);
-    this.apiService.apiGetRequest(getchartAccountUrl)
-      .subscribe(
-        response => {
+ getchartofAccountData() {
+  const getchartofAccountUrl = String.Join('/', this.apiConfigService.getChartOfAccountList);
+  this.apiService.apiGetRequest(getchartofAccountUrl)
+    .subscribe(
+      response => {
         const res = response.body;
         if (!isNullOrUndefined(res) && res.status === StatusCodes.pass) {
           if (!isNullOrUndefined(res.response)) {
-            console.log(res);
-            this.coaList = res.response['coalist'];
+            this.coaList = res.response['coaList'];
           }
         }
-          this.spinner.hide();
+        this.spinner.hide();
       });
-  }
+}
 
   getglAccgrpList() {
     const getglAccgrpList = String.Join('/', this.apiConfigService.getglAccgrpList);
@@ -169,40 +162,7 @@ export class GLAccountComponent implements OnInit {
           }
           this.spinner.hide();
         });
-  }
-
-  // getAccountNamelist() {
-
-  //   const getAccountNamelist = String.Join('/', this.apiConfigService.getAccountNamelist, this.modelFormData.get('accGroup').value);
-  //   this.apiService.apiGetRequest(getAccountNamelist)
-  //     .subscribe(
-  //       response => {
-  //         const res = response.body;
-  //         if (!isNullOrUndefined(res) && res.status === StatusCodes.pass) {
-  //           if (!isNullOrUndefined(res.response)) {
-  //             this.glAccNameList = res.response['GetAccountNamelist'];
-  //           }
-  //         }
-  //         this.spinner.hide();
-  //       });
-  // }
-
-  // getGLUnderGroupList() {
-  //   const getGLUnderGroupList = String.Join('/', this.apiConfigService.getGLUnderGroupList, this.modelFormData.get('subgroup').value);
-  //   this.apiService.apiGetRequest(getGLUnderGroupList)
-  //     .subscribe(
-  //       response => {
-  //         const res = response.body;
-  //         if (!isNullOrUndefined(res) && res.status === StatusCodes.pass) {
-  //           if (!isNullOrUndefined(res.response)) {
-  //             this.getAccSubGrpList = res.response['GetAccountSubGrouplist'];
-  //           }
-  //         }
-  //         this.spinner.hide();
-  //       });
-  // }
-
- 
+  } 
 
   getTableData() {
     const getCompanyUrl = String.Join('/', this.apiConfigService.getCompanysList);
@@ -212,7 +172,6 @@ export class GLAccountComponent implements OnInit {
         const res = response.body;
         if (!isNullOrUndefined(res) && res.status === StatusCodes.pass) {
           if (!isNullOrUndefined(res.response)) {
-            console.log(res);
             this.companyList = res.response['companiesList'];
           }
         }
@@ -227,7 +186,6 @@ export class GLAccountComponent implements OnInit {
         const res = response.body;
         if (!isNullOrUndefined(res) && res.status === StatusCodes.pass) {
           if (!isNullOrUndefined(res.response)) {
-            console.log(res);
             this.bankList = res.response['bankList'];
           }
         }
@@ -243,7 +201,6 @@ export class GLAccountComponent implements OnInit {
           const res = response.body;
           if (!isNullOrUndefined(res) && res.status === StatusCodes.pass) {
             if (!isNullOrUndefined(res.response)) {
-              console.log(res);
               this.currencyList = res.response['CurrencyList'];
             }
           }

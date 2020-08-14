@@ -358,7 +358,7 @@
   },
   "glsubgroups": {
     "title": "General Ledger",
-    "accountGroupId": "Account Group Id",
+    "accountGroupId": "Account Group ID",
     "structureKey":"Structure Key",
     "accountGroupName": "Account Group Name",
     "nature": "Group",
