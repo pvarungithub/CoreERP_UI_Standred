@@ -61,3 +61,4 @@ export{GLAccountComponent} from './glaccount/glaccount.component';
 export{BusienessPartnerAccountComponent} from './businesspartner/businesspartner.component';
 export{MainAssetMasterComponent} from './mainassetmasters/mainassetmasters.component';
 export{SubAssetsComponent} from './subassets/subassets.component';
+export{AssignGLaccounttoSubGroupComponent} from './assignglaccount/assignglaccount.component';

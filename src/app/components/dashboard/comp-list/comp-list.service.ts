@@ -61,7 +61,7 @@ import{BusienessPartnerAccountComponent} from './businesspartner/businesspartner
 import{GLAccountComponent} from './glaccount/glaccount.component';
 import{MainAssetMasterComponent} from './mainassetmasters/mainassetmasters.component';
 import{SubAssetsComponent} from './subassets/subassets.component';
-
+import{AssignGLaccounttoSubGroupComponent} from './assignglaccount/assignglaccount.component';
 @Injectable({
   providedIn: 'root'
 })
@@ -72,6 +72,10 @@ export class CompListService {
 
   getDynComponents(data) {
     switch (data) {
+      case 'assignglaccount':
+        this.dynamicComp.component = AssignGLaccounttoSubGroupComponent;
+        return this.dynamicComp.component;
+        break;
       case 'company':
         this.dynamicComp.component = CompanyComponent;
         return this.dynamicComp.component;

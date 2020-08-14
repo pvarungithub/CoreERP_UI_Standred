@@ -657,5 +657,12 @@
     "costElementCategory":"Cost Element Category",
     "groupUnder":"Group Under"
     
+  },
+  "assignglaccount": {
+    "title": "Assign GLaccount To SubGroup",
+    "glgroup": "GL Group",
+    "subAccount": "Sub Account",
+    "fromGl": "From GL",
+    "toGl": "To GL"          
   }
 }

@@ -255,6 +255,13 @@ registerTaxTypes = `${this.environment.runtimeConfig.serverUrl}TaxTypes/Register
 updateTaxTypes = `${this.environment.runtimeConfig.serverUrl}TaxTypes/UpdateTaxTypes`;
 deleteTaxTypes = `${this.environment.runtimeConfig.serverUrl}TaxTypes/DeleteTaxTypes`;
 
+//assignglaccount //
+getAssignGLaccounttoSubGroupList = `${this.environment.runtimeConfig.serverUrl}AssignGLaccounttoSubGroup/GetAssignGLaccounttoSubGroupList`;
+registerAssignGLaccounttoSubGroupList = `${this.environment.runtimeConfig.serverUrl}AssignGLaccounttoSubGroup/RegisterAssignGLaccounttoSubGroup`;
+updateAssignGLaccounttoSubGroupList = `${this.environment.runtimeConfig.serverUrl}AssignGLaccounttoSubGroup/UpdateAssignGLaccounttoSubGroup`;
+deleteAssignGLaccounttoSubGroupList = `${this.environment.runtimeConfig.serverUrl}AssignGLaccounttoSubGroup/DeleteAssignGLaccounttoSubGroup`;
+subgrouplist= `${this.environment.runtimeConfig.serverUrl}AssignGLaccounttoSubGroup/GetGLUnderSubGroupList`;
+
 //TaxRates
 gettaxratesList = `${this.environment.runtimeConfig.serverUrl}TaxRates/GetTaxRatesList`;
 registerTaxRates = `${this.environment.runtimeConfig.serverUrl}TaxRates/RegisterTaxRates`;
