@@ -16,14 +16,7 @@
             </mat-option>
           </mat-select>
         </mat-form-field>    
-        <mat-form-field>
-          <mat-label>{{'posting.tdsrate' | translate }}</mat-label>
-          <mat-select formControlName="tdsrate" appFocusOnEnter tabIndex="5">
-            <mat-option *ngFor="let tdsrate of tdsratesList" [value]="tdsrate.code">
-              {{tdsrate.code}} - {{tdsrate.desctiption}}
-            </mat-option>
-          </mat-select>
-        </mat-form-field>
+        
         <mat-form-field>
           <mat-label>{{'posting.company' | translate }}</mat-label>
           <mat-select formControlName="company" appFocusOnEnter tabIndex="5">
@@ -50,7 +43,14 @@
             </mat-option>
           </mat-select>
         </mat-form-field>        
-        
+        <mat-form-field>
+          <mat-label>{{'posting.tdsrate' | translate }}</mat-label>
+          <mat-select formControlName="tdsrate" appFocusOnEnter tabIndex="5">
+            <mat-option *ngFor="let tdsrate of tdsratesList" [value]="tdsrate.code">
+              {{tdsrate.code}} - {{tdsrate.desctiption}}
+            </mat-option>
+          </mat-select>
+        </mat-form-field>
         <mat-form-field>
           <mat-label [translate]="'posting.glaccount'"></mat-label>
           <mat-select formControlName="glaccount" appFocusOnEnter tabIndex="6">

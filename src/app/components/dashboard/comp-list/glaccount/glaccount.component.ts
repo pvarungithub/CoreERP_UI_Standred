@@ -58,9 +58,13 @@ export class GLAccountComponent implements OnInit {
   
   taxCategorys: TaxCategory[] =
   [
-    { value: 'Input', viewValue: 'Input' } ,  
-    { value: 'Output', viewValue: 'Output' } ,
-    { value: 'TDS', viewValue: 'TDS' } 
+    { value: 'Bank', viewValue: 'Bank' } ,
+    { value: 'Cash', viewValue: 'Cash' } ,
+    { value: 'Control Account', viewValue: 'Control Account' } ,
+    { value: 'Fixed Account', viewValue: 'Fixed Account' } ,
+    { value: 'Inventory', viewValue: 'Inventory' } ,
+    { value: 'TDS', viewValue: 'TDS' },
+    { value: 'TAX', viewValue: 'TAX' }  
   ];
  
   costElementCategorys: CostElementCategory[] =

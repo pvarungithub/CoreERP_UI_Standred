@@ -24,7 +24,7 @@ export class AccountKeyComponent implements OnInit {
   coaList: any;   
   companyList: any;
   glList: any;
-
+  gl2List: any;
   constructor(
     private addOrEditService: AddOrEditService,
     private formBuilder: FormBuilder,
@@ -46,8 +46,8 @@ export class AccountKeyComponent implements OnInit {
       scrappingGl: [null],
       auggl: [null],
       companyCode: [null],
-      chartofAccount: [null]
-
+      chartofAccount: [null],
+      description:[null, [Validators.required, Validators.minLength(2), Validators.maxLength(50)]]
     });
 
     this.formData = { ...data };
@@ -73,6 +73,7 @@ export class AccountKeyComponent implements OnInit {
           if (!isNullOrUndefined(res) && res.status === StatusCodes.pass) {
             if (!isNullOrUndefined(res.response)) {
               this.glList = res.response['glList'].filter(res => res.controlAccount == 'Asset');
+              this.gl2List = res.response['glList'].filter(res => res.accGroup == '0003' ||  res.accGroup == '0004');
             }
           }
           this.spinner.hide();

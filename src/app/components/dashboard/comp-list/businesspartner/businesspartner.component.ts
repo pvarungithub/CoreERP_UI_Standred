@@ -145,7 +145,7 @@ export class BusienessPartnerAccountComponent implements OnInit, OnDestroy {
         const res = response.body;
         if (!isNullOrUndefined(res) && res.status === StatusCodes.pass) {
           if (!isNullOrUndefined(res.response)) {
-            this.glList = res.response['glList'].filter(res => res.controlAccount == 'Asset' ||  res.controlAccount == 'Material');
+            this.glList = res.response['glList'].filter(res => res.controlAccount == 'Customer' ||  res.controlAccount == 'Vendor');
           }
         }
         this.spinner.hide();

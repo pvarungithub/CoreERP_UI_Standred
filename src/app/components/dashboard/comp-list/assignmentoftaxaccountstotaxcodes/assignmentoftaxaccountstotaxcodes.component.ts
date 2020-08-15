@@ -75,7 +75,7 @@ export class AssignmentoftaxaccountstotaxcodesComponent implements OnInit {
           const res = response.body;
           if (!isNullOrUndefined(res) && res.status === StatusCodes.pass) {
             if (!isNullOrUndefined(res.response)) {
-              this.glList = res.response['glList'].filter(res => res.taxCategory == 'Input' || res.taxCategory == 'Output');
+              this.glList = res.response['glList'].filter(res => res.taxCategory == 'TAX');
             }
           }
           this.spinner.hide();
