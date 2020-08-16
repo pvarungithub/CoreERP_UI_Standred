@@ -116,13 +116,17 @@ export class AssignGLaccounttoSubGroupComponent implements OnInit {
   save() {
     if (this.modelFormData.invalid) {
       return;
-    }
-    this.formData.item = this.modelFormData.value;
+    }   
+    let array = [];
+    this.formData.item = {...this.modelFormData.value};
+    this.formData.item.fromGl.forEach((res) => {
+      this.formData.item['fromGl'] = res;
+      array.push({...this.formData.item});
+    })
+    this.formData.item ={"GLS":array };    
     this.addOrEditService[this.formData.action](this.formData, (res) => {
       this.dialogRef.close(this.formData);
     });
-    if (this.formData.action == 'Edit') {
-    }
   }
 
   cancel() {

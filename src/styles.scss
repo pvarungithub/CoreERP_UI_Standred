@@ -9,7 +9,7 @@ body {
 }
 
 .background--color {
-  background-color: $color-blue !important;
+  background-color: $color-orange !important;
 }
 
 .mat-option.mat-active {
@@ -88,7 +88,7 @@ body {
 }
 
 .button-color-bule {
-  background-color: $color-blue !important;
+  background-color: $color-orange !important;
 }
 
 .button-color-red {
@@ -109,7 +109,7 @@ mat-form-field {
       height: 40px !important;
       cursor: pointer;
       & th {
-        background-color: $color-blue;
+        background-color: $color-orange;
         color: $color-white;
         vertical-align: middle;
         border: none !important;
@@ -135,11 +135,6 @@ mat-form-field {
   }
 }
 
-mat-option  {
-  & > mat-pseudo-checkbox {
-   display: none !important;
-  }
-}
 
 .cdk-overlay-pane-select-search.cdk-overlay-pane-select-search-with-offset {
   margin: 50px 0px 0px 30px !important;
@@ -164,7 +159,7 @@ mat-option  {
 .boader--color {
   padding: .30rem 1.25rem;
   margin-bottom: 0;
-  background-color: $color-poptitle;
+  background-color: $color-orange;
   color: $color-white;
 }
 

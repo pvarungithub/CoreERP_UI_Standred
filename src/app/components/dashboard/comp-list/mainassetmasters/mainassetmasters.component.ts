@@ -1,7 +1,6 @@
-import { Component, Inject, Optional, OnInit } from '@angular/core';
+import { Component, OnInit } from '@angular/core';
 import { String } from 'typescript-string-operations';
 import { ApiService } from '../../../../services/api.service';
-import { MatDialogRef, MAT_DIALOG_DATA } from '@angular/material/dialog';
 import { isNullOrUndefined } from 'util';
 import { FormBuilder, FormGroup, Validators } from '@angular/forms';
 import { NgxSpinnerService } from 'ngx-spinner';
@@ -47,10 +46,8 @@ export class MainAssetMasterComponent implements OnInit {
     private addOrEditService: AddOrEditService,
     private apiConfigService: ApiConfigService,
     private spinner: NgxSpinnerService,
-    private formBuilder: FormBuilder,
-    public dialogRef: MatDialogRef<MainAssetMasterComponent>,
-    // @Optional() is used to prevent error if no data is passed
-    @Optional() @Inject(MAT_DIALOG_DATA) public data: any ) {
+    private formBuilder: FormBuilder
+    ) {
 
     this.modelFormData = this.formBuilder.group({
       assetNumber: [null, [Validators.required, Validators.minLength(1), Validators.maxLength(7)]],
@@ -79,7 +76,7 @@ export class MainAssetMasterComponent implements OnInit {
       company: [null]
       });
 
-      this.formData = {...data};
+      this.formData = {...this.addOrEditService.editData};
       if (!isNullOrUndefined(this.formData.item)) {
         this.modelFormData.patchValue(this.formData.item);
        this.modelFormData.controls['assetNumber'].disable();
@@ -95,7 +92,7 @@ export class MainAssetMasterComponent implements OnInit {
     this.getprofitCenterList();
     this.getdivisionList();
     this.getplantList();
-    this. getLocationList() ;
+    this.getLocationList() ;
     this.getdepreciationCodeTableData();
     this.getdepreciationAreaTableData();
     this.getTableData();
@@ -326,7 +323,7 @@ export class MainAssetMasterComponent implements OnInit {
     this.modelFormData.controls['assetNumber'].enable();
     this.formData.item = this.modelFormData.value;
     this.addOrEditService[this.formData.action](this.formData, (res) => {
-      this.dialogRef.close(this.formData);
+      // this.dialogRef.close(this.formData);
     });
     if (this.formData.action == 'Edit') {
       this.modelFormData.controls['assetNumber'].disable();
@@ -334,6 +331,6 @@ export class MainAssetMasterComponent implements OnInit {
   }
 
   cancel() {
-    this.dialogRef.close();
+    // this.dialogRef.close();
   }
 }

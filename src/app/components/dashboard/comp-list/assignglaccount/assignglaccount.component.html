@@ -38,7 +38,7 @@
 
           <mat-form-field>
             <mat-label>{{'assignglaccount.fromGl' | translate }}</mat-label>
-            <mat-select formControlName="fromGl"  appFocusOnEnter tabIndex="4">
+            <mat-select formControlName="fromGl"  appFocusOnEnter tabIndex="4" multiple>
               <mat-option *ngFor="let gl of glList" [value]="gl.accountNumber">
                 {{gl.accountNumber}} - {{gl.glaccountName}}
               </mat-option>
