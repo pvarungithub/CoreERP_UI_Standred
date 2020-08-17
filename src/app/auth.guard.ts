@@ -35,22 +35,22 @@ export class AuthGuard implements CanActivate {
     //   .pipe((map(res => {
     // console.log(res.body['response'], next.params.id)
     // if (this.authorizedUser(res.body.response)) {
+    console.log(next, state)
     if (this.authService.isLoggedIn()) {
+      if (state.url.includes('Edit') || state.url.includes('Add')) {
+        if (!this.addOrEditService.editData) {
+          let route;
+          route = state.url.replace('/Edit', '');
+          route = route.replace('/Add', '');
+          this.router.navigate([ route ]);
+        }
+      }
       return true;
     }
     // }
     this.router.navigate(['/login']);
     return false;
     // })));
-  }
-
-  checkAddEdit(url) {
-    if (url.includes('Edit') || url.includes('Add')) {
-      if (!this.addOrEditService.editData) {
-        return false;
-      }
-    }
-    return true;
   }
 
 }

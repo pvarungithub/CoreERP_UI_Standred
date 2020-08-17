@@ -7,6 +7,7 @@ import { NgxSpinnerService } from 'ngx-spinner';
 import { ApiConfigService } from '../../../../services/api-config.service';
 import { StatusCodes } from '../../../../enums/common/common';
 import { AddOrEditService } from '../add-or-edit.service';
+import { ActivatedRoute, Router } from '@angular/router';
 
 
 interface depreciationData {
@@ -46,7 +47,9 @@ export class MainAssetMasterComponent implements OnInit {
     private addOrEditService: AddOrEditService,
     private apiConfigService: ApiConfigService,
     private spinner: NgxSpinnerService,
-    private formBuilder: FormBuilder
+    private formBuilder: FormBuilder,
+    private router: Router,
+    private activatedRoute: ActivatedRoute
     ) {
 
     this.modelFormData = this.formBuilder.group({
@@ -323,7 +326,7 @@ export class MainAssetMasterComponent implements OnInit {
     this.modelFormData.controls['assetNumber'].enable();
     this.formData.item = this.modelFormData.value;
     this.addOrEditService[this.formData.action](this.formData, (res) => {
-      // this.dialogRef.close(this.formData);
+      this.router.navigate(['/dashboard/master/mainassetmaster']);
     });
     if (this.formData.action == 'Edit') {
       this.modelFormData.controls['assetNumber'].disable();
@@ -331,6 +334,6 @@ export class MainAssetMasterComponent implements OnInit {
   }
 
   cancel() {
-    // this.dialogRef.close();
+    this.router.navigate(['/dashboard/master/mainassetmaster']);
   }
 }
