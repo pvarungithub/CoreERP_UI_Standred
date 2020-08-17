@@ -334,10 +334,10 @@
     "desctiption": "Description",
     "tdstype": "Tdstype",
     "incomeType": "Income Type",
+    "tdsRate":"Tds Rate",
     "baseAmount":"Base Amount %" , 
     "status": "Status",
-    "effectiveFrom":  "Date"
-     
+    "effectiveFrom":  "Date"     
   },
   "posting": {
     "title": "Posting", 
@@ -661,10 +661,10 @@
   },
   "assignglaccount": {
     "title": "Assign GLaccount To SubGroup",
+    "toGl": "Structure Key",  
     "glgroup": "GL Group",
     "subAccount": "Sub Account",
-    "fromGl": "GL Account",
-    "toGl": "Structure Key"         
+    "fromGl": "GL Account"          
   },
   "glsubaccount": {
     "title": "GL subaccount",

@@ -95,7 +95,7 @@ export class CompListComponent implements OnInit {
         this.addOrEditService.editData = value;
         this.router.navigate([this.activatedRoute.snapshot['_routerState'].url, value.action]);
       } else {
-
+        value.tableData = this.tableData;
         const dialogRef = this.dialog.open(this.compListService.getDynComponents(this.tableUrl.formName), {
           width: '80%',
           data: value,

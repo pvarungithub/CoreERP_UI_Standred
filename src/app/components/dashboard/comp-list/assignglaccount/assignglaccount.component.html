@@ -19,7 +19,7 @@
 
           <mat-form-field>
             <mat-label>{{'assignglaccount.glgroup' | translate }}</mat-label>
-            <mat-select formControlName="glgroup" appFocusOnEnter tabIndex="2" (selectionChange)= "getSubacclist()">
+            <mat-select formControlName="glgroup" appFocusOnEnter tabIndex="2" (selectionChange)= "getSubacclist(); onGroupChange()">
               <mat-option *ngFor="let accgrp of glAccgrpList" [value]="accgrp.groupName">
                 {{accgrp.groupName}}
               </mat-option>
@@ -39,7 +39,7 @@
           <mat-form-field>
             <mat-label>{{'assignglaccount.fromGl' | translate }}</mat-label>
             <mat-select formControlName="fromGl"  appFocusOnEnter tabIndex="4" multiple>
-              <mat-option *ngFor="let gl of glList" [value]="gl.accountNumber">
+              <mat-option *ngFor="let gl of fromGlList" [value]="gl.accountNumber">
                 {{gl.accountNumber}} - {{gl.glaccountName}}
               </mat-option>
             </mat-select>
