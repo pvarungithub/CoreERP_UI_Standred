@@ -1,11 +1,12 @@
-<div class="position-relative popup-class">
-  <mat-card-title class="boader--color d-flex justify-content-between position-absolute w-100">
-    <span>  {{'subassets.title' | translate }} </span>
-    <mat-icon class="p-2 cursor--pointer" (click)="cancel()">close</mat-icon>
-  </mat-card-title>
-
-  <mat-card-content class="pt-5 p-2 m-0 overflow-auto">
+<div class="bg-white">
+ 
+<mat-tab-group>
+ 
     <form [formGroup]="modelFormData" autocomplete="off">
+ 
+      <mat-tab label="{{'subassets.title' | translate }}">
+       
+        <mat-card-content class="pt-5 p-2 m-0">
       <div class="d--flex">
 
         <mat-form-field>
@@ -178,13 +179,13 @@
         </mat-form-field>
         
       </div>
-      <mat-divider></mat-divider>
+    </mat-card-content>
 
 
-
+  </mat-tab>
     </form>
-
-  </mat-card-content>
+  </mat-tab-group>
+  
   <div class="form-element p-2 d-flex justify-content-end">
     <button mat-raised-button class="button-color-red text-white mr-1" (click)="cancel()">
 
