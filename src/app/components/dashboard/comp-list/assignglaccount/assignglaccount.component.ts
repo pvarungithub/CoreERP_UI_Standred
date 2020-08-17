@@ -45,6 +45,9 @@ export class AssignGLaccounttoSubGroupComponent implements OnInit {
     if (!isNullOrUndefined(this.formData.item))
      {
       this.modelFormData.patchValue(this.formData.item);
+      this.modelFormData.patchValue({
+        fromGl: [this.formData.item['fromGl']]
+      });
       this.getSubacclist();
     }
   }

@@ -1,7 +1,6 @@
 import { Component, Inject, Optional, OnInit, OnDestroy } from '@angular/core';
 import { String } from 'typescript-string-operations';
 import { ApiService } from '../../../../services/api.service';
-import { MatDialogRef, MAT_DIALOG_DATA } from '@angular/material/dialog';
 import { isNullOrUndefined } from 'util';
 import { FormBuilder, FormGroup, Validators } from '@angular/forms';
 import { NgxSpinnerService } from 'ngx-spinner';
@@ -30,15 +29,16 @@ export class BusienessPartnerAccountComponent implements OnInit, OnDestroy {
   regionsList: any;
   countrysList: any;
   ptermsList: any;
-  bpgList:any;  
+  bpgList: any;
   tdsList: any;
-  tdsratesList:any;
-  glList: any;  
+  tdsratesList: any;
+  glList: any;
+  controlAccountList: any;
   taxClassification: TaxClassification[] =
-  [
-    { value: 'Registered', viewValue: 'Registered' } ,  
-    { value: 'UnRegistered', viewValue: 'UnRegistered' } 
-  ];
+    [
+      { value: 'Registered', viewValue: 'Registered' },
+      { value: 'UnRegistered', viewValue: 'UnRegistered' }
+    ];
 
   constructor(
     private apiService: ApiService,
@@ -48,61 +48,56 @@ export class BusienessPartnerAccountComponent implements OnInit, OnDestroy {
     private formBuilder: FormBuilder,
     private router: Router,
     private activatedRoute: ActivatedRoute
-    ) {
+  ) {
 
     this.modelFormData = this.formBuilder.group({
-      //"id": 1,
-      //code: [null, [Validators.required, Validators.minLength(1), Validators.maxLength(5)]],
-     // code: ['0'],
-     //code: [null, [Validators.required, Validators.minLength(1), Validators.maxLength(50)]],
-     code:[null],
-      name:[null],
-      bpnumber:[null],
+      code: [null],
+      name: [null],
+      bpnumber: [null],
       bptype: [null],
       name1: [null],
       search: [null],
-      address:[null],
+      address: [null],
       address1: [null],
-      location:[null],
-      city:[null],
+      location: [null],
+      city: [null],
       state: [null],
       region: [null],
-      country:[null],
+      country: [null],
       email: [null],
-      phone:[null],
+      phone: [null],
       mobile: [null],
       gstno: [null],
-      panno:[null],
-      tanno:[null],               
-      taxClassification:[null],  
-      company: [null],  
-      controlAccount:[null],  
-      paymentTerms:[null],  
-      tdstype: [null],  
-      tdstate: [null],  
-      baseAmount: [null],  
-      obligationFrom: [null],  
-      obligationTo:[null],  
-      bankKey: [null],  
-      bankName: [null],  
-      bankAccountNo:[null],  
-      ifsccode:[null],  
-      swiftcode: [null],  
-      bankBranch: [null],  
-      bankBranchNo:[null],  
-      contactPersion: [null],  
-      contactPersionMobile:[null],  
-      narration: [null], 
-      bpgroup : [null],
-      ext:[null]        
-               
-      });
+      panno: [null],
+      tanno: [null],
+      taxClassification: [null],
+      company: [null],
+      controlAccount: [null],
+      paymentTerms: [null],
+      tdstype: [null],
+      tdstate: [null],
+      baseAmount: [null],
+      obligationFrom: [null],
+      obligationTo: [null],
+      bankKey: [null],
+      bankName: [null],
+      bankAccountNo: [null],
+      ifsccode: [null],
+      swiftcode: [null],
+      bankBranch: [null],
+      bankBranchNo: [null],
+      contactPersion: [null],
+      contactPersionMobile: [null],
+      narration: [null],
+      bpgroup: [null],
+      ext: [null]
 
-      this.formData = {...this.addOrEditService.editData};
-      if (!isNullOrUndefined(this.formData.item)) {
-        this.modelFormData.patchValue(this.formData.item);
-       ///this.modelFormData.controls['code'].disable();
-      }
+    });
+
+    this.formData = { ...this.addOrEditService.editData };
+    if (!isNullOrUndefined(this.formData.item)) {
+      this.modelFormData.patchValue(this.formData.item);
+    }
 
   }
 
@@ -120,37 +115,41 @@ export class BusienessPartnerAccountComponent implements OnInit, OnDestroy {
     this.getGLAccountData();
   }
 
+  onbpChange() {
+    this.controlAccountList = [];
+    let data = this.ptypeList.find(res => res.code == this.modelFormData.get('bptype').value);
+    this.controlAccountList = this.glList.filter(res => res.controlAccount == data.description);
+  }
+
   onChange(event: any) {
     const getAccountSubGrouplist = String.Join('/', this.apiConfigService.getAssetNumbers,
-    this.modelFormData.get('bpgroup').value,this.modelFormData.get('bpnumber').value);
-  this.apiService.apiGetRequest(getAccountSubGrouplist)
-    .subscribe(
-      response => {
-        const res = response.body;
-        if (!isNullOrUndefined(res) && res.status === StatusCodes.pass) {
-          if (!isNullOrUndefined(res.response)) {
-            console.log(res);
-            //this.glAccNameList = res.response['GLAccSubGroupList'];
+      this.modelFormData.get('bpgroup').value, this.modelFormData.get('bpnumber').value);
+    this.apiService.apiGetRequest(getAccountSubGrouplist)
+      .subscribe(
+        response => {
+          const res = response.body;
+          if (!isNullOrUndefined(res) && res.status === StatusCodes.pass) {
+            if (!isNullOrUndefined(res.response)) {
+            }
           }
-        }
-        this.spinner.hide();
-      });
- };
+          this.spinner.hide();
+        });
+  };
 
- getGLAccountData() {
-  const getGLAccountUrl = String.Join('/', this.apiConfigService.getGLAccountList);
-  this.apiService.apiGetRequest(getGLAccountUrl)
-    .subscribe(
-      response => {
-        const res = response.body;
-        if (!isNullOrUndefined(res) && res.status === StatusCodes.pass) {
-          if (!isNullOrUndefined(res.response)) {
-            this.glList = res.response['glList'].filter(res => res.controlAccount == 'Customer' ||  res.controlAccount == 'Vendor');
+  getGLAccountData() {
+    const getGLAccountUrl = String.Join('/', this.apiConfigService.getGLAccountList);
+    this.apiService.apiGetRequest(getGLAccountUrl)
+      .subscribe(
+        response => {
+          const res = response.body;
+          if (!isNullOrUndefined(res) && res.status === StatusCodes.pass) {
+            if (!isNullOrUndefined(res.response)) {
+              this.glList = res.response['glList'];
+            }
           }
-        }
-        this.spinner.hide();
-      });
-}
+          this.spinner.hide();
+        });
+  }
 
 
   getTableData() {
@@ -158,60 +157,56 @@ export class BusienessPartnerAccountComponent implements OnInit, OnDestroy {
     this.apiService.apiGetRequest(getCompanyUrl)
       .subscribe(
         response => {
-        const res = response.body;
-        if (!isNullOrUndefined(res) && res.status === StatusCodes.pass) {
-          if (!isNullOrUndefined(res.response)) {
-            console.log(res);
-            this.companyList = res.response['companiesList'];
+          const res = response.body;
+          if (!isNullOrUndefined(res) && res.status === StatusCodes.pass) {
+            if (!isNullOrUndefined(res.response)) {
+              this.companyList = res.response['companiesList'];
+            }
           }
-        }
           this.spinner.hide();
-      });
+        });
   }
   getTDSTableData() {
     const getTDSUrl = String.Join('/', this.apiConfigService.getTDStypeList);
     this.apiService.apiGetRequest(getTDSUrl)
       .subscribe(
         response => {
-        const res = response.body;
-        if (!isNullOrUndefined(res) && res.status === StatusCodes.pass) {
-          if (!isNullOrUndefined(res.response)) {
-            console.log(res);
-            this.tdsList = res.response['tdsList'];
+          const res = response.body;
+          if (!isNullOrUndefined(res) && res.status === StatusCodes.pass) {
+            if (!isNullOrUndefined(res.response)) {
+              this.tdsList = res.response['tdsList'];
+            }
           }
-        }
           this.spinner.hide();
-      });
+        });
   }
   getTDSRateTableData() {
     const getTDSRateUrl = String.Join('/', this.apiConfigService.getTDSRatesList);
     this.apiService.apiGetRequest(getTDSRateUrl)
       .subscribe(
         response => {
-        const res = response.body;
-        if (!isNullOrUndefined(res) && res.status === StatusCodes.pass) {
-          if (!isNullOrUndefined(res.response)) {
-            console.log(res);
-            this.tdsratesList = res.response['tdsratesList'];
+          const res = response.body;
+          if (!isNullOrUndefined(res) && res.status === StatusCodes.pass) {
+            if (!isNullOrUndefined(res.response)) {
+              this.tdsratesList = res.response['tdsratesList'];
+            }
           }
-        }
           this.spinner.hide();
-      });
+        });
   }
   getPartnerGroupsTableData() {
     const gettPartnerGroupsUrl = String.Join('/', this.apiConfigService.getBusienessPartnerGroupsList);
     this.apiService.apiGetRequest(gettPartnerGroupsUrl)
       .subscribe(
         response => {
-        const res = response.body;
-        if (!isNullOrUndefined(res) && res.status === StatusCodes.pass) {
-          if (!isNullOrUndefined(res.response)) {
-            console.log(res);
-            this.bpgList = res.response['bpgList'];
+          const res = response.body;
+          if (!isNullOrUndefined(res) && res.status === StatusCodes.pass) {
+            if (!isNullOrUndefined(res.response)) {
+              this.bpgList = res.response['bpgList'];
+            }
           }
-        }
           this.spinner.hide();
-      });
+        });
   }
 
   getPaymenttermsList() {
@@ -222,7 +217,6 @@ export class BusienessPartnerAccountComponent implements OnInit, OnDestroy {
           const res = response.body;
           if (!isNullOrUndefined(res) && res.status === StatusCodes.pass) {
             if (!isNullOrUndefined(res.response)) {
-              console.log(res);
               this.ptermsList = res.response['ptermsList'];
             }
           }
@@ -237,7 +231,6 @@ export class BusienessPartnerAccountComponent implements OnInit, OnDestroy {
           const res = response.body;
           if (!isNullOrUndefined(res) && res.status === StatusCodes.pass) {
             if (!isNullOrUndefined(res.response)) {
-              console.log(res);
               this.regionsList = res.response['RegionList'];
             }
           }
@@ -252,7 +245,6 @@ export class BusienessPartnerAccountComponent implements OnInit, OnDestroy {
           const res = response.body;
           if (!isNullOrUndefined(res) && res.status === StatusCodes.pass) {
             if (!isNullOrUndefined(res.response)) {
-              console.log(res);
               this.countrysList = res.response['CountryList'];
             }
           }
@@ -267,7 +259,6 @@ export class BusienessPartnerAccountComponent implements OnInit, OnDestroy {
           const res = response.body;
           if (!isNullOrUndefined(res) && res.status === StatusCodes.pass) {
             if (!isNullOrUndefined(res.response)) {
-              console.log(res);
               this.stateList = res.response['StatesList'];
             }
           }
@@ -282,7 +273,6 @@ export class BusienessPartnerAccountComponent implements OnInit, OnDestroy {
           const res = response.body;
           if (!isNullOrUndefined(res) && res.status === StatusCodes.pass) {
             if (!isNullOrUndefined(res.response)) {
-              console.log(res);
               this.ptypeList = res.response['ptypeList'];
             }
           }
@@ -297,7 +287,6 @@ export class BusienessPartnerAccountComponent implements OnInit, OnDestroy {
           const res = response.body;
           if (!isNullOrUndefined(res) && res.status === StatusCodes.pass) {
             if (!isNullOrUndefined(res.response)) {
-              console.log(res);
               this.employeesList = res.response['employeesList'];
             }
           }
@@ -307,8 +296,7 @@ export class BusienessPartnerAccountComponent implements OnInit, OnDestroy {
 
   get formControls() { return this.modelFormData.controls; }
 
-  save() 
-  {
+  save() {
 
 
     if (this.modelFormData.invalid) {
@@ -316,8 +304,7 @@ export class BusienessPartnerAccountComponent implements OnInit, OnDestroy {
     }
     this.modelFormData.controls['bpnumber'].enable();
     this.formData.item = this.modelFormData.value;
-    this.addOrEditService[this.formData.action](this.formData, (res) =>
-     {
+    this.addOrEditService[this.formData.action](this.formData, (res) => {
       this.router.navigate(['/dashboard/master/businesspartner']);
     });
     if (this.formData.action == 'Edit') {

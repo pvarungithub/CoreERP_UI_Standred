@@ -60,7 +60,7 @@
 
         <mat-form-field>
           <mat-label [translate]="'glaccount.taxCategory'"></mat-label>
-          <mat-select formControlName="taxCategory" appFocusOnEnter tabIndex="10">
+          <mat-select formControlName="taxCategory" appFocusOnEnter tabIndex="10"  (selectionChange)= "onCategoryChange()">
             <mat-option *ngFor="let taxc of taxCategorys" [value]="taxc.value">
               {{taxc.viewValue}}
             </mat-option>

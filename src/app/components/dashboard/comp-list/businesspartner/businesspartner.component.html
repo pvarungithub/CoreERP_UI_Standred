@@ -17,11 +17,11 @@
                   {{comp.companyCode}} - {{comp.companyName}}
                 </mat-option>
               </mat-select>
-            </mat-form-field>  
-    
+            </mat-form-field>
+
             <mat-form-field>
               <mat-label [translate]="'businesspartner.bptype'"></mat-label>
-              <mat-select formControlName="bptype" appFocusOnEnter tabIndex="2">
+              <mat-select formControlName="bptype" appFocusOnEnter tabIndex="2" (selectionChange)="onbpChange()">
                 <mat-option *ngFor="let bptype of ptypeList" [value]="bptype.code">
                   {{bptype.code}}-{{bptype.description}}
                 </mat-option>
@@ -39,7 +39,7 @@
 
             <mat-form-field class="form-element">
               <input matInput placeholder="{{'businesspartner.bpnumber' | translate }}" formControlName="bpnumber"
-                maxlength="50" (change)="onChange($event)"  appFocusOnEnter tabIndex="4">
+                maxlength="50" (change)="onChange($event)" appFocusOnEnter tabIndex="4">
             </mat-form-field>
 
             <mat-form-field class="form-element" [ngClass]="{ 'ng--valid': formControls.name.valid }">
@@ -55,7 +55,7 @@
                 maxlength="50" appFocusOnEnter tabIndex="6">
             </mat-form-field>
 
-           
+
             <mat-form-field class="form-element">
               <input matInput placeholder="{{'businesspartner.search' | translate }}" formControlName="search"
                 maxlength="50" appFocusOnEnter tabIndex="7">
@@ -165,11 +165,11 @@
       <mat-tab label="Company Code Data">
         <mat-card-content class="pt-5 p-2 m-0">
           <div class="d--flex">
-            
+
             <mat-form-field>
               <mat-label [translate]="'businesspartner.controlAccount'"></mat-label>
               <mat-select formControlName="controlAccount" appFocusOnEnter tabIndex="22">
-                <mat-option *ngFor="let act of  glList" [value]="act.accountNumber">
+                <mat-option *ngFor="let act of controlAccountList" [value]="act.accountNumber">
                   {{act.accountNumber}} - {{act.glaccountName}}
                 </mat-option>
               </mat-select>
@@ -182,8 +182,8 @@
                   {{pterms.code}} - {{pterms.code}}
                 </mat-option>
               </mat-select>
-            </mat-form-field>  
-            
+            </mat-form-field>
+
           </div>
         </mat-card-content>
       </mat-tab>
@@ -199,7 +199,7 @@
                   {{tds.tdsCode}} - {{tds.desctiption}}
                 </mat-option>
               </mat-select>
-            </mat-form-field> 
+            </mat-form-field>
             <mat-form-field>
               <mat-label>{{'businesspartner.tdstate' | translate }}</mat-label>
               <mat-select formControlName="tdstate" appFocusOnEnter tabIndex="25">
@@ -207,7 +207,7 @@
                   {{tdsrate.code}} - {{tdsrate.desctiption}}
                 </mat-option>
               </mat-select>
-            </mat-form-field> 
+            </mat-form-field>
 
             <mat-form-field class="form-element">
               <input matInput placeholder="{{'businesspartner.baseAmount' | translate }}" formControlName="baseAmount"
@@ -288,7 +288,7 @@
           </div>
         </mat-card-content>
 
-      </mat-tab>      
+      </mat-tab>
     </form>
 
   </mat-tab-group>
