@@ -55,6 +55,12 @@ export class AssignGLaccounttoSubGroupComponent implements OnInit {
     this.geStructurekeyData();
   }
 
+  clearDropdown(contrl) {
+    this.modelFormData.patchValue({
+      [contrl]: null
+    });
+  }
+
   geStructurekeyData() {
     const geStructurekeynUrl = String.Join('/', this.apiConfigService.getStructurekeyList);
     this.apiService.apiGetRequest(geStructurekeynUrl)
@@ -103,13 +109,18 @@ export class AssignGLaccounttoSubGroupComponent implements OnInit {
           this.getglAccgrpList();
         });
   }
-// Check data with grid and listdata(Filter combobox data)
+  // Check data with grid and listdata(Filter combobox data)
   filterGlList(glArray) {
     let glList = [];
     for (let g = 0; g < glArray.length; g++) {
-      if (!this.formData.tableData.filter(res => res.fromGl == glArray[g]['accountNumber']).length || this.formData.item['fromGl'] == glArray[g]['accountNumber']) {
+      if (!this.formData.tableData.filter(res => res.fromGl == glArray[g]['accountNumber']).length) {
         glList.push(glArray[g]);
       };
+      if (!isNullOrUndefined(this.formData.item)) {
+        if (this.formData.item['fromGl'] == glArray[g]['accountNumber']) {
+          glList.push(glArray[g]);
+        }
+      }
     }
     return glList;
   }

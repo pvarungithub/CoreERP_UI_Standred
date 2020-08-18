@@ -27,6 +27,10 @@
               {{emp.employeeCode}} - {{emp.employeeName}}
             </mat-option>
           </mat-select>
+          <button  matSuffix mat-icon-button 
+          (click)="clearDropdown('responsiblePerson'); $event.stopPropagation()">
+          <mat-icon>close</mat-icon>
+        </button> 
         </mat-form-field>
 
       </div>

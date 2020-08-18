@@ -87,7 +87,11 @@ export class CompanyComponent   implements OnInit {
     this.getcountrysList();
     this.getcurrencyList();
   }
-
+  clearDropdown(contrl) {
+    this.modelFormData.patchValue({
+      [contrl]: null
+    });
+  }
   getLanguageList() {
     const getlanguageList = String.Join('/', this.apiConfigService.getlanguageList);
     this.apiService.apiGetRequest(getlanguageList)

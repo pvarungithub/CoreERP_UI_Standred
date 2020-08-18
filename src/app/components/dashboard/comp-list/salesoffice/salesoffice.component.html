@@ -28,7 +28,11 @@
             <mat-option *ngFor="let state of stateList" [value]="state.id">
               {{state.id}} - {{state.text}} 
             </mat-option>
-          </mat-select>         
+          </mat-select> 
+          <button  matSuffix mat-icon-button 
+          (click)="clearDropdown('state'); $event.stopPropagation()">
+          <mat-icon>close</mat-icon>
+        </button>         
         </mat-form-field>
         <mat-form-field>
           <mat-label>{{'salesoffice.region' | translate }}</mat-label>
@@ -37,6 +41,10 @@
              {{rgn.id}} - {{rgn.text}} 
             </mat-option>
           </mat-select>
+          <button  matSuffix mat-icon-button 
+          (click)="clearDropdown('region'); $event.stopPropagation()">
+          <mat-icon>close</mat-icon>
+        </button> 
         </mat-form-field>
         <mat-form-field>
           <mat-label>{{'salesoffice.country' | translate }}</mat-label>
@@ -45,6 +53,10 @@
               {{cntry.id}} - {{cntry.text}} 
             </mat-option>
           </mat-select>
+          <button  matSuffix mat-icon-button 
+          (click)="clearDropdown('country'); $event.stopPropagation()">
+          <mat-icon>close</mat-icon>
+        </button> 
         </mat-form-field>
         <mat-form-field>
           <mat-label>{{'salesoffice.currency' | translate }}</mat-label>
@@ -53,6 +65,10 @@
               {{cncy.id}} - {{cncy.text}} 
             </mat-option>
           </mat-select>
+          <button  matSuffix mat-icon-button 
+          (click)="clearDropdown('currency'); $event.stopPropagation()">
+          <mat-icon>close</mat-icon>
+        </button> 
         </mat-form-field>
         <mat-form-field>
           <mat-label>{{'salesoffice.language' | translate }}</mat-label>
@@ -61,6 +77,10 @@
               {{lng.id}} - {{lng.text}} 
             </mat-option>
           </mat-select>
+          <button  matSuffix mat-icon-button 
+          (click)="clearDropdown('language'); $event.stopPropagation()">
+          <mat-icon>close</mat-icon>
+        </button> 
         </mat-form-field>        
         <mat-form-field class="form-element">
           <input matInput placeholder="{{'salesoffice.phone' | translate }}" formControlName="phone" maxlength="10" appFocusOnEnter tabIndex="9">         
@@ -84,6 +104,10 @@
               {{emp.employeeCode}}-{{emp.employeeName}}
             </mat-option>
           </mat-select>
+          <button  matSuffix mat-icon-button 
+          (click)="clearDropdown('responsiblePerson'); $event.stopPropagation()">
+          <mat-icon>close</mat-icon>
+        </button> 
         </mat-form-field>
       </div>
       <mat-divider></mat-divider>

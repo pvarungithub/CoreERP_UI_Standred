@@ -25,6 +25,10 @@
               {{plant.plantCode}} - {{plant.plantname}}
             </mat-option>
           </mat-select>
+          <button  matSuffix mat-icon-button 
+          (click)="clearDropdown('plant'); $event.stopPropagation()">
+          <mat-icon>close</mat-icon>
+        </button>   
         </mat-form-field>
       </div>
       <mat-divider></mat-divider>

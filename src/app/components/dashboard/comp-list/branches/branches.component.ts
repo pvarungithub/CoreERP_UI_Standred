@@ -68,7 +68,11 @@ export class BranchesComponent implements OnInit {
       }
 
   }
-
+  clearDropdown(contrl) {
+    this.modelFormData.patchValue({
+      [contrl]: null
+    });
+  }
   ngOnInit() {
     this.getTableData();
     this.getstateList();

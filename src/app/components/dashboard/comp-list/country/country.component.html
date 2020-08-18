@@ -29,6 +29,10 @@
               {{lng.id}} - {{lng.text}}
             </mat-option>
           </mat-select>
+          <button  matSuffix mat-icon-button 
+          (click)="clearDropdown('language'); $event.stopPropagation()">
+          <mat-icon>close</mat-icon>
+        </button>
         </mat-form-field>
         <mat-form-field>
           <mat-label>{{'country.currency' | translate }}</mat-label>
@@ -36,7 +40,11 @@
             <mat-option *ngFor="let cncy of currencyList" [value]="cncy.id">
               {{cncy.id}} - {{cncy.text}}
             </mat-option>
-          </mat-select>        
+          </mat-select> 
+          <button  matSuffix mat-icon-button 
+          (click)="clearDropdown('currency'); $event.stopPropagation()">
+          <mat-icon>close</mat-icon>
+        </button>       
         </mat-form-field>
       </div>
       <mat-divider></mat-divider>

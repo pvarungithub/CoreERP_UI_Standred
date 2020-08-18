@@ -48,6 +48,13 @@ export class CountryComponent implements OnInit {
     }
   }
 
+  clearDropdown(contrl) {
+    this.modelFormData.patchValue({
+      [contrl]: null
+    });
+  }
+
+
   ngOnInit() {
     this.getLanguageList();
     this.getcurrencyList();

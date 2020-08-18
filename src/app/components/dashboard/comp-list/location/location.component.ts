@@ -44,7 +44,11 @@ export class LocationsComponent implements OnInit {
     }
 
   }
-
+  clearDropdown(contrl) {
+    this.modelFormData.patchValue({
+      [contrl]: null
+    });
+  }
   ngOnInit() {
     this.getPlantsList();
   }

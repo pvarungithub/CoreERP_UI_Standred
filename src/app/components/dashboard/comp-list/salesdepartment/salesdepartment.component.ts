@@ -66,7 +66,11 @@ export class SalesDepartmentComponent implements OnInit {
     }
 
   }
-
+  clearDropdown(contrl) {
+    this.modelFormData.patchValue({
+      [contrl]: null
+    });
+  }
   ngOnInit() {
     this.getstateList();
     this.getLanguageList();
