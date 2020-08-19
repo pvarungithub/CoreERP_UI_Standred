@@ -12,6 +12,7 @@
         <mat-form-field>
           <mat-label [translate]="'AlternateControlAccount.normalControlAccount'"></mat-label>
           <mat-select formControlName="normalControlAccount" appFocusOnEnter tabIndex="1">
+            <mat-option>None</mat-option>
             <mat-option *ngFor="let nca of glList" [value]="nca.accountNumber">
               {{nca.accountNumber}} - {{nca.glaccountName}}
             </mat-option>
@@ -21,6 +22,7 @@
         <mat-form-field>
           <mat-label [translate]="'AlternateControlAccount.alternativeControlAccount'"></mat-label>
           <mat-select formControlName="alternativeControlAccount" appFocusOnEnter tabIndex="2">
+            <mat-option>None</mat-option>
             <mat-option *ngFor="let acn of glList" [value]="acn.accountNumber">
               {{acn.accountNumber}} - {{acn.glaccountName}}
             </mat-option>
@@ -29,6 +31,7 @@
         <mat-form-field>
           <mat-label [translate]="'AlternateControlAccount.company'"></mat-label>
           <mat-select formControlName="company" appFocusOnEnter tabIndex="3">
+            <mat-option>None</mat-option>
             <mat-option *ngFor="let comp of companyList" [value]="comp.companyCode">
               {{comp.companyCode}}- {{comp.companyName}}
             </mat-option>
@@ -38,6 +41,7 @@
         <mat-form-field>
           <mat-label [translate]="'AlternateControlAccount.chartofAccount'"></mat-label>
           <mat-select formControlName="chartofAccount" appFocusOnEnter tabIndex="4">
+            <mat-option>None</mat-option>
             <mat-option *ngFor="let coa of coaList" [value]="coa.code">
               {{coa.code}}- {{coa.desctiption}}
             </mat-option>

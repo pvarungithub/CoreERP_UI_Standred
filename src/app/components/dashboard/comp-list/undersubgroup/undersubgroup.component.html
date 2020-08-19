@@ -12,6 +12,7 @@
           <mat-form-field>
             <mat-label>{{'glsubgroups.nature' | translate }}</mat-label>
             <mat-select formControlName="nature" (selectionChange)= "getAccountNamelist()" appFocusOnEnter tabIndex="2">
+              <mat-option>None</mat-option>
               <mat-option *ngFor="let accgrp of glAccgrpList" [value]="accgrp.groupName">
                 {{accgrp.groupName}}
               </mat-option>
@@ -20,6 +21,7 @@
           <mat-form-field>
             <mat-label>{{'glsubgroups.groupUnder' | translate }}</mat-label>
             <mat-select formControlName="groupUnder" (selectionChange)= "getGLUnderGroupList()" appFocusOnEnter tabIndex="3">
+              <mat-option>None</mat-option>
               <mat-option *ngFor="let under of glAccNameList" [value]="under.accountGroupId">
                 {{under.accountGroupId}} - {{under.accountGroupName}}
               </mat-option>
@@ -28,6 +30,7 @@
           <mat-form-field [hidden]="formData.item">
             <mat-label>{{'glsubgroups.Undersubaccount' | translate }}</mat-label>
             <mat-select formControlName="Undersubaccount" appFocusOnEnter tabIndex="4">
+              <mat-option>None</mat-option>
               <mat-option *ngFor="let under of getAccSubGrpList" [value]="under.accountGroupId">
                 {{under.accountGroupId}} -  {{under.accountGroupName}}
               </mat-option>

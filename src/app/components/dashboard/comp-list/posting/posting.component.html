@@ -11,6 +11,7 @@
         <mat-form-field>
           <mat-label [translate]="'AlternateControlAccount.chartofAccount'"></mat-label>
           <mat-select formControlName="chartofAccount" appFocusOnEnter tabIndex="3">
+            <mat-option>None</mat-option>
             <mat-option *ngFor="let coa of coaList" [value]="coa.code">
               {{coa.code}}- {{coa.desctiption}}
             </mat-option>
@@ -20,6 +21,7 @@
         <mat-form-field>
           <mat-label>{{'posting.company' | translate }}</mat-label>
           <mat-select formControlName="company" appFocusOnEnter tabIndex="5">
+            <mat-option>None</mat-option>
             <mat-option *ngFor="let companyList of compList" [value]="companyList.id">
               {{companyList.id}} - {{companyList.text}}
             </mat-option>
@@ -29,6 +31,7 @@
         <mat-form-field>
           <mat-label>{{'posting.branch' | translate }}</mat-label>
           <mat-select formControlName="branch" appFocusOnEnter tabIndex="6">
+            <mat-option>None</mat-option>
             <mat-option *ngFor="let branch of branchList" [value]="branch.branchCode">
               {{branch.branchCode}} - {{branch.branchName}}
             </mat-option>
@@ -38,6 +41,7 @@
         <mat-form-field>
           <mat-label>{{'posting.plant' | translate }}</mat-label>
           <mat-select formControlName="plant" appFocusOnEnter tabIndex="4">
+            <mat-option>None</mat-option>
             <mat-option *ngFor="let plants of plantList" [value]="plants.plantCode">
               {{plants.plantCode}} - {{plants.plantname}}
             </mat-option>
@@ -46,6 +50,7 @@
         <mat-form-field>
           <mat-label>{{'posting.tdsrate' | translate }}</mat-label>
           <mat-select formControlName="tdsrate" appFocusOnEnter tabIndex="5">
+            <mat-option>None</mat-option>
             <mat-option *ngFor="let tdsrate of tdsratesList" [value]="tdsrate.code">
               {{tdsrate.code}} - {{tdsrate.desctiption}}
             </mat-option>
@@ -54,6 +59,7 @@
         <mat-form-field>
           <mat-label [translate]="'posting.glaccount'"></mat-label>
           <mat-select formControlName="glaccount" appFocusOnEnter tabIndex="6">
+            <mat-option>None</mat-option>
             <mat-option *ngFor="let ltype of glList" [value]="ltype.accountNumber">
               {{ltype.accountNumber}} - {{ltype.glaccountName}}
             </mat-option>

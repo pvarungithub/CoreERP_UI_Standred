@@ -26,7 +26,8 @@
            <mat-form-field>
              <mat-label>{{'vouchertype.voucherClass' | translate }}</mat-label>
              <mat-select formControlName="voucherClass" appFocusOnEnter tabIndex="3">
-               <mat-option *ngFor="let vcList of voucherClass" [value]="vcList.voucherKey">
+              <mat-option>None</mat-option> 
+              <mat-option *ngFor="let vcList of voucherClass" [value]="vcList.voucherKey">
                 {{vcList.voucherKey}} - {{vcList.description}}
                </mat-option>
              </mat-select>

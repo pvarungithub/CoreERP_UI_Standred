@@ -43,13 +43,7 @@ export class RegionComponent implements OnInit {
       this.modelFormData.controls['regionCode'].disable();
     }
 
-  }
-
-  clearDropdown(contrl) {
-    this.modelFormData.patchValue({
-      [contrl]: null
-    });
-  }
+  }  
 
   ngOnInit() {
     this.getcountrysList();

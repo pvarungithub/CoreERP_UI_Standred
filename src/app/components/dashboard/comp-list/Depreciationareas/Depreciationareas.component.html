@@ -26,6 +26,7 @@
         <mat-form-field>
           <mat-label [translate]="'Depreciationareas.depreciationType'"></mat-label>
           <mat-select formControlName="depreciationType" appFocusOnEnter tabIndex="3">
+            <mat-option>None</mat-option>
             <mat-option *ngFor="let ltype of DepreciationTypes" [value]="ltype.value">
               {{ltype.viewValue}}
             </mat-option>

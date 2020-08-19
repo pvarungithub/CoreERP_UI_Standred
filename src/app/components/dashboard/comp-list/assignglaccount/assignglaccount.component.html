@@ -11,54 +11,42 @@
           <mat-form-field>
             <mat-label>{{'assignglaccount.toGl' | translate }}</mat-label>
             <mat-select formControlName="toGl"  appFocusOnEnter tabIndex="1">
+              <mat-option>None</mat-option>
               <mat-option *ngFor="let stkey of structkeyList" [value]="stkey">
                 {{stkey}}
               </mat-option>
-            </mat-select>
-            <button  matSuffix mat-icon-button 
-            (click)="clearDropdown('toGl'); $event.stopPropagation()">
-            <mat-icon>close</mat-icon>
-          </button>
+            </mat-select>            
           </mat-form-field>
 
           <mat-form-field>
             <mat-label>{{'assignglaccount.glgroup' | translate }}</mat-label>
             <mat-select formControlName="glgroup" appFocusOnEnter tabIndex="2" (selectionChange)= "getSubacclist(); onGroupChange()">
+              <mat-option>None</mat-option>
               <mat-option *ngFor="let accgrp of glAccgrpList" [value]="accgrp.groupName">
                 {{accgrp.groupName}}
               </mat-option>
-            </mat-select>
-            <button  matSuffix mat-icon-button 
-            (click)="clearDropdown('glgroup'); $event.stopPropagation()">
-            <mat-icon>close</mat-icon>
-          </button>
+            </mat-select>           
           </mat-form-field>
 
           <mat-form-field>
             <mat-label>{{'assignglaccount.subAccount' | translate }}</mat-label>
             <mat-select formControlName="subAccount"  appFocusOnEnter tabIndex="3">
+              <mat-option>None</mat-option>
               <mat-option *ngFor="let under of subaccList" [value]="under.accountGroupId">
                 {{under.accountGroupId}} - {{under.accountGroupName}}
               </mat-option>
-            </mat-select>
-            <button  matSuffix mat-icon-button 
-            (click)="clearDropdown('subAccount'); $event.stopPropagation()">
-            <mat-icon>close</mat-icon>
-          </button>
+            </mat-select>            
           </mat-form-field>
           
 
           <mat-form-field>
             <mat-label>{{'assignglaccount.fromGl' | translate }}</mat-label>
             <mat-select formControlName="fromGl"  appFocusOnEnter tabIndex="4" multiple>
+              <mat-option>None</mat-option>
               <mat-option *ngFor="let gl of fromGlList" [value]="gl.accountNumber">
                 {{gl.accountNumber}} - {{gl.glaccountName}}
               </mat-option>
-            </mat-select>
-            <button  matSuffix mat-icon-button 
-            (click)="clearDropdown('fromGl'); $event.stopPropagation()">
-            <mat-icon>close</mat-icon>
-          </button>
+            </mat-select>           
           </mat-form-field>
 
       </div>

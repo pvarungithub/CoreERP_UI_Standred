@@ -69,11 +69,7 @@ export class SalesofficeComponent implements OnInit {
     this.getcurrencyList();
     this.getEmployeesList();
   }  
-  clearDropdown(contrl) {
-    this.modelFormData.patchValue({
-      [contrl]: null
-    });
-  }
+  
   getLanguageList() {
     const getlanguageList = String.Join('/', this.apiConfigService.getlanguageList);
     this.apiService.apiGetRequest(getlanguageList)

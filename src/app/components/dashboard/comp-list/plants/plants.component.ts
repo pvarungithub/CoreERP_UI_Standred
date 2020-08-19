@@ -77,11 +77,7 @@ export class PlantsComponent implements OnInit {
     this.getcurrencyList();
     this.getEmployeesList();
   }
-  clearDropdown(contrl) {
-    this.modelFormData.patchValue({
-      [contrl]: null
-    });
-  }
+  
   getTableData() {
     const getCompanyUrl = String.Join('/', this.apiConfigService.getlocationList);
     this.apiService.apiGetRequest(getCompanyUrl)

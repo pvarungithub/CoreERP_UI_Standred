@@ -13,6 +13,7 @@
         <mat-form-field>
           <mat-label>{{'AssignmentAssetClasstoAssetBlock.assetClass' | translate }}</mat-label>
           <mat-select formControlName="assetClass" appFocusOnEnter tabIndex="3">
+            <mat-option>None</mat-option>
             <mat-option *ngFor="let asset of assetList" [value]="asset.code">
               {{asset.code}} - {{asset.description}}
             </mat-option>
@@ -21,6 +22,7 @@
         <mat-form-field>
           <mat-label>{{'AssignmentAssetClasstoAssetBlock.assetBlock' | translate }}</mat-label>
           <mat-select formControlName="assetBlock" appFocusOnEnter tabIndex="4">
+            <mat-option>None</mat-option>
             <mat-option *ngFor="let ablock of assetblockList" [value]="ablock.code">
               {{ablock.code}} - {{ablock.description}}
             </mat-option>

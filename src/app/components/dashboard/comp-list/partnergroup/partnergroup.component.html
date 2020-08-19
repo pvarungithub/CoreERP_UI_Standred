@@ -26,6 +26,7 @@
         <mat-form-field>
           <mat-label>{{'partnergroup.bptype' | translate }}</mat-label>
           <mat-select formControlName="bptype" appFocusOnEnter tabIndex="3">
+            <mat-option>None</mat-option>
             <mat-option *ngFor="let ptype of ptypeList" [value]="ptype.code">
               {{ptype.code}}- {{ptype.description}}
             </mat-option>

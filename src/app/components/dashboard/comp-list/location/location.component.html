@@ -22,14 +22,11 @@
         <mat-form-field>
           <mat-label>{{'location.plant' | translate }}</mat-label>
           <mat-select formControlName="plant" appFocusOnEnter tabIndex="3">
+            <mat-option>None</mat-option>
             <mat-option *ngFor="let plant of plantList" [value]="plant.plantCode">
               {{plant.plantCode}} - {{plant.plantname}}
             </mat-option>
-          </mat-select>
-          <button  matSuffix mat-icon-button 
-          (click)="clearDropdown('plant'); $event.stopPropagation()">
-          <mat-icon>close</mat-icon>
-        </button> 
+          </mat-select>         
         </mat-form-field>
       </div>
       <mat-divider></mat-divider>

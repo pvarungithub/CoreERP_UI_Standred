@@ -25,14 +25,11 @@
         <mat-form-field>
           <mat-label>{{'region.country' | translate }}</mat-label>
           <mat-select formControlName="country" appFocusOnEnter tabIndex="3">
+            <mat-option>None</mat-option>
             <mat-option *ngFor="let ctry of countrysList" [value]="ctry.id">
               {{ctry.id}} - {{ctry.text}}
             </mat-option>
-          </mat-select>
-          <button  matSuffix mat-icon-button 
-          (click)="clearDropdown('country'); $event.stopPropagation()">
-          <mat-icon>close</mat-icon>
-        </button>       
+          </mat-select>                
         </mat-form-field>
       </div>
       <mat-divider></mat-divider>

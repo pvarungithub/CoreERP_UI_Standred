@@ -26,6 +26,7 @@
         <mat-form-field>
           <mat-label [translate]="'accountchart.type'"></mat-label>
           <mat-select formControlName="type" appFocusOnEnter tabIndex="3">
+            <mat-option>None</mat-option>
             <mat-option *ngFor="let ltype of type" [value]="ltype.value">
               {{ltype.viewValue}}
             </mat-option>

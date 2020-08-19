@@ -65,11 +65,7 @@ export class ProfitCenterComponent implements OnInit {
       }
 
   }
-  clearDropdown(contrl) {
-    this.modelFormData.patchValue({
-      [contrl]: null
-    });
-  }
+  
   ngOnInit() {
     this.companiesListData();
     this.getstateList();

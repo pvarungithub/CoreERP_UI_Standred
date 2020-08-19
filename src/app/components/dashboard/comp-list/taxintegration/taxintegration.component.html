@@ -21,6 +21,7 @@
            <mat-form-field>
             <mat-label [translate]="'taxtypes.nature'"></mat-label>
             <mat-select formControlName="nature" appFocusOnEnter tabIndex="5">
+              <mat-option>None</mat-option>
               <mat-option *ngFor="let taxtype of TaxTypess" [value]="taxtype.viewValue">
                 {{taxtype.viewValue}}
               </mat-option>

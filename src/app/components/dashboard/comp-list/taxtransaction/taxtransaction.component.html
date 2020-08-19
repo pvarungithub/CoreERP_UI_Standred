@@ -22,6 +22,7 @@
         <mat-form-field>
           <mat-label>{{'taxtransactions.taxType' | translate }}</mat-label>
           <mat-select placeholder="{{'taxtransactions.taxType' | translate }}" formControlName="taxType" appFocusOnEnter tabIndex="4">
+            <mat-option>None</mat-option>
             <mat-option *ngFor="let taxtrnsn of taxTypelist" [value]="taxtrnsn.taxKey">
               {{taxtrnsn.taxKey}} - {{taxtrnsn.description}}
             </mat-option>

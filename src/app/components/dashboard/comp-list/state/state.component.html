@@ -26,26 +26,20 @@
         <mat-form-field>
           <mat-label>{{'state.countryCode' | translate }}</mat-label>
           <mat-select formControlName="countryCode" appFocusOnEnter tabIndex="3">
+            <mat-option>None</mat-option>
             <mat-option *ngFor="let ctry of countrysList" [value]="ctry.id">
               {{ctry.id}} - {{ctry.text}}
             </mat-option>
-          </mat-select>
-          <button  matSuffix mat-icon-button 
-          (click)="clearDropdown('countryCode'); $event.stopPropagation()">
-          <mat-icon>close</mat-icon>
-        </button>  
+          </mat-select>         
         </mat-form-field>
         <mat-form-field>
           <mat-label>{{'state.language' | translate }}</mat-label>
           <mat-select formControlName="language" appFocusOnEnter tabIndex="4">
+            <mat-option>None</mat-option>
             <mat-option *ngFor="let lng of languageList" [value]="lng.id">
               {{lng.id}} - {{lng.text}}
             </mat-option>
-          </mat-select>
-          <button  matSuffix mat-icon-button 
-          (click)="clearDropdown('language'); $event.stopPropagation()">
-          <mat-icon>close</mat-icon>
-        </button>  
+          </mat-select>          
         </mat-form-field>
       </div>
       <mat-divider></mat-divider>

@@ -12,6 +12,7 @@
         <mat-form-field>
           <mat-label [translate]="'AlternateControlAccount.chartofAccount'"></mat-label>
           <mat-select formControlName="chartofAccount" appFocusOnEnter tabIndex="3">
+            <mat-option>None</mat-option>
             <mat-option *ngFor="let coa of coaList" [value]="coa.code">
               {{coa.code}}- {{coa.desctiption}}
             </mat-option>
@@ -20,6 +21,7 @@
         <mat-form-field>
           <mat-label>{{'posting.company' | translate }}</mat-label>
           <mat-select formControlName="company" appFocusOnEnter tabIndex="6">
+            <mat-option>None</mat-option>
             <mat-option *ngFor="let companyList of compList" [value]="companyList.id">
               {{companyList.id}} - {{companyList.text}}
             </mat-option>
@@ -29,6 +31,7 @@
         <mat-form-field>
           <mat-label>{{'posting.branch' | translate }}</mat-label>
           <mat-select formControlName="branch" appFocusOnEnter tabIndex="7">
+            <mat-option>None</mat-option>
             <mat-option *ngFor="let branch of branchList" [value]="branch.branchCode">
               {{branch.branchCode}} - {{branch.branchName}}
             </mat-option>
@@ -38,6 +41,7 @@
         <mat-form-field>
           <mat-label>{{'posting.plant' | translate }}</mat-label>
           <mat-select formControlName="plant" appFocusOnEnter tabIndex="8">
+            <mat-option>None</mat-option>
             <mat-option *ngFor="let plants of plantList" [value]="plants.plantCode">
               {{plants.plantCode}} - {{plants.plantname}}
             </mat-option>
@@ -46,6 +50,7 @@
         <mat-form-field>
           <mat-label>Tax Rate</mat-label>
           <mat-select placeholder="{{'assignmentoftaxaccountstotaxcodes.code' | translate }}" formControlName="code" appFocusOnEnter tabIndex="1">
+            <mat-option>None</mat-option>
             <mat-option *ngFor="let taxtrnsn of TaxTypeList" [value]="taxtrnsn.taxRateCode">
               {{taxtrnsn.taxRateCode}} - {{taxtrnsn.description}}
             </mat-option>
@@ -54,6 +59,7 @@
         <mat-form-field>
           <mat-label>{{'assignmentoftaxaccountstotaxcodes.sgstgl' | translate }}</mat-label>
           <mat-select formControlName="sgstgl" appFocusOnEnter tabIndex="1">
+            <mat-option>None</mat-option>
             <mat-option *ngFor="let gl of glList" [value]="gl.accountNumber">
               {{gl.accountNumber}} - {{gl.glaccountName}}
             </mat-option>
@@ -62,6 +68,7 @@
         <mat-form-field>
           <mat-label>{{'assignmentoftaxaccountstotaxcodes.cgstgl' | translate }}</mat-label>
           <mat-select formControlName="cgstgl" appFocusOnEnter tabIndex="1">
+            <mat-option>None</mat-option>
             <mat-option *ngFor="let gl of glList" [value]="gl.accountNumber">
               {{gl.accountNumber}} - {{gl.glaccountName}}
             </mat-option>
@@ -70,6 +77,7 @@
         <mat-form-field>
           <mat-label>{{'assignmentoftaxaccountstotaxcodes.igstgl' | translate }}</mat-label>
           <mat-select formControlName="igstgl" appFocusOnEnter tabIndex="1">
+            <mat-option>None</mat-option>
             <mat-option *ngFor="let gl of glList" [value]="gl.accountNumber">
               {{gl.accountNumber}} - {{gl.glaccountName}}
             </mat-option>
@@ -78,6 +86,7 @@
         <mat-form-field>
           <mat-label>{{'assignmentoftaxaccountstotaxcodes.ugstgl' | translate }}</mat-label>
           <mat-select formControlName="ugstgl" appFocusOnEnter tabIndex="1">
+            <mat-option>None</mat-option>
             <mat-option *ngFor="let gl of glList" [value]="gl.accountNumber">
               {{gl.accountNumber}} - {{gl.glaccountName}}
             </mat-option>
@@ -86,6 +95,7 @@
         <mat-form-field>
           <mat-label>{{'assignmentoftaxaccountstotaxcodes.compositeAccount' | translate }}</mat-label>
           <mat-select formControlName="compositeAccount" appFocusOnEnter tabIndex="1">
+            <mat-option>None</mat-option>
             <mat-option *ngFor="let gl of glList" [value]="gl.accountNumber">
               {{gl.accountNumber}} - {{gl.glaccountName}}
             </mat-option>

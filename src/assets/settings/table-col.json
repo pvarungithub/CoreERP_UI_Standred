@@ -39,6 +39,7 @@
     "language": "Language"
   },  
   "company": {
+    "title": "Company",
     "companyCode": "Code",
     "companyName": "Name",
     "shortName":"Short Name", 

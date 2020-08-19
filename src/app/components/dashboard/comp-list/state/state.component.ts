@@ -49,12 +49,7 @@ export class StateComponent implements OnInit {
     }
 
   }
-  clearDropdown(contrl) {
-    this.modelFormData.patchValue({
-      [contrl]: null
-    });
-  }
-  
+    
   ngOnInit() {
     this.getcountrysList();
     this.getLanguageList();

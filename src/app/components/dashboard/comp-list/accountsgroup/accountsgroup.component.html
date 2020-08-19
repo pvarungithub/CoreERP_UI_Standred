@@ -27,6 +27,7 @@
         <mat-form-field>
           <mat-label [translate]="'accountgroup.groupType'"></mat-label>
           <mat-select formControlName="groupType" appFocusOnEnter tabIndex="5">
+            <mat-option>None</mat-option>
             <mat-option *ngFor="let ltype of groupTypes" [value]="ltype.viewValue">
               {{ltype.viewValue}}
             </mat-option>

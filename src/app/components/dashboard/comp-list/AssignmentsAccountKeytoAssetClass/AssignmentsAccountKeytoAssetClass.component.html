@@ -11,6 +11,7 @@
         <mat-form-field>
           <mat-label>{{'AssignmentsAccountKeytoAssetClass.assetClass' | translate }}</mat-label>
           <mat-select formControlName="assetClass" appFocusOnEnter tabIndex="3">
+            <mat-option>None</mat-option>
             <mat-option *ngFor="let asc of assetList" [value]="asc.code">
               {{asc.code}} - {{asc.description}}
             </mat-option>
@@ -19,6 +20,7 @@
         <mat-form-field>
           <mat-label>{{'AssignmentsAccountKeytoAssetClass.accountKey' | translate }}</mat-label>
           <mat-select formControlName="accountKey" appFocusOnEnter tabIndex="3">
+            <mat-option>None</mat-option>
             <mat-option *ngFor="let ack of acckeyList" [value]="ack.code">
               {{ack.code}} - {{ack.acquisitionsGl}}
             </mat-option>

@@ -11,6 +11,7 @@
         <mat-form-field>
           <mat-label [translate]="'glaccount.chartAccount'"></mat-label>
           <mat-select formControlName="chartAccount" appFocusOnEnter tabIndex="1">
+            <mat-option>None</mat-option>
             <mat-option *ngFor="let coa of coaList" [value]="coa.code">
               {{coa.code}} - {{coa.desctiption}}
             </mat-option>
@@ -20,6 +21,7 @@
         <mat-form-field>
           <mat-label [translate]="'glaccount.company'"></mat-label>
           <mat-select formControlName="company" appFocusOnEnter tabIndex="2">
+            <mat-option>None</mat-option>
             <mat-option *ngFor="let comp of companyList" [value]="comp.companyCode">
               {{comp.companyCode}} - {{comp.companyName}}
             </mat-option>
@@ -30,6 +32,7 @@
         <mat-form-field>
           <mat-label>{{'glsubgroups.nature' | translate }}</mat-label>
           <mat-select formControlName="accGroup" >
+            <mat-option>None</mat-option>
             <mat-option *ngFor="let accgrp of glAccgrpList" [value]="accgrp.groupCode">
               {{accgrp.groupCode}} - {{accgrp.groupName}}
             </mat-option>
@@ -52,6 +55,7 @@
         <mat-form-field>
           <mat-label>{{'glaccount.currency' | translate }}</mat-label>
           <mat-select formControlName="currency" appFocusOnEnter tabIndex="9">
+            <mat-option>None</mat-option>
             <mat-option *ngFor="let cncy of currencyList" [value]="cncy.id">
               {{cncy.id}} - {{cncy.text}}
             </mat-option>
@@ -61,6 +65,7 @@
         <mat-form-field>
           <mat-label [translate]="'glaccount.taxCategory'"></mat-label>
           <mat-select formControlName="taxCategory" appFocusOnEnter tabIndex="10"  (selectionChange)= "onCategoryChange()">
+            <mat-option>None</mat-option>
             <mat-option *ngFor="let taxc of taxCategorys" [value]="taxc.value">
               {{taxc.viewValue}}
             </mat-option>
@@ -69,6 +74,7 @@
         <mat-form-field>
           <mat-label>{{'glaccount.bankKey' | translate }}</mat-label>
           <mat-select formControlName="bankKey" appFocusOnEnter tabIndex="11">
+            <mat-option>None</mat-option>
             <mat-option *ngFor="let bank of bankList" [value]="bank.bankCode">
               {{bank.bankCode}} - {{bank.bankName}}
             </mat-option>
@@ -83,6 +89,7 @@
          <mat-form-field>
           <mat-label [translate]="'glaccount.costElementCategory'"></mat-label>
           <mat-select formControlName="costElementCategory" appFocusOnEnter tabIndex="13">
+            <mat-option>None</mat-option>
             <mat-option *ngFor="let cec of costElementCategorys" [value]="cec.value">
               {{cec.viewValue}}
             </mat-option>
@@ -91,6 +98,7 @@
         <mat-form-field>
           <mat-label [translate]="'glaccount.controlAccount'"></mat-label>
           <mat-select formControlName="controlAccount" appFocusOnEnter tabIndex="14">
+            <mat-option>None</mat-option>
             <mat-option *ngFor="let act of accounts" [value]="act.value">
               {{act.viewValue}}
             </mat-option>
@@ -99,6 +107,7 @@
         <mat-form-field>
           <mat-label [translate]="'glaccount.consolidatedAccount'"></mat-label>
           <mat-select formControlName="consolidatedAccount" appFocusOnEnter tabIndex="8">
+            <mat-option>None</mat-option>
             <!-- <mat-option *ngFor="let act of accounts" [value]="act.value">
               {{act.viewValue}}
             </mat-option> -->

@@ -25,7 +25,8 @@
         </mat-form-field>
         <mat-form-field>
           <mat-label [translate]="'ledger.ledgerType'"></mat-label>
-          <mat-select formControlName="ledgerType" appFocusOnEnter tabIndex="3">
+          <mat-select formControlName="ledgerType" appFocusOnEnter tabIndex="3">   
+            <mat-option>None</mat-option>         
             <mat-option *ngFor="let ltype of ledgertype" [value]="ltype.viewValue">
               {{ltype.viewValue}}
             </mat-option>

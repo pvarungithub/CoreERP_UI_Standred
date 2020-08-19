@@ -58,11 +58,7 @@ export class DivisionComponent implements OnInit {
       }
 
   }
-  clearDropdown(contrl) {
-    this.modelFormData.patchValue({
-      [contrl]: null
-    });
-  }
+  
   ngOnInit() {
    this. getEmployeesList();
   }

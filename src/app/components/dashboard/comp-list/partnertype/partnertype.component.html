@@ -26,6 +26,7 @@
         <mat-form-field>
           <mat-label [translate]="'partnertype.bpcategory'"></mat-label>
           <mat-select formControlName="bpcategory" appFocusOnEnter tabIndex="3">
+            <mat-option>None</mat-option>
             <mat-option *ngFor="let bpc of bpcategory" [value]="bpc.value">
               {{bpc.viewValue}}
             </mat-option>

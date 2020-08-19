@@ -24,6 +24,7 @@
         <mat-form-field>
           <mat-label [translate]="'bankmaster.accountType'"></mat-label>
           <mat-select formControlName="accountType" appFocusOnEnter tabIndex="3">
+            <mat-option>None</mat-option>
             <mat-option *ngFor="let agl of AccountType" [value]="agl.value">
               {{agl.viewValue}}
             </mat-option>
@@ -43,6 +44,7 @@
         <mat-form-field>
           <mat-label>{{'bankmaster.currency' | translate }}</mat-label>
           <mat-select formControlName="currency" appFocusOnEnter tabIndex="6">
+            <mat-option>None</mat-option>
             <mat-option *ngFor="let cncy of currencyList" [value]="cncy.id">
               {{cncy.id}} - {{cncy.text}}
             </mat-option>
@@ -78,6 +80,7 @@
       <mat-form-field>
         <mat-label>{{'bankmaster.state' | translate }}</mat-label>
         <mat-select formControlName="state" appFocusOnEnter tabIndex="13">
+          <mat-option>None</mat-option>
           <mat-option *ngFor="let state of stateList" [value]="state.id">
             {{state.id}} - {{state.text}}
           </mat-option>
@@ -86,6 +89,7 @@
       <mat-form-field>
         <mat-label>{{'bankmaster.region' | translate }}</mat-label>
         <mat-select formControlName="region" appFocusOnEnter tabIndex="14">
+          <mat-option>None</mat-option>
           <mat-option *ngFor="let rgn of regionsList" [value]="rgn.id">
             {{rgn.id}} - {{rgn.text}}
           </mat-option>
@@ -95,6 +99,7 @@
       <mat-form-field>
         <mat-label>{{'bankmaster.country' | translate }}</mat-label>
         <mat-select formControlName="country" appFocusOnEnter tabIndex="15">
+          <mat-option>None</mat-option>
           <mat-option *ngFor="let cntry of countrysList" [value]="cntry.id">
             {{cntry.id}} - {{cntry.text}}
           </mat-option>

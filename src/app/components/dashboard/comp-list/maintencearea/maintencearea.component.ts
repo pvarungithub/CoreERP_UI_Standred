@@ -77,11 +77,7 @@ export class MaintenceAreaComponent implements OnInit {
       this.modelFormData.controls['code'].disable();
     }
   }
-  clearDropdown(contrl) {
-    this.modelFormData.patchValue({
-      [contrl]: null
-    });
-  }
+  
   cancel() {
     this.dialogRef.close();
   }
