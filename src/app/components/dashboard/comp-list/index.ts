@@ -64,3 +64,5 @@ export{SubAssetsComponent} from './subassets/subassets.component';
 export{AssignGLaccounttoSubGroupComponent} from './assignglaccount/assignglaccount.component';
 export{GLSubAccountComponent} from './glsubaccount/glsubaccount.component';
 export{BusienessTransactionTypeComponent} from './businesstransactiontypes/businesstransactiontypes.component';
+export{AssetBegningAccumulatedDepreciationComponent} from './assetbegningaccumulateddepreciation/assetbegningaccumulateddepreciation.component';
+export{AssetBegningAcqusitionComponent} from './assetbegningacqusition/assetbegningacqusition.component';

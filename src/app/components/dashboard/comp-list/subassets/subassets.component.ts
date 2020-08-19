@@ -28,6 +28,7 @@ export class SubAssetsComponent implements OnInit {
   taxaccList: any;
   tdsList:any;
   mamList:any;
+  maList:any;
   assetList: any;
   plantList: any;
   segmentList: any;
@@ -39,7 +40,8 @@ export class SubAssetsComponent implements OnInit {
   dpareaList:any;
   dpList:any;
   companyList:any;
- 
+  massetlist:any;
+  _stockissueHdr:any;
   constructor(
     private apiService: ApiService,
     private addOrEditService: AddOrEditService,
@@ -102,14 +104,33 @@ export class SubAssetsComponent implements OnInit {
     this.getdepreciationCodeTableData();
     this.getdepreciationAreaTableData();
   }
-  getchartAccount()
-  {
-    this.modelFormData.patchValue({
-      subAssetNumber:(this.modelFormData.get('mainAssetNo').value)
-    });
+  // getchartAccount()
+  // {
+  //   this.modelFormData.patchValue({
+  //     subAssetNumber:(this.modelFormData.get('mainAssetNo').value)
+  //   });
+  // }
+
+  getchartAccount(value) {
+    const getInvoiceDeatilListUrl = String.Join('/', this.apiConfigService.GetListsforMainAsset, this.modelFormData.get('mainAssetNo').value);
+    this.apiService.apiGetRequest(getInvoiceDeatilListUrl).subscribe(
+      response => {
+        const res = response.body;
+        if (!isNullOrUndefined(res) && res.status === StatusCodes.pass) {
+          if (!isNullOrUndefined(res.response)) {
+            console.log(res);
+            if (!isNullOrUndefined(res.response)) {
+                this.modelFormData.patchValue(res.response);
+            this.spinner.hide();
+            }
+          }
+        }
+      });
+      this.modelFormData.patchValue({
+            subAssetNumber:(this.modelFormData.get('mainAssetNo').value)
+          });
   }
 
-  
   getassetclassTableData() {
     const getCompanyUrl = String.Join('/', this.apiConfigService.getAssetClassList);
     this.apiService.apiGetRequest(getCompanyUrl)

@@ -15,8 +15,8 @@ import {
   AssetClassComponent,PaymentTermsComponent,AlternateControlAccountComponent,DepreciationareasComponent,AssetBlockComponent,AssetNumberRangeComponent,AseetClassToAssetBlockComponent,
   AssetTransactionTypeComponent,AccountKeyComponent,AssignmentAccountKeytoAssetClassComponent,BankMasterComponent
   ,DepreciationcodeComponent,GLAccountComponent,BusienessPartnerAccountComponent,MainAssetMasterComponent,SubAssetsComponent,
-  AssignGLaccounttoSubGroupComponent,GLSubAccountComponent,BusienessTransactionTypeComponent,
-  
+  AssignGLaccounttoSubGroupComponent,GLSubAccountComponent,BusienessTransactionTypeComponent,AssetBegningAccumulatedDepreciationComponent,AssetBegningAcqusitionComponent,
+
 } from './components/dashboard/comp-list/index';
 
 
@@ -71,7 +71,7 @@ export function HttpLoaderFactory(httpClient: HttpClient) {
     
     ,AseetClassToAssetBlockComponent,AssetTransactionTypeComponent,AccountKeyComponent,
     AssignmentAccountKeytoAssetClassComponent,BankMasterComponent,DepreciationcodeComponent,GLAccountComponent,BusienessPartnerAccountComponent,MainAssetMasterComponent,SubAssetsComponent,
-    AssignGLaccounttoSubGroupComponent,GLSubAccountComponent,BusienessTransactionTypeComponent,
+    AssignGLaccounttoSubGroupComponent,GLSubAccountComponent,BusienessTransactionTypeComponent,AssetBegningAccumulatedDepreciationComponent,AssetBegningAcqusitionComponent,
     CompTabsComponent,
     TransListComponent,
     TransTableComponent,
@@ -89,7 +89,7 @@ export function HttpLoaderFactory(httpClient: HttpClient) {
     AccountchartComponent,AssignmentChartAccounttoCompanyComponent,PartnerTypesComponent, BusienessPartnerGroupsComponent,NumberRangeComponent,AseetClassToAssetBlockComponent, 
     AssignmentComponent,AssetClassComponent,PaymentTermsComponent,AlternateControlAccountComponent,DepreciationareasComponent,AssetBlockComponent,
     AssetNumberRangeComponent,AssetTransactionTypeComponent,AccountKeyComponent,AssignmentAccountKeytoAssetClassComponent,
-    BankMasterComponent,DepreciationcodeComponent,GLAccountComponent,GLSubAccountComponent,BusienessTransactionTypeComponent,
+    BankMasterComponent,DepreciationcodeComponent,GLAccountComponent,GLSubAccountComponent,BusienessTransactionTypeComponent,AssetBegningAccumulatedDepreciationComponent,AssetBegningAcqusitionComponent,
     BusienessPartnerAccountComponent,AssignGLaccounttoSubGroupComponent,MainAssetMasterComponent,SubAssetsComponent,
     
     //LeaveopeningbalanceComponent,

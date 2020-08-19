@@ -21,22 +21,22 @@
     "title": "Country",
     "countryCode": "Country Code",
     "countryName": "Country Name",
-    "language" :"Language",
-    "currency" :"Currency"
+    "langName" :"Language",
+    "currName" :"Currency"
   },
   "region": {
     "title": "Region",
     "regionCode": "Region Code",
     "regionName": "Region Name",
-    "country": "Country",
+    "countryName": "Country",
     "currency" :"Currency"
   }, 
   "state": {
     "title": "State",
     "stateCode": "State Code",
     "stateName": "State Name",
-    "countryCode": "Country",
-    "language": "Language"
+    "countryName": "Country",
+    "langName": "Language"
   },  
   "company": {
     "title": "Company",
@@ -44,11 +44,11 @@
     "companyName": "Name",
     "shortName":"Short Name", 
     "city": "City",
-    "state": "State", 
-    "region":"Region", 
-    "country": "Country",
-    "currency": "Currency",
-    "language":"Language",    
+    "stateName": "State", 
+    "regionName":"Region", 
+    "countryName": "Country",
+    "currencyName": "Currency",
+    "languageName":"Language",    
     "address": "Address",
     "address1": "Address1", 
     "location":"Location",
@@ -77,13 +77,13 @@
     "address1": "Address1",
     "pinCode": "PinCode",
     "city": "City",
-    "region": "Region",
-    "country": "Country",
-    "state": "State",
-    "language": "Language",    
-    "currency": "Currency",
+    "stateName": "State", 
+    "regionName":"Region", 
+    "countryName": "Country",
+    "currencyName": "Currency",
+    "languageName":"Language", 
     "email": "Email",
-    "responsiblePerson": "Responsible Person",
+    "responsibleName": "Responsible Person",
     "phone":"Phone",
     "mobile":"Mobile"
   },
@@ -91,51 +91,51 @@
     "title": "Branch",
     "branchCode": "Branch Code",
     "branchName": "Branch Name",
-    "companyCode": "Company",
+    "companyName": "Company",
     "location":"Location",
     "city": "City",
+    "stateName": "State", 
+    "regionName":"Region", 
+    "countryName": "Country",
+    "currencyName": "Currency",
+    "languageName":"Language", 
     "address": "Address",
     "address2":"Address2",    
-    "country": "Country",
-    "state": "State",
     "pincode": "Pin",
     "phone": "Phone",
     "mobile": "Mobile",
     "email": "Email",   
     "panno": "PanNo",
     "gstno": "GST",
-    "tanno": "TAN",
-    "language": "Language",
-    "currency": "Currency",
-    "region": "Region",
-    "responsiblePerson": "Responsible Person"
+    "tanno": "TAN",    
+    "responsibleName": "Responsible Person"
   },
   "division": {
     "title": "Division",
     "code": "Code",
     "description": "Division Name",
-    "responsiblePerson": "Responsible Person",
+    "responsibleName": "Responsible Person",
     "active": "Active"
   },  
   "functionaldepatment": {
     "title": "Functional Department",
     "code": "Code",
     "description": "Name",
-    "responsiblePerson": "Responsible Person"
+    "responsibleName": "Responsible Person"
   },
   "costcenter": {
     "title": "Cost Center",
     "code": "Code",
     "name": "Name",
-    "compCode": "Comp Code",
+    "companyName": "Company",
     "address1": "Address",
     "address2": "Address2",
     "place": "Place",
-    "state": "State",
+    "stateName": "State", 
     "pinCode": "Pin Code",
     "phone1": "Phone",
     "email": "Email",
-    "responsiblePerson": "Responsible Person",
+    "responsibleName": "Responsible Person",
     "active": "Active"
   },
   "plant": {
@@ -143,12 +143,12 @@
     "plantCode": "Code",
     "plantname": "Name",
     "city": "City",
-    "state": "State",
-    "region": "Region",
-    "country": "Country",    
-    "currency": "Currency",
-    "language": "Language",
-    "location": "Location",
+    "stateName": "State", 
+    "regionName":"Region", 
+    "countryName": "Country",
+    "currencyName": "Currency",
+    "languageName":"Language", 
+    "locationName": "Location",
     "address1": "Address",
     "address2": "Address1",
     "pin": "PIN",
@@ -157,24 +157,24 @@
     "email": "Email",
     "panno": "PAN",
     "gstno": "GST",    
-    "responsiblePerson": "Responsible Person"
+    "responsibleName": "Responsible Person"
   },
   "location": {
     "title": "Location",
     "locationId": "Code",
     "description": "Name",
-    "plant": "Plant"
+    "plantName": "Plant"
   },
   "salesdepartment": {
     "title": "Sales Department",
     "departmentCode": "Code",
     "name": "Name",
     "city": "City",
-    "state": "State",
-    "region": "Region",
-    "country": "Country",
-    "currency": "Currency",
-    "language": "Language",
+    "stateName": "State", 
+    "regionName":"Region", 
+    "countryName": "Country",
+    "currencyName": "Currency",
+    "languageName":"Language", 
     "address1": "Address",
     "address2": "Address1",
     "pin": "PIN",
@@ -184,24 +184,24 @@
     "panno": "PAN",
     "gstno": "GST",
     "tanno": "TAN",   
-    "responsiblePerson": "Responsible Person"
+    "responsibleName": "Responsible Person"
   },
   "salesoffice": {
     "title": "Sales Office",
     "code": "Code",
     "name": "Name",
     "city": "City",
-    "state": "State",
-    "region": "Region",
-    "country": "Country",
+    "stateName": "State", 
+    "regionName":"Region", 
+    "countryName": "Country",
+    "currencyName": "Currency",
+    "languageName":"Language", 
     "address1": "Address",
     "address2": "Address2",
     "mobile": "Mobile",
     "email": "Email",
-    "phone": "Phone",
-    "currency": "Currency",
-    "language": "Language",
-    "responsiblePerson": "Responsible Person"
+    "phone": "Phone",   
+    "responsibleName": "Responsible Person"
   },
   "salesgroup": {
     "title": "Sales Group",
@@ -222,23 +222,23 @@
     "title": "Storage Location",
     "code": "Code",
     "name": "Name",
-    "plant": "Plant"
+    "plantName": "Plant"
   },
   "maintenancearea": {
     "title": "Maintenance Area",
     "code": "Code",
     "name": "Name",
-    "plant": "Plant"
+    "plantName": "Plant"
   },
   "ledger": {
     "title": " Ledger",
-    "code": "code",
+    "code": "Code",
     "description": "Ledger Name",
     "ledgerType": "Ledger Type"
   },
   "openledger": {
     "title": "Open Ledger",
-    "ledgerKey": "Ledger Key",
+    "ledgerName": "Ledger Name",
     "financialYearStartFrom": "Date",
     "financialYearEndTo": "Date",
     "accountingYear": "Accounting Year"
@@ -677,6 +677,24 @@
     "title": "Busieness Transaction Types",
     "code": "Code",
     "description": "Description"
+  },
+  "assetbegningaccumulateddepreciation": {
+    "title": "Asset Begning Accumulated Depreciation",
+    "mainAssetNo": "Main AssetNo",
+    "subAssetNo": "Sub AssetNo",
+    "depreciationArea": "Depreciation Area",
+    "accumulatedDepreciation": "Accumulated Depreciation" 
+                       
+  },
+  "assetbegningacqusition": {
+    "title": "Asset Begning Acqusition",
+    "mainAssetNo": "Main AssetNo",
+    "subAssetNo": "Sub AssetNo",
+    "acquisitionDate": "Acquisition Date",
+    "acquisitionCost": "Acquisition Cost " ,
+    "id": "id"                 
   }
+
+
 
 }

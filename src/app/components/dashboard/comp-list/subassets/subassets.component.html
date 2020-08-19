@@ -11,7 +11,7 @@
 
         <mat-form-field>
           <mat-label [translate]="'subassets.mainAssetNo'"></mat-label>
-          <mat-select formControlName="mainAssetNo" (selectionChange)= "getchartAccount()" appFocusOnEnter tabIndex="1">
+          <mat-select formControlName="mainAssetNo" (selectionChange)= "getchartAccount($event)" appFocusOnEnter tabIndex="1">
             <mat-option *ngFor="let mam of mamList" [value]="mam.assetNumber">
               {{mam.assetNumber}}- {{mam.name}}
             </mat-option>

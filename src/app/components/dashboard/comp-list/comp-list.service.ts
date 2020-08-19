@@ -63,7 +63,9 @@ import{MainAssetMasterComponent} from './mainassetmasters/mainassetmasters.compo
 import{SubAssetsComponent} from './subassets/subassets.component';
 import{AssignGLaccounttoSubGroupComponent} from './assignglaccount/assignglaccount.component';
 import{GLSubAccountComponent} from './glsubaccount/glsubaccount.component';
+import{AssetBegningAcqusitionComponent} from './assetbegningacqusition/assetbegningacqusition.component';
 import{BusienessTransactionTypeComponent} from './businesstransactiontypes/businesstransactiontypes.component';
+import{AssetBegningAccumulatedDepreciationComponent} from './assetbegningaccumulateddepreciation/assetbegningaccumulateddepreciation.component';
 @Injectable({
   providedIn: 'root'
 })
@@ -82,10 +84,18 @@ export class CompListService {
           this.dynamicComp.component = GLSubAccountComponent;
           return this.dynamicComp.component;
           break;
-          case 'businesstransactiontypes':
-          this.dynamicComp.component = BusienessTransactionTypeComponent;
+          case 'assetbegningacqusition':
+          this.dynamicComp.component = AssetBegningAcqusitionComponent;
           return this.dynamicComp.component;
           break;
+          case 'businesstransactiontypes':
+            this.dynamicComp.component = BusienessTransactionTypeComponent;
+            return this.dynamicComp.component;
+            break;
+          case 'assetbegningaccumulateddepreciation':
+            this.dynamicComp.component = AssetBegningAccumulatedDepreciationComponent;
+            return this.dynamicComp.component;
+            break;
       case 'company':
         this.dynamicComp.component = CompanyComponent;
         return this.dynamicComp.component;

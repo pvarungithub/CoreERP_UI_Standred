@@ -151,10 +151,10 @@ export class TableComponent implements OnInit, OnChanges, AfterViewInit, OnDestr
         col.push(obj);
       });
 
-      this.translate.get(this.routeParam).subscribe(res => {
-        let key;
+      // this.translate.get(this.routeParam).subscribe(res => {
+        // let key;
         // tslint:disable-next-line: forin
-        for (key in res) {
+        for (const key in this.runtimeConfigService.tableColumnsData[this.routeParam]) {
           // tslint:disable-next-line: prefer-for-of
           if (this.runtimeConfigService.tableColumnsData[this.routeParam][key] == 'Date') {
             this.formatDate(key)
@@ -165,7 +165,7 @@ export class TableComponent implements OnInit, OnChanges, AfterViewInit, OnDestr
             }
           }
         }
-      });
+      // });
     }
 
 
