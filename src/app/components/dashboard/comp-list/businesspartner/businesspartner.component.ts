@@ -77,7 +77,7 @@ export class BusienessPartnerAccountComponent implements OnInit, OnDestroy {
       controlAccount: [null],
       paymentTerms: [null],
       tdstype: [null],
-      tdstate: [null],
+      tdsrate: [null],
       baseAmount: [null],
       obligationFrom: [null],
       obligationTo: [null],

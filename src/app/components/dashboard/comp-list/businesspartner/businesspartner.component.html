@@ -206,7 +206,7 @@
               <mat-select formControlName="paymentTerms" appFocusOnEnter tabIndex="23">
                 <mat-option>None</mat-option>
                 <mat-option *ngFor="let pterms of ptermsList" [value]="pterms.code">
-                  {{pterms.code}} - {{pterms.code}}
+                  {{pterms.code}} - {{pterms.description}}
                 </mat-option>
               </mat-select>
             </mat-form-field>
@@ -229,8 +229,8 @@
               </mat-select>
             </mat-form-field>
             <mat-form-field>
-              <mat-label>{{'businesspartner.tdstate' | translate }}</mat-label>
-              <mat-select formControlName="tdstate" appFocusOnEnter tabIndex="25">
+              <mat-label>{{'businesspartner.tdsrate' | translate }}</mat-label>
+              <mat-select formControlName="tdsrate" appFocusOnEnter tabIndex="25">
                 <mat-option>None</mat-option>
                 <mat-option *ngFor="let tdsrate of tdsratesList" [value]="tdsrate.code">
                   {{tdsrate.code}} - {{tdsrate.desctiption}}

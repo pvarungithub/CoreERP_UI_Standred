@@ -689,7 +689,7 @@
     "controlAccount": "Control Account",
     "paymentTerms": "Payment Terms",
     "tdstype":  "TDS Type",
-    "tdstate": "TDS State",
+    "tdsrate": "TDS State",
     "baseAmount": "Base Amount",
     "obligationFrom": "Obligation From",
     "obligationTo":  "Obligation To",
@@ -703,8 +703,17 @@
     "contactPersion":  "Contact Persion",
     "contactPersionMobile": "Contact PersionMobile",
     "bpgroup": "BP Group",
-    "narration": "Narration"
-
+    "narration": "Narration",
+    "stateName": "State",
+    "regionName": "Region",
+    "countryName":  "Country",
+    "companyName":  "Company",
+    "bpGroupName": "BP Group",
+    "bpTypeName":"BP Type",
+    "controlAccountName": "Control Account",
+    "paymentTermsName": "Payment Terms",
+    "tdsTypeName":  "TDS Type",
+    "tdsStateName": "TDS State"
   },
   "mainassetmaster": {
     "title": "Main asset Master",
