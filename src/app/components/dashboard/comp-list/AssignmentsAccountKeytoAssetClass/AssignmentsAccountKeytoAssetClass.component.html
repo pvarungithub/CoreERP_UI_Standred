@@ -22,7 +22,7 @@
           <mat-select formControlName="accountKey" appFocusOnEnter tabIndex="3">
             <mat-option>None</mat-option>
             <mat-option *ngFor="let ack of acckeyList" [value]="ack.code">
-              {{ack.code}} - {{ack.acquisitionsGl}}
+              {{ack.code}} - {{ack.description}}
             </mat-option>
           </mat-select>
         </mat-form-field>

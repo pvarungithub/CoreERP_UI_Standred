@@ -52,7 +52,8 @@ export class BusienessPartnerGroupsComponent implements OnInit {
     this.modelFormData = this.formBuilder.group({
       bpgroup: [null, [Validators.required, Validators.minLength(1), Validators.maxLength(4)]],
       description: [null, [Validators.required, Validators.minLength(1), Validators.maxLength(30)]],
-       bptype: [null]
+       bptype: [null],
+       ext1:[null]
     });
 
 

@@ -247,7 +247,7 @@
     "title": "Voucher Type",
     "voucherTypeId": "Voucher Type ID",
     "voucherTypeName": "Voucher Type Name",
-    "voucherClass": "Voucher Class",
+    "voucherClassName": "Voucher Class",
     "printText": "PrintText"    
   },
 "voucherclass": {
@@ -261,15 +261,15 @@
     "voucherSeriesKey": "Voucher Series Key",
     "fromInterval": "From Interval",
     "toInterval": "To Interval",
-    "branch": "Branch",
-    "company": "Company",
-    "plant": "Plant",   
+    "branchName": "Branch",
+    "companyName": "Company",
+    "plantName": "Plant",   
     "suffix": "Suffix",
     "prefix":"Prefix"
   },
   "assignmentofvoucherseriestovouchertype": {
     "title": "Assignment Voucher Series to Voucher Type",   
-    "voucherType": "Voucher Type",
+    "voucherTypeName": "Voucher Type",
     "voucherSeries": "Voucher Series"
   },
   "taxrates": {
@@ -277,7 +277,7 @@
     "taxRateCode": "Code",
     "description": "Description",
     "taxType": "Tax Type",
-    "taxTransaction": "Tax Transaction",
+    "taxTransactionName": "Tax Transaction",
     "taxCondition": "Tax Condition",
     "sgst": "SGST %",
     "cgst": "CGST %",
@@ -290,20 +290,20 @@
     "title": "Tax Transaction",
     "code": "Code",
     "description": "Description",
-    "taxType":"Tax Type"
+    "taxTypeName":"Tax Type"
   },
   "assignmentoftaxaccountstotaxcodes": {
     "title": "Assignment of Taxaccounts to Taxcodes",
     "code": "Code",
-    "sgstgl": "SGST GL",
-    "cgstgl": "CGST GL",
-    "igstgl": "IGST GL",
-    "ugstgl": "UGST GL",
-    "company": "Company",
-    "branch": "Branch",
-    "plant": "Plant",
+    "sgstName": "SGST GL",
+    "cgstName": "CGST GL",
+    "igstName": "IGST GL",
+    "ugstName": "UGST GL",
+    "companyName": "Company",
+    "branchName": "Branch",
+    "plantName": "Plant",
     "compositeAccount" :"Composite GL",
-    "chartofAccount":"ChartofAccount"
+    "chartAccountName":"ChartofAccount"
   },
   "taxtypes": {
     "title": "Tax Types",
@@ -333,8 +333,8 @@
     "title": "TDS Rates",
     "code": "Code",
     "desctiption": "Description",
-    "tdstype": "Tdstype",
-    "incomeType": "Income Type",
+    "tdsTypeName": "Tdstype",
+    "incomeTypeName": "Income Type",
     "tdsRate":"Tds Rate",
     "baseAmount":"Base Amount %" , 
     "status": "Status",
@@ -342,12 +342,12 @@
   },
   "posting": {
     "title": "Posting", 
-    "chartofAccount":"ChartofAccount", 
-    "tdsrate": "TDS Rate",    
-    "company": "Company",
-    "branch": "Branch",
-    "plant": "Plant" ,
-    "glaccount": "GL Account"
+    "chartAccountName":"ChartofAccount", 
+    "tdsRatetName": "TDS Rate",    
+    "companyName": "Company",
+    "branchName": "Branch",
+    "plantName": "Plant" ,
+    "glAccountName": "GL Account"
   },
   "accountgroup": {
     "title": "Accounts Group",
@@ -363,7 +363,7 @@
     "structureKey":"Structure Key",
     "accountGroupName": "Account Group Name",
     "nature": "Group",
-    "groupUnder": "Under Account",
+    "underAccountName": "Under Account",
     "Undersubaccount":"Under Sub Account",
     "narration": "Narration"
   },
@@ -380,17 +380,17 @@
     "bankName": "BankName",
     "accountType": "AccountType",
     "branchNumber": "BranchNumber",
-    "accountNumber": "AccountNumber",
-    "currency":  "Currency",
+    "accountNumber": "AccountNumber",    
     "ifsccode": "Ifsccode",
     "swiftkey":  "Swiftkey",
     "address":  "Address",
     "address1":  "Address1",
     "place":  "Place",
     "city": "City",
-    "state": "State",
-    "region": "Region",
-    "country": "Country",
+    "stateName": "State",
+    "regionName": "Region",
+    "countryName": "Country",
+    "currencyName":  "Currency",
     "phone": "Phone",
     "contactPersion": "ContactPersion",
     "bankLimits":  "BankLimits"
@@ -398,8 +398,8 @@
   },
   "AssignmentAssetClasstoAssetBlock": {
     "title": "Assignment AssetClass to AssetBlock",
-    "assetClass": "Asset Class",
-    "assetBlock": "Asset Block"
+    "assetClassName": "Asset Class",
+    "assetBlockName": "Asset Block"
   },
   "assettransactiontypes": {
     "title": "Asset Transaction Types",
@@ -410,21 +410,21 @@
     "title": "Account Key",
     "code": "Code",
     "description":"Description",
-    "acquisitionsGl": "Acquisitions GL",
-    "accumulatedGl": "Accumulated GL",
-    "depreciationGl": "Depreciation GL",
-    "salesRevenueGl": "Sales Revenue GL",
-    "lossOnSaleGl": "Loss on Sale GL",
-    "gainOnSaleGl": "Gain on Sale GL",
-    "scrappingGl": "Scrapping GL",
-    "auggl": "AUC GL",
-    "companyCode": "Company Code",
-    "chartofAccount": "Chart of Account"
+    "acquisationName": "Acquisitions GL",
+    "accumulatedName": "Accumulated GL",
+    "depreciationGLName": "Depreciation GL",
+    "salesRevenueName": "Sales Revenue GL",
+    "lossonSalesName": "Loss on Sale GL",
+    "gainonSalesName": "Gain on Sale GL",
+    "scrapGLName": "Scrapping GL",
+    "aucName": "AUC GL",
+    "companyName": "Company Code",
+    "chartAccountName": "Chart of Account"
   },
   "AssignmentsAccountKeytoAssetClass": {
     "title": "AssiAssignments AccountKey to AssetClass",
-    "assetClass": "Asset Class",
-    "accountKey": "Account Key"
+    "assetClassName": "Asset Class",
+    "accountKeyName": "Account Key"
   },
   "accountchart": {
     "title": "Account chart",
@@ -442,7 +442,8 @@
     "title": "Busieness Partner Group",
     "bpgroup": "Code",
     "description": "Description",
-    "bptype": "BP Type"
+    "partnerTypeName": "BP Type",
+    "ext1":"Current Number"
   },
   "numberrange": {
     "title": "Number Range",
@@ -453,21 +454,21 @@
   },
   "assignment": {
     "title": "Assignment",
-    "bpgroup": "BP Group",
+    "bpGroupName": "BP Group",
     "numberRangeKey": "Number Range Key"
   },
   "AssignmentChartAccounttoCompany": {
     "title": "Assignment ChartAccount to Company",
-    "company":"Company",
-    "operationCoa": "Operation COA",
-    "groupCoa": "Group COA"
+    "companyName":"Company",
+    "ochartAccountName": "Operation COA",
+    "gchartAccountName": "Group COA"
   },
   "AlternateControlAccount": {
     "title": "Alternate Control Account",
-    "normalControlAccount": " Normal Control Account",
-    "alternativeControlAccount": "Alternative Control Account",
-    "chartofAccount": "ChartofAccount",
-    "company": "Company"
+    "ncName": " Normal Control Account",
+    "acName": "Alternative Control Account",
+    "chartAccountName": "ChartofAccount",
+    "companyName": "Company"
   },
   "Depreciationareas": {
     "title": "Depreciation Areas",
@@ -489,7 +490,7 @@
     "title": "AssetBlock",
     "code": "Code",
     "description": "Description",
-    "depreciationKey":"Depreciation Key"
+    "depreciationName":"Depreciation Key"
   },
   "paymentterms": {
     "title": "Payment Terms",
@@ -641,35 +642,32 @@
   },
  "glaccount": {
     "title": "GL Account",
-    "chartAccount": "Chart Account",
-    "accGroup": "Account Group",
-    "glaccountName":"Gl Account Name",
+    "chartAccountName": "Chart Account",
+    "companyName":  "Company",
+    "accGroupName": "Account Group",
     "accountNumber":  "Account Number",
-    "company":  "Company",
-    "consolidatedAccount": "Consolidated Account",
-    "currency":  "Currency",
+    "glaccountName":"Gl Account Name",
+    "currencyName":  "Currency",
     "taxCategory": "Category",
-    "controlAccount":"Control Account",
-    "clearingAccount":  "Clearing Account",
-    "noPostingAllowed": "No Posting Allowed",
-    "relevantCashFlow":"Relevant Cash Flow",
-    "bankKey":  "Bank Key",
+    "bankName":  "Bank Key",
     "legacyGl":"Legacy GL",
-    "subgroup":"Sub Group",
     "costElementCategory":"Cost Element Category",
-    "groupUnder":"Group Under"
-    
+    "controlAccount":"Control Account",
+    "consolidatedAccount": "Consolidated Account",
+    "noPostingAllowed": "No Posting Allowed",   
+    "clearingAccount":  "Clearing Account",   
+    "relevantCashFlow":"Relevant Cash Flow"    
   },
   "assignglaccount": {
     "title": "Assign GLaccount To SubGroup",
     "toGl": "Structure Key",  
     "glgroup": "GL Group",
-    "subAccount": "Sub Account",
-    "fromGl": "GL Account"          
+    "underAccountName": "Sub Account",
+    "glAccountName": "GL Account"          
   },
   "glsubaccount": {
     "title": "GL subaccount",
-    "glaccount": "GLAccount",
+    "accGroupName": "GLAccount",
     "glsubCode": "GL SubCode",
     "glsubName": "GL SubName"                 
   },

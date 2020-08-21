@@ -30,6 +30,9 @@ export class ApiConfigService {
  updateBusienessPartnerAccount = `${this.environment.runtimeConfig.serverUrl}BusienessPartnerAccount/UpdateBusienessPartnerAccount`;
  deleteBusienessPartnerAccount = `${this.environment.runtimeConfig.serverUrl}BusienessPartnerAccount/DeleteBusienessPartnerAccount`;
  getPaymentTermsList = `${this.environment.runtimeConfig.serverUrl}PaymentTerms/GetPaymentTermsList`;
+ getbpNumbers= `${this.environment.runtimeConfig.serverUrl}BusienessPartnerAccount/GetBPtNumberList`;
+ getttingbpNumbers=`${this.environment.runtimeConfig.serverUrl}BusienessPartnerAccount/GetBPtNumber`;
+ getttingbpNames=`${this.environment.runtimeConfig.serverUrl}BusienessPartnerAccount/GetBPtName`;
    
  // MainAssetMaster
     getMainAssetMasterList= `${this.environment.runtimeConfig.serverUrl}MainAssetMaster/GetMainAssetMasterList`;
@@ -374,11 +377,23 @@ updateAccountKey = `${this.environment.runtimeConfig.serverUrl}AccountKey/Update
  deleteAccountKey = `${this.environment.runtimeConfig.serverUrl}AccountKey/DeleteAccountKey`;
 
   //subasset
-  getSubAssetsList= `${this.environment.runtimeConfig.serverUrl}SubAssetsList/GetSubAssetsListList`;
-  registerSubAssetsList= `${this.environment.runtimeConfig.serverUrl}SubAssetsList/RegisterSubAssetsList`;
-  updateSubAssetsList= `${this.environment.runtimeConfig.serverUrl}SubAssetsList/UpdateSubAssetsList`;
-   deleteSubAssetsList = `${this.environment.runtimeConfig.serverUrl}SubAssetsList/DeleteSubAssetsList`;
+  getSubAssetsList= `${this.environment.runtimeConfig.serverUrl}SubAssets/GetSubAssetsList`;
+  registerSubAssetsList= `${this.environment.runtimeConfig.serverUrl}SubAssets/RegisterSubAssetsList`;
+  updateSubAssetsList= `${this.environment.runtimeConfig.serverUrl}SubAssets/UpdateSubAssetsList`;
+   deleteSubAssetsList = `${this.environment.runtimeConfig.serverUrl}SubAssets/DeleteSubAssetsList`;
    GetListsforMainAsset = `${this.environment.runtimeConfig.serverUrl}SubAssets/GetMainAsset`;
+     //assetbegningaccumulateddepreciation
+  getAssetBegningAccumulatedDepreciationList= `${this.environment.runtimeConfig.serverUrl}AssetBegningAccumulatedDepreciation/GetAssetBegningAccumulatedDepreciationList`;
+  registerAssetBegningAccumulatedDepreciation= `${this.environment.runtimeConfig.serverUrl}AssetBegningAccumulatedDepreciation/RegisterAssetBegningAccumulatedDepreciation`;
+  updateAssetBegningAccumulatedDepreciation= `${this.environment.runtimeConfig.serverUrl}AssetBegningAccumulatedDepreciation/UpdateAssetBegningAccumulatedDepreciation`;
+   deleteAssetBegningAccumulatedDepreciation = `${this.environment.runtimeConfig.serverUrl}AssetBegningAccumulatedDepreciation/DeleteAssetBegningAccumulatedDepreciation`;
+
+    //assetbegningacqusition
+  getAssetBegningAcqusitionList= `${this.environment.runtimeConfig.serverUrl}AssetBegningAcqusition/GetAssetBegningAcqusitionList`;
+  registerAssetBegningAcqusition= `${this.environment.runtimeConfig.serverUrl}AssetBegningAcqusition/RegisterAssetBegningAcqusition`;
+  updateAssetBegningAcqusition= `${this.environment.runtimeConfig.serverUrl}AssetBegningAcqusition/UpdateAssetBegningAcqusition`;
+   deleteAssetBegningAcqusition= `${this.environment.runtimeConfig.serverUrl}AssetBegningAcqusition/DeleteAssetBegningAcqusition`;
+
    //bankmaster
 getBankMasterList= `${this.environment.runtimeConfig.serverUrl}BankMaster/GetBankMasterList`;
 registerBankMaster= `${this.environment.runtimeConfig.serverUrl}BankMaster/RegisterBankMaster`;
@@ -413,21 +428,7 @@ getBusienessTransactionTypeList = `${this.environment.runtimeConfig.serverUrl}Bu
 registerBusienessTransactionType = `${this.environment.runtimeConfig.serverUrl}BusienessTransactionType/RegisterBusienessTransactionType`;
 updateBusienessTransactionType = `${this.environment.runtimeConfig.serverUrl}BusienessTransactionType/UpdateBusienessTransactionType`;
 deleteBusienessTransactionType = `${this.environment.runtimeConfig.serverUrl}BusienessTransactionType/DeleteBusienessTransactionType`;
-
-//assetbegningaccumulateddepreciation
-getAssetBegningAccumulatedDepreciationList= `${this.environment.runtimeConfig.serverUrl}AssetBegningAccumulatedDepreciation/GetAssetBegningAccumulatedDepreciationList`;
-registerAssetBegningAccumulatedDepreciation= `${this.environment.runtimeConfig.serverUrl}AssetBegningAccumulatedDepreciation/RegisterAssetBegningAccumulatedDepreciation`;
-updateAssetBegningAccumulatedDepreciation= `${this.environment.runtimeConfig.serverUrl}AssetBegningAccumulatedDepreciation/UpdateAssetBegningAccumulatedDepreciation`;
- deleteAssetBegningAccumulatedDepreciation = `${this.environment.runtimeConfig.serverUrl}AssetBegningAccumulatedDepreciation/DeleteAssetBegningAccumulatedDepreciation`;
-
-  //assetbegningacqusition
-getAssetBegningAcqusitionList= `${this.environment.runtimeConfig.serverUrl}AssetBegningAcqusition/GetAssetBegningAcqusitionList`;
-registerAssetBegningAcqusition= `${this.environment.runtimeConfig.serverUrl}AssetBegningAcqusition/RegisterAssetBegningAcqusition`;
-updateAssetBegningAcqusition= `${this.environment.runtimeConfig.serverUrl}AssetBegningAcqusition/UpdateAssetBegningAcqusition`;
- deleteAssetBegningAcqusition= `${this.environment.runtimeConfig.serverUrl}AssetBegningAcqusition/DeleteAssetBegningAcqusition`;
-
-
-// ******************************** sales *********************************
+ // ******************************** sales *********************************
    getInvoiceList = `${this.environment.runtimeConfig.serverUrl}sales/Billing/GetInvoiceList`;
    getCashPartyAccountList = `${this.environment.runtimeConfig.serverUrl}sales/Billing/GetCashPartyAccountList`;
    getBillingBranchesList = `${this.environment.runtimeConfig.serverUrl}sales/Billing/GetBranchesList`;

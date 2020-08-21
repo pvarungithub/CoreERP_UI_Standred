@@ -39,6 +39,8 @@ export class BusienessPartnerAccountComponent implements OnInit, OnDestroy {
       { value: 'Registered', viewValue: 'Registered' },
       { value: 'UnRegistered', viewValue: 'UnRegistered' }
     ];
+  bpaNum: any;
+  bpname: any;
 
   constructor(
     private apiService: ApiService,
@@ -122,7 +124,8 @@ export class BusienessPartnerAccountComponent implements OnInit, OnDestroy {
   }
 
   onChange(event: any) {
-    const getAccountSubGrouplist = String.Join('/', this.apiConfigService.getAssetNumbers,
+    
+    const getAccountSubGrouplist = String.Join('/', this.apiConfigService.getbpNumbers,
       this.modelFormData.get('bpgroup').value, this.modelFormData.get('bpnumber').value);
     this.apiService.apiGetRequest(getAccountSubGrouplist)
       .subscribe(
@@ -134,7 +137,51 @@ export class BusienessPartnerAccountComponent implements OnInit, OnDestroy {
           }
           this.spinner.hide();
         });
+        
   };
+  gettingbpgroupname()
+  {
+    const getAccountSubGrouplist = String.Join('/', this.apiConfigService.getttingbpNames,
+    this.modelFormData.get('bpgroup').value);
+  this.apiService.apiGetRequest(getAccountSubGrouplist)
+    .subscribe(
+      response => {
+        const res = response.body;
+        if (!isNullOrUndefined(res) && res.status === StatusCodes.pass) {
+          if (!isNullOrUndefined(res.response)) 
+          {
+            this.bpname = res.response['bpname'];
+            this.modelFormData.patchValue({
+              ext:this.bpname 
+            });
+          }
+        }
+        this.spinner.hide();
+      });
+  }
+  getBPNumberData()
+ {
+  this.gettingbpgroupname();
+  const getAccountSubGrouplist = String.Join('/', this.apiConfigService.getttingbpNumbers,
+  this.modelFormData.get('bpgroup').value);
+this.apiService.apiGetRequest(getAccountSubGrouplist)
+  .subscribe(
+    response => {
+      const res = response.body;
+      if (!isNullOrUndefined(res) && res.status === StatusCodes.pass) {
+        if (!isNullOrUndefined(res.response)) 
+        {
+
+          this.bpaNum = res.response['bpaNum'];
+          this.modelFormData.patchValue({
+            bpnumber:this.bpaNum 
+          });
+        }
+      }
+      this.spinner.hide();
+    });
+  }
+
 
   getGLAccountData() {
     const getGLAccountUrl = String.Join('/', this.apiConfigService.getGLAccountList);

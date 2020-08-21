@@ -42,8 +42,8 @@ export class TdsRatesComponent implements OnInit {
     @Optional() @Inject(MAT_DIALOG_DATA) public data: any) {
 
     this.modelFormData = this.formBuilder.group({
-      code: [null, [Validators.required, Validators.minLength(1), Validators.maxLength(4)]],
-      desctiption: [null, [Validators.required, Validators.minLength(1), Validators.maxLength(30)]],
+      code: [null, [Validators.required, Validators.minLength(1), Validators.maxLength(10)]],
+      desctiption: [null, [Validators.required, Validators.minLength(1), Validators.maxLength(50)]],
       tdstype: [null],
       incomeType: [null],
       status: [null],
