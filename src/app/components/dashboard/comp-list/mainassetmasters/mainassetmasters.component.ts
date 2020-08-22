@@ -23,7 +23,8 @@ interface depreciationData {
 export class MainAssetMasterComponent implements OnInit {
 
   modelFormData: FormGroup;
-  isSubmitted  =  false;
+  tableFormData: FormGroup;
+  isSubmitted = false;
   formData: any;
   assetList: any;
   plantList: any;
@@ -32,16 +33,17 @@ export class MainAssetMasterComponent implements OnInit {
   branchesList: any;
   profitCenterList: any;
   acckeyList: any;
-  locationList:any;
-  dpareaList:any;
-  dpList:any;
-  companyList:any;
+  locationList: any;
+  dpareaList: any;
+  dpList: any;
+  companyList: any;
   depreciationDatas: depreciationData[] =
-  [
-    { value: 'Multiple ', viewValue: 'Multiple ' },
-    { value: 'assignment ', viewValue: 'assignment ' },
-    { value: 'required', viewValue: 'required' }   
-  ];
+    [
+      { value: 'Multiple ', viewValue: 'Multiple ' },
+      { value: 'assignment ', viewValue: 'assignment ' },
+      { value: 'required', viewValue: 'required' }
+    ];
+  assetNum: any;
   constructor(
     private apiService: ApiService,
     private addOrEditService: AddOrEditService,
@@ -50,7 +52,7 @@ export class MainAssetMasterComponent implements OnInit {
     private formBuilder: FormBuilder,
     private router: Router,
     private activatedRoute: ActivatedRoute
-    ) {
+  ) {
 
     this.modelFormData = this.formBuilder.group({
       assetNumber: [null, [Validators.required, Validators.minLength(1), Validators.maxLength(7)]],
@@ -76,14 +78,21 @@ export class MainAssetMasterComponent implements OnInit {
       depreciationCode: [null],
       depreciationStartDate: [null],
       assetclass: [null],
-      company: [null]
-      });
+      company: [null],
+      code: [null],
+      description: [null],
+      numberRange: [null],
+      classType: [null],
+      lowValueAssetClass: [null],
+      assetLowValue: [null],
+      nature: [null]
+    });
 
-      this.formData = {...this.addOrEditService.editData};
-      if (!isNullOrUndefined(this.formData.item)) {
-        this.modelFormData.patchValue(this.formData.item);
-       this.modelFormData.controls['assetNumber'].disable();
-      }
+    this.formData = { ...this.addOrEditService.editData };
+    if (!isNullOrUndefined(this.formData.item)) {
+      this.modelFormData.patchValue(this.formData.item);
+      this.modelFormData.controls['assetNumber'].disable();
+    }
 
   }
 
@@ -95,72 +104,104 @@ export class MainAssetMasterComponent implements OnInit {
     this.getprofitCenterList();
     this.getdivisionList();
     this.getplantList();
-    this.getLocationList() ;
+    this.getLocationList();
     this.getdepreciationCodeTableData();
     this.getdepreciationAreaTableData();
     this.getTableData();
     this.getassetTableData();
   }
 
-  getchartAccount()
-  {
+
+
+  getchartAccount() {
     this.modelFormData.patchValue({
       //assetNumber:(this.modelFormData.get('assetclass').value)
     });
   }
   onChange(event: any) {
-    const getAccountSubGrouplist = String.Join('/', this.apiConfigService.getAssetnumber ,
-    this.modelFormData.get('assetclass').value,this.modelFormData.get('assetNumber').value);
-  this.apiService.apiGetRequest(getAccountSubGrouplist)
-    .subscribe(
-      response => {
-        const res = response.body;
-        if (!isNullOrUndefined(res) && res.status === StatusCodes.pass) {
-          if (!isNullOrUndefined(res.response)) {
-            console.log(res);
-            //this.glAccNameList = res.response['GLAccSubGroupList'];
+    const getAccountSubGrouplist = String.Join('/', this.apiConfigService.getAssetnumber,
+      this.modelFormData.get('assetclass').value, this.modelFormData.get('assetNumber').value);
+    this.apiService.apiGetRequest(getAccountSubGrouplist)
+      .subscribe(
+        response => {
+          const res = response.body;
+          if (!isNullOrUndefined(res) && res.status === StatusCodes.pass) {
+            if (!isNullOrUndefined(res.response)) {
+              console.log(res);
+              //this.glAccNameList = res.response['GLAccSubGroupList'];
+            }
           }
-        }
-        this.spinner.hide();
-      });
- };
+          this.spinner.hide();
+        });
+  };
 
-  //Newcode
-  onChangeEvent() {
-    debugger;
-  
+  getassetNumberData() {
+    this.gettingaseetname();
+    const getAccountSubGrouplist = String.Join('/', this.apiConfigService.getasetnos,
+      this.modelFormData.get('assetclass').value);
+    this.apiService.apiGetRequest(getAccountSubGrouplist)
+      .subscribe(
+        response => {
+          const res = response.body;
+          if (!isNullOrUndefined(res) && res.status === StatusCodes.pass) {
+            if (!isNullOrUndefined(res.response)) {
+
+              this.assetNum = res.response['astnum'];
+              this.modelFormData.patchValue({
+                assetNumber: this.assetNum
+              });
+            }
+          }
+          this.spinner.hide();
+        });
   }
 
 
+  gettingaseetname() {
+    debugger;
+    const getAccountSubGrouplist = String.Join('/', this.apiConfigService.getttinasNames,
+      this.modelFormData.get('assetclass').value);
+    this.apiService.apiGetRequest(getAccountSubGrouplist)
+      .subscribe(
+        response => {
+          const res = response.body;
+          if (!isNullOrUndefined(res) && res.status === StatusCodes.pass) {
+            if (!isNullOrUndefined(res.response)) {
+              this.modelFormData.patchValue(res.response['assetname']);
+            }
+          }
+          this.spinner.hide();
+        });
+  }
   getTableData() {
     const getCompanyUrl = String.Join('/', this.apiConfigService.getCompanysList);
     this.apiService.apiGetRequest(getCompanyUrl)
       .subscribe(
         response => {
-        const res = response.body;
-        if (!isNullOrUndefined(res) && res.status === StatusCodes.pass) {
-          if (!isNullOrUndefined(res.response)) {
-            console.log(res);
-            this.companyList = res.response['companiesList'];
+          const res = response.body;
+          if (!isNullOrUndefined(res) && res.status === StatusCodes.pass) {
+            if (!isNullOrUndefined(res.response)) {
+              console.log(res);
+              this.companyList = res.response['companiesList'];
+            }
           }
-        }
           this.spinner.hide();
-      });
+        });
   }
   getassetTableData() {
     const getassetyUrl = String.Join('/', this.apiConfigService.getAssetClassList);
     this.apiService.apiGetRequest(getassetyUrl)
       .subscribe(
         response => {
-        const res = response.body;
-        if (!isNullOrUndefined(res) && res.status === StatusCodes.pass) {
-          if (!isNullOrUndefined(res.response)) {
-            console.log(res);
-            this.assetList = res.response['assetList'];
+          const res = response.body;
+          if (!isNullOrUndefined(res) && res.status === StatusCodes.pass) {
+            if (!isNullOrUndefined(res.response)) {
+              console.log(res);
+              this.assetList = res.response['assetList'];
+            }
           }
-        }
           this.spinner.hide();
-      });
+        });
   }
 
   getassetclassTableData() {
@@ -168,15 +209,15 @@ export class MainAssetMasterComponent implements OnInit {
     this.apiService.apiGetRequest(getCompanyUrl)
       .subscribe(
         response => {
-        const res = response.body;
-        if (!isNullOrUndefined(res) && res.status === StatusCodes.pass) {
-          if (!isNullOrUndefined(res.response)) {
-            console.log(res);
-            this.assetList = res.response['assetList'];
+          const res = response.body;
+          if (!isNullOrUndefined(res) && res.status === StatusCodes.pass) {
+            if (!isNullOrUndefined(res.response)) {
+              console.log(res);
+              this.assetList = res.response['assetList'];
+            }
           }
-        }
           this.spinner.hide();
-      });
+        });
   }
 
   getdepreciationCodeTableData() {
@@ -184,15 +225,15 @@ export class MainAssetMasterComponent implements OnInit {
     this.apiService.apiGetRequest(getdepreciationCodeUrl)
       .subscribe(
         response => {
-        const res = response.body;
-        if (!isNullOrUndefined(res) && res.status === StatusCodes.pass) {
-          if (!isNullOrUndefined(res.response)) {
-            console.log(res);
-            this.dpList = res.response['dpList'];
+          const res = response.body;
+          if (!isNullOrUndefined(res) && res.status === StatusCodes.pass) {
+            if (!isNullOrUndefined(res.response)) {
+              console.log(res);
+              this.dpList = res.response['dpList'];
+            }
           }
-        }
           this.spinner.hide();
-      });
+        });
   }
 
   getdepreciationAreaTableData() {
@@ -200,15 +241,15 @@ export class MainAssetMasterComponent implements OnInit {
     this.apiService.apiGetRequest(getdepreciationAreaUrl)
       .subscribe(
         response => {
-        const res = response.body;
-        if (!isNullOrUndefined(res) && res.status === StatusCodes.pass) {
-          if (!isNullOrUndefined(res.response)) {
-            console.log(res);
-            this.dpareaList = res.response['dpareaList'];
+          const res = response.body;
+          if (!isNullOrUndefined(res) && res.status === StatusCodes.pass) {
+            if (!isNullOrUndefined(res.response)) {
+              console.log(res);
+              this.dpareaList = res.response['dpareaList'];
+            }
           }
-        }
           this.spinner.hide();
-      });
+        });
   }
   getaccountkeyList() {
     const getackeyList = String.Join('/', this.apiConfigService.getAccountKeyList);
@@ -323,6 +364,7 @@ export class MainAssetMasterComponent implements OnInit {
     if (this.modelFormData.invalid) {
       return;
     }
+
     this.modelFormData.controls['assetNumber'].enable();
     this.formData.item = this.modelFormData.value;
     this.addOrEditService[this.formData.action](this.formData, (res) => {

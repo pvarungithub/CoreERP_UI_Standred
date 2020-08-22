@@ -61,7 +61,8 @@ export class AssetClassComponent implements OnInit {
       classType: [null],
       lowValueAssetClass: [null],
       assetLowValue: [null],
-      nature: [null]
+      nature: [null],
+      lastNumberRange:[null]
     });
 
 

@@ -6,6 +6,7 @@ import { isNullOrUndefined } from 'util';
 import { StatusCodes, SnackBar } from '../../../enums/common/common';
 import { AlertService } from '../../../services/alert.service';
 import { NgxSpinnerService } from 'ngx-spinner';
+import { BehaviorSubject } from 'rxjs';
 
 @Injectable({
   providedIn: 'root'
@@ -15,12 +16,18 @@ export class AddOrEditService {
   tableParameters: any;
   editData: any;
 
+  public emitDynTableData = new BehaviorSubject<any>(null);
+
   constructor(
     private environment: RuntimeConfigService,
     private apiService: ApiService,
     private alertService: AlertService,
     private spinner: NgxSpinnerService
   ) { }
+
+  sendDynTableData(data) {
+    this.emitDynTableData.next(data);
+  }
 
   Add(result, callBack) {
     const addCompanyUrl = String.Join('', this.environment.runtimeConfig.serverUrl, this.tableParameters.registerUrl);

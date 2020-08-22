@@ -23,7 +23,7 @@
   
           <mat-form-field>
             <mat-label [translate]="'mainassetmaster.assetclass'"></mat-label>
-            <mat-select formControlName="assetclass" (selectionChange)= "getchartAccount()"  appFocusOnEnter tabIndex="2">
+            <mat-select formControlName="assetclass" (selectionChange)= "getassetNumberData()"   appFocusOnEnter tabIndex="2">
               <mat-option *ngFor="let asset of assetList" [value]="asset.code">
                 {{asset.code}} - {{asset.description}}
               </mat-option>
@@ -57,7 +57,7 @@
             <mat-label [translate]="'mainassetmaster.accountKey'"></mat-label>
             <mat-select formControlName="accountKey" appFocusOnEnter tabIndex="6">
               <mat-option *ngFor="let ackey of acckeyList" [value]="ackey.code">
-                {{ackey.code}}- {{ackey.code}}
+                {{ackey.code}}- {{ackey.description}}
               </mat-option>
             </mat-select>
           </mat-form-field>  
