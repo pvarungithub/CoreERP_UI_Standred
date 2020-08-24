@@ -1,6 +1,6 @@
 <div class="position-relative popup-class">
   <mat-card-title class="boader--color d-flex justify-content-between position-absolute w-100">
-    <span>  {{'AssignmentChartAccounttoCompany.title' | translate }} </span>
+    <span> {{'AssignmentChartAccounttoCompany.title' | translate }} </span>
     <mat-icon class="p-2 cursor--pointer" (click)="cancel()">close</mat-icon>
   </mat-card-title>
 
@@ -8,13 +8,13 @@
     <form [formGroup]="modelFormData" autocomplete="off">
 
       <div class="d--flex">
-        
+
         <mat-form-field>
           <mat-label>{{'AssignmentChartAccounttoCompany.company' | translate }}</mat-label>
           <mat-select formControlName="company" appFocusOnEnter tabIndex="1">
             <mat-option>None</mat-option>
-            <mat-option *ngFor="let comp of companyList" [value]="comp.companyCode">
-              {{comp.companyCode}} - {{comp.companyName}}
+            <mat-option *ngFor="let comp of companyList" [value]="comp.id">
+              {{comp.text}}
             </mat-option>
           </mat-select>
         </mat-form-field>
@@ -24,20 +24,21 @@
           <mat-select formControlName="operationCoa" appFocusOnEnter tabIndex="2">
             <mat-option>None</mat-option>
             <mat-option *ngFor="let coa of operationCoaList" [value]="coa.code">
-              {{coa.code}}- {{coa.desctiption}}
+              {{coa.desctiption}}
             </mat-option>
           </mat-select>
-        </mat-form-field>    
+        </mat-form-field>
+
         <mat-form-field>
           <mat-label [translate]="'AssignmentChartAccounttoCompany.groupCoa'"></mat-label>
           <mat-select formControlName="groupCoa" appFocusOnEnter tabIndex="3">
             <mat-option>None</mat-option>
             <mat-option *ngFor="let coa of groupCoaList" [value]="coa.code">
-              {{coa.code}}- {{coa.desctiption}}
+              {{coa.desctiption}}
             </mat-option>
           </mat-select>
-        </mat-form-field>    
-        
+        </mat-form-field>
+
       </div>
       <mat-divider></mat-divider>
 

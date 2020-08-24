@@ -15,7 +15,6 @@ import { String } from 'typescript-string-operations';
   styleUrls: ['./assignmentoftaxaccountstotaxcodes.component.scss']
 })
 export class AssignmentoftaxaccountstotaxcodesComponent implements OnInit {
-
   modelFormData: FormGroup;
   formData: any;
   compList: any;
@@ -49,13 +48,11 @@ export class AssignmentoftaxaccountstotaxcodesComponent implements OnInit {
       chartofAccount: [null]
     });
 
-
     this.formData = { ...data };
     if (!isNullOrUndefined(this.formData.item)) {
       this.modelFormData.patchValue(this.formData.item);
       this.modelFormData.controls['code'].disable();
     }
-
   }
 
   ngOnInit() {
@@ -83,7 +80,7 @@ export class AssignmentoftaxaccountstotaxcodesComponent implements OnInit {
   }
 
   GetTaxRateList() {
-    const gettaxtransactinlist = String.Join('/', this.apiConfigService.gettaxratesList);
+    const gettaxtransactinlist = String.Join('/', this.apiConfigService.gettaxrateList);
     this.apiService.apiGetRequest(gettaxtransactinlist)
       .subscribe(
         response => {
@@ -97,6 +94,7 @@ export class AssignmentoftaxaccountstotaxcodesComponent implements OnInit {
           this.spinner.hide();
         });
   }
+
   getcompaniesList() {
     const getcompanyList = String.Join('/', this.apiConfigService.getCompanyList);
     this.apiService.apiGetRequest(getcompanyList)
@@ -106,7 +104,7 @@ export class AssignmentoftaxaccountstotaxcodesComponent implements OnInit {
           if (!isNullOrUndefined(res) && res.status === StatusCodes.pass) {
             if (!isNullOrUndefined(res.response)) {
               console.log(res);
-              this.compList = res.response['CompaniesList'];
+              this.compList = res.response['companiesList'];
             }
           }
           this.spinner.hide();
@@ -121,7 +119,7 @@ export class AssignmentoftaxaccountstotaxcodesComponent implements OnInit {
           const res = response.body;
           if (!isNullOrUndefined(res) && res.status === StatusCodes.pass) {
             if (!isNullOrUndefined(res.response)) {
-              this.branchList = res.response['branchesList'];
+              this.branchList = res.response['branchsList'];
             }
           }
           this.spinner.hide();
@@ -129,7 +127,7 @@ export class AssignmentoftaxaccountstotaxcodesComponent implements OnInit {
   }
 
   getplantsList() {
-    const getplantsList = String.Join('/', this.apiConfigService.getplantList);
+    const getplantsList = String.Join('/', this.apiConfigService.getPlantsList);
     this.apiService.apiGetRequest(getplantsList)
       .subscribe(
         response => {
@@ -137,7 +135,7 @@ export class AssignmentoftaxaccountstotaxcodesComponent implements OnInit {
           if (!isNullOrUndefined(res) && res.status === StatusCodes.pass) {
             if (!isNullOrUndefined(res.response)) {
               console.log(res);
-              this.plantList = res.response['plantList'];
+              this.plantList = res.response['plantsList'];
             }
           }
           this.spinner.hide();
@@ -159,7 +157,6 @@ export class AssignmentoftaxaccountstotaxcodesComponent implements OnInit {
         });
   }
   get formControls() { return this.modelFormData.controls; }
-
 
   save() {
     //debugger;

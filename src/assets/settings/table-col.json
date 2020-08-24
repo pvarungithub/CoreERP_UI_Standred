@@ -376,13 +376,13 @@
   },
   "bankmaster": {
     "title": "Bank Master",
-    "bankCode": "BankCode",
-    "bankName": "BankName",
-    "accountType": "AccountType",
-    "branchNumber": "BranchNumber",
-    "accountNumber": "AccountNumber",    
-    "ifsccode": "Ifsccode",
-    "swiftkey":  "Swiftkey",
+    "bankCode": "Bank Code",
+    "bankName": "Bank Name",
+    "accountType": "Account Type",
+    "branchNumber": "Branch Number",
+    "accountNumber": "Account Number",    
+    "ifsccode": "Ifsc Code",
+    "swiftkey":  "Swift Key",
     "address":  "Address",
     "address1":  "Address1",
     "place":  "Place",
@@ -392,8 +392,8 @@
     "countryName": "Country",
     "currencyName":  "Currency",
     "phone": "Phone",
-    "contactPersion": "ContactPersion",
-    "bankLimits":  "BankLimits"
+    "contactPersion": "Contact Persion",
+    "bankLimits":  "Bank Limits"
 
   },
   "AssignmentAssetClasstoAssetBlock": {

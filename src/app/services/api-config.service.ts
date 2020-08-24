@@ -34,6 +34,9 @@ export class ApiConfigService {
    getBranchList = `${this.environment.runtimeConfig.serverUrl}Common/GetBranchList`;
    getVoucherTypesList = `${this.environment.runtimeConfig.serverUrl}Common/GetVoucherTypesList`;
    getvochersseriesList = `${this.environment.runtimeConfig.serverUrl}Common/GetVouchersSeriesList`;
+   getTaxTransactionsList = `${this.environment.runtimeConfig.serverUrl}Common/GetTaxTransactionsList`;
+   gettaxrateList = `${this.environment.runtimeConfig.serverUrl}Common/GetTaxRateList`;
+   getTDSRateList = `${this.environment.runtimeConfig.serverUrl}Common/GetTDSRateList`;
    //************************ IMG General  ****************************************/
 
 

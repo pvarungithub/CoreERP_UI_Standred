@@ -16,11 +16,10 @@ import { AddOrEditService } from '../add-or-edit.service';
 })
 
 export class AssignmentChartAccounttoCompanyComponent implements OnInit {
-
   modelFormData: FormGroup;
-  formData: any;  
-  operationCoaList: any;  
-  groupCoaList: any;  
+  formData: any;
+  operationCoaList: any;
+  groupCoaList: any;
   companyList: any;
 
   constructor(
@@ -37,7 +36,7 @@ export class AssignmentChartAccounttoCompanyComponent implements OnInit {
       code: [0],
       operationCoa: [null],
       groupCoa: [null],
-      company: [null]      
+      company: [null]
     });
 
     this.formData = { ...data };
@@ -51,8 +50,9 @@ export class AssignmentChartAccounttoCompanyComponent implements OnInit {
     this.getcompanyData();
     this.getchartofAccountData();
   }
+
   getcompanyData() {
-    const getCompanyUrl = String.Join('/', this.apiConfigService.getCompanysList);
+    const getCompanyUrl = String.Join('/', this.apiConfigService.getCompanyList);
     this.apiService.apiGetRequest(getCompanyUrl)
       .subscribe(
         response => {

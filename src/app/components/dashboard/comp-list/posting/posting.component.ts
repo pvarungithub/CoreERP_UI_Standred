@@ -16,16 +16,15 @@ import { AddOrEditService } from '../add-or-edit.service';
 })
 
 export class PostingComponent implements OnInit {
-
   modelFormData: FormGroup;
   formData: any;
   compList: any;
   branchList: any;
   plantList: any;
-  coaList: any; 
+  coaList: any;
   tdsratesList: any;
   glList: any;
-  
+
   constructor(
     private formBuilder: FormBuilder,
     private addOrEditService: AddOrEditService,
@@ -40,20 +39,18 @@ export class PostingComponent implements OnInit {
       code: [0],
       // tdstype: [null],
       tdsrate: [null],
-      glaccount:[null],
+      glaccount: [null],
       branch: [null],
       company: [null],
       plant: [null],
-      chartofAccount:[null]
+      chartofAccount: [null]
     });
-
 
     this.formData = { ...data };
     if (!isNullOrUndefined(this.formData.item)) {
       this.modelFormData.patchValue(this.formData.item);
-       this.modelFormData.controls['code'].disable();
+      this.modelFormData.controls['code'].disable();
     }
-
   }
 
   ngOnInit() {
@@ -64,7 +61,7 @@ export class PostingComponent implements OnInit {
     this.getchartofAccountData();
     this.getGLAccountData();
   }
-  
+
   getGLAccountData() {
     const getGLAccountUrl = String.Join('/', this.apiConfigService.getGLAccountList);
     this.apiService.apiGetRequest(getGLAccountUrl)
@@ -97,7 +94,7 @@ export class PostingComponent implements OnInit {
   }
 
   getTDSTypeList() {
-    const getTDSList = String.Join('/', this.apiConfigService.getTDSRatesList);
+    const getTDSList = String.Join('/', this.apiConfigService.getTDSRateList);
     this.apiService.apiGetRequest(getTDSList)
       .subscribe(
         response => {
@@ -119,7 +116,7 @@ export class PostingComponent implements OnInit {
           const res = response.body;
           if (!isNullOrUndefined(res) && res.status === StatusCodes.pass) {
             if (!isNullOrUndefined(res.response)) {
-              this.compList = res.response['CompaniesList'];
+              this.compList = res.response['companiesList'];
             }
           }
           this.spinner.hide();
@@ -133,8 +130,8 @@ export class PostingComponent implements OnInit {
         response => {
           const res = response.body;
           if (!isNullOrUndefined(res) && res.status === StatusCodes.pass) {
-            if (!isNullOrUndefined(res.response)) {             
-              this.branchList = res.response['branchesList'];
+            if (!isNullOrUndefined(res.response)) {
+              this.branchList = res.response['branchsList'];
             }
           }
           this.spinner.hide();
@@ -142,14 +139,14 @@ export class PostingComponent implements OnInit {
   }
 
   getplantsList() {
-    const getplantsList = String.Join('/', this.apiConfigService.getplantList);
+    const getplantsList = String.Join('/', this.apiConfigService.getPlantsList);
     this.apiService.apiGetRequest(getplantsList)
       .subscribe(
         response => {
           const res = response.body;
           if (!isNullOrUndefined(res) && res.status === StatusCodes.pass) {
             if (!isNullOrUndefined(res.response)) {
-              this.plantList = res.response['plantList'];
+              this.plantList = res.response['plantsList'];
             }
           }
           this.spinner.hide();

@@ -8,22 +8,23 @@
   <mat-card-content class="pt-5 p-2 m-0 overflow-auto">
     <form [formGroup]="modelFormData" autocomplete="off">
 
-      <div class="d--flex">   
+      <div class="d--flex">
         <mat-form-field>
           <mat-label [translate]="'AlternateControlAccount.chartofAccount'"></mat-label>
           <mat-select formControlName="chartofAccount" appFocusOnEnter tabIndex="3">
             <mat-option>None</mat-option>
             <mat-option *ngFor="let coa of coaList" [value]="coa.code">
-              {{coa.code}}- {{coa.desctiption}}
+              {{coa.desctiption}}
             </mat-option>
           </mat-select>
-        </mat-form-field>    
+        </mat-form-field>
+
         <mat-form-field>
           <mat-label>{{'posting.company' | translate }}</mat-label>
           <mat-select formControlName="company" appFocusOnEnter tabIndex="6">
             <mat-option>None</mat-option>
             <mat-option *ngFor="let companyList of compList" [value]="companyList.id">
-              {{companyList.id}} - {{companyList.text}}
+              {{companyList.text}}
             </mat-option>
           </mat-select>
         </mat-form-field>
@@ -32,30 +33,33 @@
           <mat-label>{{'posting.branch' | translate }}</mat-label>
           <mat-select formControlName="branch" appFocusOnEnter tabIndex="7">
             <mat-option>None</mat-option>
-            <mat-option *ngFor="let branch of branchList" [value]="branch.branchCode">
-              {{branch.branchCode}} - {{branch.branchName}}
+            <mat-option *ngFor="let branch of branchList" [value]="branch.id">
+              {{branch.text}}
             </mat-option>
           </mat-select>
         </mat-form-field>
-         
+
         <mat-form-field>
           <mat-label>{{'posting.plant' | translate }}</mat-label>
           <mat-select formControlName="plant" appFocusOnEnter tabIndex="8">
             <mat-option>None</mat-option>
-            <mat-option *ngFor="let plants of plantList" [value]="plants.plantCode">
-              {{plants.plantCode}} - {{plants.plantname}}
+            <mat-option *ngFor="let plants of plantList" [value]="plants.id">
+              {{plants.text}}
             </mat-option>
           </mat-select>
-        </mat-form-field>      
+        </mat-form-field>
+
         <mat-form-field>
           <mat-label>Tax Rate</mat-label>
-          <mat-select placeholder="{{'assignmentoftaxaccountstotaxcodes.code' | translate }}" formControlName="code" appFocusOnEnter tabIndex="1">
+          <mat-select placeholder="{{'assignmentoftaxaccountstotaxcodes.code' | translate }}" formControlName="code"
+            appFocusOnEnter tabIndex="1">
             <mat-option>None</mat-option>
-            <mat-option *ngFor="let taxtrnsn of TaxTypeList" [value]="taxtrnsn.taxRateCode">
-              {{taxtrnsn.taxRateCode}} - {{taxtrnsn.description}}
+            <mat-option *ngFor="let taxtrnsn of TaxTypeList" [value]="taxtrnsn.id">
+              {{taxtrnsn.text}}
             </mat-option>
           </mat-select>
-        </mat-form-field>          
+        </mat-form-field>
+
         <mat-form-field>
           <mat-label>{{'assignmentoftaxaccountstotaxcodes.sgstgl' | translate }}</mat-label>
           <mat-select formControlName="sgstgl" appFocusOnEnter tabIndex="1">
@@ -65,6 +69,7 @@
             </mat-option>
           </mat-select>
         </mat-form-field>
+
         <mat-form-field>
           <mat-label>{{'assignmentoftaxaccountstotaxcodes.cgstgl' | translate }}</mat-label>
           <mat-select formControlName="cgstgl" appFocusOnEnter tabIndex="1">
@@ -74,6 +79,7 @@
             </mat-option>
           </mat-select>
         </mat-form-field>
+
         <mat-form-field>
           <mat-label>{{'assignmentoftaxaccountstotaxcodes.igstgl' | translate }}</mat-label>
           <mat-select formControlName="igstgl" appFocusOnEnter tabIndex="1">
@@ -82,7 +88,8 @@
               {{gl.accountNumber}} - {{gl.glaccountName}}
             </mat-option>
           </mat-select>
-        </mat-form-field>     
+        </mat-form-field>
+
         <mat-form-field>
           <mat-label>{{'assignmentoftaxaccountstotaxcodes.ugstgl' | translate }}</mat-label>
           <mat-select formControlName="ugstgl" appFocusOnEnter tabIndex="1">
@@ -92,6 +99,7 @@
             </mat-option>
           </mat-select>
         </mat-form-field>
+
         <mat-form-field>
           <mat-label>{{'assignmentoftaxaccountstotaxcodes.compositeAccount' | translate }}</mat-label>
           <mat-select formControlName="compositeAccount" appFocusOnEnter tabIndex="1">
@@ -100,7 +108,8 @@
               {{gl.accountNumber}} - {{gl.glaccountName}}
             </mat-option>
           </mat-select>
-        </mat-form-field>      
+
+        </mat-form-field>
       </div>
       <mat-divider></mat-divider>
 
@@ -108,10 +117,11 @@
 
   </mat-card-content>
   <div class="form-element p-2 d-flex justify-content-end">
-    <button mat-raised-button class="button-color-red text-white mr-1" (click)="cancel()"appFocusOnEnter tabIndex="9">
+    <button mat-raised-button class="button-color-red text-white mr-1" (click)="cancel()" appFocusOnEnter tabIndex="9">
       {{ 'COMMON.CANCEL' | translate }}
     </button>
-    <button mat-raised-button type="submit" class="button-color-bule text-white ml-1" (click)="save()" appFocusOnEnter tabIndex="10">
+    <button mat-raised-button type="submit" class="button-color-bule text-white ml-1" (click)="save()" appFocusOnEnter
+      tabIndex="10">
       {{ 'COMMON.SAVE' | translate }}
     </button>
   </div>

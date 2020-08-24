@@ -1,6 +1,6 @@
 <div class="position-relative popup-class">
   <mat-card-title class="boader--color d-flex justify-content-between position-absolute w-100">
-    <span>  {{'posting.title' | translate }} </span>
+    <span> {{'posting.title' | translate }} </span>
     <mat-icon class="p-2 cursor--pointer" (click)="cancel()">close</mat-icon>
   </mat-card-title>
 
@@ -13,17 +13,17 @@
           <mat-select formControlName="chartofAccount" appFocusOnEnter tabIndex="3">
             <mat-option>None</mat-option>
             <mat-option *ngFor="let coa of coaList" [value]="coa.code">
-              {{coa.code}}- {{coa.desctiption}}
+              {{coa.desctiption}}
             </mat-option>
           </mat-select>
-        </mat-form-field>    
-        
+        </mat-form-field>
+
         <mat-form-field>
           <mat-label>{{'posting.company' | translate }}</mat-label>
           <mat-select formControlName="company" appFocusOnEnter tabIndex="5">
             <mat-option>None</mat-option>
             <mat-option *ngFor="let companyList of compList" [value]="companyList.id">
-              {{companyList.id}} - {{companyList.text}}
+              {{companyList.text}}
             </mat-option>
           </mat-select>
         </mat-form-field>
@@ -32,30 +32,32 @@
           <mat-label>{{'posting.branch' | translate }}</mat-label>
           <mat-select formControlName="branch" appFocusOnEnter tabIndex="6">
             <mat-option>None</mat-option>
-            <mat-option *ngFor="let branch of branchList" [value]="branch.branchCode">
-              {{branch.branchCode}} - {{branch.branchName}}
+            <mat-option *ngFor="let branch of branchList" [value]="branch.id">
+              {{branch.text}}
             </mat-option>
           </mat-select>
         </mat-form-field>
-         
+
         <mat-form-field>
           <mat-label>{{'posting.plant' | translate }}</mat-label>
           <mat-select formControlName="plant" appFocusOnEnter tabIndex="4">
             <mat-option>None</mat-option>
-            <mat-option *ngFor="let plants of plantList" [value]="plants.plantCode">
-              {{plants.plantCode}} - {{plants.plantname}}
+            <mat-option *ngFor="let plants of plantList" [value]="plants.id">
+              {{plants.text}}
             </mat-option>
           </mat-select>
-        </mat-form-field>        
+        </mat-form-field>
+
         <mat-form-field>
           <mat-label>{{'posting.tdsrate' | translate }}</mat-label>
           <mat-select formControlName="tdsrate" appFocusOnEnter tabIndex="5">
             <mat-option>None</mat-option>
-            <mat-option *ngFor="let tdsrate of tdsratesList" [value]="tdsrate.code">
-              {{tdsrate.code}} - {{tdsrate.desctiption}}
+            <mat-option *ngFor="let tdsrate of tdsratesList" [value]="tdsrate.id">
+              {{tdsrate.text}}
             </mat-option>
           </mat-select>
         </mat-form-field>
+
         <mat-form-field>
           <mat-label [translate]="'posting.glaccount'"></mat-label>
           <mat-select formControlName="glaccount" appFocusOnEnter tabIndex="6">
@@ -64,7 +66,7 @@
               {{ltype.accountNumber}} - {{ltype.glaccountName}}
             </mat-option>
           </mat-select>
-        </mat-form-field>   
+        </mat-form-field>
       </div>
       <mat-divider></mat-divider>
 
@@ -72,10 +74,11 @@
 
   </mat-card-content>
   <div class="form-element p-2 d-flex justify-content-end">
-    <button mat-raised-button class="button-color-red text-white mr-1" (click)="cancel()"appFocusOnEnter tabIndex="8">
+    <button mat-raised-button class="button-color-red text-white mr-1" (click)="cancel()" appFocusOnEnter tabIndex="8">
       {{ 'COMMON.CANCEL' | translate }}
     </button>
-    <button mat-raised-button type="submit" class="button-color-bule text-white ml-1" (click)="save()"appFocusOnEnter tabIndex="9">
+    <button mat-raised-button type="submit" class="button-color-bule text-white ml-1" (click)="save()" appFocusOnEnter
+      tabIndex="9">
       {{ 'COMMON.SAVE' | translate }}
     </button>
   </div>

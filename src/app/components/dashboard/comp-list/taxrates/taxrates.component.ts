@@ -13,10 +13,12 @@ interface TaxCondition {
   value: string;
   viewValue: string;
 }
+
 interface TaxType {
   value: string;
   viewValue: string;
 }
+
 @Component({
   selector: 'app-taxrates',
   templateUrl: './taxrates.component.html',
@@ -24,22 +26,23 @@ interface TaxType {
 })
 
 export class TaxRatesComponents implements OnInit {
-
   modelFormData: FormGroup;
-  formData: any; 
+  formData: any;
   Taxtransaction: any;
 
   TaxConditions: TaxCondition[] =
-  [
-    { value: '1', viewValue: 'Normal(Exempted)' },
-    { value: '2', viewValue: 'Not Deducible/Not Exempted' },
-    { value: '3', viewValue: 'Reverse Chargeable' },
-  ];
+    [
+      { value: '1', viewValue: 'Normal(Exempted)' },
+      { value: '2', viewValue: 'Not Deducible/Not Exempted' },
+      { value: '3', viewValue: 'Reverse Chargeable' },
+    ];
+
   TaxTypess: TaxType[] =
-  [
-    { value: '1', viewValue: 'Input' },
-    { value: '2', viewValue: 'Output' },    
-  ];
+    [
+      { value: '1', viewValue: 'Input' },
+      { value: '2', viewValue: 'Output' },
+    ];
+
   constructor(
     private apiService: ApiService,
     private addOrEditService: AddOrEditService,
@@ -52,16 +55,16 @@ export class TaxRatesComponents implements OnInit {
     @Optional() @Inject(MAT_DIALOG_DATA) public data: any) {
 
     this.modelFormData = this.formBuilder.group({
-      taxRateCode: [null, [Validators.required, Validators.minLength(1), Validators.maxLength(4)]],
-      description: [null, [Validators.required, Validators.minLength(1), Validators.maxLength(30)]],
+      taxRateCode: [null, [Validators.required, Validators.minLength(1), Validators.maxLength(5)]],
+      description: [null, [Validators.required, Validators.minLength(1), Validators.maxLength(50)]],
       taxType: [null],
       taxTransaction: [null],
       sgst: [null],
       cgst: [null],
       igst: [null],
-      ugst:[null],
-      taxCondition:[null],
-      compositeCess:[null],
+      ugst: [null],
+      taxCondition: [null],
+      compositeCess: [null],
       effectiveFrom: [null]
     });
 
@@ -74,10 +77,10 @@ export class TaxRatesComponents implements OnInit {
 
   ngOnInit() {
     this.GetTaxTransactionList();
-  }  
+  }
 
   GetTaxTransactionList() {
-    const gettaxtransactinlist = String.Join('/', this.apiConfigService.getTaxTransactionList);
+    const gettaxtransactinlist = String.Join('/', this.apiConfigService.getTaxTransactionsList);
     this.apiService.apiGetRequest(gettaxtransactinlist)
       .subscribe(
         response => {
@@ -105,12 +108,12 @@ export class TaxRatesComponents implements OnInit {
     });
     if (this.formData.action == 'Edit') {
       this.modelFormData.controls['taxRateCode'].disable();
-    }  
+    }
   }
 
   cancel() {
     this.dialogRef.close();
   }
-  getGetProductGroupsNamesList() {    
+  getGetProductGroupsNamesList() {
   }
 }
