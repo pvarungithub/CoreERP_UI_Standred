@@ -15,9 +15,7 @@ import { AddOrEditService } from '../add-or-edit.service';
   styleUrls: ['./storagelocation.component.scss']
 })
 export class StorageLocationsComponent implements OnInit {
-
   modelFormData: FormGroup;
-  isSubmitted = false;
   formData: any;
   plantList: any;
 
@@ -34,7 +32,7 @@ export class StorageLocationsComponent implements OnInit {
     this.modelFormData = this.formBuilder.group({
       code: [null, [Validators.required, Validators.minLength(1), Validators.maxLength(5)]],
       name: [null, [Validators.required, Validators.minLength(1), Validators.maxLength(50)]],
-      plant:[null],
+      plant: [null],
     });
 
     this.formData = { ...data };
@@ -44,13 +42,13 @@ export class StorageLocationsComponent implements OnInit {
     }
 
   }
-  
+
   ngOnInit() {
     this.getPlantsList();
   }
 
   getPlantsList() {
-    const getplantList = String.Join('/', this.apiConfigService.getPlantList);
+    const getplantList = String.Join('/', this.apiConfigService.getPlantsList);
     this.apiService.apiGetRequest(getplantList)
       .subscribe(
         response => {

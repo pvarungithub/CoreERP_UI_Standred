@@ -14,9 +14,7 @@ import { AddOrEditService } from '../add-or-edit.service';
   styleUrls: ['./region.component.scss']
 })
 export class RegionComponent implements OnInit {
-
   modelFormData: FormGroup;
-  isSubmitted = false;
   formData: any;
   countrysList: any;
 
@@ -31,10 +29,9 @@ export class RegionComponent implements OnInit {
     @Optional() @Inject(MAT_DIALOG_DATA) public data: any) {
 
     this.modelFormData = this.formBuilder.group({
-
       regionCode: [null, [Validators.required, Validators.minLength(1), Validators.maxLength(4)]],
       regionName: [null, [Validators.required, Validators.minLength(2), Validators.maxLength(40)]],
-      country:[null]
+      country: [null]
     });
 
     this.formData = { ...data };
@@ -42,8 +39,7 @@ export class RegionComponent implements OnInit {
       this.modelFormData.patchValue(this.formData.item);
       this.modelFormData.controls['regionCode'].disable();
     }
-
-  }  
+  }
 
   ngOnInit() {
     this.getcountrysList();
@@ -52,7 +48,7 @@ export class RegionComponent implements OnInit {
   get formControls() { return this.modelFormData.controls; }
 
   save() {
-    if (this.modelFormData.invalid) {     
+    if (this.modelFormData.invalid) {
       return;
     }
     this.modelFormData.controls['regionCode'].enable();

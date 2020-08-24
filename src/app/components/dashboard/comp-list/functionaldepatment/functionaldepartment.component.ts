@@ -17,15 +17,8 @@ import { AddOrEditService } from '../add-or-edit.service';
 export class FunctionalDepartmentComponent implements OnInit {
 
   modelFormData: FormGroup;
-  isSubmitted = false;
   formData: any;
-  companyList: any;
   employeesList: any;
-  stateList: any;
-  currencyList: any;
-  regionsList: any;
-  countrysList: any;
-  languageList: any;
 
   constructor(
     private apiService: ApiService,
@@ -48,13 +41,12 @@ export class FunctionalDepartmentComponent implements OnInit {
       this.modelFormData.patchValue(this.formData.item);
       this.modelFormData.controls['code'].disable();
     }
-
   }
-  
+
   ngOnInit() {
     this.getEmployeesList();
   }
-  
+
   getEmployeesList() {
     const getEmployeeList = String.Join('/', this.apiConfigService.getEmployeeList);
     this.apiService.apiGetRequest(getEmployeeList)
@@ -64,7 +56,7 @@ export class FunctionalDepartmentComponent implements OnInit {
           if (!isNullOrUndefined(res) && res.status === StatusCodes.pass) {
             if (!isNullOrUndefined(res.response)) {
               console.log(res);
-              this.employeesList = res.response['employeesList'];
+              this.employeesList = res.response['emplist'];
             }
           }
           this.spinner.hide();

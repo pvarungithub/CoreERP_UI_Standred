@@ -1,5 +1,4 @@
 import { Component, Inject, Optional, OnInit } from '@angular/core';
-import { AlertService } from '../../../../services/alert.service';
 import { MatDialogRef, MAT_DIALOG_DATA } from '@angular/material/dialog';
 import { isNullOrUndefined } from 'util';
 import { FormBuilder, FormGroup, Validators } from '@angular/forms';
@@ -13,11 +12,9 @@ import { AddOrEditService } from '../add-or-edit.service';
 
 export class UOMComponent implements OnInit {
   modelFormData: FormGroup;
-  isSubmitted = false;
-  formData: any; 
+  formData: any;
 
   constructor(
-    private alertService: AlertService,
     private addOrEditService: AddOrEditService,
     private formBuilder: FormBuilder,
     public dialogRef: MatDialogRef<UOMComponent>,
@@ -36,11 +33,9 @@ export class UOMComponent implements OnInit {
       this.modelFormData.patchValue(this.formData.item);
       this.modelFormData.controls['unitId'].disable();
     }
-
   }
 
   ngOnInit() {
-
   }
 
   get formControls() { return this.modelFormData.controls; }

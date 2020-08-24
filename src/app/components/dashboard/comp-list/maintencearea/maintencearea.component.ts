@@ -14,6 +14,7 @@ import { AddOrEditService } from '../add-or-edit.service';
   templateUrl: './maintencearea.component.html',
   styleUrls: ['./maintencearea.component.scss']
 })
+
 export class MaintenceAreaComponent implements OnInit {
   modelFormData: FormGroup;
   formData: any;
@@ -47,7 +48,7 @@ export class MaintenceAreaComponent implements OnInit {
   }
 
   getPlantsList() {
-    const getplantList = String.Join('/', this.apiConfigService.getPlantList);
+    const getplantList = String.Join('/', this.apiConfigService.getPlantsList);
     this.apiService.apiGetRequest(getplantList)
       .subscribe(
         response => {
@@ -77,7 +78,7 @@ export class MaintenceAreaComponent implements OnInit {
       this.modelFormData.controls['code'].disable();
     }
   }
-  
+
   cancel() {
     this.dialogRef.close();
   }

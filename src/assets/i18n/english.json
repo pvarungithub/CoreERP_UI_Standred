@@ -146,7 +146,8 @@
     "email": "Email",   
     "panno": "PanNo",
     "gstno": "GST",
-    "tanno": "TAN",    
+    "tanno": "TAN", 
+    "responsiblePerson": "Responsible Person",   
     "responsibleName": "Responsible Person"
   },
   "division": {

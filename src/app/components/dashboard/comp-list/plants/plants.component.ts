@@ -15,11 +15,8 @@ import { AddOrEditService } from '../add-or-edit.service';
   styleUrls: ['./plants.component.scss']
 })
 export class PlantsComponent implements OnInit {
-
   modelFormData: FormGroup;
-  isSubmitted = false;
   formData: any;
-  companyList: any;
   employeesList: any;
   stateList: any;
   currencyList: any;
@@ -41,22 +38,22 @@ export class PlantsComponent implements OnInit {
     this.modelFormData = this.formBuilder.group({
       plantCode: [null, [Validators.required, Validators.minLength(1), Validators.maxLength(5)]],
       plantname: [null, [Validators.required, Validators.minLength(1), Validators.maxLength(50)]],
-      city: [null], 
-      state: [null], 
-      region: [null], 
-      country: [null], 
-      address1: [null], 
-      address2: [null], 
-      pin: [null], 
-      phone: [null], 
-      mobile: [null], 
-      email: [null], 
-      panno: [null], 
-      gstno: [null], 
-      location: [null], 
-      ext: [null], 
-      currency: [null], 
-      language: [null], 
+      city: [null],
+      state: [null],
+      region: [null],
+      country: [null],
+      address1: [null],
+      address2: [null],
+      pin: [null],
+      phone: [null],
+      mobile: [null],
+      email: [null],
+      panno: [null],
+      gstno: [null],
+      location: [null],
+      ext: [null],
+      currency: [null],
+      language: [null],
       responsiblePerson: [null]
     });
 
@@ -69,7 +66,7 @@ export class PlantsComponent implements OnInit {
   }
 
   ngOnInit() {
-    this.getTableData();
+    this.getlocationsList();
     this.getstateList();
     this.getLanguageList();
     this.getregionsList();
@@ -77,10 +74,10 @@ export class PlantsComponent implements OnInit {
     this.getcurrencyList();
     this.getEmployeesList();
   }
-  
-  getTableData() {
-    const getCompanyUrl = String.Join('/', this.apiConfigService.getlocationList);
-    this.apiService.apiGetRequest(getCompanyUrl)
+
+  getlocationsList() {
+    const getlocationsList = String.Join('/', this.apiConfigService.getlocationsList);
+    this.apiService.apiGetRequest(getlocationsList)
       .subscribe(
         response => {
           const res = response.body;
@@ -109,6 +106,7 @@ export class PlantsComponent implements OnInit {
           this.spinner.hide();
         });
   }
+
   getregionsList() {
     const getRegionsList = String.Join('/', this.apiConfigService.getRegionsList);
     this.apiService.apiGetRequest(getRegionsList)
@@ -124,6 +122,7 @@ export class PlantsComponent implements OnInit {
           this.spinner.hide();
         });
   }
+
   getcountrysList() {
     const getCountrysList = String.Join('/', this.apiConfigService.getCountrysList);
     this.apiService.apiGetRequest(getCountrysList)
@@ -139,6 +138,7 @@ export class PlantsComponent implements OnInit {
           this.spinner.hide();
         });
   }
+
   getstateList() {
     const getstateList = String.Join('/', this.apiConfigService.getstatesList);
     this.apiService.apiGetRequest(getstateList)
@@ -154,6 +154,7 @@ export class PlantsComponent implements OnInit {
           this.spinner.hide();
         });
   }
+
   getcurrencyList() {
     const getcurrencyList = String.Join('/', this.apiConfigService.getcurrencyList);
     this.apiService.apiGetRequest(getcurrencyList)
@@ -169,6 +170,7 @@ export class PlantsComponent implements OnInit {
           this.spinner.hide();
         });
   }
+
   getEmployeesList() {
     const getEmployeeList = String.Join('/', this.apiConfigService.getEmployeeList);
     this.apiService.apiGetRequest(getEmployeeList)
@@ -178,7 +180,7 @@ export class PlantsComponent implements OnInit {
           if (!isNullOrUndefined(res) && res.status === StatusCodes.pass) {
             if (!isNullOrUndefined(res.response)) {
               console.log(res);
-              this.employeesList = res.response['employeesList'];
+              this.employeesList = res.response['emplist'];
             }
           }
           this.spinner.hide();

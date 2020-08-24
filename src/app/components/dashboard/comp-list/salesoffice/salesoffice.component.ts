@@ -14,12 +14,10 @@ import { AddOrEditService } from '../add-or-edit.service';
   templateUrl: './salesoffice.component.html',
   styleUrls: ['./salesoffice.component.scss']
 })
-export class SalesofficeComponent implements OnInit {
 
+export class SalesofficeComponent implements OnInit {
   modelFormData: FormGroup;
-  isSubmitted = false;
   formData: any;
-  companyList: any;
   employeesList: any;
   stateList: any;
   currencyList: any;
@@ -68,8 +66,8 @@ export class SalesofficeComponent implements OnInit {
     this.getcountrysList();
     this.getcurrencyList();
     this.getEmployeesList();
-  }  
-  
+  }
+
   getLanguageList() {
     const getlanguageList = String.Join('/', this.apiConfigService.getlanguageList);
     this.apiService.apiGetRequest(getlanguageList)
@@ -85,6 +83,7 @@ export class SalesofficeComponent implements OnInit {
           this.spinner.hide();
         });
   }
+
   getregionsList() {
     const getRegionsList = String.Join('/', this.apiConfigService.getRegionsList);
     this.apiService.apiGetRequest(getRegionsList)
@@ -100,6 +99,7 @@ export class SalesofficeComponent implements OnInit {
           this.spinner.hide();
         });
   }
+
   getcountrysList() {
     const getCountrysList = String.Join('/', this.apiConfigService.getCountrysList);
     this.apiService.apiGetRequest(getCountrysList)
@@ -115,6 +115,7 @@ export class SalesofficeComponent implements OnInit {
           this.spinner.hide();
         });
   }
+
   getstateList() {
     const getstateList = String.Join('/', this.apiConfigService.getstatesList);
     this.apiService.apiGetRequest(getstateList)
@@ -130,6 +131,7 @@ export class SalesofficeComponent implements OnInit {
           this.spinner.hide();
         });
   }
+
   getcurrencyList() {
     const getcurrencyList = String.Join('/', this.apiConfigService.getcurrencyList);
     this.apiService.apiGetRequest(getcurrencyList)
@@ -145,6 +147,7 @@ export class SalesofficeComponent implements OnInit {
           this.spinner.hide();
         });
   }
+
   getEmployeesList() {
     const getEmployeeList = String.Join('/', this.apiConfigService.getEmployeeList);
     this.apiService.apiGetRequest(getEmployeeList)
@@ -154,7 +157,7 @@ export class SalesofficeComponent implements OnInit {
           if (!isNullOrUndefined(res) && res.status === StatusCodes.pass) {
             if (!isNullOrUndefined(res.response)) {
               console.log(res);
-              this.employeesList = res.response['employeesList'];
+              this.employeesList = res.response['emplist'];
             }
           }
           this.spinner.hide();

@@ -9,12 +9,10 @@ import { AddOrEditService } from '../add-or-edit.service';
   templateUrl: './currency.component.html',
   styleUrls: ['./currency.component.scss']
 })
-export class CurrencyComponent implements OnInit {
 
+export class CurrencyComponent implements OnInit {
   modelFormData: FormGroup;
-  isSubmitted = false;
   formData: any;
-  companyList: any;
 
   constructor(
     private formBuilder: FormBuilder,
@@ -24,10 +22,9 @@ export class CurrencyComponent implements OnInit {
     @Optional() @Inject(MAT_DIALOG_DATA) public data: any) {
 
     this.modelFormData = this.formBuilder.group({
-
       currencySymbol: [null, [Validators.required, Validators.minLength(1), Validators.maxLength(5)]],
       currencyName: [null, [Validators.required, Validators.minLength(2), Validators.maxLength(40)]],
-      noOfDecimalPlaces:[null],
+      noOfDecimalPlaces: [null],
     });
 
     this.formData = { ...data };
@@ -35,14 +32,12 @@ export class CurrencyComponent implements OnInit {
       this.modelFormData.patchValue(this.formData.item);
       this.modelFormData.controls['currencySymbol'].disable();
     }
-
   }
 
   ngOnInit() {
   }
 
   get formControls() { return this.modelFormData.controls; }
-
 
   save() {
     if (this.modelFormData.invalid) {
@@ -63,4 +58,3 @@ export class CurrencyComponent implements OnInit {
   }
 
 }
-

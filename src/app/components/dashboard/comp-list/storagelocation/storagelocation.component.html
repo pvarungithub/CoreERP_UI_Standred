@@ -6,27 +6,31 @@
   <mat-card-content class="pt-5 p-2 m-0 overflow-auto ">
     <form [formGroup]="modelFormData" autocomplete="off">
       <div class="d--flex">
+       
         <mat-form-field class="form-element" [ngClass]="{ 'ng--valid': formControls.code.valid }">
           <input matInput placeholder="{{'storagelocation.code' | translate }}" formControlName="code" maxlength="5" appFocusOnEnter tabIndex="1">
           <mat-error *ngIf="formControls.code.errors" class="help-block">
             <div *ngIf="formControls.code.errors.required">Code is required </div>
           </mat-error>
         </mat-form-field>
+        
         <mat-form-field class="form-element" [ngClass]="{ 'ng--valid': formControls.name.valid }">
           <input matInput placeholder="{{'storagelocation.name' | translate }}" formControlName="name" maxlength="50" appFocusOnEnter tabIndex="2">
           <mat-error *ngIf="formControls.name.errors" class="help-block">
             <div *ngIf="formControls.name.errors.required">Name is required</div>
           </mat-error>
         </mat-form-field>
+        
         <mat-form-field>
           <mat-label>{{'storagelocation.plant' | translate }}</mat-label>
           <mat-select formControlName="plant" appFocusOnEnter tabIndex="3">
             <mat-option>None</mat-option>
-            <mat-option *ngFor="let plant of plantList" [value]="plant.plantCode">
-              {{plant.plantCode}} - {{plant.plantname}}
+            <mat-option *ngFor="let plant of plantList" [value]="plant.id">
+              {{plant.id}} - {{plant.text}}
             </mat-option>
           </mat-select>           
         </mat-form-field>
+     
       </div>
       <mat-divider></mat-divider>
     </form>

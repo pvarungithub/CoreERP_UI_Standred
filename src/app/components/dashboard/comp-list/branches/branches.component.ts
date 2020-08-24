@@ -15,9 +15,7 @@ import { AddOrEditService } from '../add-or-edit.service';
   styleUrls: ['./branches.component.scss']
 })
 export class BranchesComponent implements OnInit {
-
   modelFormData: FormGroup;
-  isSubmitted  =  false;
   formData: any;
   companyList: any;
   employeesList: any;
@@ -35,10 +33,9 @@ export class BranchesComponent implements OnInit {
     private formBuilder: FormBuilder,
     public dialogRef: MatDialogRef<BranchesComponent>,
     // @Optional() is used to prevent error if no data is passed
-    @Optional() @Inject(MAT_DIALOG_DATA) public data: any ) {
+    @Optional() @Inject(MAT_DIALOG_DATA) public data: any) {
 
     this.modelFormData = this.formBuilder.group({
-      //"id": 1,
       branchCode: [null, [Validators.required, Validators.minLength(1), Validators.maxLength(5)]],
       branchName: [null, [Validators.required, Validators.minLength(1), Validators.maxLength(50)]],
       companyCode: [null],
@@ -59,16 +56,16 @@ export class BranchesComponent implements OnInit {
       language: [null],
       currency: [null],
       responsiblePerson: [null]
-      });
+    });
 
-      this.formData = {...data};
-      if (!isNullOrUndefined(this.formData.item)) {
-        this.modelFormData.patchValue(this.formData.item);
-       this.modelFormData.controls['branchCode'].disable();
-      }
+    this.formData = { ...data };
+    if (!isNullOrUndefined(this.formData.item)) {
+      this.modelFormData.patchValue(this.formData.item);
+      this.modelFormData.controls['branchCode'].disable();
+    }
 
   }
-  
+
   ngOnInit() {
     this.getTableData();
     this.getstateList();
@@ -84,15 +81,15 @@ export class BranchesComponent implements OnInit {
     this.apiService.apiGetRequest(getCompanyUrl)
       .subscribe(
         response => {
-        const res = response.body;
-        if (!isNullOrUndefined(res) && res.status === StatusCodes.pass) {
-          if (!isNullOrUndefined(res.response)) {
-            console.log(res);
-            this.companyList = res.response['companiesList'];
+          const res = response.body;
+          if (!isNullOrUndefined(res) && res.status === StatusCodes.pass) {
+            if (!isNullOrUndefined(res.response)) {
+              console.log(res);
+              this.companyList = res.response['companiesList'];
+            }
           }
-        }
           this.spinner.hide();
-      });
+        });
   }
 
   getLanguageList() {
@@ -110,6 +107,7 @@ export class BranchesComponent implements OnInit {
           this.spinner.hide();
         });
   }
+
   getregionsList() {
     const getRegionsList = String.Join('/', this.apiConfigService.getRegionsList);
     this.apiService.apiGetRequest(getRegionsList)
@@ -125,6 +123,7 @@ export class BranchesComponent implements OnInit {
           this.spinner.hide();
         });
   }
+
   getcountrysList() {
     const getCountrysList = String.Join('/', this.apiConfigService.getCountrysList);
     this.apiService.apiGetRequest(getCountrysList)
@@ -140,6 +139,7 @@ export class BranchesComponent implements OnInit {
           this.spinner.hide();
         });
   }
+
   getstateList() {
     const getstateList = String.Join('/', this.apiConfigService.getstatesList);
     this.apiService.apiGetRequest(getstateList)
@@ -155,6 +155,7 @@ export class BranchesComponent implements OnInit {
           this.spinner.hide();
         });
   }
+
   getcurrencyList() {
     const getcurrencyList = String.Join('/', this.apiConfigService.getcurrencyList);
     this.apiService.apiGetRequest(getcurrencyList)
@@ -170,6 +171,7 @@ export class BranchesComponent implements OnInit {
           this.spinner.hide();
         });
   }
+
   getEmployeesList() {
     const getEmployeeList = String.Join('/', this.apiConfigService.getEmployeeList);
     this.apiService.apiGetRequest(getEmployeeList)
@@ -179,7 +181,7 @@ export class BranchesComponent implements OnInit {
           if (!isNullOrUndefined(res) && res.status === StatusCodes.pass) {
             if (!isNullOrUndefined(res.response)) {
               console.log(res);
-              this.employeesList = res.response['employeesList'];
+              this.employeesList = res.response['emplist'];
             }
           }
           this.spinner.hide();

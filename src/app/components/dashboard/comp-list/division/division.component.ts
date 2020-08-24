@@ -18,18 +18,17 @@ interface Active {
   templateUrl: './division.component.html',
   styleUrls: ['./division.component.scss']
 })
-export class DivisionComponent implements OnInit {
 
+export class DivisionComponent implements OnInit {
   modelFormData: FormGroup;
-  isSubmitted  =  false;
   formData: any;
-  companyList: any;
+  employeesList: any;
+
   active: Active[] =
     [
       { value: 'Y', viewValue: 'Y' },
       { value: 'N', viewValue: 'N' }
     ];
-    employeesList: any;
 
   constructor(
     private apiService: ApiService,
@@ -39,29 +38,27 @@ export class DivisionComponent implements OnInit {
     private formBuilder: FormBuilder,
     public dialogRef: MatDialogRef<DivisionComponent>,
     // @Optional() is used to prevent error if no data is passed
-    @Optional() @Inject(MAT_DIALOG_DATA) public data: any ) {
+    @Optional() @Inject(MAT_DIALOG_DATA) public data: any) {
 
-      this.modelFormData  =  this.formBuilder.group({
-        code: ['', [Validators.required, Validators.minLength(2), Validators.maxLength(4)]],
-        description: ['', [Validators.required, Validators.minLength(2)]],
-        ext1: [null],
-        ext2: [null],
-        responsiblePerson: [null],
-        active: ['Y'],
-      });
+    this.modelFormData = this.formBuilder.group({
+      code: ['', [Validators.required, Validators.minLength(2), Validators.maxLength(5)]],
+      description: ['', [Validators.required, Validators.minLength(2), Validators.maxLength(50)]],
+      responsiblePerson: [null],
+      active: ['Y'],
+    });
 
-
-      this.formData = {...data};
-      if (!isNullOrUndefined(this.formData.item)) {
-        this.modelFormData.patchValue(this.formData.item);
-       this.modelFormData.controls['code'].disable();
-      }
+    this.formData = { ...data };
+    if (!isNullOrUndefined(this.formData.item)) {
+      this.modelFormData.patchValue(this.formData.item);
+      this.modelFormData.controls['code'].disable();
+    }
 
   }
-  
+
   ngOnInit() {
-   this. getEmployeesList();
+    this.getEmployeesList();
   }
+
   getEmployeesList() {
     const getEmployeeList = String.Join('/', this.apiConfigService.getEmployeeList);
     this.apiService.apiGetRequest(getEmployeeList)
@@ -71,12 +68,13 @@ export class DivisionComponent implements OnInit {
           if (!isNullOrUndefined(res) && res.status === StatusCodes.pass) {
             if (!isNullOrUndefined(res.response)) {
               console.log(res);
-              this.employeesList = res.response['employeesList'];
+              this.employeesList = res.response['emplist'];
             }
           }
           this.spinner.hide();
         });
   }
+
   get formControls() { return this.modelFormData.controls; }
 
   save() {

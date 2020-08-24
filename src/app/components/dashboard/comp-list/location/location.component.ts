@@ -14,10 +14,9 @@ import { AddOrEditService } from '../add-or-edit.service';
   templateUrl: './location.component.html',
   styleUrls: ['./location.component.scss']
 })
-export class LocationsComponent implements OnInit {
 
+export class LocationsComponent implements OnInit {
   modelFormData: FormGroup;
-  isSubmitted = false;
   formData: any;
   plantList: any;
 
@@ -34,7 +33,7 @@ export class LocationsComponent implements OnInit {
     this.modelFormData = this.formBuilder.group({
       locationId: [null, [Validators.required, Validators.minLength(1), Validators.maxLength(5)]],
       description: [null, [Validators.required, Validators.minLength(1), Validators.maxLength(50)]],
-      plant:[null]
+      plant: [null]
     });
 
     this.formData = { ...data };
@@ -44,13 +43,13 @@ export class LocationsComponent implements OnInit {
     }
 
   }
- 
+
   ngOnInit() {
     this.getPlantsList();
   }
 
   getPlantsList() {
-    const getplantList = String.Join('/', this.apiConfigService.getPlantList);
+    const getplantList = String.Join('/', this.apiConfigService.getPlantsList);
     this.apiService.apiGetRequest(getplantList)
       .subscribe(
         response => {

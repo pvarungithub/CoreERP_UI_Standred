@@ -17,16 +17,13 @@ import { AddOrEditService } from '../add-or-edit.service';
 export class SalesDepartmentComponent implements OnInit {
 
   modelFormData: FormGroup;
-  isSubmitted = false;
   formData: any;
-  companyList: any;
   employeesList: any;
   stateList: any;
   currencyList: any;
   regionsList: any;
   countrysList: any;
   languageList: any;
-  locList: any;
 
   constructor(
     private apiService: ApiService,
@@ -55,7 +52,7 @@ export class SalesDepartmentComponent implements OnInit {
       gstno: [null],
       tanno: [null],
       currency: [null],
-      language: [null], 
+      language: [null],
       responsiblePerson: [null]
     });
 
@@ -66,7 +63,7 @@ export class SalesDepartmentComponent implements OnInit {
     }
 
   }
-  
+
   ngOnInit() {
     this.getstateList();
     this.getLanguageList();
@@ -74,22 +71,6 @@ export class SalesDepartmentComponent implements OnInit {
     this.getcountrysList();
     this.getcurrencyList();
     this.getEmployeesList();
-  }
-
-  getTableData() {
-    const getCompanyUrl = String.Join('/', this.apiConfigService.getlocationList);
-    this.apiService.apiGetRequest(getCompanyUrl)
-      .subscribe(
-        response => {
-          const res = response.body;
-          if (!isNullOrUndefined(res) && res.status === StatusCodes.pass) {
-            if (!isNullOrUndefined(res.response)) {
-              console.log(res);
-              this.locList = res.response['locationList'];
-            }
-          }
-          this.spinner.hide();
-        });
   }
 
   getLanguageList() {
@@ -107,6 +88,7 @@ export class SalesDepartmentComponent implements OnInit {
           this.spinner.hide();
         });
   }
+
   getregionsList() {
     const getRegionsList = String.Join('/', this.apiConfigService.getRegionsList);
     this.apiService.apiGetRequest(getRegionsList)
@@ -122,6 +104,7 @@ export class SalesDepartmentComponent implements OnInit {
           this.spinner.hide();
         });
   }
+
   getcountrysList() {
     const getCountrysList = String.Join('/', this.apiConfigService.getCountrysList);
     this.apiService.apiGetRequest(getCountrysList)
@@ -137,6 +120,7 @@ export class SalesDepartmentComponent implements OnInit {
           this.spinner.hide();
         });
   }
+
   getstateList() {
     const getstateList = String.Join('/', this.apiConfigService.getstatesList);
     this.apiService.apiGetRequest(getstateList)
@@ -152,6 +136,7 @@ export class SalesDepartmentComponent implements OnInit {
           this.spinner.hide();
         });
   }
+
   getcurrencyList() {
     const getcurrencyList = String.Join('/', this.apiConfigService.getcurrencyList);
     this.apiService.apiGetRequest(getcurrencyList)
@@ -167,6 +152,7 @@ export class SalesDepartmentComponent implements OnInit {
           this.spinner.hide();
         });
   }
+
   getEmployeesList() {
     const getEmployeeList = String.Join('/', this.apiConfigService.getEmployeeList);
     this.apiService.apiGetRequest(getEmployeeList)
@@ -176,7 +162,7 @@ export class SalesDepartmentComponent implements OnInit {
           if (!isNullOrUndefined(res) && res.status === StatusCodes.pass) {
             if (!isNullOrUndefined(res.response)) {
               console.log(res);
-              this.employeesList = res.response['employeesList'];
+              this.employeesList = res.response['emplist'];
             }
           }
           this.spinner.hide();

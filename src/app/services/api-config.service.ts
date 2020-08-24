@@ -21,6 +21,16 @@ export class ApiConfigService {
    getBranchesForUser = `${this.environment.runtimeConfig.serverUrl}Auth/GetBranchesForUser`;
    getComponentInfo = `${this.environment.runtimeConfig.serverUrl}Settings/GetComponentInfo`;
 
+   // Common Controller 
+   getlanguageList = `${this.environment.runtimeConfig.serverUrl}Common/GetLanguageList`;
+   getRegionsList = `${this.environment.runtimeConfig.serverUrl}Common/GetRegionList`;
+   getCountrysList =`${this.environment.runtimeConfig.serverUrl}Common/GetCountrysList`;
+   getcurrencyList = `${this.environment.runtimeConfig.serverUrl}Common/GetCurrencyList`;
+   getstatesList = `${this.environment.runtimeConfig.serverUrl}Common/GetStatesList`;
+   getCompanyList = `${this.environment.runtimeConfig.serverUrl}Common/GetCompanyList`;
+   getEmployeeList = `${this.environment.runtimeConfig.serverUrl}Common/GetEmployeeList`;
+   getPlantsList = `${this.environment.runtimeConfig.serverUrl}Common/GetPlantsList`;
+   getlocationsList = `${this.environment.runtimeConfig.serverUrl}Common/GetLocationsList`;
    //************************ IMG General  ****************************************/
 
 
@@ -43,15 +53,15 @@ export class ApiConfigService {
     getasetnos= `${this.environment.runtimeConfig.serverUrl}MainAssetMaster/GettingAssetNumber`;
     getttinasNames=`${this.environment.runtimeConfig.serverUrl}MainAssetMaster/GettingAssetName`;
      // Currency
-  getCurrencyList = `${this.environment.runtimeConfig.serverUrl}masters/Currency/GetCurrencyList`;
+  getCurrencyList = `${this.environment.runtimeConfig.serverUrl}Currency/GetCurrencyList`;
   registerCurrency = `${this.environment.runtimeConfig.serverUrl}masters/Currency/RegisterCurrency`;
-  updateCurrency = `${this.environment.runtimeConfig.serverUrl}masters/Currency/UpdateCurrency`;
+  updateCurrency = `${this.environment.runtimeConfig.serverUrl}Currency/UpdateCurrency`;
   deleteCurrency = `${this.environment.runtimeConfig.serverUrl}masters/Currency/DeleteCurrency`;
 
   // Language
-  getLanguageList = `${this.environment.runtimeConfig.serverUrl}masters/Language/GetLanguageList`;
+  getLanguageList = `${this.environment.runtimeConfig.serverUrl}Language/GetLanguageList`;
   registerLanguage = `${this.environment.runtimeConfig.serverUrl}masters/Language/RegisterLanguage`;
-  updateLanguage = `${this.environment.runtimeConfig.serverUrl}masters/Language/UpdateLanguage`;
+  updateLanguage = `${this.environment.runtimeConfig.serverUrl}Language/UpdateLanguage`;
   deleteLanguage = `${this.environment.runtimeConfig.serverUrl}masters/Language/DeleteLanguage`;
 
    // Sizes
@@ -61,7 +71,7 @@ export class ApiConfigService {
    deleteSizesList = `${this.environment.runtimeConfig.serverUrl}Inventory/UOM/DeleteSize`;
 
    //country
-getcountryList = `${this.environment.runtimeConfig.serverUrl}masters/Country/GetCountryList`;
+getcountryList = `${this.environment.runtimeConfig.serverUrl}Country/GetCountryList`;
 registerCountry = `${this.environment.runtimeConfig.serverUrl}masters/Country/RegisterCountry`;
 updateCountry = `${this.environment.runtimeConfig.serverUrl}masters/Country/UpdateCountry`;
 deleteCountry = `${this.environment.runtimeConfig.serverUrl}masters/Country/DeleteCountry`;
@@ -79,11 +89,6 @@ updateState = `${this.environment.runtimeConfig.serverUrl}masters/State/UpdateSt
 deleteState = `${this.environment.runtimeConfig.serverUrl}masters/State/DeleteState`;
 
 // company
-getlanguageList = `${this.environment.runtimeConfig.serverUrl}Company/GetLanguageList`;
-getRegionsList = `${this.environment.runtimeConfig.serverUrl}Company/GetRegionList`;
-getCountrysList =`${this.environment.runtimeConfig.serverUrl}Company/GetCountrysList`;
-getcurrencyList = `${this.environment.runtimeConfig.serverUrl}Company/GetCurrencyList`;
-getstatesList = `${this.environment.runtimeConfig.serverUrl}Company/GetStatesList`;
 getCompanysList = `${this.environment.runtimeConfig.serverUrl}Company/GetCompanysList`;
 registerCompany = `${this.environment.runtimeConfig.serverUrl}masters/Company/RegisterCompany`;
 updateCompany = `${this.environment.runtimeConfig.serverUrl}masters/Company/UpdateCompany`;
@@ -102,7 +107,6 @@ updateProfitCenters = `${this.environment.runtimeConfig.serverUrl}ProfitCenter/U
 deleteProfitCenters = `${this.environment.runtimeConfig.serverUrl}ProfitCenter/DeleteProfitCenters`;
 
 // --- Branches
-GetEmployeesList = `${this.environment.runtimeConfig.serverUrl}Branches/GetEmployeesList`;
 getBranchesList = `${this.environment.runtimeConfig.serverUrl}Branches/GetBranchesList`;
 registerBranch = `${this.environment.runtimeConfig.serverUrl}Branches/RegisterBranch`;
 updateBranch = `${this.environment.runtimeConfig.serverUrl}Branches/UpdateBranch`;
@@ -132,8 +136,7 @@ registerPlant = `${this.environment.runtimeConfig.serverUrl}Plant/RegisterPlant`
 updatePlant = `${this.environment.runtimeConfig.serverUrl}Plant/UpdatePlant`;
 deletePlant = `${this.environment.runtimeConfig.serverUrl}Plant/DeletePlant`;
 
-//location   
-getPlantList = `${this.environment.runtimeConfig.serverUrl}Location/GetPlantList`;
+//location  
 getlocationList = `${this.environment.runtimeConfig.serverUrl}Location/GetLocationList`;
 registerLocation = `${this.environment.runtimeConfig.serverUrl}masters/Location/RegisterLocation`;
 updateLocation = `${this.environment.runtimeConfig.serverUrl}masters/Location/UpdateLocation`;
@@ -431,7 +434,7 @@ registerBusienessTransactionType = `${this.environment.runtimeConfig.serverUrl}B
 updateBusienessTransactionType = `${this.environment.runtimeConfig.serverUrl}BusienessTransactionType/UpdateBusienessTransactionType`;
 deleteBusienessTransactionType = `${this.environment.runtimeConfig.serverUrl}BusienessTransactionType/DeleteBusienessTransactionType`;
 // --- Employee
-getEmployeeList = `${this.environment.runtimeConfig.serverUrl}Employee/GetEmployeeList`;
+GetEmployeesList = `${this.environment.runtimeConfig.serverUrl}Branches/GetEmployeesList`;
 registerEmployee = `${this.environment.runtimeConfig.serverUrl}Employee/RegisterEmployee`;
 updateEmployee = `${this.environment.runtimeConfig.serverUrl}Employee/UpdateEmployee`;
 deleteEmployee = `${this.environment.runtimeConfig.serverUrl}Employee/DeleteEmployee`;

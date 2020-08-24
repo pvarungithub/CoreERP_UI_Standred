@@ -17,9 +17,7 @@ import { AddOrEditService } from '../add-or-edit.service';
 export class CountryComponent implements OnInit {
 
   modelFormData: FormGroup;
-  isSubmitted = false;
   formData: any;
-  companyList: any;
   languageList: any;
   currencyList: any;
 
@@ -34,7 +32,6 @@ export class CountryComponent implements OnInit {
     @Optional() @Inject(MAT_DIALOG_DATA) public data: any) {
 
     this.modelFormData = this.formBuilder.group({
-
       countryCode: [null, [Validators.required, Validators.minLength(1), Validators.maxLength(4)]],
       countryName: [null, [Validators.required, Validators.minLength(2), Validators.maxLength(40)]],
       language: [null],
@@ -48,7 +45,7 @@ export class CountryComponent implements OnInit {
     }
   }
 
- ngOnInit() {
+  ngOnInit() {
     this.getLanguageList();
     this.getcurrencyList();
   }
@@ -56,7 +53,7 @@ export class CountryComponent implements OnInit {
   get formControls() { return this.modelFormData.controls; }
 
   getLanguageList() {
-    const getlanguageList = String.Join('/', this.apiConfigService.getlanguageList);
+    const getlanguageList = String.Join('/', this.apiConfigService.getLanguageList);
     this.apiService.apiGetRequest(getlanguageList)
       .subscribe(
         response => {
@@ -64,7 +61,7 @@ export class CountryComponent implements OnInit {
           if (!isNullOrUndefined(res) && res.status === StatusCodes.pass) {
             if (!isNullOrUndefined(res.response)) {
               console.log(res);
-              this.languageList = res.response['LanguageList'];
+              this.languageList = res.response['languageList'];
             }
           }
           this.spinner.hide();
@@ -72,7 +69,7 @@ export class CountryComponent implements OnInit {
   }
 
   getcurrencyList() {
-    const getcurrencyList = String.Join('/', this.apiConfigService.getcurrencyList);
+    const getcurrencyList = String.Join('/', this.apiConfigService.getCurrencyList);
     this.apiService.apiGetRequest(getcurrencyList)
       .subscribe(
         response => {
@@ -80,7 +77,7 @@ export class CountryComponent implements OnInit {
           if (!isNullOrUndefined(res) && res.status === StatusCodes.pass) {
             if (!isNullOrUndefined(res.response)) {
               console.log(res);
-              this.currencyList = res.response['CurrencyList'];
+              this.currencyList = res.response['currencyList'];
             }
           }
           this.spinner.hide();
@@ -88,7 +85,7 @@ export class CountryComponent implements OnInit {
   }
 
   save() {
-    if (this.modelFormData.invalid) {     
+    if (this.modelFormData.invalid) {
       return;
     }
     this.modelFormData.controls['countryCode'].enable();
@@ -106,4 +103,3 @@ export class CountryComponent implements OnInit {
   }
 
 }
-

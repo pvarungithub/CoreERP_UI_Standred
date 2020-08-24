@@ -14,11 +14,11 @@ interface Active {
   templateUrl: './segment.component.html',
   styleUrls: ['./segment.component.scss']
 })
-export class SegmentComponent implements OnInit {
 
+export class SegmentComponent implements OnInit {
   modelFormData: FormGroup;
-  isSubmitted  =  false;
   formData: any;
+
   active: Active[] =
     [
       { value: 'Y', viewValue: 'Y' },
@@ -30,21 +30,19 @@ export class SegmentComponent implements OnInit {
     private addOrEditService: AddOrEditService,
     public dialogRef: MatDialogRef<SegmentComponent>,
     // @Optional() is used to prevent error if no data is passed
-    @Optional() @Inject(MAT_DIALOG_DATA) public data: any ) {
+    @Optional() @Inject(MAT_DIALOG_DATA) public data: any) {
 
-      this.modelFormData  =  this.formBuilder.group({
-       
-        id: [null, [Validators.required, Validators.minLength(1)]],
-        name: [null, [Validators.required, Validators.minLength(0), Validators.maxLength(40)]],
-        active: ['Y']
-      });
+    this.modelFormData = this.formBuilder.group({
+      id: [null, [Validators.required, Validators.minLength(1), Validators.maxLength(5)]],
+      name: [null, [Validators.required, Validators.minLength(0), Validators.maxLength(50)]],
+      active: ['Y']
+    });
 
-      this.formData = {...data};
-      if (!isNullOrUndefined(this.formData.item)) {
-        this.modelFormData.patchValue(this.formData.item);
-       this.modelFormData.controls['id'].disable();
-      }
-
+    this.formData = { ...data };
+    if (!isNullOrUndefined(this.formData.item)) {
+      this.modelFormData.patchValue(this.formData.item);
+      this.modelFormData.controls['id'].disable();
+    }
   }
 
   ngOnInit() {
