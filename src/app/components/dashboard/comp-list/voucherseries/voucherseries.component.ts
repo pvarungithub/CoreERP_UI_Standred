@@ -18,9 +18,7 @@ import { AddOrEditService } from '../add-or-edit.service';
 export class VoucherSeriesComponents implements OnInit {
 
   modelFormData: FormGroup;
-  isSubmitted = false;
   formData: any;
-  voucherClass: any;
   compList: any;
   branchList: any;
   plantList: any;
@@ -40,11 +38,11 @@ export class VoucherSeriesComponents implements OnInit {
       branch: [null],
       company: [null],
       suffix: [null],
-      prefix:[null],
+      prefix: [null],
       fromInterval: [null],
       toInterval: [null],
       plant: [null],
-      year:[null]
+      year: [null]
     });
 
     this.formData = { ...data };
@@ -61,7 +59,7 @@ export class VoucherSeriesComponents implements OnInit {
   }
 
   getcompaniesList() {
-    const getcompanyList = String.Join('/', this.apiConfigService.getCompaniesList);
+    const getcompanyList = String.Join('/', this.apiConfigService.getCompanyList);
     this.apiService.apiGetRequest(getcompanyList)
       .subscribe(
         response => {
@@ -69,8 +67,7 @@ export class VoucherSeriesComponents implements OnInit {
           if (!isNullOrUndefined(res) && res.status === StatusCodes.pass) {
             if (!isNullOrUndefined(res.response)) {
               console.log(res);
-              this.compList = res.response['CompaniesList'];
-              console.log(this.voucherClass);
+              this.compList = res.response['companiesList'];
             }
           }
           this.spinner.hide();
@@ -78,7 +75,7 @@ export class VoucherSeriesComponents implements OnInit {
   }
 
   getbranchessList() {
-    const getbranchList = String.Join('/', this.apiConfigService.getVoucherBranchesList);
+    const getbranchList = String.Join('/', this.apiConfigService.getBranchList);
     this.apiService.apiGetRequest(getbranchList)
       .subscribe(
         response => {
@@ -86,8 +83,7 @@ export class VoucherSeriesComponents implements OnInit {
           if (!isNullOrUndefined(res) && res.status === StatusCodes.pass) {
             if (!isNullOrUndefined(res.response)) {
               console.log(res);
-              this.branchList = res.response['branchesList'];
-              console.log(this.voucherClass);
+              this.branchList = res.response['branchsList'];
             }
           }
           this.spinner.hide();
@@ -95,7 +91,7 @@ export class VoucherSeriesComponents implements OnInit {
   }
 
   getplantsList() {
-    const getplantsList = String.Join('/', this.apiConfigService.getplantList);
+    const getplantsList = String.Join('/', this.apiConfigService.getPlantsList);
     this.apiService.apiGetRequest(getplantsList)
       .subscribe(
         response => {
@@ -103,8 +99,7 @@ export class VoucherSeriesComponents implements OnInit {
           if (!isNullOrUndefined(res) && res.status === StatusCodes.pass) {
             if (!isNullOrUndefined(res.response)) {
               console.log(res);
-              this.plantList = res.response['plantList'];
-              console.log(this.voucherClass);
+              this.plantList = res.response['plantsList'];
             }
           }
           this.spinner.hide();
@@ -118,13 +113,13 @@ export class VoucherSeriesComponents implements OnInit {
       return;
     }
     this.modelFormData.controls['voucherSeriesKey'].enable();
-    this.formData.item = this.modelFormData.value;   
-this.addOrEditService[this.formData.action](this.formData, (res) => {
-  this.dialogRef.close(this.formData);
-});
-if (this.formData.action == 'Edit') {
-  this.modelFormData.controls['voucherSeriesKey'].disable();
-}
+    this.formData.item = this.modelFormData.value;
+    this.addOrEditService[this.formData.action](this.formData, (res) => {
+      this.dialogRef.close(this.formData);
+    });
+    if (this.formData.action == 'Edit') {
+      this.modelFormData.controls['voucherSeriesKey'].disable();
+    }
   }
 
   cancel() {

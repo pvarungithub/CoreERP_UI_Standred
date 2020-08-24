@@ -15,12 +15,10 @@ import { AddOrEditService } from '../add-or-edit.service';
   styleUrls: ['./openledger.component.scss']
 })
 export class OpenLedgerComponent implements OnInit {
-
   modelFormData: FormGroup;
-  isSubmitted = false;
   formData: any;
   ledgerList: any;
-  
+
   constructor(
     private apiService: ApiService,
     private addOrEditService: AddOrEditService,
@@ -33,7 +31,7 @@ export class OpenLedgerComponent implements OnInit {
 
     this.modelFormData = this.formBuilder.group({
       ledgerKey: [null, [Validators.required, Validators.minLength(1), Validators.maxLength(5)]],
-      id:['0'],
+      id: ['0'],
       financialYearEndTo: [null],
       accountingYear: [null],
       financialYearStartFrom: [null]
@@ -56,19 +54,19 @@ export class OpenLedgerComponent implements OnInit {
     if (this.modelFormData.invalid) {
       return;
     }
-    this.formData.item = this.modelFormData.value;    
-this.addOrEditService[this.formData.action](this.formData, (res) => {
-  this.dialogRef.close(this.formData);
-});
-if (this.formData.action == 'Edit') {
-  this.modelFormData.controls['id'].disable();
-}
+    this.formData.item = this.modelFormData.value;
+    this.addOrEditService[this.formData.action](this.formData, (res) => {
+      this.dialogRef.close(this.formData);
+    });
+    if (this.formData.action == 'Edit') {
+      this.modelFormData.controls['id'].disable();
+    }
   }
 
   cancel() {
     this.dialogRef.close();
   }
-  
+
   getLedgerList() {
     const getLedgerList = String.Join('/', this.apiConfigService.getLedgerList);
     this.apiService.apiGetRequest(getLedgerList)

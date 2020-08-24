@@ -98,7 +98,7 @@ export class AssignmentoftaxaccountstotaxcodesComponent implements OnInit {
         });
   }
   getcompaniesList() {
-    const getcompanyList = String.Join('/', this.apiConfigService.getCompaniesList);
+    const getcompanyList = String.Join('/', this.apiConfigService.getCompanyList);
     this.apiService.apiGetRequest(getcompanyList)
       .subscribe(
         response => {
@@ -114,7 +114,7 @@ export class AssignmentoftaxaccountstotaxcodesComponent implements OnInit {
   }
 
   getbranchessList() {
-    const getbranchList = String.Join('/', this.apiConfigService.getVoucherBranchesList);
+    const getbranchList = String.Join('/', this.apiConfigService.getBranchList);
     this.apiService.apiGetRequest(getbranchList)
       .subscribe(
         response => {

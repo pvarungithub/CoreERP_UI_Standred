@@ -16,9 +16,7 @@ import { AddOrEditService } from '../add-or-edit.service';
 })
 
 export class AssignmentVoucherSeriestoVoucherTypesComponent implements OnInit {
-
   modelFormData: FormGroup;
-  isSubmitted = false;
   formData: any;
   vtypeList: any;
   vcList: any;
@@ -34,10 +32,10 @@ export class AssignmentVoucherSeriestoVoucherTypesComponent implements OnInit {
     @Optional() @Inject(MAT_DIALOG_DATA) public data: any) {
 
     this.modelFormData = this.formBuilder.group({
-       code: [0],
+      code: [0],
       voucherType: [null],
-      voucherSeries:  [null],
-      ext: null        
+      voucherSeries: [null],
+      ext: null
     });
 
     this.formData = { ...data };
@@ -53,7 +51,7 @@ export class AssignmentVoucherSeriestoVoucherTypesComponent implements OnInit {
   }
 
   getvochertypesList() {
-    const getvouchertypeList = String.Join('/', this.apiConfigService.getVoucherTypeList);
+    const getvouchertypeList = String.Join('/', this.apiConfigService.getVoucherTypesList);
     this.apiService.apiGetRequest(getvouchertypeList)
       .subscribe(
         response => {
@@ -61,7 +59,7 @@ export class AssignmentVoucherSeriestoVoucherTypesComponent implements OnInit {
           if (!isNullOrUndefined(res) && res.status === StatusCodes.pass) {
             if (!isNullOrUndefined(res.response)) {
               console.log(res);
-              this.vtypeList = res.response['GLSubCodeList'];
+              this.vtypeList = res.response['vouchertypeList'];
             }
           }
           this.spinner.hide();
@@ -69,7 +67,7 @@ export class AssignmentVoucherSeriestoVoucherTypesComponent implements OnInit {
   }
 
   getvoucherseriesList() {
-    const getvclassList = String.Join('/', this.apiConfigService.getvocherseriesList);
+    const getvclassList = String.Join('/', this.apiConfigService.getvochersseriesList);
     this.apiService.apiGetRequest(getvclassList)
       .subscribe(
         response => {
