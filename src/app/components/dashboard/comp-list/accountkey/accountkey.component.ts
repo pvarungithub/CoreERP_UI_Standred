@@ -9,7 +9,6 @@ import { ApiService } from '../../../../services/api.service';
 import { String } from 'typescript-string-operations';
 import { AddOrEditService } from '../add-or-edit.service';
 
-
 @Component({
   selector: 'app-accountkey',
   templateUrl: './accountkey.component.html',
@@ -17,14 +16,14 @@ import { AddOrEditService } from '../add-or-edit.service';
 })
 
 export class AccountKeyComponent implements OnInit {
-
   modelFormData: FormGroup;
   formData: any;
-  nrrList:any;   
-  coaList: any;   
+  nrrList: any;
+  coaList: any;
   companyList: any;
   glList: any;
   gl2List: any;
+
   constructor(
     private addOrEditService: AddOrEditService,
     private formBuilder: FormBuilder,
@@ -36,7 +35,7 @@ export class AccountKeyComponent implements OnInit {
     @Optional() @Inject(MAT_DIALOG_DATA) public data: any) {
 
     this.modelFormData = this.formBuilder.group({
-      code: [null, [Validators.required, Validators.minLength(1), Validators.maxLength(4)]],
+      code: [null, [Validators.required, Validators.minLength(1), Validators.maxLength(5)]],
       acquisitionsGl: [null],
       accumulatedGl: [null],
       depreciationGl: [null],
@@ -47,7 +46,7 @@ export class AccountKeyComponent implements OnInit {
       auggl: [null],
       companyCode: [null],
       chartofAccount: [null],
-      description:[null, [Validators.required, Validators.minLength(2), Validators.maxLength(50)]]
+      description: [null, [Validators.required, Validators.minLength(2), Validators.maxLength(50)]]
     });
 
     this.formData = { ...data };
@@ -55,7 +54,6 @@ export class AccountKeyComponent implements OnInit {
       this.modelFormData.patchValue(this.formData.item);
       this.modelFormData.controls['code'].disable();
     }
-
   }
 
   ngOnInit() {
@@ -64,6 +62,7 @@ export class AccountKeyComponent implements OnInit {
     this.getchartofAccountData();
     this.getGLAccountData();
   }
+
   getGLAccountData() {
     const getGLAccountUrl = String.Join('/', this.apiConfigService.getGLAccountList);
     this.apiService.apiGetRequest(getGLAccountUrl)
@@ -73,14 +72,15 @@ export class AccountKeyComponent implements OnInit {
           if (!isNullOrUndefined(res) && res.status === StatusCodes.pass) {
             if (!isNullOrUndefined(res.response)) {
               this.glList = res.response['glList'].filter(res => res.controlAccount == 'Asset');
-              this.gl2List = res.response['glList'].filter(res => res.accGroup == '0003' ||  res.accGroup == '0004');
+              this.gl2List = res.response['glList'].filter(res => res.accGroup == '0003' || res.accGroup == '0004');
             }
           }
           this.spinner.hide();
         });
   }
+
   getTableData() {
-    const getCompanyUrl = String.Join('/', this.apiConfigService.getCompanysList);
+    const getCompanyUrl = String.Join('/', this.apiConfigService.getCompanyList);
     this.apiService.apiGetRequest(getCompanyUrl)
       .subscribe(
         response => {
@@ -94,6 +94,7 @@ export class AccountKeyComponent implements OnInit {
           this.spinner.hide();
         });
   }
+
   getchartofAccountData() {
     const getchartofAccountUrl = String.Join('/', this.apiConfigService.getChartOfAccountList);
     this.apiService.apiGetRequest(getchartofAccountUrl)
@@ -109,6 +110,7 @@ export class AccountKeyComponent implements OnInit {
           this.spinner.hide();
         });
   }
+
   getyNumberrangeData() {
     const getnumrangeUrl = String.Join('/', this.apiConfigService.getNumberRangeList);
     this.apiService.apiGetRequest(getnumrangeUrl)
@@ -117,7 +119,6 @@ export class AccountKeyComponent implements OnInit {
           const res = response.body;
           if (!isNullOrUndefined(res) && res.status === StatusCodes.pass) {
             if (!isNullOrUndefined(res.response)) {
-              console.log(res);
               this.nrrList = res.response['nrrList'];
             }
           }
@@ -126,7 +127,6 @@ export class AccountKeyComponent implements OnInit {
   }
 
   get formControls() { return this.modelFormData.controls; }
-
 
   save() {
     if (this.modelFormData.invalid) {

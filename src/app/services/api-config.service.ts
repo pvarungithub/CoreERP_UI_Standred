@@ -37,6 +37,12 @@ export class ApiConfigService {
    getTaxTransactionsList = `${this.environment.runtimeConfig.serverUrl}Common/GetTaxTransactionsList`;
    gettaxrateList = `${this.environment.runtimeConfig.serverUrl}Common/GetTaxRateList`;
    getTDSRateList = `${this.environment.runtimeConfig.serverUrl}Common/GetTDSRateList`;
+   getBusienessPartnersGroupsList = `${this.environment.runtimeConfig.serverUrl}Common/GetBusienessPartnersGroupsList`;
+   getAssetsClassList = `${this.environment.runtimeConfig.serverUrl}Common/GetAssetsClassList`;
+   getAssetsBlockList = `${this.environment.runtimeConfig.serverUrl}Common/GetAssetsBlockList`;
+   getAccountsKeyList = `${this.environment.runtimeConfig.serverUrl}Common/GetAccountsKeyList`;
+   getBankMastersList = `${this.environment.runtimeConfig.serverUrl}Common/GetBankMastersList`;
+   getPaymentsTermsList = `${this.environment.runtimeConfig.serverUrl}Common/GetPaymentsTermsList`;
    //************************ IMG General  ****************************************/
 
 

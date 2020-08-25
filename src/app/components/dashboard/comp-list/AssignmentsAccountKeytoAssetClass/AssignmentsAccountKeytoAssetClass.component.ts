@@ -1,7 +1,7 @@
 import { Component, Inject, Optional, OnInit } from '@angular/core';
 import { MatDialogRef, MAT_DIALOG_DATA } from '@angular/material/dialog';
 import { isNullOrUndefined } from 'util';
-import { FormBuilder, FormGroup, Validators } from '@angular/forms';
+import { FormBuilder, FormGroup } from '@angular/forms';
 import { StatusCodes } from '../../../../enums/common/common';
 import { NgxSpinnerService } from 'ngx-spinner';
 import { ApiConfigService } from '../../../../services/api-config.service';
@@ -9,10 +9,6 @@ import { ApiService } from '../../../../services/api.service';
 import { String } from 'typescript-string-operations';
 import { AddOrEditService } from '../add-or-edit.service';
 
-interface classType {
-  value: string;
-  viewValue: string;
-}
 @Component({
   selector: 'app-AssignmentsAccountKeytoAssetClass',
   templateUrl: './AssignmentsAccountKeytoAssetClass.component.html',
@@ -20,13 +16,11 @@ interface classType {
 })
 
 export class AssignmentAccountKeytoAssetClassComponent implements OnInit {
-
   modelFormData: FormGroup;
-  isSubmitted = false;
   formData: any;
- 
-  assetList:any;
+  assetList: any;
   acckeyList: any;
+
   constructor(
     private addOrEditService: AddOrEditService,
     private formBuilder: FormBuilder,
@@ -39,10 +33,8 @@ export class AssignmentAccountKeytoAssetClassComponent implements OnInit {
 
     this.modelFormData = this.formBuilder.group({
       code: [0],
-      // description: [null, [Validators.required, Validators.minLength(1), Validators.maxLength(30)]],
       assetClass: [null],
       accountKey: [null]
-      
     });
 
     this.formData = { ...data };
@@ -50,37 +42,36 @@ export class AssignmentAccountKeytoAssetClassComponent implements OnInit {
       this.modelFormData.patchValue(this.formData.item);
       this.modelFormData.controls['code'].disable();
     }
-
   }
 
   ngOnInit() {
     this.getassetClassData();
     this.getassetkeyData();
   }
+
   getassetClassData() {
-    const getassetclassUrl = String.Join('/', this.apiConfigService.getAssetClassList);
+    const getassetclassUrl = String.Join('/', this.apiConfigService.getAssetsClassList);
     this.apiService.apiGetRequest(getassetclassUrl)
       .subscribe(
         response => {
           const res = response.body;
           if (!isNullOrUndefined(res) && res.status === StatusCodes.pass) {
             if (!isNullOrUndefined(res.response)) {
-              console.log(res);
               this.assetList = res.response['assetList'];
             }
           }
           this.spinner.hide();
         });
   }
+
   getassetkeyData() {
-    const getassetblockUrl = String.Join('/', this.apiConfigService.getAccountKeyList);
+    const getassetblockUrl = String.Join('/', this.apiConfigService.getAccountsKeyList);
     this.apiService.apiGetRequest(getassetblockUrl)
       .subscribe(
         response => {
           const res = response.body;
           if (!isNullOrUndefined(res) && res.status === StatusCodes.pass) {
             if (!isNullOrUndefined(res.response)) {
-              console.log(res);
               this.acckeyList = res.response['acckeyList'];
             }
           }
@@ -107,5 +98,4 @@ export class AssignmentAccountKeytoAssetClassComponent implements OnInit {
   cancel() {
     this.dialogRef.close();
   }
-
 }

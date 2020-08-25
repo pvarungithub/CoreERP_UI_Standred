@@ -16,11 +16,8 @@ import { AddOrEditService } from '../add-or-edit.service';
 })
 
 export class AseetClassToAssetBlockComponent implements OnInit {
-
   modelFormData: FormGroup;
-  isSubmitted = false;
   formData: any;
-  voucherClass: any;
   assetList: any;
   assetblockList: any;
 
@@ -36,10 +33,8 @@ export class AseetClassToAssetBlockComponent implements OnInit {
 
     this.modelFormData = this.formBuilder.group({
       code: [0],
-      // description: [null, [Validators.required, Validators.minLength(1), Validators.maxLength(50)]],
       assetClass: [null],
       assetBlock: [null]
-     
     });
 
     this.formData = { ...data };
@@ -55,7 +50,7 @@ export class AseetClassToAssetBlockComponent implements OnInit {
   }
 
   getassetclassList() {
-    const getassetist = String.Join('/', this.apiConfigService.getAssetClassList);
+    const getassetist = String.Join('/', this.apiConfigService.getAssetsClassList);
     this.apiService.apiGetRequest(getassetist)
       .subscribe(
         response => {
@@ -64,7 +59,6 @@ export class AseetClassToAssetBlockComponent implements OnInit {
             if (!isNullOrUndefined(res.response)) {
               console.log(res);
               this.assetList = res.response['assetList'];
-              console.log(this.voucherClass);
             }
           }
           this.spinner.hide();
@@ -72,7 +66,7 @@ export class AseetClassToAssetBlockComponent implements OnInit {
   }
 
   getassetblockList() {
-    const getassetblocksList = String.Join('/', this.apiConfigService.getAssetBlockList);
+    const getassetblocksList = String.Join('/', this.apiConfigService.getAssetsBlockList);
     this.apiService.apiGetRequest(getassetblocksList)
       .subscribe(
         response => {
@@ -81,14 +75,13 @@ export class AseetClassToAssetBlockComponent implements OnInit {
             if (!isNullOrUndefined(res.response)) {
               console.log(res);
               this.assetblockList = res.response['assetblockList'];
-              console.log(this.voucherClass);
             }
           }
           this.spinner.hide();
         });
   }
 
- 
+
   get formControls() { return this.modelFormData.controls; }
 
   save() {

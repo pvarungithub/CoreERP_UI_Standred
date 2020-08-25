@@ -1,6 +1,6 @@
 <div class="position-relative popup-class">
   <mat-card-title class="boader--color d-flex justify-content-between position-absolute w-100">
-    <span>  {{'partnergroup.title' | translate }} </span>
+    <span> {{'partnergroup.title' | translate }} </span>
     <mat-icon class="p-2 cursor--pointer" (click)="cancel()">close</mat-icon>
   </mat-card-title>
 
@@ -9,35 +9,36 @@
 
       <div class="d--flex">
         <mat-form-field class="form-element" [ngClass]="{ 'ng--valid': formControls.bpgroup.valid }">
-          <input matInput placeholder="{{'partnergroup.bpgroup' | translate }}" formControlName="bpgroup" maxlength="4" appFocusOnEnter tabIndex="1">
+          <input matInput placeholder="{{'partnergroup.bpgroup' | translate }}" formControlName="bpgroup" maxlength="5"
+            appFocusOnEnter tabIndex="1">
           <mat-error *ngIf="formControls.bpgroup.errors" class="help-block">
-            <div *ngIf="formControls.bpgroup.errors.required">code  is required </div>
+            <div *ngIf="formControls.bpgroup.errors.required">code is required </div>
           </mat-error>
         </mat-form-field>
 
         <mat-form-field class="form-element" [ngClass]="{ 'ng--valid': formControls.description.valid }">
-          <input matInput placeholder="{{'partnergroup.description' | translate }}"
-           formControlName="description" maxlength="30" appFocusOnEnter tabIndex="2">
+          <input matInput placeholder="{{'partnergroup.description' | translate }}" formControlName="description"
+            maxlength="50" appFocusOnEnter tabIndex="2">
           <mat-error *ngIf="formControls.description.errors" class="help-block">
-            <div *ngIf="formControls.description.errors.required">description  is required </div>
+            <div *ngIf="formControls.description.errors.required">description is required </div>
           </mat-error>
         </mat-form-field>
-        
+
         <mat-form-field>
           <mat-label>{{'partnergroup.bptype' | translate }}</mat-label>
           <mat-select formControlName="bptype" appFocusOnEnter tabIndex="3">
             <mat-option>None</mat-option>
             <mat-option *ngFor="let ptype of ptypeList" [value]="ptype.code">
-              {{ptype.code}}- {{ptype.description}}
+              {{ptype.description}}
             </mat-option>
           </mat-select>
         </mat-form-field>
+
         <mat-form-field class="form-element">
-          <input matInput placeholder="{{'partnergroup.ext1' | translate }}" formControlName="ext1" 
-          maxlength="7" appFocusOnEnter tabIndex="4">
-         
+          <input matInput placeholder="{{'partnergroup.ext1' | translate }}" formControlName="ext1" maxlength="7"
+            appFocusOnEnter tabIndex="4">
         </mat-form-field>
-      
+
       </div>
       <mat-divider></mat-divider>
     </form>
@@ -45,11 +46,9 @@
   </mat-card-content>
   <div class="form-element p-2 d-flex justify-content-end">
     <button mat-raised-button class="button-color-red text-white mr-1" (click)="cancel()">
-
       {{ 'COMMON.CANCEL' | translate }}
     </button>
     <button mat-raised-button type="submit" class="button-color-bule text-white ml-1" (click)="save()">
-
       {{ 'COMMON.SAVE' | translate }}
     </button>
   </div>

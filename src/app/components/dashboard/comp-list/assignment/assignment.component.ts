@@ -16,17 +16,11 @@ import { AddOrEditService } from '../add-or-edit.service';
 })
 
 export class AssignmentComponent implements OnInit {
-
   modelFormData: FormGroup;
-  isSubmitted = false;
   formData: any;
-  taxcodeList: any;
-  taxaccList: any;
-  tdsList:any;
-  incmList:any;
-  ptypeList: any;
   bpgList: any;
   nrrList: any;
+
   constructor(
     private addOrEditService: AddOrEditService,
     private formBuilder: FormBuilder,
@@ -49,15 +43,15 @@ export class AssignmentComponent implements OnInit {
       this.modelFormData.patchValue(this.formData.item);
       this.modelFormData.controls['code'].disable();
     }
-
   }
 
   ngOnInit() {
     this.getBpgroupList();
     this.getnumberRangeKeyList();
   }
+
   getBpgroupList() {
-    const getbpList = String.Join('/', this.apiConfigService.getBusienessPartnerGroupsList);
+    const getbpList = String.Join('/', this.apiConfigService.getBusienessPartnersGroupsList);
     this.apiService.apiGetRequest(getbpList)
       .subscribe(
         response => {
@@ -71,6 +65,7 @@ export class AssignmentComponent implements OnInit {
           this.spinner.hide();
         });
   }
+
   getnumberRangeKeyList() {
     const getnrList = String.Join('/', this.apiConfigService.getNumberRangeList);
     this.apiService.apiGetRequest(getnrList)
@@ -106,5 +101,4 @@ export class AssignmentComponent implements OnInit {
   cancel() {
     this.dialogRef.close();
   }
-
 }

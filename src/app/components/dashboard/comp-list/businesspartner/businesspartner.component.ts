@@ -1,4 +1,4 @@
-import { Component, Inject, Optional, OnInit, OnDestroy } from '@angular/core';
+import { Component, OnInit, OnDestroy } from '@angular/core';
 import { String } from 'typescript-string-operations';
 import { ApiService } from '../../../../services/api.service';
 import { isNullOrUndefined } from 'util';
@@ -13,13 +13,14 @@ interface TaxClassification {
   value: string;
   viewValue: string;
 }
+
 @Component({
   selector: 'app-businesspartner',
   templateUrl: './businesspartner.component.html',
   styleUrls: ['./businesspartner.component.scss']
 })
-export class BusienessPartnerAccountComponent implements OnInit, OnDestroy {
 
+export class BusienessPartnerAccountComponent implements OnInit, OnDestroy {
   modelFormData: FormGroup;
   formData: any;
   companyList: any;
@@ -34,13 +35,14 @@ export class BusienessPartnerAccountComponent implements OnInit, OnDestroy {
   tdsratesList: any;
   glList: any;
   controlAccountList: any;
+  bpaNum: any;
+  bpname: any;
+
   taxClassification: TaxClassification[] =
     [
       { value: 'Registered', viewValue: 'Registered' },
       { value: 'UnRegistered', viewValue: 'UnRegistered' }
     ];
-  bpaNum: any;
-  bpname: any;
 
   constructor(
     private apiService: ApiService,
@@ -49,7 +51,6 @@ export class BusienessPartnerAccountComponent implements OnInit, OnDestroy {
     private spinner: NgxSpinnerService,
     private formBuilder: FormBuilder,
     private router: Router,
-    private activatedRoute: ActivatedRoute
   ) {
 
     this.modelFormData = this.formBuilder.group({
@@ -93,14 +94,12 @@ export class BusienessPartnerAccountComponent implements OnInit, OnDestroy {
       narration: [null],
       bpgroup: [null],
       ext: [null]
-
     });
 
     this.formData = { ...this.addOrEditService.editData };
     if (!isNullOrUndefined(this.formData.item)) {
       this.modelFormData.patchValue(this.formData.item);
     }
-
   }
 
   ngOnInit() {
@@ -124,7 +123,6 @@ export class BusienessPartnerAccountComponent implements OnInit, OnDestroy {
   }
 
   onChange(event: any) {
-    
     const getAccountSubGrouplist = String.Join('/', this.apiConfigService.getbpNumbers,
       this.modelFormData.get('bpgroup').value, this.modelFormData.get('bpnumber').value);
     this.apiService.apiGetRequest(getAccountSubGrouplist)
@@ -137,51 +135,48 @@ export class BusienessPartnerAccountComponent implements OnInit, OnDestroy {
           }
           this.spinner.hide();
         });
-        
+
   };
-  gettingbpgroupname()
-  {
+
+  gettingbpgroupname() {
     const getAccountSubGrouplist = String.Join('/', this.apiConfigService.getttingbpNames,
-    this.modelFormData.get('bpgroup').value);
-  this.apiService.apiGetRequest(getAccountSubGrouplist)
-    .subscribe(
-      response => {
-        const res = response.body;
-        if (!isNullOrUndefined(res) && res.status === StatusCodes.pass) {
-          if (!isNullOrUndefined(res.response)) 
-          {
-            this.bpname = res.response['bpname'];
-            this.modelFormData.patchValue({
-              ext:this.bpname 
-            });
+      this.modelFormData.get('bpgroup').value);
+    this.apiService.apiGetRequest(getAccountSubGrouplist)
+      .subscribe(
+        response => {
+          const res = response.body;
+          if (!isNullOrUndefined(res) && res.status === StatusCodes.pass) {
+            if (!isNullOrUndefined(res.response)) {
+              this.bpname = res.response['bpname'];
+              this.modelFormData.patchValue({
+                ext: this.bpname
+              });
+            }
           }
-        }
-        this.spinner.hide();
-      });
-  }
-  getBPNumberData()
- {
-  this.gettingbpgroupname();
-  const getAccountSubGrouplist = String.Join('/', this.apiConfigService.getttingbpNumbers,
-  this.modelFormData.get('bpgroup').value);
-this.apiService.apiGetRequest(getAccountSubGrouplist)
-  .subscribe(
-    response => {
-      const res = response.body;
-      if (!isNullOrUndefined(res) && res.status === StatusCodes.pass) {
-        if (!isNullOrUndefined(res.response)) 
-        {
-
-          this.bpaNum = res.response['bpaNum'];
-          this.modelFormData.patchValue({
-            bpnumber:this.bpaNum 
-          });
-        }
-      }
-      this.spinner.hide();
-    });
+          this.spinner.hide();
+        });
   }
 
+  getBPNumberData() {
+    this.gettingbpgroupname();
+    const getAccountSubGrouplist = String.Join('/', this.apiConfigService.getttingbpNumbers,
+      this.modelFormData.get('bpgroup').value);
+    this.apiService.apiGetRequest(getAccountSubGrouplist)
+      .subscribe(
+        response => {
+          const res = response.body;
+          if (!isNullOrUndefined(res) && res.status === StatusCodes.pass) {
+            if (!isNullOrUndefined(res.response)) {
+
+              this.bpaNum = res.response['bpaNum'];
+              this.modelFormData.patchValue({
+                bpnumber: this.bpaNum
+              });
+            }
+          }
+          this.spinner.hide();
+        });
+  }
 
   getGLAccountData() {
     const getGLAccountUrl = String.Join('/', this.apiConfigService.getGLAccountList);
@@ -198,9 +193,8 @@ this.apiService.apiGetRequest(getAccountSubGrouplist)
         });
   }
 
-
   getTableData() {
-    const getCompanyUrl = String.Join('/', this.apiConfigService.getCompanysList);
+    const getCompanyUrl = String.Join('/', this.apiConfigService.getCompanyList);
     this.apiService.apiGetRequest(getCompanyUrl)
       .subscribe(
         response => {
@@ -213,6 +207,7 @@ this.apiService.apiGetRequest(getAccountSubGrouplist)
           this.spinner.hide();
         });
   }
+
   getTDSTableData() {
     const getTDSUrl = String.Join('/', this.apiConfigService.getTDStypeList);
     this.apiService.apiGetRequest(getTDSUrl)
@@ -227,8 +222,9 @@ this.apiService.apiGetRequest(getAccountSubGrouplist)
           this.spinner.hide();
         });
   }
+
   getTDSRateTableData() {
-    const getTDSRateUrl = String.Join('/', this.apiConfigService.getTDSRatesList);
+    const getTDSRateUrl = String.Join('/', this.apiConfigService.getTDSRateList);
     this.apiService.apiGetRequest(getTDSRateUrl)
       .subscribe(
         response => {
@@ -241,8 +237,9 @@ this.apiService.apiGetRequest(getAccountSubGrouplist)
           this.spinner.hide();
         });
   }
+
   getPartnerGroupsTableData() {
-    const gettPartnerGroupsUrl = String.Join('/', this.apiConfigService.getBusienessPartnerGroupsList);
+    const gettPartnerGroupsUrl = String.Join('/', this.apiConfigService.getBusienessPartnersGroupsList);
     this.apiService.apiGetRequest(gettPartnerGroupsUrl)
       .subscribe(
         response => {
@@ -257,7 +254,7 @@ this.apiService.apiGetRequest(getAccountSubGrouplist)
   }
 
   getPaymenttermsList() {
-    const getpmList = String.Join('/', this.apiConfigService.getPaymentTermsList);
+    const getpmList = String.Join('/', this.apiConfigService.getPaymentsTermsList);
     this.apiService.apiGetRequest(getpmList)
       .subscribe(
         response => {
@@ -270,6 +267,7 @@ this.apiService.apiGetRequest(getAccountSubGrouplist)
           this.spinner.hide();
         });
   }
+
   getregionsList() {
     const getRegionsList = String.Join('/', this.apiConfigService.getRegionsList);
     this.apiService.apiGetRequest(getRegionsList)
@@ -284,6 +282,7 @@ this.apiService.apiGetRequest(getAccountSubGrouplist)
           this.spinner.hide();
         });
   }
+
   getcountrysList() {
     const getCountrysList = String.Join('/', this.apiConfigService.getCountrysList);
     this.apiService.apiGetRequest(getCountrysList)
@@ -298,6 +297,7 @@ this.apiService.apiGetRequest(getAccountSubGrouplist)
           this.spinner.hide();
         });
   }
+
   getstateList() {
     const getstateList = String.Join('/', this.apiConfigService.getstatesList);
     this.apiService.apiGetRequest(getstateList)
@@ -312,6 +312,7 @@ this.apiService.apiGetRequest(getAccountSubGrouplist)
           this.spinner.hide();
         });
   }
+
   getptypeList() {
     const getcurrencyList = String.Join('/', this.apiConfigService.getPartnerTypeList);
     this.apiService.apiGetRequest(getcurrencyList)
@@ -326,6 +327,7 @@ this.apiService.apiGetRequest(getAccountSubGrouplist)
           this.spinner.hide();
         });
   }
+
   getEmployeesList() {
     const getEmployeeList = String.Join('/', this.apiConfigService.getEmployeeList);
     this.apiService.apiGetRequest(getEmployeeList)
@@ -344,8 +346,6 @@ this.apiService.apiGetRequest(getAccountSubGrouplist)
   get formControls() { return this.modelFormData.controls; }
 
   save() {
-
-
     if (this.modelFormData.invalid) {
       return;
     }

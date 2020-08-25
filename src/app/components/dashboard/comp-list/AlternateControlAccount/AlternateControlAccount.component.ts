@@ -9,7 +9,6 @@ import { ApiService } from '../../../../services/api.service';
 import { String } from 'typescript-string-operations';
 import { AddOrEditService } from '../add-or-edit.service';
 
-
 @Component({
   selector: 'app-AlternateControlAccount',
   templateUrl: './AlternateControlAccount.component.html',
@@ -17,10 +16,9 @@ import { AddOrEditService } from '../add-or-edit.service';
 })
 
 export class AlternateControlAccountComponent implements OnInit {
-
   modelFormData: FormGroup;
   formData: any;
-  glList: any;  
+  glList: any;
   companyList: any;
   coaList: any;
 
@@ -36,21 +34,17 @@ export class AlternateControlAccountComponent implements OnInit {
 
     this.modelFormData = this.formBuilder.group({
       code: ['0'],
-        //[Validators.required, Validators.minLength(1), Validators.maxLength(4)]],
-      //description: [null, [Validators.required, Validators.minLength(1), Validators.maxLength(30)]],
       normalControlAccount: [null],
       alternativeControlAccount: [null],
       chartofAccount: [null],
-      company: [null]     
+      company: [null]
     });
-
 
     this.formData = { ...data };
     if (!isNullOrUndefined(this.formData.item)) {
       this.modelFormData.patchValue(this.formData.item);
       this.modelFormData.controls['code'].disable();
     }
-
   }
 
   ngOnInit() {
@@ -58,6 +52,7 @@ export class AlternateControlAccountComponent implements OnInit {
     this.getchartofAccountData();
     this.getGLAccountData();
   }
+
   getGLAccountData() {
     const getGLAccountUrl = String.Join('/', this.apiConfigService.getGLAccountList);
     this.apiService.apiGetRequest(getGLAccountUrl)
@@ -74,7 +69,7 @@ export class AlternateControlAccountComponent implements OnInit {
   }
 
   getTableData() {
-    const getCompanyUrl = String.Join('/', this.apiConfigService.getCompanysList);
+    const getCompanyUrl = String.Join('/', this.apiConfigService.getCompanyList);
     this.apiService.apiGetRequest(getCompanyUrl)
       .subscribe(
         response => {
@@ -88,6 +83,7 @@ export class AlternateControlAccountComponent implements OnInit {
           this.spinner.hide();
         });
   }
+
   getchartofAccountData() {
     const getchartofAccountUrl = String.Join('/', this.apiConfigService.getChartOfAccountList);
     this.apiService.apiGetRequest(getchartofAccountUrl)
@@ -103,10 +99,8 @@ export class AlternateControlAccountComponent implements OnInit {
           this.spinner.hide();
         });
   }
- 
 
   get formControls() { return this.modelFormData.controls; }
-
 
   save() {
     if (this.modelFormData.invalid) {
@@ -125,5 +119,4 @@ export class AlternateControlAccountComponent implements OnInit {
   cancel() {
     this.dialogRef.close();
   }
-
 }

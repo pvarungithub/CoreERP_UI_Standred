@@ -1,6 +1,6 @@
 <div class="position-relative popup-class">
   <mat-card-title class="boader--color d-flex justify-content-between position-absolute w-100">
-    <span>  {{'accountkey.title' | translate }} </span>
+    <span> {{'accountkey.title' | translate }} </span>
     <mat-icon class="p-2 cursor--pointer" (click)="cancel()">close</mat-icon>
   </mat-card-title>
 
@@ -9,15 +9,18 @@
 
       <div class="d--flex">
         <mat-form-field class="form-element" [ngClass]="{ 'ng--valid': formControls.code.valid }">
-          <input matInput placeholder="{{'accountkey.code' | translate }}" formControlName="code" maxlength="4" appFocusOnEnter tabIndex="1">
+          <input matInput placeholder="{{'accountkey.code' | translate }}" formControlName="code" maxlength="5"
+            appFocusOnEnter tabIndex="1">
           <mat-error *ngIf="formControls.code.errors" class="help-block">
-            <div *ngIf="formControls.code.errors.required">code  is required </div>
+            <div *ngIf="formControls.code.errors.required">code is required </div>
           </mat-error>
         </mat-form-field>
+
         <mat-form-field class="form-element" [ngClass]="{ 'ng--valid': formControls.description.valid }">
-          <input matInput placeholder="{{'accountkey.description' | translate }}" formControlName="description" maxlength="4" appFocusOnEnter tabIndex="2">
+          <input matInput placeholder="{{'accountkey.description' | translate }}" formControlName="description"
+            maxlength="50" appFocusOnEnter tabIndex="2">
           <mat-error *ngIf="formControls.description.errors" class="help-block">
-            <div *ngIf="formControls.description.errors.required">Description  is required </div>
+            <div *ngIf="formControls.description.errors.required">Description is required </div>
           </mat-error>
         </mat-form-field>
 
@@ -26,7 +29,7 @@
           <mat-select formControlName="acquisitionsGl" appFocusOnEnter tabIndex="3">
             <mat-option>None</mat-option>
             <mat-option *ngFor="let agl of glList" [value]="agl.accountNumber">
-              {{agl.accountNumber}} -  {{agl.glaccountName}}
+              {{agl.accountNumber}} - {{agl.glaccountName}}
             </mat-option>
           </mat-select>
         </mat-form-field>
@@ -40,6 +43,7 @@
             </mat-option>
           </mat-select>
         </mat-form-field>
+
         <mat-form-field>
           <mat-label [translate]="'accountkey.auggl'"></mat-label>
           <mat-select formControlName="auggl" appFocusOnEnter tabIndex="5">
@@ -48,7 +52,7 @@
               {{cltype.accountNumber}} - {{cltype.glaccountName}}
             </mat-option>
           </mat-select>
-        </mat-form-field>        
+        </mat-form-field>
 
         <mat-form-field>
           <mat-label [translate]="'accountkey.salesRevenueGl'"></mat-label>
@@ -89,6 +93,7 @@
             </mat-option>
           </mat-select>
         </mat-form-field>
+
         <mat-form-field>
           <mat-label [translate]="'accountkey.depreciationGl'"></mat-label>
           <mat-select formControlName="depreciationGl" appFocusOnEnter tabIndex="10">
@@ -98,13 +103,13 @@
             </mat-option>
           </mat-select>
         </mat-form-field>
-        
+
         <mat-form-field>
           <mat-label [translate]="'accountkey.companyCode'"></mat-label>
           <mat-select formControlName="companyCode" appFocusOnEnter tabIndex="11">
             <mat-option>None</mat-option>
-            <mat-option *ngFor="let comp of companyList" [value]="comp.companyCode">
-              {{comp.companyCode}}- {{comp.companyName}}
+            <mat-option *ngFor="let comp of companyList" [value]="comp.id">
+              {{comp.text}}
             </mat-option>
           </mat-select>
         </mat-form-field>
@@ -114,7 +119,7 @@
           <mat-select formControlName="chartofAccount" appFocusOnEnter tabIndex="12">
             <mat-option>None</mat-option>
             <mat-option *ngFor="let coa of coaList" [value]="coa.code">
-              {{coa.code}}- {{coa.desctiption}}
+              {{coa.desctiption}}
             </mat-option>
           </mat-select>
         </mat-form-field>
@@ -127,11 +132,9 @@
   </mat-card-content>
   <div class="form-element p-2 d-flex justify-content-end">
     <button mat-raised-button class="button-color-red text-white mr-1" (click)="cancel()">
-
       {{ 'COMMON.CANCEL' | translate }}
     </button>
     <button mat-raised-button type="submit" class="button-color-bule text-white ml-1" (click)="save()">
-
       {{ 'COMMON.SAVE' | translate }}
     </button>
   </div>

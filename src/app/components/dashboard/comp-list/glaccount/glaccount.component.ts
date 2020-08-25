@@ -27,24 +27,16 @@ interface CostElementCategory {
   templateUrl: './glaccount.component.html',
   styleUrls: ['./glaccount.component.scss']
 })
-export class GLAccountComponent implements OnInit {
 
+export class GLAccountComponent implements OnInit {
   modelFormData: FormGroup;
-  isSubmitted  =  false;
   formData: any;
   companyList: any;
-  employeesList: any;
-  stateList: any;
   currencyList: any;
-  regionsList: any;
-  countrysList: any;
-  languageList: any;
-  tblAccountGroupList:any;
-  getAccSubGrpList:any;
-  glAccgrpList:any;
-  glAccNameList: any;
+  glAccgrpList: any;
   coaList: any;
   bankList: any;
+
   accounts: account[] =
     [
       { value: 'Asset', viewValue: 'Asset' },
@@ -54,7 +46,6 @@ export class GLAccountComponent implements OnInit {
       { value: 'ServiceProvider', viewValue: 'ServiceProvider' },
       { value: 'Vendor', viewValue: 'Vendor' }
     ];
-
 
   taxCategorys: TaxCategory[] =
     [
@@ -75,7 +66,6 @@ export class GLAccountComponent implements OnInit {
       { value: 'Internal settlement', viewValue: 'Internal settlement' },
       { value: 'External settlement', viewValue: 'External settlement' }
     ];
-  GLAccountGroupList: any;
 
   constructor(
     private apiService: ApiService,
@@ -88,7 +78,7 @@ export class GLAccountComponent implements OnInit {
     @Optional() @Inject(MAT_DIALOG_DATA) public data: any) {
 
     this.modelFormData = this.formBuilder.group({
-      accountNumber: [null, [Validators.required, Validators.minLength(1), Validators.maxLength(7)]],
+      accountNumber: [null, [Validators.required, Validators.minLength(1), Validators.maxLength(10)]],
       company: [null],
       chartAccount: [null],
       accGroup: [null],
@@ -131,9 +121,11 @@ export class GLAccountComponent implements OnInit {
       bankKey: null,
       controlAccount: null
     })
+
     if (this.modelFormData.get('taxCategory').value == 'Bank') {
       this.modelFormData.controls['bankKey'].enable();
     }
+
     if (this.modelFormData.get('taxCategory').value == 'Control Account') {
       this.modelFormData.controls['controlAccount'].enable();
     }
@@ -153,6 +145,7 @@ export class GLAccountComponent implements OnInit {
           this.spinner.hide();
         });
   };
+
   getchartofAccountData() {
     const getchartofAccountUrl = String.Join('/', this.apiConfigService.getChartOfAccountList);
     this.apiService.apiGetRequest(getchartofAccountUrl)
@@ -184,7 +177,7 @@ export class GLAccountComponent implements OnInit {
   }
 
   getTableData() {
-    const getCompanyUrl = String.Join('/', this.apiConfigService.getCompanysList);
+    const getCompanyUrl = String.Join('/', this.apiConfigService.getCompanyList);
     this.apiService.apiGetRequest(getCompanyUrl)
       .subscribe(
         response => {
@@ -197,8 +190,9 @@ export class GLAccountComponent implements OnInit {
           this.spinner.hide();
         });
   }
+
   getBankData() {
-    const getbankUrl = String.Join('/', this.apiConfigService.getBankMasterList);
+    const getbankUrl = String.Join('/', this.apiConfigService.getBankMastersList);
     this.apiService.apiGetRequest(getbankUrl)
       .subscribe(
         response => {

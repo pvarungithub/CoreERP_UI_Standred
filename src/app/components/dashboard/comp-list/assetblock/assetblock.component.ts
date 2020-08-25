@@ -16,15 +16,10 @@ import { AddOrEditService } from '../add-or-edit.service';
 })
 
 export class AssetBlockComponent implements OnInit {
-
   modelFormData: FormGroup;
-  isSubmitted = false;
   formData: any;
-  taxcodeList: any;
-  taxaccList: any;
-  tdsList:any;
-  incmList:any;
   dpareaList: any;
+
   constructor(
     private addOrEditService: AddOrEditService,
     private formBuilder: FormBuilder,
@@ -41,18 +36,17 @@ export class AssetBlockComponent implements OnInit {
       depreciationKey: [null]
     });
 
-
     this.formData = { ...data };
     if (!isNullOrUndefined(this.formData.item)) {
       this.modelFormData.patchValue(this.formData.item);
       this.modelFormData.controls['code'].disable();
     }
-
   }
 
   ngOnInit() {
     this.getDepriciationData();
   }
+
   getDepriciationData() {
     const getdptcnUrl = String.Join('/', this.apiConfigService.getDepreciationAreasList);
     this.apiService.apiGetRequest(getdptcnUrl)
@@ -88,5 +82,4 @@ export class AssetBlockComponent implements OnInit {
   cancel() {
     this.dialogRef.close();
   }
-
 }
