@@ -63,14 +63,14 @@ export class PostingComponent implements OnInit {
   }
 
   getGLAccountData() {
-    const getGLAccountUrl = String.Join('/', this.apiConfigService.getGLAccountList);
+    const getGLAccountUrl = String.Join('/', this.apiConfigService.getGLAccountListbyCatetory,'TDS');
     this.apiService.apiGetRequest(getGLAccountUrl)
       .subscribe(
         response => {
           const res = response.body;
           if (!isNullOrUndefined(res) && res.status === StatusCodes.pass) {
             if (!isNullOrUndefined(res.response)) {
-              this.glList = res.response['glList'].filter(res => res.taxCategory == 'TDS');
+              this.glList = res.response['glList'];
             }
           }
           this.spinner.hide();
@@ -85,7 +85,6 @@ export class PostingComponent implements OnInit {
           const res = response.body;
           if (!isNullOrUndefined(res) && res.status === StatusCodes.pass) {
             if (!isNullOrUndefined(res.response)) {
-              console.log(res);
               this.coaList = res.response['coaList'];
             }
           }

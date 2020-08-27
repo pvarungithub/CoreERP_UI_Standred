@@ -43,6 +43,7 @@ export class ApiConfigService {
    getAccountsKeyList = `${this.environment.runtimeConfig.serverUrl}Common/GetAccountsKeyList`;
    getBankMastersList = `${this.environment.runtimeConfig.serverUrl}Common/GetBankMastersList`;
    getPaymentsTermsList = `${this.environment.runtimeConfig.serverUrl}Common/GetPaymentsTermsList`;
+   getGLAccountListbyCatetory = `${this.environment.runtimeConfig.serverUrl}Common/GLAccountListbyCatetory`;
    //************************ IMG General  ****************************************/
 
 

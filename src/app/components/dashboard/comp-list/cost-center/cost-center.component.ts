@@ -80,7 +80,6 @@ export class CostCenterComponent implements OnInit {
           const res = response.body;
           if (!isNullOrUndefined(res) && res.status === StatusCodes.pass) {
             if (!isNullOrUndefined(res.response)) {
-              console.log(res);
               this.employeesList = res.response['emplist'];
             }
           }
@@ -96,7 +95,6 @@ export class CostCenterComponent implements OnInit {
           const res = response.body;
           if (!isNullOrUndefined(res) && res.status === StatusCodes.pass) {
             if (!isNullOrUndefined(res.response)) {
-              console.log(res);
               this.companyList = res.response['companiesList'];
             }
           }
@@ -112,7 +110,6 @@ export class CostCenterComponent implements OnInit {
           const res = response.body;
           if (!isNullOrUndefined(res) && res.status === StatusCodes.pass) {
             if (!isNullOrUndefined(res.response)) {
-              console.log(res);
               this.stateList = res.response['StatesList'];
             }
           }

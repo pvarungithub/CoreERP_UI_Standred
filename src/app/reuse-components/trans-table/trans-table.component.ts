@@ -111,11 +111,9 @@ export class TransTableComponent implements OnInit, OnChanges {
   }
 
   selectRow(row, index) {
-    console.log(row, index)
   }
 
   openDialog(row, index) {
-    console.log(row, index)
   }
 
   search() {

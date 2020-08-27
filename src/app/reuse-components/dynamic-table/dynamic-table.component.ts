@@ -123,7 +123,6 @@ export class DynamicTableComponent implements OnInit {
         for (const key in this.runtimeConfigService.tableColumnsData[this.routeParam]) {
           for (let c = 0; c < col.length; c++) {
             if (key == col[c].def) {
-              console.log(col[c])
               this.columnDefinitions.push(col[c]);
             }
           }

@@ -19,7 +19,6 @@ export class AppComponent implements AfterViewInit{
     this.commonService.getLangConfig();
     commonService.showNavbar.subscribe(res => {
       this.showNavbar = res;
-      console.log(this.showNavbar)
     })
     this.runtimeConfigService.getTableColumns();
 

@@ -44,7 +44,6 @@ export class SearchFilterTableComponent implements OnInit, OnChanges, AfterViewI
     let searchData = { ...data };
     this.tableData = searchData['data'];
     this.columnDefinitions = searchData['col'];
-    console.log(this.columnDefinitions);
   }
 
 
@@ -71,8 +70,6 @@ export class SearchFilterTableComponent implements OnInit, OnChanges, AfterViewI
       //   this.columnDefinitions.push(obj);
       // });
     }
-
-    console.log(this.columnDefinitions);
 
     if (!isNullOrUndefined(this.tableData)) {
       this.filteredTableMulti.next(this.columnDefinitions.slice());
@@ -122,8 +119,6 @@ export class SearchFilterTableComponent implements OnInit, OnChanges, AfterViewI
   }
 
   checkboxCheck(index) {
-    console.log(this.columnDefinitions[index]);
-
     this.columnDefinitions[index].hide = !this.columnDefinitions[index].hide;
   }
 

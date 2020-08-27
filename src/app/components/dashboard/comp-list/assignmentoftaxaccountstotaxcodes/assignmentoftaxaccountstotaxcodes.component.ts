@@ -65,14 +65,15 @@ export class AssignmentoftaxaccountstotaxcodesComponent implements OnInit {
   }
 
   getGLAccountData() {
-    const getGLAccountUrl = String.Join('/', this.apiConfigService.getGLAccountList);
+    const getGLAccountUrl = String.Join('/', this.apiConfigService.getGLAccountListbyCatetory,'TAX');
     this.apiService.apiGetRequest(getGLAccountUrl)
       .subscribe(
         response => {
           const res = response.body;
           if (!isNullOrUndefined(res) && res.status === StatusCodes.pass) {
             if (!isNullOrUndefined(res.response)) {
-              this.glList = res.response['glList'].filter(res => res.taxCategory == 'TAX');
+              this.glList = res.response['glList'];
+              // .filter(res => res.taxCategory == 'TAX')
             }
           }
           this.spinner.hide();
@@ -85,7 +86,6 @@ export class AssignmentoftaxaccountstotaxcodesComponent implements OnInit {
       .subscribe(
         response => {
           const res = response.body;
-          console.log(res);
           if (!isNullOrUndefined(res) && res.status === StatusCodes.pass) {
             if (!isNullOrUndefined(res.response)) {
               this.TaxTypeList = res.response['TaxratesList'];
@@ -103,7 +103,6 @@ export class AssignmentoftaxaccountstotaxcodesComponent implements OnInit {
           const res = response.body;
           if (!isNullOrUndefined(res) && res.status === StatusCodes.pass) {
             if (!isNullOrUndefined(res.response)) {
-              console.log(res);
               this.compList = res.response['companiesList'];
             }
           }
@@ -134,7 +133,6 @@ export class AssignmentoftaxaccountstotaxcodesComponent implements OnInit {
           const res = response.body;
           if (!isNullOrUndefined(res) && res.status === StatusCodes.pass) {
             if (!isNullOrUndefined(res.response)) {
-              console.log(res);
               this.plantList = res.response['plantsList'];
             }
           }

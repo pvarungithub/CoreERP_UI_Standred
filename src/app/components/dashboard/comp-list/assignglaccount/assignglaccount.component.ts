@@ -96,7 +96,7 @@ export class AssignGLaccounttoSubGroupComponent implements OnInit {
   }
 
   getGLaccData() {
-    const getdptcnUrl = String.Join('/', this.apiConfigService.getGLAccountList);
+    const getdptcnUrl = String.Join('/', this.apiConfigService.getGLAccountListbyCatetory);
     this.apiService.apiGetRequest(getdptcnUrl)
       .subscribe(
         response => {
@@ -113,11 +113,11 @@ export class AssignGLaccounttoSubGroupComponent implements OnInit {
   filterGlList(glArray) {
     let glList = [];
     for (let g = 0; g < glArray.length; g++) {
-      if (!this.formData.tableData.filter(res => res.fromGl == glArray[g]['accountNumber']).length) {
+      if (!this.formData.tableData.filter(res => res.fromGl == glArray[g]['id']).length) {
         glList.push(glArray[g]);
       };
       if (!isNullOrUndefined(this.formData.item)) {
-        if (this.formData.item['fromGl'] == glArray[g]['accountNumber']) {
+        if (this.formData.item['fromGl'] == glArray[g]['id']) {
           glList.push(glArray[g]);
         }
       }

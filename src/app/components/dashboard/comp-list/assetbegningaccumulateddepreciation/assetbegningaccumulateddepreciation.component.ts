@@ -77,7 +77,6 @@ export class AssetBegningAccumulatedDepreciationComponent implements OnInit {
           const res = response.body;
           if (!isNullOrUndefined(res) && res.status === StatusCodes.pass) {
             if (!isNullOrUndefined(res.response)) {
-              console.log(res);
               this.saList = res.response['saList'];
             }
           }
@@ -92,7 +91,6 @@ export class AssetBegningAccumulatedDepreciationComponent implements OnInit {
           const res = response.body;
           if (!isNullOrUndefined(res) && res.status === StatusCodes.pass) {
             if (!isNullOrUndefined(res.response)) {
-              console.log(res);
               this.dpareaList = res.response['dpareaList'];
             }
           }
@@ -107,7 +105,6 @@ export class AssetBegningAccumulatedDepreciationComponent implements OnInit {
         const res = response.body;
         if (!isNullOrUndefined(res) && res.status === StatusCodes.pass) {
           if (!isNullOrUndefined(res.response)) {
-            console.log(res);
             this.mamList = res.response['mamList'];
           }
         }

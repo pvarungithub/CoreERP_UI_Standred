@@ -76,7 +76,6 @@ export class SalesofficeComponent implements OnInit {
           const res = response.body;
           if (!isNullOrUndefined(res) && res.status === StatusCodes.pass) {
             if (!isNullOrUndefined(res.response)) {
-              console.log(res);
               this.languageList = res.response['LanguageList'];
             }
           }
@@ -92,7 +91,6 @@ export class SalesofficeComponent implements OnInit {
           const res = response.body;
           if (!isNullOrUndefined(res) && res.status === StatusCodes.pass) {
             if (!isNullOrUndefined(res.response)) {
-              console.log(res);
               this.regionsList = res.response['RegionList'];
             }
           }
@@ -108,7 +106,6 @@ export class SalesofficeComponent implements OnInit {
           const res = response.body;
           if (!isNullOrUndefined(res) && res.status === StatusCodes.pass) {
             if (!isNullOrUndefined(res.response)) {
-              console.log(res);
               this.countrysList = res.response['CountryList'];
             }
           }
@@ -124,7 +121,6 @@ export class SalesofficeComponent implements OnInit {
           const res = response.body;
           if (!isNullOrUndefined(res) && res.status === StatusCodes.pass) {
             if (!isNullOrUndefined(res.response)) {
-              console.log(res);
               this.stateList = res.response['StatesList'];
             }
           }
@@ -140,7 +136,6 @@ export class SalesofficeComponent implements OnInit {
           const res = response.body;
           if (!isNullOrUndefined(res) && res.status === StatusCodes.pass) {
             if (!isNullOrUndefined(res.response)) {
-              console.log(res);
               this.currencyList = res.response['CurrencyList'];
             }
           }
@@ -156,7 +151,6 @@ export class SalesofficeComponent implements OnInit {
           const res = response.body;
           if (!isNullOrUndefined(res) && res.status === StatusCodes.pass) {
             if (!isNullOrUndefined(res.response)) {
-              console.log(res);
               this.employeesList = res.response['emplist'];
             }
           }

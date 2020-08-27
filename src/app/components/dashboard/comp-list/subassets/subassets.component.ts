@@ -136,7 +136,6 @@ export class SubAssetsComponent implements OnInit {
           const res = response.body;
           if (!isNullOrUndefined(res) && res.status === StatusCodes.pass) {
             if (!isNullOrUndefined(res.response)) {
-              console.log(res);
               this.dpList = res.response['dpList'];
               this.dynTableProps.tableData.depreciationData.list = this.dpList;
             }
@@ -153,7 +152,6 @@ export class SubAssetsComponent implements OnInit {
           const res = response.body;
           if (!isNullOrUndefined(res) && res.status === StatusCodes.pass) {
             if (!isNullOrUndefined(res.response)) {
-              console.log(res);
               this.dpareaList = res.response['dpareaList'];
               this.dynTableProps.tableData.depreciationArea.list = this.dpareaList;
               this.addOrEditService.sendDynTableData(this.dynTableProps);
@@ -170,7 +168,6 @@ export class SubAssetsComponent implements OnInit {
         const res = response.body;
         if (!isNullOrUndefined(res) && res.status === StatusCodes.pass) {
           if (!isNullOrUndefined(res.response)) {
-            console.log(res);
             this.mamList = res.response['mamList'];
           }
         }
@@ -185,7 +182,6 @@ export class SubAssetsComponent implements OnInit {
         const res = response.body;
         if (!isNullOrUndefined(res) && res.status === StatusCodes.pass) {
           if (!isNullOrUndefined(res.response)) {
-            console.log(res);
             this.saList = res.response['saList'];
           }
         }
@@ -202,7 +198,6 @@ export class SubAssetsComponent implements OnInit {
         const res = response.body;
         if (!isNullOrUndefined(res) && res.status === StatusCodes.pass) {
           if (!isNullOrUndefined(res.response)) {
-            console.log(res);
             if (!isNullOrUndefined(res.response))
              {
               this.modelFormData.patchValue(res.response);
@@ -224,7 +219,6 @@ export class SubAssetsComponent implements OnInit {
           const res = response.body;
           if (!isNullOrUndefined(res) && res.status === StatusCodes.pass) {
             if (!isNullOrUndefined(res.response)) {
-              console.log(res);
               this.assetList = res.response['assetList'];
             }
           }
@@ -242,7 +236,6 @@ export class SubAssetsComponent implements OnInit {
           const res = response.body;
           if (!isNullOrUndefined(res) && res.status === StatusCodes.pass) {
             if (!isNullOrUndefined(res.response)) {
-              console.log(res);
               this.acckeyList = res.response['acckeyList'];
             }
           }
@@ -257,7 +250,6 @@ export class SubAssetsComponent implements OnInit {
           const res = response.body;
           if (!isNullOrUndefined(res) && res.status === StatusCodes.pass) {
             if (!isNullOrUndefined(res.response)) {
-              console.log(res);
               this.branchesList = res.response['branchesList'];
             }
           }
@@ -272,7 +264,6 @@ export class SubAssetsComponent implements OnInit {
           const res = response.body;
           if (!isNullOrUndefined(res) && res.status === StatusCodes.pass) {
             if (!isNullOrUndefined(res.response)) {
-              console.log(res);
               this.profitCenterList = res.response['profitCenterList'];
             }
           }
@@ -287,7 +278,6 @@ export class SubAssetsComponent implements OnInit {
           const res = response.body;
           if (!isNullOrUndefined(res) && res.status === StatusCodes.pass) {
             if (!isNullOrUndefined(res.response)) {
-              console.log(res);
               this.segmentList = res.response['segmentList'];
             }
           }
@@ -302,7 +292,6 @@ export class SubAssetsComponent implements OnInit {
           const res = response.body;
           if (!isNullOrUndefined(res) && res.status === StatusCodes.pass) {
             if (!isNullOrUndefined(res.response)) {
-              console.log(res);
               this.divisionsList = res.response['divisionsList'];
             }
           }
@@ -317,7 +306,6 @@ export class SubAssetsComponent implements OnInit {
           const res = response.body;
           if (!isNullOrUndefined(res) && res.status === StatusCodes.pass) {
             if (!isNullOrUndefined(res.response)) {
-              console.log(res);
               this.plantList = res.response['plantList'];
             }
           }
@@ -332,7 +320,6 @@ export class SubAssetsComponent implements OnInit {
           const res = response.body;
           if (!isNullOrUndefined(res) && res.status === StatusCodes.pass) {
             if (!isNullOrUndefined(res.response)) {
-              console.log(res);
               this.locationList = res.response['locationList'];
             }
           }
@@ -347,7 +334,6 @@ export class SubAssetsComponent implements OnInit {
           const res = response.body;
           if (!isNullOrUndefined(res) && res.status === StatusCodes.pass) {
             if (!isNullOrUndefined(res.response)) {
-              console.log(res);
               this.mamList = res.response['mamList'];
             }
           }

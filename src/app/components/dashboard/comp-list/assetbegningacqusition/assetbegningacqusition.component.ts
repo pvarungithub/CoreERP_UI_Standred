@@ -69,7 +69,6 @@ export class AssetBegningAcqusitionComponent implements OnInit {
           const res = response.body;
           if (!isNullOrUndefined(res) && res.status === StatusCodes.pass) {
             if (!isNullOrUndefined(res.response)) {
-              console.log(res);
               this.saList = res.response['saList'];
             }
           }
@@ -85,7 +84,6 @@ export class AssetBegningAcqusitionComponent implements OnInit {
         const res = response.body;
         if (!isNullOrUndefined(res) && res.status === StatusCodes.pass) {
           if (!isNullOrUndefined(res.response)) {
-            console.log(res);
             this.mamList = res.response['mamList'];
           }
         }

@@ -70,10 +70,8 @@ export class ErpUsersComponent implements OnInit {
         const res = response.body;
         if (!isNullOrUndefined(res) && res.status === StatusCodes.pass) {
           if (!isNullOrUndefined(res.response)) {
-            console.log(res);
             if (!isNullOrUndefined(res.response['roleList']) && res.response['roleList'].length) {
               this.RolesList = res.response['roleList'];
-              console.log(this.RolesList);
               this.spinner.hide();
             }
           }
@@ -103,7 +101,6 @@ export class ErpUsersComponent implements OnInit {
           const res = response.body;
           if (!isNullOrUndefined(res) && res.status === StatusCodes.pass) {
             if (!isNullOrUndefined(res.response)) {
-              console.log(res);
               this.companyList = res.response['companiesList'];
             }
           }

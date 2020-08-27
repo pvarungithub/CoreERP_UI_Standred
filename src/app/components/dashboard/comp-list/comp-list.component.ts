@@ -91,7 +91,6 @@ export class CompListComponent implements OnInit {
     } else {
 
       if (this.tableUrl.tabScreen == 'True') {
-        console.log(this.activatedRoute.snapshot['_routerState'].url);
         this.addOrEditService.editData = value;
         this.router.navigate([this.activatedRoute.snapshot['_routerState'].url, value.action]);
       } else {

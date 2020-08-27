@@ -72,7 +72,6 @@ export class TdsRatesComponent implements OnInit {
           const res = response.body;
           if (!isNullOrUndefined(res) && res.status === StatusCodes.pass) {
             if (!isNullOrUndefined(res.response)) {
-              console.log(res);
               this.tdsList = res.response['tdsList'];
             }
           }
@@ -87,7 +86,6 @@ export class TdsRatesComponent implements OnInit {
           const res = response.body;
           if (!isNullOrUndefined(res) && res.status === StatusCodes.pass) {
             if (!isNullOrUndefined(res.response)) {
-              console.log(res);
               this.incmList = res.response['incmList'];
             }
           }

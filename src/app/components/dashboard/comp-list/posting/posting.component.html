@@ -62,8 +62,8 @@
           <mat-label [translate]="'posting.glaccount'"></mat-label>
           <mat-select formControlName="glaccount" appFocusOnEnter tabIndex="6">
             <mat-option>None</mat-option>
-            <mat-option *ngFor="let ltype of glList" [value]="ltype.accountNumber">
-              {{ltype.accountNumber}} - {{ltype.glaccountName}}
+            <mat-option *ngFor="let ltype of glList" [value]="ltype.id">
+              {{ltype.id}} - {{ltype.text}}
             </mat-option>
           </mat-select>
         </mat-form-field>

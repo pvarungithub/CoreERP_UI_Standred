@@ -58,7 +58,6 @@ export class AssignmentVoucherSeriestoVoucherTypesComponent implements OnInit {
           const res = response.body;
           if (!isNullOrUndefined(res) && res.status === StatusCodes.pass) {
             if (!isNullOrUndefined(res.response)) {
-              console.log(res);
               this.vtypeList = res.response['vouchertypeList'];
             }
           }
@@ -74,7 +73,6 @@ export class AssignmentVoucherSeriestoVoucherTypesComponent implements OnInit {
           const res = response.body;
           if (!isNullOrUndefined(res) && res.status === StatusCodes.pass) {
             if (!isNullOrUndefined(res.response)) {
-              console.log(res);
               this.vcList = res.response['vseriesList'];
             }
           }

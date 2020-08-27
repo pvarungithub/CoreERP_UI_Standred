@@ -60,7 +60,6 @@ export class CountryComponent implements OnInit {
           const res = response.body;
           if (!isNullOrUndefined(res) && res.status === StatusCodes.pass) {
             if (!isNullOrUndefined(res.response)) {
-              console.log(res);
               this.languageList = res.response['languageList'];
             }
           }
@@ -76,7 +75,6 @@ export class CountryComponent implements OnInit {
           const res = response.body;
           if (!isNullOrUndefined(res) && res.status === StatusCodes.pass) {
             if (!isNullOrUndefined(res.response)) {
-              console.log(res);
               this.currencyList = res.response['currencyList'];
             }
           }

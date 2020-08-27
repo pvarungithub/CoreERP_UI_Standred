@@ -66,7 +66,6 @@ export class VoucherSeriesComponents implements OnInit {
           const res = response.body;
           if (!isNullOrUndefined(res) && res.status === StatusCodes.pass) {
             if (!isNullOrUndefined(res.response)) {
-              console.log(res);
               this.compList = res.response['companiesList'];
             }
           }
@@ -82,7 +81,6 @@ export class VoucherSeriesComponents implements OnInit {
           const res = response.body;
           if (!isNullOrUndefined(res) && res.status === StatusCodes.pass) {
             if (!isNullOrUndefined(res.response)) {
-              console.log(res);
               this.branchList = res.response['branchsList'];
             }
           }
@@ -98,7 +96,6 @@ export class VoucherSeriesComponents implements OnInit {
           const res = response.body;
           if (!isNullOrUndefined(res) && res.status === StatusCodes.pass) {
             if (!isNullOrUndefined(res.response)) {
-              console.log(res);
               this.plantList = res.response['plantsList'];
             }
           }

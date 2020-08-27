@@ -83,7 +83,6 @@ export class PlantsComponent implements OnInit {
           const res = response.body;
           if (!isNullOrUndefined(res) && res.status === StatusCodes.pass) {
             if (!isNullOrUndefined(res.response)) {
-              console.log(res);
               this.locList = res.response['locationList'];
             }
           }
@@ -99,7 +98,6 @@ export class PlantsComponent implements OnInit {
           const res = response.body;
           if (!isNullOrUndefined(res) && res.status === StatusCodes.pass) {
             if (!isNullOrUndefined(res.response)) {
-              console.log(res);
               this.languageList = res.response['LanguageList'];
             }
           }
@@ -115,7 +113,6 @@ export class PlantsComponent implements OnInit {
           const res = response.body;
           if (!isNullOrUndefined(res) && res.status === StatusCodes.pass) {
             if (!isNullOrUndefined(res.response)) {
-              console.log(res);
               this.regionsList = res.response['RegionList'];
             }
           }
@@ -131,7 +128,6 @@ export class PlantsComponent implements OnInit {
           const res = response.body;
           if (!isNullOrUndefined(res) && res.status === StatusCodes.pass) {
             if (!isNullOrUndefined(res.response)) {
-              console.log(res);
               this.countrysList = res.response['CountryList'];
             }
           }
@@ -147,7 +143,6 @@ export class PlantsComponent implements OnInit {
           const res = response.body;
           if (!isNullOrUndefined(res) && res.status === StatusCodes.pass) {
             if (!isNullOrUndefined(res.response)) {
-              console.log(res);
               this.stateList = res.response['StatesList'];
             }
           }
@@ -163,7 +158,6 @@ export class PlantsComponent implements OnInit {
           const res = response.body;
           if (!isNullOrUndefined(res) && res.status === StatusCodes.pass) {
             if (!isNullOrUndefined(res.response)) {
-              console.log(res);
               this.currencyList = res.response['CurrencyList'];
             }
           }
@@ -179,7 +173,6 @@ export class PlantsComponent implements OnInit {
           const res = response.body;
           if (!isNullOrUndefined(res) && res.status === StatusCodes.pass) {
             if (!isNullOrUndefined(res.response)) {
-              console.log(res);
               this.employeesList = res.response['emplist'];
             }
           }

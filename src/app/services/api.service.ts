@@ -92,7 +92,6 @@ export class ApiService {
       this.spinner.hide();
       const errMsg = `error in ${operation}()  status: ${err.status}, ${err.statusText || ''}, ${err} `;
       if (err instanceof HttpErrorResponse) {
-        console.log(`status: ${err.status}, ${err.statusText}, ${errMsg}`);
         this.alertService.openSnackBar(`${err.statusText}`, Static.Close, SnackBar.error);
       }
       // tslint:disable-next-line: deprecation

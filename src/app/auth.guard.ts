@@ -35,7 +35,6 @@ export class AuthGuard implements CanActivate {
     //   .pipe((map(res => {
     // console.log(res.body['response'], next.params.id)
     // if (this.authorizedUser(res.body.response)) {
-    console.log(next, state)
     if (this.authService.isLoggedIn()) {
       if (state.url.includes('Edit') || state.url.includes('Add')) {
         if (!this.addOrEditService.editData) {

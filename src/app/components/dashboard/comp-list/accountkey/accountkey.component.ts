@@ -64,7 +64,7 @@ export class AccountKeyComponent implements OnInit {
   }
 
   getGLAccountData() {
-    const getGLAccountUrl = String.Join('/', this.apiConfigService.getGLAccountList);
+    const getGLAccountUrl = String.Join('/', this.apiConfigService.getGLAccountListbyCatetory);
     this.apiService.apiGetRequest(getGLAccountUrl)
       .subscribe(
         response => {
@@ -87,7 +87,6 @@ export class AccountKeyComponent implements OnInit {
           const res = response.body;
           if (!isNullOrUndefined(res) && res.status === StatusCodes.pass) {
             if (!isNullOrUndefined(res.response)) {
-              console.log(res);
               this.companyList = res.response['companiesList'];
             }
           }
@@ -103,7 +102,6 @@ export class AccountKeyComponent implements OnInit {
           const res = response.body;
           if (!isNullOrUndefined(res) && res.status === StatusCodes.pass) {
             if (!isNullOrUndefined(res.response)) {
-              console.log(res);
               this.coaList = res.response['coaList'];
             }
           }

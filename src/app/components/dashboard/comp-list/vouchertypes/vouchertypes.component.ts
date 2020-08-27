@@ -56,9 +56,7 @@ export class VoucherTypesComponent implements OnInit {
           const res = response.body;
           if (!isNullOrUndefined(res) && res.status === StatusCodes.pass) {
             if (!isNullOrUndefined(res.response)) {
-              console.log(res);
               this.voucherClass = res.response['vcList'];
-              console.log(this.voucherClass);
             }
           }
           this.spinner.hide();

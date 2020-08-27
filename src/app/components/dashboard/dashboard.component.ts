@@ -39,8 +39,6 @@ export class DashboardComponent implements OnInit, AfterViewInit {
     this.apiService.apiGetRequest(getMenuUrl)
       .subscribe(
         menu => {
-         
-          console.log(menu);
           this.spinner.hide();
           this.navItems = menu.body["response"];
           this.spinner.hide();

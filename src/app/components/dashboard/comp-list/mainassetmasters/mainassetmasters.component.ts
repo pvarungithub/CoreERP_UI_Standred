@@ -127,8 +127,6 @@ export class MainAssetMasterComponent implements OnInit {
           const res = response.body;
           if (!isNullOrUndefined(res) && res.status === StatusCodes.pass) {
             if (!isNullOrUndefined(res.response)) {
-              console.log(res);
-              //this.glAccNameList = res.response['GLAccSubGroupList'];
             }
           }
           this.spinner.hide();
@@ -181,7 +179,6 @@ export class MainAssetMasterComponent implements OnInit {
           const res = response.body;
           if (!isNullOrUndefined(res) && res.status === StatusCodes.pass) {
             if (!isNullOrUndefined(res.response)) {
-              console.log(res);
               this.companyList = res.response['companiesList'];
             }
           }
@@ -196,7 +193,6 @@ export class MainAssetMasterComponent implements OnInit {
           const res = response.body;
           if (!isNullOrUndefined(res) && res.status === StatusCodes.pass) {
             if (!isNullOrUndefined(res.response)) {
-              console.log(res);
               this.assetList = res.response['assetList'];
             }
           }
@@ -212,7 +208,6 @@ export class MainAssetMasterComponent implements OnInit {
           const res = response.body;
           if (!isNullOrUndefined(res) && res.status === StatusCodes.pass) {
             if (!isNullOrUndefined(res.response)) {
-              console.log(res);
               this.assetList = res.response['assetList'];
             }
           }
@@ -228,7 +223,6 @@ export class MainAssetMasterComponent implements OnInit {
           const res = response.body;
           if (!isNullOrUndefined(res) && res.status === StatusCodes.pass) {
             if (!isNullOrUndefined(res.response)) {
-              console.log(res);
               this.dpList = res.response['dpList'];
             }
           }
@@ -244,7 +238,6 @@ export class MainAssetMasterComponent implements OnInit {
           const res = response.body;
           if (!isNullOrUndefined(res) && res.status === StatusCodes.pass) {
             if (!isNullOrUndefined(res.response)) {
-              console.log(res);
               this.dpareaList = res.response['dpareaList'];
             }
           }
@@ -259,7 +252,6 @@ export class MainAssetMasterComponent implements OnInit {
           const res = response.body;
           if (!isNullOrUndefined(res) && res.status === StatusCodes.pass) {
             if (!isNullOrUndefined(res.response)) {
-              console.log(res);
               this.acckeyList = res.response['acckeyList'];
             }
           }
@@ -274,7 +266,6 @@ export class MainAssetMasterComponent implements OnInit {
           const res = response.body;
           if (!isNullOrUndefined(res) && res.status === StatusCodes.pass) {
             if (!isNullOrUndefined(res.response)) {
-              console.log(res);
               this.branchesList = res.response['branchesList'];
             }
           }
@@ -289,7 +280,6 @@ export class MainAssetMasterComponent implements OnInit {
           const res = response.body;
           if (!isNullOrUndefined(res) && res.status === StatusCodes.pass) {
             if (!isNullOrUndefined(res.response)) {
-              console.log(res);
               this.profitCenterList = res.response['profitCenterList'];
             }
           }
@@ -304,7 +294,6 @@ export class MainAssetMasterComponent implements OnInit {
           const res = response.body;
           if (!isNullOrUndefined(res) && res.status === StatusCodes.pass) {
             if (!isNullOrUndefined(res.response)) {
-              console.log(res);
               this.segmentList = res.response['segmentList'];
             }
           }
@@ -319,7 +308,6 @@ export class MainAssetMasterComponent implements OnInit {
           const res = response.body;
           if (!isNullOrUndefined(res) && res.status === StatusCodes.pass) {
             if (!isNullOrUndefined(res.response)) {
-              console.log(res);
               this.divisionsList = res.response['divisionsList'];
             }
           }
@@ -334,7 +322,6 @@ export class MainAssetMasterComponent implements OnInit {
           const res = response.body;
           if (!isNullOrUndefined(res) && res.status === StatusCodes.pass) {
             if (!isNullOrUndefined(res.response)) {
-              console.log(res);
               this.plantList = res.response['plantList'];
             }
           }
@@ -349,7 +336,6 @@ export class MainAssetMasterComponent implements OnInit {
           const res = response.body;
           if (!isNullOrUndefined(res) && res.status === StatusCodes.pass) {
             if (!isNullOrUndefined(res.response)) {
-              console.log(res);
               this.locationList = res.response['locationList'];
             }
           }

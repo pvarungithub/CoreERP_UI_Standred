@@ -64,8 +64,8 @@
           <mat-label>{{'assignmentoftaxaccountstotaxcodes.sgstgl' | translate }}</mat-label>
           <mat-select formControlName="sgstgl" appFocusOnEnter tabIndex="1">
             <mat-option>None</mat-option>
-            <mat-option *ngFor="let gl of glList" [value]="gl.accountNumber">
-              {{gl.accountNumber}} - {{gl.glaccountName}}
+            <mat-option *ngFor="let gl of glList" [value]="gl.id">
+              {{gl.id}} - {{gl.text}}
             </mat-option>
           </mat-select>
         </mat-form-field>
@@ -74,8 +74,8 @@
           <mat-label>{{'assignmentoftaxaccountstotaxcodes.cgstgl' | translate }}</mat-label>
           <mat-select formControlName="cgstgl" appFocusOnEnter tabIndex="1">
             <mat-option>None</mat-option>
-            <mat-option *ngFor="let gl of glList" [value]="gl.accountNumber">
-              {{gl.accountNumber}} - {{gl.glaccountName}}
+            <mat-option *ngFor="let gl of glList" [value]="gl.id">
+              {{gl.id}} - {{gl.text}}
             </mat-option>
           </mat-select>
         </mat-form-field>
@@ -84,8 +84,8 @@
           <mat-label>{{'assignmentoftaxaccountstotaxcodes.igstgl' | translate }}</mat-label>
           <mat-select formControlName="igstgl" appFocusOnEnter tabIndex="1">
             <mat-option>None</mat-option>
-            <mat-option *ngFor="let gl of glList" [value]="gl.accountNumber">
-              {{gl.accountNumber}} - {{gl.glaccountName}}
+            <mat-option *ngFor="let gl of glList" [value]="gl.id">
+              {{gl.id}} - {{gl.text}}
             </mat-option>
           </mat-select>
         </mat-form-field>
@@ -94,8 +94,8 @@
           <mat-label>{{'assignmentoftaxaccountstotaxcodes.ugstgl' | translate }}</mat-label>
           <mat-select formControlName="ugstgl" appFocusOnEnter tabIndex="1">
             <mat-option>None</mat-option>
-            <mat-option *ngFor="let gl of glList" [value]="gl.accountNumber">
-              {{gl.accountNumber}} - {{gl.glaccountName}}
+            <mat-option *ngFor="let gl of glList" [value]="gl.id">
+              {{gl.id}} - {{gl.text}}
             </mat-option>
           </mat-select>
         </mat-form-field>
@@ -104,8 +104,8 @@
           <mat-label>{{'assignmentoftaxaccountstotaxcodes.compositeAccount' | translate }}</mat-label>
           <mat-select formControlName="compositeAccount" appFocusOnEnter tabIndex="1">
             <mat-option>None</mat-option>
-            <mat-option *ngFor="let gl of glList" [value]="gl.accountNumber">
-              {{gl.accountNumber}} - {{gl.glaccountName}}
+            <mat-option *ngFor="let gl of glList" [value]="gl.id">
+              {{gl.id}} - {{gl.text}}
             </mat-option>
           </mat-select>
 

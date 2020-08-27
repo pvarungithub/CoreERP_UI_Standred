@@ -85,7 +85,6 @@ export class TaxRatesComponents implements OnInit {
       .subscribe(
         response => {
           const res = response.body;
-          console.log(res);
           if (!isNullOrUndefined(res) && res.status === StatusCodes.pass) {
             if (!isNullOrUndefined(res.response)) {
               this.Taxtransaction = res.response['TaxtransactionList'];

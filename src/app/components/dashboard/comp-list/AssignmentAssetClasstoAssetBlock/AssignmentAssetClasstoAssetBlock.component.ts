@@ -57,7 +57,6 @@ export class AseetClassToAssetBlockComponent implements OnInit {
           const res = response.body;
           if (!isNullOrUndefined(res) && res.status === StatusCodes.pass) {
             if (!isNullOrUndefined(res.response)) {
-              console.log(res);
               this.assetList = res.response['assetList'];
             }
           }
@@ -73,7 +72,6 @@ export class AseetClassToAssetBlockComponent implements OnInit {
           const res = response.body;
           if (!isNullOrUndefined(res) && res.status === StatusCodes.pass) {
             if (!isNullOrUndefined(res.response)) {
-              console.log(res);
               this.assetblockList = res.response['assetblockList'];
             }
           }
