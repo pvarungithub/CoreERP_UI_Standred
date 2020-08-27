@@ -2,16 +2,17 @@
 
 .table {
   overflow-x: scroll;
+  min-height: 70vh;
 }
 
 :host ::ng-deep table {
-  font-family: "Helvetica Neue",Helvetica,Arial,sans-serif;
+  font-family: sans-serif;
   & > tbody  {
     & tr {
       border-bottom: 1px solid $color-ddd;
     }
     & td {
-      font-size: 12px;
+      font-size: 11px;
       vertical-align: middle;
       border: none !important;
     }
@@ -36,7 +37,8 @@
 
 
 .mat-header-cell, .mat-cell {
-  min-width: 150px;
+  white-space:nowrap;
+  padding: 5px;
 }
 
 .table th, .table td {
@@ -45,12 +47,13 @@
 }
 
 .table th {
+  font-size: 11px;
   background-color: $color-orange;
   color: $color-white;
 }
 
 .table tr {
-  height: 40px !important;
+  height: 25px !important;
   cursor: pointer;
 }
 
@@ -70,4 +73,13 @@
   width: 20rem;
 }
 
-
+.range-picker {
+  width: 200px;
+  & input {
+    border: none;
+    border-radius : unset;
+    border-bottom: 1px solid $color-color;
+    padding: 0rem;
+    font-size: 0.9rem;
+  }
+}

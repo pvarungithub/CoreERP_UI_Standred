@@ -1,4 +1,4 @@
-import { Component, OnInit, ViewChild } from '@angular/core';
+import { Component, OnInit, ViewChild, ComponentFactoryResolver, ViewContainerRef, ChangeDetectorRef } from '@angular/core';
 import { TransTableComponent } from '../../../reuse-components/trans-table/trans-table.component';
 import { isNullOrUndefined } from 'util';
 import { ActivatedRoute } from '@angular/router';
@@ -9,17 +9,21 @@ import { AlertService } from '../../../services/alert.service';
 import { NgxSpinnerService } from 'ngx-spinner';
 import { String } from 'typescript-string-operations';
 import { StatusCodes } from '../../../enums/common/common';
+import { TransListService } from './trans-list.service';
 
 @Component({
   selector: 'app-trans-list',
   templateUrl: './trans-list.component.html',
   styleUrls: ['./trans-list.component.scss']
 })
+
 export class TransListComponent implements OnInit {
 
   @ViewChild(TransTableComponent, { static: false }) transTableComponent: TransTableComponent;
+  @ViewChild("dynamicTabs", { read: ViewContainerRef }) dynamicTabs: ViewContainerRef;
 
-  tableData: any;
+  params: any;
+
   constructor(
     private apiService: ApiService,
     private activatedRoute: ActivatedRoute,
@@ -27,60 +31,34 @@ export class TransListComponent implements OnInit {
     private spinner: NgxSpinnerService,
     private alertService: AlertService,
     private environment: RuntimeConfigService,
-    private apiConfigService: ApiConfigService
+    private apiConfigService: ApiConfigService,
+    private transListService: TransListService,
+    private componentFactoryResolver: ComponentFactoryResolver,
+    private cdr: ChangeDetectorRef
   ) {
     activatedRoute.params.subscribe(params => {
-      this.getTableParameters(params.id);
-      if (!isNullOrUndefined(this.transTableComponent)) {
-        this.transTableComponent.defaultValues();
+      if (!isNullOrUndefined(params.id1)) {
+        this.params = params.id;
+      } else {
+        if (!isNullOrUndefined(this.transTableComponent)) {
+          this.transTableComponent.defaultValues();
+        }
       }
     });
-   }
+  }
+
+  ngAfterViewInit() {
+    //This pieces of code adds dynamic component ( Just trust me for now  )
+    if (!isNullOrUndefined(this.params)) {
+      let resolver = this.componentFactoryResolver.resolveComponentFactory(this.transListService.getDynComponents(this.params).component);
+      this.dynamicTabs.createComponent(resolver);
+      this.cdr.detectChanges();
+    }
+  }
 
   ngOnInit(): void {
   }
 
-  getTableParameters(id) {
-    // const getUrl = String.Join('/', this.apiConfigService.getComponentInfo, id);
-    // this.apiService.apiGetRequest(getUrl)
-    //   .subscribe(
-    //     response => {
-    //       const res = response.body;
-    //       if (!isNullOrUndefined(res) && res.status === StatusCodes.pass) {
-    //         if (!isNullOrUndefined(res.response)) {
-              // this.tableUrl = res.response;
-              // if (!isNullOrUndefined(this.tableUrl)) {
-                this.getTableData();
-              // }
-        //     }
-        //   }
-        // });
-  }
 
-  getTableData() {
-    // const getUrl = String.Join('',this.environment.runtimeConfig.serverUrl, this.tableUrl.url);
-     const getUrl = 'http://183.82.48.82:9091/api/Language/GetLanguageList';
-    this.apiService.apiGetRequest(getUrl)
-      .subscribe(
-        response => {
-          const res = response.body;
-          if (!isNullOrUndefined(res) && res.status === StatusCodes.pass) {
-            if (!isNullOrUndefined(res.response)) {
-              // this.tableData = res.response[this.tableUrl.listName];
-              this.tableData = [
-                {  Id : 'hvhjgvgh', Value: 'jhbjbjh'},
-                {  Id : 'hvhjgvgh', Value: 'jhbjbjh'},
-                {  Id : 'hvhjgvgh', Value: 'jhbjbjh'},
-                {  Id : 'hvhjgvgh', Value: 'jhbjbjh'},
-                {  Id : 'hvhjgvgh', Value: 'jhbjbjh'},
-                {  Id : 'hvhjgvgh', Value: 'jhbjbjh'},
-                {  Id : 'hvhjgvgh', Value: 'jhbjbjh'},
-                {  Id : 'hvhjgvgh', Value: 'jhbjbjh'}
-              ]
-            }
-          }
-          this.spinner.hide();
-        });
-  }
 
 }

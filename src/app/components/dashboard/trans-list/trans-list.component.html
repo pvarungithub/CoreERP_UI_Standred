@@ -1,1 +1,3 @@
-<app-trans-table [tableData]="tableData"></app-trans-table>
+<app-trans-table *ngIf="!params;else dynamicTabs" ></app-trans-table>
+
+<ng-template #dynamicTabs></ng-template>

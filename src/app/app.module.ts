@@ -19,8 +19,9 @@ import {
 
 } from './components/dashboard/comp-list/index';
 
+import { CashbankComponent } from './components/dashboard/trans-list/index';
 
-import { NavbarComponent, TableComponent, DeleteItemComponent, SearchFilterTableComponent , TransTableComponent, DynamicTableComponent } from './reuse-components/index';
+import { NavbarComponent, TableComponent, DeleteItemComponent, SearchFilterTableComponent , TransTableComponent, DynamicTableComponent, AutocompleteComponent } from './reuse-components/index';
 import {
   DashboardComponent, LoginComponent, SidebarComponent, NotFoundComponent
 } from './components/index';
@@ -91,7 +92,7 @@ export function HttpLoaderFactory(httpClient: HttpClient) {
     AssetNumberRangeComponent,AssetTransactionTypeComponent,AccountKeyComponent,AssignmentAccountKeytoAssetClassComponent,
     BankMasterComponent,DepreciationcodeComponent,GLAccountComponent,GLSubAccountComponent,BusienessTransactionTypeComponent,AssetBegningAccumulatedDepreciationComponent,AssetBegningAcqusitionComponent,
     BusienessPartnerAccountComponent,AssignGLaccounttoSubGroupComponent,MainAssetMasterComponent,SubAssetsComponent,
-    DynamicTableComponent,
+    DynamicTableComponent,  AutocompleteComponent, CashbankComponent
     //LeaveopeningbalanceComponent,
     //selfserviceComponent,
     

@@ -691,7 +691,42 @@
     "acquisitionDate": "Acquisition Date",
     "acquisitionCost": "Acquisition Cost " ,
     "id": "id"                 
+  },
+  "cashbank": {
+    "company": "company",
+    "branch": "branch",
+    "voucherClass": "voucherClass",
+    "voucherType": "voucherType",
+    "voucherDate": "voucherDate",
+    "postingDate": "postingDate",
+    "period": "period",
+    "voucherNumber": "voucherNumber",
+    "transactionType": "transactionType",
+    "natureofTransaction": "natureofTransaction",
+    "account": "account",
+    "indicator": "indicator",
+    "referenceNo": "referenceNo",
+    "referenceDate": "referenceDate",
+    "profitCenter": "profitCenter",
+    "segment": "segment",
+    "narration": "narration",
+    "taxCode": "taxCode",
+    "sgstamount": "sgstamount",
+    "cgstamount": "cgstamount",
+    "igstamount": "igstamount",
+    "ugstamount": "ugstamount",
+    "functionalDept": "functionalDept",
+    "workBreakStructureElement": "workBreakStructureElement",
+    "netWork": "netWork",
+    "orderNo": "orderNo",
+    "fundCenter": "fundCenter",
+    "commitment": "commitment",
+    "costCenter": "costCenter",
+
+    "name": "name",
+    "delete": "delete"
   }
+
 
 
 

@@ -1,4 +1,4 @@
-import { Component, OnInit, ViewChild, Output, EventEmitter } from '@angular/core';
+import { Component, OnInit, ViewChild, Output, EventEmitter, Input } from '@angular/core';
 import { MatTableDataSource, MatTable } from '@angular/material/table';
 import { isNullOrUndefined } from 'util';
 import { ActivatedRoute } from '@angular/router';
@@ -19,9 +19,18 @@ export class DynamicTableComponent implements OnInit {
 
   emitDynTableData: Subscription;
   @Output() emitColumnChanges = new EventEmitter();
-  
+  @Output() emitTableData = new EventEmitter();
+
+  @Input() set tableObJect(res) {
+    if (!isNullOrUndefined(res)) {
+      this.tableData = [res.tableData];
+      this.formControl = res.formControl;
+      this.setTableData()
+    }
+  }
+
   dataSource: MatTableDataSource<any>;
-  displayedColumns: string[];
+  keys = [];
   tableData = [];
   columnDefinitions = [];
   routeParam: any;
@@ -37,20 +46,21 @@ export class DynamicTableComponent implements OnInit {
   ) {
     activatedRoute.params.subscribe(params => {
       this.routeParam = params.id;
-
       this.emitDynTableData = addOrEditService.emitDynTableData.subscribe(res => {
         if (!isNullOrUndefined(res)) {
-          this.displayedColumns = res.displayedColumns;
-          this.tableData = [res.tableData];
-          this.formControl = res.formControl;
-          this.setTableData()
+          if (res.length) {
+            this.dataSource.data = res;
+          } else if (res.length == 0) {
+            this.setTableData()
+          } else {
+            this.dataSource.data[res.index][res.column] = res['value'];
+          }
+          this.dataSource = new MatTableDataSource(this.dataSource.data);
+          this.dataSource.paginator = this.paginator;
           addOrEditService.sendDynTableData(null);
         }
       });
-
     });
-
-
   }
 
   deleteRow(i) {
@@ -62,39 +72,40 @@ export class DynamicTableComponent implements OnInit {
     });
     this.dataSource = new MatTableDataSource(this.dataSource.data);
     this.dataSource.paginator = this.paginator;
+    this.emitTableData.emit(this.formatTableData());
   }
 
   ngOnInit(): void {
   }
 
-  // ngOnChanges(changes: SimpleChanges) {
-  //   console.log(changes, 'changes')
-  //   // this.displayedColumns = changes.dynTableProps.currentValue.displayedColumns;
-  //   // this.tableData = [changes.dynTableProps.currentValue.tableData];
-  //   // this.formControl = changes.dynTableProps.currentValue.formControl;
-  //   // this.setTableData()
-  //   // this.cdr.detectChanges();
-  // }
+  setTypeAheadValue(val, col, indx) {
+    this.dataSource.data[indx][col].value = val;
+    this.formControlValid(col, this.dataSource.data[indx][col], indx)
+  }
 
-  // ngDoCheck() {
-  //   console.log(this.dynTableProps, 'table')
-  //   this.displayedColumns = this.dynTableProps.displayedColumns;
-  //   this.tableData = [this.dynTableProps.tableData];
-  //   this.formControl = this.dynTableProps.formControl;
-  //   this.setTableData()
-  // }
-
-  formControlValid(col, val, index) {
+  formControlValid(col, val, indx) {
     this.tableForm.patchValue({
-      [col]: val
+      [col]: val.value
     })
-    if (this.tableForm.valid && (this.dataSource.data.length - 1) == index) {
+    if (this.tableForm.valid && (this.dataSource.data.length - 1) == indx) {
       this.dataSource.data.push(JSON.parse(JSON.stringify(this.tableData[0])));
       this.dataSource = new MatTableDataSource(this.dataSource.data);
       this.dataSource.paginator = this.paginator;
       this.tableForm = this.formBuilder.group(this.formControl);
     }
-    this.emitColumnChanges.emit({ column: col, value: val });
+    this.emitColumnChanges.emit({ column: col, value: val, index: indx });
+    this.emitTableData.emit(this.formatTableData());
+  }
+
+  formatTableData() {
+    let array = []
+    for (let t = 0; t < this.dataSource.data.length; t++) {
+      let object = {};
+      this.keys.map(res => (res.col != 'delete') ? object[res.col] = this.dataSource.data[t][res.col].value : null);
+      if (this.dataSource.data.length - 1 != t)
+        array.push(object);
+    }
+    return array;
   }
 
 
@@ -105,29 +116,28 @@ export class DynamicTableComponent implements OnInit {
         this.dataSource = new MatTableDataSource(JSON.parse(JSON.stringify(this.tableData)));
         this.dataSource.paginator = this.paginator;
       }
-      const keys = [];
+      this.keys = [];
       const col = [];
       // tslint:disable-next-line:forin
       for (const key in this.tableData[0]) {
-        keys.push({ col: key });
+        this.keys.push({ col: key });
       }
-      keys.forEach(cols => {
+      this.keys.forEach(cols => {
         const obj = {
           def: cols.col, label: cols.col, hide: true
         };
         col.push(obj);
       });
+      this.columnDefinitions = [];
 
-    this.columnDefinitions = [];
-        // tslint:disable-next-line: forin
-        for (const key in this.runtimeConfigService.tableColumnsData[this.routeParam]) {
-          for (let c = 0; c < col.length; c++) {
-            if (key == col[c].def) {
-              this.columnDefinitions.push(col[c]);
-            }
+      for (let key in this.runtimeConfigService.tableColumnsData[this.routeParam]) {
+        for (let c = 0; c < col.length; c++) {
+          if (key == col[c].def) {
+            console.log(col[c])
+            this.columnDefinitions.push(col[c]);
           }
         }
-    
+      }
     }
   }
 

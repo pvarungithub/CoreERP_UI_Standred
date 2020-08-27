@@ -21,12 +21,13 @@ const routes: Routes = [
       { path: 'master/:id', component: CompListComponent, canActivate: [AuthGuard] },
 
       // transation screens
+      { path: 'transaction/:id/:id1', component: TransListComponent, canActivate: [AuthGuard] },
       { path: 'transaction/:id', component: TransListComponent, canActivate: [AuthGuard] }
     ]
   },
   { path: '', redirectTo: '/login', pathMatch: 'full' },
   { path: '**', component: NotFoundComponent },
-  ];
+];
 
 @NgModule({
   imports: [RouterModule.forRoot(routes)],

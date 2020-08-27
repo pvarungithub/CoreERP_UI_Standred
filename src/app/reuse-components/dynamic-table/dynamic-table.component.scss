@@ -37,12 +37,14 @@
 
 
 .mat-header-cell, .mat-cell {
-  min-width: 100px;
+  white-space:nowrap;
+  padding: 5px;
 }
 
 .table th, .table td {
   vertical-align: middle;
   border: none !important;
+  min-width: 200px;
 }
 
 .table th {
@@ -72,8 +74,10 @@
   width: 20rem;
 }
 
-.delete-icon {
+.mat--icon {
     font-size: 17px;
     color: #337ab7;
+    display: flex;
+    align-items: center;
   }
 

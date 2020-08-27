@@ -8,7 +8,7 @@ import { RuntimeConfigService } from './services/runtime-config.service';
   templateUrl: './app.component.html',
   styleUrls: ['./app.component.scss']
 })
-export class AppComponent implements AfterViewInit{
+export class AppComponent {
   showNavbar : any;
 
   constructor(
@@ -22,11 +22,6 @@ export class AppComponent implements AfterViewInit{
     })
     this.runtimeConfigService.getTableColumns();
 
-  }
-
-  ngAfterViewInit() {
-    // console.log(this.activatedRoute)
-    // this.activatedRoute._routerState
   }
 
  }

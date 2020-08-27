@@ -37,7 +37,8 @@
 
 
 .mat-header-cell, .mat-cell {
-  min-width: 100px;
+  white-space:nowrap;
+  padding: 5px;
 }
 
 .table th, .table td {

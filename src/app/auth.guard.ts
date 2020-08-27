@@ -21,7 +21,8 @@ export class AuthGuard implements CanActivate {
     private router: Router,
     private http: HttpClient,
     private apiConfigService: ApiConfigService,
-    private addOrEditService: AddOrEditService
+    private addOrEditService: AddOrEditService,
+    private activatedRoute: ActivatedRoute
   ) {
     this.options = { headers: new HttpHeaders({ 'Content-Type': 'application/json' }) };
   }
@@ -36,12 +37,13 @@ export class AuthGuard implements CanActivate {
     // console.log(res.body['response'], next.params.id)
     // if (this.authorizedUser(res.body.response)) {
     if (this.authService.isLoggedIn()) {
-      if (state.url.includes('Edit') || state.url.includes('Add')) {
+      if (state.url.includes('Edit') || state.url.includes('Add') || state.url.includes('New')) {
         if (!this.addOrEditService.editData) {
           let route;
           route = state.url.replace('/Edit', '');
           route = route.replace('/Add', '');
-          this.router.navigate([ route ]);
+          route = route.replace('/New', '');
+          this.router.navigate([route]);
         }
       }
       return true;

@@ -848,6 +848,29 @@
     "acquisitionDate": "Acquisition Date",
     "acquisitionCost": "Acquisition Cost " ,
     "id": "id"                 
+  },
+    "cashbank": {
+    "company": "company",
+    "branch": "branch",
+    "voucherClass": "voucherClass",
+    "voucherType": "voucherType",
+    "voucherDate": "voucherDate",
+    "postingDate": "postingDate",
+    "period": "period",
+    "voucherNumber": "voucherNumber",
+    "transactionType": "transactionType",
+    "natureofTransaction": "natureofTransaction",
+    "account": "account",
+    "indicator": "indicator",
+    "referenceNo": "referenceNo",
+    "referenceDate": "referenceDate",
+    "profitCenter": "profitCenter",
+    "segment": "segment",
+    "narration": "narration",
+    "taxCode": "taxCode",
+
+    "name": "name",
+    "delete": "delete"
   }
 
 }

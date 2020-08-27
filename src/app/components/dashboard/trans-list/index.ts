@@ -1,0 +1,1 @@
+export { CashbankComponent } from './cashbank/cashbank.component'
