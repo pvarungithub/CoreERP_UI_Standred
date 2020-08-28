@@ -12,7 +12,7 @@
         <img  [routerLink]="['/dashboard']" src="../../assets/images/CoreERP_icon.png" alt="hi" height="25" />
         <span  [routerLink]="['/dashboard']" class="pl-2">CoreERP</span>
     </div>
-    <button *ngIf="showExpandButtons" class="ml-2" mat-button (click)="shift()" > {{ shiftButton }} </button>
+    <!-- <button *ngIf="showExpandButtons" class="ml-2" mat-button (click)="shift()" > {{ shiftButton }} </button> -->
     <div class="d-flex" *ngIf="showExpandButtons">
       <span class="align-items-center d-flex pl-3"><mat-icon>account_circle</mat-icon></span>
       <small class="pl-2" *ngIf="loginUser != null">  {{loginUser.userName}}    </small>
