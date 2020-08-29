@@ -239,8 +239,8 @@
   "openledger": {
     "title": "Open Ledger",
     "ledgerName": "Ledger Name",
-    "financialYearStartFrom": "Date",
-    "financialYearEndTo": "Date",
+    "financialYearStartFrom": "FY Start",
+    "financialYearEndTo": "FY End",
     "accountingYear": "Accounting Year"
   }, 
   "vouchertype": {
@@ -270,7 +270,9 @@
   "assignmentofvoucherseriestovouchertype": {
     "title": "Assignment Voucher Series to Voucher Type",   
     "voucherTypeName": "Voucher Type",
-    "voucherSeries": "Voucher Series"
+    "voucherSeries": "Voucher Series",
+    "suffix":"Suffix",
+    "lastNumber":"lastNumber"
   },
   "taxrates": {
     "title": "Tax Rates",

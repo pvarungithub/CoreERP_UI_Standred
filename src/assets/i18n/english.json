@@ -343,7 +343,9 @@
     "title": "Assignment Voucher Series to Voucher Type",
     "voucherType": "Voucher Type",
     "voucherTypeName": "Voucher Type",
-    "voucherSeries": "Voucher Series"
+    "voucherSeries": "Voucher Series",
+    "suffix":"Suffix",
+    "lastNumber":"lastNumber"
   },
   "taxrates": {
     "title": "Tax Rates",

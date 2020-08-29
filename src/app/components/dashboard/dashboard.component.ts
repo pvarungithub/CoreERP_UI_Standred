@@ -1,4 +1,4 @@
-import { Component, ViewChild, ElementRef, ViewEncapsulation, AfterViewInit, OnInit, Input } from '@angular/core';
+import { Component, ViewChild, ElementRef, ViewEncapsulation, AfterViewInit, OnInit, Input, OnDestroy } from '@angular/core';
 import { String } from 'typescript-string-operations';
 import { ApiService } from '../../services/api.service';
 import { CommonService } from '../../services/common.service';
@@ -11,14 +11,10 @@ import { ActivatedRoute } from '@angular/router';
   templateUrl: './dashboard.component.html',
   styleUrls: ['./dashboard.component.scss']
 })
-export class DashboardComponent implements OnInit, AfterViewInit {
-
-
+export class DashboardComponent implements OnInit, AfterViewInit, OnDestroy {
 
   @ViewChild('appDrawer', { static: false }) appDrawer: ElementRef;
   navItems = [];
-
-
 
   constructor(
     private apiService: ApiService,
@@ -50,6 +46,10 @@ export class DashboardComponent implements OnInit, AfterViewInit {
 
   ngAfterViewInit() {
     this.commonService.appDrawer = this.appDrawer;
+  }
+
+  ngOnDestroy() {
+    this.commonService.routeParam = null;
   }
 
  

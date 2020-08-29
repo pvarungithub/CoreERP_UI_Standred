@@ -78,22 +78,7 @@ export class CashbankComponent implements OnInit {
 
   tablePropsFunc() {
     return {
-      tableData: {
-        company: {
-          value: null, type: 'dropdown', list: this.companyList, id: 'id', text: 'text', disabled: false, displayMul: true
-        },
-        branch: {
-          value: null, type: 'dropdown', list: this.branchList, id: 'id', text: 'text', disabled: false, displayMul: true
-        },
-        voucherNumber: {
-          value: null, type: 'text', disabled: false
-        },
-        voucherDate: {
-          value: null, type: 'datepicker', disabled: false
-        },
-        postingDate: {
-          value: new Date(), type: 'datepicker', disabled: false
-        },
+      tableData: {        
         glaccount: {
           value: null, type: 'dropdown', list: this.accountList, id: 'accGroup', text: 'chartAccountName', disabled: false, displayMul: true
         },

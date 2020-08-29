@@ -35,7 +35,8 @@ export class AssignmentVoucherSeriestoVoucherTypesComponent implements OnInit {
       code: [0],
       voucherType: [null],
       voucherSeries: [null],
-      ext: null
+      lastNumber: null,
+      suffix: null
     });
 
     this.formData = { ...data };
