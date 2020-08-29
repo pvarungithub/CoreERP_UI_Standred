@@ -49,9 +49,9 @@ export class DynamicTableComponent implements OnInit {
       this.emitDynTableData = addOrEditService.emitDynTableData.subscribe(res => {
         if (!isNullOrUndefined(res)) {
           if (res.length) {
-            this.dataSource.data = res;
+            this.dataSource.data = this.formalTableData(res);
           } else if (res.length == 0) {
-            this.setTableData()
+            this.setTableData();
           } else {
             this.dataSource.data[res.index][res.column] = res['value'];
           }
@@ -63,7 +63,21 @@ export class DynamicTableComponent implements OnInit {
     });
   }
 
-  deleteRow(i) {
+  formalTableData(list) {
+    const data = [];
+    for (let l = 0; l < list.length; l++) {
+      const obj = JSON.parse(JSON.stringify(this.tableData[0]))
+      for (let t in obj) {
+          obj[t].value = list[l][t];
+          obj[t].disabled = true;
+      }
+      data.push(obj)
+    }
+    return data;
+  }
+
+  deleteRow(i, flag) {
+    if(!flag) {
     if (this.dataSource.data.length == 1) {
       return;
     }
@@ -73,6 +87,7 @@ export class DynamicTableComponent implements OnInit {
     this.dataSource = new MatTableDataSource(this.dataSource.data);
     this.dataSource.paginator = this.paginator;
     this.emitTableData.emit(this.formatTableData());
+  }
   }
 
   ngOnInit(): void {
@@ -133,7 +148,6 @@ export class DynamicTableComponent implements OnInit {
       for (let key in this.runtimeConfigService.tableColumnsData[this.routeParam]) {
         for (let c = 0; c < col.length; c++) {
           if (key == col[c].def) {
-            console.log(col[c])
             this.columnDefinitions.push(col[c]);
           }
         }

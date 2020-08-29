@@ -42,6 +42,7 @@ export class CompTabsComponent implements OnInit, AfterViewInit, OnDestroy {
 
   ngOnDestroy(): void {
       this.cdr.detach();
+      this.commonService.routeParam = null;
   }
 
 }

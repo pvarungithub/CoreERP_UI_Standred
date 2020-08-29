@@ -1,4 +1,4 @@
-import { Component, OnInit, ViewChild } from '@angular/core';
+import { Component, OnInit, ViewChild, OnDestroy } from '@angular/core';
 import { FormGroup, FormBuilder } from '@angular/forms';
 import { MatTableDataSource } from '@angular/material/table';
 import { MatPaginator } from '@angular/material/paginator';
@@ -18,7 +18,7 @@ import { ActivatedRoute } from '@angular/router';
   templateUrl: './rolesprevilages.component.html',
   styleUrls: ['./rolesprevilages.component.scss']
 })
-export class RolesprevilagesComponent implements OnInit {
+export class RolesprevilagesComponent implements OnInit, OnDestroy {
 
   formData: FormGroup;
   roleArray = [];
@@ -147,6 +147,10 @@ export class RolesprevilagesComponent implements OnInit {
     this.dataSource = undefined;
     this.formData.controls['parentMenu'].disable();
   }
+
+  ngOnDestroy(): void {
+    this.commonService.routeParam = null;
+}
 
 }
 

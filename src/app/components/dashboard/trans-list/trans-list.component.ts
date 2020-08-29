@@ -1,4 +1,4 @@
-import { Component, OnInit, ViewChild, ComponentFactoryResolver, ViewContainerRef, ChangeDetectorRef } from '@angular/core';
+import { Component, OnInit, ViewChild, ComponentFactoryResolver, ViewContainerRef, ChangeDetectorRef, OnDestroy } from '@angular/core';
 import { TransTableComponent } from '../../../reuse-components/trans-table/trans-table.component';
 import { isNullOrUndefined } from 'util';
 import { ActivatedRoute } from '@angular/router';
@@ -18,7 +18,7 @@ import { CommonService } from '../../../services/common.service';
   styleUrls: ['./trans-list.component.scss']
 })
 
-export class TransListComponent implements OnInit {
+export class TransListComponent implements OnInit, OnDestroy {
 
   @ViewChild(TransTableComponent, { static: false }) transTableComponent: TransTableComponent;
   @ViewChild("dynamicTabs", { read: ViewContainerRef }) dynamicTabs: ViewContainerRef;
@@ -62,6 +62,8 @@ export class TransListComponent implements OnInit {
   ngOnInit(): void {
   }
 
-
+  ngOnDestroy(): void {
+    this.commonService.routeParam = null;
+}
 
 }

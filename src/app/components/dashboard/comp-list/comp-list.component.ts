@@ -1,4 +1,4 @@
-import { Component, ViewChild, ViewEncapsulation, OnInit } from '@angular/core';
+import { Component, ViewChild, ViewEncapsulation, OnInit, OnDestroy } from '@angular/core';
 import { ApiService } from '../../../services/api.service';
 import { String } from 'typescript-string-operations';
 
@@ -22,7 +22,7 @@ import { CommonService } from '../../../services/common.service';
   templateUrl: './comp-list.component.html',
   styleUrls: ['./comp-list.component.scss']
 })
-export class CompListComponent implements OnInit {
+export class CompListComponent implements OnInit, OnDestroy {
 
   tableData: any;
   addOrUpdateData: any;
@@ -145,6 +145,10 @@ export class CompListComponent implements OnInit {
       }
     });
 
+  }
+
+  ngOnDestroy() {
+    this.commonService.routeParam = null;
   }
 
 }

@@ -9,6 +9,10 @@
             </th>
             <td mat-cell *matCellDef="let element;" [ngSwitch]="element[column].type">
 
+
+                <input *ngSwitchCase="'autoInc'" matInput [disabled]="element[column].disabled"
+                    [value]="dataSource.filteredData.indexOf(element) + 1" />
+
                 <input *ngSwitchCase="'text'" matInput [disabled]="element[column].disabled"
                     [value]="element[column].value" [(ngModel)]="element[column].value"
                     (input)="formControlValid(column, element[column], dataSource.filteredData.indexOf(element));" />
@@ -17,7 +21,7 @@
                     [value]="element[column].value" [(ngModel)]="element[column].value"
                     (input)="formControlValid(column, element[column], dataSource.filteredData.indexOf(element));" />
 
-                <mat-select *ngSwitchCase="'dropdown'" [(ngModel)]="element[column].value"
+                <mat-select *ngSwitchCase="'dropdown'" [(ngModel)]="element[column].value" [disabled]="element[column].disabled"
                     (selectionChange)="formControlValid(column, element[column], dataSource.filteredData.indexOf(element));">
                     <mat-option *ngFor="let data of element[column].list" [value]="data[element[column].id]">
                         <span *ngIf="element[column].displayMul;else content">
@@ -29,7 +33,7 @@
 
                 <div *ngSwitchCase="'datepicker'" class="d-flex">
                     <input matInput [matDatepicker]="picker" readonly (click)="picker.open()"
-                        [(ngModel)]="element[column].value"
+                        [(ngModel)]="element[column].value" [disabled]="element[column].disabled"
                         (dateChange)="formControlValid(column, element[column], dataSource.filteredData.indexOf(element));">
                     <mat-datepicker-toggle matSuffix [for]="picker">
                         <mat-icon matDatepickerToggleIcon class="mat--icon">date_range</mat-icon>
@@ -37,7 +41,7 @@
                     <mat-datepicker #picker></mat-datepicker>
                 </div>
 
-                <app-autocomplete *ngSwitchCase="'autocomplete'" [configData]="element[column]"
+                <app-autocomplete *ngSwitchCase="'autocomplete'" [configData]="element[column]" [isDisabled]="element[column].disabled"
                     (emitTypeAheadValue)="setTypeAheadValue($event, column, dataSource.filteredData.indexOf(element));">
                 </app-autocomplete>
 
@@ -47,7 +51,7 @@
 
                 <mat-icon *ngSwitchCase="'delete'"
                     [hidden]="dataSource.filteredData.indexOf(element) == (dataSource.data.length - 1)"
-                    class="cursor--pointer mat--icon" (click)="deleteRow(dataSource.filteredData.indexOf(element))">
+                    class="cursor--pointer mat--icon" (click)="deleteRow(dataSource.filteredData.indexOf(element), element[column].disabled)">
                     delete</mat-icon>
 
 
@@ -57,4 +61,4 @@
         <tr mat-row *matRowDef="let row; columns: getDisplayedColumns();"></tr>
     </table>
 </div>
-<mat-paginator [pageSizeOptions]="[10 ,25, 50, 100]" showFirstLastButtons></mat-paginator>
+<mat-paginator [pageSizeOptions]="[15 ,25, 50, 100]" showFirstLastButtons></mat-paginator>

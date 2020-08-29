@@ -695,6 +695,7 @@
     "id": "id"                 
   },
   "cashbank": {
+    "id": "id",
     "company": "company",
     "branch": "branch",
     "voucherNumber": "voucherNumber",
@@ -716,12 +717,13 @@
     "segment": "segment",
     "costCenter": "costCenter",
 
+    "narration": "narration",
+
     "period": "period",
     "transactionType": "transactionType",
     "natureofTransaction": "natureofTransaction",
     "account": "account",
     "indicator": "indicator",
-    "narration": "narration",
     "workBreakStructureElement": "workBreakStructureElement",
     "netWork": "netWork",
     "orderNo": "orderNo",

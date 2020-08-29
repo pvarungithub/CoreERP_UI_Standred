@@ -852,6 +852,7 @@
     "id": "id"                 
   },
     "cashbank": {
+      "id": "id",
     "title": "Cashbank",
     "company": "company",
     "branch": "branch",
@@ -872,14 +873,13 @@
     "profitCenter": "profitCenter",
     "segment": "segment",
     "costCenter": "costCenter",
-
+    "narration": "narration",
     "period": "period",
     "voucherNumber": "voucherNumber",
     "transactionType": "transactionType",
     "natureofTransaction": "natureofTransaction",
     "account": "account",
     "indicator": "indicator",
-    "narration": "narration",
 
     "name": "name",
     "delete": "delete"

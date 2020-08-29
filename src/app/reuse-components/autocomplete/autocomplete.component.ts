@@ -31,7 +31,7 @@ export class AutocompleteComponent implements OnInit {
 
   label: string;
   value: string;
-  isDisabled: boolean;
+  @Input() isDisabled: boolean;
   id: string;
   placeholder: string;
   dataConfig: any;
