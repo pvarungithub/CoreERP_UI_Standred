@@ -460,4 +460,15 @@ export class ApiConfigService {
    getMenuList = `${this.environment.runtimeConfig.serverUrl}Auth/getMenuList`;
    giveAccess = `${this.environment.runtimeConfig.serverUrl}Auth/GiveAccess`;
    getMenuUrl = `${this.environment.runtimeConfig.serverUrl}Auth/getMenu`;
+
+   /******************************* Cash Bank ****************************************************** */
+
+   getTransactionTypes = `${this.environment.runtimeConfig.serverUrl}Transactions/GetTransactionTypes`;
+   getAccountingIndicator = `${this.environment.runtimeConfig.serverUrl}Transactions/GetAccountingIndicator`;
+   getNatureOfTransaction = `${this.environment.runtimeConfig.serverUrl}Transactions/GetNatureOfTransaction`;
+   addCashBank = `${this.environment.runtimeConfig.serverUrl}Transactions/AddCashBank`;
+   getCashBankDetail = `${this.environment.runtimeConfig.serverUrl}Transactions/GetCashBankDetail`;
+   getCashBankMaster = `${this.environment.runtimeConfig.serverUrl}Transactions/GetCashBankMaster`;
+   getSegments = `${this.environment.runtimeConfig.serverUrl}Transactions/GetSegments`;
+   getCostcenters = `${this.environment.runtimeConfig.serverUrl}Transactions/GetCostcenters`;
 }

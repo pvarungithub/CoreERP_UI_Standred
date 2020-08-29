@@ -1,6 +1,7 @@
 import { Component, OnInit, ViewChild, ViewContainerRef, ComponentFactoryResolver, AfterViewInit, ComponentRef, OnDestroy, ChangeDetectorRef } from '@angular/core';
 import { CompListService } from '../comp-list.service';
 import { ActivatedRoute } from '@angular/router';
+import { CommonService } from '../../../../services/common.service';
 @Component({
   selector: 'app-comp-tabs',
   templateUrl: './comp-tabs.component.html',
@@ -16,9 +17,11 @@ export class CompTabsComponent implements OnInit, AfterViewInit, OnDestroy {
     private activatedRoute: ActivatedRoute,
     private compListService: CompListService,
     private cdr: ChangeDetectorRef,
+    private commonService: CommonService
   ) {
     activatedRoute.params.subscribe(params => {
       this.params = params.id;
+      this.commonService.routeParam = params.id
       // this.getTableParameters(params.id);
       // if (!isNullOrUndefined(this.tableComponent)) {
       //   this.tableComponent.defaultValues();

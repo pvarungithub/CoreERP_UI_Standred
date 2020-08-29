@@ -10,6 +10,7 @@ import { NgxSpinnerService } from 'ngx-spinner';
 import { String } from 'typescript-string-operations';
 import { StatusCodes } from '../../../enums/common/common';
 import { TransListService } from './trans-list.service';
+import { CommonService } from '../../../services/common.service';
 
 @Component({
   selector: 'app-trans-list',
@@ -33,10 +34,12 @@ export class TransListComponent implements OnInit {
     private environment: RuntimeConfigService,
     private apiConfigService: ApiConfigService,
     private transListService: TransListService,
+    private commonService: CommonService,
     private componentFactoryResolver: ComponentFactoryResolver,
     private cdr: ChangeDetectorRef
   ) {
     activatedRoute.params.subscribe(params => {
+      this.commonService.routeParam = params.id
       if (!isNullOrUndefined(params.id1)) {
         this.params = params.id;
       } else {

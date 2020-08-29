@@ -20,9 +20,7 @@ export class NavbarComponent implements OnInit {
   openMenu = false;
   loginUser: any;
   showExpandButtons: any;
-  // shiftButton = 'ShiftIN'
-  ShiftId: any;
-  shiftData: { Shift: string; Id: any; };
+
 
   @Input() set showExpandButton(val: string) {
     this.loginUser = JSON.parse(localStorage.getItem('user'));
@@ -38,11 +36,7 @@ export class NavbarComponent implements OnInit {
     private spinner: NgxSpinnerService,
     private alertService: AlertService,
 
-  ) {
-    let shift = JSON.parse(localStorage.getItem('shift'));
-    // this.shiftButton = !isNullOrUndefined(shift) ? shift.Shift : 'ShiftIN'
-    this.ShiftId = !isNullOrUndefined(shift) ? shift.Id : null
-  }
+  ) {  }
 
   ngOnInit() {
   }
@@ -60,35 +54,6 @@ export class NavbarComponent implements OnInit {
         }
       });
   }
-
-  // shift() {
-  //   var logoutUrl;
-  //   if (this.shiftButton == 'ShiftIN') {
-  //     logoutUrl = String.Join('/', this.apiConfigService.shiftStart, this.loginUser.seqId, this.loginUser.branchCode);
-  //   } else {
-  //     logoutUrl = String.Join('/', this.apiConfigService.shiftTerminate, this.ShiftId);
-  //   }
-
-  //   this.apiService.apiGetRequest(logoutUrl).subscribe(
-  //     response => {
-  //       const res = response.body;
-  //       this.spinner.hide();
-  //       if (!isNullOrUndefined(res.response)) {
-  //         if (this.shiftButton == 'ShiftIN') {
-  //           this.shiftData = { Shift: 'ShiftOUT', Id: res.response.ShiftId }
-  //           this.shiftButton = 'ShiftOUT';
-  //           this.ShiftId = res.response.ShiftId;
-  //         } else {
-  //           this.shiftData = { Shift: 'ShiftIN', Id: null }
-  //           this.shiftButton = 'ShiftIN';
-  //           this.alertService.openSnackBar(res.response, Static.Close, SnackBar.success);
-  //         }
-  //         localStorage.setItem('shift', JSON.stringify(this.shiftData))
-  //       }
-  //     });
-
-
-  // }
 
   openSetting() {
     this.router.navigateByUrl('/dashboard/setting');

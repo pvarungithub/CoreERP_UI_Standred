@@ -11,9 +11,13 @@ import { String } from 'typescript-string-operations';
 import { AddOrEditService } from '../../components/dashboard/comp-list/add-or-edit.service';
 import { ApiConfigService } from '../../services/api-config.service';
 import { ApiService } from '../../services/api.service';
-import { StatusCodes } from '../../enums/common/common';
+import { StatusCodes, SnackBar } from '../../enums/common/common';
 import { NgxSpinnerService } from 'ngx-spinner';
 import { TransListService } from '../../components/dashboard/trans-list/trans-list.service';
+import { AlertService } from '../../services/alert.service';
+import { Static } from '../../enums/common/static';
+import { CommonService } from '../../services/common.service';
+import * as moment from 'moment';
 
 @Component({
   selector: 'app-trans-table',
@@ -21,6 +25,7 @@ import { TransListService } from '../../components/dashboard/trans-list/trans-li
   styleUrls: ['./trans-table.component.scss']
 })
 export class TransTableComponent implements OnInit {
+  selectedDate = { start: moment().add(0, 'day'), end: moment().add(0, 'day') };
 
   // route
   routeParam: any;
@@ -36,7 +41,6 @@ export class TransTableComponent implements OnInit {
   columnDefinitions = [];
   highlightedRows = [];
   keys = [];
-  branchCode: any;
   tableData: any;
 
 
@@ -50,14 +54,15 @@ export class TransTableComponent implements OnInit {
     private apiService: ApiService,
     private addOrEditService: AddOrEditService,
     private spinner: NgxSpinnerService,
-    private transListService: TransListService
+    private transListService: TransListService,
+    private commonService: CommonService,
+    private alertService: AlertService
   ) {
     this.headerForm = this.formBuilder.group({
       selected: [null],
-      fromDate: [null],
-      toDate: [null],
-      invoiceNo: [null],
-      Role: [null]
+      FromDate: [null],
+      ToDate: [null],
+      searchCriteria: [null]
     });
     activatedRoute.params.subscribe(params => {
       this.routeParam = params.id;
@@ -65,17 +70,28 @@ export class TransTableComponent implements OnInit {
   }
 
   ngOnInit() {
-    this.branchCode = JSON.parse(localStorage.getItem('user'));
-    this.headerForm.patchValue({
-      Role: this.branchCode.role
-    })
     this.getTableList();
   }
 
-  
+  search() {
+    if (!isNullOrUndefined(this.headerForm.value.selected)) {
+      this.headerForm.patchValue({
+        FromDate: this.commonService.formatDate(this.headerForm.value.selected.start._d),
+        ToDate: this.commonService.formatDate(this.headerForm.value.selected.end._d)
+      });
+    }
+    this.getTableList();
+  }
+
+  reset() {
+    this.headerForm.reset();
+    this.getTableList();
+  }
+
+
   getTableList() {
     const getInvoiceListUrl = String.Join('/', this.transListService.getDynComponents(this.routeParam).tableUrl);
-    this.apiService.apiPostRequest(getInvoiceListUrl, { voucherNumber: '1'}).subscribe(
+    this.apiService.apiPostRequest(getInvoiceListUrl, this.headerForm.value).subscribe(
       response => {
         this.spinner.hide();
         const res = response.body;
@@ -85,16 +101,12 @@ export class TransTableComponent implements OnInit {
             this.tableDataFunc();
           }
         }
-
-        this.tableData = [ { company: '1', id: '1'  }]
-        this.tableDataFunc();
-
       });
   }
 
   openEditTrans(row) {
     this.addOrEditService.editData = 'Edit';
-    this.router.navigate(['dashboard/transaction', this.routeParam, 'Edit', { value: row.id } ]);
+    this.router.navigate(['dashboard/transaction', this.routeParam, 'Edit', { value: row.id }]);
   }
 
   newTransOpen() {
@@ -123,11 +135,16 @@ export class TransTableComponent implements OnInit {
     }
 
     if (!isNullOrUndefined(this.tableData) && this.tableData.length > 0) {
+
+      const col = [];
+      this.columnDefinitions = [];
+      this.keys = [];
+
       // tslint:disable-next-line:forin
       for (const key in this.tableData[0]) {
         this.keys.push({ col: key });
       }
-      const col = [];
+
       this.keys.forEach(cols => {
         const obj = {
           def: cols.col, label: cols.col, hide: true
@@ -158,15 +175,6 @@ export class TransTableComponent implements OnInit {
 
   selectRow(row, index) {
     console.log(row, index)
-  }
-
-
-  search() {
-
-  }
-
-  reset() {
-
   }
 
 }

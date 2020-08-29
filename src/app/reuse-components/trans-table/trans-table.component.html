@@ -8,7 +8,7 @@
         </div>
         <div>
           <mat-form-field>
-            <input matInput placeholder="{{ 'SALESINVOICE.INVOICENO' | translate }}" formControlName="invoiceNo" />
+            <input matInput placeholder="{{ ( routeParam + '.searchCriteria') | translate }}" formControlName="searchCriteria" />
           </mat-form-field>
         </div>
         <div class="p-2 ml-3">
@@ -46,7 +46,7 @@
         <tr mat-row *matRowDef="let row; columns: getDisplayedColumns();" (dblclick)="openEditTrans(row)"></tr>
       </table>
     </div>
-    <mat-paginator [pageSizeOptions]="[10 ,25, 50, 100]" showFirstLastButtons></mat-paginator>
+    <mat-paginator [pageSizeOptions]="[15 ,25, 50, 100]" showFirstLastButtons></mat-paginator>
 
 
   </mat-card-content>

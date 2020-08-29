@@ -31,6 +31,7 @@ export class CashbankComponent implements OnInit {
   indicatorList = ['Debit', 'Credit'];
   profitCenterList = [];
   segmentList = [];
+  costCenterList = [];
   taxCodeList = [];
   functionaldeptList = [];
 
@@ -78,9 +79,6 @@ export class CashbankComponent implements OnInit {
   tablePropsFunc() {
     return {
       tableData: {
-        id: {
-          value: null, type: 'text', disabled: true
-        },
         company: {
           value: null, type: 'dropdown', list: this.companyList, id: 'id', text: 'text', disabled: false, displayMul: true
         },
@@ -106,16 +104,16 @@ export class CashbankComponent implements OnInit {
           value: null, type: 'dropdown', list: this.taxCodeList, id: 'code', text: 'description', disabled: false, displayMul: true
         },
         sgstamount: {
-          value: null, type: 'number', disabled: false
+          value: null, type: 'number', disabled: true
         },
         cgstamount: {
-          value: null, type: 'number', disabled: false
+          value: null, type: 'number', disabled: true
         },
         igstamount: {
-          value: null, type: 'number', disabled: false
+          value: null, type: 'number', disabled: true
         },
         ugstamount: {
-          value: null, type: 'number', disabled: false
+          value: null, type: 'number', disabled: true
         },
         referenceNo: {
           value: null, type: 'number', disabled: false
@@ -129,6 +127,15 @@ export class CashbankComponent implements OnInit {
         profitCenter: {
           value: null, type: 'dropdown', list: this.profitCenterList, id: 'id', text: 'name', disabled: false, displayMul: true
         },
+        segment: {
+          value: null, type: 'dropdown', list: this.segmentList, id: 'id', text: 'name', disabled: false, displayMul: true
+        },
+        costCenter: {
+          value: null, type: 'dropdown', list: this.costCenterList, id: 'id', text: 'name', disabled: false, displayMul: true
+        },
+        workBreakStructureElement: {
+          value: null, type: 'dropdown', list: this.costCenterList, id: 'id', text: 'name', disabled: false, displayMul: true
+        },
         delete: {
           type: 'delete',
           newObject: true
@@ -141,7 +148,7 @@ export class CashbankComponent implements OnInit {
   }
 
   getCashBankDetail(val) {
-    const cashDetUrl = String.Join('/', this.apiConfigService.GetCostCenterList, val);
+    const cashDetUrl = String.Join('/', this.apiConfigService.getCashBankDetail, val);
     this.apiService.apiGetRequest(cashDetUrl)
       .subscribe(
         response => {
@@ -275,28 +282,29 @@ export class CashbankComponent implements OnInit {
               this.dynTableProps = this.tablePropsFunc()
             }
           }
-          this.getfunctionaldeptList();
+          this.getSegments();
         });
   }
 
-  getfunctionaldeptList() {
-    const funcDeptUrl = String.Join('/', this.apiConfigService.getfunctionaldeptList);
-    this.apiService.apiGetRequest(funcDeptUrl)
+
+  getSegments() {
+    const segUrl = String.Join('/', this.apiConfigService.getSegments);
+    this.apiService.apiGetRequest(segUrl)
       .subscribe(
         response => {
           this.spinner.hide();
           const res = response.body;
           if (!isNullOrUndefined(res) && res.status === StatusCodes.pass) {
             if (!isNullOrUndefined(res.response)) {
-              this.taxCodeList = res.response['TaxtransactionList'];
+              this.segmentList = res.response['TaxtransactionList'];
+              this.getSegments();
             }
           }
-          this.getCostCenterList();
         });
   }
 
-  getCostCenterList() {
-    const costCenUrl = String.Join('/', this.apiConfigService.GetCostCenterList);
+  getCostcenters() {
+    const costCenUrl = String.Join('/', this.apiConfigService.getCostcenters);
     this.apiService.apiGetRequest(costCenUrl)
       .subscribe(
         response => {
@@ -304,7 +312,7 @@ export class CashbankComponent implements OnInit {
           const res = response.body;
           if (!isNullOrUndefined(res) && res.status === StatusCodes.pass) {
             if (!isNullOrUndefined(res.response)) {
-              this.taxCodeList = res.response['TaxtransactionList'];
+              this.costCenterList = res.response['TaxtransactionList'];
               this.dynTableProps = this.tablePropsFunc()
             }
           }
@@ -335,7 +343,7 @@ export class CashbankComponent implements OnInit {
   }
 
   saveCashBank() {
-    const addCashBank = String.Join('/', this.apiConfigService);
+    const addCashBank = String.Join('/', this.apiConfigService.addCashBank);
     const requestObj = { cashbankHdr: this.formData.value, cashbankDtl: this.tableData };
     this.apiService.apiPostRequest(addCashBank, requestObj).subscribe(
       response => {

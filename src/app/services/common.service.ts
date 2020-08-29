@@ -1,6 +1,6 @@
 import { Injectable } from '@angular/core';
 import { BehaviorSubject } from 'rxjs';
-import { Event, NavigationEnd, Router } from '@angular/router';
+import { Event, NavigationEnd, Router, ActivatedRoute } from '@angular/router';
 import { isNullOrUndefined } from 'util';
 import { TranslateService } from '@ngx-translate/core';
 import { HttpClient, HttpErrorResponse } from '@angular/common/http';
@@ -15,12 +15,14 @@ export class CommonService {
   currentUrl = new BehaviorSubject<string>(undefined);
   selectedInput: BehaviorSubject<number> = new BehaviorSubject<number>(1);
   showNavbar = new BehaviorSubject<boolean>(null);
+  routeParam: string;
 
   constructor(
     private router: Router,
     public translate: TranslateService,
     private http: HttpClient,
-    private spinner: NgxSpinnerService
+    private spinner: NgxSpinnerService,
+    private route: ActivatedRoute
   ) {
     this.router.events.subscribe((event: Event) => {
       if (event instanceof NavigationEnd) {

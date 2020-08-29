@@ -11,6 +11,7 @@ import { Static } from '../../../enums/common/static';
 import { NgxSpinnerService } from 'ngx-spinner';
 import { String } from 'typescript-string-operations';
 import { CommonService } from '../../../services/common.service';
+import { ActivatedRoute } from '@angular/router';
 
 @Component({
   selector: 'app-rolesprevilages',
@@ -34,14 +35,17 @@ export class RolesprevilagesComponent implements OnInit {
     private apiService: ApiService,
     private alertService: AlertService,
     private spinner: NgxSpinnerService,
-    private commonService: CommonService
+    private commonService: CommonService,
+    route: ActivatedRoute
 
   ) {
+    this.commonService.routeParam = route.snapshot.routeConfig.path;
     this.formData = this.formBuilder.group({
       role: [null],
       parentMenu: [null]
     });
     this.formData.controls['parentMenu'].disable();
+
   }
 
   ngOnInit() {

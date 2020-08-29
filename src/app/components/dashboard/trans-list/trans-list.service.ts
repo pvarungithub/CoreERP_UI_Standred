@@ -18,7 +18,7 @@ export class TransListService {
     switch (data) {
       case 'cashbank':
         this.dynamicComp.component = CashbankComponent;
-        this.dynamicComp.tableUrl = this.apiConfigService;
+        this.dynamicComp.tableUrl = this.apiConfigService.getCashBankMaster;
         this.dynamicComp.list = 'CashBankMasters';
         return this.dynamicComp;
         break;

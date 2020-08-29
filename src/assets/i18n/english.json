@@ -850,27 +850,43 @@
     "id": "id"                 
   },
     "cashbank": {
+    "title": "Cashbank",
     "company": "company",
     "branch": "branch",
     "voucherClass": "voucherClass",
     "voucherType": "voucherType",
     "voucherDate": "voucherDate",
     "postingDate": "postingDate",
+    "glaccount": "glaccount",
+    "amount": "amount",
+    "taxCode": "taxCode",
+    "sgstamount": "sgstamount",
+    "cgstamount": "cgstamount",
+    "igstamount": "igstamount",
+    "ugstamount": "ugstamount",
+    "referenceNo": "referenceNo",
+    "referenceDate": "referenceDate",
+    "functionalDept": "functionalDept",
+    "profitCenter": "profitCenter",
+    "segment": "segment",
+    "costCenter": "costCenter",
+
     "period": "period",
     "voucherNumber": "voucherNumber",
     "transactionType": "transactionType",
     "natureofTransaction": "natureofTransaction",
     "account": "account",
     "indicator": "indicator",
-    "referenceNo": "referenceNo",
-    "referenceDate": "referenceDate",
-    "profitCenter": "profitCenter",
-    "segment": "segment",
     "narration": "narration",
-    "taxCode": "taxCode",
 
     "name": "name",
     "delete": "delete"
+  },
+  "rolePrevilages": {
+    "title": "Role Previlages"
+  },
+  "dashboard": {
+    "title": "Dashboard"
   }
 
 }

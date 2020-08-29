@@ -15,6 +15,7 @@ import { CompListService } from './comp-list.service';
 import { RuntimeConfigService } from '../../../services/runtime-config.service';
 import { ApiConfigService } from '../../../services/api-config.service';
 import { AddOrEditService } from './add-or-edit.service';
+import { CommonService } from '../../../services/common.service';
 
 @Component({
   selector: 'app-comp-list',
@@ -39,9 +40,11 @@ export class CompListComponent implements OnInit {
     private environment: RuntimeConfigService,
     private apiConfigService: ApiConfigService,
     private addOrEditService: AddOrEditService,
+    private commonService: CommonService,
     private router: Router
   ) {
     activatedRoute.params.subscribe(params => {
+      this.commonService.routeParam = params.id
       this.getTableParameters(params.id);
       if (!isNullOrUndefined(this.tableComponent)) {
         this.tableComponent.defaultValues();

@@ -1,5 +1,5 @@
 import {Component, HostBinding, Input, OnInit, Output, EventEmitter} from '@angular/core';
-import { Router } from '@angular/router';
+import { Router, ActivatedRoute } from '@angular/router';
 import { CommonService } from '../../services/common.service';
 import {animate, state, style, transition, trigger} from '@angular/animations';
 import { isNullOrUndefined } from 'util';
@@ -28,7 +28,8 @@ export class SidebarComponent implements OnInit {
   @Input() depth: number;
 
   constructor(public commonService: CommonService,
-              public router: Router
+              public router: Router,
+              public activatedRoute: ActivatedRoute
               ) {
     if (this.depth === undefined) {
       this.depth = 0;
@@ -36,6 +37,9 @@ export class SidebarComponent implements OnInit {
   }
 
   ngOnInit() {
+    this.activatedRoute.params.subscribe(params => {
+      console.log(params)
+    });
     this.commonService.currentUrl.subscribe((url: string) => {
       if (this.item.route && url) {
         this.expanded = url.indexOf(`/${this.item.route}`) === 0;
@@ -51,6 +55,7 @@ export class SidebarComponent implements OnInit {
 
     }
     if (!item.children || !item.children.length) {
+      this.commonService.routeParam = item.route;
       const route = String.Join('/', 'dashboard', item.screenType, item.route  );
       // console.log( route, item.route);
 

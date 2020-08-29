@@ -4,6 +4,7 @@ import { ApiService } from '../../services/api.service';
 import { CommonService } from '../../services/common.service';
 import { ApiConfigService } from '../../services/api-config.service';
 import { NgxSpinnerService } from 'ngx-spinner';
+import { ActivatedRoute } from '@angular/router';
 
 @Component({
   selector: 'app-dashboard',
@@ -24,7 +25,9 @@ export class DashboardComponent implements OnInit, AfterViewInit {
     private commonService: CommonService,
     private apiConfigService: ApiConfigService,
     private spinner: NgxSpinnerService,
+    route: ActivatedRoute
   ) {
+    this.commonService.routeParam = route.snapshot.routeConfig.path;
     commonService.showNavbar.next(true);
   }
 
