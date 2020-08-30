@@ -38,7 +38,10 @@ export class ApiConfigService {
    getBankMastersList = `${this.environment.runtimeConfig.serverUrl}Common/GetBankMastersList`;
    getPaymentsTermsList = `${this.environment.runtimeConfig.serverUrl}Common/GetPaymentsTermsList`;
    getGLAccountListbyCatetory = `${this.environment.runtimeConfig.serverUrl}Common/GLAccountListbyCatetory`;
-
+   getGLAccountsList = `${this.environment.runtimeConfig.serverUrl}Common/GetGLAccountsList`;
+   getProfitCentersList = `${this.environment.runtimeConfig.serverUrl}Common/GetProfitCentersList`;
+   getCostCentersList = `${this.environment.runtimeConfig.serverUrl}Common/GetCostCentersList`;
+   
    //************************ IMG General  ****************************************/
    getCurrencyList = `${this.environment.runtimeConfig.serverUrl}Currency/GetCurrencyList`;
    getLanguageList = `${this.environment.runtimeConfig.serverUrl}Language/GetLanguageList`;
@@ -47,7 +50,7 @@ export class ApiConfigService {
    getProfitCenterList = `${this.environment.runtimeConfig.serverUrl}ProfitCenter/GetProfitCenterList`;
    getBranchesList = `${this.environment.runtimeConfig.serverUrl}Branches/GetBranchesList`;
    getDivisionsList = `${this.environment.runtimeConfig.serverUrl}Division/GetDivisionsList`;
-   getfunctionaldeptList = `${this.environment.runtimeConfig.serverUrl}masters/FunctionalDepartment/GetFunctionalDepartment`;
+   getfunctionaldeptList = `${this.environment.runtimeConfig.serverUrl}FunctionalDepartment/GetFunctionalDepartment`;
    GetCostCenterList = `${this.environment.runtimeConfig.serverUrl}CostCenter/GetCostCenterList`;
    getplantList = `${this.environment.runtimeConfig.serverUrl}Plant/GetPlant`;
    getlocationList = `${this.environment.runtimeConfig.serverUrl}Location/GetLocationList`;

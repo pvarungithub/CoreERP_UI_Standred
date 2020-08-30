@@ -16,6 +16,7 @@ import { AlertService } from '../../../../services/alert.service';
   templateUrl: './cashbank.component.html',
   styleUrls: ['./cashbank.component.scss']
 })
+
 export class CashbankComponent implements OnInit {
 
   formData: FormGroup;
@@ -56,6 +57,7 @@ export class CashbankComponent implements OnInit {
   ngOnInit() {
     this.formDataGroup();
     this.getCompanyList();
+    this.getfunctionaldeptList();
     this.formData.controls['voucherNumber'].disable();
   }
 
@@ -77,6 +79,7 @@ export class CashbankComponent implements OnInit {
       referenceNo: [null],
       referenceDate: [null],
       profitCenter: [null],
+      functionalDept: [null],
       segment: [null],
       narration: [null],
       accounting: [null],
@@ -91,7 +94,7 @@ export class CashbankComponent implements OnInit {
           value: 0, type: 'autoInc'
         },
         glaccount: {
-          value: null, type: 'dropdown', list: this.glAccountList, id: 'accGroup', text: 'chartAccountName', displayMul: true
+          value: null, type: 'dropdown', list: this.glAccountList, id: 'id', text: 'text', displayMul: true
         },
         amount: {
           value: null, type: 'number', disabled: false
@@ -121,13 +124,13 @@ export class CashbankComponent implements OnInit {
           value: null, type: 'dropdown', list: this.functionaldeptList, id: 'code', text: 'description', displayMul: true
         },
         profitCenter: {
-          value: null, type: 'dropdown', list: this.profitCenterList, id: 'code', text: 'name', displayMul: true
+          value: null, type: 'dropdown', list: this.profitCenterList, id: 'id', text: 'text', displayMul: true
         },
         segment: {
           value: null, type: 'dropdown', list: this.segmentList, id: 'id', text: 'name', displayMul: true
         },
         costCenter: {
-          value: null, type: 'dropdown', list: this.costCenterList, id: 'code', text: 'name', displayMul: true
+          value: null, type: 'dropdown', list: this.costCenterList, id: 'id', text: 'text', displayMul: true
         },
         narration: {
           value: null, type: 'text', disabled: false
@@ -141,8 +144,6 @@ export class CashbankComponent implements OnInit {
       }
     }
   }
-
-
 
   getCashBankDetail(val) {
     const cashDetUrl = String.Join('/', this.apiConfigService.getCashBankDetail, val);
@@ -206,7 +207,6 @@ export class CashbankComponent implements OnInit {
         });
   }
 
-
   getVoucherTypes() {
     const voucherTypes = String.Join('/', this.apiConfigService.getVoucherTypesList);
     this.apiService.apiGetRequest(voucherTypes)
@@ -218,30 +218,39 @@ export class CashbankComponent implements OnInit {
               this.voucherTypeList = res.response['vouchertypeList'];
             }
           }
-          this.getGLAccountList();
+          this.getGLAccountsList();
         });
   }
 
-
-  getGLAccountList() {
-    const glAccUrl = String.Join('/', this.apiConfigService.getGLAccountList);
+  getGLAccountsList() {
+    const glAccUrl = String.Join('/', this.apiConfigService.getGLAccountsList);
     this.apiService.apiGetRequest(glAccUrl)
       .subscribe(
         response => {
           const res = response.body;
           if (!isNullOrUndefined(res) && res.status === StatusCodes.pass) {
             if (!isNullOrUndefined(res.response)) {
-              this.accountList = res.response['glList'];
-              this.glAccountList = res.response['glList'].filter(resp => resp.taxCategory != 'Cash' || resp.taxCategory != 'Bank' || resp.taxCategory != 'ControlAccounts');
+              this.accountList = res.response['glList'].filter(resp => resp.taxCategory == 'Cash' || resp.taxCategory == 'Bank');
+              this.glAccountList = res.response['glList'].filter(resp => resp.taxCategory != 'Cash' || resp.taxCategory != 'Bank' || resp.taxCategory != 'Control Account');
             }
           }
           this.getTaxTransactionList();
         });
   }
 
-
-
-
+  getfunctionaldeptList() {
+    const taxCodeUrl = String.Join('/', this.apiConfigService.getfunctionaldeptList);
+    this.apiService.apiGetRequest(taxCodeUrl)
+      .subscribe(
+        response => {
+          const res = response.body;
+          if (!isNullOrUndefined(res) && res.status === StatusCodes.pass) {
+            if (!isNullOrUndefined(res.response)) {
+              this.functionaldeptList = res.response['fdeptList'];
+            }
+          }
+        });
+  }
 
   getTaxTransactionList() {
     const taxCodeUrl = String.Join('/', this.apiConfigService.getTaxTransactionList);
@@ -254,13 +263,12 @@ export class CashbankComponent implements OnInit {
               this.taxCodeList = res.response['TaxtransactionList'];
             }
           }
-          this.getProfitCenterList();
+          this.getProfitCentersList();
         });
   }
 
-
-  getProfitCenterList() {
-    const profCentUrl = String.Join('/', this.apiConfigService.getProfitCenterList);
+  getProfitCentersList() {
+    const profCentUrl = String.Join('/', this.apiConfigService.getProfitCentersList);
     this.apiService.apiGetRequest(profCentUrl)
       .subscribe(
         response => {
@@ -290,7 +298,7 @@ export class CashbankComponent implements OnInit {
   }
 
   getCostcenters() {
-    const costCenUrl = String.Join('/', this.apiConfigService.GetCostCenterList);
+    const costCenUrl = String.Join('/', this.apiConfigService.getCostCentersList);
     this.apiService.apiGetRequest(costCenUrl)
       .subscribe(
         response => {
@@ -364,9 +372,7 @@ export class CashbankComponent implements OnInit {
     this.saveCashBank();
   }
 
-  return() {
-
-  }
+  return() { }
 
   reset() {
     this.tableData = [];
@@ -391,8 +397,4 @@ export class CashbankComponent implements OnInit {
         }
       });
   }
-
-
-
-
 }

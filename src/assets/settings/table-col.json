@@ -21,43 +21,43 @@
     "title": "Country",
     "countryCode": "Country Code",
     "countryName": "Country Name",
-    "langName" :"Language",
-    "currName" :"Currency"
+    "langName": "Language",
+    "currName": "Currency"
   },
   "region": {
     "title": "Region",
     "regionCode": "Region Code",
     "regionName": "Region Name",
     "countryName": "Country",
-    "currency" :"Currency"
-  }, 
+    "currency": "Currency"
+  },
   "state": {
     "title": "State",
     "stateCode": "State Code",
     "stateName": "State Name",
     "countryName": "Country",
     "langName": "Language"
-  },  
+  },
   "company": {
     "title": "Company",
     "companyCode": "Code",
     "companyName": "Name",
-    "shortName":"Short Name", 
+    "shortName": "Short Name",
     "city": "City",
-    "stateName": "State", 
-    "regionName":"Region", 
+    "stateName": "State",
+    "regionName": "Region",
     "countryName": "Country",
     "currencyName": "Currency",
-    "languageName":"Language",    
+    "languageName": "Language",
     "address": "Address",
-    "address1": "Address1", 
-    "location":"Location",
-    "street":"Street",
-    "pin": "Pin",     
+    "address1": "Address1",
+    "location": "Location",
+    "street": "Street",
+    "pin": "Pin",
     "telephone": "Phone",
-    "mobile":"Mobile",
+    "mobile": "Mobile",
     "email": "Email",
-    "houseNO": "House No",    
+    "houseNO": "House No",
     "panno": "PAN",
     "gstno": "GST",
     "tanno": "TAN"
@@ -72,42 +72,42 @@
     "title": "Profit Center",
     "code": "Code",
     "name": "Name",
-    "description": "Short Name",   
+    "description": "Short Name",
     "address": "Address",
     "address1": "Address1",
     "pinCode": "PinCode",
     "city": "City",
-    "stateName": "State", 
-    "regionName":"Region", 
+    "stateName": "State",
+    "regionName": "Region",
     "countryName": "Country",
     "currencyName": "Currency",
-    "languageName":"Language", 
+    "languageName": "Language",
     "email": "Email",
     "responsibleName": "Responsible Person",
-    "phone":"Phone",
-    "mobile":"Mobile"
+    "phone": "Phone",
+    "mobile": "Mobile"
   },
   "branches": {
     "title": "Branch",
     "branchCode": "Branch Code",
     "branchName": "Branch Name",
     "companyName": "Company",
-    "location":"Location",
+    "location": "Location",
     "city": "City",
-    "stateName": "State", 
-    "regionName":"Region", 
+    "stateName": "State",
+    "regionName": "Region",
     "countryName": "Country",
     "currencyName": "Currency",
-    "languageName":"Language", 
+    "languageName": "Language",
     "address": "Address",
-    "address2":"Address2",    
+    "address2": "Address2",
     "pincode": "Pin",
     "phone": "Phone",
     "mobile": "Mobile",
-    "email": "Email",   
+    "email": "Email",
     "panno": "PanNo",
     "gstno": "GST",
-    "tanno": "TAN",    
+    "tanno": "TAN",
     "responsibleName": "Responsible Person"
   },
   "division": {
@@ -116,7 +116,7 @@
     "description": "Division Name",
     "responsibleName": "Responsible Person",
     "active": "Active"
-  },  
+  },
   "functionaldepatment": {
     "title": "Functional Department",
     "code": "Code",
@@ -131,7 +131,7 @@
     "address1": "Address",
     "address2": "Address2",
     "place": "Place",
-    "stateName": "State", 
+    "stateName": "State",
     "pinCode": "Pin Code",
     "phone1": "Phone",
     "email": "Email",
@@ -143,11 +143,11 @@
     "plantCode": "Code",
     "plantname": "Name",
     "city": "City",
-    "stateName": "State", 
-    "regionName":"Region", 
+    "stateName": "State",
+    "regionName": "Region",
     "countryName": "Country",
     "currencyName": "Currency",
-    "languageName":"Language", 
+    "languageName": "Language",
     "locationName": "Location",
     "address1": "Address",
     "address2": "Address1",
@@ -156,7 +156,7 @@
     "mobile": "Mobile",
     "email": "Email",
     "panno": "PAN",
-    "gstno": "GST",    
+    "gstno": "GST",
     "responsibleName": "Responsible Person"
   },
   "location": {
@@ -170,11 +170,11 @@
     "departmentCode": "Code",
     "name": "Name",
     "city": "City",
-    "stateName": "State", 
-    "regionName":"Region", 
+    "stateName": "State",
+    "regionName": "Region",
     "countryName": "Country",
     "currencyName": "Currency",
-    "languageName":"Language", 
+    "languageName": "Language",
     "address1": "Address",
     "address2": "Address1",
     "pin": "PIN",
@@ -183,7 +183,7 @@
     "email": "Email",
     "panno": "PAN",
     "gstno": "GST",
-    "tanno": "TAN",   
+    "tanno": "TAN",
     "responsibleName": "Responsible Person"
   },
   "salesoffice": {
@@ -191,16 +191,16 @@
     "code": "Code",
     "name": "Name",
     "city": "City",
-    "stateName": "State", 
-    "regionName":"Region", 
+    "stateName": "State",
+    "regionName": "Region",
     "countryName": "Country",
     "currencyName": "Currency",
-    "languageName":"Language", 
+    "languageName": "Language",
     "address1": "Address",
     "address2": "Address2",
     "mobile": "Mobile",
     "email": "Email",
-    "phone": "Phone",   
+    "phone": "Phone",
     "responsibleName": "Responsible Person"
   },
   "salesgroup": {
@@ -217,7 +217,7 @@
     "title": "Purchase Department",
     "code": "Code",
     "description": "Name"
-  },  
+  },
   "storagelocation": {
     "title": "Storage Location",
     "code": "Code",
@@ -242,19 +242,19 @@
     "financialYearStartFrom": "FY Start",
     "financialYearEndTo": "FY End",
     "accountingYear": "Accounting Year"
-  }, 
+  },
   "vouchertype": {
     "title": "Voucher Type",
     "voucherTypeId": "Voucher Type ID",
     "voucherTypeName": "Voucher Type Name",
     "voucherClassName": "Voucher Class",
-    "printText": "PrintText"    
+    "printText": "PrintText"
   },
-"voucherclass": {
+  "voucherclass": {
     "title": "Vocher Class",
     "voucherKey": "Code",
     "description": "Description",
-    "voucherNature":"Voucher Nature"
+    "voucherNature": "Voucher Nature"
   },
   "voucherseries": {
     "title": "Voucher Series",
@@ -263,16 +263,16 @@
     "toInterval": "To Interval",
     "branchName": "Branch",
     "companyName": "Company",
-    "plantName": "Plant",   
+    "plantName": "Plant",
     "suffix": "Suffix",
-    "prefix":"Prefix"
+    "prefix": "Prefix"
   },
   "assignmentofvoucherseriestovouchertype": {
-    "title": "Assignment Voucher Series to Voucher Type",   
+    "title": "Assignment Voucher Series to Voucher Type",
     "voucherTypeName": "Voucher Type",
     "voucherSeries": "Voucher Series",
-    "suffix":"Suffix",
-    "lastNumber":"lastNumber"
+    "suffix": "Suffix",
+    "lastNumber": "lastNumber"
   },
   "taxrates": {
     "title": "Tax Rates",
@@ -285,14 +285,14 @@
     "cgst": "CGST %",
     "igst": "IGST %",
     "ugst": "UGST %",
-    "compositeCess":"Composite Cess",
-    "effectiveFrom":  "Date" 
+    "compositeCess": "Composite Cess",
+    "effectiveFrom": "Date"
   },
   "taxtransactions": {
     "title": "Tax Transaction",
     "code": "Code",
     "description": "Description",
-    "taxTypeName":"Tax Type"
+    "taxTypeName": "Tax Type"
   },
   "assignmentoftaxaccountstotaxcodes": {
     "title": "Assignment of Taxaccounts to Taxcodes",
@@ -304,16 +304,16 @@
     "companyName": "Company",
     "branchName": "Branch",
     "plantName": "Plant",
-    "compositeAccount" :"Composite GL",
-    "chartAccountName":"ChartofAccount"
+    "compositeAccount": "Composite GL",
+    "chartAccountName": "ChartofAccount"
   },
   "taxtypes": {
     "title": "Tax Types",
     "taxKey": "Code",
     "description": "Tax Type",
-    "nature":"Nature of Tax"
+    "nature": "Nature of Tax"
   },
- "hsnsac": {
+  "hsnsac": {
     "title": "Hsn Sac",
     "code": "Code",
     "description": "Description"
@@ -328,7 +328,7 @@
     "code": "Code",
     "desctiption": "Description",
     "sectionCode": "Section Code",
-    "thresholdLimit":  "Threshold  Aggregate Limit",
+    "thresholdLimit": "Threshold  Aggregate Limit",
     "thresholdContract": "Threshold Limit Per Contract"
   },
   "tdsrates": {
@@ -337,18 +337,18 @@
     "desctiption": "Description",
     "tdsTypeName": "Tdstype",
     "incomeTypeName": "Income Type",
-    "tdsRate":"Tds Rate",
-    "baseAmount":"Base Amount %" , 
+    "tdsRate": "Tds Rate",
+    "baseAmount": "Base Amount %",
     "status": "Status",
-    "effectiveFrom":  "Date"     
+    "effectiveFrom": "Date"
   },
   "posting": {
-    "title": "Posting", 
-    "chartAccountName":"ChartofAccount", 
-    "tdsRatetName": "TDS Rate",    
+    "title": "Posting",
+    "chartAccountName": "ChartofAccount",
+    "tdsRatetName": "TDS Rate",
     "companyName": "Company",
     "branchName": "Branch",
-    "plantName": "Plant" ,
+    "plantName": "Plant",
     "glAccountName": "GL Account"
   },
   "accountgroup": {
@@ -357,16 +357,16 @@
     "groupName": "GroupName",
     "numberRangeFrom": "Number Range From",
     "numberRangeTo": "Number Range To",
-    "groupType" :"GroupType"
+    "groupType": "GroupType"
   },
   "glsubgroups": {
     "title": "General Ledger",
     "accountGroupId": "Account Group ID",
-    "structureKey":"Structure Key",
+    "structureKey": "Structure Key",
     "accountGroupName": "Account Group Name",
     "nature": "Group",
     "underAccountName": "Under Account",
-    "Undersubaccount":"Under Sub Account",
+    "Undersubaccount": "Under Sub Account",
     "narration": "Narration"
   },
   "assetnumberrange": {
@@ -382,21 +382,20 @@
     "bankName": "Bank Name",
     "accountType": "Account Type",
     "branchNumber": "Branch Number",
-    "accountNumber": "Account Number",    
+    "accountNumber": "Account Number",
     "ifsccode": "Ifsc Code",
-    "swiftkey":  "Swift Key",
-    "address":  "Address",
-    "address1":  "Address1",
-    "place":  "Place",
+    "swiftkey": "Swift Key",
+    "address": "Address",
+    "address1": "Address1",
+    "place": "Place",
     "city": "City",
     "stateName": "State",
     "regionName": "Region",
     "countryName": "Country",
-    "currencyName":  "Currency",
+    "currencyName": "Currency",
     "phone": "Phone",
     "contactPersion": "Contact Persion",
-    "bankLimits":  "Bank Limits"
-
+    "bankLimits": "Bank Limits"
   },
   "AssignmentAssetClasstoAssetBlock": {
     "title": "Assignment AssetClass to AssetBlock",
@@ -411,7 +410,7 @@
   "accountkey": {
     "title": "Account Key",
     "code": "Code",
-    "description":"Description",
+    "description": "Description",
     "acquisationName": "Acquisitions GL",
     "accumulatedName": "Accumulated GL",
     "depreciationGLName": "Depreciation GL",
@@ -433,7 +432,7 @@
     "code": "Code",
     "desctiption": "Description",
     "type": "Type"
-  },  
+  },
   "partnertype": {
     "title": "Partner type",
     "code": "Code",
@@ -445,7 +444,7 @@
     "bpgroup": "Code",
     "description": "Description",
     "partnerTypeName": "BP Type",
-    "ext1":"Current Number"
+    "ext1": "Current Number"
   },
   "numberrange": {
     "title": "Number Range",
@@ -461,7 +460,7 @@
   },
   "AssignmentChartAccounttoCompany": {
     "title": "Assignment ChartAccount to Company",
-    "companyName":"Company",
+    "companyName": "Company",
     "ochartAccountName": "Operation COA",
     "gchartAccountName": "Group COA"
   },
@@ -476,7 +475,7 @@
     "title": "Depreciation Areas",
     "code": "Code",
     "description": "Description",
-    "depreciationType":"Nature of Depreciation"
+    "depreciationType": "Nature of Depreciation"
   },
   "AssetClass": {
     "title": "Asset Class",
@@ -487,13 +486,13 @@
     "lowValueAssetClass": "Low Value Asset Class",
     "assetLowValue": "Asset Low Value",
     "nature": "Nature",
-    "lastNumberRange":"LastNumberRange"
+    "lastNumberRange": "LastNumberRange"
   },
   "assetblock": {
     "title": "AssetBlock",
     "code": "Code",
     "description": "Description",
-    "depreciationName":"Depreciation Key"
+    "depreciationName": "Depreciation Key"
   },
   "paymentterms": {
     "title": "Payment Terms",
@@ -517,8 +516,7 @@
     "advanceAmount": "AdvanceAmount",
     "narration": "Narration",
     "extraDate": "Date"
-  }, 
-  
+  },
   "erpuser": {
     "title": "ErpUser",
     "userName": "userName",
@@ -527,7 +525,7 @@
     "branchCode": "BranchCode",
     "companyCode": "CompanyCode",
     "addDate": "AddDate"
-  }  ,
+  },
   "depreciationcode": {
     "title": "Depreciation Code",
     "code": "Code",
@@ -550,128 +548,126 @@
   },
   "businesspartner": {
     "title": "Busieness Partner Master",
-    "bpTypeName":"BP Type",
+    "bpTypeName": "BP Type",
     "bpnumber": "BP Number",
-    "name":"Name",
+    "name": "Name",
     "name1": "Name1",
-    "search":  "Search",
-    "address":  "Address",
-    "address1":  "Address1",
-    "location":  "Location",
-    "city":  "City",
+    "search": "Search",
+    "address": "Address",
+    "address1": "Address1",
+    "location": "Location",
+    "city": "City",
     "stateName": "State",
     "regionName": "Region",
-    "countryName":  "Country",
+    "countryName": "Country",
     "email": "Email",
-    "phone":"Phone",
+    "phone": "Phone",
     "mobile": "Mobile",
     "gstno": "GST No",
     "panno": "PAN No",
     "tanno": "TAN No",
-    "taxClassification":  "Tax Classification",
-    "companyName":  "Company",
+    "taxClassification": "Tax Classification",
+    "companyName": "Company",
     "controlAccountName": "Control Account",
     "paymentTermsName": "Payment Terms",
-    "tdsTypeName":  "TDS Type",
+    "tdsTypeName": "TDS Type",
     "tdsStateName": "TDS State",
     "baseAmount": "Base Amount",
     "obligationFrom": "Obligation From",
-    "obligationTo":  "Obligation To",
+    "obligationTo": "Obligation To",
     "bankKey": "Bank Key",
     "bankName": "Bank Name",
-    "bankAccountNo":"Bank AccountNo",
+    "bankAccountNo": "Bank AccountNo",
     "ifsccode": "IFSC Code",
     "swiftcode": "Swift Code",
     "bankBranch": "Bank Branch",
     "bankBranchNo": "Bank Branch No",
-    "contactPersion":  "Contact Persion",
+    "contactPersion": "Contact Persion",
     "contactPersionMobile": "Contact Persion Mobile",
     "bpGroupName": "BP Group",
     "narration": "Narration"
-
   },
   "mainassetmaster": {
     "title": "Main asset Master",
-    "companyName":"Company",
-    "assetClassName": "Asset class",     
-    "assetNumber": "Asset Number",    
-    "name":  "Name",
-    "name1":"Name1",
-    "accountKeyName":"Account Key",
-    "materialNo":  "Material No",
+    "companyName": "Company",
+    "assetClassName": "Asset class",
+    "assetNumber": "Asset Number",
+    "name": "Name",
+    "name1": "Name1",
+    "accountKeyName": "Account Key",
+    "materialNo": "Material No",
     "quantity": "Quantity",
     "serialNo": "Serial No/Part No",
     "branchName": "Branch",
-    "profitCenterName":  "Profit Center",
+    "profitCenterName": "Profit Center",
     "segmentName": "Segment",
-    "divisionName":  "Division",
+    "divisionName": "Division",
     "plantName": "Plant",
-    "locationName":  "Location",
+    "locationName": "Location",
     "room": "Room",
     "supplier": "Supplier",
-    "acquisitionDate":  "Acquisition Date",
+    "acquisitionDate": "Acquisition Date",
     "usefulLifeYears": "Useful Life Years",
     "usefulLifeDays": "Useful Life Days",
     "depreciationDataName": "Depreciation Data",
-    "depreciationAreaName":  "Depreciation Area",
+    "depreciationAreaName": "Depreciation Area",
     "depreciationStartDate": "Date"
   },
   "subassets": {
     "title": "Sub Assets",
     "mainAssetName": "Main Asset No",
-    "subAssetNumber": "sub Asset Number",    
+    "subAssetNumber": "sub Asset Number",
     "description": "Description",
-    "accountKeyName":"Account Key",
-    "materialNo":  "Material No",
+    "accountKeyName": "Account Key",
+    "materialNo": "Material No",
     "quantity": "Quantity",
     "serialNumber": "Serial No/Part No",
     "branchName": "Branch",
-    "profitCenterName":  "Profit Center",
+    "profitCenterName": "Profit Center",
     "segmentName": "Segment",
-    "divisionName":  "Division",
+    "divisionName": "Division",
     "plantName": "Plant",
-    "locationName":  "Location",
+    "locationName": "Location",
     "room": "Room",
     "supplier": "Supplier",
-    "acquisitionDate":  "Date",
+    "acquisitionDate": "Date",
     "usefulLifeInYears": "Useful Life Years",
     "usefullLifeInDays": "Useful Life Days",
     "depreciationDataName": "Depreciation Data",
-    "depreciationAreaName":  "Depreciation Area",
+    "depreciationAreaName": "Depreciation Area",
     "depreciationStartDate": "Date",
     "delete": "delete"
-            
   },
- "glaccount": {
+  "glaccount": {
     "title": "GL Account",
     "chartAccountName": "Chart Account",
-    "companyName":  "Company",
+    "companyName": "Company",
     "accGroupName": "Account Group",
-    "accountNumber":  "Account Number",
-    "glaccountName":"Gl Account Name",
-    "currencyName":  "Currency",
+    "accountNumber": "Account Number",
+    "glaccountName": "Gl Account Name",
+    "currencyName": "Currency",
     "taxCategory": "Category",
-    "bankName":  "Bank Key",
-    "legacyGl":"Legacy GL",
-    "costElementCategory":"Cost Element Category",
-    "controlAccount":"Control Account",
+    "bankName": "Bank Key",
+    "legacyGl": "Legacy GL",
+    "costElementCategory": "Cost Element Category",
+    "controlAccount": "Control Account",
     "consolidatedAccount": "Consolidated Account",
-    "noPostingAllowed": "No Posting Allowed",   
-    "clearingAccount":  "Clearing Account",   
-    "relevantCashFlow":"Relevant Cash Flow"    
+    "noPostingAllowed": "No Posting Allowed",
+    "clearingAccount": "Clearing Account",
+    "relevantCashFlow": "Relevant Cash Flow"
   },
   "assignglaccount": {
     "title": "Assign GLaccount To SubGroup",
-    "toGl": "Structure Key",  
+    "toGl": "Structure Key",
     "glgroup": "GL Group",
     "underAccountName": "Sub Account",
-    "glAccountName": "GL Account"          
+    "glAccountName": "GL Account"
   },
   "glsubaccount": {
     "title": "GL subaccount",
     "accGroupName": "GLAccount",
     "glsubCode": "GL SubCode",
-    "glsubName": "GL SubName"                 
+    "glsubName": "GL SubName"
   },
   "businesstransactiontypes": {
     "title": "Busieness Transaction Types",
@@ -683,58 +679,50 @@
     "mainAssetNo": "Main AssetNo",
     "subAssetNo": "Sub AssetNo",
     "depreciationArea": "Depreciation Area",
-    "accumulatedDepreciation": "Accumulated Depreciation" 
-                       
+    "accumulatedDepreciation": "Accumulated Depreciation"
   },
   "assetbegningacqusition": {
     "title": "Asset Begning Acqusition",
     "mainAssetNo": "Main AssetNo",
     "subAssetNo": "Sub AssetNo",
     "acquisitionDate": "Acquisition Date",
-    "acquisitionCost": "Acquisition Cost " ,
-    "id": "id"                 
+    "acquisitionCost": "Acquisition Cost ",
+    "id": "id"
   },
   "cashbank": {
     "id": "id",
-    "company": "company",
-    "branch": "branch",
-    "voucherNumber": "voucherNumber",
-    "voucherClass": "voucherClass",
-    "voucherType": "voucherType",
-    "voucherDate": "voucherDate",
-    "postingDate": "postingDate",
-    "glaccount": "glaccount",
-    "amount": "amount",
-    "taxCode": "taxCode",
-    "sgstamount": "sgstamount",
-    "cgstamount": "cgstamount",
-    "igstamount": "igstamount",
-    "ugstamount": "ugstamount",
-    "referenceNo": "referenceNo",
-    "referenceDate": "referenceDate",
-    "functionalDept": "functionalDept",
-    "profitCenter": "profitCenter",
-    "segment": "segment",
-    "costCenter": "costCenter",
-
-    "narration": "narration",
-
-    "period": "period",
-    "transactionType": "transactionType",
-    "natureofTransaction": "natureofTransaction",
-    "account": "account",
-    "indicator": "indicator",
-    "workBreakStructureElement": "workBreakStructureElement",
-    "netWork": "netWork",
-    "orderNo": "orderNo",
-    "fundCenter": "fundCenter",
-    "commitment": "commitment",
-
+    "company": "Company",
+    "branch": "Branch",
+    "voucherNumber": "Voucher Number",
+    "voucherClass": "Voucher Class",
+    "voucherType": "Voucher Type",
+    "voucherDate": "Voucher Date",
+    "postingDate": "Posting Date",
+    "glaccount": "GL Account",
+    "amount": "Amount",
+    "taxCode": "Tax Code",
+    "sgstamount": "SGST Amount",
+    "cgstamount": "CGST Amount",
+    "igstamount": "IGST Amount",
+    "ugstamount": "UGST Amount",
+    "referenceNo": "Reference No",
+    "referenceDate": "Reference Date",
+    "functionalDept": "Functional Dept",
+    "profitCenter": "Profit Center",
+    "segment": "Segment",
+    "costCenter": "Cost Center",
+    "narration": "Narration",
+    "period": "Period",
+    "transactionType": "Transaction Type",
+    "natureofTransaction": "Nature of Transaction",
+    "account": "Account",
+    "indicator": "Account Indicator",
+    "workBreakStructureElement": "Work Break Structure Element",
+    "netWork": "NetWork",
+    "orderNo": "Order No",
+    "fundCenter": "Fund Center",
+    "commitment": "Commitment",
     "name": "name",
     "delete": "delete"
   }
-
-
-
-
 }
