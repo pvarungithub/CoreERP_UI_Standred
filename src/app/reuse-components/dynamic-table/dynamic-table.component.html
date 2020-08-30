@@ -10,18 +10,18 @@
             <td mat-cell *matCellDef="let element;" [ngSwitch]="element[column].type">
 
 
-                <input *ngSwitchCase="'autoInc'" matInput [disabled]="element[column].disabled"
+                <input *ngSwitchCase="'autoInc'" matInput 
                     [value]="dataSource.filteredData.indexOf(element) + 1" />
 
-                <input *ngSwitchCase="'text'" matInput [disabled]="element[column].disabled"
+                <input *ngSwitchCase="'text'" matInput 
                     [value]="element[column].value" [(ngModel)]="element[column].value"
                     (input)="formControlValid(column, element[column], dataSource.filteredData.indexOf(element));" />
 
-                <input *ngSwitchCase="'number'" matInput type="number" [disabled]="element[column].disabled"
+                <input *ngSwitchCase="'number'" matInput type="number" 
                     [value]="element[column].value" [(ngModel)]="element[column].value"
                     (input)="formControlValid(column, element[column], dataSource.filteredData.indexOf(element));" />
 
-                <mat-select *ngSwitchCase="'dropdown'" [(ngModel)]="element[column].value" [disabled]="element[column].disabled"
+                <mat-select *ngSwitchCase="'dropdown'" [(ngModel)]="element[column].value" 
                     (selectionChange)="formControlValid(column, element[column], dataSource.filteredData.indexOf(element));">
                     <mat-option *ngFor="let data of element[column].list" [value]="data[element[column].id]">
                         <span *ngIf="element[column].displayMul;else content">
@@ -33,7 +33,7 @@
 
                 <div *ngSwitchCase="'datepicker'" class="d-flex">
                     <input matInput [matDatepicker]="picker" readonly (click)="picker.open()"
-                        [(ngModel)]="element[column].value" [disabled]="element[column].disabled"
+                        [(ngModel)]="element[column].value" 
                         (dateChange)="formControlValid(column, element[column], dataSource.filteredData.indexOf(element));">
                     <mat-datepicker-toggle matSuffix [for]="picker">
                         <mat-icon matDatepickerToggleIcon class="mat--icon">date_range</mat-icon>
@@ -45,7 +45,7 @@
                     (emitTypeAheadValue)="setTypeAheadValue($event, column, dataSource.filteredData.indexOf(element));">
                 </app-autocomplete>
 
-                <div *ngSwitchDefault>
+                <div *ngSwitchCase="'none'">
                     <span> {{ element[column].value }} </span>
                 </div>
 
@@ -61,4 +61,4 @@
         <tr mat-row *matRowDef="let row; columns: getDisplayedColumns();"></tr>
     </table>
 </div>
-<mat-paginator [pageSizeOptions]="[15 ,25, 50, 100]" showFirstLastButtons></mat-paginator>
+<mat-paginator [pageSizeOptions]="[10 ,20, 50, 100]" showFirstLastButtons></mat-paginator>

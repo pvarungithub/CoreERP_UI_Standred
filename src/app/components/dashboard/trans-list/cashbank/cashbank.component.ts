@@ -3,11 +3,13 @@ import { FormGroup, FormBuilder, Validators } from '@angular/forms';
 import { ApiConfigService } from '../../../../services/api-config.service';
 import { String } from 'typescript-string-operations';
 import { ApiService } from '../../../../services/api.service';
-import { StatusCodes } from '../../../../enums/common/common';
+import { StatusCodes, SnackBar } from '../../../../enums/common/common';
 import { isNullOrUndefined } from 'util';
 import { NgxSpinnerService } from 'ngx-spinner';
 import { AddOrEditService } from '../../comp-list/add-or-edit.service';
 import { ActivatedRoute } from '@angular/router';
+import { Static } from '../../../../enums/common/static';
+import { AlertService } from '../../../../services/alert.service';
 
 @Component({
   selector: 'app-cashbank',
@@ -17,6 +19,7 @@ import { ActivatedRoute } from '@angular/router';
 export class CashbankComponent implements OnInit {
 
   formData: FormGroup;
+  routeEdit = '';
 
   tableData = [];
   dynTableProps = this.tablePropsFunc()
@@ -28,6 +31,7 @@ export class CashbankComponent implements OnInit {
   transactionTypeList = ['Cash', 'Bank']
   natureofTransactionList = ['Receipts', 'Payment'];
   accountList = [];
+  glAccountList = [];
   indicatorList = ['Debit', 'Credit'];
   profitCenterList = [];
   segmentList = [];
@@ -40,18 +44,24 @@ export class CashbankComponent implements OnInit {
     private apiConfigService: ApiConfigService,
     private apiService: ApiService,
     private addOrEditService: AddOrEditService,
-
+    private alertService: AlertService,
     private spinner: NgxSpinnerService,
-    private route: ActivatedRoute
-  ) { }
+    public route: ActivatedRoute
+  ) { 
+    if (!isNullOrUndefined(this.route.snapshot.params.value)) {
+      this.routeEdit = this.route.snapshot.params.value;
+    }
+  }
 
   ngOnInit() {
     this.formDataGroup();
     this.getCompanyList();
+    this.formData.controls['voucherNumber'].disable();
   }
 
   formDataGroup() {
     this.formData = this.formBuilder.group({
+      id: [0],
       company: [null],
       branch: [null],
       voucherClass: [null],
@@ -69,6 +79,8 @@ export class CashbankComponent implements OnInit {
       profitCenter: [null],
       segment: [null],
       narration: [null],
+      accounting: [null],
+      ext: [null] 
     });
   }
 
@@ -76,28 +88,28 @@ export class CashbankComponent implements OnInit {
     return {
       tableData: {
         id: {
-          value: 0, type: 'autoInc', disabled: true
-        },        
+          value: 0, type: 'autoInc'
+        },
         glaccount: {
-          value: null, type: 'dropdown', list: this.accountList, id: 'accGroup', text: 'chartAccountName', disabled: false, displayMul: true
+          value: null, type: 'dropdown', list: this.glAccountList, id: 'accGroup', text: 'chartAccountName', displayMul: true
         },
         amount: {
           value: null, type: 'number', disabled: false
         },
         taxCode: {
-          value: null, type: 'dropdown', list: this.taxCodeList, id: 'code', text: 'description', disabled: false, displayMul: true
+          value: null, type: 'dropdown', list: this.taxCodeList, id: 'code', text: 'description', displayMul: true
         },
         sgstamount: {
-          value: null, type: 'number', disabled: true
+          value: null, type: 'number'
         },
         cgstamount: {
-          value: null, type: 'number', disabled: true
+          value: null, type: 'number'
         },
         igstamount: {
-          value: null, type: 'number', disabled: true
+          value: null, type: 'number'
         },
         ugstamount: {
-          value: null, type: 'number', disabled: true
+          value: null, type: 'number'
         },
         referenceNo: {
           value: null, type: 'number', disabled: false
@@ -106,16 +118,16 @@ export class CashbankComponent implements OnInit {
           value: new Date(), type: 'datepicker', disabled: false
         },
         functionalDept: {
-          value: null, type: 'dropdown', list: this.functionaldeptList, id: 'code', text: 'description', disabled: false, displayMul: true
+          value: null, type: 'dropdown', list: this.functionaldeptList, id: 'code', text: 'description', displayMul: true
         },
         profitCenter: {
-          value: null, type: 'dropdown', list: this.profitCenterList, id: 'id', text: 'name', disabled: false, displayMul: true
+          value: null, type: 'dropdown', list: this.profitCenterList, id: 'code', text: 'name', displayMul: true
         },
         segment: {
-          value: null, type: 'dropdown', list: this.segmentList, id: 'id', text: 'name', disabled: false, displayMul: true
+          value: null, type: 'dropdown', list: this.segmentList, id: 'id', text: 'name', displayMul: true
         },
         costCenter: {
-          value: null, type: 'dropdown', list: this.costCenterList, id: 'id', text: 'name', disabled: false, displayMul: true
+          value: null, type: 'dropdown', list: this.costCenterList, id: 'code', text: 'name', displayMul: true
         },
         narration: {
           value: null, type: 'text', disabled: false
@@ -125,10 +137,12 @@ export class CashbankComponent implements OnInit {
         }
       },
       formControl: {
-        company: [null, [Validators.required]]
+        glaccount: [null, [Validators.required]]
       }
     }
   }
+
+
 
   getCashBankDetail(val) {
     const cashDetUrl = String.Join('/', this.apiConfigService.getCashBankDetail, val);
@@ -139,27 +153,11 @@ export class CashbankComponent implements OnInit {
           const res = response.body;
           if (!isNullOrUndefined(res) && res.status === StatusCodes.pass) {
             if (!isNullOrUndefined(res.response)) {
-              this.addOrEditService.sendDynTableData(res.response['tableData']);
+              this.formData.setValue(res.response['CashBankMasters']);
+              this.addOrEditService.sendDynTableData(res.response['CashBankDetail']);
+              this.formData.disable();
             }
           }
-          let data = [
-            {
-              id: '0', company: 1000, branch: 'sdf', voucherNumber: 'sdf', voucherDate: 'sdf',
-              postingDate: 'dfsd', glaccount: 'sdfs', amount: 'sfdes', taxCode: 'dsf', sgstamount: 'df',
-              cgstamount: 'ddd', igstamount: 'dds', ugstamount: 'sdf', referenceNo: 'sdfs',
-              referenceDate: 'sdf', functionalDept: 'sdf', profitCenter: 'sdf', segment: 'dsf',
-              costCenter: 'df', narration: 'df'
-            },
-            {
-              id: '0', company: 'asd', branch: 'sdf', voucherNumber: 'sdf', voucherDate: 'sdf',
-              postingDate: 'dfsd', glaccount: 'sdfs', amount: 'sfdes', taxCode: 'dsf', sgstamount: 'df',
-              cgstamount: 'ddd', igstamount: 'dds', ugstamount: 'sdf', referenceNo: 'sdfs',
-              referenceDate: 'sdf', functionalDept: 'sdf', profitCenter: 'sdf', segment: 'dsf',
-              costCenter: 'df', narration: 'df'
-            }
-          ]
-          this.addOrEditService.sendDynTableData(data);
-
         });
   }
 
@@ -234,6 +232,7 @@ export class CashbankComponent implements OnInit {
           if (!isNullOrUndefined(res) && res.status === StatusCodes.pass) {
             if (!isNullOrUndefined(res.response)) {
               this.accountList = res.response['glList'];
+              this.glAccountList = res.response['glList'].filter(resp => resp.taxCategory != 'Cash' || resp.taxCategory != 'Bank' || resp.taxCategory != 'ControlAccounts');
             }
           }
           this.getTaxTransactionList();
@@ -253,28 +252,11 @@ export class CashbankComponent implements OnInit {
           if (!isNullOrUndefined(res) && res.status === StatusCodes.pass) {
             if (!isNullOrUndefined(res.response)) {
               this.taxCodeList = res.response['TaxtransactionList'];
-              this.dynTableProps = this.tablePropsFunc()
-            }
-          }
-          this.getfunctionaldeptList();
-        });
-  }
-
-  getfunctionaldeptList() {
-    const funDeptUrl = String.Join('/', this.apiConfigService.getfunctionaldeptList);
-    this.apiService.apiGetRequest(funDeptUrl)
-      .subscribe(
-        response => {
-          const res = response.body;
-          if (!isNullOrUndefined(res) && res.status === StatusCodes.pass) {
-            if (!isNullOrUndefined(res.response)) {
-              this.accountList = res.response['glList'];
             }
           }
           this.getProfitCenterList();
         });
   }
-
 
 
   getProfitCenterList() {
@@ -318,8 +300,8 @@ export class CashbankComponent implements OnInit {
             if (!isNullOrUndefined(res.response)) {
               this.costCenterList = res.response['costcenterList'];
               this.dynTableProps = this.tablePropsFunc();
-              if (!isNullOrUndefined(this.route.snapshot.params.value)) {
-                this.getCashBankDetail(this.route.snapshot.params.value);
+              if (this.routeEdit != '') {
+                this.getCashBankDetail(this.routeEdit);
               }
             }
           }
@@ -338,6 +320,35 @@ export class CashbankComponent implements OnInit {
     // }
   }
 
+  voucherTypeSelect() {
+    const record = this.voucherTypeList.find(res => res.id == this.formData.get('voucherType').value)
+    this.formData.patchValue({
+      voucherClass: !isNullOrUndefined(record) ? record.voucherClassName : null
+    })
+  }
+
+  voucherNoCalculate() {
+    this.formData.patchValue({
+      voucherNumber: null
+    })
+    if (!isNullOrUndefined(this.formData.get('voucherType').value)) {
+      const voucherNoUrl = String.Join('/', this.apiConfigService.getVoucherNumber, this.formData.get('voucherType').value);
+      this.apiService.apiGetRequest(voucherNoUrl)
+        .subscribe(
+          response => {
+            this.spinner.hide();
+            const res = response.body;
+            if (!isNullOrUndefined(res) && res.status === StatusCodes.pass) {
+              if (!isNullOrUndefined(res.response)) {
+                this.formData.patchValue({
+                  voucherNumber: !isNullOrUndefined(res.response['VoucherNumber']) ? res.response['VoucherNumber'] : null
+                })
+              }
+            }
+          });
+    }
+  }
+
   emitColumnChanges(data) {
     this.addOrEditService.sendDynTableData(data);
   }
@@ -353,13 +364,19 @@ export class CashbankComponent implements OnInit {
     this.saveCashBank();
   }
 
+  return() {
+
+  }
+
   reset() {
     this.tableData = [];
     this.formData.reset();
+    this.formData.controls['voucherNumber'].disable();
     this.addOrEditService.sendDynTableData(this.tableData);
   }
 
   saveCashBank() {
+    this.formData.controls['voucherNumber'].enable();
     const addCashBank = String.Join('/', this.apiConfigService.addCashBank);
     const requestObj = { cashbankHdr: this.formData.value, cashbankDtl: this.tableData };
     this.apiService.apiPostRequest(addCashBank, requestObj).subscribe(
@@ -367,7 +384,7 @@ export class CashbankComponent implements OnInit {
         const res = response.body;
         if (!isNullOrUndefined(res) && res.status === StatusCodes.pass) {
           if (!isNullOrUndefined(res.response)) {
-            // this.alertService.openSnackBar('Billing Successfully..', Static.Close, SnackBar.success);
+            this.alertService.openSnackBar('Cash bank created Successfully..', Static.Close, SnackBar.success);
           }
           this.reset();
           this.spinner.hide();

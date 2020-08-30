@@ -51,7 +51,7 @@ export class DynamicTableComponent implements OnInit {
           if (res.length) {
             this.dataSource.data = this.formalTableData(res);
           } else if (res.length == 0) {
-            this.setTableData();
+            this.dataSource.data = [];
           } else {
             this.dataSource.data[res.index][res.column] = res['value'];
           }
@@ -69,7 +69,7 @@ export class DynamicTableComponent implements OnInit {
       const obj = JSON.parse(JSON.stringify(this.tableData[0]))
       for (let t in obj) {
           obj[t].value = list[l][t];
-          obj[t].disabled = true;
+          obj[t].type = 'none';
       }
       data.push(obj)
     }

@@ -98,9 +98,11 @@ export class TransTableComponent implements OnInit {
         if (!isNullOrUndefined(res) && res.status === StatusCodes.pass) {
           if (!isNullOrUndefined(res.response[this.transListService.getDynComponents(this.routeParam).list]) && res.response[this.transListService.getDynComponents(this.routeParam).list].length) {
             this.tableData = res.response[this.transListService.getDynComponents(this.routeParam).list];
-            this.tableDataFunc();
           }
+        } else if (!isNullOrUndefined(res) && res.status === StatusCodes.fail) {
+          this.tableData = [];
         }
+        this.tableDataFunc();
       });
   }
 
@@ -123,7 +125,8 @@ export class TransTableComponent implements OnInit {
 
   tableDataFunc() {
     this.highlightedRows = [];
-
+    this.dataSource = new MatTableDataSource();
+    
     if (!isNullOrUndefined(this.tableData)) {
       if (this.tableData.length) {
         this.dataSource = new MatTableDataSource(this.tableData);
@@ -134,7 +137,7 @@ export class TransTableComponent implements OnInit {
       this.dataSource.sort = this.sort;
     }
 
-    if (!isNullOrUndefined(this.tableData) && this.tableData.length > 0) {
+    if (!isNullOrUndefined(this.tableData) && this.tableData.length > 0 && this.routeParam != '') {
 
       const col = [];
       this.columnDefinitions = [];
