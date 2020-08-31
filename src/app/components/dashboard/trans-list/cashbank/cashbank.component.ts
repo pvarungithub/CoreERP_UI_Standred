@@ -49,7 +49,7 @@ export class CashbankComponent implements OnInit {
     private spinner: NgxSpinnerService,
     public route: ActivatedRoute,
     private router: Router
-  ) { 
+  ) {
     if (!isNullOrUndefined(this.route.snapshot.params.value)) {
       this.routeEdit = this.route.snapshot.params.value;
     }
@@ -80,11 +80,10 @@ export class CashbankComponent implements OnInit {
       referenceNo: [null],
       referenceDate: [null],
       profitCenter: [null],
-      functionalDept: [null],
       segment: [null],
       narration: [null],
       accounting: [null],
-      ext: [null] 
+      ext: [null]
     });
   }
 
@@ -95,49 +94,49 @@ export class CashbankComponent implements OnInit {
           value: 0, type: 'autoInc', width: 10
         },
         glaccount: {
-          value: null, type: 'dropdown', list: this.glAccountList, id: 'id', text: 'text', displayMul: true,  width: 150
+          value: null, type: 'dropdown', list: this.glAccountList, id: 'id', text: 'text', displayMul: true, width: 150
         },
         amount: {
-          value: null, type: 'number', disabled: false
+          value: 0, type: 'number', width: 75
         },
         taxCode: {
-          value: null, type: 'dropdown', list: this.taxCodeList, id: 'taxRateCode', text: 'description', displayMul: false,width: 150
+          value: null, type: 'dropdown', list: this.taxCodeList, id: 'taxRateCode', text: 'description', displayMul: false, width: 150
         },
         sgstamount: {
-          value: null, type: 'number'
+          value: null, type: 'number', disabled: true, width: 75
         },
         cgstamount: {
-          value: null, type: 'number'
+          value: null, type: 'number', disabled: true, width: 75
         },
         igstamount: {
-          value: null, type: 'number'
+          value: null, type: 'number', disabled: true, width: 75
         },
         ugstamount: {
-          value: null, type: 'number'
+          value: null, type: 'number', disabled: true, width: 75
         },
         referenceNo: {
-          value: null, type: 'number', disabled: false
+          value: null, type: 'number'
         },
         referenceDate: {
-          value: new Date(), type: 'datepicker', disabled: false
+          value: new Date(), type: 'datepicker', width: 75
         },
         functionalDept: {
-          value: null, type: 'dropdown', list: this.functionaldeptList, id: 'code', text: 'description', displayMul: false,width: 150
+          value: null, type: 'dropdown', list: this.functionaldeptList, id: 'code', text: 'description', displayMul: false, width: 150
         },
         profitCenter: {
-          value: null, type: 'dropdown', list: this.profitCenterList, id: 'id', text: 'text', displayMul: false,width: 150
+          value: null, type: 'dropdown', list: this.profitCenterList, id: 'id', text: 'text', displayMul: false, width: 150
         },
         segment: {
-          value: null, type: 'dropdown', list: this.segmentList, id: 'id', text: 'name', displayMul: false,width: 150
+          value: null, type: 'dropdown', list: this.segmentList, id: 'id', text: 'name', displayMul: false, width: 150
         },
         costCenter: {
-          value: null, type: 'dropdown', list: this.costCenterList, id: 'id', text: 'text', displayMul: false,width: 150
+          value: null, type: 'dropdown', list: this.costCenterList, id: 'id', text: 'text', displayMul: false, width: 150
         },
         narration: {
-          value: null, type: 'text', disabled: false,width: 150
+          value: null, type: 'text', width: 150
         },
         delete: {
-          type: 'delete',width: 10
+          type: 'delete', width: 10
         }
       },
       formControl: {
@@ -292,9 +291,9 @@ export class CashbankComponent implements OnInit {
           if (!isNullOrUndefined(res) && res.status === StatusCodes.pass) {
             if (!isNullOrUndefined(res.response)) {
               this.segmentList = res.response['segmentList'];
-              this.getCostcenters();
             }
           }
+          this.getCostcenters();
         });
   }
 
@@ -308,25 +307,14 @@ export class CashbankComponent implements OnInit {
           if (!isNullOrUndefined(res) && res.status === StatusCodes.pass) {
             if (!isNullOrUndefined(res.response)) {
               this.costCenterList = res.response['costcenterList'];
-              this.dynTableProps = this.tablePropsFunc();
-              if (this.routeEdit != '') {
-                this.getCashBankDetail(this.routeEdit);
-              }
+
             }
           }
+          this.dynTableProps = this.tablePropsFunc();
+          if (this.routeEdit != '') {
+            this.getCashBankDetail(this.routeEdit);
+          }
         });
-  }
-
-  calculateAmount() {
-    // for (let a = 0; a < this.dataSource.data.length; a++) {
-    //   if (this.dataSource.data[a].grossAmount) {
-    //     let tax = (this.taxPercentage) ? (this.dataSource.data[a].cgst + this.dataSource.data[a].sgst) : this.dataSource.data[a].igst;
-    //     let amountTax = (+this.dataSource.data[a].grossAmount * 100) / (tax + 100);
-    //     let totalTax = (+this.dataSource.data[a].grossAmount - amountTax);
-    //     totalAmount = totalAmount + amountTax;
-    //     totaltaxAmount = totaltaxAmount + totalTax;
-    //   }
-    // }
   }
 
   voucherTypeSelect() {
@@ -359,7 +347,18 @@ export class CashbankComponent implements OnInit {
   }
 
   emitColumnChanges(data) {
-    this.addOrEditService.sendDynTableData(data);
+    this.calculateAmount(data)
+  }
+
+  calculateAmount(row) {
+    if (row.column == 'taxCode' || row.column == 'amount') {
+      let code = row.value['taxCode'].list.find(res => res.taxRateCode == row.value['taxCode'].value)
+      row.value.cgstamount.value = (row.value.amount.value * code.cgst) / 100
+      row.value.igstamount.value = (row.value.amount.value * code.igst) / 100
+      row.value.cgstamount.value = (row.value.amount.value * code.sgst) / 100
+      row.value.cgstamount.value = (row.value.amount.value * code.cgst) / 100
+    }
+    this.addOrEditService.sendDynTableData(row);
   }
 
   emitTableData(data) {

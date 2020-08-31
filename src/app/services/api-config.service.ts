@@ -41,7 +41,7 @@ export class ApiConfigService {
    getGLAccountsList = `${this.environment.runtimeConfig.serverUrl}Common/GetGLAccountsList`;
    getProfitCentersList = `${this.environment.runtimeConfig.serverUrl}Common/GetProfitCentersList`;
    getCostCentersList = `${this.environment.runtimeConfig.serverUrl}Common/GetCostCentersList`;
-   getTaxRatesList = `${this.environment.runtimeConfig.serverUrl}TaxRates/GetTaxRatesList`; 
+   getTaxRatesList = `${this.environment.runtimeConfig.serverUrl}TaxRates/GetTaxRatesList`;
 
    //************************ IMG General  ****************************************/
    getCurrencyList = `${this.environment.runtimeConfig.serverUrl}Currency/GetCurrencyList`;
@@ -87,7 +87,7 @@ export class ApiConfigService {
    getAssetnumber = `${this.environment.runtimeConfig.serverUrl}MainAssetMaster/GetAssetNumber`;
    getasetnos = `${this.environment.runtimeConfig.serverUrl}MainAssetMaster/GettingAssetNumber`;
    getttinasNames = `${this.environment.runtimeConfig.serverUrl}MainAssetMaster/GettingAssetName`;
-   
+
    /**************************** Settings ********************************************************* */
    getRoles = `${this.environment.runtimeConfig.serverUrl}Auth/getRoles`;
    getParentMenus = `${this.environment.runtimeConfig.serverUrl}Auth/getParentMenu`;

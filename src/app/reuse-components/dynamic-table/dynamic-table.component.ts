@@ -52,7 +52,7 @@ export class DynamicTableComponent implements OnInit {
             this.dataSource.data = [];
             this.setTableData();
           } else {
-            this.dataSource.data[res.index][res.column] = res['value'];
+            this.dataSource.data[res.index] = res['value'];
           }
           this.dataSource = new MatTableDataSource(this.dataSource.data);
           addOrEditService.sendDynTableData(null);
@@ -97,7 +97,7 @@ export class DynamicTableComponent implements OnInit {
 
   formControlValid(col, val, indx) {
     this.tableForm.patchValue({
-      [col]: val.value
+      [col]: val[col].value
     })
     if (this.tableForm.valid && (this.dataSource.data.length - 1) == indx) {
       this.dataSource.data.push(JSON.parse(JSON.stringify(this.tableData[0])));

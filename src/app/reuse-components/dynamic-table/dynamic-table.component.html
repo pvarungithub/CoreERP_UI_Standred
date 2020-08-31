@@ -4,25 +4,28 @@
 <div class="table">
     <table class="w-100" mat-table [dataSource]="dataSource" matSort #mytableb cellspacing="0" cellpadding="0">
         <ng-container *ngFor="let column of getDisplayedColumns()" [matColumnDef]="column">
-            <th mat-header-cell *matHeaderCellDef mat-sort-header>
-                <strong> {{ ( routeParam + '.' +  column) | translate }} </strong>
+
+            <th mat-header-cell *matHeaderCellDef  >
+                <strong class="d-flex justify-content-center"> {{ ( routeParam + '.' +  column) | translate }} </strong>
             </th>
-            <td mat-cell *matCellDef="let element;" [ngSwitch]="element[column].type" [ngStyle]="{'min-width': element[column].width + 'px'}">
+
+            <td mat-cell *matCellDef="let element;" [ngSwitch]="element[column].type"
+             [ngStyle]="{'min-width': element[column].width + 'px'}" >
 
 
-                <input *ngSwitchCase="'autoInc'" matInput 
+                <input *ngSwitchCase="'autoInc'" matInput  [disabled]="element[column].disabled"
                     [value]="dataSource.filteredData.indexOf(element) + 1" />
 
-                <input *ngSwitchCase="'text'" matInput 
+                <input *ngSwitchCase="'text'" matInput [disabled]="element[column].disabled"
                     [value]="element[column].value" [(ngModel)]="element[column].value"
-                    (input)="formControlValid(column, element[column], dataSource.filteredData.indexOf(element));" />
+                    (input)="formControlValid(column, element, dataSource.filteredData.indexOf(element));" />
 
-                <input *ngSwitchCase="'number'" matInput type="number" 
+                <input *ngSwitchCase="'number'" matInput type="number" [disabled]="element[column].disabled"
                     [value]="element[column].value" [(ngModel)]="element[column].value"
-                    (input)="formControlValid(column, element[column], dataSource.filteredData.indexOf(element));" />
+                    (input)="formControlValid(column, element, dataSource.filteredData.indexOf(element));" />
 
-                <mat-select *ngSwitchCase="'dropdown'" [(ngModel)]="element[column].value" 
-                    (selectionChange)="formControlValid(column, element[column], dataSource.filteredData.indexOf(element));">
+                <mat-select *ngSwitchCase="'dropdown'" [(ngModel)]="element[column].value" [disabled]="element[column].disabled"
+                    (selectionChange)="formControlValid(column, element, dataSource.filteredData.indexOf(element));">
                     <mat-option *ngFor="let data of element[column].list" [value]="data[element[column].id]">
                         <span *ngIf="element[column].displayMul;else content">
                             {{data[element[column].id]}} - {{data[element[column].text]}}
@@ -33,8 +36,8 @@
 
                 <div *ngSwitchCase="'datepicker'" class="d-flex">
                     <input matInput [matDatepicker]="picker" readonly (click)="picker.open()"
-                        [(ngModel)]="element[column].value" 
-                        (dateChange)="formControlValid(column, element[column], dataSource.filteredData.indexOf(element));">
+                        [(ngModel)]="element[column].value" [disabled]="element[column].disabled"
+                        (dateChange)="formControlValid(column, element, dataSource.filteredData.indexOf(element));">
                     <mat-datepicker-toggle matSuffix [for]="picker">
                         <mat-icon matDatepickerToggleIcon class="mat--icon">date_range</mat-icon>
                     </mat-datepicker-toggle>
