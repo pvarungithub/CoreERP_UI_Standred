@@ -15,7 +15,7 @@
     "SEARCH": "Search",
     "RESET": "Reset",
     "UPDATE": "Update",
-    "RETURN": "Return",
+    "RETURN": "Reverse",
     "BACK": "Back"
   },
   "LOGIN": {
@@ -780,7 +780,7 @@
     "depreciationData": "Depreciation Data",
     "depreciationArea": "Depreciation Area",
     "depreciationStartDate": "Date",
-    "delete": "delete",
+    "delete": "Delete",
     "mainAssetName": "Main Asset No",
     "accountKeyName": "Account Key",
     "branchName": "Branch",
@@ -880,8 +880,8 @@
     "natureofTransaction": "Nature of Transaction",
     "account": "Account",
     "indicator": "Account Indicator",
-    "name": "name",
-    "delete": "delete"
+    "name": "Name",
+    "delete": "Delete"
   },
   "rolePrevilages": {
     "title": "Role Previlages"

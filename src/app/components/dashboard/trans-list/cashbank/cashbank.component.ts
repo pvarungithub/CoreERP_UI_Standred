@@ -92,16 +92,16 @@ export class CashbankComponent implements OnInit {
     return {
       tableData: {
         id: {
-          value: 0, type: 'autoInc', width: 20
+          value: 0, type: 'autoInc', width: 10
         },
         glaccount: {
-          value: null, type: 'dropdown', list: this.glAccountList, id: 'id', text: 'text', displayMul: true,  width: 100
+          value: null, type: 'dropdown', list: this.glAccountList, id: 'id', text: 'text', displayMul: true,  width: 150
         },
         amount: {
           value: null, type: 'number', disabled: false
         },
         taxCode: {
-          value: null, type: 'dropdown', list: this.taxCodeList, id: 'taxRateCode', text: 'description', displayMul: true
+          value: null, type: 'dropdown', list: this.taxCodeList, id: 'taxRateCode', text: 'description', displayMul: false,width: 150
         },
         sgstamount: {
           value: null, type: 'number'
@@ -122,22 +122,22 @@ export class CashbankComponent implements OnInit {
           value: new Date(), type: 'datepicker', disabled: false
         },
         functionalDept: {
-          value: null, type: 'dropdown', list: this.functionaldeptList, id: 'code', text: 'description', displayMul: true
+          value: null, type: 'dropdown', list: this.functionaldeptList, id: 'code', text: 'description', displayMul: false,width: 150
         },
         profitCenter: {
-          value: null, type: 'dropdown', list: this.profitCenterList, id: 'id', text: 'text', displayMul: true
+          value: null, type: 'dropdown', list: this.profitCenterList, id: 'id', text: 'text', displayMul: false,width: 150
         },
         segment: {
-          value: null, type: 'dropdown', list: this.segmentList, id: 'id', text: 'name', displayMul: true
+          value: null, type: 'dropdown', list: this.segmentList, id: 'id', text: 'name', displayMul: false,width: 150
         },
         costCenter: {
-          value: null, type: 'dropdown', list: this.costCenterList, id: 'id', text: 'text', displayMul: true
+          value: null, type: 'dropdown', list: this.costCenterList, id: 'id', text: 'text', displayMul: false,width: 150
         },
         narration: {
-          value: null, type: 'text', disabled: false
+          value: null, type: 'text', disabled: false,width: 150
         },
         delete: {
-          type: 'delete'
+          type: 'delete',width: 10
         }
       },
       formControl: {
