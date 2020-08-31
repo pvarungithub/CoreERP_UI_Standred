@@ -2,7 +2,6 @@ import { Component, OnInit, ViewChild, Output, EventEmitter, Input } from '@angu
 import { MatTableDataSource, MatTable } from '@angular/material/table';
 import { isNullOrUndefined } from 'util';
 import { ActivatedRoute } from '@angular/router';
-import { MatPaginator } from '@angular/material/paginator';
 import { TranslateService } from '@ngx-translate/core';
 import { FormBuilder, FormGroup, FormControl } from '@angular/forms';
 import { Subscription } from 'rxjs';
@@ -15,7 +14,6 @@ import { RuntimeConfigService } from '../../services/runtime-config.service';
 })
 export class DynamicTableComponent implements OnInit {
 
-  @ViewChild(MatPaginator, { static: true }) paginator: MatPaginator;
 
   emitDynTableData: Subscription;
   @Output() emitColumnChanges = new EventEmitter();
@@ -52,11 +50,11 @@ export class DynamicTableComponent implements OnInit {
             this.dataSource.data = this.formalTableData(res);
           } else if (res.length == 0) {
             this.dataSource.data = [];
+            this.setTableData();
           } else {
             this.dataSource.data[res.index][res.column] = res['value'];
           }
           this.dataSource = new MatTableDataSource(this.dataSource.data);
-          this.dataSource.paginator = this.paginator;
           addOrEditService.sendDynTableData(null);
         }
       });
@@ -85,7 +83,6 @@ export class DynamicTableComponent implements OnInit {
       return index !== i;
     });
     this.dataSource = new MatTableDataSource(this.dataSource.data);
-    this.dataSource.paginator = this.paginator;
     this.emitTableData.emit(this.formatTableData());
   }
   }
@@ -105,7 +102,6 @@ export class DynamicTableComponent implements OnInit {
     if (this.tableForm.valid && (this.dataSource.data.length - 1) == indx) {
       this.dataSource.data.push(JSON.parse(JSON.stringify(this.tableData[0])));
       this.dataSource = new MatTableDataSource(this.dataSource.data);
-      this.dataSource.paginator = this.paginator;
       this.tableForm = this.formBuilder.group(this.formControl);
     }
     this.emitColumnChanges.emit({ column: col, value: val, index: indx });
@@ -129,7 +125,7 @@ export class DynamicTableComponent implements OnInit {
     if (!isNullOrUndefined(this.tableData)) {
       if (this.tableData.length) {
         this.dataSource = new MatTableDataSource(JSON.parse(JSON.stringify(this.tableData)));
-        this.dataSource.paginator = this.paginator;
+
       }
       this.keys = [];
       const col = [];

@@ -15,7 +15,8 @@
     "SEARCH": "Search",
     "RESET": "Reset",
     "UPDATE": "Update",
-    "RETURN": "Return"
+    "RETURN": "Return",
+    "BACK": "Back"
   },
   "LOGIN": {
     "USERNAME": "Username",
@@ -861,11 +862,11 @@
     "postingDate": "Posting Date",
     "glaccount": "GL Account",
     "amount": "Amount",
-    "taxCode": "Tax Code",
-    "sgstamount": "SGST Amount",
-    "cgstamount": "CGST Amount",
-    "igstamount": "IGST Amount",
-    "ugstamount": "UGST Amount",
+    "taxCode": "Tax",
+    "sgstamount": "SGST",
+    "cgstamount": "CGST",
+    "igstamount": "IGST",
+    "ugstamount": "UGST",
     "referenceNo": "Reference No",
     "referenceDate": "Reference Date",
     "functionalDept": "Functional Dept",

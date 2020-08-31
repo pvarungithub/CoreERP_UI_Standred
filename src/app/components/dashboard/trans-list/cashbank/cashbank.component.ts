@@ -7,7 +7,7 @@ import { StatusCodes, SnackBar } from '../../../../enums/common/common';
 import { isNullOrUndefined } from 'util';
 import { NgxSpinnerService } from 'ngx-spinner';
 import { AddOrEditService } from '../../comp-list/add-or-edit.service';
-import { ActivatedRoute } from '@angular/router';
+import { ActivatedRoute, Router } from '@angular/router';
 import { Static } from '../../../../enums/common/static';
 import { AlertService } from '../../../../services/alert.service';
 
@@ -47,7 +47,8 @@ export class CashbankComponent implements OnInit {
     private addOrEditService: AddOrEditService,
     private alertService: AlertService,
     private spinner: NgxSpinnerService,
-    public route: ActivatedRoute
+    public route: ActivatedRoute,
+    private router: Router
   ) { 
     if (!isNullOrUndefined(this.route.snapshot.params.value)) {
       this.routeEdit = this.route.snapshot.params.value;
@@ -91,16 +92,16 @@ export class CashbankComponent implements OnInit {
     return {
       tableData: {
         id: {
-          value: 0, type: 'autoInc'
+          value: 0, type: 'autoInc', width: 20
         },
         glaccount: {
-          value: null, type: 'dropdown', list: this.glAccountList, id: 'id', text: 'text', displayMul: true
+          value: null, type: 'dropdown', list: this.glAccountList, id: 'id', text: 'text', displayMul: true,  width: 100
         },
         amount: {
           value: null, type: 'number', disabled: false
         },
         taxCode: {
-          value: null, type: 'dropdown', list: this.taxCodeList, id: 'code', text: 'description', displayMul: true
+          value: null, type: 'dropdown', list: this.taxCodeList, id: 'taxRateCode', text: 'description', displayMul: true
         },
         sgstamount: {
           value: null, type: 'number'
@@ -234,7 +235,7 @@ export class CashbankComponent implements OnInit {
               this.glAccountList = res.response['glList'].filter(resp => resp.taxCategory != 'Cash' || resp.taxCategory != 'Bank' || resp.taxCategory != 'Control Account');
             }
           }
-          this.getTaxTransactionList();
+          this.getTaxRatesList();
         });
   }
 
@@ -252,15 +253,15 @@ export class CashbankComponent implements OnInit {
         });
   }
 
-  getTaxTransactionList() {
-    const taxCodeUrl = String.Join('/', this.apiConfigService.getTaxTransactionList);
+  getTaxRatesList() {
+    const taxCodeUrl = String.Join('/', this.apiConfigService.getTaxRatesList);
     this.apiService.apiGetRequest(taxCodeUrl)
       .subscribe(
         response => {
           const res = response.body;
           if (!isNullOrUndefined(res) && res.status === StatusCodes.pass) {
             if (!isNullOrUndefined(res.response)) {
-              this.taxCodeList = res.response['TaxtransactionList'];
+              this.taxCodeList = res.response['TaxratesList'];
             }
           }
           this.getProfitCentersList();
@@ -363,6 +364,10 @@ export class CashbankComponent implements OnInit {
 
   emitTableData(data) {
     this.tableData = data;
+  }
+
+  back() {
+    this.router.navigate(['dashboard/transaction/cashbank'])
   }
 
   save() {

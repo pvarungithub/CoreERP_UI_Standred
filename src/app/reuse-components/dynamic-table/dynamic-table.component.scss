@@ -2,7 +2,7 @@
 
 .table {
   overflow-x: scroll;
-  min-height: 70vh;
+  min-height: 50vh;
 }
 
 :host ::ng-deep table {
@@ -44,7 +44,7 @@
 .table th, .table td {
   vertical-align: middle;
   border: 1px solid #0000001a !important;
-  min-width: 200px;
+  // min-width: 200px;
 }
 
 .table th {
