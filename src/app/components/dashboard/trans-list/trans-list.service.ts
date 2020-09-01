@@ -2,6 +2,7 @@ import { Injectable } from '@angular/core';
 import { CashbankComponent } from './cashbank/cashbank.component';
 import { ApiConfigService } from '../../../services/api-config.service';
 import {JournalComponent} from './journals/journal.component';
+import {MemoinvoiceComponent} from './invoicesmemos/memoinvoice.component';
 
 @Injectable({
   providedIn: 'root'
@@ -30,6 +31,15 @@ export class TransListService {
     switch (data) {
       case 'journals':
         this.dynamicComp.component = JournalComponent;
+        // this.dynamicComp.tableUrl = this.apiConfigService.getCashBankMaster;
+        // this.dynamicComp.list = 'CashBankMasters';
+        return this.dynamicComp;
+        break;
+      default:
+    }
+    switch (data) {
+      case 'invoicesmemos':
+        this.dynamicComp.component = MemoinvoiceComponent;
         // this.dynamicComp.tableUrl = this.apiConfigService.getCashBankMaster;
         // this.dynamicComp.list = 'CashBankMasters';
         return this.dynamicComp;

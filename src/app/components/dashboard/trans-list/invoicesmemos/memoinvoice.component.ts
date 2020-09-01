@@ -12,12 +12,12 @@ import { Static } from '../../../../enums/common/static';
 import { AlertService } from '../../../../services/alert.service';
 
 @Component({
-  selector: 'app-journals',
-  templateUrl: './journal.component.html',
-  styleUrls: ['./journal.component.scss']
+  selector: 'app-invoicesmemos',
+  templateUrl: './memoinvoice.component.html',
+  styleUrls: ['./memoinvoice.component.scss']
 })
 
-export class JournalComponent implements OnInit {
+export class MemoinvoiceComponent implements OnInit {
 
   formData: FormGroup;
   routeEdit = '';
@@ -29,9 +29,9 @@ export class JournalComponent implements OnInit {
   branchList = [];
   voucherClassList = [];
   voucherTypeList = [];
-  // transactionTypeList = ['Cash', 'Bank']
-  // natureofTransactionList = ['Receipts', 'Payment'];
-  // accountList = [];
+  transactionTypeList = ['Invoice', 'Memo']
+  natureofTransactionList = ['Incoming', 'Outgoing'];
+  accountList = [];
   glAccountList = [];
   indicatorList = ['Debit', 'Credit'];
   profitCenterList = [];
@@ -39,6 +39,13 @@ export class JournalComponent implements OnInit {
   costCenterList = [];
   taxCodeList = [];
   functionaldeptList = [];
+  partyInvoiceNo=[];
+  partyInvoiceDate=[];
+  gRNNo=[];
+  gRNDate=[];
+  paymentterms=[];
+  taxAmount=[];
+  amount=[];
 
   constructor(
     private formBuilder: FormBuilder,
@@ -64,7 +71,6 @@ export class JournalComponent implements OnInit {
 
   formDataGroup() {
     this.formData = this.formBuilder.group({
-      id: [0],
       company: [null],
       branch: [null],
       voucherClass: [null],
@@ -90,9 +96,6 @@ export class JournalComponent implements OnInit {
   tablePropsFunc() {
     return {
       tableData: {
-        id: {
-          value: 0, type: 'autoInc', width: 10
-        },
         glaccount: {
           value: null, type: 'dropdown', list: this.glAccountList, id: 'id', text: 'text', displayMul: true, width: 150
         },
@@ -115,7 +118,7 @@ export class JournalComponent implements OnInit {
           value: null, type: 'number', disabled: true, width: 75
         },
         referenceNo: {
-          value: null, type: 'number'
+          value: null, type: 'number', width: 130
         },
         referenceDate: {
           value: new Date(), type: 'datepicker', width: 100
@@ -230,7 +233,7 @@ export class JournalComponent implements OnInit {
           const res = response.body;
           if (!isNullOrUndefined(res) && res.status === StatusCodes.pass) {
             if (!isNullOrUndefined(res.response)) {
-              // this.accountList = res.response['glList'].filter(resp => resp.taxCategory == 'Cash' || resp.taxCategory == 'Bank');
+              this.accountList = res.response['glList'].filter(resp => resp.taxCategory == 'Cash' || resp.taxCategory == 'Bank');
               this.glAccountList = res.response['glList'].filter(resp => resp.taxCategory != 'Cash' || resp.taxCategory != 'Bank' || resp.taxCategory != 'Control Account');
             }
           }
@@ -366,7 +369,7 @@ export class JournalComponent implements OnInit {
   }
 
   back() {
-    this.router.navigate(['dashboard/transaction/journals'])
+    this.router.navigate(['dashboard/transaction/cashbank'])
   }
 
   save() {
@@ -376,7 +379,19 @@ export class JournalComponent implements OnInit {
     this.saveCashBank();
   }
 
-  return() { }
+  return() {
+    const addCashBank = String.Join('/', this.apiConfigService.returnCashBank, this.routeEdit);
+    this.apiService.apiGetRequest(addCashBank).subscribe(
+      response => {
+        const res = response.body;
+        if (!isNullOrUndefined(res) && res.status === StatusCodes.pass) {
+          if (!isNullOrUndefined(res.response)) {
+            this.alertService.openSnackBar(res.response, Static.Close, SnackBar.success);
+          }
+          this.spinner.hide();
+        }
+      });
+  }
 
   reset() {
     this.tableData = [];

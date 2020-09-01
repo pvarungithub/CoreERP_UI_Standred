@@ -19,7 +19,7 @@ import {
 
 } from './components/dashboard/comp-list/index';
 
-import { CashbankComponent ,JournalComponent} from './components/dashboard/trans-list/index';
+import { CashbankComponent ,JournalComponent,MemoinvoiceComponent} from './components/dashboard/trans-list/index';
 
 import { NavbarComponent, TableComponent, DeleteItemComponent, SearchFilterTableComponent , TransTableComponent, DynamicTableComponent, AutocompleteComponent } from './reuse-components/index';
 import {
@@ -92,7 +92,7 @@ export function HttpLoaderFactory(httpClient: HttpClient) {
     AssetNumberRangeComponent,AssetTransactionTypeComponent,AccountKeyComponent,AssignmentAccountKeytoAssetClassComponent,
     BankMasterComponent,DepreciationcodeComponent,GLAccountComponent,GLSubAccountComponent,BusienessTransactionTypeComponent,AssetBegningAccumulatedDepreciationComponent,AssetBegningAcqusitionComponent,
     BusienessPartnerAccountComponent,AssignGLaccounttoSubGroupComponent,MainAssetMasterComponent,SubAssetsComponent,
-    DynamicTableComponent,  AutocompleteComponent, CashbankComponent,JournalComponent
+    DynamicTableComponent,  AutocompleteComponent, CashbankComponent,JournalComponent,MemoinvoiceComponent
     //LeaveopeningbalanceComponent,
     //selfserviceComponent,
     

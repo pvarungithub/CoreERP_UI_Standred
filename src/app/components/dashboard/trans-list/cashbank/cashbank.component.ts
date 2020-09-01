@@ -114,7 +114,7 @@ export class CashbankComponent implements OnInit {
           value: null, type: 'number', width: 130
         },
         referenceDate: {
-          value: new Date(), type: 'datepicker', width: 160
+          value: new Date(), type: 'datepicker', width: 100
         },
         functionalDept: {
           value: null, type: 'dropdown', list: this.functionaldeptList, id: 'code', text: 'description', displayMul: false, width: 150

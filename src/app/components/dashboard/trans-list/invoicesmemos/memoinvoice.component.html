@@ -7,7 +7,7 @@
             <div class="d--flex p-1 mat-form-field-height">
 
                 <mat-form-field class="form-element">
-                    <mat-label>{{ 'journals.company' | translate }}</mat-label>
+                    <mat-label>{{ 'invoicesmemos.company' | translate }}</mat-label>
                     <mat-select formControlName="company">
                         <mat-option>None</mat-option>
                         <mat-option *ngFor="let comp of companyList" [value]="comp.id">
@@ -17,7 +17,7 @@
                 </mat-form-field>
 
                 <mat-form-field class="form-element">
-                    <mat-label>{{ 'journals.branch' | translate }}</mat-label>
+                    <mat-label>{{ 'invoicesmemos.branch' | translate }}</mat-label>
                     <mat-select formControlName="branch">
                         <mat-option>None</mat-option>
                         <mat-option *ngFor="let branch of branchList" [value]="branch.id">
@@ -27,7 +27,7 @@
                 </mat-form-field>
 
                 <mat-form-field class="form-element">
-                    <mat-label>{{ 'journals.voucherType' | translate }}</mat-label>
+                    <mat-label>{{ 'invoicesmemos.voucherType' | translate }}</mat-label>
                     <mat-select formControlName="voucherType"
                         (selectionChange)="voucherTypeSelect(); voucherNoCalculate();">
                         <mat-option>None</mat-option>
@@ -38,26 +38,26 @@
                 </mat-form-field>
 
                 <mat-form-field class="form-element">
-                    <input matInput placeholder="{{'journals.voucherNumber' | translate }}"
+                    <input matInput placeholder="{{'invoicesmemos.voucherNumber' | translate }}"
                         formControlName="voucherNumber" appFocusOnEnter tabIndex="2">
                 </mat-form-field>
 
                 <mat-form-field class="form-element">
-                    <input matInput [matDatepicker]="picker1" placeholder="{{'journals.voucherDate' | translate }}"
+                    <input matInput [matDatepicker]="picker1" placeholder="{{'invoicesmemos.voucherDate' | translate }}"
                         formControlName="voucherDate" appFocusOnEnter tabIndex="3">
                     <mat-datepicker-toggle matSuffix [for]="picker1"></mat-datepicker-toggle>
                     <mat-datepicker #picker1></mat-datepicker>
                 </mat-form-field>
 
                 <mat-form-field class="form-element">
-                    <input matInput [matDatepicker]="picker2" placeholder="{{'journals.postingDate' | translate }}"
+                    <input matInput [matDatepicker]="picker2" placeholder="{{'invoicesmemos.postingDate' | translate }}"
                         formControlName="postingDate" appFocusOnEnter tabIndex="3">
                     <mat-datepicker-toggle matSuffix [for]="picker2"></mat-datepicker-toggle>
                     <mat-datepicker #picker2></mat-datepicker>
                 </mat-form-field>
 
-                <!-- <mat-form-field class="form-element">
-                    <mat-label>{{ 'journals.transactionType' | translate }}</mat-label>
+                <mat-form-field class="form-element">
+                    <mat-label>{{ 'invoicesmemos.transactionType' | translate }}</mat-label>
                     <mat-select formControlName="transactionType">
                         <mat-option>None</mat-option>
                         <mat-option *ngFor="let trans of transactionTypeList" [value]="trans">
@@ -67,7 +67,7 @@
                 </mat-form-field>
 
                 <mat-form-field class="form-element">
-                    <mat-label>{{ 'journals.natureofTransaction' | translate }}</mat-label>
+                    <mat-label>{{ 'invoicesmemos.natureofTransaction' | translate }}</mat-label>
                     <mat-select formControlName="natureofTransaction">
                         <mat-option>None</mat-option>
                         <mat-option *ngFor="let nature of natureofTransactionList" [value]="nature">
@@ -77,49 +77,68 @@
                 </mat-form-field>
 
                 <mat-form-field class="form-element">
-                    <mat-label>{{ 'journals.account' | translate }}</mat-label>
+                    <mat-label>{{ 'invoicesmemos.account' | translate }}</mat-label>
                     <mat-select formControlName="account">
                         <mat-option>None</mat-option>
                         <mat-option *ngFor="let acc of accountList" [value]="acc.id">
                             {{ acc.id }} - {{acc.text}}
                         </mat-option>
                     </mat-select>
-                </mat-form-field> -->
+                </mat-form-field>
 
                 <mat-form-field class="form-element">
-                    <input matInput placeholder="{{'journals.referenceNo' | translate }}" formControlName="referenceNo"
+                    <input matInput placeholder="{{'invoicesmemos.referenceNo' | translate }}" formControlName="referenceNo"
                         appFocusOnEnter tabIndex="2">
                 </mat-form-field>
 
                 <mat-form-field class="form-element">
-                    <input matInput [matDatepicker]="picker4" placeholder="{{'journals.referenceDate' | translate }}"
+                    <input matInput [matDatepicker]="picker4" placeholder="{{'invoicesmemos.referenceDate' | translate }}"
                         formControlName="referenceDate" appFocusOnEnter tabIndex="4">
                     <mat-datepicker-toggle matSuffix [for]="picker4"></mat-datepicker-toggle>
                     <mat-datepicker #picker4></mat-datepicker>
                 </mat-form-field>
 
-                <!-- <mat-form-field class="form-element">
-                    <mat-label>{{ 'journals.profitCenter' | translate }}</mat-label>
-                    <mat-select formControlName="profitCenter">
+                <mat-form-field class="form-element">
+                    <input matInput placeholder="{{'invoicesmemos.partyInvoiceNo' | translate }}" formControlName="referenceNo"
+                        appFocusOnEnter tabIndex="2">
+                </mat-form-field>
+
+                <mat-form-field class="form-element">
+                    <input matInput [matDatepicker]="picker4" placeholder="{{'invoicesmemos.partyInvoiceDate' | translate }}"
+                        formControlName="referenceDate" appFocusOnEnter tabIndex="4">
+                    <mat-datepicker-toggle matSuffix [for]="picker4"></mat-datepicker-toggle>
+                    <mat-datepicker #picker4></mat-datepicker>
+                </mat-form-field>
+
+                <mat-form-field class="form-element">
+                    <input matInput placeholder="{{'invoicesmemos.gRNNo' | translate }}" formControlName="referenceNo"
+                        appFocusOnEnter tabIndex="2">
+                </mat-form-field>
+
+                <mat-form-field class="form-element">
+                    <input matInput [matDatepicker]="picker4" placeholder="{{'invoicesmemos.gRNDate' | translate }}"
+                        formControlName="referenceDate" appFocusOnEnter tabIndex="4">
+                    <mat-datepicker-toggle matSuffix [for]="picker4"></mat-datepicker-toggle>
+                    <mat-datepicker #picker4></mat-datepicker>
+                </mat-form-field>
+                
+                <mat-form-field class="form-element">
+                    <mat-label>{{ 'invoicesmemos.paymentterms' | translate }}</mat-label>
+                    <mat-select formControlName="paymentterms">
                         <mat-option>None</mat-option>
-                        <mat-option *ngFor="let profCen of profitCenterList" [value]="profCen.id">
-                            {{profCen.text}}
+                        <mat-option *ngFor="let nature of natureofTransactionList" [value]="nature">
+                            {{ nature }}
                         </mat-option>
                     </mat-select>
                 </mat-form-field>
 
                 <mat-form-field class="form-element">
-                    <mat-label>{{ 'journals.segment' | translate }}</mat-label>
-                    <mat-select formControlName="segment">
-                        <mat-option>None</mat-option>
-                        <mat-option *ngFor="let segm of segmentList" [value]="segm.id">
-                            {{segm.name}}
-                        </mat-option>
-                    </mat-select>
-                </mat-form-field> -->
+                    <input matInput placeholder="{{'invoicesmemos.amount' | translate }}" formControlName="narration"
+                        appFocusOnEnter tabIndex="2">
+                </mat-form-field>
 
                 <mat-form-field class="form-element">
-                    <input matInput placeholder="{{'journals.narration' | translate }}" formControlName="narration"
+                    <input matInput placeholder="{{'invoicesmemos.narration' | translate }}" formControlName="narration"
                         appFocusOnEnter tabIndex="2">
                 </mat-form-field>
             </div>
