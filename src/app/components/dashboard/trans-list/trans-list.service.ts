@@ -8,7 +8,7 @@ import {JournalComponent} from './journals/journal.component';
 })
 export class TransListService {
 
-  dynamicComp = { component: null, tableUrl: null, list: null };
+  dynamicComp = { component: null, tableUrl: null, list: null, editKey: null };
 
   constructor(
     private apiConfigService: ApiConfigService
@@ -21,6 +21,7 @@ export class TransListService {
         this.dynamicComp.component = CashbankComponent;
         this.dynamicComp.tableUrl = this.apiConfigService.getCashBankMaster;
         this.dynamicComp.list = 'CashBankMasters';
+        this.dynamicComp.editKey = 'voucherNumber';
         return this.dynamicComp;
         break;
       default:

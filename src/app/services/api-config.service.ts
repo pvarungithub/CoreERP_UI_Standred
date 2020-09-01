@@ -101,5 +101,6 @@ export class ApiConfigService {
    getCashBankDetail = `${this.environment.runtimeConfig.serverUrl}Transactions/GetCashBankDetail`;
    getCashBankMaster = `${this.environment.runtimeConfig.serverUrl}Transactions/GetCashBankMaster`;
    getVoucherNumber = `${this.environment.runtimeConfig.serverUrl}Transactions/GetVoucherNumber`;
+   returnCashBank = `${this.environment.runtimeConfig.serverUrl}Transactions/ReturnCashBank`;
 
 }

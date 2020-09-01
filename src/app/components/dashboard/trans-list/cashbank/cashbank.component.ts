@@ -64,7 +64,6 @@ export class CashbankComponent implements OnInit {
 
   formDataGroup() {
     this.formData = this.formBuilder.group({
-      id: [0],
       company: [null],
       branch: [null],
       voucherClass: [null],
@@ -90,9 +89,6 @@ export class CashbankComponent implements OnInit {
   tablePropsFunc() {
     return {
       tableData: {
-        id: {
-          value: 0, type: 'autoInc', width: 10
-        },
         glaccount: {
           value: null, type: 'dropdown', list: this.glAccountList, id: 'id', text: 'text', displayMul: true, width: 150
         },
@@ -115,10 +111,10 @@ export class CashbankComponent implements OnInit {
           value: null, type: 'number', disabled: true, width: 75
         },
         referenceNo: {
-          value: null, type: 'number'
+          value: null, type: 'number', width: 130
         },
         referenceDate: {
-          value: new Date(), type: 'datepicker', width: 75
+          value: new Date(), type: 'datepicker', width: 160
         },
         functionalDept: {
           value: null, type: 'dropdown', list: this.functionaldeptList, id: 'code', text: 'description', displayMul: false, width: 150
@@ -376,7 +372,19 @@ export class CashbankComponent implements OnInit {
     this.saveCashBank();
   }
 
-  return() { }
+  return() {
+    const addCashBank = String.Join('/', this.apiConfigService.returnCashBank, this.routeEdit);
+    this.apiService.apiGetRequest(addCashBank).subscribe(
+      response => {
+        const res = response.body;
+        if (!isNullOrUndefined(res) && res.status === StatusCodes.pass) {
+          if (!isNullOrUndefined(res.response)) {
+            this.alertService.openSnackBar(res.response, Static.Close, SnackBar.success);
+          }
+          this.spinner.hide();
+        }
+      });
+  }
 
   reset() {
     this.tableData = [];
