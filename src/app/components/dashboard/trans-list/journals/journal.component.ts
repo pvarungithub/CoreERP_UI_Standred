@@ -33,7 +33,7 @@ export class JournalComponent implements OnInit {
   // natureofTransactionList = ['Receipts', 'Payment'];
   // accountList = [];
   glAccountList = [];
-  indicatorList = ['Debit', 'Credit'];
+  indicatorList = [ { id: 'Debit', text: 'Debit' }, { id: 'Credit' , text:'Credit' }];
   profitCenterList = [];
   segmentList = [];
   costCenterList = [];
@@ -70,7 +70,7 @@ export class JournalComponent implements OnInit {
       voucherClass: [null],
       voucherType: [null],
       voucherDate: [new Date()],
-      postingDate: [null],
+      postingDate: [new Date()],
       period: [null],
       voucherNumber: [null],
       transactionType: [null],
@@ -95,6 +95,9 @@ export class JournalComponent implements OnInit {
         },
         glaccount: {
           value: null, type: 'dropdown', list: this.glAccountList, id: 'id', text: 'text', displayMul: true, width: 150
+        },
+        accountingIndicator:{
+          value: null, type: 'dropdown', list: this.indicatorList, id: 'id', text: 'text', displayMul: false, width: 150
         },
         amount: {
           value: 0, type: 'number', width: 75
@@ -134,6 +137,24 @@ export class JournalComponent implements OnInit {
         },
         narration: {
           value: null, type: 'text', width: 150
+        },
+        workBreakStructureElement: {
+          value: null, type: 'dropdown', list: this.costCenterList, id: 'id', text: 'text', displayMul: false, width: 150
+        },
+        netWork: {
+          value: null, type: 'dropdown', list: this.costCenterList, id: 'id', text: 'text', displayMul: false, width: 150
+        },
+        orderNo: {
+          value: null, type: 'dropdown', list: this.costCenterList, id: 'id', text: 'text', displayMul: false, width: 150
+        },
+        fundCenter: {
+          value: null, type: 'dropdown', list: this.costCenterList, id: 'id', text: 'text', displayMul: false, width: 150
+        },
+        commitment: {
+          value: null, type: 'dropdown', list: this.costCenterList, id: 'id', text: 'text', displayMul: false, width: 150
+        },
+        hSNSACCode:{
+          value: null, type: 'dropdown', list: this.costCenterList, id: 'id', text: 'text', displayMul: false, width: 150
         },
         delete: {
           type: 'delete', width: 10

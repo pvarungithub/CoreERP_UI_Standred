@@ -33,10 +33,11 @@ export class MemoinvoiceComponent implements OnInit {
   natureofTransactionList = ['Incoming', 'Outgoing'];
   accountList = [];
   glAccountList = [];
-  indicatorList = ['Debit', 'Credit'];
+  indicatorList = [ { id: 'Debit', text: 'Debit' }, { id: 'Credit' , text:'Credit' }];
   profitCenterList = [];
   segmentList = [];
   costCenterList = [];
+  bpTypeList=[];
   taxCodeList = [];
   functionaldeptList = [];
   partyInvoiceNo=[];
@@ -66,6 +67,7 @@ export class MemoinvoiceComponent implements OnInit {
     this.formDataGroup();
     this.getCompanyList();
     this.getfunctionaldeptList();
+    this.getPartnerTypeList();
     this.formData.controls['voucherNumber'].disable();
   }
 
@@ -76,16 +78,22 @@ export class MemoinvoiceComponent implements OnInit {
       voucherClass: [null],
       voucherType: [null],
       voucherDate: [new Date()],
-      postingDate: [null],
+      postingDate: [new Date()],
+      partyInvoiceNo:[null],
+      partyInvoiceDate:[null],
+      gRNNo:[null],
+      gRNDate:[null],
       period: [null],
       voucherNumber: [null],
       transactionType: [null],
+      paymentterms:[null],
       natureofTransaction: [null],
       account: [null],
       indicator: [null],
       referenceNo: [null],
       referenceDate: [null],
       profitCenter: [null],
+      bPCategory:[],
       segment: [null],
       narration: [null],
       accounting: [null],
@@ -99,12 +107,15 @@ export class MemoinvoiceComponent implements OnInit {
         glaccount: {
           value: null, type: 'dropdown', list: this.glAccountList, id: 'id', text: 'text', displayMul: true, width: 150
         },
+        accountingIndicator:{
+          value: null, type: 'dropdown', list: this.indicatorList, id: 'id', text: 'text', displayMul: false, width: 150
+        },
         amount: {
           value: 0, type: 'number', width: 75
         },
         taxCode: {
           value: null, type: 'dropdown', list: this.taxCodeList, id: 'taxRateCode', text: 'description', displayMul: false, width: 150
-        },
+        },        
         sgstamount: {
           value: null, type: 'number', disabled: true, width: 75
         },
@@ -118,7 +129,7 @@ export class MemoinvoiceComponent implements OnInit {
           value: null, type: 'number', disabled: true, width: 75
         },
         referenceNo: {
-          value: null, type: 'number', width: 130
+          value: null, type: 'number'
         },
         referenceDate: {
           value: new Date(), type: 'datepicker', width: 100
@@ -137,6 +148,24 @@ export class MemoinvoiceComponent implements OnInit {
         },
         narration: {
           value: null, type: 'text', width: 150
+        },
+        workBreakStructureElement: {
+          value: null, type: 'dropdown', list: this.costCenterList, id: 'id', text: 'text', displayMul: false, width: 150
+        },
+        netWork: {
+          value: null, type: 'dropdown', list: this.costCenterList, id: 'id', text: 'text', displayMul: false, width: 150
+        },
+        orderNo: {
+          value: null, type: 'dropdown', list: this.costCenterList, id: 'id', text: 'text', displayMul: false, width: 150
+        },
+        fundCenter: {
+          value: null, type: 'dropdown', list: this.costCenterList, id: 'id', text: 'text', displayMul: false, width: 150
+        },
+        commitment: {
+          value: null, type: 'dropdown', list: this.costCenterList, id: 'id', text: 'text', displayMul: false, width: 150
+        },
+        hSNSACCode:{
+          value: null, type: 'dropdown', list: this.costCenterList, id: 'id', text: 'text', displayMul: false, width: 150
         },
         delete: {
           type: 'delete', width: 10
@@ -189,21 +218,6 @@ export class MemoinvoiceComponent implements OnInit {
           if (!isNullOrUndefined(res) && res.status === StatusCodes.pass) {
             if (!isNullOrUndefined(res.response)) {
               this.branchList = res.response['branchsList'];
-            }
-          }
-          this.getTransVoucherClassList();
-        });
-  }
-
-  getTransVoucherClassList() {
-    const voucherClassList = String.Join('/', this.apiConfigService.getvocherclassList);
-    this.apiService.apiGetRequest(voucherClassList)
-      .subscribe(
-        response => {
-          const res = response.body;
-          if (!isNullOrUndefined(res) && res.status === StatusCodes.pass) {
-            if (!isNullOrUndefined(res.response)) {
-              this.voucherClassList = res.response['vcList'];
             }
           }
           this.getVoucherTypes();
@@ -300,6 +314,26 @@ export class MemoinvoiceComponent implements OnInit {
         });
   }
 
+  getPartnerTypeList() {
+    const costCenUrl = String.Join('/', this.apiConfigService.getPartnerTypeList);
+    this.apiService.apiGetRequest(costCenUrl)
+      .subscribe(
+        response => {
+          this.spinner.hide();
+          const res = response.body;
+          if (!isNullOrUndefined(res) && res.status === StatusCodes.pass) {
+            if (!isNullOrUndefined(res.response)) {
+              this.bpTypeList = res.response['ptypeList'];
+
+            }
+          }
+          this.dynTableProps = this.tablePropsFunc();
+          // if (this.routeEdit != '') {
+          //   this.getCashBankDetail(this.routeEdit);
+          // }
+        });
+  }
+  
   getCostcenters() {
     const costCenUrl = String.Join('/', this.apiConfigService.getCostCentersList);
     this.apiService.apiGetRequest(costCenUrl)

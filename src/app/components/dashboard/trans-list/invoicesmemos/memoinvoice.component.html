@@ -77,11 +77,11 @@
                 </mat-form-field>
 
                 <mat-form-field class="form-element">
-                    <mat-label>{{ 'invoicesmemos.account' | translate }}</mat-label>
-                    <mat-select formControlName="account">
+                    <mat-label>{{ 'invoicesmemos.bPCategory' | translate }}</mat-label>
+                    <mat-select formControlName="bPCategory">
                         <mat-option>None</mat-option>
-                        <mat-option *ngFor="let acc of accountList" [value]="acc.id">
-                            {{ acc.id }} - {{acc.text}}
+                        <mat-option *ngFor="let acc of bpTypeList" [value]="acc.code">
+                        {{acc.description}}
                         </mat-option>
                     </mat-select>
                 </mat-form-field>
