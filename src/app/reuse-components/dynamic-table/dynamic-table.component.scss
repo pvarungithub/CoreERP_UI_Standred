@@ -16,6 +16,9 @@
       vertical-align: middle;
       border: none !important;
     }
+    & td:first-child {
+      padding-left: 0px;
+    }
     & th {
       vertical-align: middle;
       border: none !important;
@@ -38,7 +41,7 @@
 
 .mat-header-cell, .mat-cell {
   white-space:nowrap;
-  padding: 1px;
+  padding: 0px 10px;
 }
 
 .table th, .table td {
@@ -46,6 +49,7 @@
   border: 1px solid #0000001a !important;
   text-align: center;
 }
+
 
 .table th {
   font-size: 11px;
@@ -70,6 +74,10 @@
   }
 }
 
+.mat-form-field {
+  margin: 0px;
+}
+
 .dropdown--width {
   width: 20rem;
 }
@@ -78,4 +86,16 @@
     font-size: 17px;
     color: #337ab7;
   }
+
+/* Chrome, Safari, Edge, Opera */
+input::-webkit-outer-spin-button,
+input::-webkit-inner-spin-button {
+  -webkit-appearance: none;
+  margin: 0;
+}
+
+/* Firefox */
+input[type=number] {
+  -moz-appearance: textfield;
+}
 

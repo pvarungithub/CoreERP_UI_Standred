@@ -155,7 +155,20 @@ export class CashbankComponent implements OnInit {
         }
       },
       formControl: {
-        glaccount: [null, [Validators.required]]
+        glaccount: [null, [Validators.required]],
+        amount: [null],
+        taxCode: [null],
+        sgstamount: [null],
+        cgstamount: [null],
+        igstamount: [null],
+        ugstamount: [null],
+        referenceNo: [null],
+        referenceDate: [null],
+        functionalDept: [null],
+        profitCenter: [null],
+        segment: [null],
+        costCenter: [null],
+        narration: [null]
       }
     }
   }
@@ -246,7 +259,8 @@ export class CashbankComponent implements OnInit {
           if (!isNullOrUndefined(res) && res.status === StatusCodes.pass) {
             if (!isNullOrUndefined(res.response)) {
               this.accountFilterList = res.response['glList'];
-              this.glAccountList = res.response['glList'].filter(resp => resp.taxCategory != 'Cash' || resp.taxCategory != 'Bank' || resp.taxCategory != 'Control Account');
+              this.glAccountList = res.response['glList'].filter(resp => resp.taxCategory != 'Cash' &&
+                resp.taxCategory != 'Bank' && resp.taxCategory != 'Control Account');
             }
           }
           this.getTaxRatesList();
@@ -375,10 +389,12 @@ export class CashbankComponent implements OnInit {
   calculateAmount(row) {
     if (row.column == 'taxCode' || row.column == 'amount') {
       let code = row.value['taxCode'].list.find(res => res.taxRateCode == row.value['taxCode'].value)
-      row.value.cgstamount.value = (row.value.amount.value * code.cgst) / 100
-      row.value.igstamount.value = (row.value.amount.value * code.igst) / 100
-      row.value.cgstamount.value = (row.value.amount.value * code.sgst) / 100
-      row.value.cgstamount.value = (row.value.amount.value * code.cgst) / 100
+      if (!isNullOrUndefined(code)) {
+        row.value.cgstamount.value = (row.value.amount.value * code.cgst) / 100
+        row.value.igstamount.value = (row.value.amount.value * code.igst) / 100
+        row.value.cgstamount.value = (row.value.amount.value * code.sgst) / 100
+        row.value.cgstamount.value = (row.value.amount.value * code.cgst) / 100
+      }
     }
     this.addOrEditService.sendDynTableData(row);
   }

@@ -34,7 +34,7 @@ export class ReceiptspaymentsComponent implements OnInit {
   accountList = [];
   accountFilterList = [];
   glAccountList = [];
-  indicatorList = ['Debit', 'Credit'];
+  indicatorList = [ { id: 'Debit', text: 'Debit' }, { id: 'Credit' , text:'Credit' }];
   profitCenterList = [];
   bpTypeList=[];
   segmentList = [];
@@ -60,8 +60,6 @@ export class ReceiptspaymentsComponent implements OnInit {
   ngOnInit() {
     this.formDataGroup();
     this.getCompanyList();
-    this.getfunctionaldeptList();
-    this.getPartnerTypeList() ;
     this.formData.controls['voucherNumber'].disable();
   }
 
@@ -88,15 +86,20 @@ export class ReceiptspaymentsComponent implements OnInit {
       amount: [null],
       chequeno:[null],
       chequeDate:[null],
+      partyAccount:[null],
+      partyInvoiceNo:[null],
       ext: [null]
     });
   }
 
   tablePropsFunc() {
     return {
-      tableData: {
-        glaccount: {
-          value: null, type: 'dropdown', list: this.glAccountList, id: 'id', text: 'text', displayMul: true, width: 150
+      tableData: {        
+        voucherNumber: {
+          value: null, type: 'text', width: 150
+        },
+        accountingIndicator:{
+          value: null, type: 'dropdown', list: this.indicatorList, id: 'id', text: 'text', displayMul: false, width: 150
         },
         amount: {
           value: 0, type: 'number', width: 75
@@ -254,7 +257,7 @@ export class ReceiptspaymentsComponent implements OnInit {
               this.glAccountList = res.response['glList'].filter(resp => resp.taxCategory != 'Cash' || resp.taxCategory != 'Bank' || resp.taxCategory != 'Control Account');
             }
           }
-          this.getTaxRatesList();
+          this.getfunctionaldeptList();
         });
   }
 
@@ -276,6 +279,7 @@ export class ReceiptspaymentsComponent implements OnInit {
               this.functionaldeptList = res.response['fdeptList'];
             }
           }
+          this.getTaxRatesList();
         });
   }
 
@@ -320,6 +324,23 @@ export class ReceiptspaymentsComponent implements OnInit {
               this.segmentList = res.response['segmentList'];
             }
           }
+          this.getPartnerTypeList();
+        });
+  }
+
+  
+  getPartnerTypeList() {
+    const costCenUrl = String.Join('/', this.apiConfigService.getPartnerTypeList);
+    this.apiService.apiGetRequest(costCenUrl)
+      .subscribe(
+        response => {
+          this.spinner.hide();
+          const res = response.body;
+          if (!isNullOrUndefined(res) && res.status === StatusCodes.pass) {
+            if (!isNullOrUndefined(res.response)) {
+              this.bpTypeList = res.response['ptypeList'];
+            }
+          }
           this.getCostcenters();
         });
   }
@@ -334,7 +355,6 @@ export class ReceiptspaymentsComponent implements OnInit {
           if (!isNullOrUndefined(res) && res.status === StatusCodes.pass) {
             if (!isNullOrUndefined(res.response)) {
               this.costCenterList = res.response['costcenterList'];
-
             }
           }
           this.dynTableProps = this.tablePropsFunc();
@@ -344,25 +364,6 @@ export class ReceiptspaymentsComponent implements OnInit {
         });
   }
 
-  getPartnerTypeList() {
-    const costCenUrl = String.Join('/', this.apiConfigService.getPartnerTypeList);
-    this.apiService.apiGetRequest(costCenUrl)
-      .subscribe(
-        response => {
-          this.spinner.hide();
-          const res = response.body;
-          if (!isNullOrUndefined(res) && res.status === StatusCodes.pass) {
-            if (!isNullOrUndefined(res.response)) {
-              this.bpTypeList = res.response['ptypeList'];
-
-            }
-          }
-          this.dynTableProps = this.tablePropsFunc();
-          // if (this.routeEdit != '') {
-          //   this.getCashBankDetail(this.routeEdit);
-          // }
-        });
-  }
 
   voucherTypeSelect() {
     const record = this.voucherTypeList.find(res => res.id == this.formData.get('voucherType').value)

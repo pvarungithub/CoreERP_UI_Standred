@@ -76,7 +76,7 @@ export class JournalComponent implements OnInit {
       transactionType: [null],
       natureofTransaction: [null],
       account: [null],
-      indicator: [null],
+      accountingIndicator: [null],
       referenceNo: [null],
       referenceDate: [null],
       profitCenter: [null],
