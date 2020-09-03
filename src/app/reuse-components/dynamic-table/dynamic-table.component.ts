@@ -137,11 +137,11 @@ export class DynamicTableComponent implements OnInit, OnDestroy {
       const col = [];
       // tslint:disable-next-line:forin
       for (const key in this.tableData[0]) {
-        this.keys.push({ col: key });
+        this.keys.push({ col: key, disabled: this.tableData[0][key].disabled ? this.tableData[0][key].disabled : false });
       }
       this.keys.forEach(cols => {
         const obj = {
-          def: cols.col, label: cols.col, hide: true
+          def: cols.col, label: cols.col, hide: true, disabled: cols.disabled
         };
         col.push(obj);
       });
@@ -168,18 +168,23 @@ export class DynamicTableComponent implements OnInit, OnDestroy {
     let flag = false;
     let nextId = '';
     // tslint:disable-next-line:forin
-    for (const r in this.tableData[0]) {
-      if (flag && !this.tableData[0][r].disabled && r != 'delete') {
-        nextId = r;
+    for (let c = 0; c < this.columnDefinitions.length; c++) {
+      if (flag && !this.columnDefinitions[c].disabled && this.columnDefinitions[c].def != 'delete') {
+        nextId = this.columnDefinitions[c].def;
         break;
       }
-      if (id == r) {
+      if (id == this.columnDefinitions[c].def) {
         flag = true;
       }
     }
     if (nextId == '') {
-      nextId = Object.keys(this.tableData[0])[0];
-      index = index + 1;
+      for (let c = 0; c < this.columnDefinitions.length; c++) {
+        if (!this.columnDefinitions[c].disabled) {
+          nextId = this.columnDefinitions[c].def;
+          index = index + 1;
+          break;
+        }
+      }
     }
     this.commonService.setFocus(nextId + index);
   }

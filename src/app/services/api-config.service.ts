@@ -103,4 +103,7 @@ export class ApiConfigService {
    getVoucherNumber = `${this.environment.runtimeConfig.serverUrl}Transactions/GetVoucherNumber`;
    returnCashBank = `${this.environment.runtimeConfig.serverUrl}Transactions/ReturnCashBank`;
 
+    /******************************* Journal ****************************************************** */
+    addJournal = `${this.environment.runtimeConfig.serverUrl}Transactions/AddJournal`;
+
 }

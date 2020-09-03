@@ -22,6 +22,9 @@ export class JournalComponent implements OnInit {
   formData: FormGroup;
   routeEdit = '';
 
+  debitValue = 0;
+  creditValue = 0;
+
   tableData = [];
   dynTableProps = this.tablePropsFunc()
 
@@ -29,11 +32,8 @@ export class JournalComponent implements OnInit {
   branchList = [];
   voucherClassList = [];
   voucherTypeList = [];
-  // transactionTypeList = ['Cash', 'Bank']
-  // natureofTransactionList = ['Receipts', 'Payment'];
-  // accountList = [];
   glAccountList = [];
-  indicatorList = [ { id: 'Debit', text: 'Debit' }, { id: 'Credit' , text:'Credit' }];
+  indicatorList = [{ id: 'Debit', text: 'Debit' }, { id: 'Credit', text: 'Credit' }];
   profitCenterList = [];
   segmentList = [];
   costCenterList = [];
@@ -64,26 +64,22 @@ export class JournalComponent implements OnInit {
 
   formDataGroup() {
     this.formData = this.formBuilder.group({
-      id: [0],
       company: [null],
       branch: [null],
-      voucherClass: [null],
       voucherType: [null],
+      voucherNumber: [null],
       voucherDate: [new Date()],
       postingDate: [new Date()],
-      period: [null],
-      voucherNumber: [null],
       transactionType: [null],
       natureofTransaction: [null],
       account: [null],
-      accountingIndicator: [null],
       referenceNo: [null],
       referenceDate: [null],
       profitCenter: [null],
       segment: [null],
       narration: [null],
-      accounting: [null],
-      ext: [null]
+      voucherClass: [null],
+      accountingIndicator: [null]      
     });
   }
 
@@ -91,12 +87,12 @@ export class JournalComponent implements OnInit {
     return {
       tableData: {
         id: {
-          value: 0, type: 'autoInc', width: 10
+          value: 0, type: 'autoInc', width: 10, disabled: true
         },
         glaccount: {
           value: null, type: 'dropdown', list: this.glAccountList, id: 'id', text: 'text', displayMul: true, width: 150
         },
-        accountingIndicator:{
+        accountingIndicator: {
           value: null, type: 'dropdown', list: this.indicatorList, id: 'id', text: 'text', displayMul: false, width: 150
         },
         amount: {
@@ -153,7 +149,7 @@ export class JournalComponent implements OnInit {
         commitment: {
           value: null, type: 'dropdown', list: this.costCenterList, id: 'id', text: 'text', displayMul: false, width: 150
         },
-        hSNSACCode:{
+        hSNSACCode: {
           value: null, type: 'dropdown', list: this.costCenterList, id: 'id', text: 'text', displayMul: false, width: 150
         },
         delete: {
@@ -161,7 +157,27 @@ export class JournalComponent implements OnInit {
         }
       },
       formControl: {
-        glaccount: [null, [Validators.required]]
+        glaccount: [null, [Validators.required]],
+        accountingIndicator: [null],
+        amount: [null],
+        taxCode: [null],
+        sgstamount: [null],
+        cgstamount: [null],
+        igstamount: [null],
+        ugstamount: [null],
+        referenceNo: [null],
+        referenceDate: [null],
+        functionalDept: [null],
+        profitCenter: [null],
+        segment: [null],
+        costCenter: [null],
+        narration: [null],
+        workBreakStructureElement: [null],
+        netWork: [null],
+        orderNo: [null],
+        fundCenter: [null],
+        commitment: [null],
+        hSNSACCode: [null],
       }
     }
   }
@@ -251,7 +267,6 @@ export class JournalComponent implements OnInit {
           const res = response.body;
           if (!isNullOrUndefined(res) && res.status === StatusCodes.pass) {
             if (!isNullOrUndefined(res.response)) {
-              // this.accountList = res.response['glList'].filter(resp => resp.taxCategory == 'Cash' || resp.taxCategory == 'Bank');
               this.glAccountList = res.response['glList'].filter(resp => resp.taxCategory != 'Cash' || resp.taxCategory != 'Bank' || resp.taxCategory != 'Control Account');
             }
           }
@@ -386,8 +401,28 @@ export class JournalComponent implements OnInit {
     this.tableData = data;
   }
 
+  checkCreditDebit() {
+    this.debitValue = 0;
+    this.creditValue = 0;
+    if (!isNullOrUndefined(this.tableData)) {
+      if (this.tableData.length) {
+        this.tableData.forEach(res => {
+          if (res.accountingIndicator == 'Debit') {
+            this.debitValue = this.debitValue + parseInt(res.amount);
+          }
+          if (res.accountingIndicator == 'Credit') {
+            this.creditValue = this.creditValue + parseInt(res.amount);
+          }
+        });
+        return (this.debitValue == this.creditValue) ? false : true;
+      }
+    }
+    return true;
+  }
+
+
   back() {
-    this.router.navigate(['dashboard/transaction/journals'])
+    this.router.navigate(['dashboard/transaction/journals']);
   }
 
   save() {
@@ -408,9 +443,9 @@ export class JournalComponent implements OnInit {
 
   saveCashBank() {
     this.formData.controls['voucherNumber'].enable();
-    const addCashBank = String.Join('/', this.apiConfigService.addCashBank);
-    const requestObj = { cashbankHdr: this.formData.value, cashbankDtl: this.tableData };
-    this.apiService.apiPostRequest(addCashBank, requestObj).subscribe(
+    const addJournal = String.Join('/', this.apiConfigService.addJournal);
+    const requestObj = { journalHdr: this.formData.value, journalDtl: this.tableData };
+    this.apiService.apiPostRequest(addJournal, requestObj).subscribe(
       response => {
         const res = response.body;
         if (!isNullOrUndefined(res) && res.status === StatusCodes.pass) {

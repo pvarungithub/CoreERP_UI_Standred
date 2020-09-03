@@ -34,7 +34,6 @@ export class CashbankComponent implements OnInit {
   accountList = [];
   accountFilterList = [];
   glAccountList = [];
-  indicatorList = ['Debit', 'Credit'];
   profitCenterList = [];
   segmentList = [];
   costCenterList = [];
@@ -59,7 +58,6 @@ export class CashbankComponent implements OnInit {
   ngOnInit() {
     this.formDataGroup();
     this.getCompanyList();
-    this.getfunctionaldeptList();
     this.formData.controls['voucherNumber'].disable();
   }
 
@@ -67,29 +65,28 @@ export class CashbankComponent implements OnInit {
     this.formData = this.formBuilder.group({
       company: [null],
       branch: [null],
-      voucherClass: [null],
       voucherType: [null],
+      voucherNumber: [null],
       voucherDate: [new Date()],
       postingDate: [new Date()],
-      period: [null],
-      voucherNumber: [null],
       transactionType: [null],
       natureofTransaction: [null],
       account: [null],
-      indicator: [null],
       referenceNo: [null],
       referenceDate: [null],
       profitCenter: [null],
       segment: [null],
       narration: [null],
-      accounting: [null],
-      ext: [null]
+      voucherClass: [null]
     });
   }
 
   tablePropsFunc() {
     return {
       tableData: {
+        id: {
+          value: 0, type: 'autoInc', width: 10, disabled: true
+        },
         glaccount: {
           value: null, type: 'dropdown', list: this.glAccountList, id: 'id', text: 'text', displayMul: true, width: 150
         },
@@ -123,12 +120,6 @@ export class CashbankComponent implements OnInit {
         cgstamount: {
           value: null, type: 'number', disabled: true, width: 75
         },
-        igstamount: {
-          value: null, type: 'number', disabled: true, width: 75
-        },
-        ugstamount: {
-          value: null, type: 'number', disabled: true, width: 75
-        },
         workBreakStructureElement: {
           value: null, type: 'dropdown', list: this.costCenterList, id: 'id', text: 'text', displayMul: false, width: 150
         },
@@ -144,16 +135,23 @@ export class CashbankComponent implements OnInit {
         commitment: {
           value: null, type: 'dropdown', list: this.costCenterList, id: 'id', text: 'text', displayMul: false, width: 150
         },
-        hSNSACCode:{
+        hSNSACCode: {
           value: null, type: 'dropdown', list: this.costCenterList, id: 'id', text: 'text', displayMul: false, width: 150
         },
         narration: {
           value: null, type: 'text', width: 150
         },
+        igstamount: {
+          value: null, type: 'number', disabled: true, width: 75
+        },
+        ugstamount: {
+          value: null, type: 'number', disabled: true, width: 75
+        },
         delete: {
           type: 'delete', width: 10
         }
       },
+
       formControl: {
         glaccount: [null, [Validators.required]],
         amount: [null],
@@ -285,6 +283,7 @@ export class CashbankComponent implements OnInit {
               this.functionaldeptList = res.response['fdeptList'];
             }
           }
+          this.getProfitCentersList();
         });
   }
 
@@ -299,7 +298,7 @@ export class CashbankComponent implements OnInit {
               this.taxCodeList = res.response['TaxratesList'];
             }
           }
-          this.getProfitCentersList();
+          this.getfunctionaldeptList();
         });
   }
 
