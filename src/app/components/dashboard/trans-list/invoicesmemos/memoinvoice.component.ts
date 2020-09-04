@@ -33,20 +33,20 @@ export class MemoinvoiceComponent implements OnInit {
   natureofTransactionList = ['Incoming', 'Outgoing'];
   accountList = [];
   glAccountList = [];
-  indicatorList = [ { id: 'Debit', text: 'Debit' }, { id: 'Credit' , text:'Credit' }];
+  indicatorList = [{ id: 'Debit', text: 'Debit' }, { id: 'Credit', text: 'Credit' }];
   profitCenterList = [];
   segmentList = [];
   costCenterList = [];
-  bpTypeList=[];
+  bpTypeList = [];
   taxCodeList = [];
   functionaldeptList = [];
-  partyInvoiceNo=[];
-  partyInvoiceDate=[];
-  gRNNo=[];
-  gRNDate=[];
-  paymentterms=[];
-  taxAmount=[];
-  amount=[];
+  partyInvoiceNo = [];
+  partyInvoiceDate = [];
+  gRNNo = [];
+  gRNDate = [];
+  paymentterms = [];
+  taxAmount = [];
+  totalAmount = [];
 
   constructor(
     private formBuilder: FormBuilder,
@@ -66,8 +66,6 @@ export class MemoinvoiceComponent implements OnInit {
   ngOnInit() {
     this.formDataGroup();
     this.getCompanyList();
-    this.getfunctionaldeptList();
-    this.getPartnerTypeList();
     this.formData.controls['voucherNumber'].disable();
   }
 
@@ -79,21 +77,21 @@ export class MemoinvoiceComponent implements OnInit {
       voucherType: [null],
       voucherDate: [new Date()],
       postingDate: [new Date()],
-      partyInvoiceNo:[null],
-      partyInvoiceDate:[null],
-      gRNNo:[null],
-      gRNDate:[null],
+      partyInvoiceNo: [null],
+      partyInvoiceDate: [null],
+      gRNNo: [null],
+      gRNDate: [null],
       period: [null],
       voucherNumber: [null],
       transactionType: [null],
-      paymentterms:[null],
+      paymentterms: [null],
       natureofTransaction: [null],
       account: [null],
       indicator: [null],
-      referenceNo: [null],
+      referenceNumber: [null],
       referenceDate: [null],
       profitCenter: [null],
-      bPCategory:[],
+      bPCategory: [],
       segment: [null],
       narration: [null],
       accounting: [null],
@@ -107,7 +105,7 @@ export class MemoinvoiceComponent implements OnInit {
         glaccount: {
           value: null, type: 'dropdown', list: this.glAccountList, id: 'id', text: 'text', displayMul: true, width: 150
         },
-        accountingIndicator:{
+        accountingIndicator: {
           value: null, type: 'dropdown', list: this.indicatorList, id: 'id', text: 'text', displayMul: false, width: 150
         },
         amount: {
@@ -115,7 +113,7 @@ export class MemoinvoiceComponent implements OnInit {
         },
         taxCode: {
           value: null, type: 'dropdown', list: this.taxCodeList, id: 'taxRateCode', text: 'description', displayMul: false, width: 150
-        },        
+        },
         sgstamount: {
           value: null, type: 'number', disabled: true, width: 75
         },
@@ -164,7 +162,7 @@ export class MemoinvoiceComponent implements OnInit {
         commitment: {
           value: null, type: 'dropdown', list: this.costCenterList, id: 'id', text: 'text', displayMul: false, width: 150
         },
-        hSNSACCode:{
+        hSNSACCode: {
           value: null, type: 'dropdown', list: this.costCenterList, id: 'id', text: 'text', displayMul: false, width: 150
         },
         delete: {
@@ -255,20 +253,6 @@ export class MemoinvoiceComponent implements OnInit {
         });
   }
 
-  getfunctionaldeptList() {
-    const taxCodeUrl = String.Join('/', this.apiConfigService.getfunctionaldeptList);
-    this.apiService.apiGetRequest(taxCodeUrl)
-      .subscribe(
-        response => {
-          const res = response.body;
-          if (!isNullOrUndefined(res) && res.status === StatusCodes.pass) {
-            if (!isNullOrUndefined(res.response)) {
-              this.functionaldeptList = res.response['fdeptList'];
-            }
-          }
-        });
-  }
-
   getTaxRatesList() {
     const taxCodeUrl = String.Join('/', this.apiConfigService.getTaxRatesList);
     this.apiService.apiGetRequest(taxCodeUrl)
@@ -310,10 +294,23 @@ export class MemoinvoiceComponent implements OnInit {
               this.segmentList = res.response['segmentList'];
             }
           }
-          this.getCostcenters();
+          this.getfunctionaldeptList();
         });
   }
-
+  getfunctionaldeptList() {
+    const taxCodeUrl = String.Join('/', this.apiConfigService.getfunctionaldeptList);
+    this.apiService.apiGetRequest(taxCodeUrl)
+      .subscribe(
+        response => {
+          const res = response.body;
+          if (!isNullOrUndefined(res) && res.status === StatusCodes.pass) {
+            if (!isNullOrUndefined(res.response)) {
+              this.functionaldeptList = res.response['fdeptList'];
+            }
+          }
+          this.getPartnerTypeList();
+        });
+  }
   getPartnerTypeList() {
     const costCenUrl = String.Join('/', this.apiConfigService.getPartnerTypeList);
     this.apiService.apiGetRequest(costCenUrl)
@@ -327,13 +324,10 @@ export class MemoinvoiceComponent implements OnInit {
 
             }
           }
-          this.dynTableProps = this.tablePropsFunc();
-          // if (this.routeEdit != '') {
-          //   this.getCashBankDetail(this.routeEdit);
-          // }
+          this.getCostcenters();
         });
   }
-  
+
   getCostcenters() {
     const costCenUrl = String.Join('/', this.apiConfigService.getCostCentersList);
     this.apiService.apiGetRequest(costCenUrl)
@@ -410,12 +404,12 @@ export class MemoinvoiceComponent implements OnInit {
     if (this.tableData.length == 0) {
       return;
     }
-    this.saveCashBank();
+    this.saveInvoiceMemo();
   }
 
   return() {
-    const addCashBank = String.Join('/', this.apiConfigService.returnCashBank, this.routeEdit);
-    this.apiService.apiGetRequest(addCashBank).subscribe(
+    const addInvoiceMemo = String.Join('/', this.apiConfigService.returnCashBank, this.routeEdit);
+    this.apiService.apiGetRequest(addInvoiceMemo).subscribe(
       response => {
         const res = response.body;
         if (!isNullOrUndefined(res) && res.status === StatusCodes.pass) {
@@ -434,16 +428,16 @@ export class MemoinvoiceComponent implements OnInit {
     this.addOrEditService.sendDynTableData(this.tableData);
   }
 
-  saveCashBank() {
+  saveInvoiceMemo() {
     this.formData.controls['voucherNumber'].enable();
-    const addCashBank = String.Join('/', this.apiConfigService.addCashBank);
-    const requestObj = { cashbankHdr: this.formData.value, cashbankDtl: this.tableData };
-    this.apiService.apiPostRequest(addCashBank, requestObj).subscribe(
+    const addInvoiceMemo = String.Join('/', this.apiConfigService.addInvoiceMemo);
+    const requestObj = { imHdr: this.formData.value, imDtl: this.tableData };
+    this.apiService.apiPostRequest(addInvoiceMemo, requestObj).subscribe(
       response => {
         const res = response.body;
         if (!isNullOrUndefined(res) && res.status === StatusCodes.pass) {
           if (!isNullOrUndefined(res.response)) {
-            this.alertService.openSnackBar('Cash bank created Successfully..', Static.Close, SnackBar.success);
+            this.alertService.openSnackBar('Invoice / Memo created Successfully..', Static.Close, SnackBar.success);
           }
           this.reset();
           this.spinner.hide();

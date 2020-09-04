@@ -429,7 +429,7 @@ export class JournalComponent implements OnInit {
     if (this.tableData.length == 0) {
       return;
     }
-    this.saveCashBank();
+    this.saveJournal();
   }
 
   return() { }
@@ -441,7 +441,7 @@ export class JournalComponent implements OnInit {
     this.addOrEditService.sendDynTableData(this.tableData);
   }
 
-  saveCashBank() {
+  saveJournal() {
     this.formData.controls['voucherNumber'].enable();
     const addJournal = String.Join('/', this.apiConfigService.addJournal);
     const requestObj = { journalHdr: this.formData.value, journalDtl: this.tableData };
@@ -450,7 +450,7 @@ export class JournalComponent implements OnInit {
         const res = response.body;
         if (!isNullOrUndefined(res) && res.status === StatusCodes.pass) {
           if (!isNullOrUndefined(res.response)) {
-            this.alertService.openSnackBar('Cash bank created Successfully..', Static.Close, SnackBar.success);
+            this.alertService.openSnackBar('Journal created Successfully..', Static.Close, SnackBar.success);
           }
           this.reset();
           this.spinner.hide();

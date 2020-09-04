@@ -106,4 +106,7 @@ export class ApiConfigService {
     /******************************* Journal ****************************************************** */
     addJournal = `${this.environment.runtimeConfig.serverUrl}Transactions/AddJournal`;
 
+    /******************************* Invoice & Memo ****************************************************** */
+    addInvoiceMemo = `${this.environment.runtimeConfig.serverUrl}Transactions/AddInvoiceMemo`;
+
 }
