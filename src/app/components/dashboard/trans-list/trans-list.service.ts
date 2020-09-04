@@ -34,6 +34,7 @@ export class TransListService {
         this.dynamicComp.component = JournalComponent;
          this.dynamicComp.tableUrl = this.apiConfigService.getJVMaster;
          this.dynamicComp.list = 'jvMasters';
+         this.dynamicComp.editKey = 'voucherNumber';
         return this.dynamicComp;
         break;
       default:
@@ -43,6 +44,7 @@ export class TransListService {
         this.dynamicComp.component = MemoinvoiceComponent;
          this.dynamicComp.tableUrl = this.apiConfigService.getIMMaster;
          this.dynamicComp.list = 'imMasters';
+         this.dynamicComp.editKey = 'voucherNumber';
         return this.dynamicComp;
         break;
       default:

@@ -71,12 +71,11 @@ export class JournalComponent implements OnInit {
       voucherDate: [new Date()],
       postingDate: [new Date()],
       transactionType: [null],
-      natureofTransaction: [null],
-      account: [null],
+      period: [null],
       referenceNo: [null],
       referenceDate: [null],
-      profitCenter: [null],
-      segment: [null],
+      ext: [null],
+      ext1: [null],
       narration: [null],
       voucherClass: [null],
       accountingIndicator: [null]      
@@ -177,7 +176,7 @@ export class JournalComponent implements OnInit {
         orderNo: [null],
         fundCenter: [null],
         commitment: [null],
-        hSNSACCode: [null],
+        hSNSACCode: [null]
       }
     }
   }
@@ -192,7 +191,7 @@ export class JournalComponent implements OnInit {
           if (!isNullOrUndefined(res) && res.status === StatusCodes.pass) {
             if (!isNullOrUndefined(res.response)) {
               this.formData.setValue(res.response['jvMasters']);
-              this.addOrEditService.sendDynTableData(res.response['jvDetails']);
+              this.addOrEditService.sendDynTableData(res.response['JvDetail']);
               this.formData.disable();
             }
           }

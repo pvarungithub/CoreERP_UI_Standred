@@ -34,7 +34,6 @@ export class MemoinvoiceComponent implements OnInit {
   accountList = [];
   glAccountList = [];
   indicatorList = [{ id: 'Debit', text: 'Debit' }, { id: 'Credit', text: 'Credit' }];
-  amount:[null];
   profitCenterList = [];
   segmentList = [];
   costCenterList = [];
@@ -43,12 +42,13 @@ export class MemoinvoiceComponent implements OnInit {
   functionaldeptList = [];
   partyInvoiceNo = [];
   partyInvoiceDate = [];
-  gRNNo = [];
-  gRNDate = [];
+  grnno = [];
+  grndate = [];
   paymentterms = [];
   taxAmount = [];
   totalAmount = [];
-  
+  narration= [];
+
   constructor(
     private formBuilder: FormBuilder,
     private apiConfigService: ApiConfigService,
@@ -80,24 +80,22 @@ export class MemoinvoiceComponent implements OnInit {
       postingDate: [new Date()],
       partyInvoiceNo: [null],
       partyInvoiceDate: [null],
-      gRNNo: [null],
-      gRNDate: [null],
+      grnno: [null],
+      grndate: [null],
       period: [null],
       voucherNumber: [null],
       transactionType: [null],
       paymentterms: [null],
       natureofTransaction: [null],
-      account: [null],
-      indicator: [null],
-      amount:[null],
       referenceNumber: [null],
       referenceDate: [null],
-      profitCenter: [null],
-      bPCategory: [],
-      segment: [null],
-      narration: [null],
-      accounting: [null],
-      ext: [null]
+      bpcategory: [],
+      totalAmount:[null],
+      ext: [null],
+      partyAccount:[null],
+      accountingIndicator: [null] ,
+      taxAmount:[null],
+      narration:[null]  
     });
   }
 
@@ -172,7 +170,8 @@ export class MemoinvoiceComponent implements OnInit {
         }
       },
       formControl: {
-        glaccount: [null, [Validators.required]]
+        glaccount: [null, [Validators.required]],
+        narration: []
       }
     }
   }
@@ -187,7 +186,7 @@ export class MemoinvoiceComponent implements OnInit {
           if (!isNullOrUndefined(res) && res.status === StatusCodes.pass) {
             if (!isNullOrUndefined(res.response)) {
               this.formData.setValue(res.response['imMasters']);
-              this.addOrEditService.sendDynTableData(res.response['imDetail']);
+              this.addOrEditService.sendDynTableData(res.response['ImDetail']);
               this.formData.disable();
             }
           }
