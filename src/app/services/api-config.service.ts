@@ -105,8 +105,13 @@ export class ApiConfigService {
 
     /******************************* Journal ****************************************************** */
     addJournal = `${this.environment.runtimeConfig.serverUrl}Transactions/AddJournal`;
+    getJVDetail = `${this.environment.runtimeConfig.serverUrl}Transactions/GetJVDetail`;
+    getJVMaster = `${this.environment.runtimeConfig.serverUrl}Transactions/GetJVMaster`;
 
     /******************************* Invoice & Memo ****************************************************** */
     addInvoiceMemo = `${this.environment.runtimeConfig.serverUrl}Transactions/AddInvoiceMemo`;
+    getIMDetail = `${this.environment.runtimeConfig.serverUrl}Transactions/GetIMDetail`;
+    getIMMaster = `${this.environment.runtimeConfig.serverUrl}Transactions/GetIMMaster`;
+
 
 }

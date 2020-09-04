@@ -182,17 +182,17 @@ export class JournalComponent implements OnInit {
     }
   }
 
-  getCashBankDetail(val) {
-    const cashDetUrl = String.Join('/', this.apiConfigService.getCashBankDetail, val);
-    this.apiService.apiGetRequest(cashDetUrl)
+  getJVDetail(val) {
+    const jvDetUrl = String.Join('/', this.apiConfigService.getJVDetail, val);
+    this.apiService.apiGetRequest(jvDetUrl)
       .subscribe(
         response => {
           this.spinner.hide();
           const res = response.body;
           if (!isNullOrUndefined(res) && res.status === StatusCodes.pass) {
             if (!isNullOrUndefined(res.response)) {
-              this.formData.setValue(res.response['CashBankMasters']);
-              this.addOrEditService.sendDynTableData(res.response['CashBankDetail']);
+              this.formData.setValue(res.response['jvMasters']);
+              this.addOrEditService.sendDynTableData(res.response['jvDetails']);
               this.formData.disable();
             }
           }
@@ -348,7 +348,7 @@ export class JournalComponent implements OnInit {
           }
           this.dynTableProps = this.tablePropsFunc();
           if (this.routeEdit != '') {
-            this.getCashBankDetail(this.routeEdit);
+            this.getJVDetail(this.routeEdit);
           }
         });
   }

@@ -34,6 +34,7 @@ export class MemoinvoiceComponent implements OnInit {
   accountList = [];
   glAccountList = [];
   indicatorList = [{ id: 'Debit', text: 'Debit' }, { id: 'Credit', text: 'Credit' }];
+  amount:[null];
   profitCenterList = [];
   segmentList = [];
   costCenterList = [];
@@ -47,7 +48,7 @@ export class MemoinvoiceComponent implements OnInit {
   paymentterms = [];
   taxAmount = [];
   totalAmount = [];
-
+  
   constructor(
     private formBuilder: FormBuilder,
     private apiConfigService: ApiConfigService,
@@ -88,6 +89,7 @@ export class MemoinvoiceComponent implements OnInit {
       natureofTransaction: [null],
       account: [null],
       indicator: [null],
+      amount:[null],
       referenceNumber: [null],
       referenceDate: [null],
       profitCenter: [null],
@@ -175,8 +177,8 @@ export class MemoinvoiceComponent implements OnInit {
     }
   }
 
-  getCashBankDetail(val) {
-    const cashDetUrl = String.Join('/', this.apiConfigService.getCashBankDetail, val);
+  getIMDetail(val) {
+    const cashDetUrl = String.Join('/', this.apiConfigService.getIMDetail, val);
     this.apiService.apiGetRequest(cashDetUrl)
       .subscribe(
         response => {
@@ -184,8 +186,8 @@ export class MemoinvoiceComponent implements OnInit {
           const res = response.body;
           if (!isNullOrUndefined(res) && res.status === StatusCodes.pass) {
             if (!isNullOrUndefined(res.response)) {
-              this.formData.setValue(res.response['CashBankMasters']);
-              this.addOrEditService.sendDynTableData(res.response['CashBankDetail']);
+              this.formData.setValue(res.response['imMasters']);
+              this.addOrEditService.sendDynTableData(res.response['imDetail']);
               this.formData.disable();
             }
           }
@@ -343,7 +345,7 @@ export class MemoinvoiceComponent implements OnInit {
           }
           this.dynTableProps = this.tablePropsFunc();
           if (this.routeEdit != '') {
-            this.getCashBankDetail(this.routeEdit);
+            this.getIMDetail(this.routeEdit);
           }
         });
   }

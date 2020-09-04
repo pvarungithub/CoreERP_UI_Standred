@@ -32,8 +32,8 @@ export class TransListService {
     switch (data) {
       case 'journals':
         this.dynamicComp.component = JournalComponent;
-        // this.dynamicComp.tableUrl = this.apiConfigService.getCashBankMaster;
-        // this.dynamicComp.list = 'CashBankMasters';
+         this.dynamicComp.tableUrl = this.apiConfigService.getJVMaster;
+         this.dynamicComp.list = 'jvMasters';
         return this.dynamicComp;
         break;
       default:
@@ -41,8 +41,8 @@ export class TransListService {
     switch (data) {
       case 'invoicesmemos':
         this.dynamicComp.component = MemoinvoiceComponent;
-        // this.dynamicComp.tableUrl = this.apiConfigService.getCashBankMaster;
-        // this.dynamicComp.list = 'CashBankMasters';
+         this.dynamicComp.tableUrl = this.apiConfigService.getIMMaster;
+         this.dynamicComp.list = 'imMasters';
         return this.dynamicComp;
         break;
       default:
@@ -50,8 +50,8 @@ export class TransListService {
     switch (data) {
       case 'receiptspayments':
         this.dynamicComp.component = ReceiptspaymentsComponent;
-        // this.dynamicComp.tableUrl = this.apiConfigService.getCashBankMaster;
-        // this.dynamicComp.list = 'CashBankMasters';
+        //  this.dynamicComp.tableUrl = this.apiConfigService.getCashBankMaster;
+        //  this.dynamicComp.list = 'CashBankMasters';
         return this.dynamicComp;
         break;
       default:

@@ -77,7 +77,10 @@ export class CashbankComponent implements OnInit {
       profitCenter: [null],
       segment: [null],
       narration: [null],
-      voucherClass: [null]
+      voucherClass: [null],
+      period:[null],
+      accountingIndicator:[null],
+      ext:[null]
     });
   }
 
