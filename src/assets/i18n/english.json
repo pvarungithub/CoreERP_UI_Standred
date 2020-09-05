@@ -616,22 +616,7 @@
     "description": "Description",
     "depreciationKey": "Depreciation Key",
     "depreciationName": "Depreciation Key"
-  },
-  "paymentterms": {
-    "title": "Payment Terms",
-    "code": "Code",
-    "description": "Description",
-    "term1Days": "Term1Days",
-    "term1Discount": "Term1Discount",
-    "term2Days": "Term2Days",
-    "term2Discount": "Term2Discount",
-    "term3Days": "Term3Days",
-    "term3Discount": "Term3Discount",
-    "term4Days": "Term4Days",
-    "term4Discount": "Term4Discount",
-    "term5Days": "Term5Days",
-    "term5Discount": "Term5Discount"
-  },
+  },  
   "designation": {
     "designationId": "DesignationId",
     "designationName": "DesignationName",
@@ -667,7 +652,30 @@
     "upto3Rate": "Depreciation Upto 3 Rate",
     "upto4Years": "Depreciation Upto 4 Years",
     "upto4Months": "Depreciation Upto 4 Months",
-    "upto4Rate": "Depreciation Upto 4 Rate"
+    "upto4Rate": "Depreciation Upto 4 Rate",
+    "yearsupto": "Yearsupto",
+    "monthupto":"Monthupto",
+    "rateupto":"Rateupto" ,
+    "delete": "Delete"
+  },
+ "paymentterms": {
+    "title": "Payment Terms",
+    "code": "Code",
+    "description": "Description",
+    "term1Days": "Term1Days",
+    "term1Discount": "Term1Discount",
+    "term2Days": "Term2Days",
+    "term2Discount": "Term2Discount",
+    "term3Days": "Term3Days",
+    "term3Discount": "Term3Discount",
+    "term4Days": "Term4Days",
+    "term4Discount": "Term4Discount",
+    "term5Days": "Term5Days",
+    "term5Discount": "Term5Discount",
+    "days":"Days",
+    "discount": "Discount",
+    "ext":"Ext",
+    "delete": "delete" 
   },
   "businesspartner": {
     "title": "Busieness Partner Master",
@@ -934,7 +942,7 @@
     "bpcategory":"BP Category",
     "partyInvoiceNo":"Party Invoice No",
     "partyInvoiceDate":"Party Invoice Date",
-    "grnnoo":"GRN No",
+    "grnno":"GRN No",
     "grndate":"GRN Date",
     "paymentterms":"Paymentterms",
     "accountingIndicator": "Accounting Indicator",
@@ -964,7 +972,7 @@
   },
   "receiptspayments": {
     "id": "id",
-    "title": "Receipts / Payments",
+    "title": "Party Payments / Receipts",
     "company": "Company",
     "branch": "Branch",
     "voucherNumber": "Voucher Number",

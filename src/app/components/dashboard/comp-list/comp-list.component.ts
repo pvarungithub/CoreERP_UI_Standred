@@ -95,7 +95,11 @@ export class CompListComponent implements OnInit, OnDestroy {
 
       if (this.tableUrl.tabScreen == 'True') {
         this.addOrEditService.editData = value;
-        this.router.navigate([this.activatedRoute.snapshot['_routerState'].url, value.action]);
+        if(value.action == 'Add') {
+          this.router.navigate([this.activatedRoute.snapshot['_routerState'].url, value.action ]);
+        } else if(value.action == 'Edit') {
+          this.router.navigate([this.activatedRoute.snapshot['_routerState'].url, value.action, { value: value.item[this.tableUrl.primaryKey] }]);
+        }
       } else {
         value.tableData = this.tableData;
         const dialogRef = this.dialog.open(this.compListService.getDynComponents(this.tableUrl.formName), {

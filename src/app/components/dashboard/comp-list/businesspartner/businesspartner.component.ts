@@ -35,6 +35,7 @@ export class BusienessPartnerAccountComponent implements OnInit, OnDestroy {
   tdsratesList: any;
   glList: any;
   controlAccountList: any;
+  bpgLists:any;
   bpaNum: any;
   bpname: any;
 
@@ -118,8 +119,11 @@ export class BusienessPartnerAccountComponent implements OnInit, OnDestroy {
 
   onbpChange() {
     this.controlAccountList = [];
+    this.bpgLists=[];
     let data = this.ptypeList.find(res => res.code == this.modelFormData.get('bptype').value);
     this.controlAccountList = this.glList.filter(res => res.controlAccount == data.description);
+    this.bpgLists=this.bpgList.filter(res => res.bptype == data.code);
+
   }
 
   onChange(event: any) {

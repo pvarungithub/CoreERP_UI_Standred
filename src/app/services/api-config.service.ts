@@ -55,6 +55,10 @@ export class ApiConfigService {
    GetCostCenterList = `${this.environment.runtimeConfig.serverUrl}CostCenter/GetCostCenterList`;
    getplantList = `${this.environment.runtimeConfig.serverUrl}Plant/GetPlant`;
    getlocationList = `${this.environment.runtimeConfig.serverUrl}Location/GetLocationList`;
+   registerdepreciationcodeList= `${this.environment.runtimeConfig.serverUrl}Depreciationcode/RegisterDepreciationcode`;
+   getdepreciationcodeDetail = `${this.environment.runtimeConfig.serverUrl}Depreciationcode/GetDepreciationcodeDetail`;
+   registerpaymenttermsList= `${this.environment.runtimeConfig.serverUrl}PaymentTerms/RegisterPaymentTerms`;
+   getpaymenttermDetail = `${this.environment.runtimeConfig.serverUrl}PaymentTerms/GetPaymentTermsDetail`;   
 
    ///************************ Accounting ************************** */
    getLedgerList = `${this.environment.runtimeConfig.serverUrl}Ledger/GetLedgerList`;

@@ -1,8 +1,17 @@
-import { Component, Inject, Optional, OnInit } from '@angular/core';
-import { MatDialogRef, MAT_DIALOG_DATA } from '@angular/material/dialog';
+import { Component, OnInit } from '@angular/core';
+import { ApiService } from '../../../../services/api.service';
+import { String } from 'typescript-string-operations';
 import { isNullOrUndefined } from 'util';
 import { FormBuilder, FormGroup, Validators } from '@angular/forms';
+import { NgxSpinnerService } from 'ngx-spinner';
+import { ApiConfigService } from '../../../../services/api-config.service';
+import { StatusCodes } from '../../../../enums/common/common';
 import { AddOrEditService } from '../add-or-edit.service';
+import { AlertService } from '../../../../services/alert.service';
+import { ActivatedRoute, Router } from '@angular/router';
+import { CommonService } from '../../../../services/common.service';
+import { Static } from '../../../../enums/common/static';
+import { SnackBar } from '../../../../enums/common/common';
 
 interface Term {
   value: string;
@@ -17,6 +26,9 @@ interface Term {
 export class PaymentTermsComponent implements OnInit {
 
   modelFormData: FormGroup;
+  routeEdit = '';
+  tableData = [];
+  dynTableProps = this.tablePropsFunc()
   isSubmitted = false;
   formData: any;
   taxcodeList: any;
@@ -35,12 +47,57 @@ export class PaymentTermsComponent implements OnInit {
     { value: '7Day', viewValue: '7th Day' }
   ];
   companyList: any;
+
+
+
+  tablePropsFunc() {
+    return {
+      tableData:  {
+        days: {
+          value: null, type: 'text', width: 150
+        },
+        discount: {
+          value: null, type: 'text', width: 150
+        },
+        // ext: {
+        //   value: null, type: 'text', width: 150
+        // },
+        
+          delete: {
+            type: 'delete',
+            newObject: true
+          }
+        },
+      
+      formControl: {
+        days: [null,],
+        discount:[null, [Validators.required]]
+        //ext: [null,]
+      }
+    }
+  }
+
+
+
   constructor(
+    private apiService: ApiService,
     private addOrEditService: AddOrEditService,
+    private apiConfigService: ApiConfigService,
+    private spinner: NgxSpinnerService,
     private formBuilder: FormBuilder,
-    public dialogRef: MatDialogRef<PaymentTermsComponent>,
+    private alertService: AlertService,
+    private router: Router,
+    private activatedRoute: ActivatedRoute,
+    public route: ActivatedRoute,
+    private commonService: CommonService
+  ) {
+
+    if (!isNullOrUndefined(this.route.snapshot.params.value)) {
+      this.routeEdit = this.route.snapshot.params.value;
+    }
+
     // @Optional() is used to prevent error if no data is passed
-    @Optional() @Inject(MAT_DIALOG_DATA) public data: any) {
+    // @Optional() @Inject(MAT_DIALOG_DATA) public data: any) {
 
     this.modelFormData = this.formBuilder.group({
       code: [null, [Validators.required, Validators.minLength(1), Validators.maxLength(4)]],
@@ -55,39 +112,71 @@ export class PaymentTermsComponent implements OnInit {
       term4Discount:  [null],
       term5Days:  [null],
       term5Discount: [null]
-      
+
     });
 
-    this.formData = { ...data };
-    if (!isNullOrUndefined(this.formData.item)) {
-      this.modelFormData.patchValue(this.formData.item);
-      this.modelFormData.controls['code'].disable();
-    }
-
+    this.formData = { ...this.addOrEditService.editData };
+    
   }
 
+  getpaymenttermDetail(val) {
+    const cashDetUrl = String.Join('/', this.apiConfigService.getpaymenttermDetail, val);
+    this.apiService.apiGetRequest(cashDetUrl)
+      .subscribe(
+        response => {
+          this.spinner.hide();
+          const res = response.body;
+          if (!isNullOrUndefined(res) && res.status === StatusCodes.pass) {
+            if (!isNullOrUndefined(res.response)) {
+              this.modelFormData.setValue(res.response['PaymentTermMasters']);
+              this.addOrEditService.sendDynTableData(res.response['PaymentTermDetail']);
+              //this.modelFormData.disable();
+            }
+          }
+        });
+  }
+  
   ngOnInit() {
+    if (this.routeEdit != '') {
+      this.getpaymenttermDetail(this.routeEdit);
+    }
   }
   
   get formControls() { return this.modelFormData.controls; }
 
-  save() {
-    if (this.modelFormData.invalid) {
-      return;
-    }
-    this.modelFormData.controls['code'].enable();
-    this.formData.item = this.modelFormData.value;
+  emitTableData(data) {
+    this.tableData = data;
     
-this.addOrEditService[this.formData.action](this.formData, (res) => {
-  this.dialogRef.close(this.formData);
-});
-if (this.formData.action == 'Edit') {
-  this.modelFormData.controls['code'].disable();
-}
+  }
+
+  save() {
+   
+    this.savepaymentterms();
   }
 
   cancel() {
-    this.dialogRef.close();
+    this.router.navigate(['/dashboard/master/paymentterms']);
   }
-
+  reset() {
+    this.tableData = [];
+    this.modelFormData.reset();
+    //this.formData.controls['subAssetNumber'].disable();
+    this.addOrEditService.sendDynTableData(this.tableData);
+  }
+  savepaymentterms() {
+    const addCashBank = String.Join('/', this.apiConfigService.registerpaymenttermsList);
+    const requestObj = { paymentstrmsHdr: this.modelFormData.value, paymentstrmsDetail: this.tableData };
+    this.apiService.apiPostRequest(addCashBank, requestObj).subscribe(
+      response => {
+        const res = response.body;
+        if (!isNullOrUndefined(res) && res.status === StatusCodes.pass) {
+          if (!isNullOrUndefined(res.response)) {
+            this.alertService.openSnackBar('paymentterms created Successfully..', Static.Close, SnackBar.success);
+          }
+          this.reset();
+          this.spinner.hide();
+         
+        }
+      });
+  }
 }

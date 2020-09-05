@@ -1,24 +1,33 @@
-import { Component, Inject, Optional, OnInit } from '@angular/core';
-import { MatDialogRef, MAT_DIALOG_DATA } from '@angular/material/dialog';
+import { Component, OnInit } from '@angular/core';
+import { ApiService } from '../../../../services/api.service';
+import { String } from 'typescript-string-operations';
 import { isNullOrUndefined } from 'util';
 import { FormBuilder, FormGroup, Validators } from '@angular/forms';
+import { NgxSpinnerService } from 'ngx-spinner';
+import { ApiConfigService } from '../../../../services/api-config.service';
+import { StatusCodes } from '../../../../enums/common/common';
 import { AddOrEditService } from '../add-or-edit.service';
+import { AlertService } from '../../../../services/alert.service';
+import { ActivatedRoute, Router } from '@angular/router';
+import { CommonService } from '../../../../services/common.service';
+import { Static } from '../../../../enums/common/static';
+import { SnackBar } from '../../../../enums/common/common';
+
 
 interface Methodofdepreciation {
   value: string;
   viewValue: string;
 }
-interface Upto {
-  value: string;
-  viewValue: string;
-}
+
 @Component({
   selector: 'app-depreciationcode',
   templateUrl: './depreciationcode.component.html',
   styleUrls: ['./depreciationcode.component.scss']
 })
 export class DepreciationcodeComponent implements OnInit {
-
+  routeEdit = '';
+  tableData = [];
+  dynTableProps = this.tablePropsFunc()
   modelFormData: FormGroup;
   isSubmitted  =  false;
   formData: any;
@@ -29,20 +38,55 @@ export class DepreciationcodeComponent implements OnInit {
     { value: 'Written down value', viewValue: 'Written down value' },
     { value: 'Useful life ', viewValue: 'Useful life' }   
   ];
-values: Upto[] =
-  [
-    { value: '1', viewValue: 'Upto-1' },
-    { value: '3', viewValue: 'Upto-3' },
-    { value: '4', viewValue: 'Upto-4' } ,  
-    { value: '5', viewValue: 'Upto-5' } ,  
-    { value: '6', viewValue: 'Upto-6' } 
-  ];
+  tablePropsFunc() {
+    return {
+      tableData:  {
+        yearsupto: {
+          value: null, type: 'text', width: 150
+        },
+        monthupto: {
+          value: null, type: 'text', width: 150
+        },
+        rateupto: {
+          value: null, type: 'text', width: 150
+        },
+        
+          delete: {
+            type: 'delete',
+            newObject: true
+          }
+        },
+      
+      formControl: {
+        yearsupto: [null,],
+        monthupto: [null,],
+        rateupto:[null, [Validators.required]]
+        //ext: [null,]
+      }
+    }
+  }
+
+
+
   constructor(
+    private apiService: ApiService,
     private addOrEditService: AddOrEditService,
+    private apiConfigService: ApiConfigService,
+    private spinner: NgxSpinnerService,
     private formBuilder: FormBuilder,
-    public dialogRef: MatDialogRef<DepreciationcodeComponent>,
+    private alertService: AlertService,
+    private router: Router,
+    private activatedRoute: ActivatedRoute,
+    public route: ActivatedRoute,
+    private commonService: CommonService
+  ) {
+
+    if (!isNullOrUndefined(this.route.snapshot.params.value)) {
+      this.routeEdit = this.route.snapshot.params.value;
+    }
+
     // @Optional() is used to prevent error if no data is passed
-    @Optional() @Inject(MAT_DIALOG_DATA) public data: any ) {
+    // @Optional() @Inject(MAT_DIALOG_DATA) public data: any) {
 
     this.modelFormData = this.formBuilder.group({
       code: [null, [Validators.required, Validators.minLength(1), Validators.maxLength(5)]],
@@ -50,8 +94,6 @@ values: Upto[] =
       depreciationMethod: [null],
       purchaseWithin: [null],
       rate: [null],
-      // maxDepreciationAmount: [null],
-      // maxDepreciationRate:[null],
       upto1Years : [null],
       upto1Months: [null],
       upto1Rate: [null],     
@@ -63,39 +105,74 @@ values: Upto[] =
       upto3Rate: [null],
       upto4Years: [null],
       upto4Months: [null],
-      upto4Rate: [null]
-     
-      });
+      upto4Rate: [null],
+      maxDepreciationAmount: [null],
+      maxDepreciationRate:[null],
 
-      this.formData = {...data};
-      if (!isNullOrUndefined(this.formData.item)) {
-        this.modelFormData.patchValue(this.formData.item);
-       this.modelFormData.controls['code'].disable();
-      }
+    });
 
+    this.formData = { ...this.addOrEditService.editData };
+    
   }
 
+  getdepreciationDetail(val) {
+    const cashDetUrl = String.Join('/', this.apiConfigService.getdepreciationcodeDetail, val);
+    this.apiService.apiGetRequest(cashDetUrl)
+      .subscribe(
+        response => {
+          this.spinner.hide();
+          const res = response.body;
+          if (!isNullOrUndefined(res) && res.status === StatusCodes.pass) {
+            if (!isNullOrUndefined(res.response)) {
+              this.modelFormData.setValue(res.response['DepreciationcodeMasters']);
+              this.addOrEditService.sendDynTableData(res.response['DepreciationcodeDetail']);
+              //this.modelFormData.disable();
+            }
+          }
+        });
+  }
+ 
   ngOnInit() {
-   
+    if (this.routeEdit != '') {
+      this.getdepreciationDetail(this.routeEdit);
+    }
   }
-
+  
   get formControls() { return this.modelFormData.controls; }
 
+  emitTableData(data) {
+    this.tableData = data;
+    
+  }
+
   save() {
-    if (this.modelFormData.invalid) {
-      return;
-    }
-    this.modelFormData.controls['code'].enable();
-    this.formData.item = this.modelFormData.value;
-    this.addOrEditService[this.formData.action](this.formData, (res) => {
-      this.dialogRef.close(this.formData);
-    });
-    if (this.formData.action == 'Edit') {
-      this.modelFormData.controls['code'].disable();
-    }
+   
+    this.savedepreciationcode();
   }
 
   cancel() {
-    this.dialogRef.close();
+    this.router.navigate(['/dashboard/master/depreciationcode']);
+  }
+  reset() {
+    this.tableData = [];
+    this.modelFormData.reset();
+    //this.formData.controls['subAssetNumber'].disable();
+    this.addOrEditService.sendDynTableData(this.tableData);
+  }
+  savedepreciationcode() {
+    const addCashBank = String.Join('/', this.apiConfigService.registerdepreciationcodeList);
+    const requestObj = { depreciationcodeHdr: this.modelFormData.value, depreciationcodeDetail: this.tableData };
+    this.apiService.apiPostRequest(addCashBank, requestObj).subscribe(
+      response => {
+        const res = response.body;
+        if (!isNullOrUndefined(res) && res.status === StatusCodes.pass) {
+          if (!isNullOrUndefined(res.response)) {
+            this.alertService.openSnackBar('Depreciationcode created Successfully..', Static.Close, SnackBar.success);
+          }
+          this.reset();
+          this.spinner.hide();
+         
+        }
+      });
   }
 }

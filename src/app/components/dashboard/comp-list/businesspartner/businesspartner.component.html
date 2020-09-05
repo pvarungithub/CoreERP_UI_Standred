@@ -33,7 +33,7 @@
               <mat-label [translate]="'businesspartner.bpgroup'"></mat-label>
               <mat-select formControlName="bpgroup" (selectionChange)="getBPNumberData()" appFocusOnEnter tabIndex="3">
                 <mat-option>None</mat-option>
-                <mat-option *ngFor="let bpg of bpgList" [value]="bpg.id">
+                <mat-option *ngFor="let bpg of bpgLists" [value]="bpg.id">
                   {{bpg.text}}
                 </mat-option>
               </mat-select>
