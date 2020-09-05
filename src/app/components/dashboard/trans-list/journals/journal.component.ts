@@ -27,7 +27,7 @@ export class JournalComponent implements OnInit {
 
   tableData = [];
   dynTableProps = this.tablePropsFunc()
-
+  btList=[];
   companyList = [];
   branchList = [];
   voucherClassList = [];
@@ -78,7 +78,12 @@ export class JournalComponent implements OnInit {
       ext1: [null],
       narration: [null],
       voucherClass: [null],
-      accountingIndicator: [null]      
+      accountingIndicator: [null],
+      status:[null],
+      addWho:[null],
+      editWho:[null],
+      addDate:[null],
+      editDate:[null]      
     });
   }
 
@@ -127,6 +132,9 @@ export class JournalComponent implements OnInit {
         segment: {
           value: null, type: 'dropdown', list: this.segmentList, id: 'id', text: 'name', displayMul: false, width: 150
         },
+        bttypes: {
+          value: null, type: 'dropdown', list: this.btList, id: 'code', text: 'description', displayMul: false, width: 150
+        },
         costCenter: {
           value: null, type: 'dropdown', list: this.costCenterList, id: 'id', text: 'text', displayMul: false, width: 150
         },
@@ -158,6 +166,7 @@ export class JournalComponent implements OnInit {
       formControl: {
         glaccount: [null, [Validators.required]],
         accountingIndicator: [null],
+        bttypes:[null],
         amount: [null],
         taxCode: [null],
         sgstamount: [null],
@@ -311,6 +320,21 @@ export class JournalComponent implements OnInit {
           if (!isNullOrUndefined(res) && res.status === StatusCodes.pass) {
             if (!isNullOrUndefined(res.response)) {
               this.profitCenterList = res.response['profitCenterList'];
+            }
+          }
+          this.getBusienessTransactionTypeList();
+        });
+  }
+
+  getBusienessTransactionTypeList() {
+    const segUrl = String.Join('/', this.apiConfigService.getBusienessTransactionTypeList);
+    this.apiService.apiGetRequest(segUrl)
+      .subscribe(
+        response => {
+          const res = response.body;
+          if (!isNullOrUndefined(res) && res.status === StatusCodes.pass) {
+            if (!isNullOrUndefined(res.response)) {
+              this.btList = res.response['bpttList'];
             }
           }
           this.getSegments();

@@ -87,6 +87,7 @@ export class ApiConfigService {
    getAssetnumber = `${this.environment.runtimeConfig.serverUrl}MainAssetMaster/GetAssetNumber`;
    getasetnos = `${this.environment.runtimeConfig.serverUrl}MainAssetMaster/GettingAssetNumber`;
    getttinasNames = `${this.environment.runtimeConfig.serverUrl}MainAssetMaster/GettingAssetName`;
+   getBusienessTransactionTypeList = `${this.environment.runtimeConfig.serverUrl}BusienessTransactionType/GetBusienessTransactionTypeList`;
 
    /**************************** Settings ********************************************************* */
    getRoles = `${this.environment.runtimeConfig.serverUrl}Auth/getRoles`;

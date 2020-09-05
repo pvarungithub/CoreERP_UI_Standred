@@ -36,6 +36,7 @@ export class CashbankComponent implements OnInit {
   glAccountList = [];
   profitCenterList = [];
   segmentList = [];
+  btList=[];
   costCenterList = [];
   taxCodeList = [];
   functionaldeptList = [];
@@ -80,7 +81,12 @@ export class CashbankComponent implements OnInit {
       voucherClass: [null],
       period:[null],
       accountingIndicator:[null],
-      ext:[null]
+      ext:[null],
+      status:[null],
+      addWho:[null],
+      editWho:[null],
+      addDate:[null],
+      editDate:[null]
     });
   }
 
@@ -113,6 +119,9 @@ export class CashbankComponent implements OnInit {
         },
         segment: {
           value: null, type: 'dropdown', list: this.segmentList, id: 'id', text: 'name', displayMul: false, width: 150
+        },
+        bttypes: {
+          value: null, type: 'dropdown', list: this.btList, id: 'code', text: 'description', displayMul: false, width: 150
         },
         costCenter: {
           value: null, type: 'dropdown', list: this.costCenterList, id: 'id', text: 'text', displayMul: false, width: 150
@@ -167,6 +176,7 @@ export class CashbankComponent implements OnInit {
         referenceDate: [null],
         functionalDept: [null],
         profitCenter: [null],
+        bttypes:[null],
         segment: [null],
         costCenter: [null],
         narration: [null]
@@ -260,8 +270,9 @@ export class CashbankComponent implements OnInit {
           if (!isNullOrUndefined(res) && res.status === StatusCodes.pass) {
             if (!isNullOrUndefined(res.response)) {
               this.accountFilterList = res.response['glList'];
-              this.glAccountList = res.response['glList'].filter(resp => resp.taxCategory != 'Cash' &&
-                resp.taxCategory != 'Bank' && resp.taxCategory != 'Control Account');
+              this.glAccountList = res.response['glList'];
+                // this.glAccountList = res.response['glList'].filter(resp => resp.taxCategory != 'Cash' &&
+                // resp.taxCategory != 'Bank' && resp.taxCategory != 'Control Account');
             }
           }
           this.getTaxRatesList();
@@ -314,6 +325,21 @@ export class CashbankComponent implements OnInit {
           if (!isNullOrUndefined(res) && res.status === StatusCodes.pass) {
             if (!isNullOrUndefined(res.response)) {
               this.profitCenterList = res.response['profitCenterList'];
+            }
+          }
+          this.getBusienessTransactionTypeList();
+        });
+  }
+  
+  getBusienessTransactionTypeList() {
+    const segUrl = String.Join('/', this.apiConfigService.getBusienessTransactionTypeList);
+    this.apiService.apiGetRequest(segUrl)
+      .subscribe(
+        response => {
+          const res = response.body;
+          if (!isNullOrUndefined(res) && res.status === StatusCodes.pass) {
+            if (!isNullOrUndefined(res.response)) {
+              this.btList = res.response['bpttList'];
             }
           }
           this.getSegments();
