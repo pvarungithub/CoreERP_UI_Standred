@@ -21,15 +21,15 @@ export class MemoinvoiceComponent implements OnInit {
 
   formData: FormGroup;
   routeEdit = '';
-
+  btList=[];
   tableData = [];
   dynTableProps = this.tablePropsFunc()
-
+  ptermsList =[];
   companyList = [];
   branchList = [];
   voucherClassList = [];
   voucherTypeList = [];
-  transactionTypeList = ['Invoice', 'Memo']
+  // transactionTypeList = ['Invoice', 'Memo']
   natureofTransactionList = ['Incoming', 'Outgoing'];
   accountList = [];
   glAccountList = [];
@@ -38,13 +38,14 @@ export class MemoinvoiceComponent implements OnInit {
   segmentList = [];
   costCenterList = [];
   bpTypeList = [];
+  bpList = [];
   taxCodeList = [];
   functionaldeptList = [];
   partyInvoiceNo = [];
   partyInvoiceDate = [];
   grnno = [];
   grndate = [];
-  paymentterms = [];
+  bpgLists:any;
   taxAmount = [];
   totalAmount = [];
   narration= [];
@@ -63,7 +64,13 @@ export class MemoinvoiceComponent implements OnInit {
       this.routeEdit = this.route.snapshot.params.value;
     }
   }
+  onbpChange() {
+   
+    this.bpgLists=[];
+    let data = this.bpTypeList.find(res => res.code == this.formData.get('ptypeList').value);
+    this.bpgLists=this.bpList.filter(res => res.bptype == data.code);
 
+  }
   ngOnInit() {
     this.formDataGroup();
     this.getCompanyList();
@@ -95,7 +102,13 @@ export class MemoinvoiceComponent implements OnInit {
       partyAccount:[null],
       accountingIndicator: [null] ,
       taxAmount:[null],
-      narration:[null]  
+      narration:[null] ,
+      status:[null],
+      ext1:[null] ,
+      addWho:[null],
+      editWho:[null],
+      addDate:[null],
+      editDate:[null]  
     });
   }
 
@@ -140,6 +153,9 @@ export class MemoinvoiceComponent implements OnInit {
         },
         segment: {
           value: null, type: 'dropdown', list: this.segmentList, id: 'id', text: 'name', displayMul: false, width: 150
+        },
+        bttypes: {
+          value: null, type: 'dropdown', list: this.btList, id: 'code', text: 'description', displayMul: false, width: 150
         },
         costCenter: {
           value: null, type: 'dropdown', list: this.costCenterList, id: 'id', text: 'text', displayMul: false, width: 150
@@ -280,10 +296,23 @@ export class MemoinvoiceComponent implements OnInit {
               this.profitCenterList = res.response['profitCenterList'];
             }
           }
+          this.getBusienessTransactionTypeList();
+        });
+  }
+  getBusienessTransactionTypeList() {
+    const segUrl = String.Join('/', this.apiConfigService.getBusienessTransactionTypeList);
+    this.apiService.apiGetRequest(segUrl)
+      .subscribe(
+        response => {
+          const res = response.body;
+          if (!isNullOrUndefined(res) && res.status === StatusCodes.pass) {
+            if (!isNullOrUndefined(res.response)) {
+              this.btList = res.response['bpttList'];
+            }
+          }
           this.getSegments();
         });
   }
-
   getSegments() {
     const segUrl = String.Join('/', this.apiConfigService.getSegmentList);
     this.apiService.apiGetRequest(segUrl)
@@ -317,7 +346,6 @@ export class MemoinvoiceComponent implements OnInit {
     this.apiService.apiGetRequest(costCenUrl)
       .subscribe(
         response => {
-          this.spinner.hide();
           const res = response.body;
           if (!isNullOrUndefined(res) && res.status === StatusCodes.pass) {
             if (!isNullOrUndefined(res.response)) {
@@ -325,10 +353,38 @@ export class MemoinvoiceComponent implements OnInit {
 
             }
           }
-          this.getCostcenters();
+          this.getbpList();
         });
   }
+  getbpList() {
+    const costCenUrl = String.Join('/', this.apiConfigService.getBPList);
+    this.apiService.apiGetRequest(costCenUrl)
+      .subscribe(
+        response => {
+          const res = response.body;
+          if (!isNullOrUndefined(res) && res.status === StatusCodes.pass) {
+            if (!isNullOrUndefined(res.response)) {
+              this.bpList = res.response['bpList'];
 
+            }
+          }
+          this.getPaymenttermsList();
+        });
+  }
+  getPaymenttermsList() {
+    const getpmList = String.Join('/', this.apiConfigService.getPaymentsTermsList);
+    this.apiService.apiGetRequest(getpmList)
+      .subscribe(
+        response => {
+          const res = response.body;
+          if (!isNullOrUndefined(res) && res.status === StatusCodes.pass) {
+            if (!isNullOrUndefined(res.response)) {
+              this.ptermsList = res.response['ptermsList'];
+            }
+          }
+          this.getCostcenters()
+        });
+  }
   getCostcenters() {
     const costCenUrl = String.Join('/', this.apiConfigService.getCostCentersList);
     this.apiService.apiGetRequest(costCenUrl)

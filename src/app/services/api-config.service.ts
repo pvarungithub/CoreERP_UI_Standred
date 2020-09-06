@@ -42,6 +42,7 @@ export class ApiConfigService {
    getProfitCentersList = `${this.environment.runtimeConfig.serverUrl}Common/GetProfitCentersList`;
    getCostCentersList = `${this.environment.runtimeConfig.serverUrl}Common/GetCostCentersList`;
    getTaxRatesList = `${this.environment.runtimeConfig.serverUrl}TaxRates/GetTaxRatesList`;
+   getBPList = `${this.environment.runtimeConfig.serverUrl}Common/GetBPList`;
 
    //************************ IMG General  ****************************************/
    getCurrencyList = `${this.environment.runtimeConfig.serverUrl}Currency/GetCurrencyList`;
