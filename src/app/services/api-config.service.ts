@@ -56,11 +56,18 @@ export class ApiConfigService {
    GetCostCenterList = `${this.environment.runtimeConfig.serverUrl}CostCenter/GetCostCenterList`;
    getplantList = `${this.environment.runtimeConfig.serverUrl}Plant/GetPlant`;
    getlocationList = `${this.environment.runtimeConfig.serverUrl}Location/GetLocationList`;
-   registerdepreciationcodeList= `${this.environment.runtimeConfig.serverUrl}Depreciationcode/RegisterDepreciationcode`;
+   registerdepreciationcodeList = `${this.environment.runtimeConfig.serverUrl}Depreciationcode/RegisterDepreciationcode`;
    getdepreciationcodeDetail = `${this.environment.runtimeConfig.serverUrl}Depreciationcode/GetDepreciationcodeDetail`;
-   registerpaymenttermsList= `${this.environment.runtimeConfig.serverUrl}PaymentTerms/RegisterPaymentTerms`;
-   getpaymenttermDetail = `${this.environment.runtimeConfig.serverUrl}PaymentTerms/GetPaymentTermsDetail`;   
-
+   registerpaymenttermsList = `${this.environment.runtimeConfig.serverUrl}PaymentTerms/RegisterPaymentTerms`;
+   getpaymenttermDetail = `${this.environment.runtimeConfig.serverUrl}PaymentTerms/GetPaymentTermsDetail`;
+   //mainasset
+   registermainAssetsList = `${this.environment.runtimeConfig.serverUrl}MainAssetMaster/RegisterMainAssetMaster`;
+   getMainAssetsDetail = `${this.environment.runtimeConfig.serverUrl}MainAssetMaster/GetMainAssetsDetail`;
+   //subasset
+   registerSubAssetsList = `${this.environment.runtimeConfig.serverUrl}SubAssets/RegisterSubAssetsdatas`;
+   getSubAssetsDetail = `${this.environment.runtimeConfig.serverUrl}SubAssets/GetSubAssetsDetail`;
+   //updateSubAssetsList= `${this.environment.runtimeConfig.serverUrl}SubAssets/UpdateSubAssetsList`;
+   deleteSubAssetsList = `${this.environment.runtimeConfig.serverUrl}SubAssets/DeleteSubAssetsList`;
    ///************************ Accounting ************************** */
    getLedgerList = `${this.environment.runtimeConfig.serverUrl}Ledger/GetLedgerList`;
    getvocherclassList = `${this.environment.runtimeConfig.serverUrl}VoucherClass/GetVoucherClassList`;
@@ -109,15 +116,15 @@ export class ApiConfigService {
    getVoucherNumber = `${this.environment.runtimeConfig.serverUrl}Transactions/GetVoucherNumber`;
    returnCashBank = `${this.environment.runtimeConfig.serverUrl}Transactions/ReturnCashBank`;
 
-    /******************************* Journal ****************************************************** */
-    addJournal = `${this.environment.runtimeConfig.serverUrl}Transactions/AddJournal`;
-    getJVDetail = `${this.environment.runtimeConfig.serverUrl}Transactions/GetJVDetail`;
-    getJVMaster = `${this.environment.runtimeConfig.serverUrl}Transactions/GetJVMaster`;
+   /******************************* Journal ****************************************************** */
+   addJournal = `${this.environment.runtimeConfig.serverUrl}Transactions/AddJournal`;
+   getJVDetail = `${this.environment.runtimeConfig.serverUrl}Transactions/GetJVDetail`;
+   getJVMaster = `${this.environment.runtimeConfig.serverUrl}Transactions/GetJVMaster`;
 
-    /******************************* Invoice & Memo ****************************************************** */
-    addInvoiceMemo = `${this.environment.runtimeConfig.serverUrl}Transactions/AddInvoiceMemo`;
-    getIMDetail = `${this.environment.runtimeConfig.serverUrl}Transactions/GetIMDetail`;
-    getIMMaster = `${this.environment.runtimeConfig.serverUrl}Transactions/GetIMMaster`;
+   /******************************* Invoice & Memo ****************************************************** */
+   addInvoiceMemo = `${this.environment.runtimeConfig.serverUrl}Transactions/AddInvoiceMemo`;
+   getIMDetail = `${this.environment.runtimeConfig.serverUrl}Transactions/GetIMDetail`;
+   getIMMaster = `${this.environment.runtimeConfig.serverUrl}Transactions/GetIMMaster`;
 
 
 }

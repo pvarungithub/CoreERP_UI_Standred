@@ -9,9 +9,8 @@ import { StatusCodes } from '../../../../enums/common/common';
 import { AddOrEditService } from '../add-or-edit.service';
 import { AlertService } from '../../../../services/alert.service';
 import { ActivatedRoute, Router } from '@angular/router';
-import { CommonService } from '../../../../services/common.service';
-
-
+import { Static } from '../../../../enums/common/static';
+import { SnackBar } from '../../../../enums/common/common';
 
 @Component({
   selector: 'app-subassets',
@@ -22,6 +21,9 @@ import { CommonService } from '../../../../services/common.service';
 export class SubAssetsComponent implements OnInit {
 
   modelFormData: FormGroup;
+  routeEdit = '';
+  tableData = [];
+  dynTableProps = this.tablePropsFunc()
   isSubmitted = false;
   formData: any;
   taxcodeList: any;
@@ -42,24 +44,36 @@ export class SubAssetsComponent implements OnInit {
   companyList: any;
   massetlist: any;
   _stockissueHdr: any;
-  saList:any;
-  dynTableProps = {
-    displayedColumns: ['SlNo', 'depreciationData', 'depreciationArea', 'delete'],
-    tableData: {
-        depreciationData: {
-          value: null, type: 'dropdown', list: [], id: 'code', text: 'description', disabled: false, displayMul: true
+  saList: any;
+
+  tablePropsFunc() {
+    return {
+      tableData: {
+
+        depreciationCode: {
+          value: null, type: 'dropdown', list: this.dpList, id: 'code', text: 'description', disabled: false, displayMul: true
+        },
+        depreciationRate: {
+          value: null, type: 'dropdown', list: this.dpList, id: 'code', text: 'description', disabled: false, displayMul: true
         },
         depreciationArea: {
-          value: null, type: 'dropdown', list: [], id: 'code', text: 'description', disabled: false, displayMul: true
+          value: null, type: 'dropdown', list: this.dpareaList, id: 'code', text: 'description', disabled: false, displayMul: true
+        },
+
+        depreciationStartDate: {
+          value: null, type: 'datepicker', disabled: false
         },
         delete: {
           type: 'delete',
           newObject: true
         }
       },
-    formControl: {
-      depreciationData: [null, [Validators.required]],
-      depreciationArea: [null]
+
+      formControl: {
+        depreciationRate: [null,],
+        depreciationCode: [null,],
+        depreciationArea: [null, [Validators.required]]
+      }
     }
   }
 
@@ -71,11 +85,12 @@ export class SubAssetsComponent implements OnInit {
     private formBuilder: FormBuilder,
     private alertService: AlertService,
     private router: Router,
-    private activatedRoute: ActivatedRoute,
-    private commonService: CommonService
+    public route: ActivatedRoute,
   ) {
-    // @Optional() is used to prevent error if no data is passed
-    // @Optional() @Inject(MAT_DIALOG_DATA) public data: any) {
+
+    if (!isNullOrUndefined(this.route.snapshot.params.value)) {
+      this.routeEdit = this.route.snapshot.params.value;
+    }
 
     this.modelFormData = this.formBuilder.group({
       subAssetNumber: [null, [Validators.required, Validators.minLength(1), Validators.maxLength(7)]],
@@ -98,17 +113,22 @@ export class SubAssetsComponent implements OnInit {
       usefulLifeInYears: [null],
       depreciationData: [null],
       depreciationArea: [null],
+      mainAssetName: [null],
+      accountKeyName: [null],
+      branchName: [null],
+      profitCenterName: [null],
+      segmentName: [null],
+      divisionName: [null],
+      plantName: [null],
+      depreciationDataName: [null],
+      depreciationAreaName: [null],
+      locationName: [null],
       depreciationCode: [null],
       depreciationStartDate: [null]
 
     });
 
-
     this.formData = { ...this.addOrEditService.editData };
-    if (!isNullOrUndefined(this.formData.item)) {
-      this.modelFormData.patchValue(this.formData.item);
-      this.modelFormData.controls['subAssetNumber'].disable();
-    }
 
   }
 
@@ -117,17 +137,48 @@ export class SubAssetsComponent implements OnInit {
     this.getassetclassTableData();
     this.getaccountkeyList();
     this.getsegmentList();
-    this.getbranchList();
     this.getprofitCenterList();
     this.getdivisionList();
     this.getplantList();
     this.getLocationList();
-    this.getdepreciationCodeTableData();
-    this. getmainassetnumTableData();
-    this. getsubassetData();
+    this.getdepreciationAreaTableData();
+    this.getmainassetnumTableData();
+    this.getsubassetData();
   }
 
 
+  getsubassetDetail(val) {
+    const cashDetUrl = String.Join('/', this.apiConfigService.getSubAssetsDetail, val);
+    this.apiService.apiGetRequest(cashDetUrl)
+      .subscribe(
+        response => {
+          this.spinner.hide();
+          const res = response.body;
+          if (!isNullOrUndefined(res) && res.status === StatusCodes.pass) {
+            if (!isNullOrUndefined(res.response)) {
+              console.log(res.response['SubassetMasters']);
+              console.log(res.response['SubassetDetail']);
+              this.modelFormData.setValue(res.response['SubassetMasters']);
+              this.addOrEditService.sendDynTableData(res.response['SubassetDetail']);
+            }
+          }
+        });
+  }
+  getmainassetclassTableData() {
+    const getCompanyUrl = String.Join('/', this.apiConfigService.getMainAssetMasterList);
+    this.apiService.apiGetRequest(getCompanyUrl)
+      .subscribe(
+        response => {
+          const res = response.body;
+          if (!isNullOrUndefined(res) && res.status === StatusCodes.pass) {
+            if (!isNullOrUndefined(res.response)) {
+              this.mamList = res.response['mamList'];
+              this.dynTableProps = this.tablePropsFunc();
+            }
+          }
+          this.spinner.hide();
+        });
+  }
   getdepreciationCodeTableData() {
     const getdepreciationCodeUrl = String.Join('/', this.apiConfigService.getDepreciationcodeList);
     this.apiService.apiGetRequest(getdepreciationCodeUrl)
@@ -137,13 +188,11 @@ export class SubAssetsComponent implements OnInit {
           if (!isNullOrUndefined(res) && res.status === StatusCodes.pass) {
             if (!isNullOrUndefined(res.response)) {
               this.dpList = res.response['dpList'];
-              this.dynTableProps.tableData.depreciationData.list = this.dpList;
+              this.dynTableProps = this.tablePropsFunc();
             }
           }
-          this.getdepreciationAreaTableData();
         });
   }
-
   getdepreciationAreaTableData() {
     const getdepreciationAreaUrl = String.Join('/', this.apiConfigService.getDepreciationAreasList);
     this.apiService.apiGetRequest(getdepreciationAreaUrl)
@@ -153,44 +202,45 @@ export class SubAssetsComponent implements OnInit {
           if (!isNullOrUndefined(res) && res.status === StatusCodes.pass) {
             if (!isNullOrUndefined(res.response)) {
               this.dpareaList = res.response['dpareaList'];
-              this.dynTableProps.tableData.depreciationArea.list = this.dpareaList;
-              this.addOrEditService.sendDynTableData(this.dynTableProps);
+              this.dynTableProps = this.tablePropsFunc();
             }
           }
           this.spinner.hide();
+          this.dynTableProps = this.tablePropsFunc();
+          if (this.routeEdit != '') {
+            this.getsubassetDetail(this.routeEdit);
+          }
         });
+    this.getdepreciationCodeTableData();
   }
   getmainassetnumTableData() {
     const getdepreciationAreaUrl = String.Join('/', this.apiConfigService.getMainAssetMasterList);
     this.apiService.apiGetRequest(getdepreciationAreaUrl)
       .subscribe(
         response => {
-        const res = response.body;
-        if (!isNullOrUndefined(res) && res.status === StatusCodes.pass) {
-          if (!isNullOrUndefined(res.response)) {
-            this.mamList = res.response['mamList'];
+          const res = response.body;
+          if (!isNullOrUndefined(res) && res.status === StatusCodes.pass) {
+            if (!isNullOrUndefined(res.response)) {
+              this.mamList = res.response['mamList'];
+            }
           }
-        }
           this.spinner.hide();
-      });
+        });
   }
   getsubassetData() {
     const getdepreciationAreaUrl = String.Join('/', this.apiConfigService.getSubAssetsList);
     this.apiService.apiGetRequest(getdepreciationAreaUrl)
       .subscribe(
         response => {
-        const res = response.body;
-        if (!isNullOrUndefined(res) && res.status === StatusCodes.pass) {
-          if (!isNullOrUndefined(res.response)) {
-            this.saList = res.response['saList'];
+          const res = response.body;
+          if (!isNullOrUndefined(res) && res.status === StatusCodes.pass) {
+            if (!isNullOrUndefined(res.response)) {
+              this.saList = res.response['saList'];
+            }
           }
-        }
           this.spinner.hide();
-      });
+        });
   }
-
-  // --
-
   getchartAccount(value) {
     const getInvoiceDeatilListUrl = String.Join('/', this.apiConfigService.GetListsforMainAsset, this.modelFormData.get('mainAssetNo').value);
     this.apiService.apiGetRequest(getInvoiceDeatilListUrl).subscribe(
@@ -198,8 +248,7 @@ export class SubAssetsComponent implements OnInit {
         const res = response.body;
         if (!isNullOrUndefined(res) && res.status === StatusCodes.pass) {
           if (!isNullOrUndefined(res.response)) {
-            if (!isNullOrUndefined(res.response))
-             {
+            if (!isNullOrUndefined(res.response)) {
               this.modelFormData.patchValue(res.response);
               this.spinner.hide();
             }
@@ -207,10 +256,8 @@ export class SubAssetsComponent implements OnInit {
         }
       });
     this.modelFormData.patchValue({
-     // subAssetNumber: (this.modelFormData.get('mainAssetNo').value)
     });
   }
-
   getassetclassTableData() {
     const getCompanyUrl = String.Join('/', this.apiConfigService.getAssetClassList);
     this.apiService.apiGetRequest(getCompanyUrl)
@@ -225,9 +272,6 @@ export class SubAssetsComponent implements OnInit {
           this.spinner.hide();
         });
   }
-
-
-
   getaccountkeyList() {
     const getackeyList = String.Join('/', this.apiConfigService.getAccountKeyList);
     this.apiService.apiGetRequest(getackeyList)
@@ -239,8 +283,8 @@ export class SubAssetsComponent implements OnInit {
               this.acckeyList = res.response['acckeyList'];
             }
           }
-          this.spinner.hide();
         });
+    this.getbranchList();
   }
   getbranchList() {
     const getbranchList = String.Join('/', this.apiConfigService.getBranchesList);
@@ -326,44 +370,39 @@ export class SubAssetsComponent implements OnInit {
           this.spinner.hide();
         });
   }
-  getmainassetclassTableData() {
-    const getCompanyUrl = String.Join('/', this.apiConfigService.getMainAssetMasterList);
-    this.apiService.apiGetRequest(getCompanyUrl)
-      .subscribe(
-        response => {
-          const res = response.body;
-          if (!isNullOrUndefined(res) && res.status === StatusCodes.pass) {
-            if (!isNullOrUndefined(res.response)) {
-              this.mamList = res.response['mamList'];
-            }
-          }
-          this.spinner.hide();
-        });
-  }
 
   get formControls() { return this.modelFormData.controls; }
 
-
+  emitTableData(data) {
+    this.tableData = data;
+  }
   save() {
-    if (this.modelFormData.invalid) {
-      return;
-    }
-    
-    this.modelFormData.controls['subAssetNumber'].enable();
-    this.modelFormData.patchValue({
-      subAssetNumber: (this.modelFormData.get('mainAssetNo').value)+ (this.modelFormData.get('subAssetNumber').value)
-    });
-    this.formData.item = this.modelFormData.value;
-    this.addOrEditService[this.formData.action](this.formData, (res) => {
-      this.router.navigate(['/dashboard/master/subassets']);
-    });
-    if (this.formData.action == 'Edit') {
-      this.modelFormData.controls['subAssetNumber'].disable();
-    }
+    this.saveSubassets();
   }
 
   cancel() {
     this.router.navigate(['/dashboard/master/subassets']);
+  }
+
+  reset() {
+    this.tableData = [];
+    this.modelFormData.reset();
+    this.addOrEditService.sendDynTableData(this.tableData);
+  }
+  saveSubassets() {
+    const addCashBank = String.Join('/', this.apiConfigService.registerSubAssetsList);
+    const requestObj = { subasstHdr: this.modelFormData.value, subassetDetail: this.tableData };
+    this.apiService.apiPostRequest(addCashBank, requestObj).subscribe(
+      response => {
+        const res = response.body;
+        if (!isNullOrUndefined(res) && res.status === StatusCodes.pass) {
+          if (!isNullOrUndefined(res.response)) {
+            this.alertService.openSnackBar('SubAssets created Successfully..', Static.Close, SnackBar.success);
+          }
+          this.reset();
+          this.spinner.hide();
+        }
+      });
   }
 
 }
