@@ -9,6 +9,12 @@ import { ApiService } from '../../../../services/api.service';
 import { String } from 'typescript-string-operations';
 import { AddOrEditService } from '../add-or-edit.service';
 
+interface accountType {
+  value: string;
+  viewValue: string;
+}
+
+
 @Component({
   selector: 'vouchertypes',
   templateUrl: './vouchertypes.component.html',
@@ -19,6 +25,16 @@ export class VoucherTypesComponent implements OnInit {
   modelFormData: FormGroup;
   formData: any;
   voucherClass: any;
+
+  voucherNatures: accountType[] =
+    [
+      { value: '1', viewValue: 'Asset' },
+      { value: '2', viewValue: 'Bank' },
+      { value: '3', viewValue: 'Cash' },
+      { value: '4', viewValue: 'Customer' },
+      { value: '5', viewValue: 'Material' },
+      { value: '6', viewValue: 'Vendor' }
+    ];
 
   constructor(
     private formBuilder: FormBuilder,
@@ -34,7 +50,8 @@ export class VoucherTypesComponent implements OnInit {
       voucherTypeId: [null, [Validators.required, Validators.minLength(1), Validators.maxLength(50)]],
       voucherTypeName: [null, [Validators.required, Validators.minLength(2), Validators.maxLength(50)]],
       voucherClass: [null],
-      printText: [null]
+      printText: [null],
+      accountType: [null]
     });
 
     this.formData = { ...data };

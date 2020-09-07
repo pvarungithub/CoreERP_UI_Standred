@@ -44,6 +44,7 @@ import { NgxDaterangepickerMd } from 'ngx-daterangepicker-material';
 import { TokenInterceptor } from './token-interceptor';
 import { HTTP_INTERCEPTORS } from '@angular/common/http';
   import { from } from 'rxjs';
+import { MaxlengthDirective } from './directives/maxlength.directive';
 // AoT requires an exported function for factories
 export function HttpLoaderFactory(httpClient: HttpClient) {
   return new TranslateHttpLoader(httpClient);
@@ -92,7 +93,7 @@ export function HttpLoaderFactory(httpClient: HttpClient) {
     AssetNumberRangeComponent,AssetTransactionTypeComponent,AccountKeyComponent,AssignmentAccountKeytoAssetClassComponent,
     BankMasterComponent,DepreciationcodeComponent,GLAccountComponent,GLSubAccountComponent,BusienessTransactionTypeComponent,AssetBegningAccumulatedDepreciationComponent,AssetBegningAcqusitionComponent,
     BusienessPartnerAccountComponent,AssignGLaccounttoSubGroupComponent,MainAssetMasterComponent,SubAssetsComponent,
-    DynamicTableComponent,  AutocompleteComponent, CashbankComponent,JournalComponent,MemoinvoiceComponent,ReceiptspaymentsComponent
+    DynamicTableComponent,  AutocompleteComponent, CashbankComponent,JournalComponent,MemoinvoiceComponent,ReceiptspaymentsComponent, MaxlengthDirective
     //LeaveopeningbalanceComponent,
     //selfserviceComponent,
     

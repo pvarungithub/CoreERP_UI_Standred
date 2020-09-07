@@ -156,39 +156,14 @@
                 formControlName="usefulLifeDays" maxlength="6" appFocusOnEnter tabIndex="20">
             </mat-form-field>
 
-            <!-- <mat-form-field>
-              <mat-label [translate]="'mainassetmaster.depreciationData'"></mat-label>
-              <mat-select formControlName="depreciationData" appFocusOnEnter tabIndex="21">
-                <mat-option *ngFor="let dpc of dpList" [value]="dpc.code">
-                  {{dpc.code}}- {{dpc.description}}
-                </mat-option>
-              </mat-select>
-            </mat-form-field>
-
-            <mat-form-field>
-              <mat-label>{{'mainassetmaster.depreciationArea' | translate }}</mat-label>
-              <mat-select formControlName="depreciationArea" appFocusOnEnter tabIndex="22">
-                <mat-option *ngFor="let dpr of dpareaList" [value]="dpr.code">
-                  {{dpr.code}} - {{dpr.description}}
-                </mat-option>
-              </mat-select>
-            </mat-form-field>
-
-            <mat-form-field>
-              <input matInput [matDatepicker]="picker4"
-                placeholder="{{'mainassetmaster.depreciationStartDate' | translate }}"
-                formControlName="depreciationStartDate" appFocusOnEnter tabIndex="22">
-              <mat-datepicker-toggle matSuffix [for]="picker4"></mat-datepicker-toggle>
-              <mat-datepicker #picker4></mat-datepicker>
-            </mat-form-field> -->
-
           </div>
 
         </mat-card-content>
 
       </mat-tab>
       <mat-tab label="Transaction Data">
-        <app-dynamic-table [tableObJect]="dynTableProps" (emitTableData)="emitTableData($event)"></app-dynamic-table>
+        <app-dynamic-table [tableObJect]="dynTableProps" (emitTableData)="emitTableData($event)"
+          (emitColumnChanges)="emitColumnChanges($event);"></app-dynamic-table>
       </mat-tab>
     </form>
 

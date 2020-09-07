@@ -21,7 +21,7 @@
                         [disabled]="element[column].disabled" [value]="element[column].value"
                         [(ngModel)]="element[column].value" [maxLength]="element[column].maxLength"
                         (input)="formControlValid(column, element, $event.target.value, dataSource.filteredData.indexOf(element));"
-                        (keydown.enter)="setFocus(column, dataSource.filteredData.indexOf(element));" />
+                        (keydown.enter)="setFocus(column, dataSource.filteredData.indexOf(element), $event.target.value);" />
                 </mat-form-field>
 
                 <mat-form-field class="form-element" *ngSwitchCase="'number'"
@@ -30,18 +30,18 @@
                         [disabled]="element[column].disabled" [value]="element[column].value"
                         [(ngModel)]="element[column].value" appMaxlength [pattern]="element[column].maxLength"
                         (input)="formControlValid(column, element, $event.target.value, dataSource.filteredData.indexOf(element));"
-                        (keydown.enter)="setFocus(column, dataSource.filteredData.indexOf(element));" />
+                        (keydown.enter)="setFocus(column, dataSource.filteredData.indexOf(element), $event.target.value);" />
                 </mat-form-field>
 
                 <mat-form-field class="form-element" *ngSwitchCase="'dropdown'"
                     [ngStyle]="{'width': element[column].width + 'px'}">
                     <mat-select id="{{column}}{{dataSource.filteredData.indexOf(element)}}"
                         [disabled]="element[column].disabled" [(ngModel)]="element[column].value"
-                        (selectionChange)="setFocus(column, dataSource.filteredData.indexOf(element)); formControlValid(column, element, $event.value, dataSource.filteredData.indexOf(element));">
+                        (selectionChange)="formControlValid(column, element, $event.value, dataSource.filteredData.indexOf(element)); setFocus(column, dataSource.filteredData.indexOf(element), $event.value);">
                         <mat-option>None</mat-option>
                         <mat-option *ngFor="let data of element[column].list" [value]="data[element[column].id]">
                             <span *ngIf="element[column].displayMul;else content">
-                            {{data[element[column].text]}} - {{data[element[column].id]}} 
+                                {{data[element[column].text]}} - {{data[element[column].id]}}
                             </span>
                             <ng-template #content> {{data[element[column].text]}} </ng-template>
                         </mat-option>
@@ -53,7 +53,7 @@
                     <input id="{{column}}{{dataSource.filteredData.indexOf(element)}}" matInput [matDatepicker]="picker"
                         readonly (click)="picker.open()" [disabled]="element[column].disabled"
                         [(ngModel)]="element[column].value"
-                        (dateChange)="formControlValid(column, element, element[column].value, dataSource.filteredData.indexOf(element)); setFocus(column, dataSource.filteredData.indexOf(element));">
+                        (dateChange)="formControlValid(column, element, element[column].value, dataSource.filteredData.indexOf(element)); setFocus(column, dataSource.filteredData.indexOf(element), element[column].value);">
                     <mat-datepicker-toggle matSuffix [for]="picker">
                         <mat-icon matDatepickerToggleIcon class="mat--icon">date_range</mat-icon>
                     </mat-datepicker-toggle>

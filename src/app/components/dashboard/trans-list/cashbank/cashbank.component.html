@@ -27,11 +27,31 @@
                 </mat-form-field>
 
                 <mat-form-field class="form-element">
+                    <mat-label>{{ 'cashbank.transactionType' | translate }}</mat-label>
+                    <mat-select formControlName="transactionType" (selectionChange)="accountSelect();">
+                        <mat-option>None</mat-option>
+                        <mat-option *ngFor="let trans of transactionTypeList" [value]="trans">
+                            {{ trans }}
+                        </mat-option>
+                    </mat-select>
+                </mat-form-field>
+
+                <mat-form-field class="form-element">
+                    <mat-label>{{ 'cashbank.natureofTransaction' | translate }}</mat-label>
+                    <mat-select formControlName="natureofTransaction">
+                        <mat-option>None</mat-option>
+                        <mat-option *ngFor="let nature of natureofTransactionList" [value]="nature">
+                            {{ nature }}
+                        </mat-option>
+                    </mat-select>
+                </mat-form-field>
+
+                <mat-form-field class="form-element">
                     <mat-label>{{ 'cashbank.voucherType' | translate }}</mat-label>
                     <mat-select formControlName="voucherType"
                         (selectionChange)="voucherTypeSelect(); voucherNoCalculate();">
                         <mat-option>None</mat-option>
-                        <mat-option *ngFor="let type of voucherTypeList" [value]="type.id">
+                        <mat-option *ngFor="let type of vouchersTypeList" [value]="type.id">
                             {{type.text}}
                         </mat-option>
                     </mat-select>
@@ -54,26 +74,6 @@
                         formControlName="postingDate" appFocusOnEnter tabIndex="3">
                     <mat-datepicker-toggle matSuffix [for]="picker2"></mat-datepicker-toggle>
                     <mat-datepicker #picker2></mat-datepicker>
-                </mat-form-field>
-
-                <mat-form-field class="form-element">
-                    <mat-label>{{ 'cashbank.transactionType' | translate }}</mat-label>
-                    <mat-select formControlName="transactionType" (selectionChange)="accountSelect();">
-                        <mat-option>None</mat-option>
-                        <mat-option *ngFor="let trans of transactionTypeList" [value]="trans">
-                            {{ trans }}
-                        </mat-option>
-                    </mat-select>
-                </mat-form-field>
-
-                <mat-form-field class="form-element">
-                    <mat-label>{{ 'cashbank.natureofTransaction' | translate }}</mat-label>
-                    <mat-select formControlName="natureofTransaction">
-                        <mat-option>None</mat-option>
-                        <mat-option *ngFor="let nature of natureofTransactionList" [value]="nature">
-                            {{ nature }}
-                        </mat-option>
-                    </mat-select>
                 </mat-form-field>
 
                 <mat-form-field class="form-element">

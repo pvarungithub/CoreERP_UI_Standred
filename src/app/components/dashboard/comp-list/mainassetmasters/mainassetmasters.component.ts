@@ -42,6 +42,7 @@ export class MainAssetMasterComponent implements OnInit {
   dpareaList: any;
   dpList: any;
   companyList: any;
+  codedata: any;
   depreciationDatas: depreciationData[] =
     [
       { value: 'Multiple ', viewValue: 'Multiple ' },
@@ -118,11 +119,18 @@ export class MainAssetMasterComponent implements OnInit {
       tableData: {
 
         depreciationCode: {
-          value: null, type: 'dropdown', list: this.dpList, id: 'code', text: 'description', disabled: false, displayMul: true
+          value: null, type: 'dropdown', list: this.dpList, id: 'code', text: 'description',
+          disabled: false, displayMul: true
         },
         Rate: {
-          value: null, type: 'dropdown', list: this.dpList, id: 'code', text: 'description', disabled: false, displayMul: true
+          value: null, type: 'text', width: 150, maxLength: 10
         },
+        cgstamount: {
+          value: null, type: 'number', disabled: true, width: 75
+        },
+        // Rate: {
+        //   value: null, type: 'dropdown', list: this.dpList, id: 'code', text: 'description', disabled: false, displayMul: true
+        // },
         depreciationArea: {
           value: null, type: 'dropdown', list: this.dpareaList, id: 'code', text: 'description', disabled: false, displayMul: true
         },
@@ -137,8 +145,10 @@ export class MainAssetMasterComponent implements OnInit {
 
       formControl: {
         Rate: [null,],
+        cgstamount: [null,],
+        depreciationArea: [null,],
         depreciationCode: [null,],
-        depreciationArea: [null, [Validators.required]]
+        depreciationStartDate: [null, [Validators.required]]
       }
     }
   }
@@ -157,6 +167,8 @@ export class MainAssetMasterComponent implements OnInit {
     this.getTableData();
     this.getassetTableData();
   }
+
+
 
 
   getbranchList() {
@@ -241,6 +253,8 @@ export class MainAssetMasterComponent implements OnInit {
           this.spinner.hide();
         });
   }
+
+
   getTableData() {
     const getCompanyUrl = String.Join('/', this.apiConfigService.getCompanysList);
     this.apiService.apiGetRequest(getCompanyUrl)
@@ -291,10 +305,12 @@ export class MainAssetMasterComponent implements OnInit {
       .subscribe(
         response => {
           const res = response.body;
+          console.log(res);
           if (!isNullOrUndefined(res) && res.status === StatusCodes.pass) {
             if (!isNullOrUndefined(res.response)) {
               this.dpList = res.response['dpList'];
               this.dynTableProps = this.tablePropsFunc();
+
             }
           }
           this.spinner.hide();
@@ -405,12 +421,28 @@ export class MainAssetMasterComponent implements OnInit {
         });
   }
 
+  emitColumnChanges(data) {
+    this.assigndata(data);
+  }
+
+  assigndata(row) {
+    if (row.column == 'depreciationCode') {
+      const code = row.data[row.index]['depreciationCode'].list.find(res => res.code == row.data[row.index]['depreciationCode'].value);
+      if (!isNullOrUndefined(code)) {
+        row.data[row.index].Rate.value = code.rate;
+        this.addOrEditService.sendDynTableData({ type: 'add', data: row.data });
+      }
+    }
+  }
+
+
 
   get formControls() { return this.modelFormData.controls; }
 
   emitTableData(data) {
     this.tableData = data;
   }
+
   save() {
     this.saveMainassets();
 

@@ -8,6 +8,7 @@ import { Subscription } from 'rxjs';
 import { AddOrEditService } from '../../components/dashboard/comp-list/add-or-edit.service';
 import { RuntimeConfigService } from '../../services/runtime-config.service';
 import { CommonService } from '../../services/common.service';
+import { NgxSpinnerService } from 'ngx-spinner';
 @Component({
   selector: 'app-dynamic-table',
   templateUrl: './dynamic-table.component.html',
@@ -36,6 +37,10 @@ export class DynamicTableComponent implements OnInit, OnDestroy, AfterContentChe
   routeParam: any;
   tableForm: FormGroup;
   formControl = new FormControl();
+  id: any;
+  index: any;
+  data: any;
+  isDropdown = false;
 
   constructor(
     activatedRoute: ActivatedRoute,
@@ -44,6 +49,7 @@ export class DynamicTableComponent implements OnInit, OnDestroy, AfterContentChe
     private runtimeConfigService: RuntimeConfigService,
     private commonService: CommonService,
     private cdr: ChangeDetectorRef,
+    private spinner: NgxSpinnerService,
     addOrEditService: AddOrEditService
   ) {
     activatedRoute.params.subscribe(params => {
@@ -56,10 +62,12 @@ export class DynamicTableComponent implements OnInit, OnDestroy, AfterContentChe
           } else if (res.type == 'add') {
             if (res.data.length) {
               this.dataSource = new MatTableDataSource(JSON.parse(JSON.stringify(res.data)));
+              (this.isDropdown) ? this.setFocus() : this.setCurrentFocus();
             } else {
               this.setTableData();
             }
           }
+          this.spinner.hide();
           this.cdr.detectChanges();
           addOrEditService.sendDynTableData(null);
         }
@@ -106,28 +114,34 @@ export class DynamicTableComponent implements OnInit, OnDestroy, AfterContentChe
   }
 
   formControlValid(col, val, data, indx) {
-    if (this.checkPrimary(col, data, val, indx)) {
-      this.dataSource.data[indx][col].value = '';
-      this.dataSource = new MatTableDataSource(JSON.parse(JSON.stringify(this.dataSource.data)));
-      return;
+    this.id = col;
+    this.index = indx;
+    this.data = data;
+    this.isDropdown = (this.dataSource.data[indx][col].type == 'dropdown') ? true : false;
+    if (!isNullOrUndefined(data)) {
+      if (this.checkPrimary(col, data, val, indx)) {
+        this.dataSource.data[indx][col].value = '';
+        this.dataSource = new MatTableDataSource(JSON.parse(JSON.stringify(this.dataSource.data)));
+        return;
+      }
+      if ((this.dataSource.data.length - 1) === indx) {
+        this.tableForm.patchValue({
+          [col]: data
+        });
+      }
+      this.dataSource.data[indx][col].value = data;
+      if (this.tableForm.valid && (this.dataSource.data.length - 1) == indx) {
+        this.dataSource.data.push(JSON.parse(JSON.stringify(this.tableData[0])));
+        this.tableForm = this.formBuilder.group(this.formControl);
+      }
+      this.dataSource = new MatTableDataSource(this.dataSource.data);
+      this.emitColumnChanges.emit({ column: col, index: indx, data: this.dataSource.data });
+      this.emitTableData.emit(this.formatTableData());
     }
-    if ((this.dataSource.data.length - 1) === indx) {
-      this.tableForm.patchValue({
-        [col]: data
-      });
-    }
-    this.dataSource.data[indx][col].value = data;
-    if (this.tableForm.valid && (this.dataSource.data.length - 1) == indx) {
-      this.dataSource.data.push(JSON.parse(JSON.stringify(this.tableData[0])));
-      this.tableForm = this.formBuilder.group(this.formControl);
-    }
-    this.dataSource = new MatTableDataSource(this.dataSource.data);
-    this.emitColumnChanges.emit({ column: col, index: indx, data: this.dataSource.data });
-    this.emitTableData.emit(this.formatTableData());
   }
 
   checkPrimary(col, data, val, indx) {
-    if (!isNullOrUndefined(val[col].primary)  && this.dataSource.data.length > 1) {
+    if (!isNullOrUndefined(val[col].primary) && this.dataSource.data.length > 1) {
       for (let d = 0; d < this.dataSource.data.length; d++) {
         if (this.dataSource.data[d][col].value == data && d != indx) {
           return true;
@@ -193,29 +207,47 @@ export class DynamicTableComponent implements OnInit, OnDestroy, AfterContentChe
     }
   }
 
-  setFocus(id, indx) {
-    let flag = false;
-    let nextId = '';
-    // tslint:disable-next-line:forin
-    for (let c = 0; c < this.columnDefinitions.length; c++) {
-      if (flag && !this.columnDefinitions[c].disabled && this.columnDefinitions[c].def != 'delete') {
-        nextId = this.columnDefinitions[c].def;
-        break;
-      }
-      if (id == this.columnDefinitions[c].def) {
-        flag = true;
-      }
-    }
-    if (nextId == '') {
+  setCurrentFocus() {
+    this.commonService.setFocus(this.id + this.index);
+  }
+
+  setFocus(id?, indx?, data?) {
+    this.data = isNullOrUndefined(data) ? this.data : data;
+    if (this.checkValue()) {
+      let flag = false;
+      let nextId = '';
+      this.id = isNullOrUndefined(id) ? this.id : id;
+      this.index = isNullOrUndefined(indx) ? this.index : indx;
+      // tslint:disable-next-line:forin
       for (let c = 0; c < this.columnDefinitions.length; c++) {
-        if (!this.columnDefinitions[c].disabled) {
+        if (flag && !this.columnDefinitions[c].disabled && this.columnDefinitions[c].def != 'delete') {
           nextId = this.columnDefinitions[c].def;
-          indx = indx + 1;
           break;
         }
+        if (this.id == this.columnDefinitions[c].def) {
+          flag = true;
+        }
+      }
+      if (nextId == '') {
+        for (let c = 0; c < this.columnDefinitions.length; c++) {
+          if (!this.columnDefinitions[c].disabled) {
+            nextId = this.columnDefinitions[c].def;
+            this.index = this.index + 1;
+            break;
+          }
+        }
+      }
+      this.commonService.setFocus(nextId + this.index);
+    }
+  }
+
+  checkValue() {
+    if (this.isDropdown) {
+      if (isNullOrUndefined(this.data) && this.isDropdown) {
+        return false;
       }
     }
-    this.commonService.setFocus(nextId + indx);
+    return true;
   }
 
   ngOnDestroy() {
