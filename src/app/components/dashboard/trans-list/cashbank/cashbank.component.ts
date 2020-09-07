@@ -23,7 +23,7 @@ export class CashbankComponent implements OnInit {
   routeEdit = '';
 
   tableData = [];
-  dynTableProps = this.tablePropsFunc()
+  dynTableProps: any;
 
   companyList = [];
   branchList = [];
@@ -100,13 +100,13 @@ export class CashbankComponent implements OnInit {
           value: null, type: 'dropdown', list: this.glAccountList, id: 'id', text: 'text', displayMul: true, width: 150
         },
         amount: {
-          value: 0, type: 'number', width: 75
+          value: null, type: 'number', width: 75,maxLength: 10
         },
         taxCode: {
           value: null, type: 'dropdown', list: this.taxCodeList, id: 'taxRateCode', text: 'description', displayMul: false, width: 150
         },
         referenceNo: {
-          value: null, type: 'number', width: 130
+          value: null, type: 'number', width: 130, maxLength: 10
         },
         referenceDate: {
           value: new Date(), type: 'datepicker', width: 100
@@ -151,7 +151,7 @@ export class CashbankComponent implements OnInit {
           value: null, type: 'dropdown', list: this.costCenterList, id: 'id', text: 'text', displayMul: false, width: 150
         },
         narration: {
-          value: null, type: 'text', width: 150
+          value: null, type: 'text', width: 150, maxLength: 10
         },
         igstamount: {
           value: null, type: 'number', disabled: true, width: 75
@@ -165,23 +165,9 @@ export class CashbankComponent implements OnInit {
       },
 
       formControl: {
-        glaccount: [null, [Validators.required]],
-        amount: [null],
-        taxCode: [null],
-        sgstamount: [null],
-        cgstamount: [null],
-        igstamount: [null],
-        ugstamount: [null],
-        referenceNo: [null],
-        referenceDate: [null],
-        functionalDept: [null],
-        profitCenter: [null],
-        bttypes:[null],
-        segment: [null],
-        costCenter: [null],
-        narration: [null]
+        glaccount: [null, [Validators.required]]
       }
-    }
+    };
   }
 
   getCashBankDetail(val) {
@@ -194,7 +180,7 @@ export class CashbankComponent implements OnInit {
           if (!isNullOrUndefined(res) && res.status === StatusCodes.pass) {
             if (!isNullOrUndefined(res.response)) {
               this.formData.setValue(res.response['CashBankMasters']);
-              this.addOrEditService.sendDynTableData(res.response['CashBankDetail']);
+              this.addOrEditService.sendDynTableData({ type: 'edit', data: res.response['CashBankDetail']});
               this.formData.disable();
             }
           }
@@ -411,20 +397,20 @@ export class CashbankComponent implements OnInit {
   }
 
   emitColumnChanges(data) {
-    this.calculateAmount(data)
+    this.calculateAmount(data);
   }
 
   calculateAmount(row) {
     if (row.column == 'taxCode' || row.column == 'amount') {
-      let code = row.value['taxCode'].list.find(res => res.taxRateCode == row.value['taxCode'].value)
+      const code = row.data[row.index]['taxCode'].list.find(res => res.taxRateCode == row.data[row.index]['taxCode'].value);
       if (!isNullOrUndefined(code)) {
-        row.value.cgstamount.value = (row.value.amount.value * code.cgst) / 100
-        row.value.igstamount.value = (row.value.amount.value * code.igst) / 100
-        row.value.cgstamount.value = (row.value.amount.value * code.sgst) / 100
-        row.value.cgstamount.value = (row.value.amount.value * code.cgst) / 100
+        row.data[row.index].cgstamount.value = (row.data[row.index].amount.value * code.cgst) / 100;
+        row.data[row.index].igstamount.value = (row.data[row.index].amount.value * code.igst) / 100;
+        row.data[row.index].cgstamount.value = (row.data[row.index].amount.value * code.sgst) / 100;
+        row.data[row.index].cgstamount.value = (row.data[row.index].amount.value * code.cgst) / 100;
       }
     }
-    this.addOrEditService.sendDynTableData(row);
+    this.addOrEditService.sendDynTableData({ type: 'add', data: row.data});
   }
 
   emitTableData(data) {
@@ -460,7 +446,7 @@ export class CashbankComponent implements OnInit {
     this.tableData = [];
     this.formData.reset();
     this.formData.controls['voucherNumber'].disable();
-    this.addOrEditService.sendDynTableData(this.tableData);
+    this.addOrEditService.sendDynTableData({ type: 'edit', data: this.tableData});
   }
 
   saveCashBank() {

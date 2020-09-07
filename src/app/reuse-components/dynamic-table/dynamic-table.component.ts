@@ -1,4 +1,4 @@
-import { Component, OnInit, ViewChild, Output, EventEmitter, Input, OnDestroy } from '@angular/core';
+import { Component, OnInit, ViewChild, Output, EventEmitter, Input, OnDestroy, ChangeDetectorRef, AfterContentChecked } from '@angular/core';
 import { MatTableDataSource, MatTable } from '@angular/material/table';
 import { isNullOrUndefined } from 'util';
 import { ActivatedRoute } from '@angular/router';
@@ -13,7 +13,7 @@ import { CommonService } from '../../services/common.service';
   templateUrl: './dynamic-table.component.html',
   styleUrls: ['./dynamic-table.component.scss']
 })
-export class DynamicTableComponent implements OnInit, OnDestroy {
+export class DynamicTableComponent implements OnInit, OnDestroy, AfterContentChecked {
 
 
   emitDynTableData: Subscription;
@@ -24,7 +24,8 @@ export class DynamicTableComponent implements OnInit, OnDestroy {
     if (!isNullOrUndefined(res)) {
       this.tableData = [res.tableData];
       this.formControl = res.formControl;
-      this.setTableData()
+      this.tableForm = this.formBuilder.group(this.formControl);
+      this.setTableData();
     }
   }
 
@@ -42,25 +43,32 @@ export class DynamicTableComponent implements OnInit, OnDestroy {
     private formBuilder: FormBuilder,
     private runtimeConfigService: RuntimeConfigService,
     private commonService: CommonService,
+    private cdr: ChangeDetectorRef,
     addOrEditService: AddOrEditService
   ) {
     activatedRoute.params.subscribe(params => {
       this.routeParam = params.id;
       this.emitDynTableData = addOrEditService.emitDynTableData.subscribe(res => {
         if (!isNullOrUndefined(res)) {
-          if (res.length) {
-            this.dataSource.data = this.formalTableData(res);
-          } else if (res.length == 0) {
-            this.dataSource.data = [];
-            this.setTableData();
-          } else {
-            this.dataSource.data[res.index] = res['value'];
+          this.dataSource = new MatTableDataSource();
+          if (res.type == 'edit') {
+            this.dataSource = new MatTableDataSource(JSON.parse(JSON.stringify(this.formalTableData(res.data))));
+          } else if (res.type == 'add') {
+            if (res.data.length) {
+              this.dataSource = new MatTableDataSource(JSON.parse(JSON.stringify(res.data)));
+            } else {
+              this.setTableData();
+            }
           }
-          this.dataSource = new MatTableDataSource(this.dataSource.data);
+          this.cdr.detectChanges();
           addOrEditService.sendDynTableData(null);
         }
       });
     });
+  }
+
+  ngAfterContentChecked() {
+    this.cdr.detectChanges();
   }
 
   formalTableData(list) {
@@ -71,7 +79,7 @@ export class DynamicTableComponent implements OnInit, OnDestroy {
         obj[t].value = list[l][t];
         obj[t].type = 'none';
       }
-      data.push(obj)
+      data.push(obj);
     }
     return data;
   }
@@ -98,6 +106,11 @@ export class DynamicTableComponent implements OnInit, OnDestroy {
   }
 
   formControlValid(col, val, data, indx) {
+    if (this.checkPrimary(col, data, val, indx)) {
+      this.dataSource.data[indx][col].value = '';
+      this.dataSource = new MatTableDataSource(JSON.parse(JSON.stringify(this.dataSource.data)));
+      return;
+    }
     if ((this.dataSource.data.length - 1) === indx) {
       this.tableForm.patchValue({
         [col]: data
@@ -106,15 +119,26 @@ export class DynamicTableComponent implements OnInit, OnDestroy {
     this.dataSource.data[indx][col].value = data;
     if (this.tableForm.valid && (this.dataSource.data.length - 1) == indx) {
       this.dataSource.data.push(JSON.parse(JSON.stringify(this.tableData[0])));
-      this.dataSource = new MatTableDataSource(this.dataSource.data);
       this.tableForm = this.formBuilder.group(this.formControl);
     }
-    this.emitColumnChanges.emit({ column: col, value: val, index: indx });
+    this.dataSource = new MatTableDataSource(this.dataSource.data);
+    this.emitColumnChanges.emit({ column: col, index: indx, data: this.dataSource.data });
     this.emitTableData.emit(this.formatTableData());
   }
 
+  checkPrimary(col, data, val, indx) {
+    if (!isNullOrUndefined(val[col].primary)  && this.dataSource.data.length > 1) {
+      for (let d = 0; d < this.dataSource.data.length; d++) {
+        if (this.dataSource.data[d][col].value == data && d != indx) {
+          return true;
+        }
+      }
+    }
+    return false;
+  }
+
   formatTableData() {
-    const array = []
+    const array = [];
     for (let t = 0; t < this.dataSource.data.length; t++) {
       const object = {};
       this.keys.map(res => (res.col != 'delete') ? object[res.col] = this.dataSource.data[t][res.col].value : null);
@@ -127,11 +151,15 @@ export class DynamicTableComponent implements OnInit, OnDestroy {
 
 
   setTableData() {
-    this.tableForm = this.formBuilder.group(this.formControl);
+    // let data = [];
+    // if (!isNullOrUndefined(this.dataSource)) {
+    //   data = (!isNullOrUndefined(this.dataSource.data.length)) ? this.dataSource.data : this.tableData;
+    // } else {
+    //   data = this.tableData;
+    // }
     if (!isNullOrUndefined(this.tableData)) {
       if (this.tableData.length) {
         this.dataSource = new MatTableDataSource(JSON.parse(JSON.stringify(this.tableData)));
-
       }
       this.keys = [];
       const col = [];
@@ -155,6 +183,7 @@ export class DynamicTableComponent implements OnInit, OnDestroy {
           }
         }
       }
+
     }
   }
 
@@ -164,7 +193,7 @@ export class DynamicTableComponent implements OnInit, OnDestroy {
     }
   }
 
-  setFocus(id, index) {
+  setFocus(id, indx) {
     let flag = false;
     let nextId = '';
     // tslint:disable-next-line:forin
@@ -181,12 +210,12 @@ export class DynamicTableComponent implements OnInit, OnDestroy {
       for (let c = 0; c < this.columnDefinitions.length; c++) {
         if (!this.columnDefinitions[c].disabled) {
           nextId = this.columnDefinitions[c].def;
-          index = index + 1;
+          indx = indx + 1;
           break;
         }
       }
     }
-    this.commonService.setFocus(nextId + index);
+    this.commonService.setFocus(nextId + indx);
   }
 
   ngOnDestroy() {

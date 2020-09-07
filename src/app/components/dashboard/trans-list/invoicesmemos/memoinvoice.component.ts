@@ -21,10 +21,10 @@ export class MemoinvoiceComponent implements OnInit {
 
   formData: FormGroup;
   routeEdit = '';
-  btList=[];
+  btList = [];
   tableData = [];
-  dynTableProps = this.tablePropsFunc()
-  ptermsList =[];
+  dynTableProps: any;
+  ptermsList = [];
   companyList = [];
   branchList = [];
   voucherClassList = [];
@@ -45,10 +45,10 @@ export class MemoinvoiceComponent implements OnInit {
   partyInvoiceDate = [];
   grnno = [];
   grndate = [];
-  bpgLists:any;
+  bpgLists: any;
   taxAmount = [];
   totalAmount = [];
-  narration= [];
+  narration = [];
 
   constructor(
     private formBuilder: FormBuilder,
@@ -65,11 +65,11 @@ export class MemoinvoiceComponent implements OnInit {
     }
   }
   onbpChange() {
-   
-    this.bpgLists=[];
-    let data = this.bpTypeList.find(res => res.code == this.formData.get('ptypeList').value);
-    this.bpgLists=this.bpList.filter(res => res.bptype == data.code);
-
+    this.bpgLists = [];
+    if (!isNullOrUndefined(this.formData.get('bpcategory').value)) {
+      let data = this.bpTypeList.find(res => res.code == this.formData.get('bpcategory').value);
+      this.bpgLists = this.bpList.filter(res => res.bptype == data.code);
+    }
   }
   ngOnInit() {
     this.formDataGroup();
@@ -97,18 +97,18 @@ export class MemoinvoiceComponent implements OnInit {
       referenceNumber: [null],
       referenceDate: [null],
       bpcategory: [],
-      totalAmount:[null],
+      totalAmount: [null],
       ext: [null],
-      partyAccount:[null],
-      accountingIndicator: [null] ,
-      taxAmount:[null],
-      narration:[null] ,
-      status:[null],
-      ext1:[null] ,
-      addWho:[null],
-      editWho:[null],
-      addDate:[null],
-      editDate:[null]  
+      partyAccount: [null],
+      accountingIndicator: [null],
+      taxAmount: [null],
+      narration: [null],
+      status: [null],
+      ext1: [null],
+      addWho: [null],
+      editWho: [null],
+      addDate: [null],
+      editDate: [null]
     });
   }
 
@@ -202,7 +202,7 @@ export class MemoinvoiceComponent implements OnInit {
           if (!isNullOrUndefined(res) && res.status === StatusCodes.pass) {
             if (!isNullOrUndefined(res.response)) {
               this.formData.setValue(res.response['imMasters']);
-              this.addOrEditService.sendDynTableData(res.response['ImDetail']);
+              this.addOrEditService.sendDynTableData({ type: 'edit', data: res.response['ImDetail'] });
               this.formData.disable();
             }
           }
@@ -440,13 +440,15 @@ export class MemoinvoiceComponent implements OnInit {
 
   calculateAmount(row) {
     if (row.column == 'taxCode' || row.column == 'amount') {
-      let code = row.value['taxCode'].list.find(res => res.taxRateCode == row.value['taxCode'].value)
-      row.value.cgstamount.value = (row.value.amount.value * code.cgst) / 100
-      row.value.igstamount.value = (row.value.amount.value * code.igst) / 100
-      row.value.cgstamount.value = (row.value.amount.value * code.sgst) / 100
-      row.value.cgstamount.value = (row.value.amount.value * code.cgst) / 100
+      const code = row.data[row.index]['taxCode'].list.find(res => res.taxRateCode == row.data[row.index]['taxCode'].value);
+      if (!isNullOrUndefined(code)) {
+        row.data[row.index].cgstamount.value = (row.data[row.index].amount.value * code.cgst) / 100;
+        row.data[row.index].igstamount.value = (row.data[row.index].amount.value * code.igst) / 100;
+        row.data[row.index].cgstamount.value = (row.data[row.index].amount.value * code.sgst) / 100;
+        row.data[row.index].cgstamount.value = (row.data[row.index].amount.value * code.cgst) / 100;
+        this.addOrEditService.sendDynTableData({ type: 'add', data: row.data });
+      }
     }
-    this.addOrEditService.sendDynTableData(row);
   }
 
   emitTableData(data) {
@@ -482,7 +484,7 @@ export class MemoinvoiceComponent implements OnInit {
     this.tableData = [];
     this.formData.reset();
     this.formData.controls['voucherNumber'].disable();
-    this.addOrEditService.sendDynTableData(this.tableData);
+    this.addOrEditService.sendDynTableData({ type: 'edit', data: this.tableData });
   }
 
   saveInvoiceMemo() {

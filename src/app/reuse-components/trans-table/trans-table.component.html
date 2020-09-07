@@ -8,7 +8,7 @@
         </div>
         <div>
           <mat-form-field>
-            <input matInput placeholder="{{ ( routeParam + '.searchCriteria') | translate }}" formControlName="searchCriteria" />
+            <input matInput placeholder="{{ 'COMMON.SEARCH' | translate }}" formControlName="searchCriteria" />
           </mat-form-field>
         </div>
         <div class="p-2 ml-3">
@@ -23,7 +23,7 @@
         </div>
         <div class="ml-auto p-2">
           <button mat-raised-button class="button-color-bule text-white" (click)="newTransOpen()">
-            {{ ( routeParam + '.new') | translate }}
+            {{ "COMMON.NEW" | translate }}
           </button>
         </div>
       </div>

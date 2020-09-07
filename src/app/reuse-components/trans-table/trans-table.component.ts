@@ -157,6 +157,10 @@ export class TransTableComponent implements OnInit {
 
 
       for (let key in this.runtimeConfigService.tableColumnsData[this.routeParam]) {
+
+        if (this.runtimeConfigService.tableColumnsData[this.routeParam][key] == 'Date') {
+          this.formatDate(key);
+        }
         // tslint:disable-next-line: prefer-for-of
         for (let c = 0; c < col.length; c++) {
           if (key == col[c].def) {
@@ -164,11 +168,15 @@ export class TransTableComponent implements OnInit {
           }
         }
       }
+      
     }
 
 
   }
 
+  formatDate(col) {
+    this.tableData.map(res => !isNullOrUndefined(res[col]) ? res[col] = this.commonService.formatDateValue(res[col]) : '');
+  }
 
   getDisplayedColumns(): string[] {
     if (!isNullOrUndefined(this.tableData)) {

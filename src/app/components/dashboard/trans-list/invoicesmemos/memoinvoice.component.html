@@ -90,7 +90,7 @@
                     <mat-label>{{ 'invoicesmemos.partyAccount' | translate }}</mat-label>
                     <mat-select formControlName="partyAccount">
                         <mat-option>None</mat-option>
-                        <mat-option *ngFor="let acc of bpList" [value]="acc.id">
+                        <mat-option *ngFor="let acc of bpgLists" [value]="acc.id">
                             {{acc.text}}
                         </mat-option>
                     </mat-select>
@@ -169,13 +169,13 @@
         <button [hidden]="routeEdit != ''" mat-raised-button type="submit" class="button-color-bule mr-3 text-white"
             (click)="save()">
             {{ 'COMMON.SAVE' | translate }}
-        </button>
-        <button [hidden]="routeEdit != ''" mat-raised-button class="button-color-red text-white mr-3"
-            (click)="reset();">
-            {{ 'COMMON.RESET' | translate }}
-        </button>
+        </button>       
         <button mat-raised-button class="button-color-red text-white mr-3" (click)="back();">
             {{ 'COMMON.BACK' | translate }}
+        </button>
+        <button [hidden]="routeEdit != ''" mat-raised-button class="button-color-red text-white mr-3"
+        (click)="reset();">
+        {{ 'COMMON.RESET' | translate }}
         </button>
         <button [hidden]="routeEdit == ''" mat-raised-button class="button-color-red text-white mr-3"
             (click)="return();">

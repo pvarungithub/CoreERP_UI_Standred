@@ -26,8 +26,8 @@ export class JournalComponent implements OnInit {
   creditValue = 0;
 
   tableData = [];
-  dynTableProps = this.tablePropsFunc()
-  btList=[];
+  dynTableProps: any;
+  btList = [];
   companyList = [];
   branchList = [];
   voucherClassList = [];
@@ -79,11 +79,11 @@ export class JournalComponent implements OnInit {
       narration: [null],
       voucherClass: [null],
       accountingIndicator: [null],
-      status:[null],
-      addWho:[null],
-      editWho:[null],
-      addDate:[null],
-      editDate:[null]      
+      status: [null],
+      addWho: [null],
+      editWho: [null],
+      addDate: [null],
+      editDate: [null]
     });
   }
 
@@ -94,13 +94,13 @@ export class JournalComponent implements OnInit {
           value: 0, type: 'autoInc', width: 10, disabled: true
         },
         glaccount: {
-          value: null, type: 'dropdown', list: this.glAccountList, id: 'id', text: 'text', displayMul: true, width: 150
+          value: null, type: 'dropdown', list: this.glAccountList, id: 'id', text: 'text', displayMul: true, width: 150, primary: true
         },
         accountingIndicator: {
-          value: null, type: 'dropdown', list: this.indicatorList, id: 'id', text: 'text', displayMul: false, width: 150
+          value: null, type: 'dropdown', list: this.indicatorList, id: 'id', text: 'text', displayMul: false, width: 150, disabled: false
         },
         amount: {
-          value: 0, type: 'number', width: 75
+          value: null, type: 'number', width: 75
         },
         taxCode: {
           value: null, type: 'dropdown', list: this.taxCodeList, id: 'taxRateCode', text: 'description', displayMul: false, width: 150
@@ -139,7 +139,7 @@ export class JournalComponent implements OnInit {
           value: null, type: 'dropdown', list: this.costCenterList, id: 'id', text: 'text', displayMul: false, width: 150
         },
         narration: {
-          value: null, type: 'text', width: 150
+          value: null, type: 'text', width: 150, maxLength: 1000
         },
         workBreakStructureElement: {
           value: null, type: 'dropdown', list: this.costCenterList, id: 'id', text: 'text', displayMul: false, width: 150
@@ -164,28 +164,7 @@ export class JournalComponent implements OnInit {
         }
       },
       formControl: {
-        glaccount: [null, [Validators.required]],
-        accountingIndicator: [null],
-        bttypes:[null],
-        amount: [null],
-        taxCode: [null],
-        sgstamount: [null],
-        cgstamount: [null],
-        igstamount: [null],
-        ugstamount: [null],
-        referenceNo: [null],
-        referenceDate: [null],
-        functionalDept: [null],
-        profitCenter: [null],
-        segment: [null],
-        costCenter: [null],
-        narration: [null],
-        workBreakStructureElement: [null],
-        netWork: [null],
-        orderNo: [null],
-        fundCenter: [null],
-        commitment: [null],
-        hSNSACCode: [null]
+        glaccount: [null, [Validators.required]]
       }
     }
   }
@@ -200,7 +179,7 @@ export class JournalComponent implements OnInit {
           if (!isNullOrUndefined(res) && res.status === StatusCodes.pass) {
             if (!isNullOrUndefined(res.response)) {
               this.formData.setValue(res.response['jvMasters']);
-              this.addOrEditService.sendDynTableData(res.response['JvDetail']);
+              this.addOrEditService.sendDynTableData({ type: 'edit', data: res.response['JvDetail'] });
               this.formData.disable();
             }
           }
@@ -366,7 +345,6 @@ export class JournalComponent implements OnInit {
           if (!isNullOrUndefined(res) && res.status === StatusCodes.pass) {
             if (!isNullOrUndefined(res.response)) {
               this.costCenterList = res.response['costcenterList'];
-
             }
           }
           this.dynTableProps = this.tablePropsFunc();
@@ -398,7 +376,7 @@ export class JournalComponent implements OnInit {
               if (!isNullOrUndefined(res.response)) {
                 this.formData.patchValue({
                   voucherNumber: !isNullOrUndefined(res.response['VoucherNumber']) ? res.response['VoucherNumber'] : null
-                })
+                });
               }
             }
           });
@@ -406,18 +384,33 @@ export class JournalComponent implements OnInit {
   }
 
   emitColumnChanges(data) {
-    this.calculateAmount(data)
+    this.dataChange(data);
   }
 
-  calculateAmount(row) {
-    if (row.column == 'taxCode' || row.column == 'amount') {
-      let code = row.value['taxCode'].list.find(res => res.taxRateCode == row.value['taxCode'].value)
-      row.value.cgstamount.value = (row.value.amount.value * code.cgst) / 100
-      row.value.igstamount.value = (row.value.amount.value * code.igst) / 100
-      row.value.cgstamount.value = (row.value.amount.value * code.sgst) / 100
-      row.value.cgstamount.value = (row.value.amount.value * code.cgst) / 100
+  dataChange(row) {
+    if (row.column == 'accountingIndicator' || row.column == 'glaccount') {
+      if (row.data.length > 1) {
+        row.data.map((res, index) => {
+          if (index != 0 && !isNullOrUndefined(row.data[0].accountingIndicator.value)) {
+            res.accountingIndicator.value = (row.data[0].accountingIndicator.value == 'Debit') ? 'Credit' : 'Debit';
+            res.accountingIndicator.disabled = true;
+          } else if(index != 0) {
+            res.accountingIndicator.disabled = true;
+          }
+        })
+      }
+      this.addOrEditService.sendDynTableData({ type: 'add', data: row.data });
     }
-    this.addOrEditService.sendDynTableData(row);
+    if (row.column == 'taxCode' || row.column == 'amount') {
+      const code = row.data[row.index]['taxCode'].list.find(res => res.taxRateCode == row.data[row.index]['taxCode'].value);
+      if (!isNullOrUndefined(code)) {
+        row.data[row.index].cgstamount.value = (row.data[row.index].amount.value * code.cgst) / 100;
+        row.data[row.index].igstamount.value = (row.data[row.index].amount.value * code.igst) / 100;
+        row.data[row.index].cgstamount.value = (row.data[row.index].amount.value * code.sgst) / 100;
+        row.data[row.index].cgstamount.value = (row.data[row.index].amount.value * code.cgst) / 100;
+        this.addOrEditService.sendDynTableData({ type: 'add', data: row.data });
+      }
+    }
   }
 
   emitTableData(data) {
@@ -431,10 +424,10 @@ export class JournalComponent implements OnInit {
       if (this.tableData.length) {
         this.tableData.forEach(res => {
           if (res.accountingIndicator == 'Debit') {
-            this.debitValue = this.debitValue + parseInt(res.amount);
+            this.debitValue = !isNullOrUndefined(parseInt(res.amount)) ? (this.debitValue + parseInt(res.amount)) : 0;
           }
           if (res.accountingIndicator == 'Credit') {
-            this.creditValue = this.creditValue + parseInt(res.amount);
+            this.creditValue = !isNullOrUndefined(parseInt(res.amount)) ? (this.creditValue + parseInt(res.amount)) : 0;
           }
         });
         return (this.debitValue == this.creditValue) ? false : true;
@@ -461,7 +454,7 @@ export class JournalComponent implements OnInit {
     this.tableData = [];
     this.formData.reset();
     this.formData.controls['voucherNumber'].disable();
-    this.addOrEditService.sendDynTableData(this.tableData);
+    this.addOrEditService.sendDynTableData({ type: 'add', data: this.tableData });
   }
 
   saveJournal() {
