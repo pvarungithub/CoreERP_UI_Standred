@@ -159,7 +159,8 @@ export class SubAssetsComponent implements OnInit {
               console.log(res.response['SubassetMasters']);
               console.log(res.response['SubassetDetail']);
               this.modelFormData.setValue(res.response['SubassetMasters']);
-              this.addOrEditService.sendDynTableData(res.response['SubassetDetail']);
+             // this.addOrEditService.sendDynTableData(res.response['SubassetDetail']);
+              this.addOrEditService.sendDynTableData({ type: 'edit', data: res.response['SubassetDetail']});
             }
           }
         });

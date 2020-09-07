@@ -22,6 +22,7 @@ interface depreciationData {
   templateUrl: './mainassetmasters.component.html',
   styleUrls: ['./mainassetmasters.component.scss']
 })
+
 export class MainAssetMasterComponent implements OnInit {
 
   modelFormData: FormGroup;
@@ -42,14 +43,15 @@ export class MainAssetMasterComponent implements OnInit {
   dpareaList: any;
   dpList: any;
   companyList: any;
-  codedata: any;
+  assetNum: any;
+
   depreciationDatas: depreciationData[] =
     [
       { value: 'Multiple ', viewValue: 'Multiple ' },
       { value: 'assignment ', viewValue: 'assignment ' },
       { value: 'required', viewValue: 'required' }
     ];
-  assetNum: any;
+
   constructor(
     private apiService: ApiService,
     private addOrEditService: AddOrEditService,
@@ -60,6 +62,7 @@ export class MainAssetMasterComponent implements OnInit {
     private router: Router,
     public route: ActivatedRoute,
   ) {
+
     if (!isNullOrUndefined(this.route.snapshot.params.value)) {
       this.routeEdit = this.route.snapshot.params.value;
     }
@@ -119,18 +122,11 @@ export class MainAssetMasterComponent implements OnInit {
       tableData: {
 
         depreciationCode: {
-          value: null, type: 'dropdown', list: this.dpList, id: 'code', text: 'description',
-          disabled: false, displayMul: true
+          value: null, type: 'dropdown', list: this.dpList, id: 'code', text: 'description', disabled: false, displayMul: true
         },
         Rate: {
-          value: null, type: 'text', width: 150, maxLength: 10
+          value: null, type: 'dropdown', list: this.dpList, id: 'code', text: 'description', disabled: false, displayMul: true
         },
-        cgstamount: {
-          value: null, type: 'number', disabled: true, width: 75
-        },
-        // Rate: {
-        //   value: null, type: 'dropdown', list: this.dpList, id: 'code', text: 'description', disabled: false, displayMul: true
-        // },
         depreciationArea: {
           value: null, type: 'dropdown', list: this.dpareaList, id: 'code', text: 'description', disabled: false, displayMul: true
         },
@@ -145,10 +141,8 @@ export class MainAssetMasterComponent implements OnInit {
 
       formControl: {
         Rate: [null,],
-        cgstamount: [null,],
-        depreciationArea: [null,],
         depreciationCode: [null,],
-        depreciationStartDate: [null, [Validators.required]]
+        depreciationArea: [null, [Validators.required]]
       }
     }
   }
@@ -167,9 +161,6 @@ export class MainAssetMasterComponent implements OnInit {
     this.getTableData();
     this.getassetTableData();
   }
-
-
-
 
   getbranchList() {
     const getbranchList = String.Join('/', this.apiConfigService.getBranchesList);
@@ -194,14 +185,14 @@ export class MainAssetMasterComponent implements OnInit {
           const res = response.body;
           if (!isNullOrUndefined(res) && res.status === StatusCodes.pass) {
             if (!isNullOrUndefined(res.response)) {
-              console.log(res.response['MainassetMasters']);
-              console.log(res.response['MainassetDetail']);
               this.modelFormData.setValue(res.response['MainassetMasters']);
-              this.addOrEditService.sendDynTableData(res.response['MainassetDetail']);
+              //this.addOrEditService.sendDynTableData(res.response['MainassetDetail']);
+              this.addOrEditService.sendDynTableData({ type: 'edit', data: res.response['MainassetDetail']});
             }
           }
         });
   }
+
   onChange(event: any) {
     const getAccountSubGrouplist = String.Join('/', this.apiConfigService.getAssetnumber,
       this.modelFormData.get('assetclass').value, this.modelFormData.get('assetNumber').value);
@@ -237,7 +228,6 @@ export class MainAssetMasterComponent implements OnInit {
         });
   }
 
-
   gettingaseetname() {
     const getAccountSubGrouplist = String.Join('/', this.apiConfigService.getttinasNames,
       this.modelFormData.get('assetclass').value);
@@ -254,7 +244,6 @@ export class MainAssetMasterComponent implements OnInit {
         });
   }
 
-
   getTableData() {
     const getCompanyUrl = String.Join('/', this.apiConfigService.getCompanysList);
     this.apiService.apiGetRequest(getCompanyUrl)
@@ -267,8 +256,8 @@ export class MainAssetMasterComponent implements OnInit {
             }
           }
         });
-
   }
+
   getassetTableData() {
     const getassetyUrl = String.Join('/', this.apiConfigService.getAssetClassList);
     this.apiService.apiGetRequest(getassetyUrl)
@@ -305,12 +294,10 @@ export class MainAssetMasterComponent implements OnInit {
       .subscribe(
         response => {
           const res = response.body;
-          console.log(res);
           if (!isNullOrUndefined(res) && res.status === StatusCodes.pass) {
             if (!isNullOrUndefined(res.response)) {
               this.dpList = res.response['dpList'];
               this.dynTableProps = this.tablePropsFunc();
-
             }
           }
           this.spinner.hide();
@@ -335,6 +322,7 @@ export class MainAssetMasterComponent implements OnInit {
           }
         });
   }
+
   getaccountkeyList() {
     const getackeyList = String.Join('/', this.apiConfigService.getAccountKeyList);
     this.apiService.apiGetRequest(getackeyList)
@@ -364,6 +352,7 @@ export class MainAssetMasterComponent implements OnInit {
           this.spinner.hide();
         });
   }
+
   getsegmentList() {
     const getsegmentList = String.Join('/', this.apiConfigService.getSegmentList);
     this.apiService.apiGetRequest(getsegmentList)
@@ -378,6 +367,7 @@ export class MainAssetMasterComponent implements OnInit {
           this.spinner.hide();
         });
   }
+
   getdivisionList() {
     const getdivisionList = String.Join('/', this.apiConfigService.getDivisionsList);
     this.apiService.apiGetRequest(getdivisionList)
@@ -392,6 +382,7 @@ export class MainAssetMasterComponent implements OnInit {
           this.spinner.hide();
         });
   }
+
   getplantList() {
     const getplantList = String.Join('/', this.apiConfigService.getplantList);
     this.apiService.apiGetRequest(getplantList)
@@ -406,6 +397,7 @@ export class MainAssetMasterComponent implements OnInit {
           this.spinner.hide();
         });
   }
+
   getLocationList() {
     const getlocList = String.Join('/', this.apiConfigService.getlocationList);
     this.apiService.apiGetRequest(getlocList)
@@ -421,22 +413,6 @@ export class MainAssetMasterComponent implements OnInit {
         });
   }
 
-  emitColumnChanges(data) {
-    this.assigndata(data);
-  }
-
-  assigndata(row) {
-    if (row.column == 'depreciationCode') {
-      const code = row.data[row.index]['depreciationCode'].list.find(res => res.code == row.data[row.index]['depreciationCode'].value);
-      if (!isNullOrUndefined(code)) {
-        row.data[row.index].Rate.value = code.rate;
-        this.addOrEditService.sendDynTableData({ type: 'add', data: row.data });
-      }
-    }
-  }
-
-
-
   get formControls() { return this.modelFormData.controls; }
 
   emitTableData(data) {
@@ -447,11 +423,13 @@ export class MainAssetMasterComponent implements OnInit {
     this.saveMainassets();
 
   }
+
   reset() {
     this.tableData = [];
     this.modelFormData.reset();
     this.addOrEditService.sendDynTableData(this.tableData);
   }
+
   saveMainassets() {
     const addCashBank = String.Join('/', this.apiConfigService.registermainAssetsList);
     const requestObj = { mainasstHdr: this.modelFormData.value, mainassetDetail: this.tableData };
