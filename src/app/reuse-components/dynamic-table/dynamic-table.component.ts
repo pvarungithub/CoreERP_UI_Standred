@@ -57,7 +57,11 @@ export class DynamicTableComponent implements OnInit, OnDestroy, AfterContentChe
       this.emitDynTableData = addOrEditService.emitDynTableData.subscribe(res => {
         if (!isNullOrUndefined(res)) {
           this.dataSource = new MatTableDataSource();
-          if (res.type == 'edit') {
+          if (res.type == 'editValue') {
+            let editData = this.formalTableData(res.data);
+            editData.push(this.tableData[0])
+            this.dataSource = new MatTableDataSource(JSON.parse(JSON.stringify(editData)));
+          } else if (res.type == 'edit') {
             this.dataSource = new MatTableDataSource(JSON.parse(JSON.stringify(this.formalTableData(res.data))));
           } else if (res.type == 'add') {
             if (res.data.length) {
@@ -179,11 +183,11 @@ export class DynamicTableComponent implements OnInit, OnDestroy, AfterContentChe
       const col = [];
       // tslint:disable-next-line:forin
       for (const key in this.tableData[0]) {
-        this.keys.push({ col: key, disabled: this.tableData[0][key].disabled ? this.tableData[0][key].disabled : false });
+        this.keys.push({ col: key, disabled: this.tableData[0][key].disabled ? this.tableData[0][key].disabled : false, hide: this.tableData[0][key].hide  });
       }
       this.keys.forEach(cols => {
         const obj = {
-          def: cols.col, label: cols.col, hide: true, disabled: cols.disabled
+          def: cols.col, label: cols.col, hide: cols.hide, disabled: cols.disabled
         };
         col.push(obj);
       });
@@ -192,7 +196,7 @@ export class DynamicTableComponent implements OnInit, OnDestroy, AfterContentChe
       // tslint:disable-next-line:forin
       for (let key in this.runtimeConfigService.tableColumnsData[this.routeParam]) {
         for (let c = 0; c < col.length; c++) {
-          if (key == col[c].def) {
+          if (key == col[c].def && !col[c].hide) {
             this.columnDefinitions.push(col[c]);
           }
         }
@@ -203,7 +207,7 @@ export class DynamicTableComponent implements OnInit, OnDestroy, AfterContentChe
 
   getDisplayedColumns(): string[] {
     if (!isNullOrUndefined(this.tableData)) {
-      return this.columnDefinitions.filter(cd => cd.hide).map(cd => cd.def);
+      return this.columnDefinitions.map(cd => cd.def);
     }
   }
 

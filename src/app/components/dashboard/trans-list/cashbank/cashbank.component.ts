@@ -24,7 +24,7 @@ export class CashbankComponent implements OnInit {
 
   tableData = [];
   dynTableProps: any;
-
+  indicatorList = [{ id: 'Debit', text: 'Debit' }, { id: 'Credit', text: 'Credit' }];
   companyList = [];
   branchList = [];
   voucherClassList = [];
@@ -41,6 +41,7 @@ export class CashbankComponent implements OnInit {
   costCenterList = [];
   taxCodeList = [];
   functionaldeptList = [];
+  routeConfig = <any>{};
 
   constructor(
     private formBuilder: FormBuilder,
@@ -55,6 +56,8 @@ export class CashbankComponent implements OnInit {
     if (!isNullOrUndefined(this.route.snapshot.params.value)) {
       this.routeEdit = this.route.snapshot.params.value;
     }
+    // this.routeConfig = JSON.parse(this.route.snapshot.data['routeConfig']);
+    // this.routeConfig = { ugstamount: true, company: true};
   }
 
   ngOnInit() {
@@ -102,6 +105,9 @@ export class CashbankComponent implements OnInit {
         },
         amount: {
           value: null, type: 'number', width: 100, maxLength: 15
+        },
+        accountingIndicator: {
+          value: null, type: 'dropdown', list: this.indicatorList, id: 'id', text: 'text', displayMul: false, width: 100
         },
         taxCode: {
           value: null, type: 'dropdown', list: this.taxCodeList, id: 'taxRateCode', text: 'description', displayMul: false, width: 100
@@ -158,7 +164,7 @@ export class CashbankComponent implements OnInit {
           value: null, type: 'number', disabled: true, width: 75
         },
         ugstamount: {
-          value: null, type: 'number', disabled: true, width: 75
+          value: null, type: 'number', disabled: true, width: 75, hide: !isNullOrUndefined(this.routeConfig.ugstamount) ? this.routeConfig.ugstamount : false
         },
         delete: {
           type: 'delete', width: 10
@@ -450,7 +456,7 @@ export class CashbankComponent implements OnInit {
     this.tableData = [];
     this.formData.reset();
     this.formData.controls['voucherNumber'].disable();
-    this.addOrEditService.sendDynTableData({ type: 'edit', data: this.tableData });
+    this.addOrEditService.sendDynTableData({ type: 'add', data: this.tableData });
   }
 
   saveCashBank() {

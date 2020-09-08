@@ -14,15 +14,15 @@ const routes: Routes = [
     children: [
 
       // standard screens
-      { path: 'rolePrevilages', component: RolesprevilagesComponent, canActivate: [AuthGuard] },
+      { path: 'rolePrevilages', component: RolesprevilagesComponent, canActivate: [AuthGuard],  resolve:{ routeConfig : AuthGuard } },
 
       // masters screen
-      { path: 'master/:id/:id1', component: CompTabsComponent, canActivate: [AuthGuard] },
-      { path: 'master/:id', component: CompListComponent, canActivate: [AuthGuard] },
+      { path: 'master/:id/:id1', component: CompTabsComponent, canActivate: [AuthGuard], resolve:{ routeConfig : AuthGuard } },
+      { path: 'master/:id', component: CompListComponent, canActivate: [AuthGuard], resolve:{ routeConfig : AuthGuard } },
 
       // transation screens
-      { path: 'transaction/:id/:id1', component: TransListComponent, canActivate: [AuthGuard] },
-      { path: 'transaction/:id', component: TransListComponent, canActivate: [AuthGuard] }
+      { path: 'transaction/:id/:id1', component: TransListComponent, canActivate: [AuthGuard], resolve:{ routeConfig : AuthGuard } },
+      { path: 'transaction/:id', component: TransListComponent, canActivate: [AuthGuard], resolve:{ routeConfig : AuthGuard } }
     ]
   },
   { path: '', redirectTo: '/login', pathMatch: 'full' },

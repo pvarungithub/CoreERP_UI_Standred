@@ -1,7 +1,7 @@
 import { Injectable } from '@angular/core';
 import {
   CanActivate, CanActivateChild,
-  CanLoad, Route, UrlSegment, ActivatedRouteSnapshot, RouterStateSnapshot, UrlTree, Router, ActivatedRoute
+  CanLoad, Route, UrlSegment, Resolve, ActivatedRouteSnapshot, RouterStateSnapshot, UrlTree, Router, ActivatedRoute
 } from '@angular/router';
 import { Observable } from 'rxjs';
 import { AuthService } from './services/auth.service';
@@ -10,10 +10,12 @@ import { HttpClient, HttpHeaders, HttpErrorResponse } from '@angular/common/http
 import { String } from 'typescript-string-operations';
 import { ApiConfigService } from './services/api-config.service';
 import { AddOrEditService } from './components/dashboard/comp-list/add-or-edit.service';
+import { ApiService } from './services/api.service';
+
 @Injectable({
   providedIn: 'root'
 })
-export class AuthGuard implements CanActivate {
+export class AuthGuard implements CanActivate, Resolve<any> {
   options;
 
   constructor(
@@ -22,6 +24,7 @@ export class AuthGuard implements CanActivate {
     private http: HttpClient,
     private apiConfigService: ApiConfigService,
     private addOrEditService: AddOrEditService,
+    private apiService: ApiService,
     private activatedRoute: ActivatedRoute
   ) {
     this.options = { headers: new HttpHeaders({ 'Content-Type': 'application/json' }) };
@@ -38,11 +41,12 @@ export class AuthGuard implements CanActivate {
     // if (this.authorizedUser(res.body.response)) {
     if (this.authService.isLoggedIn()) {
       if (state.url.includes('Edit') || state.url.includes('Add') || state.url.includes('New')) {
-        if (!this.addOrEditService.editData) {
-          let route;
-          route = state.url.replace('/Edit', '');
-          route = route.replace('/Add', '');
-          route = route.replace('/New', '');
+        if (!this.addOrEditService.editData && next.url.length > 1) {
+          // let route;
+          // route = state.url.replace('/Edit', '');
+          // route = route.replace('/Add', '');
+          // route = route.replace('/New', '');
+          const route = String.Join('/', 'dashboard', next.url[0].path, next.url[1].path);
           this.router.navigate([route]);
         }
       }
@@ -52,6 +56,16 @@ export class AuthGuard implements CanActivate {
     this.router.navigate(['/login']);
     return false;
     // })));
+  }
+
+  resolve(route: ActivatedRouteSnapshot) {
+    let obj = JSON.parse(localStorage.getItem("user"));
+    const configUrl = String.Join('/', this.apiConfigService.getFieldsConfig, route.url[0].path, route.url[1].path, obj.userName);
+    // return this.apiService.apiGetRequest(configUrl)
+    //   .subscribe(res => res.body.FieldsConfiguration);
+    return this.http.get(configUrl, { headers: this.options, observe: 'response', params: obj })
+      .pipe((map(res => res.body['response']['FieldsConfiguration'])));
+
   }
 
 }

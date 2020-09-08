@@ -18,7 +18,9 @@ import { AlertService } from '../../../../services/alert.service';
 })
 
 export class MemoinvoiceComponent implements OnInit {
-
+  debitValue = 0;
+  creditValue = 0;
+  totalTaxValue = 0;
   formData: FormGroup;
   routeEdit = '';
   btList = [];
@@ -442,6 +444,26 @@ export class MemoinvoiceComponent implements OnInit {
 
   emitColumnChanges(data) {
     this.calculateAmount(data)
+  }
+
+  checkCreditDebit() {
+    this.debitValue = 0;
+    this.creditValue = 0;
+    this.totalTaxValue=0;
+    if (!isNullOrUndefined(this.tableData)) {
+      if (this.tableData.length) {
+        this.tableData.forEach(res => {
+          if (res.accountingIndicator == 'Debit') {
+            this.debitValue = !isNullOrUndefined(parseInt(res.amount)) ? (this.debitValue + parseInt(res.amount)) : 0;
+          }
+          if (res.accountingIndicator == 'Credit') {
+            this.creditValue = !isNullOrUndefined(parseInt(res.amount)) ? (this.creditValue + parseInt(res.amount)) : 0;
+          }
+        });
+        return (this.debitValue == this.creditValue) ? false : true;
+      }
+    }
+    return true;
   }
 
   calculateAmount(row) {

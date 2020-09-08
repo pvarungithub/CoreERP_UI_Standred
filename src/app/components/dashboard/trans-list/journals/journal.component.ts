@@ -24,7 +24,7 @@ export class JournalComponent implements OnInit {
 
   debitValue = 0;
   creditValue = 0;
-
+  totalTaxValue=0;
   tableData = [];
   dynTableProps: any;
   btList = [];
@@ -420,6 +420,7 @@ export class JournalComponent implements OnInit {
   checkCreditDebit() {
     this.debitValue = 0;
     this.creditValue = 0;
+    this.totalTaxValue=0;
     if (!isNullOrUndefined(this.tableData)) {
       if (this.tableData.length) {
         this.tableData.forEach(res => {

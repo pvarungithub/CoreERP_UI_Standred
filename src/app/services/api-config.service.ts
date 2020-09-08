@@ -45,6 +45,7 @@ export class ApiConfigService {
    getBPList = `${this.environment.runtimeConfig.serverUrl}Common/GetBPList`;
    getAssetMasterList = `${this.environment.runtimeConfig.serverUrl}Common/GetMainAssetMasterList`;
    getSubAssetMasterList = `${this.environment.runtimeConfig.serverUrl}Common/GetSubAssetMasterList`;
+   getFieldsConfig = `${this.environment.runtimeConfig.serverUrl}Common/GetFieldsConfig`;
 
    //************************ IMG General  ****************************************/
    getCurrencyList = `${this.environment.runtimeConfig.serverUrl}Currency/GetCurrencyList`;

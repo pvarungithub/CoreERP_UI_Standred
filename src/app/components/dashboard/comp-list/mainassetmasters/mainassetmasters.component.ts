@@ -192,7 +192,7 @@ export class MainAssetMasterComponent implements OnInit {
               console.log(res.response['MainassetDetail']);
               this.modelFormData.setValue(res.response['MainassetMasters']);
               //this.addOrEditService.sendDynTableData(res.response['MainassetDetail']);
-              this.addOrEditService.sendDynTableData({ type: 'edit', data: res.response['MainassetDetail']});
+              this.addOrEditService.sendDynTableData({ type: 'editValue', data: res.response['MainassetDetail']});
             }
           }
         });

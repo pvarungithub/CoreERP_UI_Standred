@@ -167,10 +167,16 @@
 
     <mat-card-content class="d-flex justify-content-end pb-1">
 
-        <button [hidden]="routeEdit != ''" mat-raised-button type="submit" class="button-color-bule mr-3 text-white"
-            (click)="save()">
-            {{ 'COMMON.SAVE' | translate }}
-        </button>
+        <div class="d-flex">
+            <div class="px-1"> <span class="px-1">{{'Total Debit Amount' | translate }}</span> : <strong>{{ debitValue }} </strong></div>
+            <div class="px-1"> <span class="px-1">{{'Total Credit Amount' | translate }}</span> : <strong> {{ creditValue}} </strong></div>
+            <div class="px-1"> <span class="px-1">{{'Total Tax Amount' | translate }}</span> : <strong> {{ totalTaxValue}} </strong></div>
+        </div>
+
+        <button [hidden]="routeEdit != ''" [disabled]="checkCreditDebit()" mat-raised-button type="submit" class="button-color-bule mr-3 text-white"
+                (click)="save()">
+                {{ 'COMMON.SAVE' | translate }}
+            </button>
         <button mat-raised-button class="button-color-red text-white mr-3" (click)="back();">
             {{ 'COMMON.BACK' | translate }}
         </button>
