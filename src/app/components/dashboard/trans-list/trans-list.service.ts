@@ -4,6 +4,7 @@ import { ApiConfigService } from '../../../services/api-config.service';
 import {JournalComponent} from './journals/journal.component';
 import {MemoinvoiceComponent} from './invoicesmemos/memoinvoice.component';
 import {ReceiptspaymentsComponent} from './receiptspayments/receiptspayments.component';
+import {PurchasesaleassetComponent} from './purchasesaleasset/purchasesaleasset.component';
 
 @Injectable({
   providedIn: 'root'
@@ -54,6 +55,16 @@ export class TransListService {
         this.dynamicComp.component = ReceiptspaymentsComponent;
         //  this.dynamicComp.tableUrl = this.apiConfigService.getCashBankMaster;
         //  this.dynamicComp.list = 'CashBankMasters';
+        return this.dynamicComp;
+        break;
+      default:
+    }
+    switch (data) {
+      case 'purchasesaleasset':
+        this.dynamicComp.component = PurchasesaleassetComponent;
+          this.dynamicComp.tableUrl = this.apiConfigService.getPSIMAssetMaster;
+          this.dynamicComp.list = 'assetMasters';
+          this.dynamicComp.editKey = 'voucherNumber';
         return this.dynamicComp;
         break;
       default:

@@ -43,6 +43,8 @@ export class ApiConfigService {
    getCostCentersList = `${this.environment.runtimeConfig.serverUrl}Common/GetCostCentersList`;
    getTaxRatesList = `${this.environment.runtimeConfig.serverUrl}TaxRates/GetTaxRatesList`;
    getBPList = `${this.environment.runtimeConfig.serverUrl}Common/GetBPList`;
+   getAssetMasterList = `${this.environment.runtimeConfig.serverUrl}Common/GetMainAssetMasterList`;
+   getSubAssetMasterList = `${this.environment.runtimeConfig.serverUrl}Common/GetSubAssetMasterList`;
 
    //************************ IMG General  ****************************************/
    getCurrencyList = `${this.environment.runtimeConfig.serverUrl}Currency/GetCurrencyList`;
@@ -126,5 +128,8 @@ export class ApiConfigService {
    getIMDetail = `${this.environment.runtimeConfig.serverUrl}Transactions/GetIMDetail`;
    getIMMaster = `${this.environment.runtimeConfig.serverUrl}Transactions/GetIMMaster`;
 
-
+   /******************************* Asset Purchase & Sale ****************************************************** */
+   addPSIMAsset = `${this.environment.runtimeConfig.serverUrl}Transactions/AddPSIMAsset`;
+   getPSIMAssetDetail = `${this.environment.runtimeConfig.serverUrl}Transactions/GetPSIMAssetDetail`;
+   getPSIMAssetMaster = `${this.environment.runtimeConfig.serverUrl}Transactions/GetPSIMAssetMaster`;
 }
