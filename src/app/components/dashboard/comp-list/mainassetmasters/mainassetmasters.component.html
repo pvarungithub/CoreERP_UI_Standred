@@ -156,13 +156,16 @@
                 formControlName="usefulLifeDays" maxlength="6" appFocusOnEnter tabIndex="20">
             </mat-form-field>
 
+            
+
           </div>
 
         </mat-card-content>
 
       </mat-tab>
       <mat-tab label="Transaction Data">
-        <app-dynamic-table [tableObJect]="dynTableProps" (emitTableData)="emitTableData($event)"></app-dynamic-table>
+        <app-dynamic-table [tableObJect]="dynTableProps" (emitTableData)="emitTableData($event)" 
+         (emitColumnChanges)="emitColumnChanges($event);"></app-dynamic-table>
       </mat-tab>
     </form>
 

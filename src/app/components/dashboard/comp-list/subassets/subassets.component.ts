@@ -54,8 +54,8 @@ export class SubAssetsComponent implements OnInit {
           value: null, type: 'dropdown', list: this.dpList, id: 'code', text: 'description', disabled: false, displayMul: true
         },
         depreciationRate: {
-          value: null, type: 'dropdown', list: this.dpList, id: 'code', text: 'description', disabled: false, displayMul: true
-        },
+          value: null, type: 'text', width: 150, maxLength: 10
+        },        
         depreciationArea: {
           value: null, type: 'dropdown', list: this.dpareaList, id: 'code', text: 'description', disabled: false, displayMul: true
         },
@@ -72,7 +72,8 @@ export class SubAssetsComponent implements OnInit {
       formControl: {
         depreciationRate: [null,],
         depreciationCode: [null,],
-        depreciationArea: [null, [Validators.required]]
+        depreciationArea: [null,],
+        depreciationStartDate: [null, [Validators.required]]
       }
     }
   }
@@ -158,8 +159,7 @@ export class SubAssetsComponent implements OnInit {
             if (!isNullOrUndefined(res.response)) {
               console.log(res.response['SubassetMasters']);
               console.log(res.response['SubassetDetail']);
-              this.modelFormData.setValue(res.response['SubassetMasters']);
-             // this.addOrEditService.sendDynTableData(res.response['SubassetDetail']);
+              this.modelFormData.setValue(res.response['SubassetMasters']);              
               this.addOrEditService.sendDynTableData({ type: 'edit', data: res.response['SubassetDetail']});
             }
           }
@@ -371,6 +371,21 @@ export class SubAssetsComponent implements OnInit {
           this.spinner.hide();
         });
   }
+  emitColumnChanges(data) {
+    this.assigndata(data);
+  }
+
+  assigndata(row) {
+    debugger;
+    if (row.column == 'depreciationCode') {
+      const code = row.data[row.index]['depreciationCode'].list.find(res => res.code == row.data[row.index]['depreciationCode'].value);
+      if (!isNullOrUndefined(code)) {
+        row.data[row.index].depreciationRate.value = code.rate;
+        this.addOrEditService.sendDynTableData({ type: 'add', data: row.data });
+      }
+    }
+  }
+
 
   get formControls() { return this.modelFormData.controls; }
 

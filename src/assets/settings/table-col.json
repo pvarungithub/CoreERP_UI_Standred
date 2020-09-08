@@ -601,7 +601,7 @@
     "depreciationAreaName": "Depreciation Area",
     "depreciationArea":  "Depreciation Area",
     "depreciationCode":"DepreciationCode",
-    "Rate": "Depreciation Rate",
+    "rate": "Depreciation Rate",
     "depreciationStartDate": "Start  Date",
     "delete": "delete" 
   },
@@ -625,10 +625,10 @@
     "acquisitionDate":  "Date",
     "usefulLifeInYears": "Useful Life Years",
     "usefullLifeInDays": "Useful Life Days",
-    "depreciationRate": "Depreciation Rate",
-    "depreciationCode":"DepreciationCode",
-    "depreciationStartDate": "Date",
     "depreciationArea":  "Depreciation Area",
+    "depreciationCode":"DepreciationCode",
+    "depreciationRate": "Depreciation Rate",
+    "depreciationStartDate": "Start Date",
     "delete": "delete" ,
     "mainAssetName": "Main Asset No",
     "accountKeyName":"Account Key",
@@ -640,6 +640,18 @@
     "locationName":  "Location",
     "depreciationDataName": "Depreciation Data",
     "depreciationAreaName":  "Depreciation Area"           
+  },
+ "assetbegningacqusition": {
+    "title": "Asset Begning Acqusition",
+    "mainAssetNo": "Main AssetNo",
+    "subAssetNo": "Sub AssetNo",
+    "acquisitionDate": "Acquisition Date",
+    "acquisitionCost": "Acquisition Cost ",
+    "id": "id",
+    "code": "Code",
+    "depreciationArea": "Depreciation Area",
+    "accumulatedDepreciation": "Accumulated Depreciation",
+    "delete": "Delete"
   },
   "glaccount": {
     "title": "GL Account",
@@ -683,15 +695,7 @@
     "subAssetNo": "Sub AssetNo",
     "depreciationArea": "Depreciation Area",
     "accumulatedDepreciation": "Accumulated Depreciation"
-  },
-  "assetbegningacqusition": {
-    "title": "Asset Begning Acqusition",
-    "mainAssetNo": "Main AssetNo",
-    "subAssetNo": "Sub AssetNo",
-    "acquisitionDate": "Acquisition Date",
-    "acquisitionCost": "Acquisition Cost ",
-    "id": "id"
-  },
+  }, 
   "cashbank": {
     "id": "ID",
     "title": "Cash / Bank",

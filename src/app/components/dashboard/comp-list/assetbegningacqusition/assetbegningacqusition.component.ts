@@ -1,13 +1,16 @@
-import { Component, Inject, Optional, OnInit } from '@angular/core';
-import { MatDialogRef, MAT_DIALOG_DATA } from '@angular/material/dialog';
+import { Component, OnInit } from '@angular/core';
+import { String } from 'typescript-string-operations';
+import { ApiService } from '../../../../services/api.service';
 import { isNullOrUndefined } from 'util';
 import { FormBuilder, FormGroup, Validators } from '@angular/forms';
-import { StatusCodes } from '../../../../enums/common/common';
 import { NgxSpinnerService } from 'ngx-spinner';
 import { ApiConfigService } from '../../../../services/api-config.service';
-import { ApiService } from '../../../../services/api.service';
-import { String } from 'typescript-string-operations';
+import { StatusCodes } from '../../../../enums/common/common';
 import { AddOrEditService } from '../add-or-edit.service';
+import { ActivatedRoute, Router } from '@angular/router';
+import { AlertService } from '../../../../services/alert.service';
+import { Static } from '../../../../enums/common/static';
+import { SnackBar } from '../../../../enums/common/common';
 
 
 @Component({
@@ -19,6 +22,10 @@ import { AddOrEditService } from '../add-or-edit.service';
 export class AssetBegningAcqusitionComponent implements OnInit {
 
   modelFormData: FormGroup;
+  tableFormData: FormGroup;
+  routeEdit = '';
+  tableData = [];
+  dynTableProps = this.tablePropsFunc()
   isSubmitted = false;
   formData: any;
   taxcodeList: any;
@@ -28,38 +35,84 @@ export class AssetBegningAcqusitionComponent implements OnInit {
   companyList: any;
   saList: any;
   mamList: any;
+  dpareaList: any;
+
   constructor(
-    private addOrEditService: AddOrEditService,
-    private formBuilder: FormBuilder,
-    public dialogRef: MatDialogRef<AssetBegningAcqusitionComponent>,
-    private spinner: NgxSpinnerService,
-    private apiConfigService: ApiConfigService,
     private apiService: ApiService,
-    // @Optional() is used to prevent error if no data is passed
-    @Optional() @Inject(MAT_DIALOG_DATA) public data: any) {
-
-    this.modelFormData = this.formBuilder.group({
-      mainAssetNo: [null],
-      mainAssetDescription: [null],
-      subAssetNo: [null],
-      subAssetDescription: [null],
-      acquisitionDate: [null],
-      acquisitionCost: [null],
-      id:['0']
-      
-    });
-
-
-    this.formData = { ...data };
-    if (!isNullOrUndefined(this.formData.item)) {
-      this.modelFormData.patchValue(this.formData.item);
+    private addOrEditService: AddOrEditService,
+    private apiConfigService: ApiConfigService,
+    private spinner: NgxSpinnerService,
+    private formBuilder: FormBuilder,
+    private alertService: AlertService,
+    private router: Router,
+    public route: ActivatedRoute,
+  ) {
+    if (!isNullOrUndefined(this.route.snapshot.params.value)) {
+      this.routeEdit = this.route.snapshot.params.value;
     }
 
+    this.modelFormData = this.formBuilder.group({
+      acquisitionCost:[null],
+      acquisitionDate: [null],
+      code:[null],
+      id: ['0'],
+      mainAssetDescription:[null],
+      mainAssetNo:[null],
+      subAssetDescription:[null],
+      subAssetNo: [null],
+      depreciationArea:[null]
+      
+         });
+
+    this.formData = { ...this.addOrEditService.editData };
+  }
+  tablePropsFunc() {
+    return {
+      tableData: {
+
+        depreciationArea: {
+          value: null, type: 'dropdown', list: this.dpareaList, id: 'code', text: 'description',
+          disabled: false, displayMul: true
+        },
+        accumulatedDepreciation: {
+          value: null, type: 'text', width: 150, maxLength: 10
+        },
+        delete: {
+          type: 'delete',
+          newObject: true
+        }
+      },
+
+      formControl: {
+        depreciationArea: [null,],
+        accumulatedDepreciation: [null, [Validators.required]]
+      }
+    }
   }
 
   ngOnInit() {
     this. getmainassetclassTableData();
     this.getSubassetList();
+    this.getdepreciationAreaList();
+  }
+  getdepreciationAreaList() {
+    const getlocList = String.Join('/', this.apiConfigService.getDepreciationAreasList);
+    this.apiService.apiGetRequest(getlocList)
+      .subscribe(
+        response => {
+          const res = response.body;
+          if (!isNullOrUndefined(res) && res.status === StatusCodes.pass) {
+            if (!isNullOrUndefined(res.response)) {
+              this.dpareaList = res.response['dpareaList'];
+             
+            }
+          }
+          this.dynTableProps = this.tablePropsFunc();
+          if (this.routeEdit != '') {
+            this.getAqsnDetail(this.routeEdit);
+          }
+          //this.spinner.hide();
+        });
   }
   getSubassetList() {
     const getplantList = String.Join('/', this.apiConfigService.getSubAssetsList);
@@ -75,7 +128,6 @@ export class AssetBegningAcqusitionComponent implements OnInit {
           this.spinner.hide();
         });
   }
- 
   getmainassetclassTableData() {
     const getCompanyUrl = String.Join('/', this.apiConfigService.getMainAssetMasterList);
     this.apiService.apiGetRequest(getCompanyUrl)
@@ -91,24 +143,74 @@ export class AssetBegningAcqusitionComponent implements OnInit {
       });
   }
 
+  ///databind on editmode
+  getAqsnDetail(val) {
+    const cashDetUrl = String.Join('/', this.apiConfigService.getAqsnDetail, val);
+    this.apiService.apiGetRequest(cashDetUrl)
+      .subscribe(
+        response => {
+          this.spinner.hide();
+          const res = response.body;
+          if (!isNullOrUndefined(res) && res.status === StatusCodes.pass) {
+            if (!isNullOrUndefined(res.response)) {
+              //console.log(res.response['AqsnMasters']);
+              console.log((res.response['AqsnMasters']));
+              //console.log((res.response['AqsnDetail']));
+              this.modelFormData.setValue(res.response['AqsnMasters']);
+              this.addOrEditService.sendDynTableData({ type: 'edit', data: res.response['AqsnDetail'] });
+            }
+          }
+        });
+  }
+  assigndata
+  emitColumnChanges(data) {
+   this.assigndata(data);
+  }
+
+  //assigndata(row) {
+  //  if (row.column == 'depreciationCode') {
+  //    const code = row.data[row.index]['depreciationCode'].list.find(res => res.code == row.data[row.index]['depreciationCode'].value);
+  //    if (!isNullOrUndefined(code)) {
+  //      row.data[row.index].rate.value = code.rate;
+  //      this.addOrEditService.sendDynTableData({ type: 'add', data: row.data });
+  //    }
+  //  }
+  //}
+
   get formControls() { return this.modelFormData.controls; }
 
+  emitTableData(data) {
+    this.tableData = data;
+  }
+
   save() {
-    if (this.modelFormData.invalid) {
-      return;
-    }
-    //this.modelFormData.controls['code'].enable();
-    this.formData.item = this.modelFormData.value;
-    this.addOrEditService[this.formData.action](this.formData, (res) => {
-      this.dialogRef.close(this.formData);
-    });
-    if (this.formData.action == 'Edit') {
-     // this.modelFormData.controls['code'].disable();
-    }
+    this.saveBeingAcquisition();
+
+  }
+  reset() {
+    this.tableData = [];
+    this.modelFormData.reset();
+    this.addOrEditService.sendDynTableData(this.tableData);
+  }
+  saveBeingAcquisition() {
+    debugger;
+    const addCashBank = String.Join('/', this.apiConfigService.registeraqsnList);
+    const requestObj = { mainaqsnHdr: this.modelFormData.value, mainaqsnDetail: this.tableData };
+    this.apiService.apiPostRequest(addCashBank, requestObj).subscribe(
+      response => {
+        const res = response.body;
+        if (!isNullOrUndefined(res) && res.status === StatusCodes.pass) {
+          if (!isNullOrUndefined(res.response)) {
+            this.alertService.openSnackBar('BeingAcquisition created Successfully..', Static.Close, SnackBar.success);
+          }
+          this.reset();
+          this.spinner.hide();
+        }
+      });
   }
 
   cancel() {
-    this.dialogRef.close();
+    this.router.navigate(['/dashboard/master/assetbegningacqusition']);
   }
 
 }

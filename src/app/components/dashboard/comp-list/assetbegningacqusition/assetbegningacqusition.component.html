@@ -1,63 +1,72 @@
-<div class="position-relative popup-class">
-  <mat-card-title class="boader--color d-flex justify-content-between position-absolute w-100">
-    <span>  {{'assetbegningacqusition.title' | translate }} </span>
-    <mat-icon class="p-2 cursor--pointer" (click)="cancel()">close</mat-icon>
-  </mat-card-title>
+<div class="bg-white">
 
-  <mat-card-content class="pt-5 p-2 m-0 overflow-auto">
+
+  <mat-tab-group>
+
     <form [formGroup]="modelFormData" autocomplete="off">
 
-      <div class="d--flex">
-        <mat-form-field>
-          <mat-label [translate]="'assetbegningacqusition.mainAssetNo'"></mat-label>
-          <mat-select formControlName="mainAssetNo"  appFocusOnEnter tabIndex="1">
-            <mat-option *ngFor="let mam of mamList" [value]="mam.assetNumber">
-              {{mam.assetNumber}}- {{mam.name}}
-            </mat-option>
-          </mat-select>
-        </mat-form-field> 
+      <mat-tab label="{{'assetbegningacqusition.title' | translate }}">
+
+        <mat-card-content class="pt-5 p-2 m-0">
+
+          <div class="d--flex">
+
+            <mat-form-field>
+              <mat-label [translate]="'assetbegningacqusition.mainAssetNo'"></mat-label>
+              <mat-select formControlName="mainAssetNo" appFocusOnEnter tabIndex="1">
+                <mat-option *ngFor="let mam of mamList" [value]="mam.assetNumber">
+                  {{mam.assetNumber}}- {{mam.name}}
+                </mat-option>
+              </mat-select>
+            </mat-form-field>
 
 
-        <mat-form-field>
-          <mat-label>{{'assetbegningacqusition.subAssetNo' | translate }}</mat-label>
-          <mat-select formControlName="subAssetNo" appFocusOnEnter tabIndex="2">
-            <mat-option *ngFor="let sa of saList" [value]="sa.subAssetNumber">
-              {{sa.subAssetNumber}} - {{sa.description}}
-            </mat-option>
-          </mat-select>
-        </mat-form-field>
+            <mat-form-field>
+              <mat-label>{{'assetbegningacqusition.subAssetNo' | translate }}</mat-label>
+              <mat-select formControlName="subAssetNo" appFocusOnEnter tabIndex="2">
+                <mat-option *ngFor="let sa of saList" [value]="sa.subAssetNumber">
+                  {{sa.subAssetNumber}} - {{sa.description}}
+                </mat-option>
+              </mat-select>
+            </mat-form-field>
 
-        <mat-form-field>
-          <input matInput [matDatepicker]="picker4" placeholder="{{'assetbegningacqusition.acquisitionDate' | translate }}"
-                 formControlName="acquisitionDate" appFocusOnEnter tabIndex="3">
-          <mat-datepicker-toggle matSuffix [for]="picker4"></mat-datepicker-toggle>
-          <mat-datepicker #picker4></mat-datepicker>
-        </mat-form-field>
+            <mat-form-field>
+              <input matInput [matDatepicker]="picker4" placeholder="{{'assetbegningacqusition.acquisitionDate' | translate }}"
+                     formControlName="acquisitionDate" appFocusOnEnter tabIndex="3">
+              <mat-datepicker-toggle matSuffix [for]="picker4"></mat-datepicker-toggle>
+              <mat-datepicker #picker4></mat-datepicker>
+            </mat-form-field>
 
-        <mat-form-field class="form-element">
-          <input matInput placeholder="{{'assetbegningacqusition.acquisitionCost' | translate }}" 
-          formControlName="acquisitionCost" maxlength="7"
-           appFocusOnEnter tabIndex="4">
-        </mat-form-field>
+            <mat-form-field class="form-element">
+              <input matInput placeholder="{{'assetbegningacqusition.acquisitionCost' | translate }}"
+                     formControlName="acquisitionCost" maxlength="7"
+                     appFocusOnEnter tabIndex="4">
+            </mat-form-field>
+            <mat-form-field class="form-element">
+              <input matInput placeholder="{{'assetbegningacqusition.code' | translate }}"
+                     formControlName="code"
+                     maxlength="7" appFocusOnEnter tabIndex="5">
+            </mat-form-field>
+          </div>
 
-       
+        </mat-card-content>
 
-      </div>
-      <mat-divider></mat-divider>
-
-
-
+      </mat-tab>
+      <mat-tab label="Acquisition Details">
+        <app-dynamic-table [tableObJect]="dynTableProps" (emitTableData)="emitTableData($event)"
+                          ></app-dynamic-table>
+      </mat-tab>
     </form>
 
-  </mat-card-content>
+  </mat-tab-group>
   <div class="form-element p-2 d-flex justify-content-end">
-    <button mat-raised-button class="button-color-red text-white mr-1" (click)="cancel()">
-
+    <button mat-raised-button class="button-color-red text-white mr-1" (click)="cancel()" appFocusOnEnter tabIndex="21">
       {{ 'COMMON.CANCEL' | translate }}
     </button>
-    <button mat-raised-button type="submit" class="button-color-bule text-white ml-1" (click)="save()">
-
+    <button mat-raised-button type="submit" class="button-color-bule text-white ml-1" (click)="save()" appFocusOnEnter
+            tabIndex="22">
       {{ 'COMMON.SAVE' | translate }}
     </button>
   </div>
+
 </div>
