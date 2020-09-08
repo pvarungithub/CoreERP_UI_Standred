@@ -51,8 +51,8 @@
                     <mat-select formControlName="voucherType"
                         (selectionChange)="voucherTypeSelect(); voucherNoCalculate();">
                         <mat-option>None</mat-option>
-                        <mat-option *ngFor="let type of vouchersTypeList" [value]="type.id">
-                            {{type.text}}
+                        <mat-option *ngFor="let type of vouchersTypeList" [value]="type.voucherTypeId">
+                            {{type.voucherTypeName}}
                         </mat-option>
                     </mat-select>
                 </mat-form-field>

@@ -239,7 +239,7 @@ export class JournalComponent implements OnInit {
           const res = response.body;
           if (!isNullOrUndefined(res) && res.status === StatusCodes.pass) {
             if (!isNullOrUndefined(res.response)) {
-              this.voucherTypeList = res.response['vouchertypeList'].filter(resp=>resp.voucherClassName=='003');
+              this.voucherTypeList = res.response['vouchertypeList'].filter(resp=>resp.voucherClass=='003');
             }
           }
           this.getGLAccountsList();
