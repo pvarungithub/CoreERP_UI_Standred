@@ -106,16 +106,16 @@ export class JournalComponent implements OnInit {
           value: null, type: 'dropdown', list: this.taxCodeList, id: 'taxRateCode', text: 'description', displayMul: false, width: 100
         },
         sgstamount: {
-          value: null, type: 'number', disabled: true, width: 75
+          value: 0, type: 'number', disabled: true, width: 75
         },
         cgstamount: {
-          value: null, type: 'number', disabled: true, width: 75
+          value: 0, type: 'number', disabled: true, width: 75
         },
         igstamount: {
-          value: null, type: 'number', disabled: true, width: 75
+          value: 0, type: 'number', disabled: true, width: 75
         },
         ugstamount: {
-          value: null, type: 'number', disabled: true, width: 75
+          value: 0, type: 'number', disabled: true, width: 75
         },
         referenceNo: {
           value: null, type: 'number',maxLength: 50,width:75
@@ -430,6 +430,7 @@ export class JournalComponent implements OnInit {
           if (res.accountingIndicator == 'Credit') {
             this.creditValue = !isNullOrUndefined(parseInt(res.amount)) ? (this.creditValue + parseInt(res.amount)) : 0;
           }
+          this.totalTaxValue = this.totalTaxValue + parseInt(res.sgstamount) + parseInt(res.cgstamount) + parseInt(res.ugstamount) + parseInt(res.igstamount)
         });
         return (this.debitValue == this.creditValue) ? false : true;
       }
@@ -446,6 +447,11 @@ export class JournalComponent implements OnInit {
     if (this.tableData.length == 0) {
       return;
     }
+    // this.formData.patchValue({
+    //   voucherClass: this.debitValue,
+    //   voucherClass: this.creditValue,
+    //   voucherClass: this.totalTaxValue
+    // })
     this.saveJournal();
   }
 

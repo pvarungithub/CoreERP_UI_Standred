@@ -159,8 +159,8 @@ export class SubAssetsComponent implements OnInit {
             if (!isNullOrUndefined(res.response)) {
               console.log(res.response['SubassetMasters']);
               console.log(res.response['SubassetDetail']);
-              this.modelFormData.setValue(res.response['SubassetMasters']);              
-              this.addOrEditService.sendDynTableData({ type: 'edit', data: res.response['SubassetDetail']});
+              this.modelFormData.setValue(res.response['SubassetMasters']);  
+              this.addOrEditService.sendDynTableData({ type: 'editValue', data: res.response['SubassetDetail']});
             }
           }
         });

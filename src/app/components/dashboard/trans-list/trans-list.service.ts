@@ -5,6 +5,7 @@ import {JournalComponent} from './journals/journal.component';
 import {MemoinvoiceComponent} from './invoicesmemos/memoinvoice.component';
 import {ReceiptspaymentsComponent} from './receiptspayments/receiptspayments.component';
 import {PurchasesaleassetComponent} from './purchasesaleasset/purchasesaleasset.component';
+import {SaleassetComponent} from './saleasset/saleasset.component';
 
 @Injectable({
   providedIn: 'root'
@@ -65,6 +66,16 @@ export class TransListService {
           this.dynamicComp.tableUrl = this.apiConfigService.getPSIMAssetMaster;
           this.dynamicComp.list = 'assetMasters';
           this.dynamicComp.editKey = 'voucherNumber';
+        return this.dynamicComp;
+        break;
+      default:
+    }
+    switch (data) {
+      case 'saleasset':
+        this.dynamicComp.component = SaleassetComponent;
+          // this.dynamicComp.tableUrl = this.apiConfigService.getPSIMAssetMaster;
+          // this.dynamicComp.list = 'assetMasters';
+          // this.dynamicComp.editKey = 'voucherNumber';
         return this.dynamicComp;
         break;
       default:

@@ -16,6 +16,7 @@ export class CommonService {
   selectedInput: BehaviorSubject<number> = new BehaviorSubject<number>(1);
   showNavbar = new BehaviorSubject<boolean>(null);
   routeParam: string;
+  routeConfig = <any>{};
 
   constructor(
     private router: Router,

@@ -157,7 +157,7 @@ export class AssetBegningAcqusitionComponent implements OnInit {
               console.log((res.response['AqsnMasters']));
               //console.log((res.response['AqsnDetail']));
               this.modelFormData.setValue(res.response['AqsnMasters']);
-              this.addOrEditService.sendDynTableData({ type: 'edit', data: res.response['AqsnDetail'] });
+              this.addOrEditService.sendDynTableData({ type: 'editValue', data: res.response['AqsnDetail'] });
             }
           }
         });
@@ -166,16 +166,6 @@ export class AssetBegningAcqusitionComponent implements OnInit {
   emitColumnChanges(data) {
    this.assigndata(data);
   }
-
-  //assigndata(row) {
-  //  if (row.column == 'depreciationCode') {
-  //    const code = row.data[row.index]['depreciationCode'].list.find(res => res.code == row.data[row.index]['depreciationCode'].value);
-  //    if (!isNullOrUndefined(code)) {
-  //      row.data[row.index].rate.value = code.rate;
-  //      this.addOrEditService.sendDynTableData({ type: 'add', data: row.data });
-  //    }
-  //  }
-  //}
 
   get formControls() { return this.modelFormData.controls; }
 

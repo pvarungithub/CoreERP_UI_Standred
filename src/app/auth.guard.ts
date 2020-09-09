@@ -11,6 +11,7 @@ import { String } from 'typescript-string-operations';
 import { ApiConfigService } from './services/api-config.service';
 import { AddOrEditService } from './components/dashboard/comp-list/add-or-edit.service';
 import { ApiService } from './services/api.service';
+import { CommonService } from './services/common.service';
 
 @Injectable({
   providedIn: 'root'
@@ -24,6 +25,7 @@ export class AuthGuard implements CanActivate, Resolve<any> {
     private http: HttpClient,
     private apiConfigService: ApiConfigService,
     private addOrEditService: AddOrEditService,
+    private commomService: CommonService,
     private apiService: ApiService,
     private activatedRoute: ActivatedRoute
   ) {
@@ -61,10 +63,10 @@ export class AuthGuard implements CanActivate, Resolve<any> {
   resolve(route: ActivatedRouteSnapshot) {
     let obj = JSON.parse(localStorage.getItem("user"));
     const configUrl = String.Join('/', this.apiConfigService.getFieldsConfig, route.url[0].path, route.url[1].path, obj.userName);
-    // return this.apiService.apiGetRequest(configUrl)
-    //   .subscribe(res => res.body.FieldsConfiguration);
-    return this.http.get(configUrl, { headers: this.options, observe: 'response', params: obj })
-      .pipe((map(res => res.body['response']['FieldsConfiguration'])));
+    
+    return  true;
+    // this.http.get(configUrl, { headers: this.options, observe: 'response', params: obj })
+    //   .pipe((map(res => this.commomService.routeConfig = JSON.parse(res.body['response']['FieldsConfiguration']))));
 
   }
 
