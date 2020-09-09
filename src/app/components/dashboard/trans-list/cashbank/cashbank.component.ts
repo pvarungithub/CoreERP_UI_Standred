@@ -68,14 +68,14 @@ export class CashbankComponent implements OnInit {
 
   formDataGroup() {
     this.formData = this.formBuilder.group({
-      company: [null],
-      branch: [null],
-      voucherType: [null],
+      company: [null, [Validators.required]],
+      branch: [null, [Validators.required]],
+      voucherType: [null, [Validators.required]],
       voucherNumber: [null, [Validators.required]],
       voucherDate: [new Date()],
       postingDate: [new Date()],
-      transactionType: [null],
-      natureofTransaction: [null],
+      transactionType: [null, [Validators.required]],
+      natureofTransaction: [null, [Validators.required]],
       account: [null],
       referenceNo: [null],
       referenceDate: [null],
@@ -158,7 +158,7 @@ export class CashbankComponent implements OnInit {
           value: null, type: 'dropdown', list: this.costCenterList, id: 'id', text: 'text', displayMul: false, width: 100
         },
         narration: {
-          value: null, type: 'text', width: 100, maxLength: 10
+          value: null, type: 'text', width: 100, maxLength: 50
         },
         igstamount: {
           value: null, type: 'number', disabled: true, width: 75

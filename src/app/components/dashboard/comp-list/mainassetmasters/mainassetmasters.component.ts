@@ -46,8 +46,8 @@ export class MainAssetMasterComponent implements OnInit {
   depreciationDatas: depreciationData[] =
     [
       { value: 'Multiple ', viewValue: 'Multiple ' },
-      { value: 'assignment ', viewValue: 'assignment ' },
-      { value: 'required', viewValue: 'required' }
+      { value: 'Assignment ', viewValue: 'Assignment ' },
+      { value: 'Required', viewValue: 'Required' }
     ];
   assetNum: any;
   constructor(
@@ -123,7 +123,7 @@ export class MainAssetMasterComponent implements OnInit {
           disabled: false, displayMul: true
         },
         rate: {
-          value: null, type: 'text', width: 150, maxLength: 10
+          value: null, type: 'text', width: 150, maxLength: 10,
         },
         
         depreciationArea: {

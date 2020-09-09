@@ -106,7 +106,8 @@ export class ApiConfigService {
    //AssetBegningAcqusition
    registeraqsnList = `${this.environment.runtimeConfig.serverUrl}AssetBegningAcqusition/RegisterAssetBegningAcqusition`;
    getAqsnDetail = `${this.environment.runtimeConfig.serverUrl}AssetBegningAcqusition/GetAssetBegningAcqusitionDetail`;
-
+   getAcquisitionDetailsList = `${this.environment.runtimeConfig.serverUrl}AssetBegningAcqusition/GetAssetBegningAcqusitionDetailsList`;
+   getacquisitionlist = `${this.environment.runtimeConfig.serverUrl}AssetBegningAcqusition/GetAssetBegningAcqusitionList`;
    /**************************** Settings ********************************************************* */
    getRoles = `${this.environment.runtimeConfig.serverUrl}Auth/getRoles`;
    getParentMenus = `${this.environment.runtimeConfig.serverUrl}Auth/getParentMenu`;
@@ -136,4 +137,9 @@ export class ApiConfigService {
    addPSIMAsset = `${this.environment.runtimeConfig.serverUrl}Transactions/AddPSIMAsset`;
    getPSIMAssetDetail = `${this.environment.runtimeConfig.serverUrl}Transactions/GetPSIMAssetDetail`;
    getPSIMAssetMaster = `${this.environment.runtimeConfig.serverUrl}Transactions/GetPSIMAssetMaster`;
+
+   /******************************* Asset Transfer ****************************************************** */
+   getAssettransferDetail = `${this.environment.runtimeConfig.serverUrl}Transactions/GetAssetTransferDetail`;
+   addAssettransfer = `${this.environment.runtimeConfig.serverUrl}Transactions/AddAssetTransfer`;
+   getAssettransferMaster = `${this.environment.runtimeConfig.serverUrl}Transactions/GetAssetTransferMaster`;
 }

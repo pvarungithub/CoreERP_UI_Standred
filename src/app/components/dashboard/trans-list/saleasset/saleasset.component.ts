@@ -31,7 +31,7 @@ export class SaleassetComponent implements OnInit {
   voucherTypeList = [];
   vouchersTypeList = [];
   transactionTypeList = ['Invoice', 'Memo']
-  natureofTransactionList = ['Sale', 'Purchase','Scrapping','Transfer'];
+  natureofTransactionList = ['Sale', 'Purchase', 'Scrapping', 'Transfer'];
   accountList = [];
   glAccountList = [];
   indicatorList = [{ id: 'Debit', text: 'Debit' }, { id: 'Credit', text: 'Credit' }];
@@ -50,8 +50,11 @@ export class SaleassetComponent implements OnInit {
   taxAmount = [];
   totalAmount = [];
   narration = [];
-  saList=[];
-  mamList=[];
+  saList = [];
+  mamList = [];
+  vcList: any;
+  assetbgnaqsnList: any;
+  assetbgnaqsndetailsList: any;
 
   constructor(
     private formBuilder: FormBuilder,
@@ -82,36 +85,23 @@ export class SaleassetComponent implements OnInit {
 
   formDataGroup() {
     this.formData = this.formBuilder.group({
-      company: [null],
-      branch: [null],
+      company: [null, [Validators.required]],
+      branch: [null, [Validators.required]],
       voucherClass: [null],
-      voucherType: [null],
+      voucherType: [null, [Validators.required]],
       voucherDate: [new Date()],
       postingDate: [new Date()],
-      partyInvoiceNo: [null],
-      partyInvoiceDate: [null],
-      grnno: [null],
-      grndate: [null],
+      voucherNumber: [null, [Validators.required]],
       period: [null],
-      voucherNumber: [null],
-      transactionType: [null],
-      paymentterms: [null],
-      assetTransactionType: [null],
-      referenceNumber: [null],
-      referenceDate: [null],
-      bpcategory: [],
-      totalAmount: [null],
-      ext: [null],
-      partyAccount: [null],
-      accountingIndicator: [null],
-      taxAmount: [null],
-      narration: [null],
+      assetTransactionType: [null, [Validators.required]],
+      transferDate: [null],
       status: [null],
       addWho: [null],
       editWho: [null],
       addDate: [null],
-      editDate: [null],
-      amount:[null]
+      transactionType: [null, [Validators.required]],
+      editDate: [null]
+
     });
   }
 
@@ -124,90 +114,59 @@ export class SaleassetComponent implements OnInit {
         subAssetNo: {
           value: null, type: 'dropdown', list: this.saList, id: 'id', text: 'text', displayMul: true, width: 100
         },
-        glaccount: {
-          value: null, type: 'dropdown', list: this.glAccountList, id: 'id', text: 'text', displayMul: true, width: 100
+        senderBranch: {
+          value: null, type: 'dropdown', list: this.branchList, id: 'id', text: 'text', displayMul: true, width: 100
         },
-        accountingIndicator: {
-          value: null, type: 'dropdown', list: this.indicatorList, id: 'id', text: 'text', displayMul: false, width: 100
-        },
-        amount: {
-          value: null, type: 'number', width: 100
-        },
-        taxCode: {
-          value: null, type: 'dropdown', list: this.taxCodeList, id: 'taxRateCode', text: 'description', displayMul: false, width: 100
-        },
-        sgstamount: {
-          value: null, type: 'number', disabled: true, width: 75
-        },
-        cgstamount: {
-          value: null, type: 'number', disabled: true, width: 75
-        },
-        igstamount: {
-          value: null, type: 'number', disabled: true, width: 75
-        },
-        ugstamount: {
-          value: null, type: 'number', disabled: true, width: 75
-        },
-        referenceNo: {
-          value: null, type: 'number'
-        },
-        referenceDate: {
-          value: new Date(), type: 'datepicker', width: 100
-        },
-        functionalDept: {
-          value: null, type: 'dropdown', list: this.functionaldeptList, id: 'code', text: 'description', displayMul: false, width: 100
-        },
-        profitCenter: {
+        senderProfitCenter: {
           value: null, type: 'dropdown', list: this.profitCenterList, id: 'id', text: 'text', displayMul: false, width: 100
         },
-        segment: {
+        senderSegment: {
           value: null, type: 'dropdown', list: this.segmentList, id: 'id', text: 'name', displayMul: false, width: 100
         },
-        bttypes: {
-          value: null, type: 'dropdown', list: this.btList, id: 'code', text: 'description', displayMul: false, width: 100
-        },
-        costCenter: {
+        senderCostCenter: {
           value: null, type: 'dropdown', list: this.costCenterList, id: 'id', text: 'text', displayMul: false, width: 100
         },
-        narration: {
-          value: null, type: 'text', width: 100
+        receiverBranch: {
+          value: null, type: 'dropdown', list: this.branchList, id: 'id', text: 'text', displayMul: true, width: 100
         },
-        workBreakStructureElement: {
+        receiverProfitCenter: {
+          value: null, type: 'dropdown', list: this.profitCenterList, id: 'id', text: 'text', displayMul: false, width: 100
+        },
+        receiverSegment: {
+          value: null, type: 'dropdown', list: this.segmentList, id: 'id', text: 'name', displayMul: false, width: 100
+        },
+        receiverCostCenter: {
           value: null, type: 'dropdown', list: this.costCenterList, id: 'id', text: 'text', displayMul: false, width: 100
         },
-        netWork: {
-          value: null, type: 'dropdown', list: this.costCenterList, id: 'id', text: 'text', displayMul: false, width: 100
+        acquisitionValue: {
+
+          value: null, type: 'dropdown', list: this.assetbgnaqsnList, id: 'code', text: 'code', displayMul: false, width: 100
         },
-        orderNo: {
-          value: null, type: 'dropdown', list: this.costCenterList, id: 'id', text: 'text', displayMul: false, width: 100
-        },
-        fundCenter: {
-          value: null, type: 'dropdown', list: this.costCenterList, id: 'id', text: 'text', displayMul: false, width: 100
-        },
-        commitment: {
-          value: null, type: 'dropdown', list: this.costCenterList, id: 'id', text: 'text', displayMul: false, width: 100
-        },
-        hSNSACCode: {
-          value: null, type: 'dropdown', list: this.costCenterList, id: 'id', text: 'text', displayMul: false, width: 100
+        accumulatedValue: {
+          value: null, type: 'number'
         },
         delete: {
           type: 'delete', width: 10
         }
       },
       formControl: {
-        glaccount: [null, [Validators.required]],
+        acquisitionValue: [null],
+        accumulatedValue: [null],
+        mainAssetNo: [null, [Validators.required]],
         narration: []
       }
     }
   }
+
   accountSelect() {
     this.vouchersTypeList = [];
     if (!isNullOrUndefined(this.formData.get('transactionType').value)) {
     }
     this.vouchersTypeList = this.voucherTypeList.filter(resp => resp.voucherNature == this.formData.get('transactionType').value);
   }
-  getPSIMAssetDetail(val) {
-    const cashDetUrl = String.Join('/', this.apiConfigService.getPSIMAssetDetail, val);
+
+  getAssetTransferDetail(val) {
+    const cashDetUrl = String.Join('/', this.apiConfigService.getAssettransferDetail, val);
     this.apiService.apiGetRequest(cashDetUrl)
       .subscribe(
         response => {
@@ -215,8 +174,8 @@ export class SaleassetComponent implements OnInit {
           const res = response.body;
           if (!isNullOrUndefined(res) && res.status === StatusCodes.pass) {
             if (!isNullOrUndefined(res.response)) {
-              this.formData.setValue(res.response['assetMasters']);
-              this.addOrEditService.sendDynTableData({ type: 'edit', data: res.response['assetDetail'] });
+              this.formData.setValue(res.response['assettransferMasters']);
+              this.addOrEditService.sendDynTableData({ type: 'edit', data: res.response['assettransferDetail'] });
               this.formData.disable();
             }
           }
@@ -264,35 +223,35 @@ export class SaleassetComponent implements OnInit {
               this.voucherTypeList = res.response['vouchertypeList'];
             }
           }
-          this.getGLAccountsList();
+          this.getAcquisitionList();
         });
   }
 
-  getGLAccountsList() {
-    const glAccUrl = String.Join('/', this.apiConfigService.getGLAccountsList);
+  getAcquisitionList() {
+    const glAccUrl = String.Join('/', this.apiConfigService.getacquisitionlist);
     this.apiService.apiGetRequest(glAccUrl)
       .subscribe(
         response => {
           const res = response.body;
           if (!isNullOrUndefined(res) && res.status === StatusCodes.pass) {
             if (!isNullOrUndefined(res.response)) {
-              this.accountList = res.response['glList'].filter(resp => resp.taxCategory == 'Cash' || resp.taxCategory == 'Bank');
-              this.glAccountList = res.response['glList'].filter(resp => resp.taxCategory != 'Cash' || resp.taxCategory != 'Bank' || resp.taxCategory != 'Control Account');
+              this.assetbgnaqsnList = res.response['assetbgnaqsnList'];
+              // this.glAccountList = res.response['glList'].filter(resp => resp.taxCategory != 'Cash' || resp.taxCategory != 'Bank' || resp.taxCategory != 'Control Account');
             }
           }
-          this.getTaxRatesList();
+          this.getAcquisitionDetailsList();
         });
   }
 
-  getTaxRatesList() {
-    const taxCodeUrl = String.Join('/', this.apiConfigService.getTaxRatesList);
+  getAcquisitionDetailsList() {
+    const taxCodeUrl = String.Join('/', this.apiConfigService.getAcquisitionDetailsList);
     this.apiService.apiGetRequest(taxCodeUrl)
       .subscribe(
         response => {
           const res = response.body;
           if (!isNullOrUndefined(res) && res.status === StatusCodes.pass) {
             if (!isNullOrUndefined(res.response)) {
-              this.taxCodeList = res.response['TaxratesList'];
+              this.assetbgnaqsndetailsList = res.response['assetbgnaqsndetailsList'];
             }
           }
           this.getProfitCentersList();
@@ -313,6 +272,7 @@ export class SaleassetComponent implements OnInit {
           this.getBusienessTransactionTypeList();
         });
   }
+
   getBusienessTransactionTypeList() {
     const segUrl = String.Join('/', this.apiConfigService.getBusienessTransactionTypeList);
     this.apiService.apiGetRequest(segUrl)
@@ -327,6 +287,7 @@ export class SaleassetComponent implements OnInit {
           this.getSegments();
         });
   }
+
   getSegments() {
     const segUrl = String.Join('/', this.apiConfigService.getSegmentList);
     this.apiService.apiGetRequest(segUrl)
@@ -341,6 +302,7 @@ export class SaleassetComponent implements OnInit {
           this.getfunctionaldeptList();
         });
   }
+
   getfunctionaldeptList() {
     const taxCodeUrl = String.Join('/', this.apiConfigService.getfunctionaldeptList);
     this.apiService.apiGetRequest(taxCodeUrl)
@@ -355,6 +317,7 @@ export class SaleassetComponent implements OnInit {
           this.getPartnerTypeList();
         });
   }
+
   getPartnerTypeList() {
     const costCenUrl = String.Join('/', this.apiConfigService.getPartnerTypeList);
     this.apiService.apiGetRequest(costCenUrl)
@@ -370,6 +333,7 @@ export class SaleassetComponent implements OnInit {
           this.getbpList();
         });
   }
+
   getbpList() {
     const costCenUrl = String.Join('/', this.apiConfigService.getBPList);
     this.apiService.apiGetRequest(costCenUrl)
@@ -385,6 +349,7 @@ export class SaleassetComponent implements OnInit {
           this.getPaymenttermsList();
         });
   }
+
   getPaymenttermsList() {
     const getpmList = String.Join('/', this.apiConfigService.getPaymentsTermsList);
     this.apiService.apiGetRequest(getpmList)
@@ -398,22 +363,23 @@ export class SaleassetComponent implements OnInit {
           }
           this.getmainassetclassTableData();
         });
-  }  
- 
+  }
+
   getmainassetclassTableData() {
     const getCompanyUrl = String.Join('/', this.apiConfigService.getAssetMasterList);
     this.apiService.apiGetRequest(getCompanyUrl)
       .subscribe(
         response => {
-        const res = response.body;
-        if (!isNullOrUndefined(res) && res.status === StatusCodes.pass) {
-          if (!isNullOrUndefined(res.response)) {
-            this.mamList = res.response['mamList'];
+          const res = response.body;
+          if (!isNullOrUndefined(res) && res.status === StatusCodes.pass) {
+            if (!isNullOrUndefined(res.response)) {
+              this.mamList = res.response['mamList'];
+            }
           }
-        }
-       this.getSubassetList() ;
-      });
+          this.getSubassetList();
+        });
   }
+
   getSubassetList() {
     const getplantList = String.Join('/', this.apiConfigService.getSubAssetMasterList);
     this.apiService.apiGetRequest(getplantList)
@@ -428,6 +394,7 @@ export class SaleassetComponent implements OnInit {
           this.getCostcenters();
         });
   }
+
   getCostcenters() {
     const costCenUrl = String.Join('/', this.apiConfigService.getCostCentersList);
     this.apiService.apiGetRequest(costCenUrl)
@@ -443,7 +410,7 @@ export class SaleassetComponent implements OnInit {
           }
           this.dynTableProps = this.tablePropsFunc();
           if (this.routeEdit != '') {
-            this.getPSIMAssetDetail(this.routeEdit);
+            this.getAssetTransferDetail(this.routeEdit);
           }
         });
   }
@@ -459,6 +426,7 @@ export class SaleassetComponent implements OnInit {
     this.formData.patchValue({
       voucherNumber: null
     })
+
     if (!isNullOrUndefined(this.formData.get('voucherType').value)) {
       const voucherNoUrl = String.Join('/', this.apiConfigService.getVoucherNumber, this.formData.get('voucherType').value);
       this.apiService.apiGetRequest(voucherNoUrl)
@@ -478,17 +446,15 @@ export class SaleassetComponent implements OnInit {
   }
 
   emitColumnChanges(data) {
-    this.calculateAmount(data)
+    this.assigndata(data);
   }
 
-  calculateAmount(row) {
-    if (row.column == 'taxCode' || row.column == 'amount') {
-      const code = row.data[row.index]['taxCode'].list.find(res => res.taxRateCode == row.data[row.index]['taxCode'].value);
+  assigndata(row) {
+    debugger;
+    if (row.column == 'acquisitionValue') {
+      const code = row.data[row.index]['acquisitionValue'].list.find(res => res.code == row.data[row.index]['acquisitionValue'].value);
       if (!isNullOrUndefined(code)) {
-        row.data[row.index].cgstamount.value = (row.data[row.index].amount.value * code.cgst) / 100;
-        row.data[row.index].igstamount.value = (row.data[row.index].amount.value * code.igst) / 100;
-        row.data[row.index].cgstamount.value = (row.data[row.index].amount.value * code.sgst) / 100;
-        row.data[row.index].cgstamount.value = (row.data[row.index].amount.value * code.cgst) / 100;
+        row.data[row.index].rate.value = code.rate;
         this.addOrEditService.sendDynTableData({ type: 'add', data: row.data });
       }
     }
@@ -506,7 +472,7 @@ export class SaleassetComponent implements OnInit {
     if (this.tableData.length == 0) {
       return;
     }
-    this.saveAssetSalePurchase();
+    this.saveAssetTransfer();
   }
 
   return() {
@@ -530,16 +496,16 @@ export class SaleassetComponent implements OnInit {
     this.addOrEditService.sendDynTableData({ type: 'edit', data: this.tableData });
   }
 
-  saveAssetSalePurchase() {
+  saveAssetTransfer() {
     this.formData.controls['voucherNumber'].enable();
-    const addPSIMAsset = String.Join('/', this.apiConfigService.addPSIMAsset);
+    const addPSIMAsset = String.Join('/', this.apiConfigService.addAssettransfer);
     const requestObj = { imHdr: this.formData.value, imDtl: this.tableData };
     this.apiService.apiPostRequest(addPSIMAsset, requestObj).subscribe(
       response => {
         const res = response.body;
         if (!isNullOrUndefined(res) && res.status === StatusCodes.pass) {
           if (!isNullOrUndefined(res.response)) {
-            this.alertService.openSnackBar('Asset created Successfully..', Static.Close, SnackBar.success);
+            this.alertService.openSnackBar('Asset Transfer Successfully..', Static.Close, SnackBar.success);
           }
           this.reset();
           this.spinner.hide();

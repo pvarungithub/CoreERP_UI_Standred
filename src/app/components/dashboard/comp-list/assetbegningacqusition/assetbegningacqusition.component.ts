@@ -30,8 +30,8 @@ export class AssetBegningAcqusitionComponent implements OnInit {
   formData: any;
   taxcodeList: any;
   taxaccList: any;
-  tdsList:any;
-  nrrList:any;
+  tdsList: any;
+  nrrList: any;
   companyList: any;
   saList: any;
   mamList: any;
@@ -52,17 +52,17 @@ export class AssetBegningAcqusitionComponent implements OnInit {
     }
 
     this.modelFormData = this.formBuilder.group({
-      acquisitionCost:[null],
+      acquisitionCost: [null],
       acquisitionDate: [null],
-      code:[null],
+      code: [null],
       id: ['0'],
-      mainAssetDescription:[null],
-      mainAssetNo:[null],
-      subAssetDescription:[null],
+      mainAssetDescription: [null],
+      mainAssetNo: [null],
+      subAssetDescription: [null],
       subAssetNo: [null],
-      depreciationArea:[null]
-      
-         });
+      depreciationArea: [null]
+
+    });
 
     this.formData = { ...this.addOrEditService.editData };
   }
@@ -77,6 +77,9 @@ export class AssetBegningAcqusitionComponent implements OnInit {
         accumulatedDepreciation: {
           value: null, type: 'text', width: 150, maxLength: 10
         },
+        id: {
+          value: 0, type: 'text', width: 150, maxLength: 10, disabled: true, hide: true
+        },
         delete: {
           type: 'delete',
           newObject: true
@@ -84,6 +87,7 @@ export class AssetBegningAcqusitionComponent implements OnInit {
       },
 
       formControl: {
+        id: ['0'],
         depreciationArea: [null,],
         accumulatedDepreciation: [null, [Validators.required]]
       }
@@ -91,7 +95,7 @@ export class AssetBegningAcqusitionComponent implements OnInit {
   }
 
   ngOnInit() {
-    this. getmainassetclassTableData();
+    this.getmainassetclassTableData();
     this.getSubassetList();
     this.getdepreciationAreaList();
   }
@@ -104,7 +108,7 @@ export class AssetBegningAcqusitionComponent implements OnInit {
           if (!isNullOrUndefined(res) && res.status === StatusCodes.pass) {
             if (!isNullOrUndefined(res.response)) {
               this.dpareaList = res.response['dpareaList'];
-             
+
             }
           }
           this.dynTableProps = this.tablePropsFunc();
@@ -133,14 +137,14 @@ export class AssetBegningAcqusitionComponent implements OnInit {
     this.apiService.apiGetRequest(getCompanyUrl)
       .subscribe(
         response => {
-        const res = response.body;
-        if (!isNullOrUndefined(res) && res.status === StatusCodes.pass) {
-          if (!isNullOrUndefined(res.response)) {
-            this.mamList = res.response['mamList'];
+          const res = response.body;
+          if (!isNullOrUndefined(res) && res.status === StatusCodes.pass) {
+            if (!isNullOrUndefined(res.response)) {
+              this.mamList = res.response['mamList'];
+            }
           }
-        }
           this.spinner.hide();
-      });
+        });
   }
 
   ///databind on editmode
@@ -164,7 +168,7 @@ export class AssetBegningAcqusitionComponent implements OnInit {
   }
   assigndata
   emitColumnChanges(data) {
-   this.assigndata(data);
+    this.assigndata(data);
   }
 
   get formControls() { return this.modelFormData.controls; }

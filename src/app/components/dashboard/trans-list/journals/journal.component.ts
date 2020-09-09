@@ -64,13 +64,13 @@ export class JournalComponent implements OnInit {
 
   formDataGroup() {
     this.formData = this.formBuilder.group({
-      company: [null],
-      branch: [null],
-      voucherType: [null],
-      voucherNumber: [null],
+      company: [null, [Validators.required]],
+      branch: [null, [Validators.required]],
+      voucherType: [null, [Validators.required]],
+      voucherNumber: [null, [Validators.required]],
       voucherDate: [new Date()],
       postingDate: [new Date()],
-      transactionType: [null],
+      transactionType: [null, [Validators.required]],
       period: [null],
       referenceNo: [null],
       referenceDate: [null],

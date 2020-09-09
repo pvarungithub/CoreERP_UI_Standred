@@ -63,8 +63,8 @@ export class AuthGuard implements CanActivate, Resolve<any> {
   resolve(route: ActivatedRouteSnapshot) {
     let obj = JSON.parse(localStorage.getItem("user"));
     const configUrl = String.Join('/', this.apiConfigService.getFieldsConfig, route.url[0].path, route.url[1].path, obj.userName);
-    
-    return  true;
+
+    return true;
     // this.http.get(configUrl, { headers: this.options, observe: 'response', params: obj })
     //   .pipe((map(res => this.commomService.routeConfig = JSON.parse(res.body['response']['FieldsConfiguration']))));
 

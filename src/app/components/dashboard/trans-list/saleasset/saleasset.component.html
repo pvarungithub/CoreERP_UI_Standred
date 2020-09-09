@@ -37,16 +37,6 @@
                 </mat-form-field>
 
                 <mat-form-field class="form-element">
-                    <mat-label>{{ 'saleasset.assetTransactionType' | translate }}</mat-label>
-                    <mat-select formControlName="assetTransactionType">
-                        <mat-option>None</mat-option>
-                        <mat-option *ngFor="let nature of natureofTransactionList" [value]="nature">
-                            {{ nature }}
-                        </mat-option>
-                    </mat-select>
-                </mat-form-field>
-
-                <mat-form-field class="form-element">
                     <mat-label>{{ 'saleasset.voucherType' | translate }}</mat-label>
                     <mat-select formControlName="voucherType"
                         (selectionChange)="voucherTypeSelect(); voucherNoCalculate();">
@@ -76,83 +66,24 @@
                     <mat-datepicker #picker2></mat-datepicker>
                 </mat-form-field>
 
+
                 <mat-form-field class="form-element">
-                    <mat-label>{{ 'saleasset.bpcategory' | translate }}</mat-label>
-                    <mat-select formControlName="bpcategory" (selectionChange)="onbpChange()">
-                        <mat-option>None</mat-option>
-                        <mat-option *ngFor="let acc of bpTypeList" [value]="acc.code">
-                            {{acc.description}}
-                        </mat-option>
-                    </mat-select>
+                    <input matInput [matDatepicker]="picker5" placeholder="{{'saleasset.period' | translate }}"
+                        formControlName="period" appFocusOnEnter tabIndex="4">
+                    <mat-datepicker-toggle matSuffix [for]="picker5"></mat-datepicker-toggle>
+                    <mat-datepicker #picker5></mat-datepicker>
                 </mat-form-field>
 
                 <mat-form-field class="form-element">
-                    <mat-label>{{ 'saleasset.partyAccount' | translate }}</mat-label>
-                    <mat-select formControlName="partyAccount">
-                        <mat-option>None</mat-option>
-                        <mat-option *ngFor="let acc of bpgLists" [value]="acc.id">
-                            {{acc.text}}
-                        </mat-option>
-                    </mat-select>
+                    <input matInput placeholder="{{'saleasset.assetTransactionType' | translate }}"
+                        formControlName="assetTransactionType" appFocusOnEnter tabIndex="2">
                 </mat-form-field>
 
                 <mat-form-field class="form-element">
-                    <input matInput placeholder="{{'saleasset.referenceNumber' | translate }}"
-                        formControlName="referenceNumber" appFocusOnEnter tabIndex="2">
-                </mat-form-field>
-
-                <mat-form-field class="form-element">
-                    <input matInput [matDatepicker]="picker4"
-                        placeholder="{{'saleasset.referenceDate' | translate }}" formControlName="referenceDate"
-                        appFocusOnEnter tabIndex="4">
+                    <input matInput [matDatepicker]="picker4" placeholder="{{'saleasset.transferDate' | translate }}"
+                        formControlName="transferDate" appFocusOnEnter tabIndex="4">
                     <mat-datepicker-toggle matSuffix [for]="picker4"></mat-datepicker-toggle>
                     <mat-datepicker #picker4></mat-datepicker>
-                </mat-form-field>
-
-                <mat-form-field class="form-element">
-                    <input matInput placeholder="{{'saleasset.partyInvoiceNo' | translate }}"
-                        formControlName="partyInvoiceNo" appFocusOnEnter tabIndex="2">
-                </mat-form-field>
-
-                <mat-form-field class="form-element">
-                    <input matInput [matDatepicker]="partyInvoiceDatepicker4"
-                        placeholder="{{'saleasset.partyInvoiceDate' | translate }}"
-                        formControlName="partyInvoiceDate" appFocusOnEnter tabIndex="4">
-                    <mat-datepicker-toggle matSuffix [for]="partyInvoiceDatepicker4"></mat-datepicker-toggle>
-                    <mat-datepicker #partyInvoiceDatepicker4></mat-datepicker>
-                </mat-form-field>
-
-                <mat-form-field class="form-element">
-                    <input matInput placeholder="{{'saleasset.grnno' | translate }}" formControlName="grnno"
-                        appFocusOnEnter tabIndex="2">
-                </mat-form-field>
-
-                <mat-form-field class="form-element">
-                    <input matInput [matDatepicker]="gRNDatepicker4"
-                        placeholder="{{'saleasset.grndate' | translate }}" formControlName="grndate" appFocusOnEnter
-                        tabIndex="4">
-                    <mat-datepicker-toggle matSuffix [for]="gRNDatepicker4"></mat-datepicker-toggle>
-                    <mat-datepicker #gRNDatepicker4></mat-datepicker>
-                </mat-form-field>
-
-                <mat-form-field class="form-element">
-                    <mat-label>{{ 'saleasset.paymentterms' | translate }}</mat-label>
-                    <mat-select formControlName="paymentterms">
-                        <mat-option>None</mat-option>
-                        <mat-option *ngFor="let nature of ptermsList" [value]="nature.id">
-                            {{ nature.text }}
-                        </mat-option>
-                    </mat-select>
-                </mat-form-field>
-
-                <!-- <mat-form-field class="form-element">
-                    <input matInput placeholder="{{'invoicesmemos.totalAmount' | translate }}" formControlName="totalAmount"
-                        appFocusOnEnter tabIndex="2">
-                </mat-form-field> -->
-
-                <mat-form-field class="form-element">
-                    <input matInput placeholder="{{'saleasset.narration' | translate }}" formControlName="narration"
-                        appFocusOnEnter tabIndex="2">
                 </mat-form-field>
             </div>
         </form>
@@ -161,7 +92,6 @@
             <app-dynamic-table [tableObJect]="dynTableProps" (emitColumnChanges)="emitColumnChanges($event);"
                 (emitTableData)="emitTableData($event)"></app-dynamic-table>
         </div>
-
 
     </mat-card-content>
 
