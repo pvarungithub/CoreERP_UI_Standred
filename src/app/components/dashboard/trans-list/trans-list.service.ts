@@ -54,8 +54,9 @@ export class TransListService {
     switch (data) {
       case 'receiptspayments':
         this.dynamicComp.component = ReceiptspaymentsComponent;
-        //  this.dynamicComp.tableUrl = this.apiConfigService.getCashBankMaster;
-        //  this.dynamicComp.list = 'CashBankMasters';
+        this.dynamicComp.tableUrl = this.apiConfigService.getPaymentsreceiptsMaster;
+        this.dynamicComp.list = 'paymentreceiptMasters';
+        this.dynamicComp.editKey = 'voucherNumber';
         return this.dynamicComp;
         break;
       default:

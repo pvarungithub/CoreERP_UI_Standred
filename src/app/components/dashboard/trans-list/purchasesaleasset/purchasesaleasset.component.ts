@@ -151,7 +151,7 @@ export class PurchasesaleassetComponent implements OnInit {
           value: null, type: 'number', disabled: true, width: 75
         },
         referenceNo: {
-          value: null, type: 'number',width: 75
+          value: null, type: 'number', width: 75
         },
         referenceDate: {
           value: new Date(), type: 'datepicker', width: 100
