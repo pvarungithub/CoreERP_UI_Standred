@@ -21,10 +21,10 @@ export class ReceiptspaymentsComponent implements OnInit {
 
   formData: FormGroup;
   routeEdit = '';
-
+  bpList = [];
   tableData = [];
   dynTableProps = this.tablePropsFunc()
-
+  bpgLists: any;
   companyList = [];
   branchList = [];
   voucherClassList = [];
@@ -56,7 +56,13 @@ export class ReceiptspaymentsComponent implements OnInit {
       this.routeEdit = this.route.snapshot.params.value;
     }
   }
-
+  onbpChange() {
+    this.bpgLists = [];
+    if (!isNullOrUndefined(this.formData.get('bpcategory').value)) {
+      let data = this.bpTypeList.find(res => res.code == this.formData.get('bpcategory').value);
+      this.bpgLists = this.bpList.filter(res => res.bptype == data.code);
+    }
+  }
   ngOnInit() {
     this.formDataGroup();
     this.getCompanyList();
@@ -65,16 +71,16 @@ export class ReceiptspaymentsComponent implements OnInit {
 
   formDataGroup() {
     this.formData = this.formBuilder.group({
-      company: [null],
-      branch: [null],
+      company: [null, [Validators.required]],
+      branch: [null, [Validators.required]],
       voucherClass: [null],
-      voucherType: [null],
+      voucherType: [null, [Validators.required]],
       voucherDate: [new Date()],
       postingDate: [new Date()],
       period: [null],
-      voucherNumber: [null],
-      transactionType: [null],
-      natureofTransaction: [null],
+      voucherNumber: [null, [Validators.required]],
+      transactionType: [null, [Validators.required]],
+      natureofTransaction: [null, [Validators.required]],
       account: [null],
       indicator: [null],
       referenceNo: [null],
@@ -83,10 +89,11 @@ export class ReceiptspaymentsComponent implements OnInit {
       segment: [null],
       narration: [null],
       accounting: [null],
-      amount: [null],
+      amount: [null, [Validators.required]],
       chequeno:[null],
       chequeDate:[null],
-      partyAccount:[null],
+      bpcategory: [null, [Validators.required]],
+      partyAccount: [null, [Validators.required]],
       partyInvoiceNo:[null],
       ext: [null]
     });
@@ -327,8 +334,7 @@ export class ReceiptspaymentsComponent implements OnInit {
           this.getPartnerTypeList();
         });
   }
-
-  
+    
   getPartnerTypeList() {
     const costCenUrl = String.Join('/', this.apiConfigService.getPartnerTypeList);
     this.apiService.apiGetRequest(costCenUrl)
@@ -339,6 +345,21 @@ export class ReceiptspaymentsComponent implements OnInit {
           if (!isNullOrUndefined(res) && res.status === StatusCodes.pass) {
             if (!isNullOrUndefined(res.response)) {
               this.bpTypeList = res.response['ptypeList'];
+            }
+          }
+          this.getbpList();
+        });
+  }
+
+  getbpList() {
+    const costCenUrl = String.Join('/', this.apiConfigService.getBPList);
+    this.apiService.apiGetRequest(costCenUrl)
+      .subscribe(
+        response => {
+          const res = response.body;
+          if (!isNullOrUndefined(res) && res.status === StatusCodes.pass) {
+            if (!isNullOrUndefined(res.response)) {
+              this.bpList = res.response['bpList'];
             }
           }
           this.getCostcenters();

@@ -828,7 +828,7 @@
     "amount": "Amount",
     "chequeno": "Cheque No",
     "chequeDate": "Cheque Date",
-    "bPCategory": "BP Category",
+    "bpcategory": "BP Category",
     "partyAccount": "Party Account",
     "accountingIndicator": "Account Indicator",
     "glaccount": "GL Account",

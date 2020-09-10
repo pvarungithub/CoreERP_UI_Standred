@@ -27,12 +27,32 @@
                 </mat-form-field>
 
                 <mat-form-field class="form-element">
+                    <mat-label>{{ 'receiptspayments.transactionType' | translate }}</mat-label>
+                    <mat-select formControlName="transactionType" (selectionChange)="accountSelect();">
+                        <mat-option>None</mat-option>
+                        <mat-option *ngFor="let trans of transactionTypeList" [value]="trans">
+                            {{ trans }}
+                        </mat-option>
+                    </mat-select>
+                </mat-form-field>
+
+                <mat-form-field class="form-element">
+                    <mat-label>{{ 'receiptspayments.natureofTransaction' | translate }}</mat-label>
+                    <mat-select formControlName="natureofTransaction">
+                        <mat-option>None</mat-option>
+                        <mat-option *ngFor="let nature of natureofTransactionList" [value]="nature">
+                            {{ nature }}
+                        </mat-option>
+                    </mat-select>
+                </mat-form-field>
+
+                <mat-form-field class="form-element">
                     <mat-label>{{ 'receiptspayments.voucherType' | translate }}</mat-label>
                     <mat-select formControlName="voucherType"
                         (selectionChange)="voucherTypeSelect(); voucherNoCalculate();">
                         <mat-option>None</mat-option>
-                        <mat-option *ngFor="let type of voucherTypeList" [value]="type.id">
-                            {{type.text}}
+                        <mat-option *ngFor="let type of voucherTypeList" [value]="type.voucherTypeid">
+                            {{type.voucherTypeName}}
                         </mat-option>
                     </mat-select>
                 </mat-form-field>
@@ -54,27 +74,7 @@
                         formControlName="postingDate" appFocusOnEnter tabIndex="3">
                     <mat-datepicker-toggle matSuffix [for]="picker2"></mat-datepicker-toggle>
                     <mat-datepicker #picker2></mat-datepicker>
-                </mat-form-field>
-
-                <mat-form-field class="form-element">
-                    <mat-label>{{ 'receiptspayments.transactionType' | translate }}</mat-label>
-                    <mat-select formControlName="transactionType" (selectionChange)="accountSelect();">
-                        <mat-option>None</mat-option>
-                        <mat-option *ngFor="let trans of transactionTypeList" [value]="trans">
-                            {{ trans }}
-                        </mat-option>
-                    </mat-select>
-                </mat-form-field>
-
-                <mat-form-field class="form-element">
-                    <mat-label>{{ 'receiptspayments.natureofTransaction' | translate }}</mat-label>
-                    <mat-select formControlName="natureofTransaction">
-                        <mat-option>None</mat-option>
-                        <mat-option *ngFor="let nature of natureofTransactionList" [value]="nature">
-                            {{ nature }}
-                        </mat-option>
-                    </mat-select>
-                </mat-form-field>
+                </mat-form-field>               
 
                 <mat-form-field class="form-element">
                     <mat-label>{{ 'receiptspayments.account' | translate }}</mat-label>
@@ -136,8 +136,8 @@
                 </mat-form-field>
                 
                 <mat-form-field class="form-element">
-                    <mat-label>{{ 'invoicesmemos.bPCategory' | translate }}</mat-label>
-                    <mat-select formControlName="bPCategory">
+                    <mat-label>{{ 'receiptspayments.bpcategory' | translate }}</mat-label>
+                    <mat-select formControlName="bpcategory"(selectionChange)="onbpChange()">
                         <mat-option>None</mat-option>
                         <mat-option *ngFor="let acc of bpTypeList" [value]="acc.code">
                         {{acc.description}}
@@ -147,10 +147,10 @@
               
                 <mat-form-field class="form-element">
                     <mat-label>{{ 'receiptspayments.partyAccount' | translate }}</mat-label>
-                    <mat-select formControlName="partyAccount" >
+                    <mat-select formControlName="partyAccount">
                         <mat-option>None</mat-option>
-                        <mat-option *ngFor="let acc of accountList" [value]="acc.id">
-                            {{ acc.id }} - {{acc.text}}
+                        <mat-option *ngFor="let acc of bpgLists" [value]="acc.id">
+                            {{acc.text}}
                         </mat-option>
                     </mat-select>
                 </mat-form-field>
