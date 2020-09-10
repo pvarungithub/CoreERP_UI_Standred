@@ -49,7 +49,6 @@ export class PurchasesaleassetComponent implements OnInit {
   bpgLists: any;
   taxAmount = [];
   totalAmount = [];
-  narration = [];
   saList = [];
   mamList = [];
 
@@ -152,7 +151,7 @@ export class PurchasesaleassetComponent implements OnInit {
           value: null, type: 'number', disabled: true, width: 75
         },
         referenceNo: {
-          value: null, type: 'number'
+          value: null, type: 'number',width: 75
         },
         referenceDate: {
           value: new Date(), type: 'datepicker', width: 100
@@ -173,7 +172,7 @@ export class PurchasesaleassetComponent implements OnInit {
           value: null, type: 'dropdown', list: this.costCenterList, id: 'id', text: 'text', displayMul: false, width: 100
         },
         narration: {
-          value: null, type: 'text', width: 100
+          value: null, type: 'text', width: 100, maxLength: 50
         },
         workBreakStructureElement: {
           value: null, type: 'dropdown', list: this.costCenterList, id: 'id', text: 'text', displayMul: false, width: 100
@@ -190,7 +189,7 @@ export class PurchasesaleassetComponent implements OnInit {
         commitment: {
           value: null, type: 'dropdown', list: this.costCenterList, id: 'id', text: 'text', displayMul: false, width: 100
         },
-        hSNSACCode: {
+        hsnsac: {
           value: null, type: 'dropdown', list: this.costCenterList, id: 'id', text: 'text', displayMul: false, width: 100
         },
         delete: {
@@ -453,9 +452,9 @@ export class PurchasesaleassetComponent implements OnInit {
   }
 
   voucherTypeSelect() {
-    const record = this.voucherTypeList.find(res => res.id == this.formData.get('voucherType').value)
+    const record = this.voucherTypeList.find(res => res.id == this.formData.get('voucherClass').value)
     this.formData.patchValue({
-      voucherClass: !isNullOrUndefined(record) ? record.voucherClassName : null
+      voucherClass: !isNullOrUndefined(record) ? record.voucherClass : null
     })
   }
 

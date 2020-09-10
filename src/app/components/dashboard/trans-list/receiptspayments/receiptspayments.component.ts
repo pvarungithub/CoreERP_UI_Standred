@@ -389,9 +389,9 @@ export class ReceiptspaymentsComponent implements OnInit {
 
 
   voucherTypeSelect() {
-    const record = this.voucherTypeList.find(res => res.id == this.formData.get('voucherType').value)
+    const record = this.voucherTypeList.find(res => res.id == this.formData.get('voucherClass').value)
     this.formData.patchValue({
-      voucherClass: !isNullOrUndefined(record) ? record.voucherClassName : null
+      voucherClass: !isNullOrUndefined(record) ? record.voucherClass : null
     })
   }
 

@@ -368,7 +368,6 @@ export class CashbankComponent implements OnInit {
           if (!isNullOrUndefined(res) && res.status === StatusCodes.pass) {
             if (!isNullOrUndefined(res.response)) {
               this.costCenterList = res.response['costcenterList'];
-
             }
           }
           this.dynTableProps = this.tablePropsFunc();
@@ -379,9 +378,9 @@ export class CashbankComponent implements OnInit {
   }
 
   voucherTypeSelect() {
-    const record = this.voucherTypeList.find(res => res.id == this.formData.get('voucherType').value)
+    const record = this.voucherTypeList.find(res => res.id == this.formData.get('voucherClass').value)
     this.formData.patchValue({
-      voucherClass: !isNullOrUndefined(record) ? record.voucherClassName : null
+      voucherClass: !isNullOrUndefined(record) ? record.voucherClass : null
     })
   }
 

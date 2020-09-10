@@ -156,7 +156,7 @@ export class JournalComponent implements OnInit {
         commitment: {
           value: null, type: 'dropdown', list: this.costCenterList, id: 'id', text: 'text', displayMul: false, width: 100
         },
-        hSNSACCode: {
+        hsnsac: {
           value: null, type: 'dropdown', list: this.costCenterList, id: 'id', text: 'text', displayMul: false, width: 100
         },
         delete: {
@@ -166,7 +166,6 @@ export class JournalComponent implements OnInit {
       formControl: {
         glaccount: [null, [Validators.required]],
         amount: [null, [Validators.required]],
-        accountingIndicator: [null, [Validators.required]]
       }
     }
   }
@@ -357,9 +356,9 @@ export class JournalComponent implements OnInit {
   }
 
   voucherTypeSelect() {
-    const record = this.voucherTypeList.find(res => res.id == this.formData.get('voucherType').value)
+    const record = this.voucherTypeList.find(res => res.id == this.formData.get('voucherClass').value)
     this.formData.patchValue({
-      voucherClass: !isNullOrUndefined(record) ? record.voucherClassName : null
+      voucherClass: !isNullOrUndefined(record) ? record.voucherClass : null
     })
   }
 
