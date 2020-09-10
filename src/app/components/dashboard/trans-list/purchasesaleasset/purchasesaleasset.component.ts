@@ -31,7 +31,7 @@ export class PurchasesaleassetComponent implements OnInit {
   voucherTypeList = [];
   vouchersTypeList = [];
   transactionTypeList = ['Invoice', 'Memo']
-  natureofTransactionList = ['Sale', 'Purchase','Scrapping','Transfer'];
+  natureofTransactionList = ['Sale', 'Purchase', 'Scrapping', 'Transfer'];
   accountList = [];
   glAccountList = [];
   indicatorList = [{ id: 'Debit', text: 'Debit' }, { id: 'Credit', text: 'Credit' }];
@@ -50,8 +50,8 @@ export class PurchasesaleassetComponent implements OnInit {
   taxAmount = [];
   totalAmount = [];
   narration = [];
-  saList=[];
-  mamList=[];
+  saList = [];
+  mamList = [];
 
   constructor(
     private formBuilder: FormBuilder,
@@ -111,13 +111,16 @@ export class PurchasesaleassetComponent implements OnInit {
       editWho: [null],
       addDate: [null],
       editDate: [null],
-      amount:[null]
+      amount: [null]
     });
   }
 
   tablePropsFunc() {
     return {
       tableData: {
+        id: {
+          value: 0, type: 'autoInc', width: 10, disabled: true
+        },
         mainAssetNo: {
           value: null, type: 'dropdown', list: this.mamList, id: 'id', text: 'text', displayMul: true, width: 100
         },
@@ -196,7 +199,8 @@ export class PurchasesaleassetComponent implements OnInit {
       },
       formControl: {
         glaccount: [null, [Validators.required]],
-        narration: []
+        amount: [null, [Validators.required]],
+        accountingIndicator: [null, [Validators.required]]
       }
     }
   }
@@ -398,21 +402,21 @@ export class PurchasesaleassetComponent implements OnInit {
           }
           this.getmainassetclassTableData();
         });
-  }  
- 
+  }
+
   getmainassetclassTableData() {
     const getCompanyUrl = String.Join('/', this.apiConfigService.getAssetMasterList);
     this.apiService.apiGetRequest(getCompanyUrl)
       .subscribe(
         response => {
-        const res = response.body;
-        if (!isNullOrUndefined(res) && res.status === StatusCodes.pass) {
-          if (!isNullOrUndefined(res.response)) {
-            this.mamList = res.response['mamList'];
+          const res = response.body;
+          if (!isNullOrUndefined(res) && res.status === StatusCodes.pass) {
+            if (!isNullOrUndefined(res.response)) {
+              this.mamList = res.response['mamList'];
+            }
           }
-        }
-       this.getSubassetList() ;
-      });
+          this.getSubassetList();
+        });
   }
   getSubassetList() {
     const getplantList = String.Join('/', this.apiConfigService.getSubAssetMasterList);

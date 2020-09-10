@@ -123,9 +123,9 @@ export class MainAssetMasterComponent implements OnInit {
           disabled: false, displayMul: true
         },
         rate: {
-          value: null, type: 'text', width: 150, maxLength: 10,
+          value: null, type: 'text', width: 150, maxLength: 10, disabled: true,
         },
-        
+
         depreciationArea: {
           value: null, type: 'dropdown', list: this.dpareaList, id: 'code', text: 'description', disabled: false, displayMul: true
         },
@@ -192,7 +192,7 @@ export class MainAssetMasterComponent implements OnInit {
               console.log(res.response['MainassetDetail']);
               this.modelFormData.setValue(res.response['MainassetMasters']);
               //this.addOrEditService.sendDynTableData(res.response['MainassetDetail']);
-              this.addOrEditService.sendDynTableData({ type: 'editValue', data: res.response['MainassetDetail']});
+              this.addOrEditService.sendDynTableData({ type: 'editValue', data: res.response['MainassetDetail'] });
             }
           }
         });
@@ -249,7 +249,7 @@ export class MainAssetMasterComponent implements OnInit {
         });
   }
 
- 
+
   getTableData() {
     const getCompanyUrl = String.Join('/', this.apiConfigService.getCompanysList);
     this.apiService.apiGetRequest(getCompanyUrl)

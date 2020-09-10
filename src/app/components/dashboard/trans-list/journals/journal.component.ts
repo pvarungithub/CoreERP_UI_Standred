@@ -24,7 +24,7 @@ export class JournalComponent implements OnInit {
 
   debitValue = 0;
   creditValue = 0;
-  totalTaxValue=0;
+  totalTaxValue = 0;
   tableData = [];
   dynTableProps: any;
   btList = [];
@@ -100,7 +100,7 @@ export class JournalComponent implements OnInit {
           value: null, type: 'dropdown', list: this.indicatorList, id: 'id', text: 'text', displayMul: false, width: 100, disabled: false
         },
         amount: {
-          value: null, type: 'number', width: 75,maxLength: 15
+          value: null, type: 'number', width: 75, maxLength: 15
         },
         taxCode: {
           value: null, type: 'dropdown', list: this.taxCodeList, id: 'taxRateCode', text: 'description', displayMul: false, width: 100
@@ -118,7 +118,7 @@ export class JournalComponent implements OnInit {
           value: 0, type: 'number', disabled: true, width: 75
         },
         referenceNo: {
-          value: null, type: 'number',maxLength: 50,width:75
+          value: null, type: 'number', maxLength: 50, width: 75
         },
         referenceDate: {
           value: new Date(), type: 'datepicker', width: 100
@@ -164,7 +164,9 @@ export class JournalComponent implements OnInit {
         }
       },
       formControl: {
-        glaccount: [null, [Validators.required]]
+        glaccount: [null, [Validators.required]],
+        amount: [null, [Validators.required]],
+        accountingIndicator: [null, [Validators.required]]
       }
     }
   }
@@ -239,7 +241,7 @@ export class JournalComponent implements OnInit {
           const res = response.body;
           if (!isNullOrUndefined(res) && res.status === StatusCodes.pass) {
             if (!isNullOrUndefined(res.response)) {
-              this.voucherTypeList = res.response['vouchertypeList'].filter(resp=>resp.voucherClass=='003');
+              this.voucherTypeList = res.response['vouchertypeList'].filter(resp => resp.voucherClass == '003');
             }
           }
           this.getGLAccountsList();
@@ -394,7 +396,7 @@ export class JournalComponent implements OnInit {
           if (index != 0 && !isNullOrUndefined(row.data[0].accountingIndicator.value)) {
             res.accountingIndicator.value = (row.data[0].accountingIndicator.value == 'Debit') ? 'Credit' : 'Debit';
             res.accountingIndicator.disabled = true;
-          } else if(index != 0) {
+          } else if (index != 0) {
             res.accountingIndicator.disabled = true;
           }
         })
@@ -420,7 +422,7 @@ export class JournalComponent implements OnInit {
   checkCreditDebit() {
     this.debitValue = 0;
     this.creditValue = 0;
-    this.totalTaxValue=0;
+    this.totalTaxValue = 0;
     if (!isNullOrUndefined(this.tableData)) {
       if (this.tableData.length) {
         this.tableData.forEach(res => {

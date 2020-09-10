@@ -17,6 +17,7 @@ export class CommonService {
   showNavbar = new BehaviorSubject<boolean>(null);
   routeParam: string;
   routeConfig = <any>{};
+  userPermission = <any>{};
 
   constructor(
     private router: Router,

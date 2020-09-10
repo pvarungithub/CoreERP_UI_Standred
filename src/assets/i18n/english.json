@@ -762,10 +762,10 @@
     "locationName": "Location",
     "depreciationData": "Depreciation Data",
     "depreciationArea": "Depreciation Area",
-    "depreciationCode": "DepreciationCode",
+    "depreciationCode": "Depreciation Code",
     "rate": "Depreciation Rate",
     "depreciationStartDate": "Start Date",
-    "delete": "delete"
+    "delete": "Delete"
   },
   "subassets": {
     "title": "Sub Assets",

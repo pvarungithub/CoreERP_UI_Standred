@@ -37,9 +37,6 @@ export class SidebarComponent implements OnInit {
   }
 
   ngOnInit() {
-    this.activatedRoute.params.subscribe(params => {
-      console.log(params)
-    });
     this.commonService.currentUrl.subscribe((url: string) => {
       if (this.item.route && url) {
         this.expanded = url.indexOf(`/${this.item.route}`) === 0;
@@ -57,8 +54,6 @@ export class SidebarComponent implements OnInit {
     if (!item.children || !item.children.length) {
       this.commonService.routeParam = item.route;
       const route = String.Join('/', 'dashboard', item.screenType, item.route  );
-      // console.log( route, item.route);
-
       this.router.navigate([ route ]);
       this.commonService.toggleSidebar();
     }

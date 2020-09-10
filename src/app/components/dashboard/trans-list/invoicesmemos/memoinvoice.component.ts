@@ -51,7 +51,6 @@ export class MemoinvoiceComponent implements OnInit {
   bpgLists: any;
   taxAmount = [];
   totalAmount = [];
-  narration = [];
 
   constructor(
     private formBuilder: FormBuilder,
@@ -118,6 +117,9 @@ export class MemoinvoiceComponent implements OnInit {
   tablePropsFunc() {
     return {
       tableData: {
+        id: {
+          value: 0, type: 'autoInc', width: 10, disabled: true
+        },
         glaccount: {
           value: null, type: 'dropdown', list: this.glAccountList, id: 'id', text: 'text', displayMul: true, width: 100
         },
@@ -164,7 +166,7 @@ export class MemoinvoiceComponent implements OnInit {
           value: null, type: 'dropdown', list: this.costCenterList, id: 'id', text: 'text', displayMul: false, width: 100
         },
         narration: {
-          value: null, type: 'text', width: 100
+          value: null, type: 'text', width: 100, maxLength: 50
         },
         workBreakStructureElement: {
           value: null, type: 'dropdown', list: this.costCenterList, id: 'id', text: 'text', displayMul: false, width: 100
@@ -190,7 +192,8 @@ export class MemoinvoiceComponent implements OnInit {
       },
       formControl: {
         glaccount: [null, [Validators.required]],
-        narration: []
+        amount: [null, [Validators.required]],
+        accountingIndicator: [null, [Validators.required]]
       }
     }
   }
@@ -449,7 +452,7 @@ export class MemoinvoiceComponent implements OnInit {
   checkCreditDebit() {
     this.debitValue = 0;
     this.creditValue = 0;
-    this.totalTaxValue=0;
+    this.totalTaxValue = 0;
     if (!isNullOrUndefined(this.tableData)) {
       if (this.tableData.length) {
         this.tableData.forEach(res => {

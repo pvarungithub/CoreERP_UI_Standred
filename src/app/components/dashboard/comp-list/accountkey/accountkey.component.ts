@@ -71,7 +71,7 @@ export class AccountKeyComponent implements OnInit {
           const res = response.body;
           if (!isNullOrUndefined(res) && res.status === StatusCodes.pass) {
             if (!isNullOrUndefined(res.response)) {
-              this.glList = res.response['glList'].filter(res => res.controlAccount == 'Asset');
+              this.glList = res.response['glList'].filter(res => res.controlaccount == 'Asset');
               this.gl2List = res.response['glList'].filter(res => res.accGroup == '0003' || res.accGroup == '0004');
             }
           }

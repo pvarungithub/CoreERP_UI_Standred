@@ -10,11 +10,11 @@ import { CompTabsComponent } from './components/dashboard/comp-list/comp-tabs/co
 const routes: Routes = [
   { path: 'login', component: LoginComponent },
   {
-    path: 'dashboard', component: DashboardComponent, canActivate: [AuthGuard],
+    path: 'dashboard', component: DashboardComponent,
     children: [
 
       // standard screens
-      { path: 'rolePrevilages', component: RolesprevilagesComponent, canActivate: [AuthGuard],  resolve:{ routeConfig : AuthGuard } },
+      { path: 'rolePrevilages', component: RolesprevilagesComponent },
 
       // masters screen
       { path: 'master/:id/:id1', component: CompTabsComponent, canActivate: [AuthGuard], resolve:{ routeConfig : AuthGuard } },

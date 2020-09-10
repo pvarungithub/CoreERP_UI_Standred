@@ -170,7 +170,9 @@ export class ReceiptspaymentsComponent implements OnInit {
         }
       },
       formControl: {
-        glaccount: [null, [Validators.required]]
+        glaccount: [null, [Validators.required]],
+        amount: [null, [Validators.required]],
+        accountingIndicator: [null, [Validators.required]]
       }
     }
   }

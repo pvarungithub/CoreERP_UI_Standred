@@ -12,6 +12,8 @@ import { ApiConfigService } from './services/api-config.service';
 import { AddOrEditService } from './components/dashboard/comp-list/add-or-edit.service';
 import { ApiService } from './services/api.service';
 import { CommonService } from './services/common.service';
+import { isNullOrUndefined } from 'util';
+import { StatusCodes } from './enums/common/common';
 
 @Injectable({
   providedIn: 'root'
@@ -35,29 +37,30 @@ export class AuthGuard implements CanActivate, Resolve<any> {
   canActivate(
     next: ActivatedRouteSnapshot,
     state: RouterStateSnapshot): Observable<boolean | UrlTree> | Promise<boolean | UrlTree> | boolean | UrlTree {
-    // let obj = JSON.parse(localStorage.getItem("user"));
-    // const getMenuUrl = String.Join('/', this.apiConfigService.getMenuUrl, obj.role);
-    // return this.http.get(getMenuUrl, { headers: this.options, observe: 'response', params: obj })
-    //   .pipe((map(res => {
-    // console.log(res.body['response'], next.params.id)
-    // if (this.authorizedUser(res.body.response)) {
-    if (this.authService.isLoggedIn()) {
-      if (state.url.includes('Edit') || state.url.includes('Add') || state.url.includes('New')) {
-        if (!this.addOrEditService.editData && next.url.length > 1) {
-          // let route;
-          // route = state.url.replace('/Edit', '');
-          // route = route.replace('/Add', '');
-          // route = route.replace('/New', '');
-          const route = String.Join('/', 'dashboard', next.url[0].path, next.url[1].path);
-          this.router.navigate([route]);
+    let obj = JSON.parse(localStorage.getItem("user"));
+    if (next.url.length > 1) {
+      // const getMenuUrl = String.Join('/', this.apiConfigService.getUserPermissions, obj.userName, next.url[1].path);
+      // return this.http.get(getMenuUrl, { headers: this.options, observe: 'response' })
+      //   .pipe((map(resp => {
+      // const res = resp.body;
+      // this.commomService.userPermission = res['Permissions'];
+      // if (!isNullOrUndefined(res) && res['status'] === StatusCodes.pass) {
+      if (this.authService.isLoggedIn()) {
+        if (state.url.includes('Edit') || state.url.includes('Add') || state.url.includes('New')) {
+          if (!this.addOrEditService.editData && next.url.length > 1) {
+            const route = String.Join('/', 'dashboard', next.url[0].path, next.url[1].path);
+            this.router.navigate([route]);
+          }
         }
+        return true;
       }
-      return true;
+      // } else if (!isNullOrUndefined(res) && res['status'] === StatusCodes.fail) {
+      this.router.navigate(['/login']);
+      return false;
+      // }
+      // })));
     }
-    // }
-    this.router.navigate(['/login']);
     return false;
-    // })));
   }
 
   resolve(route: ActivatedRouteSnapshot) {
@@ -65,8 +68,8 @@ export class AuthGuard implements CanActivate, Resolve<any> {
     const configUrl = String.Join('/', this.apiConfigService.getFieldsConfig, route.url[0].path, route.url[1].path, obj.userName);
 
     return true;
-    // this.http.get(configUrl, { headers: this.options, observe: 'response', params: obj })
-    //   .pipe((map(res => this.commomService.routeConfig = JSON.parse(res.body['response']['FieldsConfiguration']))));
+    // this.http.get(configUrl, { headers: this.options, observe: 'response' })
+    //   .pipe((map(res => console.log(res.body['response']['FieldsConfiguration']))));
 
   }
 

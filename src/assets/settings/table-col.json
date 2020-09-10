@@ -577,7 +577,7 @@
   "mainassetmaster": {
     "title": "Main asset Master",
     "companyName": "Company",
-    "assetClassName": "Asset class",
+    "assetClassName": "Asset Class",
     "assetNumber": "Asset Number",
     "name": "Name",
     "name1": "Name1",
@@ -596,13 +596,11 @@
     "acquisitionDate": "Acquisition Date",
     "usefulLifeYears": "Useful Life Years",
     "usefulLifeDays": "Useful Life Days",
-    "depreciationDataName": "Depreciation Data",
-    "depreciationAreaName": "Depreciation Area",
     "depreciationArea": "Depreciation Area",
     "depreciationCode": "DepreciationCode",
     "rate": "Depreciation Rate",
     "depreciationStartDate": "Start  Date",
-    "delete": "delete"
+    "delete": "Delete"
   },
   "subassets": {
     "title": "Sub Assets",

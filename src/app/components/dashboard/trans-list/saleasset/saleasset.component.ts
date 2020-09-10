@@ -108,6 +108,9 @@ export class SaleassetComponent implements OnInit {
   tablePropsFunc() {
     return {
       tableData: {
+        id: {
+          value: 0, type: 'autoInc', width: 10, disabled: true
+        },
         mainAssetNo: {
           value: null, type: 'dropdown', list: this.mamList, id: 'id', text: 'text', displayMul: true, width: 100
         },
@@ -150,10 +153,7 @@ export class SaleassetComponent implements OnInit {
         }
       },
       formControl: {
-        acquisitionValue: [null],
-        accumulatedValue: [null],
         mainAssetNo: [null, [Validators.required]],
-        narration: []
       }
     }
   }
