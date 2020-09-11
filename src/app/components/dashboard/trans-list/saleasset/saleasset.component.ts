@@ -29,8 +29,7 @@ export class SaleassetComponent implements OnInit {
   branchList = [];
   voucherClassList = [];
   voucherTypeList = [];
-  vouchersTypeList = [];
-  transactionTypeList = ['Invoice', 'Memo']
+  transactionTypeList = ['Acquisition', 'Sale', 'Scrapping', 'Transfer']
   natureofTransactionList = ['Sale', 'Purchase', 'Scrapping', 'Transfer'];
   accountList = [];
   glAccountList = [];
@@ -70,6 +69,7 @@ export class SaleassetComponent implements OnInit {
       this.routeEdit = this.route.snapshot.params.value;
     }
   }
+
   onbpChange() {
     this.bpgLists = [];
     if (!isNullOrUndefined(this.formData.get('bpcategory').value)) {
@@ -77,6 +77,7 @@ export class SaleassetComponent implements OnInit {
       this.bpgLists = this.bpList.filter(res => res.bptype == data.code);
     }
   }
+
   ngOnInit() {
     this.formDataGroup();
     this.getCompanyList();
@@ -99,12 +100,9 @@ export class SaleassetComponent implements OnInit {
       addWho: [null],
       editWho: [null],
       addDate: [null],
-      transactionType: [null, [Validators.required]],
       editDate: [null]
-
     });
   }
-
   tablePropsFunc() {
     return {
       tableData: {
@@ -159,10 +157,10 @@ export class SaleassetComponent implements OnInit {
   }
 
   accountSelect() {
-    this.vouchersTypeList = [];
-    if (!isNullOrUndefined(this.formData.get('transactionType').value)) {
-    }
-    this.vouchersTypeList = this.voucherTypeList.filter(resp => resp.voucherNature == this.formData.get('transactionType').value);
+    //this.vouchersTypeList = [];
+    // if (!isNullOrUndefined(this.formData.get('assetTransactionType').value)) {
+    // }
+    //this.vouchersTypeList = this.voucherTypeList.filter(resp => resp.voucherNature == this.formData.get('assetTransactionType').value);
   }
 
   getAssetTransferDetail(val) {
@@ -239,7 +237,7 @@ export class SaleassetComponent implements OnInit {
               // this.glAccountList = res.response['glList'].filter(resp => resp.taxCategory != 'Cash' || resp.taxCategory != 'Bank' || resp.taxCategory != 'Control Account');
             }
           }
-          this.getAcquisitionDetailsList();
+          this.getProfitCentersList()
         });
   }
 

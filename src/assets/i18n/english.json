@@ -1007,7 +1007,6 @@
     "taxCode": "Tax",
     "functionalDept": "Functional Dept",
     "costCenter": "Cost Center",
-    "narration": "Narration",
     "period": "Period",
     "workBreakStructureElement": "Work Break Structure Element",
     "netWork": "NetWork",
@@ -1030,8 +1029,10 @@
     "adjustmentAmount": "AdjustmentAmount",
     "discount": "Discount",
     "writeOffAmount": "WriteOffAmount",
-    "discountGL": "DiscountGL",
-    "writeOffGL": "WriteOffGL",
+    "discountGl": "DiscountGL",
+    "writeOffGl": "WriteOffGL",
+    "writeoff": "Writeoff",
+    "narration": "Narration",
     "delete": "Delete"
   },
   "purchasesaleasset": {

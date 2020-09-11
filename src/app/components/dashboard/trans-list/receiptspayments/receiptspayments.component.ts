@@ -56,6 +56,7 @@ export class ReceiptspaymentsComponent implements OnInit {
       this.routeEdit = this.route.snapshot.params.value;
     }
   }
+
   onbpChange() {
     this.bpgLists = [];
     if (!isNullOrUndefined(this.formData.get('bpcategory').value)) {
@@ -63,11 +64,10 @@ export class ReceiptspaymentsComponent implements OnInit {
       this.bpgLists = this.bpList.filter(res => res.bptype == data.code);
     }
   }
+
   ngOnInit() {
     this.formDataGroup();
     this.getCompanyList();
-    this.getProfitCentersList();
-    //this.getfunctionaldeptList();
     this.formData.controls['voucherNumber'].disable();
   }
 
@@ -94,24 +94,19 @@ export class ReceiptspaymentsComponent implements OnInit {
       editWho: [null],
       addDate: [null],
       editDate: [null],
-      //accounting: [null],
       amount: [null, [Validators.required]],
       chequeNo: [null],
       chequeDate: [null],
       bpcategory: [null, [Validators.required]],
       partyAccount: [null, [Validators.required]]
-      //partyInvoiceNo: [null],
-      //ext: [null]
     });
   }
-
 
   tablePropsFunc() {
     return {
       tableData: {
-               
         partyInvoiceNo: {
-          value: null, type: 'text', width: 150
+          value: null, type: 'number', width: 150
         },
         partyInvoiceDate: {
           value: new Date(), type: 'datepicker', width: 100
@@ -143,13 +138,15 @@ export class ReceiptspaymentsComponent implements OnInit {
         writeOffAmount: {
           value: 0, type: 'number', width: 75
         },
-        discountGL: {
+        discountGl: {
           value: null, type: 'dropdown', list: this.glAccountList, id: 'id', text: 'text', displayMul: true, width: 100
         },
-        writeOffGL: {
+        writeOffGl: {
           value: null, type: 'dropdown', list: this.glAccountList, id: 'id', text: 'text', displayMul: true, width: 100
         },
-
+        writeoff: {
+          value: null, type: 'dropdown', list: this.glAccountList, id: 'id', text: 'text', displayMul: true, width: 100
+        },
         narration: {
           value: null, type: 'text', width: 150
         },
@@ -163,10 +160,6 @@ export class ReceiptspaymentsComponent implements OnInit {
     }
   }
 
-
-  
-
-
   getreceiptpaymentDetail(val) {
     const cashDetUrl = String.Join('/', this.apiConfigService.getPaymentsReceiptsDetail, val);
     this.apiService.apiGetRequest(cashDetUrl)
@@ -176,14 +169,14 @@ export class ReceiptspaymentsComponent implements OnInit {
           const res = response.body;
           if (!isNullOrUndefined(res) && res.status === StatusCodes.pass) {
             if (!isNullOrUndefined(res.response)) {
-              console.log(res.response['paymentreceiptMasters']);
               this.formData.setValue(res.response['paymentreceiptMasters']);
-              this.addOrEditService.sendDynTableData({ type: 'add', data: res.response['paymentreceiptDetail'] });
+              this.addOrEditService.sendDynTableData({ type: 'edit', data: res.response['paymentreceiptDetail'] });
               this.formData.disable();
             }
           }
         });
   }
+
   getCompanyList() {
     const companyUrl = String.Join('/', this.apiConfigService.getCompanyList);
     this.apiService.apiGetRequest(companyUrl)
@@ -235,7 +228,6 @@ export class ReceiptspaymentsComponent implements OnInit {
       .subscribe(
         response => {
           const res = response.body;
-          console.log(res);
           if (!isNullOrUndefined(res) && res.status === StatusCodes.pass) {
             if (!isNullOrUndefined(res.response)) {
               this.voucherTypeList = res.response['vouchertypeList'];
@@ -246,7 +238,6 @@ export class ReceiptspaymentsComponent implements OnInit {
   }
 
   getGLAccountsList() {
-    
     const glAccUrl = String.Join('/', this.apiConfigService.getGLAccountsList);
     this.apiService.apiGetRequest(glAccUrl)
       .subscribe(
@@ -258,11 +249,7 @@ export class ReceiptspaymentsComponent implements OnInit {
               this.glAccountList = res.response['glList'].filter(resp => resp.taxCategory != 'Cash' || resp.taxCategory != 'Bank' || resp.taxCategory != 'Control Account');
             }
           }
-          //this.getfunctionaldeptList();
-          this.dynTableProps = this.tablePropsFunc();
-          if (this.routeEdit != '') {
-            this.getreceiptpaymentDetail(this.routeEdit);
-          }
+          this.getfunctionaldeptList();
         });
   }
 
@@ -377,17 +364,19 @@ export class ReceiptspaymentsComponent implements OnInit {
             }
           }
           this.dynTableProps = this.tablePropsFunc();
-          //if (this.routeEdit != '') {
-          //  this.getCashBankDetail(this.routeEdit);
-          //}
+          if (this.routeEdit != '') {
+            this.getreceiptpaymentDetail(this.routeEdit);
+          }
         });
   }
 
 
   voucherTypeSelect() {
-    const record = this.voucherTypeList.find(res => res.id == this.formData.get('voucherType').value)
+    //debugger;
+    //alert(this.formData.get('voucherType').value);
+    const record = this.voucherTypeList.find(res => res.voucherTypeId == this.formData.get('voucherType').value)
     this.formData.patchValue({
-      voucherClass: !isNullOrUndefined(record) ? record.voucherClassName : null
+      voucherClass: !isNullOrUndefined(record) ? record.voucherClass : null
     })
   }
 
@@ -413,22 +402,8 @@ export class ReceiptspaymentsComponent implements OnInit {
     }
   }
 
-
-
   emitColumnChanges(data) {
-    //this.assigndata(data);
   }
-
-  //assigndata(row) {
-  //  debugger;
-  //  if (row.column == 'acquisitionValue') {
-  //    const code = row.data[row.index]['acquisitionValue'].list.find(res => res.code == row.data[row.index]['acquisitionValue'].value);
-  //    if (!isNullOrUndefined(code)) {
-  //      row.data[row.index].rate.value = code.rate;
-  //      this.addOrEditService.sendDynTableData({ type: 'add', data: row.data });
-  //    }
-  //  }
-  //}
 
   emitTableData(data) {
     this.tableData = data;
