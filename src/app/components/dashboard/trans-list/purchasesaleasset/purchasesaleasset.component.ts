@@ -219,7 +219,7 @@ export class PurchasesaleassetComponent implements OnInit {
           if (!isNullOrUndefined(res) && res.status === StatusCodes.pass) {
             if (!isNullOrUndefined(res.response)) {
               this.formData.setValue(res.response['assetMasters']);
-              this.addOrEditService.sendDynTableData({ type: 'edit', data: res.response['assetDetail'] });
+              this.addOrEditService.sendDynTableData({ type: 'add', data: res.response['assetDetail'] });
               this.formData.disable();
             }
           }

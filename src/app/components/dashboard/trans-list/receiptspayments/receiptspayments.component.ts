@@ -178,7 +178,7 @@ export class ReceiptspaymentsComponent implements OnInit {
             if (!isNullOrUndefined(res.response)) {
               console.log(res.response['paymentreceiptMasters']);
               this.formData.setValue(res.response['paymentreceiptMasters']);
-              this.addOrEditService.sendDynTableData({ type: 'edit', data: res.response['paymentreceiptDetail'] });
+              this.addOrEditService.sendDynTableData({ type: 'add', data: res.response['paymentreceiptDetail'] });
               this.formData.disable();
             }
           }
