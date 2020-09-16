@@ -76,3 +76,4 @@ export { PurchaseordertypeComponent } from './purchaseordertype/purchaseordertyp
 export { SupplierTermsandconditionsComponent } from './suppliertermsandconditions/suppliertermsandconditions.component';
 export { PurchaseOrderNumberRangeComponent } from './purchaseordernumberrange/purchaseordernumberrange.component';
 export { PurchaseOrderAssignmentComponent } from './purchaseordernumberassignment/purchaseordernumberassignment.component';
+export {PurchasingtypeComponent} from './purchasingtype/purchasingtype.component';

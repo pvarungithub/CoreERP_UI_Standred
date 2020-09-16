@@ -1027,6 +1027,11 @@
     "creditPeriod": "Credit Period",
     "advance": "Advance"
   },
+  "purchasingtype": {
+    "title": "Purchasing Type",
+    "purchaseType": "Purchasing Type",
+    "description": "Description"
+  },
   "purchaseordernumberrange": {
     "title": "PurchaseOrder NumberRange",
     "numberRange": "NumberRange",

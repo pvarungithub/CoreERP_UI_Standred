@@ -34,8 +34,8 @@ export class PurchasingpersonComponent implements OnInit {
     @Optional() @Inject(MAT_DIALOG_DATA) public data: any) {
 
     this.modelFormData = this.formBuilder.group({
-      purchasePerson: [null, [Validators.required, Validators.minLength(1), Validators.maxLength(4)]],
-      description: [null, [Validators.required, Validators.minLength(1), Validators.maxLength(30)]],
+      purchasePerson: [null, [Validators.required, Validators.minLength(1), Validators.maxLength(5)]],
+      description: [null, [Validators.required, Validators.minLength(1), Validators.maxLength(50)]],
       purchaseGroup: [null],
       purchaseTypes: [null]
      

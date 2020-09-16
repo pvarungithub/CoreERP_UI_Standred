@@ -1197,6 +1197,11 @@
     "purchaseType": "PurchaseType",
     "description": "Description"
   },
+  "purchasingtype": {
+    "title": "Purchasing Type",
+    "purchaseType": "Purchasing Type",
+    "description": "Description"
+  },
   "suppliertermsandconditions": {
     "title": "Supplier Terms and Conditions",
     "code": "Code",

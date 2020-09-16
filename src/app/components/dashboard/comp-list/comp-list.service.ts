@@ -70,7 +70,7 @@ import { PurchasinggroupsComponent } from './purchasinggroups/purchasinggroups.c
 import { PurchasingpersonComponent } from './purchasingperson/purchasingperson.component';
 import { RequisitionNumberRangeComponent } from './requisitionnumberrange/requisitionnumberrange.component';
 import { RequisitionAssignmentComponent } from './requisitionassignment/requisitionassignment.component';
-
+import {PurchasingtypeComponent} from './purchasingtype/purchasingtype.component';
 import { QuotationNumberRangeComponent } from './quotationnumberrange/quotationnumberrange.component';
 import { QuotationAssignmentComponent } from './quotationnumberassignment/quotationnumberassignment.component';
 import { PurchaseordertypeComponent } from './purchaseordertype/purchaseordertype.component';
@@ -402,6 +402,10 @@ export class CompListService {
         this.dynamicComp.component = PurchaseOrderAssignmentComponent;
         return this.dynamicComp.component;
         break;
+        case 'purchasingtype':
+        this.dynamicComp.component = PurchasingtypeComponent;
+        return this.dynamicComp.component;
+        break;        
       default:
     }
   }

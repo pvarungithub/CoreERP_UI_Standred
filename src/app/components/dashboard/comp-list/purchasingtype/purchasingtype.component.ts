@@ -10,20 +10,19 @@ import { String } from 'typescript-string-operations';
 import { AddOrEditService } from '../add-or-edit.service';
 
 @Component({
-  selector: 'app-purchaseordertype',
-  templateUrl: './purchaseordertype.component.html',
-  styleUrls: ['./purchaseordertype.component.scss']
+  selector: 'app-purchasingtype',
+  templateUrl: './purchasingtype.component.html',
+  styleUrls: ['./purchasingtype.component.scss']
 })
 
-export class PurchaseordertypeComponent implements OnInit {
+export class PurchasingtypeComponent implements OnInit {
 
   modelFormData: FormGroup;
   formData: any;
-  glList: any;
   constructor(
     private addOrEditService: AddOrEditService,
     private formBuilder: FormBuilder,
-    public dialogRef: MatDialogRef<PurchaseordertypeComponent>,
+    public dialogRef: MatDialogRef<PurchasingtypeComponent>,
     private spinner: NgxSpinnerService,
     private apiConfigService: ApiConfigService,
     private apiService: ApiService,
@@ -31,8 +30,8 @@ export class PurchaseordertypeComponent implements OnInit {
     @Optional() @Inject(MAT_DIALOG_DATA) public data: any) {
 
     this.modelFormData = this.formBuilder.group({
-      purchaseType:['',[Validators.required, Validators.minLength(2), Validators.maxLength(10)]],
-      description: ['',[Validators.required, Validators.minLength(2), Validators.maxLength(50)]],
+      purchaseType: ['',[Validators.required, Validators.minLength(2), Validators.maxLength(10)]],
+      description:['', [Validators.required, Validators.minLength(2)]],
      
     });
 

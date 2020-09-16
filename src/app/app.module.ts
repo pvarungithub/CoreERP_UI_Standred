@@ -15,7 +15,7 @@ import {
   AssetClassComponent,PaymentTermsComponent,AlternateControlAccountComponent,DepreciationareasComponent,AssetBlockComponent,AssetNumberRangeComponent,AseetClassToAssetBlockComponent,
   AssetTransactionTypeComponent,AssignmentAccountKeytoAssetClassComponent,AccountKeyComponent,BankMasterComponent,
    DepreciationcodeComponent, GLAccountComponent, BusienessPartnerAccountComponent, MainAssetMasterComponent, SubAssetsComponent, RequisitionAssignmentComponent,
-  AssignGLaccounttoSubGroupComponent, GLSubAccountComponent, PurchasinggroupsComponent,
+  AssignGLaccounttoSubGroupComponent, GLSubAccountComponent, PurchasinggroupsComponent,PurchasingtypeComponent,
   PurchasingpersonComponent, RequisitionNumberRangeComponent, PurchaseordertypeComponent,
   QuotationNumberRangeComponent, QuotationAssignmentComponent, PurchaseOrderAssignmentComponent, SupplierTermsandconditionsComponent,
   BusienessTransactionTypeComponent, AssetBegningAccumulatedDepreciationComponent,
@@ -75,7 +75,7 @@ export function HttpLoaderFactory(httpClient: HttpClient) {
     AccountchartComponent,CompanyComponent,PartnerTypesComponent,  NumberRangeComponent,BusienessPartnerGroupsComponent ,PaymentTermsComponent,
     AssetClassComponent,AlternateControlAccountComponent,DepreciationareasComponent,AssetBlockComponent,AssetNumberRangeComponent
     
-    ,AseetClassToAssetBlockComponent,AssetTransactionTypeComponent,AccountKeyComponent,
+    ,AseetClassToAssetBlockComponent,AssetTransactionTypeComponent,AccountKeyComponent,PurchasingtypeComponent,
     AssignmentAccountKeytoAssetClassComponent,BankMasterComponent,DepreciationcodeComponent,GLAccountComponent,BusienessPartnerAccountComponent,MainAssetMasterComponent,SubAssetsComponent,
     AssignGLaccounttoSubGroupComponent, GLSubAccountComponent, PurchasinggroupsComponent, PurchasingpersonComponent, RequisitionAssignmentComponent, RequisitionNumberRangeComponent, PurchaseordertypeComponent, SupplierTermsandconditionsComponent, PurchaseOrderNumberRangeComponent, QuotationNumberRangeComponent,PurchaseOrderAssignmentComponent,QuotationAssignmentComponent,BusienessTransactionTypeComponent,AssetBegningAccumulatedDepreciationComponent,AssetBegningAcqusitionComponent,
     CompTabsComponent,
@@ -96,7 +96,7 @@ export function HttpLoaderFactory(httpClient: HttpClient) {
     AssignmentComponent,AssetClassComponent,PaymentTermsComponent,AlternateControlAccountComponent,DepreciationareasComponent,AssetBlockComponent,
     AssetNumberRangeComponent, AssetTransactionTypeComponent, AssignmentAccountKeytoAssetClassComponent,AccountKeyComponent,
     BankMasterComponent, DepreciationcodeComponent, GLAccountComponent, GLSubAccountComponent, PurchasinggroupsComponent, PurchasingpersonComponent, RequisitionAssignmentComponent, RequisitionNumberRangeComponent, PurchaseordertypeComponent, SupplierTermsandconditionsComponent,
-    PurchaseOrderNumberRangeComponent, QuotationNumberRangeComponent,
+    PurchaseOrderNumberRangeComponent, QuotationNumberRangeComponent,PurchasingtypeComponent,
     PurchaseOrderAssignmentComponent, QuotationAssignmentComponent, BusienessTransactionTypeComponent, AssetBegningAccumulatedDepreciationComponent, AssetBegningAcqusitionComponent,
     BusienessPartnerAccountComponent,AssignGLaccounttoSubGroupComponent,MainAssetMasterComponent,SubAssetsComponent,
     DynamicTableComponent,  AutocompleteComponent, CashbankComponent,JournalComponent,MemoinvoiceComponent,ReceiptspaymentsComponent, MaxlengthDirective,PurchasesaleassetComponent,
@@ -143,7 +143,7 @@ export function HttpLoaderFactory(httpClient: HttpClient) {
     DistributionchannelsComponent,SalesofficeComponent,SalesGroupComponent,MaintenceAreaComponent,PurchaseDepartmentComponent,StorageLocationsComponent,
     ErpUsersComponent,RolesprevilagesComponent,LedgerComponent,OpenLedgerComponent,VoucherClassComponent,VoucherTypesComponent,VoucherSeriesComponents,
     AssignmentVoucherSeriestoVoucherTypesComponent,TaxRatesComponents,TaxTransactionComponent,TaxIntegrationComponent,
-
+    PurchasingtypeComponent,
      UndersubGroupComponent, TaxIntegrationComponent,
     DeleteItemComponent, 
     CompanyComponent, 
