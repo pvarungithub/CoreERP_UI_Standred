@@ -15,7 +15,13 @@ export class ApiConfigService {
    getBranchesForUser = `${this.environment.runtimeConfig.serverUrl}Auth/GetBranchesForUser`;
    getComponentInfo = `${this.environment.runtimeConfig.serverUrl}Settings/GetComponentInfo`;
 
-   // Common Controller 
+   // Common
+  getpurchaseOrderTypeList = `${this.environment.runtimeConfig.serverUrl}Purchaseordertype/GetPurchaseordertypeList`;
+  getPurchaseorderNumberList = `${this.environment.runtimeConfig.serverUrl}PurchaseOrderNumberRange/GetPurchaseOrderNumberRangeList`;
+  getQuotationNumberRangeList = `${this.environment.runtimeConfig.serverUrl}QuotationNumberRange/GetQuotationNumberRangeList`;
+  getnumberRangeList = `${this.environment.runtimeConfig.serverUrl}RequisitionNumberRange/GetRequisitionNumberRangeList`;
+  getPurchasingtypeList = `${this.environment.runtimeConfig.serverUrl}Purchasingtype/GetPurchaseTypeList`;
+  getPurchaseGroupList = `${this.environment.runtimeConfig.serverUrl}Purchasinggroups/GetPurchasinggroupsList`;
    getlanguageList = `${this.environment.runtimeConfig.serverUrl}Common/GetLanguageList`;
    getRegionsList = `${this.environment.runtimeConfig.serverUrl}Common/GetRegionList`;
    getCountrysList = `${this.environment.runtimeConfig.serverUrl}Common/GetCountrysList`;
@@ -43,6 +49,7 @@ export class ApiConfigService {
    getCostCentersList = `${this.environment.runtimeConfig.serverUrl}Common/GetCostCentersList`;
    getTaxRatesList = `${this.environment.runtimeConfig.serverUrl}TaxRates/GetTaxRatesList`;
    getBPList = `${this.environment.runtimeConfig.serverUrl}Common/GetBPList`;
+  getpurchaseinvoiceList = `${this.environment.runtimeConfig.serverUrl}Common/GetPurchaseInvoiceList`;
    getAssetMasterList = `${this.environment.runtimeConfig.serverUrl}Common/GetMainAssetMasterList`;
    getSubAssetMasterList = `${this.environment.runtimeConfig.serverUrl}Common/GetSubAssetMasterList`;
    getFieldsConfig = `${this.environment.runtimeConfig.serverUrl}Common/GetFieldsConfig`;

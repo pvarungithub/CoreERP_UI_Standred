@@ -1,0 +1,76 @@
+<div class="position-relative popup-class">
+  <mat-card-title class="boader--color d-flex justify-content-between position-absolute w-100">
+    <span>  {{'purchasingperson.title' | translate }} </span>
+    <mat-icon class="p-2 cursor--pointer" (click)="cancel()">close</mat-icon>
+  </mat-card-title>
+
+  <mat-card-content class="pt-5 p-2 m-0 overflow-auto">
+    <form [formGroup]="modelFormData" autocomplete="off">
+
+      <div class="d--flex">
+
+        <mat-form-field>
+          <mat-label>{{'purchasingperson.purchasePerson' | translate }}</mat-label>
+          <mat-select formControlName="purchasePerson" appFocusOnEnter tabIndex="1">
+            <mat-option>None</mat-option>
+            <mat-option *ngFor="let emp of emplist" [value]="emp.id">
+              {{emp.id}} - {{emp.text}}
+            </mat-option>
+          </mat-select>
+          <mat-error *ngIf="formControls.purchasePerson.errors" class="help-block">
+            <div *ngIf="formControls.purchasePerson.errors.required">purchasePerson  is required </div>
+          </mat-error>
+        </mat-form-field>
+
+        <mat-form-field class="form-element" [ngClass]="{ 'ng--valid': formControls.description.valid }">
+          <input matInput placeholder="{{'purchasingperson.description' | translate }}" formControlName="description" maxlength="30"
+                 appFocusOnEnter tabIndex="2">
+          <mat-error *ngIf="formControls.description.errors" class="help-block">
+            <div *ngIf="formControls.description.errors.required">description  is required </div>
+          </mat-error>
+        </mat-form-field>
+
+        <mat-form-field>
+          <mat-label>{{'purchasingperson.purchaseGroup' | translate }}</mat-label>
+          <mat-select formControlName="purchaseGroup" appFocusOnEnter tabIndex="3">
+            <mat-option>None</mat-option>
+            <mat-option *ngFor="let pcgroup of pcgroupList" [value]="pcgroup.pruchaseGroup">
+              {{pcgroup.pruchaseGroup}} - {{pcgroup.description}}
+            </mat-option>
+          </mat-select>
+        </mat-form-field>
+        <mat-form-field>
+          <mat-label>{{'purchasingperson.purchaseTypes' | translate }}</mat-label>
+          <mat-select formControlName="purchaseTypes" appFocusOnEnter tabIndex="4">
+            <mat-option>None</mat-option>
+            <mat-option *ngFor="let ptype of purchaseTypeList " [value]="ptype.purchaseType">
+              {{ptype.purchaseType}} - {{ptype.description}}
+            </mat-option>
+          </mat-select>
+        </mat-form-field>
+
+        <!--<mat-form-field class="form-element" [ngClass]="{ 'ng--valid': formControls.glsubName.valid }">
+    <input matInput placeholder="{{'glsubaccount.glsubName' | translate }}"
+     formControlName="glsubName" maxlength="30" appFocusOnEnter tabIndex="3">
+    <mat-error *ngIf="formControls.glsubName.errors" class="help-block">
+      <div *ngIf="formControls.glsubName.errors.required">description  is required </div>
+    </mat-error>
+  </mat-form-field>-->
+
+
+      </div>
+      <mat-divider></mat-divider>
+    </form>
+
+  </mat-card-content>
+  <div class="form-element p-2 d-flex justify-content-end">
+    <button mat-raised-button class="button-color-red text-white mr-1" (click)="cancel()">
+
+      {{ 'COMMON.CANCEL' | translate }}
+    </button>
+    <button mat-raised-button type="submit" class="button-color-bule text-white ml-1" (click)="save()">
+
+      {{ 'COMMON.SAVE' | translate }}
+    </button>
+  </div>
+</div>

@@ -65,7 +65,19 @@ import{AssignGLaccounttoSubGroupComponent} from './assignglaccount/assignglaccou
 import{GLSubAccountComponent} from './glsubaccount/glsubaccount.component';
 import{AssetBegningAcqusitionComponent} from './assetbegningacqusition/assetbegningacqusition.component';
 import{BusienessTransactionTypeComponent} from './businesstransactiontypes/businesstransactiontypes.component';
-import{AssetBegningAccumulatedDepreciationComponent} from './assetbegningaccumulateddepreciation/assetbegningaccumulateddepreciation.component';
+import { AssetBegningAccumulatedDepreciationComponent } from './assetbegningaccumulateddepreciation/assetbegningaccumulateddepreciation.component';
+import { PurchasinggroupsComponent } from './purchasinggroups/purchasinggroups.component';
+import { PurchasingpersonComponent } from './purchasingperson/purchasingperson.component';
+import { RequisitionNumberRangeComponent } from './requisitionnumberrange/requisitionnumberrange.component';
+import { RequisitionAssignmentComponent } from './requisitionassignment/requisitionassignment.component';
+
+import { QuotationNumberRangeComponent } from './quotationnumberrange/quotationnumberrange.component';
+import { QuotationAssignmentComponent } from './quotationnumberassignment/quotationnumberassignment.component';
+import { PurchaseordertypeComponent } from './purchaseordertype/purchaseordertype.component';
+import { SupplierTermsandconditionsComponent } from './suppliertermsandconditions/suppliertermsandconditions.component';
+import { PurchaseOrderNumberRangeComponent } from './purchaseordernumberrange/purchaseordernumberrange.component';
+import { PurchaseOrderAssignmentComponent } from './purchaseordernumberassignment/purchaseordernumberassignment.component';
+
 @Injectable({
   providedIn: 'root'
 })
@@ -76,6 +88,7 @@ export class CompListService {
 
   getDynComponents(data) {
     switch (data) {
+     
       case 'assignglaccount':
         this.dynamicComp.component = AssignGLaccounttoSubGroupComponent;
         return this.dynamicComp.component;
@@ -347,7 +360,48 @@ export class CompListService {
       case 'subassets':
         this.dynamicComp.component = SubAssetsComponent;
         return this.dynamicComp.component;
-      break;
+        break;
+      case 'purchasinggroups':
+        this.dynamicComp.component = PurchasinggroupsComponent;
+        return this.dynamicComp.component;
+        break;
+      case 'purchasingperson':
+        this.dynamicComp.component = PurchasingpersonComponent;
+        return this.dynamicComp.component;
+        break;
+      case 'requisitionnumberrange':
+        this.dynamicComp.component = RequisitionNumberRangeComponent;
+        return this.dynamicComp.component;
+        break;
+      case 'requisitionnumberassignment':
+        this.dynamicComp.component = RequisitionAssignmentComponent;
+        return this.dynamicComp.component;
+        break;
+      case 'quotationnumberrange':
+        this.dynamicComp.component = QuotationNumberRangeComponent;
+        return this.dynamicComp.component;
+        break;
+      case 'quotationnumberassignment':
+        this.dynamicComp.component = QuotationAssignmentComponent;
+        return this.dynamicComp.component;
+        break;
+      case 'purchaseordertype':
+        this.dynamicComp.component = PurchaseordertypeComponent;
+        return this.dynamicComp.component;
+        break;
+        
+      case 'suppliertermsandconditions':
+        this.dynamicComp.component = SupplierTermsandconditionsComponent;
+        return this.dynamicComp.component;
+        break;
+      case 'purchaseordernumberrange':
+        this.dynamicComp.component = PurchaseOrderNumberRangeComponent;
+        return this.dynamicComp.component;
+        break;
+      case 'purchaseordernumberassignment':
+        this.dynamicComp.component = PurchaseOrderAssignmentComponent;
+        return this.dynamicComp.component;
+        break;
       default:
     }
   }

@@ -1146,5 +1146,84 @@
   },
   "dashboard": {
     "title": "Dashboard"
+  },
+  "purchasinggroups": {
+    "title": "Purchasing Groups",
+    "pruchaseGroup": "PurchaseGroup",
+    "description": "Description"
+  },
+  "purchasingperson": {
+    "title": "Purchasing Person",
+    "purchasePerson": "PurchasePerson",
+    "description": "Description",
+    "purchaseGroup": "Purchase Group",
+    "purchaseTypes": "Purchase Types"
+  },
+  "requisitionnumberrange": {
+    "title": "Requisition NumberRange",
+    "numberRange": "NumberRange",
+    "fromInterval": "FromInterval",
+    "toInterval": "ToInterval",
+    "currentNumber": "CurrentNumber",
+    "prefix": "Prefix"
+  },
+
+  "requisitionnumberassignment": {
+    "title": "Requisition Assignment",
+    "numberRange": "NumberRange",
+    "company": "Company",
+    "plant": "Plant",
+    "department": "Department",
+    "currentNumber": "CurrentNumber"
+  },
+  "quotationnumberrange": {
+    "title": "Quotation NumberRange",
+    "numberRange": "NumberRange",
+    "fromInterval": "FromInterval",
+    "toInterval": "ToInterval",
+    "currentNumber": "CurrentNumber",
+    "prefix": "Prefix"
+  },
+  "quotationnumberassignment": {
+    "title": "Quotation Assignment",
+    "numberRange": "NumberRange",
+    "company": "Company",
+    "plant": "Plant",
+    "department": "Department",
+    "currentNumber": "CurrentNumber"
+  },
+  "purchaseordertype": {
+    "title": "Purchase OrderType",
+    "purchaseType": "PurchaseType",
+    "description": "Description"
+  },
+  "suppliertermsandconditions": {
+    "title": "Supplier Terms and Conditions",
+    "code": "Code",
+    "description": "Description",
+    "deliveryPeriod": "Delivery Period",
+    "deliveryDate": "Delivery Date",
+    "deliveryMethod": "Delivery Method",
+    "deliveryPlace": "Delivery Place",
+    "contactPerson": "Contact Person",
+    "phoneNumber": "Phone Number",
+    "creditPeriod": "Credit Period",
+    "advance": "Advance"
+  },
+  "purchaseordernumberrange": {
+    "title": "PurchaseOrder NumberRange",
+    "numberRange": "NumberRange",
+    "fromInterval": "FromInterval",
+    "toInterval": "ToInterval",
+    "currentNumber": "CurrentNumber",
+    "prefix": "Prefix"
+  },
+  "purchaseordernumberassignment": {
+    "title": "PurchaseOrder Assignment",
+    "numberRange": "NumberRange",
+    "companyCode": "Company",
+    "plant": "Plant",
+    "purchaseOrderType": "PurchaseOrder Type",
+    "currentNumber": "CurrentNumber"
   }
 }

@@ -65,4 +65,14 @@ export{AssignGLaccounttoSubGroupComponent} from './assignglaccount/assignglaccou
 export{GLSubAccountComponent} from './glsubaccount/glsubaccount.component';
 export{BusienessTransactionTypeComponent} from './businesstransactiontypes/businesstransactiontypes.component';
 export{AssetBegningAccumulatedDepreciationComponent} from './assetbegningaccumulateddepreciation/assetbegningaccumulateddepreciation.component';
-export{AssetBegningAcqusitionComponent} from './assetbegningacqusition/assetbegningacqusition.component';
+export { AssetBegningAcqusitionComponent } from './assetbegningacqusition/assetbegningacqusition.component';
+export { PurchasinggroupsComponent } from './purchasinggroups/purchasinggroups.component';
+export { PurchasingpersonComponent } from './purchasingperson/purchasingperson.component';
+export { RequisitionNumberRangeComponent } from './requisitionnumberrange/requisitionnumberrange.component';
+export { RequisitionAssignmentComponent } from './requisitionassignment/requisitionassignment.component';
+export { QuotationNumberRangeComponent } from './quotationnumberrange/quotationnumberrange.component';
+export { QuotationAssignmentComponent } from './quotationnumberassignment/quotationnumberassignment.component';
+export { PurchaseordertypeComponent } from './purchaseordertype/purchaseordertype.component';
+export { SupplierTermsandconditionsComponent } from './suppliertermsandconditions/suppliertermsandconditions.component';
+export { PurchaseOrderNumberRangeComponent } from './purchaseordernumberrange/purchaseordernumberrange.component';
+export { PurchaseOrderAssignmentComponent } from './purchaseordernumberassignment/purchaseordernumberassignment.component';
