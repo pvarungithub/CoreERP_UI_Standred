@@ -1,87 +1,102 @@
 <div *ngIf="!dataSource" class="d-flex justify-content-center align-items-center">
-    <img class="text-bottom" width="500" height="300" src="assets/images/Data_not_found.png">
+  <img class="text-bottom" width="500" height="300" src="assets/images/Data_not_found.png">
 </div>
 <div class="table">
-    <table class="w-100" mat-table [dataSource]="dataSource" matSort #mytableb cellspacing="0" cellpadding="0">
-        <ng-container *ngFor="let column of getDisplayedColumns()" [matColumnDef]="column">
+  <table class="w-100" mat-table [dataSource]="dataSource" matSort #mytableb cellspacing="0" cellpadding="0">
+    <ng-container *ngFor="let column of getDisplayedColumns()" [matColumnDef]="column">
 
-            <th mat-header-cell *matHeaderCellDef>
-                <strong class="d-flex justify-content-center"> {{ ( routeParam + '.' +  column) | translate }} </strong>
-            </th>
+      <th mat-header-cell *matHeaderCellDef>
+        <mat-checkbox *ngIf="runtimeConfigService.tableColumnsData[this.routeParam][column] == 'checkbox';else dynamicTabs"
+                      (change)="checkAll($event, column)">
+        </mat-checkbox>
+        <ng-template #dynamicTabs>
+          <strong class="d-flex justify-content-center">
+            {{ ( routeParam + '.' +  column) | translate }}
+          </strong>
+        </ng-template>
+      </th>
+
+      <td mat-cell *matCellDef="let element;" [ngSwitch]="element[column].type">
+
+        <input *ngSwitchCase="'autoInc'" matInput [disabled]="element[column].disabled"
+               [value]="dataSource.filteredData.indexOf(element) + 1" />
 
 
-            <td mat-cell *matCellDef="let element;" [ngSwitch]="element[column].type">
+        <mat-checkbox *ngSwitchCase="'checkbox'" [ngStyle]="{'width': element[column].width + 'px'}"
+                      id="{{column}}{{dataSource.filteredData.indexOf(element)}}" [disabled]="element[column].disabled"
+                      [value]="element[column].value" [(ngModel)]="element[column].value"
+                      (change)="formControlValid(column, element, $event.checked, dataSource.filteredData.indexOf(element)); setFocus(column, dataSource.filteredData.indexOf(element), $event.value);">
+        </mat-checkbox>
 
-                <input *ngSwitchCase="'autoInc'" matInput [disabled]="element[column].disabled"
-                    [value]="dataSource.filteredData.indexOf(element) + 1" />
 
-                <mat-form-field class="form-element" *ngSwitchCase="'text'"
-                    [ngStyle]="{'width': element[column].width + 'px'}">
-                    <input id="{{column}}{{dataSource.filteredData.indexOf(element)}}" matInput
-                        [disabled]="element[column].disabled" [value]="element[column].value"
-                        [(ngModel)]="element[column].value" [maxLength]="element[column].maxLength"
-                        (input)="formControlValid(column, element, $event.target.value, dataSource.filteredData.indexOf(element));"
-                        (keydown.enter)="setFocus(column, dataSource.filteredData.indexOf(element), $event.target.value);" />
-                </mat-form-field>
+        <mat-form-field class="form-element" *ngSwitchCase="'text'"
+                        [ngStyle]="{'width': element[column].width + 'px'}">
+          <input id="{{column}}{{dataSource.filteredData.indexOf(element)}}" matInput
+                 [disabled]="element[column].disabled" [value]="element[column].value"
+                 [(ngModel)]="element[column].value" [maxLength]="element[column].maxLength"
+                 (input)="formControlValid(column, element, $event.target.value, dataSource.filteredData.indexOf(element));"
+                 (keydown.enter)="setFocus(column, dataSource.filteredData.indexOf(element), $event.target.value);" />
+        </mat-form-field>
 
-                <mat-form-field class="form-element" *ngSwitchCase="'number'"
-                    [ngStyle]="{'width': element[column].width + 'px'}">
-                    <input id="{{column}}{{dataSource.filteredData.indexOf(element)}}" matInput type="number"
-                        [disabled]="element[column].disabled" [value]="element[column].value"
-                        [(ngModel)]="element[column].value" appMaxlength [pattern]="element[column].maxLength"
-                        (input)="formControlValid(column, element, $event.target.value, dataSource.filteredData.indexOf(element));"
-                        (keydown.enter)="setFocus(column, dataSource.filteredData.indexOf(element), $event.target.value);" />
-                </mat-form-field>
+        <mat-form-field class="form-element" *ngSwitchCase="'number'"
+                        [ngStyle]="{'width': element[column].width + 'px'}">
+          <input id="{{column}}{{dataSource.filteredData.indexOf(element)}}" matInput type="number"
+                 [disabled]="element[column].disabled" [value]="element[column].value"
+                 [(ngModel)]="element[column].value" appMaxlength [pattern]="element[column].maxLength"
+                 (input)="formControlValid(column, element, $event.target.value, dataSource.filteredData.indexOf(element));"
+                 (keydown.enter)="setFocus(column, dataSource.filteredData.indexOf(element), $event.target.value);" />
+        </mat-form-field>
 
-                <mat-form-field class="form-element" *ngSwitchCase="'dropdown'"
-                    [ngStyle]="{'width': element[column].width + 'px'}">
-                    <mat-select id="{{column}}{{dataSource.filteredData.indexOf(element)}}"
-                        [disabled]="element[column].disabled" [(ngModel)]="element[column].value"
-                        (selectionChange)="formControlValid(column, element, $event.value, dataSource.filteredData.indexOf(element)); setFocus(column, dataSource.filteredData.indexOf(element), $event.value);">
-                        <mat-option>None</mat-option>
-                        <mat-option *ngFor="let data of element[column].list" [value]="data[element[column].id]">
-                            <span *ngIf="element[column].displayMul;else content">
-                                {{data[element[column].text]}} - {{data[element[column].id]}}
-                            </span>
-                            <ng-template #content> {{data[element[column].text]}} </ng-template>
-                        </mat-option>
-                    </mat-select>
-                </mat-form-field>
+        <mat-form-field class="form-element" *ngSwitchCase="'dropdown'"
+                        [ngStyle]="{'width': element[column].width + 'px'}">
+          <mat-select id="{{column}}{{dataSource.filteredData.indexOf(element)}}"
+                      [disabled]="element[column].disabled" [(ngModel)]="element[column].value"
+                      (selectionChange)="formControlValid(column, element, $event.value, dataSource.filteredData.indexOf(element)); setFocus(column, dataSource.filteredData.indexOf(element), $event.value);">
+            <mat-option>None</mat-option>
+            <mat-option *ngFor="let data of element[column].list" [value]="data[element[column].id]">
+              <span *ngIf="element[column].displayMul;else content">
+                {{data[element[column].text]}} - {{data[element[column].id]}}
+              </span>
+              <ng-template #content> {{data[element[column].text]}} </ng-template>
+            </mat-option>
+          </mat-select>
+        </mat-form-field>
 
-                <mat-form-field class="form-element" *ngSwitchCase="'datepicker'"
-                    [ngStyle]="{'width': element[column].width + 'px'}">
-                    <input id="{{column}}{{dataSource.filteredData.indexOf(element)}}" matInput [matDatepicker]="picker"
-                        readonly (click)="picker.open()" [disabled]="element[column].disabled"
-                        [(ngModel)]="element[column].value"
-                        (dateChange)="formControlValid(column, element, element[column].value, dataSource.filteredData.indexOf(element)); setFocus(column, dataSource.filteredData.indexOf(element), element[column].value);">
-                    <mat-datepicker-toggle matSuffix [for]="picker">
-                        <mat-icon matDatepickerToggleIcon class="mat--icon">date_range</mat-icon>
-                    </mat-datepicker-toggle>
-                    <mat-datepicker #picker></mat-datepicker>
-                </mat-form-field>
+        <mat-form-field class="form-element" *ngSwitchCase="'datepicker'"
+                        [ngStyle]="{'width': element[column].width + 'px'}">
+          <input id="{{column}}{{dataSource.filteredData.indexOf(element)}}" matInput [matDatepicker]="picker"
+                 readonly (click)="picker.open()" [disabled]="element[column].disabled"
+                 [(ngModel)]="element[column].value"
+                 (dateChange)="formControlValid(column, element, element[column].value, dataSource.filteredData.indexOf(element)); setFocus(column, dataSource.filteredData.indexOf(element), element[column].value);">
+          <mat-datepicker-toggle matSuffix [for]="picker">
+            <mat-icon matDatepickerToggleIcon class="mat--icon">date_range</mat-icon>
+          </mat-datepicker-toggle>
+          <mat-datepicker #picker></mat-datepicker>
+        </mat-form-field>
 
-                <mat-form-field class="form-element" *ngSwitchCase="'autocomplete'"
-                    [ngStyle]="{'width': element[column].width + 'px'}">
-                    <app-autocomplete id="{{column}}{{dataSource.filteredData.indexOf(element)}}"
-                        [configData]="element[column]" [isDisabled]="element[column].disabled"
-                        (emitTypeAheadValue)="setTypeAheadValue($event, column, dataSource.filteredData.indexOf(element)); setFocus(column, dataSource.filteredData.indexOf(element));">
-                    </app-autocomplete>
-                </mat-form-field>
+        <mat-form-field class="form-element" *ngSwitchCase="'autocomplete'"
+                        [ngStyle]="{'width': element[column].width + 'px'}">
+          <app-autocomplete id="{{column}}{{dataSource.filteredData.indexOf(element)}}"
+                            [configData]="element[column]" [isDisabled]="element[column].disabled"
+                            (emitTypeAheadValue)="setTypeAheadValue($event, column, dataSource.filteredData.indexOf(element)); setFocus(column, dataSource.filteredData.indexOf(element));">
+          </app-autocomplete>
+        </mat-form-field>
 
-                <div *ngSwitchCase="'none'">
-                    <span> {{ element[column].value }} </span>
-                </div>
+        <div *ngSwitchCase="'none'">
+          <span> {{ element[column].value }} </span>
+        </div>
 
-                <mat-icon id="{{column}}{{dataSource.filteredData.indexOf(element)}}" *ngSwitchCase="'delete'"
-                    [hidden]="dataSource.filteredData.indexOf(element) == (dataSource.data.length - 1)"
-                    class="cursor--pointer mat--icon"
-                    (click)="deleteRow(dataSource.filteredData.indexOf(element), element[column].disabled); setFocus(column, dataSource.filteredData.indexOf(element));">
-                    delete</mat-icon>
+        <mat-icon id="{{column}}{{dataSource.filteredData.indexOf(element)}}" *ngSwitchCase="'delete'"
+                  [hidden]="dataSource.filteredData.indexOf(element) == (dataSource.data.length - 1)"
+                  class="cursor--pointer mat--icon"
+                  (click)="deleteRow(dataSource.filteredData.indexOf(element), element[column].disabled); setFocus(column, dataSource.filteredData.indexOf(element));">
+          delete
+        </mat-icon>
 
-            </td>
+      </td>
 
-        </ng-container>
-        <tr mat-header-row *matHeaderRowDef="getDisplayedColumns()"></tr>
-        <tr mat-row *matRowDef="let row; columns: getDisplayedColumns();"></tr>
-    </table>
+    </ng-container>
+    <tr mat-header-row *matHeaderRowDef="getDisplayedColumns()"></tr>
+    <tr mat-row *matRowDef="let row; columns: getDisplayedColumns();"></tr>
+  </table>
 </div>

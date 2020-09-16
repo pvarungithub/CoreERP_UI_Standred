@@ -23,7 +23,7 @@ export class ReceiptspaymentsComponent implements OnInit {
   routeEdit = '';
   bpList = [];
   tableData = [];
-  dynTableProps = this.tablePropsFunc()
+  dynTableProps: any;
   bpgLists: any;
   companyList = [];
   branchList = [];
@@ -41,7 +41,9 @@ export class ReceiptspaymentsComponent implements OnInit {
   costCenterList = [];
   taxCodeList = [];
   functionaldeptList = [];
-
+  purchaseinvoice = [];
+  amount = [];
+  date = [];
   constructor(
     private formBuilder: FormBuilder,
     private apiConfigService: ApiConfigService,
@@ -105,16 +107,26 @@ export class ReceiptspaymentsComponent implements OnInit {
   tablePropsFunc() {
     return {
       tableData: {
+        id: {
+          value: 0, type: 'autoInc', width: 10, disabled: true
+        },
+        checkAll:
+        {
+          value: false, type: 'checkbox'
+        },
+        
         partyInvoiceNo: {
           value: null, type: 'number', width: 150
         },
         partyInvoiceDate: {
+         // value: null, type: 'dropdown', list: this.date, id: 'date', text: 'date', displayMul: true, width: 100
           value: new Date(), type: 'datepicker', width: 100
         },
         dueDate: {
           value: new Date(), type: 'datepicker', width: 100
         },
         invoiceAmount: {
+          //value: null, type: 'dropdown', list: this.amount, id: 'amount', text: 'amount', displayMul: true, width: 100
           value: 0, type: 'number', width: 75
         },
         memoAmount: {
@@ -144,9 +156,7 @@ export class ReceiptspaymentsComponent implements OnInit {
         writeOffGl: {
           value: null, type: 'dropdown', list: this.glAccountList, id: 'id', text: 'text', displayMul: true, width: 100
         },
-        writeoff: {
-          value: null, type: 'dropdown', list: this.glAccountList, id: 'id', text: 'text', displayMul: true, width: 100
-        },
+
         narration: {
           value: null, type: 'text', width: 150
         },
@@ -154,9 +164,7 @@ export class ReceiptspaymentsComponent implements OnInit {
           type: 'delete', width: 10
         }
       },
-      formControl: {
-        discountGL: [null, [Validators.required]]
-      }
+      formControl: {}
     }
   }
 
@@ -169,9 +177,13 @@ export class ReceiptspaymentsComponent implements OnInit {
           const res = response.body;
           if (!isNullOrUndefined(res) && res.status === StatusCodes.pass) {
             if (!isNullOrUndefined(res.response)) {
+              //console.log( res.response['paymentreceiptMasters']);
+              //console.log( res.response['paymentreceiptDetail']);
               this.formData.setValue(res.response['paymentreceiptMasters']);
               this.addOrEditService.sendDynTableData({ type: 'edit', data: res.response['paymentreceiptDetail'] });
               this.formData.disable();
+              this.accountSelect();
+              this.onbpChange();
             }
           }
         });
@@ -260,15 +272,35 @@ export class ReceiptspaymentsComponent implements OnInit {
     }
   }
 
+  puchaseinvoiceselect() {
+    let data = [];
+    let newData = [];
+    if (!isNullOrUndefined(this.formData.get('partyAccount').value)) {
+      data = this.functionaldeptList.filter(resp => resp.id == this.formData.get('partyAccount').value);
+    }
+    if (data.length) {
+      console.log(data, this.tablePropsFunc());
+      data.forEach((res, index) => {
+        newData.push(this.tablePropsFunc().tableData);
+        newData[index].adjustmentAmount.value = res.amount;
+        newData[index].dueDate.value = res.date;
+        newData[index].partyInvoiceNo.value = res.invoino;
+      })
+    }
+    //
+    this.addOrEditService.sendDynTableData({ type: 'add', data: newData });
+    this.tableData=newData;
+  }
+
   getfunctionaldeptList() {
-    const taxCodeUrl = String.Join('/', this.apiConfigService.getfunctionaldeptList);
+    const taxCodeUrl = String.Join('/', this.apiConfigService.getpurchaseinvoiceList);
     this.apiService.apiGetRequest(taxCodeUrl)
       .subscribe(
         response => {
           const res = response.body;
           if (!isNullOrUndefined(res) && res.status === StatusCodes.pass) {
             if (!isNullOrUndefined(res.response)) {
-              this.functionaldeptList = res.response['fdeptList'];
+              this.functionaldeptList = res.response['purchaseinvoiceList'];
             }
           }
           this.getTaxRatesList();
@@ -403,10 +435,12 @@ export class ReceiptspaymentsComponent implements OnInit {
   }
 
   emitColumnChanges(data) {
+    console.log(data)
   }
 
   emitTableData(data) {
-    this.tableData = data;
+      this.tableData = data;
+      console.log(this.tableData)
   }
 
   back() {
@@ -442,6 +476,7 @@ export class ReceiptspaymentsComponent implements OnInit {
   }
 
   savePaymentsReceipts() {
+    debugger;
     this.formData.controls['voucherNumber'].enable();
     const addCashBank = String.Join('/', this.apiConfigService.addPaymentsReceipts);
     const requestObj = { pcbHdr: this.formData.value, pcbDtl: this.tableData };

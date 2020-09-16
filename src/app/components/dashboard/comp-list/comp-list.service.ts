@@ -77,7 +77,13 @@ import { PurchaseordertypeComponent } from './purchaseordertype/purchaseordertyp
 import { SupplierTermsandconditionsComponent } from './suppliertermsandconditions/suppliertermsandconditions.component';
 import { PurchaseOrderNumberRangeComponent } from './purchaseordernumberrange/purchaseordernumberrange.component';
 import { PurchaseOrderAssignmentComponent } from './purchaseordernumberassignment/purchaseordernumberassignment.component';
-
+import { StoresTypeComponent } from './storetypes/storetypes.component';
+import { RejectionReasonsComponent } from './rejectionreasons/rejectionreasons.component';
+import { MovementtypeComponent } from './movementtype/movementtype.component';
+import { LotSeriesComponent } from './lotseries/lotseries.component';
+import { StoresAssignmentComponent } from './lotseriesassignment/lotseriesassignment.component';
+import { GoodsReceiptNoteNumberSeriesComponent } from './grnnumberseries/grnnumberseries.component';
+import { GoodsReceiptNoteAssignmentComponent } from './grnnoassignment/grnnoassignment.component';
 @Injectable({
   providedIn: 'root'
 })
@@ -402,10 +408,38 @@ export class CompListService {
         this.dynamicComp.component = PurchaseOrderAssignmentComponent;
         return this.dynamicComp.component;
         break;
+      case 'storetypes':
+        this.dynamicComp.component = StoresTypeComponent;
+        return this.dynamicComp.component;
+        break;
+      case 'rejectionreasons':
+        this.dynamicComp.component = RejectionReasonsComponent;
+        return this.dynamicComp.component;
+        break;
+      case 'movementtype':
+        this.dynamicComp.component = MovementtypeComponent;
+        return this.dynamicComp.component;
+        break;
+      case 'lotseries':
+        this.dynamicComp.component = LotSeriesComponent;
+        return this.dynamicComp.component;
+        break;
+      case 'lotseriesassignment':
+        this.dynamicComp.component = StoresAssignmentComponent;
+        return this.dynamicComp.component;
+        break;
+      case 'grnnumberseries':
+        this.dynamicComp.component = GoodsReceiptNoteNumberSeriesComponent;
+        return this.dynamicComp.component;
+        break;
+      case 'grnnoassignment':
+        this.dynamicComp.component = GoodsReceiptNoteAssignmentComponent;
+        return this.dynamicComp.component;
+        break;
         case 'purchasingtype':
         this.dynamicComp.component = PurchasingtypeComponent;
         return this.dynamicComp.component;
-        break;        
+        break;   
       default:
     }
   }

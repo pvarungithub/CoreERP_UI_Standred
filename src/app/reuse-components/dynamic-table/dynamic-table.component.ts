@@ -41,12 +41,13 @@ export class DynamicTableComponent implements OnInit, OnDestroy, AfterContentChe
   index: any;
   data: any;
   isDropdown = false;
+  checkAllColValue: { col: any; val: any; };
 
   constructor(
     activatedRoute: ActivatedRoute,
     private translate: TranslateService,
     private formBuilder: FormBuilder,
-    private runtimeConfigService: RuntimeConfigService,
+    public runtimeConfigService: RuntimeConfigService,
     private commonService: CommonService,
     private cdr: ChangeDetectorRef,
     private spinner: NgxSpinnerService,
@@ -134,12 +135,15 @@ export class DynamicTableComponent implements OnInit, OnDestroy, AfterContentChe
         });
       }
       this.dataSource.data[indx][col].value = data;
-      if (this.tableForm.valid && (this.dataSource.data.length - 1) == indx) {
+      if (Object.keys(this.tableForm.value).length && this.tableForm.valid && (this.dataSource.data.length - 1) == indx) {
         this.dataSource.data.push(JSON.parse(JSON.stringify(this.tableData[0])));
         this.tableForm = this.formBuilder.group(this.formControl);
       }
       this.dataSource = new MatTableDataSource(this.dataSource.data);
       this.emitColumnChanges.emit({ column: col, index: indx, data: this.dataSource.data });
+      if (!isNullOrUndefined(this.checkAllColValue)) {
+        this.checkAll(this.checkAllColValue.val, this.checkAllColValue.col);
+      }
       this.emitTableData.emit(this.formatTableData());
     }
   }
@@ -159,12 +163,26 @@ export class DynamicTableComponent implements OnInit, OnDestroy, AfterContentChe
     const array = [];
     for (let t = 0; t < this.dataSource.data.length; t++) {
       const object = {};
-      this.keys.map(res => (res.col != 'delete') ? object[res.col] = this.dataSource.data[t][res.col].value : null);
-      if (this.dataSource.data.length - 1 != t) {
+      this.keys.map(res => {
+        (res.col != 'delete') ? object[res.col] = this.dataSource.data[t][res.col].value : null;
+        if (this.runtimeConfigService.tableColumnsData[this.routeParam][res.col] == 'checkbox') {
+          object['check'] = (this.runtimeConfigService.tableColumnsData[this.routeParam][res.col] == 'checkbox') ? this.dataSource.data[t][res.col].value : true
+        }
+      })
+      if (this.dataSource.data.length != t && object['check']) {
         array.push(object);
       }
     }
     return array;
+  }
+
+  checkAll(event, col) {
+    this.spinner.show();
+    this.checkAllColValue = { col: col, val: event };
+    this.dataSource.data.map(res => res[this.checkAllColValue.col].value = this.checkAllColValue.val.checked)
+    this.dataSource = new MatTableDataSource(JSON.parse(JSON.stringify(this.dataSource.data)));
+    this.emitTableData.emit(this.formatTableData());
+    this.spinner.hide();
   }
 
 
@@ -183,7 +201,7 @@ export class DynamicTableComponent implements OnInit, OnDestroy, AfterContentChe
       const col = [];
       // tslint:disable-next-line:forin
       for (const key in this.tableData[0]) {
-        this.keys.push({ col: key, disabled: this.tableData[0][key].disabled ? this.tableData[0][key].disabled : false, hide: this.tableData[0][key].hide  });
+        this.keys.push({ col: key, disabled: this.tableData[0][key].disabled ? this.tableData[0][key].disabled : false, hide: this.tableData[0][key].hide });
       }
       this.keys.forEach(cols => {
         const obj = {

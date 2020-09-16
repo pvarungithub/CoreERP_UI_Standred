@@ -1046,5 +1046,53 @@
     "companyCode": "Company",
     "plant": "Plant",
     "purchaseOrderType": "PurchaseOrder Type"
+  },
+  "storetypes": {
+    "title": "Store Types",
+    "code": "Code",
+    "description": "Description"
+  },
+  "rejectionreasons": {
+    "title": "Rejection Reasons",
+    "code": "Code",
+    "description": "Description"
+  },
+  "movementtype": {
+    "title": "Moment Type",
+    "code": "Code",
+    "description": "Description",
+    "category": "Category"
+  },
+  "lotseries": {
+    "title": "Lot Series",
+    "seriesKey": "Series Key",
+    "description": "Description",
+    "fromInterval": "From Interval",
+    "toInterval": "To Interval",
+    "currentLot": "Current Lot",
+    "prefix": "Prefix"
+  },
+  "lotseriesassignment": {
+    "title": "Lot Series Assignment",
+    "lotSeries": "Lot Series",
+    "company": "Company",
+    "plant": "Plant",
+    "materialType": "Material Type"
+  },
+"grnnumberseries": {
+    "title": "Goods Receipt Note Numberseries",
+    "grnseries": "GRN Series",
+    "description": "Description",
+    "fromInterval": "From Interval",
+    "toInterval": "To Interval",
+    "currentNumber": "CurrentNumber",
+    "prefix": "Prefix"
+  },
+  "grnnoassignment": {
+    "title": "GoodsReceipt Note Assignment",
+    "grnseries": "GRN Series",
+    "company": "Company",
+    "plant": "Plant",
+    "materialType": "Material Type"
   }
 }

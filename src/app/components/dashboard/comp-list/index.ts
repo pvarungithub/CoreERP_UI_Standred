@@ -76,4 +76,11 @@ export { PurchaseordertypeComponent } from './purchaseordertype/purchaseordertyp
 export { SupplierTermsandconditionsComponent } from './suppliertermsandconditions/suppliertermsandconditions.component';
 export { PurchaseOrderNumberRangeComponent } from './purchaseordernumberrange/purchaseordernumberrange.component';
 export { PurchaseOrderAssignmentComponent } from './purchaseordernumberassignment/purchaseordernumberassignment.component';
+export { StoresTypeComponent } from './storetypes/storetypes.component';
+export { RejectionReasonsComponent } from './rejectionreasons/rejectionreasons.component';
+export { MovementtypeComponent } from './movementtype/movementtype.component';
+export { LotSeriesComponent } from './lotseries/lotseries.component';
+export { StoresAssignmentComponent } from './lotseriesassignment/lotseriesassignment.component';
+export { GoodsReceiptNoteNumberSeriesComponent } from './grnnumberseries/grnnumberseries.component';
+export { GoodsReceiptNoteAssignmentComponent } from './grnnoassignment/grnnoassignment.component';
 export {PurchasingtypeComponent} from './purchasingtype/purchasingtype.component';
