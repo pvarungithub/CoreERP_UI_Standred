@@ -1,38 +1,35 @@
 import { Injectable, Injector,  } from "@angular/core";
 import { HttpInterceptor, HttpRequest, HttpHandler, HttpEvent, HttpResponse, HttpErrorResponse } from "@angular/common/http";
-import { Observable } from "rxjs";
-import { isNullOrUndefined } from 'util';
 import { Router } from '@angular/router';
-import 'rxjs/add/operator/do';
+import { CommonService } from './services/common.service';
+import { Observable, throwError } from 'rxjs';
+import { catchError } from 'rxjs/operators';
 
 @Injectable()
 export class TokenInterceptor implements HttpInterceptor{
  
 
-    constructor(private router: Router ) { }
+    constructor(private router: Router, private commonService: CommonService ) { }
 
     intercept(request: HttpRequest<any>, next: HttpHandler): Observable<HttpEvent<any>> {
-        if (!isNullOrUndefined(localStorage.getItem('Token'))) {
+        if (!this.commonService.checkNullOrUndefined(localStorage.getItem('Token'))) {
             request = request.clone({
                 setHeaders: {
                     Authorization: 'Bearer ' + JSON.parse(localStorage.getItem('Token'))
                 }
             });
         }
-        return next.handle(request).do((event: HttpEvent<any>) => {
-            if (event instanceof HttpResponse) {
-              // do stuff with response if you want
+        return next.handle(request).pipe(catchError(err => {
+            if (err.status === 401) {
+                // auto logout if 401 response returned from api
+                this.authLogout();
             }
 
-          }, (err: any) => {
-            if (err instanceof HttpErrorResponse) {
-                if (err.status === 401) {
-                     // redirect to the login route
-                    this.authLogout();
-              }
-            }
-          });
+            const error = err.error.message || err.statusText;
+            return throwError(error);
+        }))
     }
+
     authLogout(){
         this.router.navigateByUrl('/login');
     }

@@ -12,7 +12,6 @@ import { ApiConfigService } from './services/api-config.service';
 import { AddOrEditService } from './components/dashboard/comp-list/add-or-edit.service';
 import { ApiService } from './services/api.service';
 import { CommonService } from './services/common.service';
-import { isNullOrUndefined } from 'util';
 import { StatusCodes } from './enums/common/common';
 
 @Injectable({
@@ -44,7 +43,7 @@ export class AuthGuard implements CanActivate, Resolve<any> {
       //   .pipe((map(resp => {
       // const res = resp.body;
       // this.commomService.userPermission = res['Permissions'];
-      // if (!isNullOrUndefined(res) && res['status'] === StatusCodes.pass) {
+      // if (!this.commonService.checkNullOrUndefined(res) && res['status'] === StatusCodes.pass) {
       if (this.authService.isLoggedIn()) {
         if (state.url.includes('Edit') || state.url.includes('Add') || state.url.includes('New')) {
           if (!this.addOrEditService.editData && next.url.length > 1) {
@@ -54,7 +53,7 @@ export class AuthGuard implements CanActivate, Resolve<any> {
         }
         return true;
       }
-      // } else if (!isNullOrUndefined(res) && res['status'] === StatusCodes.fail) {
+      // } else if (!this.commonService.checkNullOrUndefined(res) && res['status'] === StatusCodes.fail) {
       this.router.navigate(['/login']);
       return false;
       // }

@@ -23,7 +23,7 @@ export class CompTabsComponent implements OnInit, AfterViewInit, OnDestroy {
       this.params = params.id;
       this.commonService.routeParam = params.id
       // this.getTableParameters(params.id);
-      // if (!isNullOrUndefined(this.tableComponent)) {
+      // if (!this.commonService.checkNullOrUndefined(this.tableComponent)) {
       //   this.tableComponent.defaultValues();
       // }
     });

@@ -4,7 +4,6 @@ import { String } from 'typescript-string-operations';
 
 import { Router, ActivatedRoute } from '@angular/router';
 import { MatDialog } from '@angular/material/dialog';
-import { isNullOrUndefined } from 'util';
 import { NgxSpinnerService } from 'ngx-spinner';
 import { StatusCodes } from '../../../enums/common/common';
 import { DeleteItemComponent } from '../../../reuse-components/delete-item/delete-item.component';
@@ -46,7 +45,7 @@ export class CompListComponent implements OnInit, OnDestroy {
     activatedRoute.params.subscribe(params => {
       this.commonService.routeParam = params.id
       this.getTableParameters(params.id);
-      if (!isNullOrUndefined(this.tableComponent)) {
+      if (!this.commonService.checkNullOrUndefined(this.tableComponent)) {
         this.tableComponent.defaultValues();
       }
     });
@@ -58,11 +57,11 @@ export class CompListComponent implements OnInit, OnDestroy {
       .subscribe(
         response => {
           const res = response.body;
-          if (!isNullOrUndefined(res) && res.status === StatusCodes.pass) {
-            if (!isNullOrUndefined(res.response)) {
+          if (!this.commonService.checkNullOrUndefined(res) && res.status === StatusCodes.pass) {
+            if (!this.commonService.checkNullOrUndefined(res.response)) {
               this.tableUrl = res.response;
               this.addOrEditService.tableParameters = res.response;
-              if (!isNullOrUndefined(this.tableUrl)) {
+              if (!this.commonService.checkNullOrUndefined(this.tableUrl)) {
                 this.getTableData();
               }
             }
@@ -76,8 +75,8 @@ export class CompListComponent implements OnInit, OnDestroy {
       .subscribe(
         response => {
           const res = response.body;
-          if (!isNullOrUndefined(res) && res.status === StatusCodes.pass) {
-            if (!isNullOrUndefined(res.response)) {
+          if (!this.commonService.checkNullOrUndefined(res) && res.status === StatusCodes.pass) {
+            if (!this.commonService.checkNullOrUndefined(res.response)) {
               this.tableData = res.response[this.tableUrl.listName];
             }
           }
@@ -110,7 +109,7 @@ export class CompListComponent implements OnInit, OnDestroy {
         });
 
         dialogRef.afterClosed().subscribe(result => {
-          if (!isNullOrUndefined(result)) {
+          if (!this.commonService.checkNullOrUndefined(result)) {
             this.tableComponent.defaultValues();
             this.getTableData();
           }
@@ -129,7 +128,7 @@ export class CompListComponent implements OnInit, OnDestroy {
     });
 
     dialogRef.afterClosed().subscribe(result => {
-      if (!isNullOrUndefined(result)) {
+      if (!this.commonService.checkNullOrUndefined(result)) {
         this.spinner.show();
         const deleteUrl = String.Join('', this.environment.runtimeConfig.serverUrl, this.tableUrl.deleteUrl);
         const deleteParamUrl = String.Join('/', deleteUrl, result.item[this.tableUrl.primaryKey]);
@@ -137,8 +136,8 @@ export class CompListComponent implements OnInit, OnDestroy {
           .subscribe(
             response => {
               const res = response.body;
-              if (!isNullOrUndefined(res) && res.status === StatusCodes.pass) {
-                if (!isNullOrUndefined(res.response)) {
+              if (!this.commonService.checkNullOrUndefined(res) && res.status === StatusCodes.pass) {
+                if (!this.commonService.checkNullOrUndefined(res.response)) {
                   this.tableComponent.defaultValues();
                   this.getTableData();
                   this.alertService.openSnackBar('Delected Record...', 'close', SnackBar.success);

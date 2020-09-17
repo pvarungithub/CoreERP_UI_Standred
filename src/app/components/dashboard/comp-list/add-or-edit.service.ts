@@ -2,7 +2,7 @@ import { Injectable } from '@angular/core';
 import { String } from 'typescript-string-operations';
 import { RuntimeConfigService } from '../../../services/runtime-config.service';
 import { ApiService } from '../../../services/api.service';
-import { isNullOrUndefined } from 'util';
+import { CommonService } from '../../../services/common.service';
 import { StatusCodes, SnackBar } from '../../../enums/common/common';
 import { AlertService } from '../../../services/alert.service';
 import { NgxSpinnerService } from 'ngx-spinner';
@@ -19,6 +19,7 @@ export class AddOrEditService {
   public emitDynTableData = new BehaviorSubject<any>(null);
 
   constructor(
+    private commonService: CommonService,
     private environment: RuntimeConfigService,
     private apiService: ApiService,
     private alertService: AlertService,
@@ -35,8 +36,8 @@ export class AddOrEditService {
       .subscribe(
         response => {
           const res = response.body;
-          if (!isNullOrUndefined(res) && res.status === StatusCodes.pass) {
-            if (!isNullOrUndefined(res.response)) {
+          if (!this.commonService.checkNullOrUndefined(res) && res.status === StatusCodes.pass) {
+            if (!this.commonService.checkNullOrUndefined(res.response)) {
               this.alertService.openSnackBar('Record Added...', 'close', SnackBar.success);
               callBack(res);
             }
@@ -52,8 +53,8 @@ export class AddOrEditService {
         response => {
           const res = response.body;
           this.spinner.hide();
-          if (!isNullOrUndefined(res) && res.status === StatusCodes.pass) {
-            if (!isNullOrUndefined(res.response)) {
+          if (!this.commonService.checkNullOrUndefined(res) && res.status === StatusCodes.pass) {
+            if (!this.commonService.checkNullOrUndefined(res.response)) {
               this.alertService.openSnackBar('Record Updated...', 'close', SnackBar.success);
               callBack(res);
             }

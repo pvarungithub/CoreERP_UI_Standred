@@ -4,13 +4,12 @@ import { ApiConfigService } from '../../../../services/api-config.service';
 import { String } from 'typescript-string-operations';
 import { ApiService } from '../../../../services/api.service';
 import { StatusCodes, SnackBar } from '../../../../enums/common/common';
-import { isNullOrUndefined } from 'util';
+import { CommonService } from '../../../../services/common.service';
 import { NgxSpinnerService } from 'ngx-spinner';
 import { AddOrEditService } from '../../comp-list/add-or-edit.service';
 import { ActivatedRoute, Router } from '@angular/router';
 import { Static } from '../../../../enums/common/static';
 import { AlertService } from '../../../../services/alert.service';
-import { CommonService } from '../../../../services/common.service';
 
 @Component({
   selector: 'app-cashbank',
@@ -55,7 +54,7 @@ export class CashbankComponent implements OnInit {
     private router: Router
   ) {
     console.log(this.commonService)
-    if (!isNullOrUndefined(this.route.snapshot.params.value)) {
+    if (!this.commonService.checkNullOrUndefined(this.route.snapshot.params.value)) {
       this.routeEdit = this.route.snapshot.params.value;
     }
   }
@@ -164,7 +163,7 @@ export class CashbankComponent implements OnInit {
           value: null, type: 'number', disabled: true, width: 75
         },
         ugstamount: {
-          value: null, type: 'number', disabled: true, width: 75, hide: !isNullOrUndefined(this.commonService.routeConfig.ugstamount) ? this.commonService.routeConfig.ugstamount : false
+          value: null, type: 'number', disabled: true, width: 75, hide: !this.commonService.checkNullOrUndefined(this.commonService.routeConfig.ugstamount) ? this.commonService.routeConfig.ugstamount : false
         },
         delete: {
           type: 'delete', width: 10
@@ -186,8 +185,8 @@ export class CashbankComponent implements OnInit {
         response => {
           this.spinner.hide();
           const res = response.body;
-          if (!isNullOrUndefined(res) && res.status === StatusCodes.pass) {
-            if (!isNullOrUndefined(res.response)) {
+          if (!this.commonService.checkNullOrUndefined(res) && res.status === StatusCodes.pass) {
+            if (!this.commonService.checkNullOrUndefined(res.response)) {
               this.formData.setValue(res.response['CashBankMasters']);
               this.addOrEditService.sendDynTableData({ type: 'edit', data: res.response['CashBankDetail'] });
               this.formData.disable();
@@ -202,8 +201,8 @@ export class CashbankComponent implements OnInit {
       .subscribe(
         response => {
           const res = response.body;
-          if (!isNullOrUndefined(res) && res.status === StatusCodes.pass) {
-            if (!isNullOrUndefined(res.response)) {
+          if (!this.commonService.checkNullOrUndefined(res) && res.status === StatusCodes.pass) {
+            if (!this.commonService.checkNullOrUndefined(res.response)) {
               this.companyList = res.response['companiesList'];
             }
           }
@@ -217,8 +216,8 @@ export class CashbankComponent implements OnInit {
       .subscribe(
         response => {
           const res = response.body;
-          if (!isNullOrUndefined(res) && res.status === StatusCodes.pass) {
-            if (!isNullOrUndefined(res.response)) {
+          if (!this.commonService.checkNullOrUndefined(res) && res.status === StatusCodes.pass) {
+            if (!this.commonService.checkNullOrUndefined(res.response)) {
               this.branchList = res.response['branchsList'];
             }
           }
@@ -232,8 +231,8 @@ export class CashbankComponent implements OnInit {
       .subscribe(
         response => {
           const res = response.body;
-          if (!isNullOrUndefined(res) && res.status === StatusCodes.pass) {
-            if (!isNullOrUndefined(res.response)) {
+          if (!this.commonService.checkNullOrUndefined(res) && res.status === StatusCodes.pass) {
+            if (!this.commonService.checkNullOrUndefined(res.response)) {
               this.voucherClassList = res.response['vcList'];
             }
           }
@@ -247,8 +246,8 @@ export class CashbankComponent implements OnInit {
       .subscribe(
         response => {
           const res = response.body;
-          if (!isNullOrUndefined(res) && res.status === StatusCodes.pass) {
-            if (!isNullOrUndefined(res.response)) {
+          if (!this.commonService.checkNullOrUndefined(res) && res.status === StatusCodes.pass) {
+            if (!this.commonService.checkNullOrUndefined(res.response)) {
               this.voucherTypeList = res.response['vouchertypeList'];
             }
           }
@@ -262,8 +261,8 @@ export class CashbankComponent implements OnInit {
       .subscribe(
         response => {
           const res = response.body;
-          if (!isNullOrUndefined(res) && res.status === StatusCodes.pass) {
-            if (!isNullOrUndefined(res.response)) {
+          if (!this.commonService.checkNullOrUndefined(res) && res.status === StatusCodes.pass) {
+            if (!this.commonService.checkNullOrUndefined(res.response)) {
               this.accountFilterList = res.response['glList'];
               this.glAccountList = res.response['glList'];
               // this.glAccountList = res.response['glList'].filter(resp => resp.taxCategory != 'Cash' &&
@@ -277,7 +276,7 @@ export class CashbankComponent implements OnInit {
   accountSelect() {
     this.accountList = [];
     this.vouchersTypeList = [];
-    if (!isNullOrUndefined(this.formData.get('transactionType').value)) {
+    if (!this.commonService.checkNullOrUndefined(this.formData.get('transactionType').value)) {
       this.accountList = this.accountFilterList.filter(resp => resp.taxCategory == this.formData.get('transactionType').value);
     }
     this.vouchersTypeList = this.voucherTypeList.filter(resp => resp.accountType == this.formData.get('transactionType').value);
@@ -289,8 +288,8 @@ export class CashbankComponent implements OnInit {
       .subscribe(
         response => {
           const res = response.body;
-          if (!isNullOrUndefined(res) && res.status === StatusCodes.pass) {
-            if (!isNullOrUndefined(res.response)) {
+          if (!this.commonService.checkNullOrUndefined(res) && res.status === StatusCodes.pass) {
+            if (!this.commonService.checkNullOrUndefined(res.response)) {
               this.functionaldeptList = res.response['fdeptList'];
             }
           }
@@ -304,8 +303,8 @@ export class CashbankComponent implements OnInit {
       .subscribe(
         response => {
           const res = response.body;
-          if (!isNullOrUndefined(res) && res.status === StatusCodes.pass) {
-            if (!isNullOrUndefined(res.response)) {
+          if (!this.commonService.checkNullOrUndefined(res) && res.status === StatusCodes.pass) {
+            if (!this.commonService.checkNullOrUndefined(res.response)) {
               this.taxCodeList = res.response['TaxratesList'];
             }
           }
@@ -319,8 +318,8 @@ export class CashbankComponent implements OnInit {
       .subscribe(
         response => {
           const res = response.body;
-          if (!isNullOrUndefined(res) && res.status === StatusCodes.pass) {
-            if (!isNullOrUndefined(res.response)) {
+          if (!this.commonService.checkNullOrUndefined(res) && res.status === StatusCodes.pass) {
+            if (!this.commonService.checkNullOrUndefined(res.response)) {
               this.profitCenterList = res.response['profitCenterList'];
             }
           }
@@ -334,8 +333,8 @@ export class CashbankComponent implements OnInit {
       .subscribe(
         response => {
           const res = response.body;
-          if (!isNullOrUndefined(res) && res.status === StatusCodes.pass) {
-            if (!isNullOrUndefined(res.response)) {
+          if (!this.commonService.checkNullOrUndefined(res) && res.status === StatusCodes.pass) {
+            if (!this.commonService.checkNullOrUndefined(res.response)) {
               this.btList = res.response['bpttList'];
             }
           }
@@ -349,8 +348,8 @@ export class CashbankComponent implements OnInit {
       .subscribe(
         response => {
           const res = response.body;
-          if (!isNullOrUndefined(res) && res.status === StatusCodes.pass) {
-            if (!isNullOrUndefined(res.response)) {
+          if (!this.commonService.checkNullOrUndefined(res) && res.status === StatusCodes.pass) {
+            if (!this.commonService.checkNullOrUndefined(res.response)) {
               this.segmentList = res.response['segmentList'];
             }
           }
@@ -365,8 +364,8 @@ export class CashbankComponent implements OnInit {
         response => {
           this.spinner.hide();
           const res = response.body;
-          if (!isNullOrUndefined(res) && res.status === StatusCodes.pass) {
-            if (!isNullOrUndefined(res.response)) {
+          if (!this.commonService.checkNullOrUndefined(res) && res.status === StatusCodes.pass) {
+            if (!this.commonService.checkNullOrUndefined(res.response)) {
               this.costCenterList = res.response['costcenterList'];
             }
           }
@@ -380,7 +379,7 @@ export class CashbankComponent implements OnInit {
   voucherTypeSelect() {
     const record = this.voucherTypeList.find(res => res.id == this.formData.get('voucherClass').value)
     this.formData.patchValue({
-      voucherClass: !isNullOrUndefined(record) ? record.voucherClass : null
+      voucherClass: !this.commonService.checkNullOrUndefined(record) ? record.voucherClass : null
     })
   }
 
@@ -388,17 +387,17 @@ export class CashbankComponent implements OnInit {
     this.formData.patchValue({
       voucherNumber: null
     })
-    if (!isNullOrUndefined(this.formData.get('voucherType').value)) {
+    if (!this.commonService.checkNullOrUndefined(this.formData.get('voucherType').value)) {
       const voucherNoUrl = String.Join('/', this.apiConfigService.getVoucherNumber, this.formData.get('voucherType').value);
       this.apiService.apiGetRequest(voucherNoUrl)
         .subscribe(
           response => {
             this.spinner.hide();
             const res = response.body;
-            if (!isNullOrUndefined(res) && res.status === StatusCodes.pass) {
-              if (!isNullOrUndefined(res.response)) {
+            if (!this.commonService.checkNullOrUndefined(res) && res.status === StatusCodes.pass) {
+              if (!this.commonService.checkNullOrUndefined(res.response)) {
                 this.formData.patchValue({
-                  voucherNumber: !isNullOrUndefined(res.response['VoucherNumber']) ? res.response['VoucherNumber'] : null
+                  voucherNumber: !this.commonService.checkNullOrUndefined(res.response['VoucherNumber']) ? res.response['VoucherNumber'] : null
                 })
               }
             }
@@ -413,7 +412,7 @@ export class CashbankComponent implements OnInit {
   calculateAmount(row) {
     if (row.column == 'taxCode' || row.column == 'amount') {
       const code = row.data[row.index]['taxCode'].list.find(res => res.taxRateCode == row.data[row.index]['taxCode'].value);
-      if (!isNullOrUndefined(code)) {
+      if (!this.commonService.checkNullOrUndefined(code)) {
         this.spinner.show();
         row.data[row.index].cgstamount.value = (row.data[row.index].amount.value * code.cgst) / 100;
         row.data[row.index].igstamount.value = (row.data[row.index].amount.value * code.igst) / 100;
@@ -444,8 +443,8 @@ export class CashbankComponent implements OnInit {
     this.apiService.apiGetRequest(addCashBank).subscribe(
       response => {
         const res = response.body;
-        if (!isNullOrUndefined(res) && res.status === StatusCodes.pass) {
-          if (!isNullOrUndefined(res.response)) {
+        if (!this.commonService.checkNullOrUndefined(res) && res.status === StatusCodes.pass) {
+          if (!this.commonService.checkNullOrUndefined(res.response)) {
             this.alertService.openSnackBar(res.response, Static.Close, SnackBar.success);
           }
           this.spinner.hide();
@@ -467,8 +466,8 @@ export class CashbankComponent implements OnInit {
     this.apiService.apiPostRequest(addCashBank, requestObj).subscribe(
       response => {
         const res = response.body;
-        if (!isNullOrUndefined(res) && res.status === StatusCodes.pass) {
-          if (!isNullOrUndefined(res.response)) {
+        if (!this.commonService.checkNullOrUndefined(res) && res.status === StatusCodes.pass) {
+          if (!this.commonService.checkNullOrUndefined(res.response)) {
             this.alertService.openSnackBar('Cash bank created Successfully..', Static.Close, SnackBar.success);
           }
           this.reset();

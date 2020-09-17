@@ -9,7 +9,6 @@ import { NgxSpinnerService } from 'ngx-spinner';
 import { AlertService } from '../../services/alert.service';
 import { Static } from '../../enums/common/static';
 import { SnackBar, StatusCodes } from '../../enums/common/common';
-import { isNullOrUndefined } from 'util';
 
 @Component({
   selector: 'app-navbar',
@@ -47,7 +46,7 @@ export class NavbarComponent implements OnInit {
       response => {
         const res = response.body;
         this.spinner.hide();
-        if (!isNullOrUndefined(res.response)) {
+        if (!this.commonService.checkNullOrUndefined(res.response)) {
         this.alertService.openSnackBar(res.response, Static.Close, SnackBar.success);
         this.authService.logout();
         this.router.navigateByUrl('/login');

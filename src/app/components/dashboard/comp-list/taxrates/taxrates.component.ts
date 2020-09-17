@@ -1,6 +1,6 @@
 import { Component, Inject, Optional, OnInit } from '@angular/core';
 import { MatDialogRef, MAT_DIALOG_DATA } from '@angular/material/dialog';
-import { isNullOrUndefined } from 'util';
+import { CommonService } from '../../../../services/common.service';
 import { StatusCodes } from '../../../../enums/common/common';
 import { FormBuilder, FormGroup, Validators } from '@angular/forms';
 import { ApiService } from '../../../../services/api.service';
@@ -43,7 +43,7 @@ export class TaxRatesComponents implements OnInit {
       { value: '2', viewValue: 'Output' },
     ];
 
-  constructor(
+  constructor(private commonService: CommonService,
     private apiService: ApiService,
     private addOrEditService: AddOrEditService,
     private apiConfigService: ApiConfigService,
@@ -69,7 +69,7 @@ export class TaxRatesComponents implements OnInit {
     });
 
     this.formData = { ...data };
-    if (!isNullOrUndefined(this.formData.item)) {
+    if (!this.commonService.checkNullOrUndefined(this.formData.item)) {
       this.modelFormData.patchValue(this.formData.item);
       this.modelFormData.controls['taxRateCode'].disable();
     }
@@ -85,8 +85,8 @@ export class TaxRatesComponents implements OnInit {
       .subscribe(
         response => {
           const res = response.body;
-          if (!isNullOrUndefined(res) && res.status === StatusCodes.pass) {
-            if (!isNullOrUndefined(res.response)) {
+          if (!this.commonService.checkNullOrUndefined(res) && res.status === StatusCodes.pass) {
+            if (!this.commonService.checkNullOrUndefined(res.response)) {
               this.Taxtransaction = res.response['TaxtransactionList'];
             }
           }

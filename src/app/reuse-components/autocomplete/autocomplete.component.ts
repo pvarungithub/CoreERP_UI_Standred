@@ -1,16 +1,12 @@
 import { Component, OnInit, EventEmitter, Output, Input } from '@angular/core';
 import { FormControl } from '@angular/forms';
 import { Observable } from 'rxjs';
-import 'rxjs/add/operator/map';
-import 'rxjs/add/operator/debounceTime';
-import 'rxjs/add/operator/distinctUntilChanged';
-import 'rxjs/add/operator/switchMap';
-import { startWith, map, debounceTime, switchMap } from 'rxjs/operators';
+import { startWith, map, debounceTime } from 'rxjs/operators';
 import { NgxSpinnerService } from 'ngx-spinner';
 import { String } from 'typescript-string-operations';
-import { isNullOrUndefined } from 'util';
 import { ApiService } from '../../services/api.service';
-import { StatusCodes } from 'src/app/enums/common/common';
+import { StatusCodes } from '../../enums/common/common';
+import { CommonService } from '../../services/common.service';
 
 @Component({
   selector: 'app-autocomplete',
@@ -23,7 +19,7 @@ export class AutocompleteComponent implements OnInit {
 
   @Input()
   set configData(value) {
-    if (!isNullOrUndefined(value)) {
+    if (!this.commonService.checkNullOrUndefined(value)) {
       this.dataConfig = value;
       console.log(this.dataConfig);
     }
@@ -57,6 +53,7 @@ export class AutocompleteComponent implements OnInit {
   filteredObjectOptions$: Observable<any>;
 
   constructor(
+    private commonService: CommonService,
     private spinner: NgxSpinnerService,
     private apiService: ApiService
   ) { }
@@ -66,7 +63,7 @@ export class AutocompleteComponent implements OnInit {
       .pipe(
         startWith(''),
         debounceTime(400),
-        switchMap(val => {
+        map(val => {
           return this.filter(val || '');
         })
       );
@@ -75,14 +72,15 @@ export class AutocompleteComponent implements OnInit {
 
   // filter and return the values
   filter(value: string) {
-    if (!isNullOrUndefined(value) && value.length) {
+    if (!this.commonService.checkNullOrUndefined(value) && value.length) {
       // const url = String.Join('/', this.dataConfig.url, value.trim());
       const url = String.Join('/', this.dataConfig.url);
-      return this.apiService.apiGetRequest(url)
-        .map((response) => {
-          const res = response.body;
+    return this.apiService.apiGetRequest(url)
+      .pipe(map(r => r.json()))
+      .subscribe(response => {          
+        const res = response.body;
           this.spinner.hide();
-          if (!isNullOrUndefined(res) && res.status === StatusCodes.pass) {
+          if (!this.commonService.checkNullOrUndefined(res) && res.status === StatusCodes.pass) {
             return res.response[this.dataConfig.list];
           }
         });

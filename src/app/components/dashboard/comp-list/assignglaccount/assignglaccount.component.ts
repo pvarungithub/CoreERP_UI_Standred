@@ -1,6 +1,6 @@
 import { Component, Inject, Optional, OnInit } from '@angular/core';
 import { MatDialogRef, MAT_DIALOG_DATA } from '@angular/material/dialog';
-import { isNullOrUndefined } from 'util';
+import { CommonService } from '../../../../services/common.service';
 import { FormBuilder, FormGroup, Validators } from '@angular/forms';
 import { StatusCodes } from '../../../../enums/common/common';
 import { NgxSpinnerService } from 'ngx-spinner';
@@ -24,7 +24,7 @@ export class AssignGLaccounttoSubGroupComponent implements OnInit {
   glList: any;
   structkeyList: any;
   fromGlList = [];
-  constructor(
+  constructor(private commonService: CommonService,
     private addOrEditService: AddOrEditService,
     private formBuilder: FormBuilder,
     public dialogRef: MatDialogRef<AssignGLaccounttoSubGroupComponent>,
@@ -43,7 +43,7 @@ export class AssignGLaccounttoSubGroupComponent implements OnInit {
     });
 
     this.formData = { ...data };
-    if (!isNullOrUndefined(this.formData.item)) {
+    if (!this.commonService.checkNullOrUndefined(this.formData.item)) {
       this.modelFormData.patchValue(this.formData.item);
       this.modelFormData.patchValue({
         fromGl: [this.formData.item['fromGl']]
@@ -67,8 +67,8 @@ export class AssignGLaccounttoSubGroupComponent implements OnInit {
       .subscribe(
         response => {
           const res = response.body;
-          if (!isNullOrUndefined(res) && res.status === StatusCodes.pass) {
-            if (!isNullOrUndefined(res.response)) {
+          if (!this.commonService.checkNullOrUndefined(res) && res.status === StatusCodes.pass) {
+            if (!this.commonService.checkNullOrUndefined(res.response)) {
               this.structkeyList = res.response['structkeyList'];
             }
           }
@@ -77,14 +77,14 @@ export class AssignGLaccounttoSubGroupComponent implements OnInit {
   }
 
   getSubacclist() {
-    if (!isNullOrUndefined(this.modelFormData.get('glgroup').value)) {
+    if (!this.commonService.checkNullOrUndefined(this.modelFormData.get('glgroup').value)) {
       const getAccountNamelist = String.Join('/', this.apiConfigService.subgrouplist, this.modelFormData.get('glgroup').value);
       this.apiService.apiGetRequest(getAccountNamelist)
         .subscribe(
           response => {
             const res = response.body;
-            if (!isNullOrUndefined(res) && res.status === StatusCodes.pass) {
-              if (!isNullOrUndefined(res.response)) {
+            if (!this.commonService.checkNullOrUndefined(res) && res.status === StatusCodes.pass) {
+              if (!this.commonService.checkNullOrUndefined(res.response)) {
                 this.subaccList = res.response['GetAccountNamelist'];
               }
             }
@@ -101,8 +101,8 @@ export class AssignGLaccounttoSubGroupComponent implements OnInit {
       .subscribe(
         response => {
           const res = response.body;
-          if (!isNullOrUndefined(res) && res.status === StatusCodes.pass) {
-            if (!isNullOrUndefined(res.response)) {
+          if (!this.commonService.checkNullOrUndefined(res) && res.status === StatusCodes.pass) {
+            if (!this.commonService.checkNullOrUndefined(res.response)) {
               this.glList = this.filterGlList(res.response['glList']);
             }
           }
@@ -116,7 +116,7 @@ export class AssignGLaccounttoSubGroupComponent implements OnInit {
       if (!this.formData.tableData.filter(res => res.fromGl == glArray[g]['id']).length) {
         glList.push(glArray[g]);
       };
-      if (!isNullOrUndefined(this.formData.item)) {
+      if (!this.commonService.checkNullOrUndefined(this.formData.item)) {
         if (this.formData.item['fromGl'] == glArray[g]['id']) {
           glList.push(glArray[g]);
         }
@@ -131,10 +131,10 @@ export class AssignGLaccounttoSubGroupComponent implements OnInit {
       .subscribe(
         response => {
           const res = response.body;
-          if (!isNullOrUndefined(res) && res.status === StatusCodes.pass) {
-            if (!isNullOrUndefined(res.response)) {
+          if (!this.commonService.checkNullOrUndefined(res) && res.status === StatusCodes.pass) {
+            if (!this.commonService.checkNullOrUndefined(res.response)) {
               this.glAccgrpList = res.response['GLAccGroupList'];
-              if (!isNullOrUndefined(this.formData.item)) {
+              if (!this.commonService.checkNullOrUndefined(this.formData.item)) {
                 this.onGroupChange();
               }
             }
@@ -145,7 +145,7 @@ export class AssignGLaccounttoSubGroupComponent implements OnInit {
 
   onGroupChange() {
     this.fromGlList = [];
-    if (isNullOrUndefined(this.formData.item)) {
+    if (this.commonService.checkNullOrUndefined(this.formData.item)) {
       this.modelFormData.patchValue({
         fromGl: null
       });

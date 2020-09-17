@@ -1,6 +1,5 @@
 import { Component, OnInit, ViewChild, Output, EventEmitter, Input, OnDestroy, ChangeDetectorRef, AfterContentChecked } from '@angular/core';
 import { MatTableDataSource, MatTable } from '@angular/material/table';
-import { isNullOrUndefined } from 'util';
 import { ActivatedRoute } from '@angular/router';
 import { TranslateService } from '@ngx-translate/core';
 import { FormBuilder, FormGroup, FormControl } from '@angular/forms';
@@ -22,7 +21,7 @@ export class DynamicTableComponent implements OnInit, OnDestroy, AfterContentChe
   @Output() emitTableData = new EventEmitter();
 
   @Input() set tableObJect(res) {
-    if (!isNullOrUndefined(res)) {
+    if (!this.commonService.checkNullOrUndefined(res)) {
       this.tableData = [res.tableData];
       this.formControl = res.formControl;
       this.tableForm = this.formBuilder.group(this.formControl);
@@ -56,7 +55,7 @@ export class DynamicTableComponent implements OnInit, OnDestroy, AfterContentChe
     activatedRoute.params.subscribe(params => {
       this.routeParam = params.id;
       this.emitDynTableData = addOrEditService.emitDynTableData.subscribe(res => {
-        if (!isNullOrUndefined(res)) {
+        if (!this.commonService.checkNullOrUndefined(res)) {
           this.dataSource = new MatTableDataSource();
           if (res.type == 'editValue') {
             let editData = this.formalTableData(res.data);
@@ -123,7 +122,7 @@ export class DynamicTableComponent implements OnInit, OnDestroy, AfterContentChe
     this.index = indx;
     this.data = data;
     this.isDropdown = (this.dataSource.data[indx][col].type == 'dropdown') ? true : false;
-    if (!isNullOrUndefined(data)) {
+    if (!this.commonService.checkNullOrUndefined(data)) {
       if (this.checkPrimary(col, data, val, indx)) {
         this.dataSource.data[indx][col].value = '';
         this.dataSource = new MatTableDataSource(JSON.parse(JSON.stringify(this.dataSource.data)));
@@ -141,7 +140,7 @@ export class DynamicTableComponent implements OnInit, OnDestroy, AfterContentChe
       }
       this.dataSource = new MatTableDataSource(this.dataSource.data);
       this.emitColumnChanges.emit({ column: col, index: indx, data: this.dataSource.data });
-      if (!isNullOrUndefined(this.checkAllColValue)) {
+      if (!this.commonService.checkNullOrUndefined(this.checkAllColValue)) {
         this.checkAll(this.checkAllColValue.val, this.checkAllColValue.col);
       }
       this.emitTableData.emit(this.formatTableData());
@@ -149,7 +148,7 @@ export class DynamicTableComponent implements OnInit, OnDestroy, AfterContentChe
   }
 
   checkPrimary(col, data, val, indx) {
-    if (!isNullOrUndefined(val[col].primary) && this.dataSource.data.length > 1) {
+    if (!this.commonService.checkNullOrUndefined(val[col].primary) && this.dataSource.data.length > 1) {
       for (let d = 0; d < this.dataSource.data.length; d++) {
         if (this.dataSource.data[d][col].value == data && d != indx) {
           return true;
@@ -188,12 +187,12 @@ export class DynamicTableComponent implements OnInit, OnDestroy, AfterContentChe
 
   setTableData() {
     // let data = [];
-    // if (!isNullOrUndefined(this.dataSource)) {
-    //   data = (!isNullOrUndefined(this.dataSource.data.length)) ? this.dataSource.data : this.tableData;
+    // if (!this.commonService.checkNullOrUndefined(this.dataSource)) {
+    //   data = (!this.commonService.checkNullOrUndefined(this.dataSource.data.length)) ? this.dataSource.data : this.tableData;
     // } else {
     //   data = this.tableData;
     // }
-    if (!isNullOrUndefined(this.tableData)) {
+    if (!this.commonService.checkNullOrUndefined(this.tableData)) {
       if (this.tableData.length) {
         this.dataSource = new MatTableDataSource(JSON.parse(JSON.stringify(this.tableData)));
       }
@@ -224,7 +223,7 @@ export class DynamicTableComponent implements OnInit, OnDestroy, AfterContentChe
   }
 
   getDisplayedColumns(): string[] {
-    if (!isNullOrUndefined(this.tableData)) {
+    if (!this.commonService.checkNullOrUndefined(this.tableData)) {
       return this.columnDefinitions.map(cd => cd.def);
     }
   }
@@ -234,12 +233,12 @@ export class DynamicTableComponent implements OnInit, OnDestroy, AfterContentChe
   }
 
   setFocus(id?, indx?, data?) {
-    this.data = isNullOrUndefined(data) ? this.data : data;
+    this.data = this.commonService.checkNullOrUndefined(data) ? this.data : data;
     if (this.checkValue()) {
       let flag = false;
       let nextId = '';
-      this.id = isNullOrUndefined(id) ? this.id : id;
-      this.index = isNullOrUndefined(indx) ? this.index : indx;
+      this.id = this.commonService.checkNullOrUndefined(id) ? this.id : id;
+      this.index = this.commonService.checkNullOrUndefined(indx) ? this.index : indx;
       // tslint:disable-next-line:forin
       for (let c = 0; c < this.columnDefinitions.length; c++) {
         if (flag && !this.columnDefinitions[c].disabled && this.columnDefinitions[c].def != 'delete') {
@@ -265,7 +264,7 @@ export class DynamicTableComponent implements OnInit, OnDestroy, AfterContentChe
 
   checkValue() {
     if (this.isDropdown) {
-      if (isNullOrUndefined(this.data) && this.isDropdown) {
+      if (this.commonService.checkNullOrUndefined(this.data) && this.isDropdown) {
         return false;
       }
     }

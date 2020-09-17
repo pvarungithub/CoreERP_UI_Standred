@@ -5,7 +5,6 @@ import { MatPaginator } from '@angular/material/paginator';
 import { ApiConfigService } from '../../../services/api-config.service';
 import { ApiService } from '../../../services/api.service';
 import { AlertService } from '../../../services/alert.service';
-import { isNullOrUndefined } from 'util';
 import { SnackBar, StatusCodes } from '../../../enums/common/common';
 import { Static } from '../../../enums/common/static';
 import { NgxSpinnerService } from 'ngx-spinner';
@@ -58,8 +57,8 @@ export class RolesprevilagesComponent implements OnInit, OnDestroy {
     this.apiService.apiGetRequest(getRolesUrl).subscribe(
       response => {
         const res = response.body;
-        if (!isNullOrUndefined(res) && res.status === StatusCodes.pass) {
-          if (!isNullOrUndefined(res.response)) {
+        if (!this.commonService.checkNullOrUndefined(res) && res.status === StatusCodes.pass) {
+          if (!this.commonService.checkNullOrUndefined(res.response)) {
             this.roleArray = res.response['Roles'];
           }
         }
@@ -80,8 +79,8 @@ export class RolesprevilagesComponent implements OnInit, OnDestroy {
     this.apiService.apiGetRequest(getRolesUrl).subscribe(
       response => {
         const res = response.body;
-        if (!isNullOrUndefined(res) && res.status === StatusCodes.pass) {
-          if (!isNullOrUndefined(res.response)) {
+        if (!this.commonService.checkNullOrUndefined(res) && res.status === StatusCodes.pass) {
+          if (!this.commonService.checkNullOrUndefined(res.response)) {
             this.parentMenu = res.response['ParentMenus'];
           }
         }
@@ -95,8 +94,8 @@ export class RolesprevilagesComponent implements OnInit, OnDestroy {
     this.apiService.apiGetRequest(getRolesUrl).subscribe(
       response => {
         const res = response.body;
-        if (!isNullOrUndefined(res) && res.status === StatusCodes.pass) {
-          if (!isNullOrUndefined(res.response)) {
+        if (!this.commonService.checkNullOrUndefined(res) && res.status === StatusCodes.pass) {
+          if (!this.commonService.checkNullOrUndefined(res.response)) {
             this.actualData = res.response.map(x => ({...x}));
             this.dataSource = new MatTableDataSource(res.response.map(x => ({...x})));
             this.dataSource.paginator = this.paginator;
@@ -108,7 +107,7 @@ export class RolesprevilagesComponent implements OnInit, OnDestroy {
 
 
   checkboxCheck(event, column) {
-    if (!isNullOrUndefined(this.dataSource)) {
+    if (!this.commonService.checkNullOrUndefined(this.dataSource)) {
       this.dataSource.data = this.dataSource.data.map(val => {
         val[column] = event.checked;
         return val;
@@ -131,8 +130,8 @@ export class RolesprevilagesComponent implements OnInit, OnDestroy {
     this.apiService.apiPostRequest(getAccessUrl, filterData).subscribe(
       response => {
         const res = response.body;
-        if (!isNullOrUndefined(res) && res.status === StatusCodes.pass) {
-          if (!isNullOrUndefined(res.response)) {
+        if (!this.commonService.checkNullOrUndefined(res) && res.status === StatusCodes.pass) {
+          if (!this.commonService.checkNullOrUndefined(res.response)) {
             this.alertService.openSnackBar(Static.LoginSussfull, Static.Close, SnackBar.success);
             this.reset();
           }

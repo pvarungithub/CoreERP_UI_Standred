@@ -7,7 +7,6 @@ import { MatPaginator } from '@angular/material/paginator';
 import { MatSort } from '@angular/material/sort';
 import { MatTableDataSource, MatTable } from '@angular/material/table';
 import { CommonService } from '../../services/common.service';
-import { isNullOrUndefined } from 'util';
 import { ActivatedRoute } from '@angular/router';
 import { FormControl } from '@angular/forms';
 import { ReplaySubject, Subject } from 'rxjs';
@@ -100,7 +99,7 @@ export class TableComponent implements OnInit, OnChanges, AfterViewInit, OnDestr
 
   openDialog(val, row?) {
     let data;
-    if (!isNullOrUndefined(row)) {
+    if (!this.commonService.checkNullOrUndefined(row)) {
       data = { action: val, item: row };
       this.highlightedRows = [row];
     }
@@ -125,7 +124,7 @@ export class TableComponent implements OnInit, OnChanges, AfterViewInit, OnDestr
   ngOnChanges() {
     this.highlightedRows = [];
 
-    if (!isNullOrUndefined(this.tableData)) {
+    if (!this.commonService.checkNullOrUndefined(this.tableData)) {
       if (this.tableData.length) {
         this.showDataNotFound = false;
         this.dataSource = new MatTableDataSource(this.tableData);
@@ -133,12 +132,12 @@ export class TableComponent implements OnInit, OnChanges, AfterViewInit, OnDestr
         this.showDataNotFound = true;
       }
     }
-    if (!isNullOrUndefined(this.dataSource)) {
+    if (!this.commonService.checkNullOrUndefined(this.dataSource)) {
       this.dataSource.paginator = this.paginator;
       this.dataSource.sort = this.sort;
     }
 
-    if (!isNullOrUndefined(this.tableData) && this.tableData.length > 0) {
+    if (!this.commonService.checkNullOrUndefined(this.tableData) && this.tableData.length > 0) {
       // tslint:disable-next-line:forin
       for (const key in this.tableData[0]) {
         this.keys.push({ col: key });
@@ -169,7 +168,7 @@ export class TableComponent implements OnInit, OnChanges, AfterViewInit, OnDestr
     }
 
 
-    if (!isNullOrUndefined(this.tableData) && this.tableData.length > 0) {
+    if (!this.commonService.checkNullOrUndefined(this.tableData) && this.tableData.length > 0) {
       this.filteredTableMulti.next(this.columnDefinitions.slice());
       this.tableMultiFilterCtrl.valueChanges
         .pipe(takeUntil(this.onDestroy))
@@ -181,7 +180,7 @@ export class TableComponent implements OnInit, OnChanges, AfterViewInit, OnDestr
   }
   
   formatDate(col) {
-    this.tableData.map(res => !isNullOrUndefined(res[col]) ? res[col] = this.commonService.formatDateValue(res[col]) : '');
+    this.tableData.map(res => !this.commonService.checkNullOrUndefined(res[col]) ? res[col] = this.commonService.formatDateValue(res[col]) : '');
   }
 
 
@@ -246,7 +245,7 @@ export class TableComponent implements OnInit, OnChanges, AfterViewInit, OnDestr
   }
 
   getDisplayedColumns(): string[] {
-    if (!isNullOrUndefined(this.tableData)) {
+    if (!this.commonService.checkNullOrUndefined(this.tableData)) {
       return this.columnDefinitions.filter(cd => cd.hide).map(cd => cd.def);
     }
   }

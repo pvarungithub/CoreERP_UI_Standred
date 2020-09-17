@@ -1,7 +1,7 @@
 import { Component, OnInit } from '@angular/core';
 import { String } from 'typescript-string-operations';
 import { ApiService } from '../../../../services/api.service';
-import { isNullOrUndefined } from 'util';
+import { CommonService } from '../../../../services/common.service';
 import { FormBuilder, FormGroup, Validators } from '@angular/forms';
 import { NgxSpinnerService } from 'ngx-spinner';
 import { ApiConfigService } from '../../../../services/api-config.service';
@@ -50,7 +50,7 @@ export class MainAssetMasterComponent implements OnInit {
       { value: 'Required', viewValue: 'Required' }
     ];
   assetNum: any;
-  constructor(
+  constructor(private commonService: CommonService,
     private apiService: ApiService,
     private addOrEditService: AddOrEditService,
     private apiConfigService: ApiConfigService,
@@ -60,7 +60,7 @@ export class MainAssetMasterComponent implements OnInit {
     private router: Router,
     public route: ActivatedRoute,
   ) {
-    if (!isNullOrUndefined(this.route.snapshot.params.value)) {
+    if (!this.commonService.checkNullOrUndefined(this.route.snapshot.params.value)) {
       this.routeEdit = this.route.snapshot.params.value;
     }
 
@@ -171,8 +171,8 @@ export class MainAssetMasterComponent implements OnInit {
       .subscribe(
         response => {
           const res = response.body;
-          if (!isNullOrUndefined(res) && res.status === StatusCodes.pass) {
-            if (!isNullOrUndefined(res.response)) {
+          if (!this.commonService.checkNullOrUndefined(res) && res.status === StatusCodes.pass) {
+            if (!this.commonService.checkNullOrUndefined(res.response)) {
               this.branchesList = res.response['branchesList'];
             }
           }
@@ -186,8 +186,8 @@ export class MainAssetMasterComponent implements OnInit {
         response => {
           this.spinner.hide();
           const res = response.body;
-          if (!isNullOrUndefined(res) && res.status === StatusCodes.pass) {
-            if (!isNullOrUndefined(res.response)) {
+          if (!this.commonService.checkNullOrUndefined(res) && res.status === StatusCodes.pass) {
+            if (!this.commonService.checkNullOrUndefined(res.response)) {
               console.log(res.response['MainassetMasters']);
               console.log(res.response['MainassetDetail']);
               this.modelFormData.setValue(res.response['MainassetMasters']);
@@ -204,8 +204,8 @@ export class MainAssetMasterComponent implements OnInit {
       .subscribe(
         response => {
           const res = response.body;
-          if (!isNullOrUndefined(res) && res.status === StatusCodes.pass) {
-            if (!isNullOrUndefined(res.response)) {
+          if (!this.commonService.checkNullOrUndefined(res) && res.status === StatusCodes.pass) {
+            if (!this.commonService.checkNullOrUndefined(res.response)) {
             }
           }
           this.spinner.hide();
@@ -220,8 +220,8 @@ export class MainAssetMasterComponent implements OnInit {
       .subscribe(
         response => {
           const res = response.body;
-          if (!isNullOrUndefined(res) && res.status === StatusCodes.pass) {
-            if (!isNullOrUndefined(res.response)) {
+          if (!this.commonService.checkNullOrUndefined(res) && res.status === StatusCodes.pass) {
+            if (!this.commonService.checkNullOrUndefined(res.response)) {
               this.assetNum = res.response['astnum'];
               this.modelFormData.patchValue({
                 assetNumber: this.assetNum
@@ -240,8 +240,8 @@ export class MainAssetMasterComponent implements OnInit {
       .subscribe(
         response => {
           const res = response.body;
-          if (!isNullOrUndefined(res) && res.status === StatusCodes.pass) {
-            if (!isNullOrUndefined(res.response)) {
+          if (!this.commonService.checkNullOrUndefined(res) && res.status === StatusCodes.pass) {
+            if (!this.commonService.checkNullOrUndefined(res.response)) {
               this.modelFormData.patchValue(res.response['assetname']);
             }
           }
@@ -256,8 +256,8 @@ export class MainAssetMasterComponent implements OnInit {
       .subscribe(
         response => {
           const res = response.body;
-          if (!isNullOrUndefined(res) && res.status === StatusCodes.pass) {
-            if (!isNullOrUndefined(res.response)) {
+          if (!this.commonService.checkNullOrUndefined(res) && res.status === StatusCodes.pass) {
+            if (!this.commonService.checkNullOrUndefined(res.response)) {
               this.companyList = res.response['companiesList'];
             }
           }
@@ -270,8 +270,8 @@ export class MainAssetMasterComponent implements OnInit {
       .subscribe(
         response => {
           const res = response.body;
-          if (!isNullOrUndefined(res) && res.status === StatusCodes.pass) {
-            if (!isNullOrUndefined(res.response)) {
+          if (!this.commonService.checkNullOrUndefined(res) && res.status === StatusCodes.pass) {
+            if (!this.commonService.checkNullOrUndefined(res.response)) {
               this.assetList = res.response['assetList'];
             }
           }
@@ -285,8 +285,8 @@ export class MainAssetMasterComponent implements OnInit {
       .subscribe(
         response => {
           const res = response.body;
-          if (!isNullOrUndefined(res) && res.status === StatusCodes.pass) {
-            if (!isNullOrUndefined(res.response)) {
+          if (!this.commonService.checkNullOrUndefined(res) && res.status === StatusCodes.pass) {
+            if (!this.commonService.checkNullOrUndefined(res.response)) {
               this.assetList = res.response['assetList'];
             }
           }
@@ -301,8 +301,8 @@ export class MainAssetMasterComponent implements OnInit {
         response => {
           const res = response.body;
           //console.log(res);
-          if (!isNullOrUndefined(res) && res.status === StatusCodes.pass) {
-            if (!isNullOrUndefined(res.response)) {
+          if (!this.commonService.checkNullOrUndefined(res) && res.status === StatusCodes.pass) {
+            if (!this.commonService.checkNullOrUndefined(res.response)) {
               this.dpList = res.response['dpList'];
               this.dynTableProps = this.tablePropsFunc();
 
@@ -318,8 +318,8 @@ export class MainAssetMasterComponent implements OnInit {
       .subscribe(
         response => {
           const res = response.body;
-          if (!isNullOrUndefined(res) && res.status === StatusCodes.pass) {
-            if (!isNullOrUndefined(res.response)) {
+          if (!this.commonService.checkNullOrUndefined(res) && res.status === StatusCodes.pass) {
+            if (!this.commonService.checkNullOrUndefined(res.response)) {
               this.dpareaList = res.response['dpareaList'];
               this.dynTableProps = this.tablePropsFunc();
             }
@@ -336,8 +336,8 @@ export class MainAssetMasterComponent implements OnInit {
       .subscribe(
         response => {
           const res = response.body;
-          if (!isNullOrUndefined(res) && res.status === StatusCodes.pass) {
-            if (!isNullOrUndefined(res.response)) {
+          if (!this.commonService.checkNullOrUndefined(res) && res.status === StatusCodes.pass) {
+            if (!this.commonService.checkNullOrUndefined(res.response)) {
               this.acckeyList = res.response['acckeyList'];
             }
           }
@@ -351,8 +351,8 @@ export class MainAssetMasterComponent implements OnInit {
       .subscribe(
         response => {
           const res = response.body;
-          if (!isNullOrUndefined(res) && res.status === StatusCodes.pass) {
-            if (!isNullOrUndefined(res.response)) {
+          if (!this.commonService.checkNullOrUndefined(res) && res.status === StatusCodes.pass) {
+            if (!this.commonService.checkNullOrUndefined(res.response)) {
               this.profitCenterList = res.response['profitCenterList'];
             }
           }
@@ -365,8 +365,8 @@ export class MainAssetMasterComponent implements OnInit {
       .subscribe(
         response => {
           const res = response.body;
-          if (!isNullOrUndefined(res) && res.status === StatusCodes.pass) {
-            if (!isNullOrUndefined(res.response)) {
+          if (!this.commonService.checkNullOrUndefined(res) && res.status === StatusCodes.pass) {
+            if (!this.commonService.checkNullOrUndefined(res.response)) {
               this.segmentList = res.response['segmentList'];
             }
           }
@@ -379,8 +379,8 @@ export class MainAssetMasterComponent implements OnInit {
       .subscribe(
         response => {
           const res = response.body;
-          if (!isNullOrUndefined(res) && res.status === StatusCodes.pass) {
-            if (!isNullOrUndefined(res.response)) {
+          if (!this.commonService.checkNullOrUndefined(res) && res.status === StatusCodes.pass) {
+            if (!this.commonService.checkNullOrUndefined(res.response)) {
               this.divisionsList = res.response['divisionsList'];
             }
           }
@@ -393,8 +393,8 @@ export class MainAssetMasterComponent implements OnInit {
       .subscribe(
         response => {
           const res = response.body;
-          if (!isNullOrUndefined(res) && res.status === StatusCodes.pass) {
-            if (!isNullOrUndefined(res.response)) {
+          if (!this.commonService.checkNullOrUndefined(res) && res.status === StatusCodes.pass) {
+            if (!this.commonService.checkNullOrUndefined(res.response)) {
               this.plantList = res.response['plantList'];
             }
           }
@@ -407,8 +407,8 @@ export class MainAssetMasterComponent implements OnInit {
       .subscribe(
         response => {
           const res = response.body;
-          if (!isNullOrUndefined(res) && res.status === StatusCodes.pass) {
-            if (!isNullOrUndefined(res.response)) {
+          if (!this.commonService.checkNullOrUndefined(res) && res.status === StatusCodes.pass) {
+            if (!this.commonService.checkNullOrUndefined(res.response)) {
               this.locationList = res.response['locationList'];
             }
           }
@@ -423,7 +423,7 @@ export class MainAssetMasterComponent implements OnInit {
   assigndata(row) {
     if (row.column == 'depreciationCode') {
       const code = row.data[row.index]['depreciationCode'].list.find(res => res.code == row.data[row.index]['depreciationCode'].value);
-      if (!isNullOrUndefined(code)) {
+      if (!this.commonService.checkNullOrUndefined(code)) {
         row.data[row.index].rate.value = code.rate;
         this.addOrEditService.sendDynTableData({ type: 'add', data: row.data });
       }
@@ -453,8 +453,8 @@ export class MainAssetMasterComponent implements OnInit {
     this.apiService.apiPostRequest(addCashBank, requestObj).subscribe(
       response => {
         const res = response.body;
-        if (!isNullOrUndefined(res) && res.status === StatusCodes.pass) {
-          if (!isNullOrUndefined(res.response)) {
+        if (!this.commonService.checkNullOrUndefined(res) && res.status === StatusCodes.pass) {
+          if (!this.commonService.checkNullOrUndefined(res.response)) {
             this.alertService.openSnackBar('MainAssets created Successfully..', Static.Close, SnackBar.success);
           }
           this.reset();

@@ -1,6 +1,6 @@
 import { Component, Inject, Optional, OnInit } from '@angular/core';
 import { MatDialogRef, MAT_DIALOG_DATA } from '@angular/material/dialog';
-import { isNullOrUndefined } from 'util';
+import { CommonService } from '../../../../services/common.service';
 import { FormBuilder, FormGroup, Validators } from '@angular/forms';
 import { AddOrEditService } from '../add-or-edit.service';
 
@@ -14,7 +14,7 @@ export class CurrencyComponent implements OnInit {
   modelFormData: FormGroup;
   formData: any;
 
-  constructor(
+  constructor(private commonService: CommonService,
     private formBuilder: FormBuilder,
     private addOrEditService: AddOrEditService,
     public dialogRef: MatDialogRef<CurrencyComponent>,
@@ -28,7 +28,7 @@ export class CurrencyComponent implements OnInit {
     });
 
     this.formData = { ...data };
-    if (!isNullOrUndefined(this.formData.item)) {
+    if (!this.commonService.checkNullOrUndefined(this.formData.item)) {
       this.modelFormData.patchValue(this.formData.item);
       this.modelFormData.controls['currencySymbol'].disable();
     }

@@ -10,7 +10,6 @@ import { AuthService } from '../../services/auth.service';
 import { AlertService } from '../../services/alert.service';
 import { ApiService } from '../../services/api.service';
 import { NgxSpinnerService } from 'ngx-spinner';
-import { isNullOrUndefined } from 'util';
 import { CommonService } from '../../services/common.service';
 
 
@@ -71,8 +70,8 @@ export class LoginComponent implements OnInit {
       .subscribe(
         response => {
           const res = response.body;
-          if (!isNullOrUndefined(res) && res.status === StatusCodes.pass) {
-            if (!isNullOrUndefined(res.response)) {
+          if (!this.commonService.checkNullOrUndefined(res) && res.status === StatusCodes.pass) {
+            if (!this.commonService.checkNullOrUndefined(res.response)) {
               this.getBranchesForUser(res.response['User']);
               localStorage.setItem('Token', JSON.stringify(res.response['Token']));
             }
@@ -86,9 +85,9 @@ export class LoginComponent implements OnInit {
     this.apiService.apiGetRequest(getBranchesForUserUrl).subscribe(
       response => {
         const res = response.body;
-        if (!isNullOrUndefined(res) && res.status === StatusCodes.pass) {
-          if (!isNullOrUndefined(res.response)) {
-            if (!isNullOrUndefined(res.response['Branches'])) {
+        if (!this.commonService.checkNullOrUndefined(res) && res.status === StatusCodes.pass) {
+          if (!this.commonService.checkNullOrUndefined(res.response)) {
+            if (!this.commonService.checkNullOrUndefined(res.response['Branches'])) {
               obj.branchCode = res.response['Branches'][0];
               localStorage.setItem('branchList', JSON.stringify(res.response['Branches']));
               this.authService.login(obj);

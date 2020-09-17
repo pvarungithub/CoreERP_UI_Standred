@@ -2,7 +2,6 @@ import {Component, HostBinding, Input, OnInit, Output, EventEmitter} from '@angu
 import { Router, ActivatedRoute } from '@angular/router';
 import { CommonService } from '../../services/common.service';
 import {animate, state, style, transition, trigger} from '@angular/animations';
-import { isNullOrUndefined } from 'util';
 import { String } from 'typescript-string-operations';
 
 @Component({
@@ -23,7 +22,7 @@ export class SidebarComponent implements OnInit {
 
 
   expanded: boolean;
-  @HostBinding('attr.aria-expanded') ariaExpanded = this.expanded;
+  @HostBinding('attr.aria-expanded') ariaExpanded = false;
   @Input() item: any;
   @Input() depth: number;
 
@@ -47,7 +46,7 @@ export class SidebarComponent implements OnInit {
 
   onItemSelected(item: any) {
 
-    if (!isNullOrUndefined(item.children)) {
+    if (!this.commonService.checkNullOrUndefined(item.children)) {
       this.commonService.parentItem = item.route;
 
     }

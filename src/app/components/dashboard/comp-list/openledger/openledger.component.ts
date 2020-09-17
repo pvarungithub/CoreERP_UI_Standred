@@ -1,11 +1,11 @@
 import { Component, Inject, Optional, OnInit } from '@angular/core';
 import { FormBuilder, FormGroup, Validators, FormControl } from '@angular/forms';
 import { MatDialogRef, MAT_DIALOG_DATA } from '@angular/material/dialog';
-import { isNullOrUndefined } from 'util';
+import { CommonService } from '../../../../services/common.service';
 import { ApiService } from '../../../../services/api.service';
 import { NgxSpinnerService } from 'ngx-spinner';
 import { ApiConfigService } from '../../../../services/api-config.service';
-import { StatusCodes } from 'src/app/enums/common/common';
+import { StatusCodes } from '../../../../enums/common/common';
 import { String } from 'typescript-string-operations';
 import { AddOrEditService } from '../add-or-edit.service';
 
@@ -40,7 +40,7 @@ export class OpenLedgerComponent implements OnInit {
       { value: '12', viewValue: 'December' }
 
     ];
-  constructor(
+  constructor(private commonService: CommonService,
     private apiService: ApiService,
     private addOrEditService: AddOrEditService,
     private apiConfigService: ApiConfigService,
@@ -59,7 +59,7 @@ export class OpenLedgerComponent implements OnInit {
     });
 
     this.formData = { ...data };
-    if (!isNullOrUndefined(this.formData.item)) {
+    if (!this.commonService.checkNullOrUndefined(this.formData.item)) {
       this.modelFormData.patchValue(this.formData.item);
     }
 
@@ -94,8 +94,8 @@ export class OpenLedgerComponent implements OnInit {
       .subscribe(
         response => {
           const res = response.body;
-          if (!isNullOrUndefined(res) && res.status === StatusCodes.pass) {
-            if (!isNullOrUndefined(res.response)) {
+          if (!this.commonService.checkNullOrUndefined(res) && res.status === StatusCodes.pass) {
+            if (!this.commonService.checkNullOrUndefined(res.response)) {
               this.ledgerList = res.response['ledgerList'];
             }
           }

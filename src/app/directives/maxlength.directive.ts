@@ -1,5 +1,4 @@
 import { Directive, ElementRef, Input, HostListener } from '@angular/core';
-import { isNullOrUndefined } from 'util';
 
 @Directive({
   selector: '[appMaxlength]'

@@ -1,7 +1,6 @@
 import { Component, OnInit } from '@angular/core';
 import { ApiService } from '../../../../services/api.service';
 import { String } from 'typescript-string-operations';
-import { isNullOrUndefined } from 'util';
 import { FormBuilder, FormGroup, Validators } from '@angular/forms';
 import { NgxSpinnerService } from 'ngx-spinner';
 import { ApiConfigService } from '../../../../services/api-config.service';
@@ -81,7 +80,7 @@ export class DepreciationcodeComponent implements OnInit {
     private commonService: CommonService
   ) {
 
-    if (!isNullOrUndefined(this.route.snapshot.params.value)) {
+    if (!this.commonService.checkNullOrUndefined(this.route.snapshot.params.value)) {
       this.routeEdit = this.route.snapshot.params.value;
     }
 
@@ -122,8 +121,8 @@ export class DepreciationcodeComponent implements OnInit {
         response => {
           this.spinner.hide();
           const res = response.body;
-          if (!isNullOrUndefined(res) && res.status === StatusCodes.pass) {
-            if (!isNullOrUndefined(res.response)) {
+          if (!this.commonService.checkNullOrUndefined(res) && res.status === StatusCodes.pass) {
+            if (!this.commonService.checkNullOrUndefined(res.response)) {
               this.modelFormData.setValue(res.response['DepreciationcodeMasters']);
               this.addOrEditService.sendDynTableData(res.response['DepreciationcodeDetail']);
               //this.modelFormData.disable();
@@ -165,8 +164,8 @@ export class DepreciationcodeComponent implements OnInit {
     this.apiService.apiPostRequest(addCashBank, requestObj).subscribe(
       response => {
         const res = response.body;
-        if (!isNullOrUndefined(res) && res.status === StatusCodes.pass) {
-          if (!isNullOrUndefined(res.response)) {
+        if (!this.commonService.checkNullOrUndefined(res) && res.status === StatusCodes.pass) {
+          if (!this.commonService.checkNullOrUndefined(res.response)) {
             this.alertService.openSnackBar('Depreciationcode created Successfully..', Static.Close, SnackBar.success);
           }
           this.reset();

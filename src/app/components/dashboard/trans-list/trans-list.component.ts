@@ -1,6 +1,5 @@
 import { Component, OnInit, ViewChild, ComponentFactoryResolver, ViewContainerRef, ChangeDetectorRef, OnDestroy } from '@angular/core';
 import { TransTableComponent } from '../../../reuse-components/trans-table/trans-table.component';
-import { isNullOrUndefined } from 'util';
 import { ActivatedRoute } from '@angular/router';
 import { ApiService } from '../../../services/api.service';
 import { ApiConfigService } from '../../../services/api-config.service';
@@ -40,10 +39,10 @@ export class TransListComponent implements OnInit, OnDestroy {
   ) {
     activatedRoute.params.subscribe(params => {
       this.commonService.routeParam = params.id
-      if (!isNullOrUndefined(params.id1)) {
+      if (!this.commonService.checkNullOrUndefined(params.id1)) {
         this.params = params.id;
       } else {
-        if (!isNullOrUndefined(this.transTableComponent)) {
+        if (!this.commonService.checkNullOrUndefined(this.transTableComponent)) {
           this.transTableComponent.defaultValues();
         }
       }
@@ -52,7 +51,7 @@ export class TransListComponent implements OnInit, OnDestroy {
 
   ngAfterViewInit() {
     //This pieces of code adds dynamic component ( Just trust me for now  )
-    if (!isNullOrUndefined(this.params)) {
+    if (!this.commonService.checkNullOrUndefined(this.params)) {
       let resolver = this.componentFactoryResolver.resolveComponentFactory(this.transListService.getDynComponents(this.params).component);
       this.dynamicTabs.createComponent(resolver);
       this.cdr.detectChanges();

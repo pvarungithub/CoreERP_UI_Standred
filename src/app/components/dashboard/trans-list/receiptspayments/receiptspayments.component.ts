@@ -4,7 +4,7 @@ import { ApiConfigService } from '../../../../services/api-config.service';
 import { String } from 'typescript-string-operations';
 import { ApiService } from '../../../../services/api.service';
 import { StatusCodes, SnackBar } from '../../../../enums/common/common';
-import { isNullOrUndefined } from 'util';
+import { CommonService } from '../../../../services/common.service';
 import { NgxSpinnerService } from 'ngx-spinner';
 import { AddOrEditService } from '../../comp-list/add-or-edit.service';
 import { ActivatedRoute, Router } from '@angular/router';
@@ -44,7 +44,7 @@ export class ReceiptspaymentsComponent implements OnInit {
   purchaseinvoice = [];
   amount = [];
   date = [];
-  constructor(
+  constructor(private commonService: CommonService,
     private formBuilder: FormBuilder,
     private apiConfigService: ApiConfigService,
     private apiService: ApiService,
@@ -54,14 +54,14 @@ export class ReceiptspaymentsComponent implements OnInit {
     public route: ActivatedRoute,
     private router: Router
   ) {
-    if (!isNullOrUndefined(this.route.snapshot.params.value)) {
+    if (!this.commonService.checkNullOrUndefined(this.route.snapshot.params.value)) {
       this.routeEdit = this.route.snapshot.params.value;
     }
   }
 
   onbpChange() {
     this.bpgLists = [];
-    if (!isNullOrUndefined(this.formData.get('bpcategory').value)) {
+    if (!this.commonService.checkNullOrUndefined(this.formData.get('bpcategory').value)) {
       let data = this.bpTypeList.find(res => res.code == this.formData.get('bpcategory').value);
       this.bpgLists = this.bpList.filter(res => res.bptype == data.code);
     }
@@ -175,8 +175,8 @@ export class ReceiptspaymentsComponent implements OnInit {
         response => {
           this.spinner.hide();
           const res = response.body;
-          if (!isNullOrUndefined(res) && res.status === StatusCodes.pass) {
-            if (!isNullOrUndefined(res.response)) {
+          if (!this.commonService.checkNullOrUndefined(res) && res.status === StatusCodes.pass) {
+            if (!this.commonService.checkNullOrUndefined(res.response)) {
               //console.log( res.response['paymentreceiptMasters']);
               //console.log( res.response['paymentreceiptDetail']);
               this.formData.setValue(res.response['paymentreceiptMasters']);
@@ -195,8 +195,8 @@ export class ReceiptspaymentsComponent implements OnInit {
       .subscribe(
         response => {
           const res = response.body;
-          if (!isNullOrUndefined(res) && res.status === StatusCodes.pass) {
-            if (!isNullOrUndefined(res.response)) {
+          if (!this.commonService.checkNullOrUndefined(res) && res.status === StatusCodes.pass) {
+            if (!this.commonService.checkNullOrUndefined(res.response)) {
               this.companyList = res.response['companiesList'];
             }
           }
@@ -210,8 +210,8 @@ export class ReceiptspaymentsComponent implements OnInit {
       .subscribe(
         response => {
           const res = response.body;
-          if (!isNullOrUndefined(res) && res.status === StatusCodes.pass) {
-            if (!isNullOrUndefined(res.response)) {
+          if (!this.commonService.checkNullOrUndefined(res) && res.status === StatusCodes.pass) {
+            if (!this.commonService.checkNullOrUndefined(res.response)) {
               this.branchList = res.response['branchsList'];
             }
           }
@@ -225,8 +225,8 @@ export class ReceiptspaymentsComponent implements OnInit {
       .subscribe(
         response => {
           const res = response.body;
-          if (!isNullOrUndefined(res) && res.status === StatusCodes.pass) {
-            if (!isNullOrUndefined(res.response)) {
+          if (!this.commonService.checkNullOrUndefined(res) && res.status === StatusCodes.pass) {
+            if (!this.commonService.checkNullOrUndefined(res.response)) {
               this.voucherClassList = res.response['vcList'];
             }
           }
@@ -240,8 +240,8 @@ export class ReceiptspaymentsComponent implements OnInit {
       .subscribe(
         response => {
           const res = response.body;
-          if (!isNullOrUndefined(res) && res.status === StatusCodes.pass) {
-            if (!isNullOrUndefined(res.response)) {
+          if (!this.commonService.checkNullOrUndefined(res) && res.status === StatusCodes.pass) {
+            if (!this.commonService.checkNullOrUndefined(res.response)) {
               this.voucherTypeList = res.response['vouchertypeList'];
             }
           }
@@ -255,8 +255,8 @@ export class ReceiptspaymentsComponent implements OnInit {
       .subscribe(
         response => {
           const res = response.body;
-          if (!isNullOrUndefined(res) && res.status === StatusCodes.pass) {
-            if (!isNullOrUndefined(res.response)) {
+          if (!this.commonService.checkNullOrUndefined(res) && res.status === StatusCodes.pass) {
+            if (!this.commonService.checkNullOrUndefined(res.response)) {
               this.accountFilterList = res.response['glList'];
               this.glAccountList = res.response['glList'].filter(resp => resp.taxCategory != 'Cash' || resp.taxCategory != 'Bank' || resp.taxCategory != 'Control Account');
             }
@@ -267,7 +267,7 @@ export class ReceiptspaymentsComponent implements OnInit {
 
   accountSelect() {
     this.accountList = [];
-    if (!isNullOrUndefined(this.formData.get('transactionType').value)) {
+    if (!this.commonService.checkNullOrUndefined(this.formData.get('transactionType').value)) {
       this.accountList = this.accountFilterList.filter(resp => resp.taxCategory == this.formData.get('transactionType').value);
     }
   }
@@ -275,7 +275,7 @@ export class ReceiptspaymentsComponent implements OnInit {
   puchaseinvoiceselect() {
     let data = [];
     let newData = [];
-    if (!isNullOrUndefined(this.formData.get('partyAccount').value)) {
+    if (!this.commonService.checkNullOrUndefined(this.formData.get('partyAccount').value)) {
       data = this.functionaldeptList.filter(resp => resp.id == this.formData.get('partyAccount').value);
     }
     if (data.length) {
@@ -298,8 +298,8 @@ export class ReceiptspaymentsComponent implements OnInit {
       .subscribe(
         response => {
           const res = response.body;
-          if (!isNullOrUndefined(res) && res.status === StatusCodes.pass) {
-            if (!isNullOrUndefined(res.response)) {
+          if (!this.commonService.checkNullOrUndefined(res) && res.status === StatusCodes.pass) {
+            if (!this.commonService.checkNullOrUndefined(res.response)) {
               this.functionaldeptList = res.response['purchaseinvoiceList'];
             }
           }
@@ -313,8 +313,8 @@ export class ReceiptspaymentsComponent implements OnInit {
       .subscribe(
         response => {
           const res = response.body;
-          if (!isNullOrUndefined(res) && res.status === StatusCodes.pass) {
-            if (!isNullOrUndefined(res.response)) {
+          if (!this.commonService.checkNullOrUndefined(res) && res.status === StatusCodes.pass) {
+            if (!this.commonService.checkNullOrUndefined(res.response)) {
               this.taxCodeList = res.response['TaxratesList'];
             }
           }
@@ -328,8 +328,8 @@ export class ReceiptspaymentsComponent implements OnInit {
       .subscribe(
         response => {
           const res = response.body;
-          if (!isNullOrUndefined(res) && res.status === StatusCodes.pass) {
-            if (!isNullOrUndefined(res.response)) {
+          if (!this.commonService.checkNullOrUndefined(res) && res.status === StatusCodes.pass) {
+            if (!this.commonService.checkNullOrUndefined(res.response)) {
               this.profitCenterList = res.response['profitCenterList'];
             }
           }
@@ -343,8 +343,8 @@ export class ReceiptspaymentsComponent implements OnInit {
       .subscribe(
         response => {
           const res = response.body;
-          if (!isNullOrUndefined(res) && res.status === StatusCodes.pass) {
-            if (!isNullOrUndefined(res.response)) {
+          if (!this.commonService.checkNullOrUndefined(res) && res.status === StatusCodes.pass) {
+            if (!this.commonService.checkNullOrUndefined(res.response)) {
               this.segmentList = res.response['segmentList'];
             }
           }
@@ -359,8 +359,8 @@ export class ReceiptspaymentsComponent implements OnInit {
         response => {
           this.spinner.hide();
           const res = response.body;
-          if (!isNullOrUndefined(res) && res.status === StatusCodes.pass) {
-            if (!isNullOrUndefined(res.response)) {
+          if (!this.commonService.checkNullOrUndefined(res) && res.status === StatusCodes.pass) {
+            if (!this.commonService.checkNullOrUndefined(res.response)) {
               this.bpTypeList = res.response['ptypeList'];
             }
           }
@@ -374,8 +374,8 @@ export class ReceiptspaymentsComponent implements OnInit {
       .subscribe(
         response => {
           const res = response.body;
-          if (!isNullOrUndefined(res) && res.status === StatusCodes.pass) {
-            if (!isNullOrUndefined(res.response)) {
+          if (!this.commonService.checkNullOrUndefined(res) && res.status === StatusCodes.pass) {
+            if (!this.commonService.checkNullOrUndefined(res.response)) {
               this.bpList = res.response['bpList'];
             }
           }
@@ -390,8 +390,8 @@ export class ReceiptspaymentsComponent implements OnInit {
         response => {
           this.spinner.hide();
           const res = response.body;
-          if (!isNullOrUndefined(res) && res.status === StatusCodes.pass) {
-            if (!isNullOrUndefined(res.response)) {
+          if (!this.commonService.checkNullOrUndefined(res) && res.status === StatusCodes.pass) {
+            if (!this.commonService.checkNullOrUndefined(res.response)) {
               this.costCenterList = res.response['costcenterList'];
             }
           }
@@ -408,7 +408,7 @@ export class ReceiptspaymentsComponent implements OnInit {
     //alert(this.formData.get('voucherType').value);
     const record = this.voucherTypeList.find(res => res.voucherTypeId == this.formData.get('voucherType').value)
     this.formData.patchValue({
-      voucherClass: !isNullOrUndefined(record) ? record.voucherClass : null
+      voucherClass: !this.commonService.checkNullOrUndefined(record) ? record.voucherClass : null
     })
   }
 
@@ -416,17 +416,17 @@ export class ReceiptspaymentsComponent implements OnInit {
     this.formData.patchValue({
       voucherNumber: null
     })
-    if (!isNullOrUndefined(this.formData.get('voucherType').value)) {
+    if (!this.commonService.checkNullOrUndefined(this.formData.get('voucherType').value)) {
       const voucherNoUrl = String.Join('/', this.apiConfigService.getVoucherNumber, this.formData.get('voucherType').value);
       this.apiService.apiGetRequest(voucherNoUrl)
         .subscribe(
           response => {
             this.spinner.hide();
             const res = response.body;
-            if (!isNullOrUndefined(res) && res.status === StatusCodes.pass) {
-              if (!isNullOrUndefined(res.response)) {
+            if (!this.commonService.checkNullOrUndefined(res) && res.status === StatusCodes.pass) {
+              if (!this.commonService.checkNullOrUndefined(res.response)) {
                 this.formData.patchValue({
-                  voucherNumber: !isNullOrUndefined(res.response['VoucherNumber']) ? res.response['VoucherNumber'] : null
+                  voucherNumber: !this.commonService.checkNullOrUndefined(res.response['VoucherNumber']) ? res.response['VoucherNumber'] : null
                 })
               }
             }
@@ -459,8 +459,8 @@ export class ReceiptspaymentsComponent implements OnInit {
     this.apiService.apiGetRequest(addCashBank).subscribe(
       response => {
         const res = response.body;
-        if (!isNullOrUndefined(res) && res.status === StatusCodes.pass) {
-          if (!isNullOrUndefined(res.response)) {
+        if (!this.commonService.checkNullOrUndefined(res) && res.status === StatusCodes.pass) {
+          if (!this.commonService.checkNullOrUndefined(res.response)) {
             this.alertService.openSnackBar(res.response, Static.Close, SnackBar.success);
           }
           this.spinner.hide();
@@ -483,8 +483,8 @@ export class ReceiptspaymentsComponent implements OnInit {
     this.apiService.apiPostRequest(addCashBank, requestObj).subscribe(
       response => {
         const res = response.body;
-        if (!isNullOrUndefined(res) && res.status === StatusCodes.pass) {
-          if (!isNullOrUndefined(res.response)) {
+        if (!this.commonService.checkNullOrUndefined(res) && res.status === StatusCodes.pass) {
+          if (!this.commonService.checkNullOrUndefined(res.response)) {
             this.alertService.openSnackBar('Payments Receipts created Successfully..', Static.Close, SnackBar.success);
           }
           this.reset();

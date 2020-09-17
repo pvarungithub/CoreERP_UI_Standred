@@ -1,7 +1,7 @@
 import { Component, OnInit } from '@angular/core';
 import { String } from 'typescript-string-operations';
 import { ApiService } from '../../../../services/api.service';
-import { isNullOrUndefined } from 'util';
+import { CommonService } from '../../../../services/common.service';
 import { FormBuilder, FormGroup, Validators } from '@angular/forms';
 import { NgxSpinnerService } from 'ngx-spinner';
 import { ApiConfigService } from '../../../../services/api-config.service';
@@ -37,7 +37,7 @@ export class AssetBegningAcqusitionComponent implements OnInit {
   mamList: any;
   dpareaList: any;
 
-  constructor(
+  constructor(private commonService: CommonService,
     private apiService: ApiService,
     private addOrEditService: AddOrEditService,
     private apiConfigService: ApiConfigService,
@@ -47,7 +47,7 @@ export class AssetBegningAcqusitionComponent implements OnInit {
     private router: Router,
     public route: ActivatedRoute,
   ) {
-    if (!isNullOrUndefined(this.route.snapshot.params.value)) {
+    if (!this.commonService.checkNullOrUndefined(this.route.snapshot.params.value)) {
       this.routeEdit = this.route.snapshot.params.value;
     }
 
@@ -105,8 +105,8 @@ export class AssetBegningAcqusitionComponent implements OnInit {
       .subscribe(
         response => {
           const res = response.body;
-          if (!isNullOrUndefined(res) && res.status === StatusCodes.pass) {
-            if (!isNullOrUndefined(res.response)) {
+          if (!this.commonService.checkNullOrUndefined(res) && res.status === StatusCodes.pass) {
+            if (!this.commonService.checkNullOrUndefined(res.response)) {
               this.dpareaList = res.response['dpareaList'];
 
             }
@@ -124,8 +124,8 @@ export class AssetBegningAcqusitionComponent implements OnInit {
       .subscribe(
         response => {
           const res = response.body;
-          if (!isNullOrUndefined(res) && res.status === StatusCodes.pass) {
-            if (!isNullOrUndefined(res.response)) {
+          if (!this.commonService.checkNullOrUndefined(res) && res.status === StatusCodes.pass) {
+            if (!this.commonService.checkNullOrUndefined(res.response)) {
               this.saList = res.response['saList'];
             }
           }
@@ -138,8 +138,8 @@ export class AssetBegningAcqusitionComponent implements OnInit {
       .subscribe(
         response => {
           const res = response.body;
-          if (!isNullOrUndefined(res) && res.status === StatusCodes.pass) {
-            if (!isNullOrUndefined(res.response)) {
+          if (!this.commonService.checkNullOrUndefined(res) && res.status === StatusCodes.pass) {
+            if (!this.commonService.checkNullOrUndefined(res.response)) {
               this.mamList = res.response['mamList'];
             }
           }
@@ -155,8 +155,8 @@ export class AssetBegningAcqusitionComponent implements OnInit {
         response => {
           this.spinner.hide();
           const res = response.body;
-          if (!isNullOrUndefined(res) && res.status === StatusCodes.pass) {
-            if (!isNullOrUndefined(res.response)) {
+          if (!this.commonService.checkNullOrUndefined(res) && res.status === StatusCodes.pass) {
+            if (!this.commonService.checkNullOrUndefined(res.response)) {
               //console.log(res.response['AqsnMasters']);
               console.log((res.response['AqsnMasters']));
               //console.log((res.response['AqsnDetail']));
@@ -193,8 +193,8 @@ export class AssetBegningAcqusitionComponent implements OnInit {
     this.apiService.apiPostRequest(addCashBank, requestObj).subscribe(
       response => {
         const res = response.body;
-        if (!isNullOrUndefined(res) && res.status === StatusCodes.pass) {
-          if (!isNullOrUndefined(res.response)) {
+        if (!this.commonService.checkNullOrUndefined(res) && res.status === StatusCodes.pass) {
+          if (!this.commonService.checkNullOrUndefined(res.response)) {
             this.alertService.openSnackBar('BeingAcquisition created Successfully..', Static.Close, SnackBar.success);
           }
           this.reset();

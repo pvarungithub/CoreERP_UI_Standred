@@ -1,6 +1,5 @@
 import { Component, OnInit, Input, ViewChild, OnChanges } from '@angular/core';
 import { FormBuilder, FormGroup, Validators } from '@angular/forms';
-import { isNullOrUndefined } from 'util';
 import { MatTableDataSource, MatTable } from '@angular/material/table';
 import { MatPaginator } from '@angular/material/paginator';
 import { MatSort } from '@angular/material/sort';
@@ -74,7 +73,7 @@ export class TransTableComponent implements OnInit {
   }
 
   search() {
-    if (!isNullOrUndefined(this.headerForm.value.selected)) {
+    if (!this.commonService.checkNullOrUndefined(this.headerForm.value.selected)) {
       this.headerForm.patchValue({
         FromDate: this.commonService.formatDate(this.headerForm.value.selected.start._d),
         ToDate: this.commonService.formatDate(this.headerForm.value.selected.end._d)
@@ -95,11 +94,11 @@ export class TransTableComponent implements OnInit {
       response => {
         this.spinner.hide();
         const res = response.body;
-        if (!isNullOrUndefined(res) && res.status === StatusCodes.pass) {
-          if (!isNullOrUndefined(res.response[this.transListService.getDynComponents(this.routeParam).list]) && res.response[this.transListService.getDynComponents(this.routeParam).list].length) {
+        if (!this.commonService.checkNullOrUndefined(res) && res.status === StatusCodes.pass) {
+          if (!this.commonService.checkNullOrUndefined(res.response[this.transListService.getDynComponents(this.routeParam).list]) && res.response[this.transListService.getDynComponents(this.routeParam).list].length) {
             this.tableData = res.response[this.transListService.getDynComponents(this.routeParam).list];
           }
-        } else if (!isNullOrUndefined(res) && res.status === StatusCodes.fail) {
+        } else if (!this.commonService.checkNullOrUndefined(res) && res.status === StatusCodes.fail) {
           this.tableData = [];
         }
         this.tableDataFunc();
@@ -127,17 +126,17 @@ export class TransTableComponent implements OnInit {
     this.highlightedRows = [];
     this.dataSource = new MatTableDataSource();
     
-    if (!isNullOrUndefined(this.tableData)) {
+    if (!this.commonService.checkNullOrUndefined(this.tableData)) {
       if (this.tableData.length) {
         this.dataSource = new MatTableDataSource(this.tableData);
       }
     }
-    if (!isNullOrUndefined(this.dataSource)) {
+    if (!this.commonService.checkNullOrUndefined(this.dataSource)) {
       this.dataSource.paginator = this.paginator;
       this.dataSource.sort = this.sort;
     }
 
-    if (!isNullOrUndefined(this.tableData) && this.tableData.length > 0 && this.routeParam != '') {
+    if (!this.commonService.checkNullOrUndefined(this.tableData) && this.tableData.length > 0 && this.routeParam != '') {
 
       const col = [];
       this.columnDefinitions = [];
@@ -175,11 +174,11 @@ export class TransTableComponent implements OnInit {
   }
 
   formatDate(col) {
-    this.tableData.map(res => !isNullOrUndefined(res[col]) ? res[col] = this.commonService.formatDateValue(res[col]) : '');
+    this.tableData.map(res => !this.commonService.checkNullOrUndefined(res[col]) ? res[col] = this.commonService.formatDateValue(res[col]) : '');
   }
 
   getDisplayedColumns(): string[] {
-    if (!isNullOrUndefined(this.tableData)) {
+    if (!this.commonService.checkNullOrUndefined(this.tableData)) {
       return this.columnDefinitions.filter(cd => cd.hide).map(cd => cd.def);
     }
   }

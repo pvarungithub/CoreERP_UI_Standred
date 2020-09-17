@@ -1,12 +1,12 @@
 import { Component, Inject, Optional, OnInit } from '@angular/core';
 import { MatDialogRef, MAT_DIALOG_DATA } from '@angular/material/dialog';
-import { isNullOrUndefined } from 'util';
+import { CommonService } from '../../../../services/common.service';
 import { StatusCodes } from '../../../../enums/common/common';
 import { FormBuilder, FormGroup, Validators } from '@angular/forms';
 import { NgxSpinnerService } from 'ngx-spinner';
 import { AddOrEditService } from '../add-or-edit.service';
-import { ApiService } from 'src/app/services/api.service';
-import { ApiConfigService } from 'src/app/services/api-config.service';
+import { ApiService } from '../../../../services/api.service';
+import { ApiConfigService } from '../../../../services/api-config.service';
 import { String } from 'typescript-string-operations';
 
 @Component({
@@ -24,7 +24,7 @@ export class AssignmentoftaxaccountstotaxcodesComponent implements OnInit {
   coaList: any;
   glList: any;
 
-  constructor(
+  constructor(private commonService: CommonService,
     private formBuilder: FormBuilder,
     private apiService: ApiService,
     private apiConfigService: ApiConfigService,
@@ -49,7 +49,7 @@ export class AssignmentoftaxaccountstotaxcodesComponent implements OnInit {
     });
 
     this.formData = { ...data };
-    if (!isNullOrUndefined(this.formData.item)) {
+    if (!this.commonService.checkNullOrUndefined(this.formData.item)) {
       this.modelFormData.patchValue(this.formData.item);
       this.modelFormData.controls['code'].disable();
     }
@@ -70,8 +70,8 @@ export class AssignmentoftaxaccountstotaxcodesComponent implements OnInit {
       .subscribe(
         response => {
           const res = response.body;
-          if (!isNullOrUndefined(res) && res.status === StatusCodes.pass) {
-            if (!isNullOrUndefined(res.response)) {
+          if (!this.commonService.checkNullOrUndefined(res) && res.status === StatusCodes.pass) {
+            if (!this.commonService.checkNullOrUndefined(res.response)) {
               this.glList = res.response['glList'];
               // .filter(res => res.taxCategory == 'TAX')
             }
@@ -86,8 +86,8 @@ export class AssignmentoftaxaccountstotaxcodesComponent implements OnInit {
       .subscribe(
         response => {
           const res = response.body;
-          if (!isNullOrUndefined(res) && res.status === StatusCodes.pass) {
-            if (!isNullOrUndefined(res.response)) {
+          if (!this.commonService.checkNullOrUndefined(res) && res.status === StatusCodes.pass) {
+            if (!this.commonService.checkNullOrUndefined(res.response)) {
               this.TaxTypeList = res.response['TaxratesList'];
             }
           }
@@ -101,8 +101,8 @@ export class AssignmentoftaxaccountstotaxcodesComponent implements OnInit {
       .subscribe(
         response => {
           const res = response.body;
-          if (!isNullOrUndefined(res) && res.status === StatusCodes.pass) {
-            if (!isNullOrUndefined(res.response)) {
+          if (!this.commonService.checkNullOrUndefined(res) && res.status === StatusCodes.pass) {
+            if (!this.commonService.checkNullOrUndefined(res.response)) {
               this.compList = res.response['companiesList'];
             }
           }
@@ -116,8 +116,8 @@ export class AssignmentoftaxaccountstotaxcodesComponent implements OnInit {
       .subscribe(
         response => {
           const res = response.body;
-          if (!isNullOrUndefined(res) && res.status === StatusCodes.pass) {
-            if (!isNullOrUndefined(res.response)) {
+          if (!this.commonService.checkNullOrUndefined(res) && res.status === StatusCodes.pass) {
+            if (!this.commonService.checkNullOrUndefined(res.response)) {
               this.branchList = res.response['branchsList'];
             }
           }
@@ -131,8 +131,8 @@ export class AssignmentoftaxaccountstotaxcodesComponent implements OnInit {
       .subscribe(
         response => {
           const res = response.body;
-          if (!isNullOrUndefined(res) && res.status === StatusCodes.pass) {
-            if (!isNullOrUndefined(res.response)) {
+          if (!this.commonService.checkNullOrUndefined(res) && res.status === StatusCodes.pass) {
+            if (!this.commonService.checkNullOrUndefined(res.response)) {
               this.plantList = res.response['plantsList'];
             }
           }
@@ -146,8 +146,8 @@ export class AssignmentoftaxaccountstotaxcodesComponent implements OnInit {
       .subscribe(
         response => {
           const res = response.body;
-          if (!isNullOrUndefined(res) && res.status === StatusCodes.pass) {
-            if (!isNullOrUndefined(res.response)) {
+          if (!this.commonService.checkNullOrUndefined(res) && res.status === StatusCodes.pass) {
+            if (!this.commonService.checkNullOrUndefined(res.response)) {
               this.coaList = res.response['coaList'];
             }
           }

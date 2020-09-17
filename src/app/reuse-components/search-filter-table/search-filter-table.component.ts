@@ -1,7 +1,7 @@
 import { Component, Inject, Optional, OnInit, OnChanges, ViewChild, AfterViewInit, ChangeDetectorRef } from '@angular/core';
 import { MatDialogRef, MAT_DIALOG_DATA } from '@angular/material/dialog';
 import { MatSelect } from '@angular/material/select';
-import { isNullOrUndefined } from 'util';
+import { CommonService } from '../../services/common.service';
 import { FormGroup, FormControl, AbstractControl } from '@angular/forms';
 import { ReplaySubject, Subject } from 'rxjs';
 import { take, takeUntil } from 'rxjs/operators';
@@ -36,6 +36,7 @@ export class SearchFilterTableComponent implements OnInit, OnChanges, AfterViewI
 
 
   constructor(
+    private commonService: CommonService,
     public dialogRef: MatDialogRef<SearchFilterTableComponent>,
     // @Optional() is used to prevent error if no data is passed
     @Optional() @Inject(MAT_DIALOG_DATA) public data: any,
@@ -49,7 +50,7 @@ export class SearchFilterTableComponent implements OnInit, OnChanges, AfterViewI
 
   ngOnInit() {
 
-    if (!isNullOrUndefined(this.tableData)) {
+    if (!this.commonService.checkNullOrUndefined(this.tableData)) {
 
       // tslint:disable-next-line:forin
       // for (const key in this.tableData[0]) {
@@ -71,7 +72,7 @@ export class SearchFilterTableComponent implements OnInit, OnChanges, AfterViewI
       // });
     }
 
-    if (!isNullOrUndefined(this.tableData)) {
+    if (!this.commonService.checkNullOrUndefined(this.tableData)) {
       this.filteredTableMulti.next(this.columnDefinitions.slice());
 
       this.tableMultiFilterCtrl.valueChanges

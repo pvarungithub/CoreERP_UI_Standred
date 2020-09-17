@@ -1,7 +1,7 @@
 import { Component, OnInit } from '@angular/core';
 import { ApiService } from '../../../../services/api.service';
 import { String } from 'typescript-string-operations';
-import { isNullOrUndefined } from 'util';
+import { CommonService } from '../../../../services/common.service';
 import { FormBuilder, FormGroup, Validators } from '@angular/forms';
 import { NgxSpinnerService } from 'ngx-spinner';
 import { ApiConfigService } from '../../../../services/api-config.service';
@@ -9,7 +9,6 @@ import { StatusCodes } from '../../../../enums/common/common';
 import { AddOrEditService } from '../add-or-edit.service';
 import { AlertService } from '../../../../services/alert.service';
 import { ActivatedRoute, Router } from '@angular/router';
-import { CommonService } from '../../../../services/common.service';
 import { Static } from '../../../../enums/common/static';
 import { SnackBar } from '../../../../enums/common/common';
 
@@ -92,7 +91,7 @@ export class PaymentTermsComponent implements OnInit {
     private commonService: CommonService
   ) {
 
-    if (!isNullOrUndefined(this.route.snapshot.params.value)) {
+    if (!this.commonService.checkNullOrUndefined(this.route.snapshot.params.value)) {
       this.routeEdit = this.route.snapshot.params.value;
     }
 
@@ -126,8 +125,8 @@ export class PaymentTermsComponent implements OnInit {
         response => {
           this.spinner.hide();
           const res = response.body;
-          if (!isNullOrUndefined(res) && res.status === StatusCodes.pass) {
-            if (!isNullOrUndefined(res.response)) {
+          if (!this.commonService.checkNullOrUndefined(res) && res.status === StatusCodes.pass) {
+            if (!this.commonService.checkNullOrUndefined(res.response)) {
               this.modelFormData.setValue(res.response['PaymentTermMasters']);
               this.addOrEditService.sendDynTableData(res.response['PaymentTermDetail']);
               //this.modelFormData.disable();
@@ -169,8 +168,8 @@ export class PaymentTermsComponent implements OnInit {
     this.apiService.apiPostRequest(addCashBank, requestObj).subscribe(
       response => {
         const res = response.body;
-        if (!isNullOrUndefined(res) && res.status === StatusCodes.pass) {
-          if (!isNullOrUndefined(res.response)) {
+        if (!this.commonService.checkNullOrUndefined(res) && res.status === StatusCodes.pass) {
+          if (!this.commonService.checkNullOrUndefined(res.response)) {
             this.alertService.openSnackBar('paymentterms created Successfully..', Static.Close, SnackBar.success);
           }
           this.reset();

@@ -1,7 +1,7 @@
 import { Component, OnInit, OnDestroy } from '@angular/core';
 import { String } from 'typescript-string-operations';
 import { ApiService } from '../../../../services/api.service';
-import { isNullOrUndefined } from 'util';
+import { CommonService } from '../../../../services/common.service';
 import { FormBuilder, FormGroup, Validators } from '@angular/forms';
 import { NgxSpinnerService } from 'ngx-spinner';
 import { ApiConfigService } from '../../../../services/api-config.service';
@@ -45,7 +45,7 @@ export class BusienessPartnerAccountComponent implements OnInit, OnDestroy {
       { value: 'UnRegistered', viewValue: 'UnRegistered' }
     ];
 
-  constructor(
+  constructor(private commonService: CommonService,
     private apiService: ApiService,
     private addOrEditService: AddOrEditService,
     private apiConfigService: ApiConfigService,
@@ -98,7 +98,7 @@ export class BusienessPartnerAccountComponent implements OnInit, OnDestroy {
     });
 
     this.formData = { ...this.addOrEditService.editData };
-    if (!isNullOrUndefined(this.formData.item)) {
+    if (!this.commonService.checkNullOrUndefined(this.formData.item)) {
       this.modelFormData.patchValue(this.formData.item);
     }
   }
@@ -133,8 +133,8 @@ export class BusienessPartnerAccountComponent implements OnInit, OnDestroy {
       .subscribe(
         response => {
           const res = response.body;
-          if (!isNullOrUndefined(res) && res.status === StatusCodes.pass) {
-            if (!isNullOrUndefined(res.response)) {
+          if (!this.commonService.checkNullOrUndefined(res) && res.status === StatusCodes.pass) {
+            if (!this.commonService.checkNullOrUndefined(res.response)) {
             }
           }
           this.spinner.hide();
@@ -149,8 +149,8 @@ export class BusienessPartnerAccountComponent implements OnInit, OnDestroy {
       .subscribe(
         response => {
           const res = response.body;
-          if (!isNullOrUndefined(res) && res.status === StatusCodes.pass) {
-            if (!isNullOrUndefined(res.response)) {
+          if (!this.commonService.checkNullOrUndefined(res) && res.status === StatusCodes.pass) {
+            if (!this.commonService.checkNullOrUndefined(res.response)) {
               this.bpname = res.response['bpname'];
               this.modelFormData.patchValue({
                 ext: this.bpname
@@ -169,8 +169,8 @@ export class BusienessPartnerAccountComponent implements OnInit, OnDestroy {
       .subscribe(
         response => {
           const res = response.body;
-          if (!isNullOrUndefined(res) && res.status === StatusCodes.pass) {
-            if (!isNullOrUndefined(res.response)) {
+          if (!this.commonService.checkNullOrUndefined(res) && res.status === StatusCodes.pass) {
+            if (!this.commonService.checkNullOrUndefined(res.response)) {
 
               this.bpaNum = res.response['bpaNum'];
               this.modelFormData.patchValue({
@@ -188,8 +188,8 @@ export class BusienessPartnerAccountComponent implements OnInit, OnDestroy {
       .subscribe(
         response => {
           const res = response.body;
-          if (!isNullOrUndefined(res) && res.status === StatusCodes.pass) {
-            if (!isNullOrUndefined(res.response)) {
+          if (!this.commonService.checkNullOrUndefined(res) && res.status === StatusCodes.pass) {
+            if (!this.commonService.checkNullOrUndefined(res.response)) {
               this.glList = res.response['glList'];
             }
           }
@@ -203,8 +203,8 @@ export class BusienessPartnerAccountComponent implements OnInit, OnDestroy {
       .subscribe(
         response => {
           const res = response.body;
-          if (!isNullOrUndefined(res) && res.status === StatusCodes.pass) {
-            if (!isNullOrUndefined(res.response)) {
+          if (!this.commonService.checkNullOrUndefined(res) && res.status === StatusCodes.pass) {
+            if (!this.commonService.checkNullOrUndefined(res.response)) {
               this.companyList = res.response['companiesList'];
             }
           }
@@ -218,8 +218,8 @@ export class BusienessPartnerAccountComponent implements OnInit, OnDestroy {
       .subscribe(
         response => {
           const res = response.body;
-          if (!isNullOrUndefined(res) && res.status === StatusCodes.pass) {
-            if (!isNullOrUndefined(res.response)) {
+          if (!this.commonService.checkNullOrUndefined(res) && res.status === StatusCodes.pass) {
+            if (!this.commonService.checkNullOrUndefined(res.response)) {
               this.tdsList = res.response['tdsList'];
             }
           }
@@ -233,8 +233,8 @@ export class BusienessPartnerAccountComponent implements OnInit, OnDestroy {
       .subscribe(
         response => {
           const res = response.body;
-          if (!isNullOrUndefined(res) && res.status === StatusCodes.pass) {
-            if (!isNullOrUndefined(res.response)) {
+          if (!this.commonService.checkNullOrUndefined(res) && res.status === StatusCodes.pass) {
+            if (!this.commonService.checkNullOrUndefined(res.response)) {
               this.tdsratesList = res.response['tdsratesList'];
             }
           }
@@ -248,8 +248,8 @@ export class BusienessPartnerAccountComponent implements OnInit, OnDestroy {
       .subscribe(
         response => {
           const res = response.body;
-          if (!isNullOrUndefined(res) && res.status === StatusCodes.pass) {
-            if (!isNullOrUndefined(res.response)) {
+          if (!this.commonService.checkNullOrUndefined(res) && res.status === StatusCodes.pass) {
+            if (!this.commonService.checkNullOrUndefined(res.response)) {
               this.bpgList = res.response['bpgList'];
             }
           }
@@ -263,8 +263,8 @@ export class BusienessPartnerAccountComponent implements OnInit, OnDestroy {
       .subscribe(
         response => {
           const res = response.body;
-          if (!isNullOrUndefined(res) && res.status === StatusCodes.pass) {
-            if (!isNullOrUndefined(res.response)) {
+          if (!this.commonService.checkNullOrUndefined(res) && res.status === StatusCodes.pass) {
+            if (!this.commonService.checkNullOrUndefined(res.response)) {
               this.ptermsList = res.response['ptermsList'];
             }
           }
@@ -278,8 +278,8 @@ export class BusienessPartnerAccountComponent implements OnInit, OnDestroy {
       .subscribe(
         response => {
           const res = response.body;
-          if (!isNullOrUndefined(res) && res.status === StatusCodes.pass) {
-            if (!isNullOrUndefined(res.response)) {
+          if (!this.commonService.checkNullOrUndefined(res) && res.status === StatusCodes.pass) {
+            if (!this.commonService.checkNullOrUndefined(res.response)) {
               this.regionsList = res.response['RegionList'];
             }
           }
@@ -293,8 +293,8 @@ export class BusienessPartnerAccountComponent implements OnInit, OnDestroy {
       .subscribe(
         response => {
           const res = response.body;
-          if (!isNullOrUndefined(res) && res.status === StatusCodes.pass) {
-            if (!isNullOrUndefined(res.response)) {
+          if (!this.commonService.checkNullOrUndefined(res) && res.status === StatusCodes.pass) {
+            if (!this.commonService.checkNullOrUndefined(res.response)) {
               this.countrysList = res.response['CountryList'];
             }
           }
@@ -308,8 +308,8 @@ export class BusienessPartnerAccountComponent implements OnInit, OnDestroy {
       .subscribe(
         response => {
           const res = response.body;
-          if (!isNullOrUndefined(res) && res.status === StatusCodes.pass) {
-            if (!isNullOrUndefined(res.response)) {
+          if (!this.commonService.checkNullOrUndefined(res) && res.status === StatusCodes.pass) {
+            if (!this.commonService.checkNullOrUndefined(res.response)) {
               this.stateList = res.response['StatesList'];
             }
           }
@@ -323,8 +323,8 @@ export class BusienessPartnerAccountComponent implements OnInit, OnDestroy {
       .subscribe(
         response => {
           const res = response.body;
-          if (!isNullOrUndefined(res) && res.status === StatusCodes.pass) {
-            if (!isNullOrUndefined(res.response)) {
+          if (!this.commonService.checkNullOrUndefined(res) && res.status === StatusCodes.pass) {
+            if (!this.commonService.checkNullOrUndefined(res.response)) {
               this.ptypeList = res.response['ptypeList'];
             }
           }
@@ -338,8 +338,8 @@ export class BusienessPartnerAccountComponent implements OnInit, OnDestroy {
       .subscribe(
         response => {
           const res = response.body;
-          if (!isNullOrUndefined(res) && res.status === StatusCodes.pass) {
-            if (!isNullOrUndefined(res.response)) {
+          if (!this.commonService.checkNullOrUndefined(res) && res.status === StatusCodes.pass) {
+            if (!this.commonService.checkNullOrUndefined(res.response)) {
               this.employeesList = res.response['employeesList'];
             }
           }

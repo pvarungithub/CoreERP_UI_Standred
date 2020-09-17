@@ -4,7 +4,7 @@ import { ApiConfigService } from '../../../../services/api-config.service';
 import { String } from 'typescript-string-operations';
 import { ApiService } from '../../../../services/api.service';
 import { StatusCodes, SnackBar } from '../../../../enums/common/common';
-import { isNullOrUndefined } from 'util';
+import { CommonService } from '../../../../services/common.service';
 import { NgxSpinnerService } from 'ngx-spinner';
 import { AddOrEditService } from '../../comp-list/add-or-edit.service';
 import { ActivatedRoute, Router } from '@angular/router';
@@ -55,7 +55,7 @@ export class SaleassetComponent implements OnInit {
   assetbgnaqsnList: any;
   assetbgnaqsndetailsList: any;
 
-  constructor(
+  constructor(private commonService: CommonService,
     private formBuilder: FormBuilder,
     private apiConfigService: ApiConfigService,
     private apiService: ApiService,
@@ -65,14 +65,14 @@ export class SaleassetComponent implements OnInit {
     public route: ActivatedRoute,
     private router: Router
   ) {
-    if (!isNullOrUndefined(this.route.snapshot.params.value)) {
+    if (!this.commonService.checkNullOrUndefined(this.route.snapshot.params.value)) {
       this.routeEdit = this.route.snapshot.params.value;
     }
   }
 
   onbpChange() {
     this.bpgLists = [];
-    if (!isNullOrUndefined(this.formData.get('bpcategory').value)) {
+    if (!this.commonService.checkNullOrUndefined(this.formData.get('bpcategory').value)) {
       let data = this.bpTypeList.find(res => res.code == this.formData.get('bpcategory').value);
       this.bpgLists = this.bpList.filter(res => res.bptype == data.code);
     }
@@ -158,7 +158,7 @@ export class SaleassetComponent implements OnInit {
 
   accountSelect() {
     //this.vouchersTypeList = [];
-    // if (!isNullOrUndefined(this.formData.get('assetTransactionType').value)) {
+    // if (!this.commonService.checkNullOrUndefined(this.formData.get('assetTransactionType').value)) {
     // }
     //this.vouchersTypeList = this.voucherTypeList.filter(resp => resp.voucherNature == this.formData.get('assetTransactionType').value);
   }
@@ -170,8 +170,8 @@ export class SaleassetComponent implements OnInit {
         response => {
           this.spinner.hide();
           const res = response.body;
-          if (!isNullOrUndefined(res) && res.status === StatusCodes.pass) {
-            if (!isNullOrUndefined(res.response)) {
+          if (!this.commonService.checkNullOrUndefined(res) && res.status === StatusCodes.pass) {
+            if (!this.commonService.checkNullOrUndefined(res.response)) {
               this.formData.setValue(res.response['assettransferMasters']);
               this.addOrEditService.sendDynTableData({ type: 'edit', data: res.response['assettransferDetail'] });
               this.formData.disable();
@@ -186,8 +186,8 @@ export class SaleassetComponent implements OnInit {
       .subscribe(
         response => {
           const res = response.body;
-          if (!isNullOrUndefined(res) && res.status === StatusCodes.pass) {
-            if (!isNullOrUndefined(res.response)) {
+          if (!this.commonService.checkNullOrUndefined(res) && res.status === StatusCodes.pass) {
+            if (!this.commonService.checkNullOrUndefined(res.response)) {
               this.companyList = res.response['companiesList'];
             }
           }
@@ -201,8 +201,8 @@ export class SaleassetComponent implements OnInit {
       .subscribe(
         response => {
           const res = response.body;
-          if (!isNullOrUndefined(res) && res.status === StatusCodes.pass) {
-            if (!isNullOrUndefined(res.response)) {
+          if (!this.commonService.checkNullOrUndefined(res) && res.status === StatusCodes.pass) {
+            if (!this.commonService.checkNullOrUndefined(res.response)) {
               this.branchList = res.response['branchsList'];
             }
           }
@@ -216,8 +216,8 @@ export class SaleassetComponent implements OnInit {
       .subscribe(
         response => {
           const res = response.body;
-          if (!isNullOrUndefined(res) && res.status === StatusCodes.pass) {
-            if (!isNullOrUndefined(res.response)) {
+          if (!this.commonService.checkNullOrUndefined(res) && res.status === StatusCodes.pass) {
+            if (!this.commonService.checkNullOrUndefined(res.response)) {
               this.voucherTypeList = res.response['vouchertypeList'];
             }
           }
@@ -231,8 +231,8 @@ export class SaleassetComponent implements OnInit {
       .subscribe(
         response => {
           const res = response.body;
-          if (!isNullOrUndefined(res) && res.status === StatusCodes.pass) {
-            if (!isNullOrUndefined(res.response)) {
+          if (!this.commonService.checkNullOrUndefined(res) && res.status === StatusCodes.pass) {
+            if (!this.commonService.checkNullOrUndefined(res.response)) {
               this.assetbgnaqsnList = res.response['assetbgnaqsnList'];
               // this.glAccountList = res.response['glList'].filter(resp => resp.taxCategory != 'Cash' || resp.taxCategory != 'Bank' || resp.taxCategory != 'Control Account');
             }
@@ -247,8 +247,8 @@ export class SaleassetComponent implements OnInit {
       .subscribe(
         response => {
           const res = response.body;
-          if (!isNullOrUndefined(res) && res.status === StatusCodes.pass) {
-            if (!isNullOrUndefined(res.response)) {
+          if (!this.commonService.checkNullOrUndefined(res) && res.status === StatusCodes.pass) {
+            if (!this.commonService.checkNullOrUndefined(res.response)) {
               this.assetbgnaqsndetailsList = res.response['assetbgnaqsndetailsList'];
             }
           }
@@ -262,8 +262,8 @@ export class SaleassetComponent implements OnInit {
       .subscribe(
         response => {
           const res = response.body;
-          if (!isNullOrUndefined(res) && res.status === StatusCodes.pass) {
-            if (!isNullOrUndefined(res.response)) {
+          if (!this.commonService.checkNullOrUndefined(res) && res.status === StatusCodes.pass) {
+            if (!this.commonService.checkNullOrUndefined(res.response)) {
               this.profitCenterList = res.response['profitCenterList'];
             }
           }
@@ -277,8 +277,8 @@ export class SaleassetComponent implements OnInit {
       .subscribe(
         response => {
           const res = response.body;
-          if (!isNullOrUndefined(res) && res.status === StatusCodes.pass) {
-            if (!isNullOrUndefined(res.response)) {
+          if (!this.commonService.checkNullOrUndefined(res) && res.status === StatusCodes.pass) {
+            if (!this.commonService.checkNullOrUndefined(res.response)) {
               this.btList = res.response['bpttList'];
             }
           }
@@ -292,8 +292,8 @@ export class SaleassetComponent implements OnInit {
       .subscribe(
         response => {
           const res = response.body;
-          if (!isNullOrUndefined(res) && res.status === StatusCodes.pass) {
-            if (!isNullOrUndefined(res.response)) {
+          if (!this.commonService.checkNullOrUndefined(res) && res.status === StatusCodes.pass) {
+            if (!this.commonService.checkNullOrUndefined(res.response)) {
               this.segmentList = res.response['segmentList'];
             }
           }
@@ -307,8 +307,8 @@ export class SaleassetComponent implements OnInit {
       .subscribe(
         response => {
           const res = response.body;
-          if (!isNullOrUndefined(res) && res.status === StatusCodes.pass) {
-            if (!isNullOrUndefined(res.response)) {
+          if (!this.commonService.checkNullOrUndefined(res) && res.status === StatusCodes.pass) {
+            if (!this.commonService.checkNullOrUndefined(res.response)) {
               this.functionaldeptList = res.response['fdeptList'];
             }
           }
@@ -322,8 +322,8 @@ export class SaleassetComponent implements OnInit {
       .subscribe(
         response => {
           const res = response.body;
-          if (!isNullOrUndefined(res) && res.status === StatusCodes.pass) {
-            if (!isNullOrUndefined(res.response)) {
+          if (!this.commonService.checkNullOrUndefined(res) && res.status === StatusCodes.pass) {
+            if (!this.commonService.checkNullOrUndefined(res.response)) {
               this.bpTypeList = res.response['ptypeList'];
 
             }
@@ -338,8 +338,8 @@ export class SaleassetComponent implements OnInit {
       .subscribe(
         response => {
           const res = response.body;
-          if (!isNullOrUndefined(res) && res.status === StatusCodes.pass) {
-            if (!isNullOrUndefined(res.response)) {
+          if (!this.commonService.checkNullOrUndefined(res) && res.status === StatusCodes.pass) {
+            if (!this.commonService.checkNullOrUndefined(res.response)) {
               this.bpList = res.response['bpList'];
 
             }
@@ -354,8 +354,8 @@ export class SaleassetComponent implements OnInit {
       .subscribe(
         response => {
           const res = response.body;
-          if (!isNullOrUndefined(res) && res.status === StatusCodes.pass) {
-            if (!isNullOrUndefined(res.response)) {
+          if (!this.commonService.checkNullOrUndefined(res) && res.status === StatusCodes.pass) {
+            if (!this.commonService.checkNullOrUndefined(res.response)) {
               this.ptermsList = res.response['ptermsList'];
             }
           }
@@ -369,8 +369,8 @@ export class SaleassetComponent implements OnInit {
       .subscribe(
         response => {
           const res = response.body;
-          if (!isNullOrUndefined(res) && res.status === StatusCodes.pass) {
-            if (!isNullOrUndefined(res.response)) {
+          if (!this.commonService.checkNullOrUndefined(res) && res.status === StatusCodes.pass) {
+            if (!this.commonService.checkNullOrUndefined(res.response)) {
               this.mamList = res.response['mamList'];
             }
           }
@@ -384,8 +384,8 @@ export class SaleassetComponent implements OnInit {
       .subscribe(
         response => {
           const res = response.body;
-          if (!isNullOrUndefined(res) && res.status === StatusCodes.pass) {
-            if (!isNullOrUndefined(res.response)) {
+          if (!this.commonService.checkNullOrUndefined(res) && res.status === StatusCodes.pass) {
+            if (!this.commonService.checkNullOrUndefined(res.response)) {
               this.saList = res.response['saList'];
             }
           }
@@ -400,8 +400,8 @@ export class SaleassetComponent implements OnInit {
         response => {
           this.spinner.hide();
           const res = response.body;
-          if (!isNullOrUndefined(res) && res.status === StatusCodes.pass) {
-            if (!isNullOrUndefined(res.response)) {
+          if (!this.commonService.checkNullOrUndefined(res) && res.status === StatusCodes.pass) {
+            if (!this.commonService.checkNullOrUndefined(res.response)) {
               this.costCenterList = res.response['costcenterList'];
 
             }
@@ -416,7 +416,7 @@ export class SaleassetComponent implements OnInit {
   voucherTypeSelect() {
     const record = this.voucherTypeList.find(res => res.id == this.formData.get('voucherClass').value)
     this.formData.patchValue({
-      voucherClass: !isNullOrUndefined(record) ? record.voucherClass : null
+      voucherClass: !this.commonService.checkNullOrUndefined(record) ? record.voucherClass : null
     })
   }
 
@@ -425,17 +425,17 @@ export class SaleassetComponent implements OnInit {
       voucherNumber: null
     })
 
-    if (!isNullOrUndefined(this.formData.get('voucherType').value)) {
+    if (!this.commonService.checkNullOrUndefined(this.formData.get('voucherType').value)) {
       const voucherNoUrl = String.Join('/', this.apiConfigService.getVoucherNumber, this.formData.get('voucherType').value);
       this.apiService.apiGetRequest(voucherNoUrl)
         .subscribe(
           response => {
             this.spinner.hide();
             const res = response.body;
-            if (!isNullOrUndefined(res) && res.status === StatusCodes.pass) {
-              if (!isNullOrUndefined(res.response)) {
+            if (!this.commonService.checkNullOrUndefined(res) && res.status === StatusCodes.pass) {
+              if (!this.commonService.checkNullOrUndefined(res.response)) {
                 this.formData.patchValue({
-                  voucherNumber: !isNullOrUndefined(res.response['VoucherNumber']) ? res.response['VoucherNumber'] : null
+                  voucherNumber: !this.commonService.checkNullOrUndefined(res.response['VoucherNumber']) ? res.response['VoucherNumber'] : null
                 })
               }
             }
@@ -451,7 +451,7 @@ export class SaleassetComponent implements OnInit {
     debugger;
     if (row.column == 'acquisitionValue') {
       const code = row.data[row.index]['acquisitionValue'].list.find(res => res.code == row.data[row.index]['acquisitionValue'].value);
-      if (!isNullOrUndefined(code)) {
+      if (!this.commonService.checkNullOrUndefined(code)) {
         row.data[row.index].rate.value = code.rate;
         this.addOrEditService.sendDynTableData({ type: 'add', data: row.data });
       }
@@ -478,8 +478,8 @@ export class SaleassetComponent implements OnInit {
     this.apiService.apiGetRequest(addPSIMAsset).subscribe(
       response => {
         const res = response.body;
-        if (!isNullOrUndefined(res) && res.status === StatusCodes.pass) {
-          if (!isNullOrUndefined(res.response)) {
+        if (!this.commonService.checkNullOrUndefined(res) && res.status === StatusCodes.pass) {
+          if (!this.commonService.checkNullOrUndefined(res.response)) {
             this.alertService.openSnackBar(res.response, Static.Close, SnackBar.success);
           }
           this.spinner.hide();
@@ -501,8 +501,8 @@ export class SaleassetComponent implements OnInit {
     this.apiService.apiPostRequest(addPSIMAsset, requestObj).subscribe(
       response => {
         const res = response.body;
-        if (!isNullOrUndefined(res) && res.status === StatusCodes.pass) {
-          if (!isNullOrUndefined(res.response)) {
+        if (!this.commonService.checkNullOrUndefined(res) && res.status === StatusCodes.pass) {
+          if (!this.commonService.checkNullOrUndefined(res.response)) {
             this.alertService.openSnackBar('Asset Transfer Successfully..', Static.Close, SnackBar.success);
           }
           this.reset();

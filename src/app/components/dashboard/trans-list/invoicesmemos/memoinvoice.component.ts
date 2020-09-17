@@ -4,7 +4,7 @@ import { ApiConfigService } from '../../../../services/api-config.service';
 import { String } from 'typescript-string-operations';
 import { ApiService } from '../../../../services/api.service';
 import { StatusCodes, SnackBar } from '../../../../enums/common/common';
-import { isNullOrUndefined } from 'util';
+import { CommonService } from '../../../../services/common.service';
 import { NgxSpinnerService } from 'ngx-spinner';
 import { AddOrEditService } from '../../comp-list/add-or-edit.service';
 import { ActivatedRoute, Router } from '@angular/router';
@@ -52,7 +52,7 @@ export class MemoinvoiceComponent implements OnInit {
   taxAmount = [];
   totalAmount = [];
 
-  constructor(
+  constructor(private commonService: CommonService,
     private formBuilder: FormBuilder,
     private apiConfigService: ApiConfigService,
     private apiService: ApiService,
@@ -62,13 +62,13 @@ export class MemoinvoiceComponent implements OnInit {
     public route: ActivatedRoute,
     private router: Router
   ) {
-    if (!isNullOrUndefined(this.route.snapshot.params.value)) {
+    if (!this.commonService.checkNullOrUndefined(this.route.snapshot.params.value)) {
       this.routeEdit = this.route.snapshot.params.value;
     }
   }
   onbpChange() {
     this.bpgLists = [];
-    if (!isNullOrUndefined(this.formData.get('bpcategory').value)) {
+    if (!this.commonService.checkNullOrUndefined(this.formData.get('bpcategory').value)) {
       let data = this.bpTypeList.find(res => res.code == this.formData.get('bpcategory').value);
       this.bpgLists = this.bpList.filter(res => res.bptype == data.code);
     }
@@ -199,7 +199,7 @@ export class MemoinvoiceComponent implements OnInit {
   }
   accountSelect() {
     this.vouchersTypeList = [];
-    if (!isNullOrUndefined(this.formData.get('transactionType').value)) {
+    if (!this.commonService.checkNullOrUndefined(this.formData.get('transactionType').value)) {
     }
     this.vouchersTypeList = this.voucherTypeList.filter(resp => resp.voucherNature == this.formData.get('transactionType').value);
   }
@@ -210,8 +210,8 @@ export class MemoinvoiceComponent implements OnInit {
         response => {
           this.spinner.hide();
           const res = response.body;
-          if (!isNullOrUndefined(res) && res.status === StatusCodes.pass) {
-            if (!isNullOrUndefined(res.response)) {
+          if (!this.commonService.checkNullOrUndefined(res) && res.status === StatusCodes.pass) {
+            if (!this.commonService.checkNullOrUndefined(res.response)) {
               this.formData.setValue(res.response['imMasters']);
               this.addOrEditService.sendDynTableData({ type: 'edit', data: res.response['ImDetail'] });
               this.formData.disable();
@@ -226,8 +226,8 @@ export class MemoinvoiceComponent implements OnInit {
       .subscribe(
         response => {
           const res = response.body;
-          if (!isNullOrUndefined(res) && res.status === StatusCodes.pass) {
-            if (!isNullOrUndefined(res.response)) {
+          if (!this.commonService.checkNullOrUndefined(res) && res.status === StatusCodes.pass) {
+            if (!this.commonService.checkNullOrUndefined(res.response)) {
               this.companyList = res.response['companiesList'];
             }
           }
@@ -241,8 +241,8 @@ export class MemoinvoiceComponent implements OnInit {
       .subscribe(
         response => {
           const res = response.body;
-          if (!isNullOrUndefined(res) && res.status === StatusCodes.pass) {
-            if (!isNullOrUndefined(res.response)) {
+          if (!this.commonService.checkNullOrUndefined(res) && res.status === StatusCodes.pass) {
+            if (!this.commonService.checkNullOrUndefined(res.response)) {
               this.branchList = res.response['branchsList'];
             }
           }
@@ -256,8 +256,8 @@ export class MemoinvoiceComponent implements OnInit {
       .subscribe(
         response => {
           const res = response.body;
-          if (!isNullOrUndefined(res) && res.status === StatusCodes.pass) {
-            if (!isNullOrUndefined(res.response)) {
+          if (!this.commonService.checkNullOrUndefined(res) && res.status === StatusCodes.pass) {
+            if (!this.commonService.checkNullOrUndefined(res.response)) {
               this.voucherTypeList = res.response['vouchertypeList'];
             }
           }
@@ -271,8 +271,8 @@ export class MemoinvoiceComponent implements OnInit {
       .subscribe(
         response => {
           const res = response.body;
-          if (!isNullOrUndefined(res) && res.status === StatusCodes.pass) {
-            if (!isNullOrUndefined(res.response)) {
+          if (!this.commonService.checkNullOrUndefined(res) && res.status === StatusCodes.pass) {
+            if (!this.commonService.checkNullOrUndefined(res.response)) {
               this.accountList = res.response['glList'].filter(resp => resp.taxCategory == 'Cash' || resp.taxCategory == 'Bank');
               this.glAccountList = res.response['glList'].filter(resp => resp.taxCategory != 'Cash' || resp.taxCategory != 'Bank' || resp.taxCategory != 'Control Account');
             }
@@ -287,8 +287,8 @@ export class MemoinvoiceComponent implements OnInit {
       .subscribe(
         response => {
           const res = response.body;
-          if (!isNullOrUndefined(res) && res.status === StatusCodes.pass) {
-            if (!isNullOrUndefined(res.response)) {
+          if (!this.commonService.checkNullOrUndefined(res) && res.status === StatusCodes.pass) {
+            if (!this.commonService.checkNullOrUndefined(res.response)) {
               this.taxCodeList = res.response['TaxratesList'];
             }
           }
@@ -302,8 +302,8 @@ export class MemoinvoiceComponent implements OnInit {
       .subscribe(
         response => {
           const res = response.body;
-          if (!isNullOrUndefined(res) && res.status === StatusCodes.pass) {
-            if (!isNullOrUndefined(res.response)) {
+          if (!this.commonService.checkNullOrUndefined(res) && res.status === StatusCodes.pass) {
+            if (!this.commonService.checkNullOrUndefined(res.response)) {
               this.profitCenterList = res.response['profitCenterList'];
             }
           }
@@ -316,8 +316,8 @@ export class MemoinvoiceComponent implements OnInit {
       .subscribe(
         response => {
           const res = response.body;
-          if (!isNullOrUndefined(res) && res.status === StatusCodes.pass) {
-            if (!isNullOrUndefined(res.response)) {
+          if (!this.commonService.checkNullOrUndefined(res) && res.status === StatusCodes.pass) {
+            if (!this.commonService.checkNullOrUndefined(res.response)) {
               this.btList = res.response['bpttList'];
             }
           }
@@ -330,8 +330,8 @@ export class MemoinvoiceComponent implements OnInit {
       .subscribe(
         response => {
           const res = response.body;
-          if (!isNullOrUndefined(res) && res.status === StatusCodes.pass) {
-            if (!isNullOrUndefined(res.response)) {
+          if (!this.commonService.checkNullOrUndefined(res) && res.status === StatusCodes.pass) {
+            if (!this.commonService.checkNullOrUndefined(res.response)) {
               this.segmentList = res.response['segmentList'];
             }
           }
@@ -344,8 +344,8 @@ export class MemoinvoiceComponent implements OnInit {
       .subscribe(
         response => {
           const res = response.body;
-          if (!isNullOrUndefined(res) && res.status === StatusCodes.pass) {
-            if (!isNullOrUndefined(res.response)) {
+          if (!this.commonService.checkNullOrUndefined(res) && res.status === StatusCodes.pass) {
+            if (!this.commonService.checkNullOrUndefined(res.response)) {
               this.functionaldeptList = res.response['fdeptList'];
             }
           }
@@ -358,8 +358,8 @@ export class MemoinvoiceComponent implements OnInit {
       .subscribe(
         response => {
           const res = response.body;
-          if (!isNullOrUndefined(res) && res.status === StatusCodes.pass) {
-            if (!isNullOrUndefined(res.response)) {
+          if (!this.commonService.checkNullOrUndefined(res) && res.status === StatusCodes.pass) {
+            if (!this.commonService.checkNullOrUndefined(res.response)) {
               this.bpTypeList = res.response['ptypeList'];
 
             }
@@ -373,8 +373,8 @@ export class MemoinvoiceComponent implements OnInit {
       .subscribe(
         response => {
           const res = response.body;
-          if (!isNullOrUndefined(res) && res.status === StatusCodes.pass) {
-            if (!isNullOrUndefined(res.response)) {
+          if (!this.commonService.checkNullOrUndefined(res) && res.status === StatusCodes.pass) {
+            if (!this.commonService.checkNullOrUndefined(res.response)) {
               this.bpList = res.response['bpList'];
 
             }
@@ -388,8 +388,8 @@ export class MemoinvoiceComponent implements OnInit {
       .subscribe(
         response => {
           const res = response.body;
-          if (!isNullOrUndefined(res) && res.status === StatusCodes.pass) {
-            if (!isNullOrUndefined(res.response)) {
+          if (!this.commonService.checkNullOrUndefined(res) && res.status === StatusCodes.pass) {
+            if (!this.commonService.checkNullOrUndefined(res.response)) {
               this.ptermsList = res.response['ptermsList'];
             }
           }
@@ -403,8 +403,8 @@ export class MemoinvoiceComponent implements OnInit {
         response => {
           this.spinner.hide();
           const res = response.body;
-          if (!isNullOrUndefined(res) && res.status === StatusCodes.pass) {
-            if (!isNullOrUndefined(res.response)) {
+          if (!this.commonService.checkNullOrUndefined(res) && res.status === StatusCodes.pass) {
+            if (!this.commonService.checkNullOrUndefined(res.response)) {
               this.costCenterList = res.response['costcenterList'];
 
             }
@@ -419,7 +419,7 @@ export class MemoinvoiceComponent implements OnInit {
   voucherTypeSelect() {
     const record = this.voucherTypeList.find(res => res.id == this.formData.get('voucherClass').value)
     this.formData.patchValue({
-      voucherClass: !isNullOrUndefined(record) ? record.voucherClass : null
+      voucherClass: !this.commonService.checkNullOrUndefined(record) ? record.voucherClass : null
     })
   }
 
@@ -427,17 +427,17 @@ export class MemoinvoiceComponent implements OnInit {
     this.formData.patchValue({
       voucherNumber: null
     })
-    if (!isNullOrUndefined(this.formData.get('voucherType').value)) {
+    if (!this.commonService.checkNullOrUndefined(this.formData.get('voucherType').value)) {
       const voucherNoUrl = String.Join('/', this.apiConfigService.getVoucherNumber, this.formData.get('voucherType').value);
       this.apiService.apiGetRequest(voucherNoUrl)
         .subscribe(
           response => {
             this.spinner.hide();
             const res = response.body;
-            if (!isNullOrUndefined(res) && res.status === StatusCodes.pass) {
-              if (!isNullOrUndefined(res.response)) {
+            if (!this.commonService.checkNullOrUndefined(res) && res.status === StatusCodes.pass) {
+              if (!this.commonService.checkNullOrUndefined(res.response)) {
                 this.formData.patchValue({
-                  voucherNumber: !isNullOrUndefined(res.response['VoucherNumber']) ? res.response['VoucherNumber'] : null
+                  voucherNumber: !this.commonService.checkNullOrUndefined(res.response['VoucherNumber']) ? res.response['VoucherNumber'] : null
                 })
               }
             }
@@ -453,14 +453,14 @@ export class MemoinvoiceComponent implements OnInit {
     this.debitValue = 0;
     this.creditValue = 0;
     this.totalTaxValue = 0;
-    if (!isNullOrUndefined(this.tableData)) {
+    if (!this.commonService.checkNullOrUndefined(this.tableData)) {
       if (this.tableData.length) {
         this.tableData.forEach(res => {
           if (res.accountingIndicator == 'Debit') {
-            this.debitValue = !isNullOrUndefined(parseInt(res.amount)) ? (this.debitValue + parseInt(res.amount)) : 0;
+            this.debitValue = !this.commonService.checkNullOrUndefined(parseInt(res.amount)) ? (this.debitValue + parseInt(res.amount)) : 0;
           }
           if (res.accountingIndicator == 'Credit') {
-            this.creditValue = !isNullOrUndefined(parseInt(res.amount)) ? (this.creditValue + parseInt(res.amount)) : 0;
+            this.creditValue = !this.commonService.checkNullOrUndefined(parseInt(res.amount)) ? (this.creditValue + parseInt(res.amount)) : 0;
           }
         });
         return (this.debitValue == this.creditValue) ? false : true;
@@ -472,7 +472,7 @@ export class MemoinvoiceComponent implements OnInit {
   calculateAmount(row) {
     if (row.column == 'taxCode' || row.column == 'amount') {
       const code = row.data[row.index]['taxCode'].list.find(res => res.taxRateCode == row.data[row.index]['taxCode'].value);
-      if (!isNullOrUndefined(code)) {
+      if (!this.commonService.checkNullOrUndefined(code)) {
         row.data[row.index].cgstamount.value = (row.data[row.index].amount.value * code.cgst) / 100;
         row.data[row.index].igstamount.value = (row.data[row.index].amount.value * code.igst) / 100;
         row.data[row.index].cgstamount.value = (row.data[row.index].amount.value * code.sgst) / 100;
@@ -502,8 +502,8 @@ export class MemoinvoiceComponent implements OnInit {
     this.apiService.apiGetRequest(addInvoiceMemo).subscribe(
       response => {
         const res = response.body;
-        if (!isNullOrUndefined(res) && res.status === StatusCodes.pass) {
-          if (!isNullOrUndefined(res.response)) {
+        if (!this.commonService.checkNullOrUndefined(res) && res.status === StatusCodes.pass) {
+          if (!this.commonService.checkNullOrUndefined(res.response)) {
             this.alertService.openSnackBar(res.response, Static.Close, SnackBar.success);
           }
           this.spinner.hide();
@@ -525,8 +525,8 @@ export class MemoinvoiceComponent implements OnInit {
     this.apiService.apiPostRequest(addInvoiceMemo, requestObj).subscribe(
       response => {
         const res = response.body;
-        if (!isNullOrUndefined(res) && res.status === StatusCodes.pass) {
-          if (!isNullOrUndefined(res.response)) {
+        if (!this.commonService.checkNullOrUndefined(res) && res.status === StatusCodes.pass) {
+          if (!this.commonService.checkNullOrUndefined(res.response)) {
             this.alertService.openSnackBar('Invoice / Memo created Successfully..', Static.Close, SnackBar.success);
           }
           this.reset();

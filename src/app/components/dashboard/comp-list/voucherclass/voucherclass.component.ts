@@ -1,6 +1,6 @@
 import { Component, Inject, Optional, OnInit } from '@angular/core';
 import { MatDialogRef, MAT_DIALOG_DATA } from '@angular/material/dialog';
-import { isNullOrUndefined } from 'util';
+import { CommonService } from '../../../../services/common.service';
 import { FormBuilder, FormGroup, Validators } from '@angular/forms';
 import { AddOrEditService } from '../add-or-edit.service';
 
@@ -30,7 +30,7 @@ export class VoucherClassComponent implements OnInit {
     { value: '5', viewValue: 'Receipts' },
     { value: '6', viewValue: 'General Memo' }
   ];
-  constructor(
+  constructor(private commonService: CommonService,
     private formBuilder: FormBuilder,
     private addOrEditService: AddOrEditService,
     public dialogRef: MatDialogRef<VoucherClassComponent>,
@@ -44,7 +44,7 @@ export class VoucherClassComponent implements OnInit {
     });
 
     this.formData = { ...data };
-    if (!isNullOrUndefined(this.formData.item)) {
+    if (!this.commonService.checkNullOrUndefined(this.formData.item)) {
       this.modelFormData.patchValue(this.formData.item);
       this.modelFormData.controls['voucherKey'].disable();
     }
