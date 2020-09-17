@@ -84,6 +84,12 @@ import { LotSeriesComponent } from './lotseries/lotseries.component';
 import { StoresAssignmentComponent } from './lotseriesassignment/lotseriesassignment.component';
 import { GoodsReceiptNoteNumberSeriesComponent } from './grnnumberseries/grnnumberseries.component';
 import { GoodsReceiptNoteAssignmentComponent } from './grnnoassignment/grnnoassignment.component';
+import { GoodsIssueNoteNumberSeriesComponent } from './ginnumberseries/ginnumberseries.component';
+import { GoodsIssueNoteAssignmentComponent } from './ginassignment/ginassignment.component';
+import { MaterialRequisitionNoteNumberSeriesComponent } from './mrnnumberseries/mrnnumberseries.component';
+import { MaterialRequisitionNoteAssignmentComponent } from './mrnassignment/mrnassignment.component';
+import { MaterialGroupsComponent } from './materialgroups/materialgroups.component';
+import { MaterialTypesComponent } from './materialtypes/materialtypes.component';
 @Injectable({
   providedIn: 'root'
 })
@@ -439,7 +445,31 @@ export class CompListService {
         case 'purchasingtype':
         this.dynamicComp.component = PurchasingtypeComponent;
         return this.dynamicComp.component;
-        break;   
+        break;
+      case 'ginnumberseries':
+        this.dynamicComp.component = GoodsIssueNoteNumberSeriesComponent;
+        return this.dynamicComp.component;
+        break;
+      case 'ginassignment':
+        this.dynamicComp.component = GoodsIssueNoteAssignmentComponent;
+        return this.dynamicComp.component;
+        break;
+      case 'mrnnumberseries':
+        this.dynamicComp.component = MaterialRequisitionNoteNumberSeriesComponent;
+        return this.dynamicComp.component;
+        break;
+      case 'mrnassignment':
+        this.dynamicComp.component = MaterialRequisitionNoteAssignmentComponent;
+        return this.dynamicComp.component;
+        break;
+      case 'materialgroups':
+        this.dynamicComp.component = MaterialGroupsComponent;
+        return this.dynamicComp.component;
+        break;
+      case 'materialtypes':
+        this.dynamicComp.component = MaterialTypesComponent;
+        return this.dynamicComp.component;
+        break;
       default:
     }
   }

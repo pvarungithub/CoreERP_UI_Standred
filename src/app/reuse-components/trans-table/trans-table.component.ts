@@ -43,6 +43,14 @@ export class TransTableComponent implements OnInit {
   tableData: any;
 
 
+  defaultValues() {
+    this.dataSource = new MatTableDataSource();
+    this.highlightedRows = [];
+    this.columnDefinitions = [];
+    this.keys = [];
+    this.tableData = [];
+  }
+
   constructor(
     private formBuilder: FormBuilder,
     private translate: TranslateService,
@@ -54,7 +62,7 @@ export class TransTableComponent implements OnInit {
     private addOrEditService: AddOrEditService,
     private spinner: NgxSpinnerService,
     private transListService: TransListService,
-    private commonService: CommonService,
+    public commonService: CommonService,
     private alertService: AlertService
   ) {
     this.headerForm = this.formBuilder.group({
@@ -65,11 +73,12 @@ export class TransTableComponent implements OnInit {
     });
     activatedRoute.params.subscribe(params => {
       this.routeParam = params.id;
+      this.defaultValues();
+      this.reset();
     });
   }
 
   ngOnInit() {
-    this.getTableList();
   }
 
   search() {
@@ -113,13 +122,6 @@ export class TransTableComponent implements OnInit {
   newTransOpen() {
     this.addOrEditService.editData = 'New';
     this.router.navigate(['dashboard/transaction', this.routeParam, 'New']);
-  }
-
-  defaultValues() {
-    this.dataSource = new MatTableDataSource();
-    this.highlightedRows = [];
-    this.columnDefinitions = [];
-    this.keys = [];
   }
 
   tableDataFunc() {

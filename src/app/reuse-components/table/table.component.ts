@@ -62,7 +62,7 @@ export class TableComponent implements OnInit, OnChanges, AfterViewInit, OnDestr
     private activatedRoute: ActivatedRoute,
     private translate: TranslateService,
     private runtimeConfigService: RuntimeConfigService,
-    private commonService: CommonService
+    public commonService: CommonService
   ) {
     this.user = JSON.parse(localStorage.getItem('user'));
     activatedRoute.params.subscribe(params => {
@@ -107,17 +107,16 @@ export class TableComponent implements OnInit, OnChanges, AfterViewInit, OnDestr
       data = { action: val, item: this.highlightedRows[0] };
     }
 
-    if (data.action === 'Delete' && this.highlightedRows.length) {
-      this.addOrUpdateEvent.emit(data);
-    }
-    else if (data.action === 'Edit' && this.highlightedRows.length && this.user.canEdit !== 'Edit') {
-      this.addOrUpdateEvent.emit(data);
-    }
-    else if (data.action === 'Add') {
-      data.item = null;
-      this.addOrUpdateEvent.emit(data);
-    }
-
+      if (data.action === 'Delete' && this.highlightedRows.length) {
+        this.addOrUpdateEvent.emit(data);
+      }
+      else if (data.action === 'Edit' && this.highlightedRows.length && this.user.canEdit !== 'Edit' && !this.commonService.userPermission.canEdit) {
+        this.addOrUpdateEvent.emit(data);
+      }
+      else if (data.action === 'Add') {
+        data.item = null;
+        this.addOrUpdateEvent.emit(data);
+      }
   }
 
 

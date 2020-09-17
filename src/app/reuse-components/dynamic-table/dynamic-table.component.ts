@@ -40,7 +40,7 @@ export class DynamicTableComponent implements OnInit, OnDestroy, AfterContentChe
   index: any;
   data: any;
   isDropdown = false;
-  checkAllColValue: { col: any; val: any; };
+  checkAllColValue = { col: '', val: false };
 
   constructor(
     activatedRoute: ActivatedRoute,
@@ -140,8 +140,9 @@ export class DynamicTableComponent implements OnInit, OnDestroy, AfterContentChe
       }
       this.dataSource = new MatTableDataSource(this.dataSource.data);
       this.emitColumnChanges.emit({ column: col, index: indx, data: this.dataSource.data });
-      if (!this.commonService.checkNullOrUndefined(this.checkAllColValue)) {
-        this.checkAll(this.checkAllColValue.val, this.checkAllColValue.col);
+      if (!this.commonService.checkNullOrUndefined(this.checkAllColValue) && col == this.checkAllColValue.col) {
+        this.checkAllColValue.val = false;
+        this.checkAll(this.checkAllColValue.col, false);
       }
       this.emitTableData.emit(this.formatTableData());
     }
@@ -175,10 +176,12 @@ export class DynamicTableComponent implements OnInit, OnDestroy, AfterContentChe
     return array;
   }
 
-  checkAll(event, col) {
+  checkAll(col, flag = true) {
     this.spinner.show();
-    this.checkAllColValue = { col: col, val: event };
-    this.dataSource.data.map(res => res[this.checkAllColValue.col].value = this.checkAllColValue.val.checked)
+    this.checkAllColValue.col = col;
+    if(flag) {
+      this.dataSource.data.map(res => res[this.checkAllColValue.col].value = this.checkAllColValue.val)
+    }
     this.dataSource = new MatTableDataSource(JSON.parse(JSON.stringify(this.dataSource.data)));
     this.emitTableData.emit(this.formatTableData());
     this.spinner.hide();

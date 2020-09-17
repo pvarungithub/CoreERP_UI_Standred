@@ -1278,5 +1278,50 @@
     "company": "Company",
     "plant": "Plant",
     "materialType": "Material Type"
+  },
+  "ginassignment": {
+    "title": "Goods Issue Note Assignment",
+    "ginseries": "GIN Series",
+    "company": "Company",
+    "plant": "Plant",
+    "materilaType": "Material Type"
+  },
+  "ginnumberseries": {
+    "title": "Goods Issue Note Number Series",
+    "ginseries": "GIN Series Key",
+    "description": "Description",
+    "fromInterval": "From Interval",
+    "tointerval": "To Interval",
+    "currentNumber": "Current Number",
+    "prefix": "Prefix"
+  },
+  "mrnnumberseries": {
+    "title": "Material Requisition Note",
+    "mrnseries": "MRN Series Key",
+    "description": "Description",
+    "fromInterval": "From Interval",
+    "tointerval": "To Interval",
+    "currentNumber": "Current Number",
+    "prefix": "Prefix"
+  },
+  "mrnassignment": {
+    "title": "Material Requisition Note Assignment",
+    "mrnseries": "MRN Series",
+    "company": "Company",
+    "plant": "Plant",
+    "materialType": "Material Type"
+  },
+  "materialgroups": {
+    "title": "Material Groups",
+    "groupKey": "Group Key",
+    "description": "Description"
+  },
+  "materialtypes": {
+    "title": "Material Types",
+    "code": "Code",
+    "description": "Description",
+    "class": "Class",
+    "usage": "Usage"
   }
+
 }

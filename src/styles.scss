@@ -48,7 +48,28 @@ button:focus {
   & .mat-form-field-ripple {
     background-color: $color-green !important;
   }
+  & .mat-form-field-underline {
+    background-color: $color-green !important;
+  }
 }
+
+.ng--invalid {
+  & .mat-form-field-label {
+    color: $color-error !important;
+  }
+  & .mat-form-field-ripple {
+    background-color: $color-error !important;
+  }
+  & .mat-form-field-underline {
+    background-color: $color-error !important;
+  }
+}
+
+mat-hint {
+  color: $color-error !important;
+}
+
+
 
 .cursor--pointer {
   cursor: pointer;

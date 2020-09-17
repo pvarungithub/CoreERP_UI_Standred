@@ -99,3 +99,9 @@ input[type=number] {
   -moz-appearance: textfield;
 }
 
+
+::ng-deep mat-checkbox {
+ & .mat-checkbox-layout {
+    margin-bottom: 0rem;
+  }
+}
