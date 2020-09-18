@@ -90,6 +90,12 @@ import { MaterialRequisitionNoteNumberSeriesComponent } from './mrnnumberseries/
 import { MaterialRequisitionNoteAssignmentComponent } from './mrnassignment/mrnassignment.component';
 import { MaterialGroupsComponent } from './materialgroups/materialgroups.component';
 import { MaterialTypesComponent } from './materialtypes/materialtypes.component';
+import { ModelPatternComponent } from './modelpattern/modelpattern.component';
+
+import { MaterialNumberRangeComponent } from './materialnumberrange/materialnumberrange.component';
+import { MaterialNumberAsssignmentComponent } from './materialassignment/materialassignment.component';
+import { BinsCreationComponent } from './binscreation/binscreation.component';
+import { PurchaseRequisitionNumberRangeComponent } from './purchaserequisitionnumberrange/purchaserequisitionnumberrange.component';
 @Injectable({
   providedIn: 'root'
 })
@@ -468,6 +474,26 @@ export class CompListService {
         break;
       case 'materialtypes':
         this.dynamicComp.component = MaterialTypesComponent;
+        return this.dynamicComp.component;
+        break;
+      case 'modelpattern':
+        this.dynamicComp.component = ModelPatternComponent;
+        return this.dynamicComp.component;
+        break;
+      case 'materialnumberrange':
+        this.dynamicComp.component = MaterialNumberRangeComponent;
+        return this.dynamicComp.component;
+        break;
+      case 'materialassignment':
+        this.dynamicComp.component = MaterialNumberAsssignmentComponent;
+        return this.dynamicComp.component;
+        break;
+      case 'purchaserequisitionnumberrange':
+        this.dynamicComp.component = PurchaseRequisitionNumberRangeComponent;
+        return this.dynamicComp.component;
+        break;
+      case 'binscreation':
+        this.dynamicComp.component = BinsCreationComponent;
         return this.dynamicComp.component;
         break;
       default:

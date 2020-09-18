@@ -90,3 +90,8 @@ export { MaterialRequisitionNoteNumberSeriesComponent } from './mrnnumberseries/
 export { MaterialRequisitionNoteAssignmentComponent } from './mrnassignment/mrnassignment.component';
 export { MaterialGroupsComponent } from './materialgroups/materialgroups.component';
 export { MaterialTypesComponent } from './materialtypes/materialtypes.component';
+export { ModelPatternComponent } from './modelpattern/modelpattern.component';
+export { MaterialNumberRangeComponent } from './materialnumberrange/materialnumberrange.component';
+export { MaterialNumberAsssignmentComponent } from './materialassignment/materialassignment.component';
+export { BinsCreationComponent } from './binscreation/binscreation.component';
+export { PurchaseRequisitionNumberRangeComponent } from './purchaserequisitionnumberrange/purchaserequisitionnumberrange.component';

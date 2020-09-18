@@ -14,8 +14,11 @@ export class ApiConfigService {
    logoutUrl = `${this.environment.runtimeConfig.serverUrl}Auth/logout`;
    getBranchesForUser = `${this.environment.runtimeConfig.serverUrl}Auth/GetBranchesForUser`;
    getComponentInfo = `${this.environment.runtimeConfig.serverUrl}Settings/GetComponentInfo`;
-
+  
    // Common
+
+  getMaterialList = `${this.environment.runtimeConfig.serverUrl}MaterialTypes/GetMaterialTypesList`;
+  getStList = `${this.environment.runtimeConfig.serverUrl}StorageLocation/GetStorageLocation`;
    getpurchaseOrderTypeList = `${this.environment.runtimeConfig.serverUrl}Purchaseordertype/GetPurchaseordertypeList`;
    getPurchaseorderNumberList = `${this.environment.runtimeConfig.serverUrl}PurchaseOrderNumberRange/GetPurchaseOrderNumberRangeList`;
    getQuotationNumberRangeList = `${this.environment.runtimeConfig.serverUrl}QuotationNumberRange/GetQuotationNumberRangeList`;
@@ -57,6 +60,7 @@ export class ApiConfigService {
    getLotSeriesUrlList = `${this.environment.runtimeConfig.serverUrl}LotSeries/GetLotSeriesList`;
    getGRNSeriesList = `${this.environment.runtimeConfig.serverUrl}GoodsReceiptNoteNumberSeries/GetGoodsReceiptNoteNumberSeriesList`;
   getMRNSeriesList = `${this.environment.runtimeConfig.serverUrl}MaterialRequisitionNoteNumberSeries/GetMaterialRequisitionNoteNumberSeriesList`;
+  getMaterialSeriesList = `${this.environment.runtimeConfig.serverUrl}MaterialNumberRangeSeries/GetMaterialNumberRangeSeriesList`;
   getGINSeriesList = `${this.environment.runtimeConfig.serverUrl}GoodsIssueNoteNumberSeries/GetGoodsIssueNoteNumberSeriesList`;
    //************************ IMG General  ****************************************/
    getCurrencyList = `${this.environment.runtimeConfig.serverUrl}Currency/GetCurrencyList`;

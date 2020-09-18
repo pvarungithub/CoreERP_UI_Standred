@@ -1138,5 +1138,52 @@
     "description": "Description",
     "class": "Class",
     "usage": "Usage"
+  },
+  "modelpattern": {
+    "title": "Model Pattern",
+    "code": "Code",
+    "description": "Description"
+  },
+  "materialnumberrange": {
+    "title": "Material Number Range Series",
+    "code": "Code",
+    "fromInterval": "From Interval",
+    "toInterval": "To Interval",
+    "currentNumber": "Current Number",
+    "nonNumaric": "Non Numaric",
+    "prefix": "Prefix"
+  },
+  "materialassignment": {
+    "title": "Material Number Range Assignment",
+    "numberRange": "Number Range",
+    "companyCode": "Company",
+    "plant": "Plant",
+    "materialType": "Material Type"
+  },
+  "purchaserequisitionnumberrange": {
+    "title": "Purchase Requisition Number Range",
+    "plant": "Plant",
+    "department": "Department",
+    "code": "Code",
+    "fromInterval": "From Interval",
+    "toInterval": "To Interval",
+    "currentNumber": "Current Number",
+    "nonNumaric": "Non Numaric",
+    "prefix": "Prefix"
+  },
+  "binscreation": {
+    "title": "Bins Creation",
+    "binNumber": "Bin Number",
+    "description": "Description",
+    "plant": "Plant",
+    "storageLocation": "StorageLocation",
+    "material": "Material",
+    "minLevel": "Min Level",
+    "maxLevel": "MaxLevel",
+    "reOrderLevel": "ReOrderLevel",
+    "openQty": "OpenQty",
+    "uom": "Uom",
+    "storeIncharge": "Store Incharge"
   }
+
 }
