@@ -16,7 +16,9 @@ export class ApiConfigService {
    getComponentInfo = `${this.environment.runtimeConfig.serverUrl}Settings/GetComponentInfo`;
   
    // Common
-
+  getModelPatternList = `${this.environment.runtimeConfig.serverUrl}ModelPattern/GetModelPatternList`;
+  getmsizeList = `${this.environment.runtimeConfig.serverUrl}MaterialSize/GetMaterialSizeList`;
+  getmaterialgroupList = `${this.environment.runtimeConfig.serverUrl}MaterialGroups/GetMaterialGroupsList`;
   getMaterialList = `${this.environment.runtimeConfig.serverUrl}MaterialTypes/GetMaterialTypesList`;
   getStList = `${this.environment.runtimeConfig.serverUrl}StorageLocation/GetStorageLocation`;
    getpurchaseOrderTypeList = `${this.environment.runtimeConfig.serverUrl}Purchaseordertype/GetPurchaseordertypeList`;

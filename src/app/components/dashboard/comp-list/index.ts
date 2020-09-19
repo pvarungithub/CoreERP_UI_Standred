@@ -95,3 +95,5 @@ export { MaterialNumberRangeComponent } from './materialnumberrange/materialnumb
 export { MaterialNumberAsssignmentComponent } from './materialassignment/materialassignment.component';
 export { BinsCreationComponent } from './binscreation/binscreation.component';
 export { PurchaseRequisitionNumberRangeComponent } from './purchaserequisitionnumberrange/purchaserequisitionnumberrange.component';
+export { MaterialSizeComponent } from './materialsize/materialsize.component';
+export { MaterialMasterComponent } from './materialsmaster/materialsmaster.component';

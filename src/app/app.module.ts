@@ -26,6 +26,7 @@ import {
   MaterialRequisitionNoteAssignmentComponent, MaterialRequisitionNoteNumberSeriesComponent,
   GoodsIssueNoteAssignmentComponent, GoodsIssueNoteNumberSeriesComponent, BinsCreationComponent, PurchaseRequisitionNumberRangeComponent,
   ModelPatternComponent, MaterialNumberRangeComponent, MaterialNumberAsssignmentComponent,
+  MaterialSizeComponent,MaterialMasterComponent,
 
 } from './components/dashboard/comp-list/index';
 
@@ -87,7 +88,7 @@ export function HttpLoaderFactory(httpClient: HttpClient) {
     AssignGLaccounttoSubGroupComponent, GLSubAccountComponent, PurchasinggroupsComponent, PurchasingpersonComponent, RequisitionAssignmentComponent, RequisitionNumberRangeComponent, PurchaseordertypeComponent, SupplierTermsandconditionsComponent,
     PurchaseOrderNumberRangeComponent, RejectionReasonsComponent, MovementtypeComponent, LotSeriesComponent,
     StoresAssignmentComponent, GoodsReceiptNoteNumberSeriesComponent, GoodsReceiptNoteAssignmentComponent, MaterialTypesComponent, MaterialGroupsComponent, MaterialRequisitionNoteAssignmentComponent, MaterialRequisitionNoteNumberSeriesComponent, GoodsIssueNoteAssignmentComponent,
-    GoodsIssueNoteNumberSeriesComponent, BinsCreationComponent, PurchaseRequisitionNumberRangeComponent, MaterialNumberAsssignmentComponent,
+    GoodsIssueNoteNumberSeriesComponent, BinsCreationComponent, PurchaseRequisitionNumberRangeComponent, MaterialMasterComponent, MaterialMasterComponent, MaterialSizeComponent, MaterialSizeComponent, MaterialNumberAsssignmentComponent,
     ModelPatternComponent,MaterialNumberRangeComponent,QuotationNumberRangeComponent, PurchaseOrderAssignmentComponent, QuotationAssignmentComponent, BusienessTransactionTypeComponent, AssetBegningAccumulatedDepreciationComponent, AssetBegningAcqusitionComponent,
     CompTabsComponent,
     TransListComponent,

@@ -96,6 +96,8 @@ import { MaterialNumberRangeComponent } from './materialnumberrange/materialnumb
 import { MaterialNumberAsssignmentComponent } from './materialassignment/materialassignment.component';
 import { BinsCreationComponent } from './binscreation/binscreation.component';
 import { PurchaseRequisitionNumberRangeComponent } from './purchaserequisitionnumberrange/purchaserequisitionnumberrange.component';
+import { MaterialSizeComponent } from './materialsize/materialsize.component';
+import { MaterialMasterComponent } from './materialsmaster/materialsmaster.component';
 @Injectable({
   providedIn: 'root'
 })
@@ -494,6 +496,14 @@ export class CompListService {
         break;
       case 'binscreation':
         this.dynamicComp.component = BinsCreationComponent;
+        return this.dynamicComp.component;
+        break;
+      case 'materialsize':
+        this.dynamicComp.component = MaterialSizeComponent;
+        return this.dynamicComp.component;
+        break;
+      case 'materialsmaster':
+        this.dynamicComp.component = MaterialMasterComponent;
         return this.dynamicComp.component;
         break;
       default:

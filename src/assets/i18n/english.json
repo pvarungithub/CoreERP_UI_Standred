@@ -1368,6 +1368,46 @@
     "openQty": "OpenQty",
     "uom": "Uom",
     "storeIncharge": "Store Incharge"
+  },
+  "materialsize": {
+    "title": "Material Size",
+    "sizekey": "Size Key",
+    "description": "Description"
+  },
+  "materialsmaster": {
+    "title": "Material Master",
+    "company": "Company",
+    "plant": "Plant",
+    "materialType": "Material Type",
+    "materialCode": "Material Code",
+    "description": "Description",
+    "materialGroup": "Material Group",
+    "size": "Size",
+    "modelPattern": "ModelPattern",
+    "uom": "Uom",
+    "division": "Division",
+    "grossWeight": "GrossWeight",
+    "ouom": "Ouom",
+    "netWeight": "NetWeight",
+    "purchasingGroup": "PurchasingGroup",
+    "purchaseOrderText": "PurchaseOrder Text",
+    "minLevel": "MinLevel",
+    "maxLevel": "MaxLevel",
+    "reOrderLevel": "ReOrderLevel",
+    "dangerLevel": "DangerLevel",
+    "economicOrderQty": "EconomicOrderQty",
+    "reorderPoint": "ReorderPoint",
+    "valuation": "Valuation",
+    "openingQty": "OpeningQty",
+    "closingQty": "ClosingQty",
+    "qtyvalues": "Qtyvalues",
+    "transferPrice": "TransferPrice",
+    "hsnsac": "Hsnsac",
+    "classification": "Classification",
+    "taxable": "Taxable",
+    "schedule": "Schedule",
+    "chapter": "Chapter",
+    "goodsServiceDescription": "GoodsService Description"
   }
 
 }
