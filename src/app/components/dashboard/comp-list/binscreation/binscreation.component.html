@@ -10,7 +10,8 @@
       <div class="d--flex">
 
         <mat-form-field class="form-element" [ngClass]="{ 'ng--valid': formControls.binNumber.valid }">
-          <input matInput placeholder="{{'binscreation.binNumber' | translate }}" formControlName="binNumber" maxlength="4"
+          <input matInput placeholder="{{'binscreation.binNumber' | translate }}"
+                 formControlName="binNumber" maxlength="5"
                  appFocusOnEnter tabIndex="1">
           <mat-error *ngIf="formControls.binNumber.errors" class="help-block">
             <div *ngIf="formControls.binNumber.errors.required">BinNumber  is required </div>
@@ -25,7 +26,7 @@
           </mat-error>
         </mat-form-field>
 
-       
+
 
         <mat-form-field>
           <mat-label>{{'binscreation.plant' | translate }}</mat-label>
@@ -51,7 +52,7 @@
           <mat-label>{{'binscreation.material' | translate }}</mat-label>
           <mat-select formControlName="material" appFocusOnEnter tabIndex="5">
             <mat-option>None</mat-option>
-            <mat-option *ngFor="let mtype of matypeList" [value]="mtype.code">
+            <mat-option *ngFor="let mtype of mmasterList" [value]="mtype.materialCode">
               {{mtype.description}}
             </mat-option>
           </mat-select>
@@ -82,17 +83,23 @@
           <mat-label>{{'binscreation.uom' | translate }}</mat-label>
           <mat-select formControlName="uom" appFocusOnEnter tabIndex="10">
             <mat-option>None</mat-option>
-            <mat-option *ngFor="let mtype of matypeList" [value]="mtype.code">
-              {{mtype.description}}
+            <mat-option *ngFor="let uom of UomList" [value]="uom.id">
+              {{uom.text}}
             </mat-option>
           </mat-select>
         </mat-form-field>
 
-        <mat-form-field class="form-element">
-          <input matInput placeholder="{{'binscreation.storeIncharge' | translate }}"
-                 formControlName="storeIncharge" maxlength="50"
-                 appFocusOnEnter tabIndex="11">
+        <mat-form-field>
+          <mat-label>{{'binscreation.storeIncharge' | translate }}</mat-label>
+          <mat-select formControlName="storeIncharge" appFocusOnEnter tabIndex="11">
+            <mat-option>None</mat-option>
+            <mat-option *ngFor="let emp of emplist" [value]="emp.id">
+              {{emp.text}}
+            </mat-option>
+          </mat-select>
         </mat-form-field>
+
+       
       </div>
       <mat-divider></mat-divider>
     </form>

@@ -21,12 +21,13 @@ export class BinsCreationComponent implements OnInit {
   formData: any;
   companiesList: any;
   plantsList: any; 
-    porangeList: any;
+  UomList: any;
     porderList: any;
     lotList: any;
   mseriesnoList: any;
     stlocList: any;
-    matypeList: any;
+  mmasterList: any;
+  emplist: any;
   constructor(private commonService: CommonService,
     private addOrEditService: AddOrEditService,
     private formBuilder: FormBuilder,
@@ -38,7 +39,7 @@ export class BinsCreationComponent implements OnInit {
     @Optional() @Inject(MAT_DIALOG_DATA) public data: any) {
 
     this.modelFormData = this.formBuilder.group({
-      binNumber: [null, [Validators.required, Validators.minLength(1), Validators.maxLength(4)]],
+      binNumber: [null, [Validators.required, Validators.minLength(1), Validators.maxLength(5)]],
       description: [null, [Validators.required, Validators.minLength(1), Validators.maxLength(30)]],
       plant: [null],
       storageLocation: [null],
@@ -65,17 +66,18 @@ export class BinsCreationComponent implements OnInit {
     this.getMaterielData();
     this.getstorageLocationData();
     this.getPlantData();
-    this.getpurchaseOrderTypeData();
+    this.getuomTypeData();
+    this.getEmployeetData();
   }
   getMaterielData() {
-    const getMaterielUrl = String.Join('/', this.apiConfigService.getMaterialList);
+    const getMaterielUrl = String.Join('/', this.apiConfigService.getmaterialdata);
     this.apiService.apiGetRequest(getMaterielUrl)
       .subscribe(
         response => {
           const res = response.body;
           if (!this.commonService.checkNullOrUndefined(res) && res.status === StatusCodes.pass) {
             if (!this.commonService.checkNullOrUndefined(res.response)) {
-              this.matypeList = res.response['matypeList'];
+              this.mmasterList = res.response['mmasterList'];
             }
           }
           this.spinner.hide();
@@ -111,16 +113,32 @@ export class BinsCreationComponent implements OnInit {
           this.spinner.hide();
         });
   }
-
-  getpurchaseOrderTypeData() {
-    const getpurchaseOrderTypeUrl = String.Join('/', this.apiConfigService.getpurchaseOrderTypeList);
-    this.apiService.apiGetRequest(getpurchaseOrderTypeUrl)
+  getEmployeetData() {
+    const getEmployeeUrl = String.Join('/', this.apiConfigService.getEmployeeList);
+    this.apiService.apiGetRequest(getEmployeeUrl)
       .subscribe(
         response => {
           const res = response.body;
+          
           if (!this.commonService.checkNullOrUndefined(res) && res.status === StatusCodes.pass) {
             if (!this.commonService.checkNullOrUndefined(res.response)) {
-              this.porderList = res.response['porderList'];
+              this.emplist = res.response['emplist'];
+            }
+          }
+          this.spinner.hide();
+        });
+  }
+
+  getuomTypeData() {
+    const getuomTypeUrl = String.Join('/', this.apiConfigService.getuomList);
+    this.apiService.apiGetRequest(getuomTypeUrl)
+      .subscribe(
+        response => {
+          const res = response.body;
+          console.log(res);
+          if (!this.commonService.checkNullOrUndefined(res) && res.status === StatusCodes.pass) {
+            if (!this.commonService.checkNullOrUndefined(res.response)) {
+              this.UomList = res.response['UomList'];
             }
           }
           this.spinner.hide();

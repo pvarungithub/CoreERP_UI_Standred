@@ -48,7 +48,7 @@ export class MemoinvoiceComponent implements OnInit {
   partyInvoiceDate = [];
   grnno = [];
   grndate = [];
-  bpgLists: any;
+  bpgLists = [];
   taxAmount = [];
   totalAmount = [];
 

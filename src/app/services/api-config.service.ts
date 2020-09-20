@@ -16,6 +16,8 @@ export class ApiConfigService {
    getComponentInfo = `${this.environment.runtimeConfig.serverUrl}Settings/GetComponentInfo`;
   
    // Common
+  getuomList = `${this.environment.runtimeConfig.serverUrl}Common/GetUOMList`;
+  getmaterialdata = `${this.environment.runtimeConfig.serverUrl}MaterialMaster/GetMaterialMasterList`;
   getModelPatternList = `${this.environment.runtimeConfig.serverUrl}ModelPattern/GetModelPatternList`;
   getmsizeList = `${this.environment.runtimeConfig.serverUrl}MaterialSize/GetMaterialSizeList`;
   getmaterialgroupList = `${this.environment.runtimeConfig.serverUrl}MaterialGroups/GetMaterialGroupsList`;

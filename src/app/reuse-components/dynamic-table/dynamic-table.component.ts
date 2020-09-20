@@ -169,8 +169,14 @@ export class DynamicTableComponent implements OnInit, OnDestroy, AfterContentChe
           object['check'] = (this.runtimeConfigService.tableColumnsData[this.routeParam][res.col] == 'checkbox') ? this.dataSource.data[t][res.col].value : true
         }
       })
-      if (this.dataSource.data.length != t && object['check']) {
-        array.push(object);
+      if (this.dataSource.data.length != t) {
+        if (object.hasOwnProperty('check')) {
+          if (object['check']) {
+            array.push(object);
+          }
+        } else {
+          array.push(object);
+        }
       }
     }
     return array;
@@ -179,7 +185,7 @@ export class DynamicTableComponent implements OnInit, OnDestroy, AfterContentChe
   checkAll(col, flag = true) {
     this.spinner.show();
     this.checkAllColValue.col = col;
-    if(flag) {
+    if (flag) {
       this.dataSource.data.map(res => res[this.checkAllColValue.col].value = this.checkAllColValue.val)
     }
     this.dataSource = new MatTableDataSource(JSON.parse(JSON.stringify(this.dataSource.data)));

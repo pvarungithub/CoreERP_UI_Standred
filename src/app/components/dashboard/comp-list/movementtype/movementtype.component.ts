@@ -30,8 +30,9 @@ export class MovementtypeComponent implements OnInit {
       { value: 'Issue', viewValue: 'Issue' },
       { value: 'Own Consumption', viewValue: 'Own Consumption' },
       { value: 'Transfer', viewValue: 'Transfer' },
-      { value: 'External returns', viewValue: 'External returns' },
-      { value: 'Internal  returns', viewValue: 'Internal  returns' }
+      { value: 'External returns', viewValue: 'External Returns' },
+      { value: 'Internal  returns', viewValue: 'Internal  Returns' },
+      { value: 'Third Party', viewValue: 'Third Party' }
 
     ];
   constructor(private commonService: CommonService,
