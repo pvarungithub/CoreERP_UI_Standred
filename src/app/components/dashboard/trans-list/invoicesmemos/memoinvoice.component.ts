@@ -48,7 +48,7 @@ export class MemoinvoiceComponent implements OnInit {
   partyInvoiceDate = [];
   grnno = [];
   grndate = [];
-  bpgLists = [];
+  bpgLists: any;
   taxAmount = [];
   totalAmount = [];
 
@@ -214,6 +214,7 @@ export class MemoinvoiceComponent implements OnInit {
             if (!this.commonService.checkNullOrUndefined(res.response)) {
               this.formData.setValue(res.response['imMasters']);
               this.addOrEditService.sendDynTableData({ type: 'edit', data: res.response['ImDetail'] });
+              this.onbpChange();
               this.formData.disable();
             }
           }
