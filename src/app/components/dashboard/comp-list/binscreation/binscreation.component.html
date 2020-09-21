@@ -94,7 +94,7 @@
           <mat-select formControlName="storeIncharge" appFocusOnEnter tabIndex="11">
             <mat-option>None</mat-option>
             <mat-option *ngFor="let emp of emplist" [value]="emp.id">
-              {{emp.text}}
+              {{emp.id}}- {{emp.text}}
             </mat-option>
           </mat-select>
         </mat-form-field>

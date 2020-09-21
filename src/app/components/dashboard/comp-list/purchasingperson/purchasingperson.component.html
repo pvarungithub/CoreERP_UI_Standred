@@ -35,7 +35,7 @@
           <mat-select formControlName="purchaseGroup" appFocusOnEnter tabIndex="3">
             <mat-option>None</mat-option>
             <mat-option *ngFor="let pcgroup of pcgroupList" [value]="pcgroup.pruchaseGroup">
-              {{pcgroup.pruchaseGroup}} - {{pcgroup.description}}
+             {{pcgroup.description}}
             </mat-option>
           </mat-select>
         </mat-form-field>
@@ -44,7 +44,7 @@
           <mat-select formControlName="purchaseTypes" appFocusOnEnter tabIndex="4">
             <mat-option>None</mat-option>
             <mat-option *ngFor="let ptype of purchaseTypeList " [value]="ptype.purchaseType">
-              {{ptype.purchaseType}} - {{ptype.description}}
+              {{ptype.description}}
             </mat-option>
           </mat-select>
         </mat-form-field>

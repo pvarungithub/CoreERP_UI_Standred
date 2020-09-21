@@ -282,7 +282,7 @@ export class ReceiptspaymentsComponent implements OnInit {
       console.log(data, this.tablePropsFunc());
       data.forEach((res, index) => {
         newData.push(this.tablePropsFunc().tableData);
-        newData[index].adjustmentAmount.value = res.amount;
+        newData[index].invoiceAmount.value = res.amount;
         newData[index].dueDate.value = res.date;
         newData[index].partyInvoiceNo.value = res.invoino;
       })

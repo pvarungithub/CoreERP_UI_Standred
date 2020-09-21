@@ -14,7 +14,7 @@
           <mat-select formControlName="numberRange" appFocusOnEnter tabIndex="1">
             <mat-option>None</mat-option>
             <mat-option *ngFor="let norange of porangeList" [value]="norange.numberRange">
-              {{norange.numberRange}} - {{norange.numberRange}}
+              {{norange.numberRange}}
             </mat-option>
           </mat-select>
           <mat-error *ngIf="formControls.numberRange.errors" class="help-block">
@@ -27,7 +27,7 @@
           <mat-select formControlName="companyCode" appFocusOnEnter tabIndex="2">
             <mat-option>None</mat-option>
             <mat-option *ngFor="let company of companiesList" [value]="company.id">
-              {{company.id}} - {{company.text}}
+              {{company.text}}
             </mat-option>
           </mat-select>
           <mat-error *ngIf="formControls.companyCode.errors" class="help-block">
@@ -40,7 +40,7 @@
           <mat-select formControlName="plant" appFocusOnEnter tabIndex="3">
             <mat-option>None</mat-option>
             <mat-option *ngFor="let plant of plantsList" [value]="plant.id">
-              {{plant.id}} - {{plant.text}}
+              {{plant.text}}
             </mat-option>
           </mat-select>
         </mat-form-field>
@@ -51,7 +51,7 @@
           <mat-select formControlName="purchaseOrderType" appFocusOnEnter tabIndex="4">
             <mat-option>None</mat-option>
             <mat-option *ngFor="let pol of porderList" [value]="pol.purchaseType">
-              {{pol.purchaseType}} - {{pol.description}}
+              {{pol.description}}
             </mat-option>
           </mat-select>
         </mat-form-field>

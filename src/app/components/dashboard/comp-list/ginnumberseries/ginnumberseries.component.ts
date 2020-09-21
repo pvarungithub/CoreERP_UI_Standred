@@ -2,13 +2,14 @@ import { Component, Inject, Optional, OnInit } from '@angular/core';
 import { MatDialogRef, MAT_DIALOG_DATA } from '@angular/material/dialog';
 import { CommonService } from '../../../../services/common.service';
 import { FormBuilder, FormGroup, Validators } from '@angular/forms';
-import { StatusCodes } from '../../../../enums/common/common';
 import { NgxSpinnerService } from 'ngx-spinner';
 import { ApiConfigService } from '../../../../services/api-config.service';
 import { ApiService } from '../../../../services/api.service';
 import { String } from 'typescript-string-operations';
 import { AddOrEditService } from '../add-or-edit.service';
-
+import { Static } from '../../../../enums/common/static';
+import { AlertService } from '../../../../services/alert.service';
+import { StatusCodes, SnackBar } from '../../../../enums/common/common';
 @Component({
   selector: 'app-ginnumberseries',
   templateUrl: './ginnumberseries.component.html',
@@ -27,6 +28,7 @@ export class GoodsIssueNoteNumberSeriesComponent implements OnInit {
     private spinner: NgxSpinnerService,
     private apiConfigService: ApiConfigService,
     private apiService: ApiService,
+    private alertService: AlertService,
     // @Optional() is used to prevent error if no data is passed
     @Optional() @Inject(MAT_DIALOG_DATA) public data: any) {
 
@@ -49,7 +51,27 @@ export class GoodsIssueNoteNumberSeriesComponent implements OnInit {
 
   }
 
-  ngOnInit() {
+  ngOnInit()
+  {
+  }
+  onChangeEvent() {
+    this.validationcode();
+  }
+  onChangeEvents() {
+    this.validationcode();
+  }
+
+  validationcode() {
+    let i = 0;
+    let j = 0;
+    i = parseInt(this.modelFormData.get('fromInterval').value);
+    j = parseInt(this.modelFormData.get('tointerval').value);
+    if (i <= j) {
+    }
+    else {
+      this.alertService.openSnackBar("Enter correct Value", Static.Close, SnackBar.error);
+    }
+
   }
   
   get formControls() { return this.modelFormData.controls; }

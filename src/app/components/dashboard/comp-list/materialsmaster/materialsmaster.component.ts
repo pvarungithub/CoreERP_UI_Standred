@@ -86,6 +86,7 @@ export class MaterialMasterComponent implements OnInit, OnDestroy {
     plantsList: any;
     PCGroupsList: any;
     UomList: any;
+    materialnum: any;
 
   constructor(private commonService: CommonService,
     private apiService: ApiService,
@@ -128,6 +129,7 @@ export class MaterialMasterComponent implements OnInit, OnDestroy {
       taxable: [null],
       schedule: [null],
       chapter: [null],
+      netWeightUOM:[null],
       goodsServiceDescription: null
     });
 
@@ -148,7 +150,26 @@ export class MaterialMasterComponent implements OnInit, OnDestroy {
     this.getdivisionList();
     this.getuomTypeData();
   }
+  getmaterialNumberData() {
+    //this.gettingbpgroupname();
+    const getmateriallist = String.Join('/', this.apiConfigService.getttingmaterialNumbers,
+      this.modelFormData.get('materialType').value);
+    this.apiService.apiGetRequest(getmateriallist)
+      .subscribe(
+        response => {
+          const res = response.body;
+          if (!this.commonService.checkNullOrUndefined(res) && res.status === StatusCodes.pass) {
+            if (!this.commonService.checkNullOrUndefined(res.response)) {
 
+              this.materialnum = res.response['materialnum'];
+              this.modelFormData.patchValue({
+                materialCode: this.materialnum
+              });
+            }
+          }
+          this.spinner.hide();
+        });
+  }
   getuomTypeData() {
     const getuomTypeUrl = String.Join('/', this.apiConfigService.getuomList);
     this.apiService.apiGetRequest(getuomTypeUrl)

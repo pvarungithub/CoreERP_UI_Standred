@@ -22,6 +22,7 @@ export class RequisitionAssignmentComponent implements OnInit {
     reqnorangeList: any;
     companiesList: any;
     plantsList: any;
+    deptList: any;
   constructor(private commonService: CommonService,
     private addOrEditService: AddOrEditService,
     private formBuilder: FormBuilder,
@@ -108,7 +109,7 @@ export class RequisitionAssignmentComponent implements OnInit {
           const res = response.body;
           if (!this.commonService.checkNullOrUndefined(res) && res.status === StatusCodes.pass) {
             if (!this.commonService.checkNullOrUndefined(res.response)) {
-              this.plantsList = res.response['plantsList'];
+              this.deptList = res.response['deptList'];
             }
           }
           this.spinner.hide();

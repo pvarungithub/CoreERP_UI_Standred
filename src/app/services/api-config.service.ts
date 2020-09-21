@@ -66,7 +66,8 @@ export class ApiConfigService {
   getMRNSeriesList = `${this.environment.runtimeConfig.serverUrl}MaterialRequisitionNoteNumberSeries/GetMaterialRequisitionNoteNumberSeriesList`;
   getMaterialSeriesList = `${this.environment.runtimeConfig.serverUrl}MaterialNumberRangeSeries/GetMaterialNumberRangeSeriesList`;
   getGINSeriesList = `${this.environment.runtimeConfig.serverUrl}GoodsIssueNoteNumberSeries/GetGoodsIssueNoteNumberSeriesList`;
-   //************************ IMG General  ****************************************/
+  getttingmaterialNumbers = `${this.environment.runtimeConfig.serverUrl}MaterialMaster/GetMaterialNumber`;
+  //************************ IMG General  ****************************************/
    getCurrencyList = `${this.environment.runtimeConfig.serverUrl}Currency/GetCurrencyList`;
    getLanguageList = `${this.environment.runtimeConfig.serverUrl}Language/GetLanguageList`;
    getCompanysList = `${this.environment.runtimeConfig.serverUrl}Company/GetCompanysList`;

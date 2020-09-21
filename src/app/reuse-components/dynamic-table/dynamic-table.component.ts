@@ -169,7 +169,7 @@ export class DynamicTableComponent implements OnInit, OnDestroy, AfterContentChe
           object['check'] = (this.runtimeConfigService.tableColumnsData[this.routeParam][res.col] == 'checkbox') ? this.dataSource.data[t][res.col].value : true
         }
       })
-      if (this.dataSource.data.length != t) {
+      if ((this.dataSource.data.length - 1) != t) {
         if (object.hasOwnProperty('check')) {
           if (object['check']) {
             array.push(object);

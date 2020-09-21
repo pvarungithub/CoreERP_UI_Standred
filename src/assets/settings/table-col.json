@@ -809,6 +809,7 @@
     "delete": "Delete"
   },
   "receiptspayments": {
+    "checkAll": "checkbox",
     "id": "id",
     "title": "Party Payments / Receipts",
     "company": "Company",
@@ -1203,8 +1204,9 @@
     "uom": "Uom",
     "division": "Division",
     "grossWeight": "Gross Weight",
-    "ouom": "Gross Weight",
+    "ouom": "Gross Weight OUOM",
     "netWeight": "Net Weight",
+    "netWeightUOM": "Net Weight UOM",
     "purchasingGroup": "Purchasing Group",
     "purchaseOrderText": "PurchaseOrder Text",
     "minLevel": "Min Level",
@@ -1225,5 +1227,6 @@
     "chapter": "Chapter",
     "goodsServiceDescription": "Goods Service Description"
   }
+
 
 }

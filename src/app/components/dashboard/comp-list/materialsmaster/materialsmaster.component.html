@@ -31,7 +31,7 @@
 
             <mat-form-field>
               <mat-label>{{'materialsmaster.materialType' | translate }}</mat-label>
-              <mat-select formControlName="materialType" appFocusOnEnter tabIndex="3">
+              <mat-select formControlName="materialType" (selectionChange)="getmaterialNumberData()" appFocusOnEnter tabIndex="3">
                 <mat-option>None</mat-option>
                 <mat-option *ngFor="let mtype of matypeList" [value]="mtype.code">
                   {{mtype.description}}
@@ -48,10 +48,10 @@
               </mat-error>
             </mat-form-field>
             <!--<mat-form-field class="form-element">
-              <input matInput placeholder="{{'materialsmaster.materialCode' | translate }}"
-                     formControlName="materialCode"
-                     maxlength="6" appFocusOnEnter tabIndex="4">
-            </mat-form-field>-->
+    <input matInput placeholder="{{'materialsmaster.materialCode' | translate }}"
+           formControlName="materialCode"
+           maxlength="6" appFocusOnEnter tabIndex="4">
+  </mat-form-field>-->
 
             <mat-form-field class="form-element">
               <input matInput placeholder="{{'materialsmaster.description' | translate }}"
@@ -124,6 +124,11 @@
               <input matInput placeholder="{{'materialsmaster.netWeight' | translate }}"
                      formControlName="netWeight"
                      maxlength="12" appFocusOnEnter tabIndex="13">
+            </mat-form-field>
+            <mat-form-field class="form-element">
+              <input matInput placeholder="{{'materialsmaster.netWeightUOM' | translate }}"
+                     formControlName="netWeightUOM"
+                     maxlength="12" appFocusOnEnter tabIndex="14">
             </mat-form-field>
           </div>
           <mat-divider></mat-divider>
