@@ -43,6 +43,7 @@ export class CashbankComponent implements OnInit {
   glAccountList = [];
   profitCenterList = [];
   segmentList = [];
+  hsnsacList=[];
   btList = [];
   costCenterList = [];
   taxCodeList = [];
@@ -106,7 +107,7 @@ export class CashbankComponent implements OnInit {
           value: 0, type: 'autoInc', width: 10, disabled: true
         },
         glaccount: {
-          value: null, type: 'dropdown', list: this.glAccountList, id: 'id', text: 'text', displayMul: true, width: 100
+          value: null, type: 'dropdown', list: this.glAccountList, id: 'id', text: 'text', displayMul: false, width: 100
         },
         amount: {
           value: null, type: 'number', width: 100, maxLength: 15
@@ -159,8 +160,8 @@ export class CashbankComponent implements OnInit {
         commitment: {
           value: null, type: 'dropdown', list: this.costCenterList, id: 'id', text: 'text', displayMul: false, width: 100
         },
-        hSNSACCode: {
-          value: null, type: 'dropdown', list: this.costCenterList, id: 'id', text: 'text', displayMul: false, width: 100
+        hsnsaccode: {
+          value: null, type: 'dropdown', list: this.hsnsacList, id: 'code', text: 'description', displayMul: false, width: 100
         },
         narration: {
           value: null, type: 'text', width: 100, maxLength: 50
@@ -189,7 +190,6 @@ export class CashbankComponent implements OnInit {
     this.apiService.apiGetRequest(cashDetUrl)
       .subscribe(
         response => {
-          this.spinner.hide();
           const res = response.body;
           if (!this.commonService.checkNullOrUndefined(res) && res.status === StatusCodes.pass) {
             if (!this.commonService.checkNullOrUndefined(res.response)) {
@@ -359,6 +359,21 @@ export class CashbankComponent implements OnInit {
               this.segmentList = res.response['segmentList'];
             }
           }
+          this.getHsnSacList();
+        });
+  }
+
+  getHsnSacList() {
+    const segUrl = String.Join('/', this.apiConfigService.getHsnSacList);
+    this.apiService.apiGetRequest(segUrl)
+      .subscribe(
+        response => {
+          const res = response.body;
+          if (!this.commonService.checkNullOrUndefined(res) && res.status === StatusCodes.pass) {
+            if (!this.commonService.checkNullOrUndefined(res.response)) {
+              this.hsnsacList = res.response['hsnsacList'];
+            }
+          }
           this.getCostcenters();
         });
   }
@@ -453,7 +468,6 @@ export class CashbankComponent implements OnInit {
           if (!this.commonService.checkNullOrUndefined(res.response)) {
             this.alertService.openSnackBar(res.response, Static.Close, SnackBar.success);
           }
-          this.spinner.hide();
         }
       });
   }

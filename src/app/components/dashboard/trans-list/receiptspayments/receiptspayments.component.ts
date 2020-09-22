@@ -165,9 +165,9 @@ export class ReceiptspaymentsComponent implements OnInit {
         narration: {
           value: null, type: 'text', width: 150
         },
-        delete: {
-          type: 'delete', width: 10
-        }
+        // delete: {
+        //   type: 'delete', width: 10
+        // }
       },
       formControl: {}
     }

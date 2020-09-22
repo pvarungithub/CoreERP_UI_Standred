@@ -27,6 +27,7 @@ export class PurchasesaleassetComponent implements OnInit {
   formData: FormGroup;
   routeEdit = '';
   btList = [];
+  hsnsacList=[];
   tableData = [];
   dynTableProps: any;
   ptermsList = [];
@@ -195,7 +196,7 @@ export class PurchasesaleassetComponent implements OnInit {
           value: null, type: 'dropdown', list: this.costCenterList, id: 'id', text: 'text', displayMul: false, width: 100
         },
         hsnsac: {
-          value: null, type: 'dropdown', list: this.costCenterList, id: 'id', text: 'text', displayMul: false, width: 100
+          value: null, type: 'dropdown', list: this.hsnsacList, id: 'code', text: 'description', displayMul: false, width: 100
         },
         delete: {
           type: 'delete', width: 10
@@ -431,6 +432,20 @@ export class PurchasesaleassetComponent implements OnInit {
           if (!this.commonService.checkNullOrUndefined(res) && res.status === StatusCodes.pass) {
             if (!this.commonService.checkNullOrUndefined(res.response)) {
               this.saList = res.response['saList'];
+            }
+          }
+          this.getHsnSacList();
+        });
+  }
+  getHsnSacList() {
+    const segUrl = String.Join('/', this.apiConfigService.getHsnSacList);
+    this.apiService.apiGetRequest(segUrl)
+      .subscribe(
+        response => {
+          const res = response.body;
+          if (!this.commonService.checkNullOrUndefined(res) && res.status === StatusCodes.pass) {
+            if (!this.commonService.checkNullOrUndefined(res.response)) {
+              this.hsnsacList = res.response['hsnsacList'];
             }
           }
           this.getCostcenters();

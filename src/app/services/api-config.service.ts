@@ -67,6 +67,7 @@ export class ApiConfigService {
   getMaterialSeriesList = `${this.environment.runtimeConfig.serverUrl}MaterialNumberRangeSeries/GetMaterialNumberRangeSeriesList`;
   getGINSeriesList = `${this.environment.runtimeConfig.serverUrl}GoodsIssueNoteNumberSeries/GetGoodsIssueNoteNumberSeriesList`;
   getttingmaterialNumbers = `${this.environment.runtimeConfig.serverUrl}MaterialMaster/GetMaterialNumber`;
+  getHsnSacList = `${this.environment.runtimeConfig.serverUrl}HsnSac/GetHsnSacList`;
   //************************ IMG General  ****************************************/
    getCurrencyList = `${this.environment.runtimeConfig.serverUrl}Currency/GetCurrencyList`;
    getLanguageList = `${this.environment.runtimeConfig.serverUrl}Language/GetLanguageList`;
