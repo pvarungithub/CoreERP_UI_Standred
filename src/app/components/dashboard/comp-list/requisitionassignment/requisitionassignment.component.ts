@@ -102,7 +102,7 @@ export class RequisitionAssignmentComponent implements OnInit {
   }
 
   getdepartmentData() {
-    const getdepartmentTypeUrl = String.Join('/', this.apiConfigService.getPlantsList);
+    const getdepartmentTypeUrl = String.Join('/', this.apiConfigService.getdepartmentList);
     this.apiService.apiGetRequest(getdepartmentTypeUrl)
       .subscribe(
         response => {

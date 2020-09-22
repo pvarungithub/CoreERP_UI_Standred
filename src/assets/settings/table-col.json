@@ -721,7 +721,7 @@
     "orderNo": "Order No",
     "fundCenter": "Fund Center",
     "commitment": "Commitment",
-    "hsnsaccode": "HSN SAC",
+    "hSNSACCode": "HSN SAC",
     "sgstamount": "SGST",
     "cgstamount": "CGST",
     "igstamount": "IGST",
@@ -862,7 +862,7 @@
     "writeoff": "Writeoff",
     "narration": "Narration",
     "delete": "Delete"
-  },
+  },  
   "purchasesaleasset": {
     "id": "ID",
     "title": "Purchase / Sale Asset",
@@ -975,11 +975,13 @@
     "description": "Description"
   },
   "purchasingperson": {
+    "personName": "PurchasePersonName",
     "title": "Purchasing Person",
-    "purchasePerson": "PurchasePerson",
     "description": "Description",
-    "purchaseGroup": "Purchase Group",
-    "purchaseTypes": "Purchase Types"
+    "purchaseGroupName": "PurchaseGroup Name",
+    "purchaseTypesName": "PurchaseTypes Name"
+
+
   },
   "requisitionnumberrange": {
     "title": "Requisition NumberRange",
@@ -989,12 +991,13 @@
     "currentNumber": "CurrentNumber",
     "prefix": "Prefix"
   },
+
   "requisitionnumberassignment": {
     "title": "Requisition Assignment",
-    "numberRange": "NumberRange",
-    "company": "Company",
-    "plant": "Plant",
-    "department": "Department"
+    "noRangeName": "NoRangeName",
+    "companyName": "CompanyName",
+    "plantName": "PlantName",
+    "departmentName": "DepartmentName"
   },
   "quotationnumberrange": {
     "title": "Quotation NumberRange",
@@ -1006,9 +1009,9 @@
   },
   "quotationnumberassignment": {
     "title": "Quotation Assignment",
-    "numberRange": "NumberRange",
-    "company": "Company",
-    "plant": "Plant"
+    "noRangeName": "NoRangeName",
+    "companyName": "CompanyName",
+    "plantName": "PlantName"
   },
   "purchaseordertype": {
     "title": "Purchase OrderType",
@@ -1043,10 +1046,10 @@
   },
   "purchaseordernumberassignment": {
     "title": "PurchaseOrder Assignment",
-    "numberRange": "NumberRange",
-    "companyCode": "Company",
-    "plant": "Plant",
-    "purchaseOrderType": "PurchaseOrder Type"
+    "noRangeName": "NoRangeName",
+    "companyName": "CompanyName",
+    "plantName": "PlantName",
+    "porderGroupName": "PorderGroupName"
   },
   "storetypes": {
     "title": "Store Types",
@@ -1075,10 +1078,10 @@
   },
   "lotseriesassignment": {
     "title": "Lot Series Assignment",
-    "lotSeries": "Lot Series",
-    "company": "Company",
-    "plant": "Plant",
-    "materialType": "Material Type"
+    "noRangeName": "NoRangeName",
+    "companyName": "CompanyName",
+    "plantName": "PlantName",
+    "materialName": "MaterialName"
   },
   "grnnumberseries": {
     "title": "Goods Receipt Note Numberseries",
@@ -1089,19 +1092,20 @@
     "currentNumber": "CurrentNumber",
     "prefix": "Prefix"
   },
+
   "grnnoassignment": {
     "title": "GoodsReceipt Note Assignment",
-    "grnseries": "GRN Series",
-    "company": "Company",
-    "plant": "Plant",
-    "materialType": "Material Type"
+    "grnseriesName": "GrnseriesName",
+    "companyName": "CompanyName",
+    "plantName": "PlantName",
+    "materialName": "MaterialName"
   },
   "ginassignment": {
     "title": "Goods Issue Note Assignment",
-    "ginseries": "GIN Series",
-    "company": "Company",
-    "plant": "Plant",
-    "materilaType": "Material Type"
+    "ginseriesName": "GINSeries Name",
+    "companyName": "CompanyName",
+    "plantName": "PlantName",
+    "materialName": "MaterialName"
   },
   "ginnumberseries": {
     "title": "Goods Issue Note Number Series",
@@ -1121,12 +1125,13 @@
     "currentNumber": "Current Number",
     "prefix": "Prefix"
   },
+
   "mrnassignment": {
     "title": "Material Requisition Note Assignment",
-    "mrnseries": "MRN Series",
-    "company": "Company",
-    "plant": "Plant",
-    "materialType": "Material Type"
+    "materialseriesName": "Material series Name",
+    "companyName": "CompanyName",
+    "plantName": "PlantName",
+    "materialName": "MaterialName"
   },
   "materialgroups": {
     "title": "Material Groups",
@@ -1156,15 +1161,15 @@
   },
   "materialassignment": {
     "title": "Material Number Range Assignment",
-    "numberRange": "Number Range",
-    "companyCode": "Company",
-    "plant": "Plant",
-    "materialType": "Material Type"
+    "numberRangeName": "NumberRange Name",
+    "companyName": "CompanyName",
+    "plantName": "PlantName",
+    "materialName": "MaterialName"
   },
   "purchaserequisitionnumberrange": {
     "title": "Purchase Requisition Number Range",
-    "plant": "Plant",
-    "department": "Department",
+    "plantName": "PlantName",
+    "departmentname": "DepartmentName",
     "code": "Code",
     "fromInterval": "From Interval",
     "toInterval": "To Interval",
@@ -1176,15 +1181,15 @@
     "title": "Bins Creation",
     "binNumber": "Bin Number",
     "description": "Description",
-    "plant": "Plant",
-    "storageLocation": "StorageLocation",
-    "material": "Material",
     "minLevel": "Min Level",
     "maxLevel": "MaxLevel",
     "reOrderLevel": "ReOrderLevel",
     "openQty": "OpenQty",
-    "uom": "Uom",
-    "storeIncharge": "Store Incharge"
+    "locationName": "LocationName",
+    "employeeName": "EmployeeName",
+    "plantName": "PlantName",
+    "materialName": "MaterialName",
+    "uomName": "UomName"
   },
   "materialsize": {
     "title": "Material Size",
@@ -1193,21 +1198,21 @@
   },
   "materialsmaster": {
     "title": "Material Master",
-    "company": "Company",
-    "plant": "Plant",
-    "materialType": "Material Type",
+    "companyName": "CompanyName",
+    "plantName": "PlantName",
+    "materialName": "MaterialName",
     "materialCode": "Material Code",
     "description": "Description",
-    "materialGroup": "Material Group",
-    "size": "Size",
-    "modelPattern": "Model Pattern",
-    "uom": "Uom",
-    "division": "Division",
+    "materialGroupName": "MaterialGroupName",
+    "materialSizeName": "MaterialSizeName",
+    "modelPatternName": "ModelPatternName",
+    "uomName": "UomName",
+    "divisionName": "DivisionName",
     "grossWeight": "Gross Weight",
-    "ouom": "Gross Weight OUOM",
+    "ouom": "Gross Weight",
     "netWeight": "Net Weight",
     "netWeightUOM": "Net Weight UOM",
-    "purchasingGroup": "Purchasing Group",
+    "purchaseGroupName": "PurchaseGroupName",
     "purchaseOrderText": "PurchaseOrder Text",
     "minLevel": "Min Level",
     "maxLevel": "Max Level",
@@ -1227,4 +1232,5 @@
     "chapter": "Chapter",
     "goodsServiceDescription": "Goods Service Description"
   }
+
 }

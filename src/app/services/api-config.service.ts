@@ -16,6 +16,8 @@ export class ApiConfigService {
    getComponentInfo = `${this.environment.runtimeConfig.serverUrl}Settings/GetComponentInfo`;
   
    // Common
+  getdepartmentList = `${this.environment.runtimeConfig.serverUrl}Common/GetDepartmentList`;
+  getttingmaterialNumbers = `${this.environment.runtimeConfig.serverUrl}MaterialMaster/GetMaterialNumber`;
   getuomList = `${this.environment.runtimeConfig.serverUrl}Common/GetUOMList`;
   getmaterialdata = `${this.environment.runtimeConfig.serverUrl}MaterialMaster/GetMaterialMasterList`;
   getModelPatternList = `${this.environment.runtimeConfig.serverUrl}ModelPattern/GetModelPatternList`;
@@ -34,7 +36,8 @@ export class ApiConfigService {
    getCountrysList = `${this.environment.runtimeConfig.serverUrl}Common/GetCountrysList`;
    getcurrencyList = `${this.environment.runtimeConfig.serverUrl}Common/GetCurrencyList`;
    getstatesList = `${this.environment.runtimeConfig.serverUrl}Common/GetStatesList`;
-   getCompanyList = `${this.environment.runtimeConfig.serverUrl}Common/GetCompanyList`;
+  getCompanyList = `${this.environment.runtimeConfig.serverUrl}Common/GetCompanyList`;
+  
    getEmployeeList = `${this.environment.runtimeConfig.serverUrl}Common/GetEmployeeList`;
    getPlantsList = `${this.environment.runtimeConfig.serverUrl}Common/GetPlantsList`;
    getlocationsList = `${this.environment.runtimeConfig.serverUrl}Common/GetLocationsList`;
@@ -66,9 +69,9 @@ export class ApiConfigService {
   getMRNSeriesList = `${this.environment.runtimeConfig.serverUrl}MaterialRequisitionNoteNumberSeries/GetMaterialRequisitionNoteNumberSeriesList`;
   getMaterialSeriesList = `${this.environment.runtimeConfig.serverUrl}MaterialNumberRangeSeries/GetMaterialNumberRangeSeriesList`;
   getGINSeriesList = `${this.environment.runtimeConfig.serverUrl}GoodsIssueNoteNumberSeries/GetGoodsIssueNoteNumberSeriesList`;
-  getttingmaterialNumbers = `${this.environment.runtimeConfig.serverUrl}MaterialMaster/GetMaterialNumber`;
   getHsnSacList = `${this.environment.runtimeConfig.serverUrl}HsnSac/GetHsnSacList`;
-  //************************ IMG General  ****************************************/
+ 
+   //************************ IMG General  ****************************************/
    getCurrencyList = `${this.environment.runtimeConfig.serverUrl}Currency/GetCurrencyList`;
    getLanguageList = `${this.environment.runtimeConfig.serverUrl}Language/GetLanguageList`;
    getCompanysList = `${this.environment.runtimeConfig.serverUrl}Company/GetCompanysList`;

@@ -306,7 +306,6 @@ export class MaterialMasterComponent implements OnInit, OnDestroy {
   get formControls() { return this.modelFormData.controls; }
 
   save() {
-    debugger;
     if (this.modelFormData.invalid) {
       return;
     }

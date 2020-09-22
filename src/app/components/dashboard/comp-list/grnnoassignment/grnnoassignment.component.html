@@ -49,8 +49,8 @@
           <mat-label>{{'grnnoassignment.materialType' | translate }}</mat-label>
           <mat-select formControlName="materialType" appFocusOnEnter tabIndex="4">
             <mat-option>None</mat-option>
-            <mat-option *ngFor="let pol of porderList" [value]="pol.purchaseType">
-              {{pol.description}}
+            <mat-option *ngFor="let mtype of matypeList" [value]="mtype.code">
+              {{mtype.description}}
             </mat-option>
           </mat-select>
         </mat-form-field>

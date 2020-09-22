@@ -25,6 +25,7 @@ export class GoodsIssueNoteAssignmentComponent implements OnInit {
     porderList: any;
     lotList: any;
   issuenoList: any;
+    matypeList: any;
   constructor(private commonService: CommonService,
     private addOrEditService: AddOrEditService,
     private formBuilder: FormBuilder,
@@ -56,7 +57,7 @@ export class GoodsIssueNoteAssignmentComponent implements OnInit {
     this.getGINSeriesData();
     this.getcompanyData();
     this.getPlantData();
-    this.getpurchaseOrderTypeData();
+    this.getmaterialTypeData();
   }
   getGINSeriesData() {
     const getGINSeriesUrl = String.Join('/', this.apiConfigService.getGINSeriesList);
@@ -103,15 +104,15 @@ export class GoodsIssueNoteAssignmentComponent implements OnInit {
         });
   }
 
-  getpurchaseOrderTypeData() {
-    const getpurchaseOrderTypeUrl = String.Join('/', this.apiConfigService.getpurchaseOrderTypeList);
-    this.apiService.apiGetRequest(getpurchaseOrderTypeUrl)
+  getmaterialTypeData() {
+    const getmaterialTypeUrl = String.Join('/', this.apiConfigService.getMaterialList);
+    this.apiService.apiGetRequest(getmaterialTypeUrl)
       .subscribe(
         response => {
           const res = response.body;
           if (!this.commonService.checkNullOrUndefined(res) && res.status === StatusCodes.pass) {
             if (!this.commonService.checkNullOrUndefined(res.response)) {
-              this.porderList = res.response['porderList'];
+              this.matypeList = res.response['matypeList'];
             }
           }
           this.spinner.hide();
