@@ -10,11 +10,16 @@ import { AddOrEditService } from '../../comp-list/add-or-edit.service';
 import { ActivatedRoute, Router } from '@angular/router';
 import { Static } from '../../../../enums/common/static';
 import { AlertService } from '../../../../services/alert.service';
-
+import { DateAdapter, MAT_DATE_FORMATS } from '@angular/material/core';
+import { AppDateAdapter, APP_DATE_FORMATS } from '../../../../directives/format-datepicker';
 @Component({
   selector: 'app-invoicesmemos',
   templateUrl: './memoinvoice.component.html',
-  styleUrls: ['./memoinvoice.component.scss']
+  styleUrls: ['./memoinvoice.component.scss'],
+  providers: [
+    { provide: DateAdapter, useClass: AppDateAdapter },
+    { provide: MAT_DATE_FORMATS, useValue: APP_DATE_FORMATS }
+  ]
 })
 
 export class MemoinvoiceComponent implements OnInit {
@@ -483,8 +488,8 @@ export class MemoinvoiceComponent implements OnInit {
   }
 
   emitTableData(data) {
-    this.checkCreditDebit();
     this.tableData = data;
+    this.checkCreditDebit();
   }
 
   back() {

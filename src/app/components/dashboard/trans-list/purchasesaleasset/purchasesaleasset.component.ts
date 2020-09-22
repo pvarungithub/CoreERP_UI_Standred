@@ -10,11 +10,16 @@ import { AddOrEditService } from '../../comp-list/add-or-edit.service';
 import { ActivatedRoute, Router } from '@angular/router';
 import { Static } from '../../../../enums/common/static';
 import { AlertService } from '../../../../services/alert.service';
-
+import { DateAdapter, MAT_DATE_FORMATS } from '@angular/material/core';
+import { AppDateAdapter, APP_DATE_FORMATS } from '../../../../directives/format-datepicker';
 @Component({
   selector: 'app-purchasesaleasset',
   templateUrl: './purchasesaleasset.component.html',
-  styleUrls: ['./purchasesaleasset.component.scss']
+  styleUrls: ['./purchasesaleasset.component.scss'],
+  providers: [
+    { provide: DateAdapter, useClass: AppDateAdapter },
+    { provide: MAT_DATE_FORMATS, useValue: APP_DATE_FORMATS }
+  ]
 })
 
 export class PurchasesaleassetComponent implements OnInit {

@@ -41,6 +41,7 @@ export class DynamicTableComponent implements OnInit, OnDestroy, AfterContentChe
   data: any;
   isDropdown = false;
   checkAllColValue = { col: '', val: false };
+  removeEmptyRow = 1;
 
   constructor(
     activatedRoute: ActivatedRoute,
@@ -66,6 +67,7 @@ export class DynamicTableComponent implements OnInit, OnDestroy, AfterContentChe
           } else if (res.type == 'add') {
             if (res.data.length) {
               this.dataSource = new MatTableDataSource(JSON.parse(JSON.stringify(res.data)));
+              this.removeEmptyRow = res.removeEmptyRow;
               (this.isDropdown) ? this.setFocus() : this.setCurrentFocus();
             } else {
               this.setTableData();
@@ -169,7 +171,7 @@ export class DynamicTableComponent implements OnInit, OnDestroy, AfterContentChe
           object['check'] = (this.runtimeConfigService.tableColumnsData[this.routeParam][res.col] == 'checkbox') ? this.dataSource.data[t][res.col].value : true
         }
       })
-      if ((this.dataSource.data.length - 1) != t) {
+      if ((this.dataSource.data.length - this.removeEmptyRow) != t) {
         if (object.hasOwnProperty('check')) {
           if (object['check']) {
             array.push(object);

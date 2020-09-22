@@ -1168,7 +1168,6 @@
     "currentNumber": "CurrentNumber",
     "prefix": "Prefix"
   },
-
   "requisitionnumberassignment": {
     "title": "Requisition Assignment",
     "numberRange": "NumberRange",
@@ -1264,7 +1263,7 @@
     "plant": "Plant",
     "materialType": "Material Type"
   },
-"grnnumberseries": {
+  "grnnumberseries": {
     "title": "Goods Receipt Note Numberseries",
     "grnseries": "GRN Series",
     "description": "Description",
@@ -1411,5 +1410,4 @@
     "chapter": "Chapter",
     "goodsServiceDescription": "Goods Service Description"
   }
-
 }

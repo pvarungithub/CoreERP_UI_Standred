@@ -862,7 +862,7 @@
     "writeoff": "Writeoff",
     "narration": "Narration",
     "delete": "Delete"
-  },  
+  },
   "purchasesaleasset": {
     "id": "ID",
     "title": "Purchase / Sale Asset",
@@ -1080,7 +1080,7 @@
     "plant": "Plant",
     "materialType": "Material Type"
   },
-"grnnumberseries": {
+  "grnnumberseries": {
     "title": "Goods Receipt Note Numberseries",
     "grnseries": "GRN Series",
     "description": "Description",
@@ -1227,6 +1227,4 @@
     "chapter": "Chapter",
     "goodsServiceDescription": "Goods Service Description"
   }
-
-
 }

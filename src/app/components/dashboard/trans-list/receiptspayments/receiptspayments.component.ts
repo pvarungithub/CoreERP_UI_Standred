@@ -10,11 +10,16 @@ import { AddOrEditService } from '../../comp-list/add-or-edit.service';
 import { ActivatedRoute, Router } from '@angular/router';
 import { Static } from '../../../../enums/common/static';
 import { AlertService } from '../../../../services/alert.service';
-
+import { DateAdapter, MAT_DATE_FORMATS } from '@angular/material/core';
+import { AppDateAdapter, APP_DATE_FORMATS } from '../../../../directives/format-datepicker';
 @Component({
   selector: 'app-receiptspayments',
   templateUrl: './receiptspayments.component.html',
-  styleUrls: ['./receiptspayments.component.scss']
+  styleUrls: ['./receiptspayments.component.scss'],
+  providers: [
+    { provide: DateAdapter, useClass: AppDateAdapter },
+    { provide: MAT_DATE_FORMATS, useValue: APP_DATE_FORMATS }
+  ]
 })
 
 export class ReceiptspaymentsComponent implements OnInit {
@@ -114,12 +119,12 @@ export class ReceiptspaymentsComponent implements OnInit {
         {
           value: false, type: 'checkbox'
         },
-        
+
         partyInvoiceNo: {
           value: null, type: 'number', width: 150
         },
         partyInvoiceDate: {
-         // value: null, type: 'dropdown', list: this.date, id: 'date', text: 'date', displayMul: true, width: 100
+          // value: null, type: 'dropdown', list: this.date, id: 'date', text: 'date', displayMul: true, width: 100
           value: new Date(), type: 'datepicker', width: 100
         },
         dueDate: {
@@ -288,8 +293,8 @@ export class ReceiptspaymentsComponent implements OnInit {
       })
     }
     //
-    this.addOrEditService.sendDynTableData({ type: 'add', data: newData });
-    this.tableData=newData;
+    this.addOrEditService.sendDynTableData({ type: 'add', data: newData, removeEmptyRow: 0 });
+    this.tableData = newData;
   }
 
   getfunctionaldeptList() {
@@ -439,12 +444,25 @@ export class ReceiptspaymentsComponent implements OnInit {
   }
 
   emitTableData(data) {
-      this.tableData = data;
-      console.log(this.tableData)
+    this.tableData = data;
+    console.log(this.tableData)
   }
 
   back() {
     this.router.navigate(['dashboard/transaction/receiptspayments'])
+  }
+
+  checkAjectAmount() {
+    let adjustmentAmount = 0;
+    if (this.tableData.length) {
+      this.tableData.forEach(res => {
+        if (res.adjustmentAmount) {
+          adjustmentAmount = adjustmentAmount + (+res.adjustmentAmount)
+        }
+      });
+      return (adjustmentAmount == +this.formData.get('amount').value) ? false : true;
+    }
+    return true;
   }
 
   save() {

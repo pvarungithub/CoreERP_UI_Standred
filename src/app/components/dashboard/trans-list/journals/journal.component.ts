@@ -10,11 +10,16 @@ import { AddOrEditService } from '../../comp-list/add-or-edit.service';
 import { ActivatedRoute, Router } from '@angular/router';
 import { Static } from '../../../../enums/common/static';
 import { AlertService } from '../../../../services/alert.service';
-
+import { DateAdapter, MAT_DATE_FORMATS } from '@angular/material/core';
+import { AppDateAdapter, APP_DATE_FORMATS } from '../../../../directives/format-datepicker';
 @Component({
   selector: 'app-journals',
   templateUrl: './journal.component.html',
-  styleUrls: ['./journal.component.scss']
+  styleUrls: ['./journal.component.scss'],
+  providers: [
+    { provide: DateAdapter, useClass: AppDateAdapter },
+    { provide: MAT_DATE_FORMATS, useValue: APP_DATE_FORMATS }
+  ]
 })
 
 export class JournalComponent implements OnInit {
