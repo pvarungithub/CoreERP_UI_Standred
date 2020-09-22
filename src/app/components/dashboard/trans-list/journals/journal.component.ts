@@ -436,7 +436,7 @@ export class JournalComponent implements OnInit {
           if (res.accountingIndicator == 'Credit') {
             this.creditValue = !this.commonService.checkNullOrUndefined(parseInt(res.amount)) ? (this.creditValue + parseInt(res.amount)) : 0;
           }
-          this.totalTaxValue = this.totalTaxValue + parseInt(res.sgstamount) + parseInt(res.cgstamount) + parseInt(res.ugstamount) + parseInt(res.igstamount)
+          this.totalTaxValue = this.totalTaxValue + res.sgstamount + res.cgstamount + res.ugstamount + res.igstamount
         });
         return (this.debitValue == this.creditValue) ? false : true;
       }

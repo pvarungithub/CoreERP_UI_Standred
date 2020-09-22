@@ -67,7 +67,7 @@ export class DynamicTableComponent implements OnInit, OnDestroy, AfterContentChe
           } else if (res.type == 'add') {
             if (res.data.length) {
               this.dataSource = new MatTableDataSource(JSON.parse(JSON.stringify(res.data)));
-              this.removeEmptyRow = res.removeEmptyRow;
+              this.removeEmptyRow = !this.commonService.checkNullOrUndefined(res.removeEmptyRow) ? res.removeEmptyRow : 1;
               (this.isDropdown) ? this.setFocus() : this.setCurrentFocus();
             } else {
               this.setTableData();

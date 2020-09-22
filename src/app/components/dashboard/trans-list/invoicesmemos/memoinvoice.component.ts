@@ -138,16 +138,16 @@ export class MemoinvoiceComponent implements OnInit {
           value: null, type: 'dropdown', list: this.taxCodeList, id: 'taxRateCode', text: 'description', displayMul: false, width: 100
         },
         sgstamount: {
-          value: null, type: 'number', disabled: true, width: 75
+          value: 0, type: 'number', disabled: true, width: 75
         },
         cgstamount: {
-          value: null, type: 'number', disabled: true, width: 75
+          value: 0, type: 'number', disabled: true, width: 75
         },
         igstamount: {
-          value: null, type: 'number', disabled: true, width: 75
+          value: 0, type: 'number', disabled: true, width: 75
         },
         ugstamount: {
-          value: null, type: 'number', disabled: true, width: 75
+          value: 0, type: 'number', disabled: true, width: 75
         },
         referenceNo: {
           value: null, type: 'number', width: 75
@@ -468,7 +468,7 @@ export class MemoinvoiceComponent implements OnInit {
           if (res.accountingIndicator == 'Credit') {
             this.creditValue = !this.commonService.checkNullOrUndefined(parseInt(res.amount)) ? (this.creditValue + parseInt(res.amount)) : 0;
           }
-          this.totalTaxValue = this.totalTaxValue + parseInt(res.sgstamount) + parseInt(res.cgstamount) + parseInt(res.ugstamount) + parseInt(res.igstamount)
+          this.totalTaxValue = this.totalTaxValue + res.sgstamount + res.cgstamount + res.ugstamount + res.igstamount
         });
       }
     }
@@ -500,6 +500,9 @@ export class MemoinvoiceComponent implements OnInit {
     if (this.tableData.length == 0) {
       return;
     }
+    this.formData.patchValue({
+      totalAmount: this.debitValue + this.creditValue + this.totalTaxValue
+    })
     this.saveInvoiceMemo();
   }
 
