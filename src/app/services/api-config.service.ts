@@ -16,6 +16,9 @@ export class ApiConfigService {
    getComponentInfo = `${this.environment.runtimeConfig.serverUrl}Settings/GetComponentInfo`;
   
    // Common
+  getcostnumberseriesList = `${this.environment.runtimeConfig.serverUrl}Common/GetCostingNumberSeriesList`;
+  getcostofobjectList = `${this.environment.runtimeConfig.serverUrl}Common/GetCostingObjectTypeList`;
+  getsecondelementList = `${this.environment.runtimeConfig.serverUrl}Common/GetCostingSecondaryList`;
   getdepartmentList = `${this.environment.runtimeConfig.serverUrl}Common/GetDepartmentList`;
   getttingmaterialNumbers = `${this.environment.runtimeConfig.serverUrl}MaterialMaster/GetMaterialNumber`;
   getuomList = `${this.environment.runtimeConfig.serverUrl}Common/GetUOMList`;
@@ -70,7 +73,6 @@ export class ApiConfigService {
   getMaterialSeriesList = `${this.environment.runtimeConfig.serverUrl}MaterialNumberRangeSeries/GetMaterialNumberRangeSeriesList`;
   getGINSeriesList = `${this.environment.runtimeConfig.serverUrl}GoodsIssueNoteNumberSeries/GetGoodsIssueNoteNumberSeriesList`;
   getHsnSacList = `${this.environment.runtimeConfig.serverUrl}HsnSac/GetHsnSacList`;
- 
    //************************ IMG General  ****************************************/
    getCurrencyList = `${this.environment.runtimeConfig.serverUrl}Currency/GetCurrencyList`;
    getLanguageList = `${this.environment.runtimeConfig.serverUrl}Language/GetLanguageList`;

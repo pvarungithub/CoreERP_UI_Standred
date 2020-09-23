@@ -1409,5 +1409,75 @@
     "schedule": "Schedule",
     "chapter": "Chapter",
     "goodsServiceDescription": "Goods Service Description"
+  },
+  
+  "primarycostelement": {
+    "title": "PrimaryCost Element",
+    "primaryCostCode": "PrimaryCost Code",
+    "company": "Company",
+    "chartofAccount": "Chartof Account",
+    "generalLedger": "General Ledger",
+    "description": "Description",
+    "usage": "Usage",
+    "element": "Element",
+    "qty": "Qty",
+    "uom": "Uom",
+    "companyName": "CompanyName",
+    "chartAccountName": "ChartAccountName",
+    "uomName": "UomName",
+    "accGroupName": "GL Name"
+  },
+  "secondarycostelement": {
+    "title": "SecondaryCost Element",
+    "secondaryCostCode": "SecondaryCost Code",
+    "company": "Company",
+    "chartofAccount": "Chartof Account",
+    "description": "Description",
+    "type": "Type",
+    "recordQty": "Qty",
+    "uom": "UOM",
+    "companyName": "CompanyName",
+    "chartAccountName": "ChartAccountName",
+    "uomName": "UomName"
+
+  },
+  "activities": {
+    "title": "Activities",
+    "activityCode": "Activity Code",
+    "description": "Description",
+    "uom": "UOM",
+    "basisofFixedPrice": "BasisOf FixedPrice",
+    "costElement": "Cost Element",
+    "uomName": "UomName",
+    "secondCostName": "SecondCostName"
+  },
+  "keyfigures": {
+    "title": "Cost keyfigures",
+    "code": "Code",
+    "description": "Description",
+    "uom": "UOM",
+    "uomName": "UomName"
+  },
+  "costobjecttypes": {
+    "title": "Cost ObjectTypes",
+    "objectType": "Object Type",
+    "description": "Description",
+    "usage": "Usage"
+  },
+  "costobjectnumberseries": {
+    "title": "CostObject NumberSeries",
+    "numberObject": "Number Object",
+    "fromInterval": "From Interval",
+    "toInterval": "To Interval",
+    "presentNumber": "Present Number",
+    "nonNumaric": "Non Numaric",
+    "prefix": "Prefix"
+  },
+  "assignnumberseries": {
+    "title": " NumberSeries",
+    "objectType": "ObjectType",
+    "numberSeries": "Number Series",
+    "objectName": "Object Name",
+    "seriesName": "SeriesName"
   }
 }

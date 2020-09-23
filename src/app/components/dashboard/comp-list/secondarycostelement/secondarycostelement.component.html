@@ -1,0 +1,89 @@
+<div class="position-relative popup-class">
+  <mat-card-title class="boader--color d-flex justify-content-between position-absolute w-100">
+    <span>  {{'secondarycostelement.title' | translate }} </span>
+    <mat-icon class="p-2 cursor--pointer" (click)="cancel()">close</mat-icon>
+  </mat-card-title>
+
+  <mat-card-content class="pt-5 p-2 m-0 overflow-auto">
+    <form [formGroup]="modelFormData" autocomplete="off">
+
+      <div class="d--flex">
+
+
+        <mat-form-field class="form-element" [ngClass]="{ 'ng--valid': formControls.secondaryCostCode.valid }">
+          <input matInput placeholder="{{'secondarycostelement.secondaryCostCode' | translate }}"
+                 formControlName="secondaryCostCode" maxlength="5"
+                 appFocusOnEnter tabIndex="1">
+          <mat-error *ngIf="formControls.secondaryCostCode.errors" class="help-block">
+            <div *ngIf="formControls.secondaryCostCode.errors.required">Code is required </div>
+          </mat-error>
+        </mat-form-field>
+
+        <mat-form-field>
+          <mat-label>{{'secondarycostelement.company' | translate }}</mat-label>
+          <mat-select formControlName="company" appFocusOnEnter tabIndex="2">
+            <mat-option>None</mat-option>
+            <mat-option *ngFor="let company of companiesList" [value]="company.id">
+              {{company.text}}
+            </mat-option>
+          </mat-select>
+          <mat-error *ngIf="formControls.company.errors" class="help-block">
+            <div *ngIf="formControls.company.errors.required">company  is required </div>
+          </mat-error>
+        </mat-form-field>
+
+        <mat-form-field>
+          <mat-label>{{'secondarycostelement.chartofAccount' | translate }}</mat-label>
+          <mat-select formControlName="chartofAccount" appFocusOnEnter tabIndex="3">
+            <mat-option>None</mat-option>
+            <mat-option *ngFor="let coa of coaList" [value]="coa.code">
+              {{coa.code}}- {{coa.desctiption}}
+            </mat-option>
+          </mat-select>
+        </mat-form-field>
+
+        <mat-form-field class="form-element">
+          <input matInput placeholder="{{'secondarycostelement.description' | translate }}"
+                 formControlName="description" maxlength="50"
+                 appFocusOnEnter tabIndex="4">
+        </mat-form-field>
+
+        <mat-form-field>
+          <mat-label>{{'secondarycostelement.type' | translate }}</mat-label>
+          <mat-select formControlName="type" appFocusOnEnter tabIndex="5">
+            <mat-option>None</mat-option>
+            <mat-option *ngFor="let type of type" [value]="type.value">
+              {{type.viewValue}}
+            </mat-option>
+          </mat-select>
+        </mat-form-field>
+
+        <mat-form-field>
+          <mat-label>{{'secondarycostelement.uom' | translate }}</mat-label>
+          <mat-select formControlName="uom" appFocusOnEnter tabIndex="6">
+            <mat-option>None</mat-option>
+            <mat-option *ngFor="let uom of UomList" [value]="uom.id">
+              {{uom.text}}
+            </mat-option>
+          </mat-select>
+        </mat-form-field>
+
+        <mat-slide-toggle formControlName="recordQty" (change)="approveOrReject($event.checked)">
+          {{(modelFormData.get('recordQty').value != null) ? 'AcceptRecordQty' : 'RejectRecordQty'}}
+        </mat-slide-toggle>
+      </div>
+      <mat-divider></mat-divider>
+    </form>
+
+  </mat-card-content>
+  <div class="form-element p-2 d-flex justify-content-end">
+    <button mat-raised-button class="button-color-red text-white mr-1" (click)="cancel()">
+
+      {{ 'COMMON.CANCEL' | translate }}
+    </button>
+    <button mat-raised-button type="submit" class="button-color-bule text-white ml-1" (click)="save()">
+
+      {{ 'COMMON.SAVE' | translate }}
+    </button>
+  </div>
+</div>

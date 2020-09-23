@@ -98,6 +98,13 @@ import { BinsCreationComponent } from './binscreation/binscreation.component';
 import { PurchaseRequisitionNumberRangeComponent } from './purchaserequisitionnumberrange/purchaserequisitionnumberrange.component';
 import { MaterialSizeComponent } from './materialsize/materialsize.component';
 import { MaterialMasterComponent } from './materialsmaster/materialsmaster.component';
+import { PrimaryCostElementsCreationComponent } from './primarycostelement/primarycostelement.component';
+import { SecondaryCostElementsCreationComponent } from './secondarycostelement/secondarycostelement.component';
+import { CoastingActivitiesComponent } from './activities/activities.component';
+import { CostingKeyFiguresComponent } from './keyfigures/keyfigures.component';
+import { CostingObjectTypesComponent } from './costobjecttypes/costobjecttypes.component';
+import { CostingObjectNumberSeriesComponent } from './costobjectnumberseries/costobjectnumberseries.component';
+import { AssignmentOfNumberSeriesToObjectTypesComponent } from './assignnumberseries/assignnumberseries.component';
 @Injectable({
   providedIn: 'root'
 })
@@ -504,6 +511,34 @@ export class CompListService {
         break;
       case 'materialsmaster':
         this.dynamicComp.component = MaterialMasterComponent;
+        return this.dynamicComp.component;
+        break;
+      case 'primarycostelement':
+        this.dynamicComp.component = PrimaryCostElementsCreationComponent;
+        return this.dynamicComp.component;
+        break;
+      case 'secondarycostelement':
+        this.dynamicComp.component = SecondaryCostElementsCreationComponent;
+        return this.dynamicComp.component;
+        break;
+      case 'activities':
+        this.dynamicComp.component = CoastingActivitiesComponent;
+        return this.dynamicComp.component;
+        break;
+      case 'keyfigures':
+        this.dynamicComp.component = CostingKeyFiguresComponent;
+        return this.dynamicComp.component;
+        break;
+      case 'costobjecttypes':
+        this.dynamicComp.component = CostingObjectTypesComponent;
+        return this.dynamicComp.component;
+        break;
+      case 'costobjectnumberseries':
+        this.dynamicComp.component = CostingObjectNumberSeriesComponent;
+        return this.dynamicComp.component;
+        break;
+      case 'assignnumberseries':
+        this.dynamicComp.component = AssignmentOfNumberSeriesToObjectTypesComponent;
         return this.dynamicComp.component;
         break;
       default:

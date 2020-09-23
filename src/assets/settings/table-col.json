@@ -1231,6 +1231,61 @@
     "schedule": "Schedule",
     "chapter": "Chapter",
     "goodsServiceDescription": "Goods Service Description"
+  },
+  "primarycostelement": {
+    "title": "PrimaryCost Element",
+    "primaryCostCode": "PrimaryCost Code",
+    "companyName": "CompanyName",
+    "chartAccountName": "ChartAccountName",
+    "accGroupName": "GL Name",
+    "description": "Description",
+    "usage": "Usage",
+    "element": "Element",
+    "qty": "Qty",
+    "uomName": "UomName"
+  },
+  "secondarycostelement": {
+    "title": "SecondaryCost Element",
+    "secondaryCostCode": "SecondaryCost Code",
+    "companyName": "CompanyName",
+    "chartAccountName": "ChartAccountName",
+    "description": "Description",
+    "type": "Type",
+    "recordQty": "Qty",
+    "uomName": "UomName"
+  },
+  "activities": {
+    "title": "Activities",
+    "activityCode": "Activity Code",
+    "description": "Description",
+    "uomName": "UomName",
+    "basisofFixedPrice": "BasisOf FixedPrice",
+    "secondCostName": "SecondCostName"
+  },
+  "keyfigures": {
+    "title": "Cost keyfigures",
+    "code": "Code",
+    "description": "Description",
+    "uomName": "UomName"
+  },
+  "costobjecttypes": {
+    "title": "Cost ObjectTypes",
+    "objectType": "Object Type",
+    "description": "Description",
+    "usage": "Usage"
+  },
+  "costobjectnumberseries": {
+    "title": "CostObject NumberSeries",
+    "numberObject": "Number Object",
+    "fromInterval": "From Interval",
+    "toInterval": "To Interval",
+    "prefix": "Prefix",
+    "nonNumaric": "Non Numaric"
+  },
+  "assignnumberseries": {
+    "title": " NumberSeries",
+    "objectName": "Object Name",
+    "seriesName": "SeriesName"
   }
 
 }
