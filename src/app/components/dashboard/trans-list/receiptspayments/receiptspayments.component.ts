@@ -493,7 +493,7 @@ export class ReceiptspaymentsComponent implements OnInit {
           adjustmentAmount = adjustmentAmount + (+res.adjustmentAmount)
         }
       });
-      if (adjustmentAmount == +this.formData.get('amount').value) {
+      if (adjustmentAmount > +this.formData.get('amount').value) {
         this.alertService.openSnackBar(`AdjustmentAmount can't be same as total amount`, Static.Close, SnackBar.error);
       }
       return (adjustmentAmount == +this.formData.get('amount').value) ? false : true;
