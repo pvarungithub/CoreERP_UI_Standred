@@ -43,7 +43,7 @@ export class CashbankComponent implements OnInit {
   glAccountList = [];
   profitCenterList = [];
   segmentList = [];
-  hsnsacList=[];
+  hsnsacList = [];
   btList = [];
   costCenterList = [];
   taxCodeList = [];

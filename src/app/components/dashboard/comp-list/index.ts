@@ -104,3 +104,7 @@ export { CostingKeyFiguresComponent } from './keyfigures/keyfigures.component';
 export { CostingObjectTypesComponent } from './costobjecttypes/costobjecttypes.component';
 export { CostingObjectNumberSeriesComponent } from './costobjectnumberseries/costobjectnumberseries.component';
 export { AssignmentOfNumberSeriesToObjectTypesComponent } from './assignnumberseries/assignnumberseries.component';
+export { CreationOfCostUnitsComponent } from './costunits/costunits.component';
+export { BatchMasterComponent } from './batchmaster/batchmaster.component';
+export { OrderTypeComponent } from './ordertype/ordertype.component';
+export { ProcessComponent } from './process/process.component';

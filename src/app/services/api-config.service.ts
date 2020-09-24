@@ -14,20 +14,21 @@ export class ApiConfigService {
    logoutUrl = `${this.environment.runtimeConfig.serverUrl}Auth/logout`;
    getBranchesForUser = `${this.environment.runtimeConfig.serverUrl}Auth/GetBranchesForUser`;
    getComponentInfo = `${this.environment.runtimeConfig.serverUrl}Settings/GetComponentInfo`;
-  
+
    // Common
-  getcostnumberseriesList = `${this.environment.runtimeConfig.serverUrl}Common/GetCostingNumberSeriesList`;
-  getcostofobjectList = `${this.environment.runtimeConfig.serverUrl}Common/GetCostingObjectTypeList`;
-  getsecondelementList = `${this.environment.runtimeConfig.serverUrl}Common/GetCostingSecondaryList`;
-  getdepartmentList = `${this.environment.runtimeConfig.serverUrl}Common/GetDepartmentList`;
-  getttingmaterialNumbers = `${this.environment.runtimeConfig.serverUrl}MaterialMaster/GetMaterialNumber`;
-  getuomList = `${this.environment.runtimeConfig.serverUrl}Common/GetUOMList`;
-  getmaterialdata = `${this.environment.runtimeConfig.serverUrl}MaterialMaster/GetMaterialMasterList`;
-  getModelPatternList = `${this.environment.runtimeConfig.serverUrl}ModelPattern/GetModelPatternList`;
-  getmsizeList = `${this.environment.runtimeConfig.serverUrl}MaterialSize/GetMaterialSizeList`;
-  getmaterialgroupList = `${this.environment.runtimeConfig.serverUrl}MaterialGroups/GetMaterialGroupsList`;
-  getMaterialList = `${this.environment.runtimeConfig.serverUrl}MaterialTypes/GetMaterialTypesList`;
-  getStList = `${this.environment.runtimeConfig.serverUrl}StorageLocation/GetStorageLocation`;
+   getcostnumberseriesList = `${this.environment.runtimeConfig.serverUrl}Common/GetCostingNumberSeriesList`;
+   getcostofobjectList = `${this.environment.runtimeConfig.serverUrl}Common/GetCostingObjectTypeList`;
+   getsecondelementList = `${this.environment.runtimeConfig.serverUrl}Common/GetCostingSecondaryList`;
+   getdepartmentList = `${this.environment.runtimeConfig.serverUrl}Common/GetDepartmentList`;
+   getttingobjectNumbers = `${this.environment.runtimeConfig.serverUrl}CreationOfCostUnits/GetObjectNumber`;
+   getttingmaterialNumbers = `${this.environment.runtimeConfig.serverUrl}MaterialMaster/GetMaterialNumber`;
+   getuomList = `${this.environment.runtimeConfig.serverUrl}Common/GetUOMList`;
+   getmaterialdata = `${this.environment.runtimeConfig.serverUrl}MaterialMaster/GetMaterialMasterList`;
+   getModelPatternList = `${this.environment.runtimeConfig.serverUrl}ModelPattern/GetModelPatternList`;
+   getmsizeList = `${this.environment.runtimeConfig.serverUrl}MaterialSize/GetMaterialSizeList`;
+   getmaterialgroupList = `${this.environment.runtimeConfig.serverUrl}MaterialGroups/GetMaterialGroupsList`;
+   getMaterialList = `${this.environment.runtimeConfig.serverUrl}MaterialTypes/GetMaterialTypesList`;
+   getStList = `${this.environment.runtimeConfig.serverUrl}StorageLocation/GetStorageLocation`;
    getpurchaseOrderTypeList = `${this.environment.runtimeConfig.serverUrl}Purchaseordertype/GetPurchaseordertypeList`;
    getPurchaseorderNumberList = `${this.environment.runtimeConfig.serverUrl}PurchaseOrderNumberRange/GetPurchaseOrderNumberRangeList`;
    getQuotationNumberRangeList = `${this.environment.runtimeConfig.serverUrl}QuotationNumberRange/GetQuotationNumberRangeList`;
@@ -39,8 +40,8 @@ export class ApiConfigService {
    getCountrysList = `${this.environment.runtimeConfig.serverUrl}Common/GetCountrysList`;
    getcurrencyList = `${this.environment.runtimeConfig.serverUrl}Common/GetCurrencyList`;
    getstatesList = `${this.environment.runtimeConfig.serverUrl}Common/GetStatesList`;
-  getCompanyList = `${this.environment.runtimeConfig.serverUrl}Common/GetCompanyList`;
-  
+   getCompanyList = `${this.environment.runtimeConfig.serverUrl}Common/GetCompanyList`;
+   getcostingunitsList = `${this.environment.runtimeConfig.serverUrl}Common/GetCostUnitList`;
    getEmployeeList = `${this.environment.runtimeConfig.serverUrl}Common/GetEmployeeList`;
    getPlantsList = `${this.environment.runtimeConfig.serverUrl}Common/GetPlantsList`;
    getlocationsList = `${this.environment.runtimeConfig.serverUrl}Common/GetLocationsList`;
@@ -69,10 +70,10 @@ export class ApiConfigService {
    getUserPermissions = `${this.environment.runtimeConfig.serverUrl}Common/GetUserPermissions`;
    getLotSeriesUrlList = `${this.environment.runtimeConfig.serverUrl}LotSeries/GetLotSeriesList`;
    getGRNSeriesList = `${this.environment.runtimeConfig.serverUrl}GoodsReceiptNoteNumberSeries/GetGoodsReceiptNoteNumberSeriesList`;
-  getMRNSeriesList = `${this.environment.runtimeConfig.serverUrl}MaterialRequisitionNoteNumberSeries/GetMaterialRequisitionNoteNumberSeriesList`;
-  getMaterialSeriesList = `${this.environment.runtimeConfig.serverUrl}MaterialNumberRangeSeries/GetMaterialNumberRangeSeriesList`;
-  getGINSeriesList = `${this.environment.runtimeConfig.serverUrl}GoodsIssueNoteNumberSeries/GetGoodsIssueNoteNumberSeriesList`;
-  getHsnSacList = `${this.environment.runtimeConfig.serverUrl}HsnSac/GetHsnSacList`;
+   getMRNSeriesList = `${this.environment.runtimeConfig.serverUrl}MaterialRequisitionNoteNumberSeries/GetMaterialRequisitionNoteNumberSeriesList`;
+   getMaterialSeriesList = `${this.environment.runtimeConfig.serverUrl}MaterialNumberRangeSeries/GetMaterialNumberRangeSeriesList`;
+   getGINSeriesList = `${this.environment.runtimeConfig.serverUrl}GoodsIssueNoteNumberSeries/GetGoodsIssueNoteNumberSeriesList`;
+   getHsnSacList = `${this.environment.runtimeConfig.serverUrl}HsnSac/GetHsnSacList`;
    //************************ IMG General  ****************************************/
    getCurrencyList = `${this.environment.runtimeConfig.serverUrl}Currency/GetCurrencyList`;
    getLanguageList = `${this.environment.runtimeConfig.serverUrl}Language/GetLanguageList`;

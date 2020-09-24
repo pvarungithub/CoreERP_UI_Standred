@@ -105,6 +105,11 @@ import { CostingKeyFiguresComponent } from './keyfigures/keyfigures.component';
 import { CostingObjectTypesComponent } from './costobjecttypes/costobjecttypes.component';
 import { CostingObjectNumberSeriesComponent } from './costobjectnumberseries/costobjectnumberseries.component';
 import { AssignmentOfNumberSeriesToObjectTypesComponent } from './assignnumberseries/assignnumberseries.component';
+import { CreationOfCostUnitsComponent } from './costunits/costunits.component';
+import { BatchMasterComponent } from './batchmaster/batchmaster.component';
+import { OrderTypeComponent } from './ordertype/ordertype.component';
+import { ProcessComponent } from './process/process.component';
+
 @Injectable({
   providedIn: 'root'
 })
@@ -539,6 +544,22 @@ export class CompListService {
         break;
       case 'assignnumberseries':
         this.dynamicComp.component = AssignmentOfNumberSeriesToObjectTypesComponent;
+        return this.dynamicComp.component;
+        break;
+      case 'costunits':
+        this.dynamicComp.component = CreationOfCostUnitsComponent;
+        return this.dynamicComp.component;
+        break;
+      case 'batchmaster':
+        this.dynamicComp.component = BatchMasterComponent;
+        return this.dynamicComp.component;
+        break;
+      case 'ordertype':
+        this.dynamicComp.component = OrderTypeComponent;
+        return this.dynamicComp.component;
+        break;
+      case 'process':
+        this.dynamicComp.component = ProcessComponent;
         return this.dynamicComp.component;
         break;
       default:

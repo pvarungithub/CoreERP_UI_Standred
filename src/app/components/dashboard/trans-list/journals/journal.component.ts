@@ -26,7 +26,7 @@ export class JournalComponent implements OnInit {
 
   formData: FormGroup;
   routeEdit = '';
-  hsnsacList=[];
+  hsnsacList = [];
   debitValue = 0;
   creditValue = 0;
   totalTaxValue = 0;

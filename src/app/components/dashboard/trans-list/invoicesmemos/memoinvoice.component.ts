@@ -47,7 +47,7 @@ export class MemoinvoiceComponent implements OnInit {
   costCenterList = [];
   bpTypeList = [];
   bpList = [];
-  hsnsacList=[];
+  hsnsacList = [];
   taxCodeList = [];
   functionaldeptList = [];
   partyInvoiceNo = [];

@@ -32,26 +32,26 @@ export class PaymentTermsComponent implements OnInit {
   formData: any;
   taxcodeList: any;
   taxaccList: any;
-  tdsList:any;
-  incmList:any;
-  
+  tdsList: any;
+  incmList: any;
+
   pterm: Term[] =
-  [
-    { value: '1Day', viewValue: '1St Day' },
-    { value: '2Day', viewValue: '2nd Day' },
-    { value: '3ay', viewValue: '3rd Day' },
-    { value: '4Day', viewValue: '4th Day' },
-    { value: '5Day', viewValue: '5th Day' },
-    { value: '6Day', viewValue: '6th Day' },
-    { value: '7Day', viewValue: '7th Day' }
-  ];
+    [
+      { value: '1Day', viewValue: '1St Day' },
+      { value: '2Day', viewValue: '2nd Day' },
+      { value: '3ay', viewValue: '3rd Day' },
+      { value: '4Day', viewValue: '4th Day' },
+      { value: '5Day', viewValue: '5th Day' },
+      { value: '6Day', viewValue: '6th Day' },
+      { value: '7Day', viewValue: '7th Day' }
+    ];
   companyList: any;
 
 
 
   tablePropsFunc() {
     return {
-      tableData:  {
+      tableData: {
         days: {
           value: null, type: 'text', width: 150
         },
@@ -61,16 +61,16 @@ export class PaymentTermsComponent implements OnInit {
         // ext: {
         //   value: null, type: 'text', width: 150
         // },
-        
-          delete: {
-            type: 'delete',
-            newObject: true
-          }
-        },
-      
+
+        delete: {
+          type: 'delete',
+          newObject: true
+        }
+      },
+
       formControl: {
         days: [null,],
-        discount:[null, [Validators.required]]
+        discount: [null, [Validators.required]]
         //ext: [null,]
       }
     }
@@ -101,21 +101,21 @@ export class PaymentTermsComponent implements OnInit {
     this.modelFormData = this.formBuilder.group({
       code: [null, [Validators.required, Validators.minLength(1), Validators.maxLength(4)]],
       description: [null, [Validators.required, Validators.minLength(1), Validators.maxLength(30)]],
-      term1Days:  [null],
+      term1Days: [null],
       term1Discount: [null],
       term2Days: [null],
       term2Discount: [null],
       term3Days: [null],
-      term3Discount:  [null],
+      term3Discount: [null],
       term4Days: [null],
-      term4Discount:  [null],
-      term5Days:  [null],
+      term4Discount: [null],
+      term5Days: [null],
       term5Discount: [null]
 
     });
 
     this.formData = { ...this.addOrEditService.editData };
-    
+
   }
 
   getpaymenttermDetail(val) {
@@ -134,22 +134,22 @@ export class PaymentTermsComponent implements OnInit {
           }
         });
   }
-  
+
   ngOnInit() {
     if (this.routeEdit != '') {
       this.getpaymenttermDetail(this.routeEdit);
     }
   }
-  
+
   get formControls() { return this.modelFormData.controls; }
 
   emitTableData(data) {
     this.tableData = data;
-    
+
   }
 
   save() {
-   
+
     this.savepaymentterms();
   }
 
@@ -174,7 +174,7 @@ export class PaymentTermsComponent implements OnInit {
           }
           this.reset();
           this.spinner.hide();
-         
+
         }
       });
   }

@@ -452,22 +452,22 @@ export class ReceiptspaymentsComponent implements OnInit {
     let flag = false;
     // let checkAjectAmount = 0;
     // for (let r = 0; r < row.data.length; r++) {
-      // if (row.column == 'adjustmentAmount' && r == row.index) {
-      if (row.column == 'adjustmentAmount') {
-        if (+row.data[row.index].adjustmentAmount.value > +row.data[row.index].invoiceAmount.value) {
-          this.alertService.openSnackBar(`AdjustmentAmount can't be more than invoiceAmount`, Static.Close, SnackBar.error);
-          row.data[row.index].adjustmentAmount.value = 0;
-          flag = true;
-          // break;
-        }
-        // checkAjectAmount = checkAjectAmount + (+row.data[r].adjustmentAmount.value);
-        // if (checkAjectAmount == +this.formData.get('amount').value) {
-        //   this.alertService.openSnackBar(`AdjustmentAmount can't be same as total amount`, Static.Close, SnackBar.error);
-        //   row.data[row.index].adjustmentAmount.value = 0;
-        //   flag = true;
-        //   break;
-        // }
+    // if (row.column == 'adjustmentAmount' && r == row.index) {
+    if (row.column == 'adjustmentAmount') {
+      if (+row.data[row.index].adjustmentAmount.value > +row.data[row.index].invoiceAmount.value) {
+        this.alertService.openSnackBar(`AdjustmentAmount can't be more than invoiceAmount`, Static.Close, SnackBar.error);
+        row.data[row.index].adjustmentAmount.value = 0;
+        flag = true;
+        // break;
       }
+      // checkAjectAmount = checkAjectAmount + (+row.data[r].adjustmentAmount.value);
+      // if (checkAjectAmount == +this.formData.get('amount').value) {
+      //   this.alertService.openSnackBar(`AdjustmentAmount can't be same as total amount`, Static.Close, SnackBar.error);
+      //   row.data[row.index].adjustmentAmount.value = 0;
+      //   flag = true;
+      //   break;
+      // }
+    }
 
     // }
     if (flag) {

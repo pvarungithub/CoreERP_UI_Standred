@@ -862,7 +862,7 @@
     "writeoff": "Writeoff",
     "narration": "Narration",
     "delete": "Delete"
-  },  
+  },
   "purchasesaleasset": {
     "id": "ID",
     "title": "Purchase / Sale Asset",
@@ -980,8 +980,6 @@
     "description": "Description",
     "purchaseGroupName": "PurchaseGroup Name",
     "purchaseTypesName": "PurchaseTypes Name"
-
-
   },
   "requisitionnumberrange": {
     "title": "Requisition NumberRange",
@@ -991,7 +989,6 @@
     "currentNumber": "CurrentNumber",
     "prefix": "Prefix"
   },
-
   "requisitionnumberassignment": {
     "title": "Requisition Assignment",
     "noRangeName": "NoRangeName",
@@ -1092,7 +1089,6 @@
     "currentNumber": "CurrentNumber",
     "prefix": "Prefix"
   },
-
   "grnnoassignment": {
     "title": "GoodsReceipt Note Assignment",
     "grnseriesName": "GrnseriesName",
@@ -1125,7 +1121,6 @@
     "currentNumber": "Current Number",
     "prefix": "Prefix"
   },
-
   "mrnassignment": {
     "title": "Material Requisition Note Assignment",
     "materialseriesName": "Material series Name",
@@ -1286,6 +1281,68 @@
     "title": " NumberSeries",
     "objectName": "Object Name",
     "seriesName": "SeriesName"
+  },
+  "costunits": {
+    "title": " Cost Units",
+    "objectType": "Object Type",
+    "objectNumber": "Object Number",
+    "description": "Description",
+    "costUnitType": "CostUnit Type",
+    "perUnitCostBy": "PerUnitCostBy",
+    "manufacturingType": "ManufacturingType",
+    "material": "Material",
+    "objectName": "Object Name",
+    "materialName": "MaterialName"
+  },
+  "batchmaster": {
+    "title": "Batch Master",
+    "company": "Company",
+    "plant": "Plant",
+    "batchNumber": "Batch Number",
+    "dob": "DOB",
+    "year": "Year",
+    "createdBy": "CreatedBy",
+    "createdDate": "Created Date",
+    "description": "Description",
+    "batchSize": "Batch Size",
+    "uom": "UOM",
+    "plantStart": "Plant Start",
+    "plantEndDate": "Plant EndDate",
+    "actualStartDate": "Actual StartDate",
+    "actualStartTime": "Actual StartTime",
+    "actualEndDate": "Actual EndDate",
+    "actualEndTime": "Actual EndTime",
+    "companyName": "CompanyName",
+    "plantName": "PlantName",
+    "uomName": "UomName",
+    "employeeName": "EmployeeName"
+  },
+  "ordertype": {
+    "title": " Order Type",
+    "orderType": "Order Type",
+    "description": "Description",
+    "printText": "Print Text",
+    "natureofOrder": "Natureof Order",
+    "numberSeriesFrom": "NumberSeries From",
+    "numberSeriesTo": "NumberSeries To"
+  },
+  "process": {
+    "title": "Process",
+    "company": "Company",
+    "plant": "Plant",
+    "costUnit": "CostUnit",
+    "material": "Material",
+    "processKey": "ProcessKey",
+    "nextProcess": "Next Process",
+    "wipcalculation": "WIP calculation",
+    "byProduct": "BY Product",
+    "jointProduct": "Joint Product",
+    "reWork": "Re Work",
+    "normalLossIn": "Normal LossIn",
+    "abnormalLossIn": "Abnormal LossIn",
+    "companyName": "CompanyName",
+    "plantName": "PlantName",
+    "costunitName": "CostUnitName",
+    "materialName": "MaterialName"
   }
-
 }

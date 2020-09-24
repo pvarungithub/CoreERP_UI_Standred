@@ -1410,7 +1410,6 @@
     "chapter": "Chapter",
     "goodsServiceDescription": "Goods Service Description"
   },
-  
   "primarycostelement": {
     "title": "PrimaryCost Element",
     "primaryCostCode": "PrimaryCost Code",
@@ -1439,7 +1438,6 @@
     "companyName": "CompanyName",
     "chartAccountName": "ChartAccountName",
     "uomName": "UomName"
-
   },
   "activities": {
     "title": "Activities",
@@ -1479,5 +1477,58 @@
     "numberSeries": "Number Series",
     "objectName": "Object Name",
     "seriesName": "SeriesName"
+  },
+  "costunits": {
+    "title": " Cost Units",
+    "objectName": "Object Name",
+    "objectNumber": "Object Number",
+    "description": "Description",
+    "costUnitType": "CostUnit Type",
+    "perUnitCostBy": "PerUnitCostBy",
+    "manufacturingType": "ManufacturingType",
+    "materialName": "MaterialName"
+  },
+  "batchmaster": {
+    "title": "Batch Master",
+    "companyName": "CompanyName",
+    "plantName": "PlantName",
+    "batchNumber": "Batch Number",
+    "dob": "DOB",
+    "year": "Year",
+    "employeeName": "CreatedBy Name",
+    "createdDate": "Created Date",
+    "description": "Description",
+    "batchSize": "Batch Size",
+    "uomName": "UomName",
+    "plantStart": "Plant Start",
+    "plantEndDate": "Plant EndDate",
+    "actualStartDate": "Actual StartDate",
+    "actualStartTime": "Actual StartTime",
+    "actualEndDate": "Actual EndDate",
+    "actualEndTime": "Actual EndTime"
+  },
+  "ordertype": {
+    "title": " Order Type",
+    "orderType": "Order Type",
+    "description": "Description",
+    "printText": "Print Text",
+    "natureofOrder": "Natureof Order",
+    "numberSeriesFrom": "NumberSeries From",
+    "numberSeriesTo": "NumberSeries To"
+  },
+  "process": {
+    "title": "Process",
+    "companyName": "CompanyName",
+    "plantName": "PlantName",
+    "costunitName": "CostUnit",
+    "materialName": "Material Name",
+    "processKey": "ProcessKey",
+    "nextProcess": "Next Process",
+    "wipcalculation": "WIP calculation",
+    "byProduct": "BY Product",
+    "jointProduct": "Joint Product",
+    "reWork": "Re Work",
+    "normalLossIn": "Normal LossIn",
+    "abnormalLossIn": "Abnormal LossIn"
   }
 }

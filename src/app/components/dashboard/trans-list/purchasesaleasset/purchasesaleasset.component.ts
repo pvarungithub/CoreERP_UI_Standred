@@ -27,7 +27,7 @@ export class PurchasesaleassetComponent implements OnInit {
   formData: FormGroup;
   routeEdit = '';
   btList = [];
-  hsnsacList=[];
+  hsnsacList = [];
   tableData = [];
   dynTableProps: any;
   ptermsList = [];
