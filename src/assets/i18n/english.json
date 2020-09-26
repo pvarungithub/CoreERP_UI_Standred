@@ -1411,20 +1411,20 @@
     "goodsServiceDescription": "Goods Service Description"
   },
   "primarycostelement": {
-    "title": "PrimaryCost Element",
-    "primaryCostCode": "PrimaryCost Code",
+    "title": "Primary Cost Element",
+    "primaryCostCode": "Primary Cost Code",
     "company": "Company",
-    "chartofAccount": "Chartof Account",
+    "chartofAccount": "Chart of Account",
     "generalLedger": "General Ledger",
     "description": "Description",
     "usage": "Usage",
     "element": "Element",
-    "qty": "Qty",
-    "uom": "Uom",
-    "companyName": "CompanyName",
-    "chartAccountName": "ChartAccountName",
-    "uomName": "UomName",
-    "accGroupName": "GL Name"
+    "qty": "Quantity",
+    "uom": "UOM",
+    "companyName": "Company Name",
+    "chartAccountName": "Chart of Account Name",
+    "uomName": "UOM",
+    "accGroupName": "GL Account"
   },
   "secondarycostelement": {
     "title": "SecondaryCost Element",

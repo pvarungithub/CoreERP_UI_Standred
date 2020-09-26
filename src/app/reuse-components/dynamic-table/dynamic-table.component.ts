@@ -13,7 +13,7 @@ import { NgxSpinnerService } from 'ngx-spinner';
   templateUrl: './dynamic-table.component.html',
   styleUrls: ['./dynamic-table.component.scss']
 })
-export class DynamicTableComponent implements OnInit, OnDestroy, AfterContentChecked {
+export class DynamicTableComponent implements OnInit, OnDestroy {
 
 
   emitDynTableData: Subscription;
@@ -64,13 +64,13 @@ export class DynamicTableComponent implements OnInit, OnDestroy, AfterContentChe
             this.dataSource = new MatTableDataSource(JSON.parse(JSON.stringify(editData)));
           } else if (res.type == 'edit') {
             this.dataSource = new MatTableDataSource(JSON.parse(JSON.stringify(this.formalTableData(res.data))));
+          } else if (res.type == 'reset') {
+            this.setTableData();
           } else if (res.type == 'add') {
             if (res.data.length) {
               this.dataSource = new MatTableDataSource(JSON.parse(JSON.stringify(res.data)));
               this.removeEmptyRow = !this.commonService.checkNullOrUndefined(res.removeEmptyRow) ? res.removeEmptyRow : 1;
               (this.isDropdown) ? this.setFocus() : this.setCurrentFocus();
-            } else {
-              this.setTableData();
             }
           }
           this.spinner.hide();
@@ -81,9 +81,6 @@ export class DynamicTableComponent implements OnInit, OnDestroy, AfterContentChe
     });
   }
 
-  ngAfterContentChecked() {
-    this.cdr.detectChanges();
-  }
 
   formalTableData(list) {
     const data = [];
@@ -120,6 +117,9 @@ export class DynamicTableComponent implements OnInit, OnDestroy, AfterContentChe
   }
 
   formControlValid(col, val, data, indx) {
+    if (col != 'checkAll') {
+      this.enableControls(data, val);
+    }
     this.id = col;
     this.index = indx;
     this.data = data;
@@ -188,11 +188,24 @@ export class DynamicTableComponent implements OnInit, OnDestroy, AfterContentChe
     this.spinner.show();
     this.checkAllColValue.col = col;
     if (flag) {
-      this.dataSource.data.map(res => res[this.checkAllColValue.col].value = this.checkAllColValue.val)
+      this.dataSource.data.map(res => {
+        res = this.enableControls(res, this.checkAllColValue.val);
+        res[this.checkAllColValue.col].value = this.checkAllColValue.val
+      })
     }
     this.dataSource = new MatTableDataSource(JSON.parse(JSON.stringify(this.dataSource.data)));
     this.emitTableData.emit(this.formatTableData());
     this.spinner.hide();
+    this.cdr.detectChanges();
+  }
+
+  enableControls(res, flag) {
+    for (const prop in res) {
+      if (prop != 'checkAll') {
+        res[prop].disabled = res[prop].fieldEnable ? flag ? false : true : true
+      }
+    }
+    return res;
   }
 
 

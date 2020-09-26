@@ -1228,16 +1228,16 @@
     "goodsServiceDescription": "Goods Service Description"
   },
   "primarycostelement": {
-    "title": "PrimaryCost Element",
-    "primaryCostCode": "PrimaryCost Code",
-    "companyName": "CompanyName",
-    "chartAccountName": "ChartAccountName",
+    "title": "Primary Cost Element",
+    "primaryCostCode": "Primary Cost Code",
+    "companyName": "Company Name",
+    "chartAccountName": "Chart Account Name",
     "accGroupName": "GL Name",
     "description": "Description",
     "usage": "Usage",
     "element": "Element",
     "qty": "Qty",
-    "uomName": "UomName"
+    "uomName": "UOM"
   },
   "secondarycostelement": {
     "title": "SecondaryCost Element",

@@ -541,7 +541,7 @@ export class MemoinvoiceComponent implements OnInit {
     this.tableData = [];
     this.formData.reset();
     this.formData.controls['voucherNumber'].disable();
-    this.addOrEditService.sendDynTableData({ type: 'add', data: this.tableData });
+    this.addOrEditService.sendDynTableData({ type: 'reset', data: this.tableData });
   }
 
   saveInvoiceMemo() {

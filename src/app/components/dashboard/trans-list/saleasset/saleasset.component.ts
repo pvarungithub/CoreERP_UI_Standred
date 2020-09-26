@@ -497,7 +497,7 @@ export class SaleassetComponent implements OnInit {
     this.tableData = [];
     this.formData.reset();
     this.formData.controls['voucherNumber'].disable();
-    this.addOrEditService.sendDynTableData({ type: 'edit', data: this.tableData });
+    this.addOrEditService.sendDynTableData({ type: 'reset', data: this.tableData });
   }
 
   saveAssetTransfer() {

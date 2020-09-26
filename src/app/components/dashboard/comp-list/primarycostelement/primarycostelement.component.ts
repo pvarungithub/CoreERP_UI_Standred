@@ -141,7 +141,7 @@ export class PrimaryCostElementsCreationComponent implements OnInit {
   }
 
   getGlData() {
-    const getglUrl = String.Join('/', this.apiConfigService.getGLAccountList);
+    const getglUrl = String.Join('/', this.apiConfigService.getGLAccountsList);
     this.apiService.apiGetRequest(getglUrl)
       .subscribe(
         response => {

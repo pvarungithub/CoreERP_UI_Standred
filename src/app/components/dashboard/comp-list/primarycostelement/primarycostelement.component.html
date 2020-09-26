@@ -46,8 +46,8 @@
           <mat-label>{{'primarycostelement.generalLedger' | translate }}</mat-label>
           <mat-select formControlName="generalLedger" appFocusOnEnter tabIndex="4">
             <mat-option>None</mat-option>
-            <mat-option *ngFor="let gl of glList" [value]="gl.accGroup">
-              {{gl.accGroup}}- {{gl.accGroupName}}
+            <mat-option *ngFor="let gl of glList" [value]="gl.id">
+              {{gl.id}}- {{gl.text}}
             </mat-option>
           </mat-select>
         </mat-form-field>
