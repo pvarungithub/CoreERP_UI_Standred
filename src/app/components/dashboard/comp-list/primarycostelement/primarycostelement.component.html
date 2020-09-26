@@ -1,6 +1,6 @@
 <div class="position-relative popup-class">
   <mat-card-title class="boader--color d-flex justify-content-between position-absolute w-100">
-    <span>  {{'primarycostelement.title' | translate }} </span>
+    <span> {{'primarycostelement.title' | translate }} </span>
     <mat-icon class="p-2 cursor--pointer" (click)="cancel()">close</mat-icon>
   </mat-card-title>
 
@@ -12,8 +12,7 @@
 
         <mat-form-field class="form-element" [ngClass]="{ 'ng--valid': formControls.primaryCostCode.valid }">
           <input matInput placeholder="{{'primarycostelement.primaryCostCode' | translate }}"
-                 formControlName="primaryCostCode" maxlength="5"
-                 appFocusOnEnter tabIndex="1">
+            formControlName="primaryCostCode" maxlength="5" appFocusOnEnter tabIndex="1">
           <mat-error *ngIf="formControls.primaryCostCode.errors" class="help-block">
             <div *ngIf="formControls.primaryCostCode.errors.required">Code is required </div>
           </mat-error>
@@ -28,7 +27,7 @@
             </mat-option>
           </mat-select>
           <mat-error *ngIf="formControls.company.errors" class="help-block">
-            <div *ngIf="formControls.company.errors.required">company  is required </div>
+            <div *ngIf="formControls.company.errors.required">company is required </div>
           </mat-error>
         </mat-form-field>
 
@@ -53,9 +52,8 @@
         </mat-form-field>
 
         <mat-form-field class="form-element">
-          <input matInput placeholder="{{'primarycostelement.description' | translate }}"
-                 formControlName="description" maxlength="50"
-                 appFocusOnEnter tabIndex="5">
+          <input matInput placeholder="{{'primarycostelement.description' | translate }}" formControlName="description"
+            maxlength="50" appFocusOnEnter tabIndex="5">
         </mat-form-field>
 
         <mat-form-field>

@@ -6,13 +6,8 @@
     <ng-container *ngFor="let column of getDisplayedColumns()" [matColumnDef]="column">
 
       <th mat-header-cell *matHeaderCellDef>
-        <mat-checkbox class="pt-1" [(ngModel)]="checkAllColValue.val"
-          *ngIf="runtimeConfigService.tableColumnsData[this.routeParam][column] == 'checkbox';else dynamicTabs"
-          (change)="checkAll(column)">
-        </mat-checkbox>
-        <ng-template #dynamicTabs>
-          <strong class="d-flex justify-content-center">
-            {{ ( routeParam + '.' +  column) | translate }} </strong> </ng-template>
+        <strong class="d-flex justify-content-center">
+          {{ ( routeParam + '.' +  column) | translate }} </strong>
       </th>
 
       <td mat-cell *matCellDef="let element;" [ngSwitch]="element[column].type">
@@ -89,10 +84,10 @@
         </div>
 
         <mat-icon id="{{column}}{{dataSource.filteredData.indexOf(element)}}" *ngSwitchCase="'delete'"
-        [hidden]="dataSource.filteredData.indexOf(element) == (dataSource.data.length - 1)"
-        class="cursor--pointer mat--icon"
-        (click)="deleteRow(dataSource.filteredData.indexOf(element), element[column].disabled); setFocus(column, dataSource.filteredData.indexOf(element));">
-        delete</mat-icon>
+          [hidden]="dataSource.filteredData.indexOf(element) == (dataSource.data.length - 1)"
+          class="cursor--pointer mat--icon"
+          (click)="deleteRow(dataSource.filteredData.indexOf(element), element[column].disabled); setFocus(column, dataSource.filteredData.indexOf(element));">
+          delete</mat-icon>
 
       </td>
 

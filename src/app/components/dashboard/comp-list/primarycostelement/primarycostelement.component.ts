@@ -30,13 +30,13 @@ export class PrimaryCostElementsCreationComponent implements OnInit {
   modelFormData: FormGroup;
   formData: any;
   companiesList: any;
-  glList: any; 
-    porangeList: any;
-    porderList: any;
-    lotList: any;
+  glList: any;
+  porangeList: any;
+  porderList: any;
+  lotList: any;
   coaList: any;
   matypeList: any;
-   
+
 
   usage: Usage[] =
     [
@@ -57,7 +57,7 @@ export class PrimaryCostElementsCreationComponent implements OnInit {
       { value: 'Direct cost', viewValue: 'Direct cost' },
       { value: 'Indirect cost', viewValue: 'Indirect cost' }
     ];
-    UomList: any;
+  UomList: any;
   constructor(private commonService: CommonService,
     private addOrEditService: AddOrEditService,
     private formBuilder: FormBuilder,
@@ -78,7 +78,7 @@ export class PrimaryCostElementsCreationComponent implements OnInit {
       element: [null],
       qty: [null],
       uom: [null]
-   });
+    });
 
 
     this.formData = { ...data };

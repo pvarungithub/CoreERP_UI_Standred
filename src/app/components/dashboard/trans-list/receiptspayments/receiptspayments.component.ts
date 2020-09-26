@@ -28,7 +28,7 @@ export class ReceiptspaymentsComponent implements OnInit {
   routeEdit = '';
   bpList = [];
   tableData = [];
-  dynTableProps: any;
+  dynTableProps = this.tablePropsFunc();
   bpgLists: any;
   companyList = [];
   branchList = [];
@@ -69,9 +69,9 @@ export class ReceiptspaymentsComponent implements OnInit {
     if (!this.commonService.checkNullOrUndefined(this.formData.get('bpcategory').value)) {
       let data = this.bpTypeList.find(res => res.code == this.formData.get('bpcategory').value);
       this.bpgLists = this.bpList.filter(res => res.bptype == data.code);
-        this.formData.patchValue({
-          partyAccount: this.bpgLists.length ? this.bpgLists[0].id : null
-        })
+      this.formData.patchValue({
+        partyAccount: this.bpgLists.length ? this.bpgLists[0].id : null
+      })
       this.puchaseinvoiceselect();
     }
   }
@@ -134,9 +134,9 @@ export class ReceiptspaymentsComponent implements OnInit {
           value: new Date(), type: 'datepicker', width: 100, disabled: true, fieldEnable: true
         },
         dueDate: {
-          value: new Date(), type: 'datepicker', width: 100, disabled: true, fieldEnable: true
+          value: null, type: 'datepicker', width: 100, disabled: true, fieldEnable: true
         },
-        invoiceAmount: {
+        totalAmount: {
           //value: null, type: 'dropdown', list: this.amount, id: 'amount', text: 'amount', displayMul: true, width: 100
           value: 0, type: 'number', width: 75, disabled: true, fieldEnable: true
         },
@@ -161,6 +161,15 @@ export class ReceiptspaymentsComponent implements OnInit {
         writeOffAmount: {
           value: 0, type: 'number', width: 75, disabled: true, fieldEnable: true
         },
+        partyAccount: {
+          value: 0, type: 'text', width: 75, disabled: true
+        },
+        paymentterms: {
+          value: 0, type: 'text', width: 75, disabled: true
+        },
+        postingDate: {
+          value: 0, type: 'text', width: 75, disabled: true
+        },
         discountGl: {
           value: null, type: 'dropdown', list: this.glAccountList, id: 'id', text: 'text', displayMul: true, width: 100, disabled: true, fieldEnable: true
         },
@@ -177,6 +186,28 @@ export class ReceiptspaymentsComponent implements OnInit {
       },
       formControl: {}
     }
+  }
+
+  puchaseinvoiceselect() {
+    let data = [];
+    let newData = [];
+    if (!this.commonService.checkNullOrUndefined(this.formData.get('partyAccount').value)) {
+      data = this.functionaldeptList.filter(resp => resp.partyAccount == this.formData.get('partyAccount').value);
+    }
+    if (data.length) {
+      console.log(data, this.tablePropsFunc());
+      data.forEach((res, index) => {
+        newData.push(this.tablePropsFunc().tableData);
+        newData[index].dueDate.value = res.dueDate;
+        newData[index].partyAccount.value = res.partyAccount;
+        newData[index].partyInvoiceNo.value = res.partyInvoiceNo;
+        newData[index].paymentterms.value = res.paymentterms;
+        newData[index].postingDate.value = res.postingDate;
+        newData[index].totalAmount.value = res.totalAmount;
+      })
+    }
+    //
+    this.addOrEditService.sendDynTableData({ type: 'add', data: newData, removeEmptyRow: 0 });
   }
 
   getreceiptpaymentDetail(val) {
@@ -228,7 +259,7 @@ export class ReceiptspaymentsComponent implements OnInit {
             if (!this.commonService.checkNullOrUndefined(res.response)) {
               this.branchList = res.response['branchsList'];
               this.formData.patchValue({
-                branch:  this.branchList.length ? this.branchList[0].id : null
+                branch: this.branchList.length ? this.branchList[0].id : null
               })
             }
           }
@@ -261,7 +292,7 @@ export class ReceiptspaymentsComponent implements OnInit {
             if (!this.commonService.checkNullOrUndefined(res.response)) {
               this.voucherTypeList = res.response['vouchertypeList'];
               this.formData.patchValue({
-                voucherType: this.voucherTypeList.length ? this.voucherTypeList[0].voucherTypeId : null 
+                voucherType: this.voucherTypeList.length ? this.voucherTypeList[0].voucherTypeId : null
               })
             }
           }
@@ -306,25 +337,7 @@ export class ReceiptspaymentsComponent implements OnInit {
     }
   }
 
-  puchaseinvoiceselect() {
-    let data = [];
-    let newData = [];
-    if (!this.commonService.checkNullOrUndefined(this.formData.get('partyAccount').value)) {
-      data = this.functionaldeptList.filter(resp => resp.id == this.formData.get('partyAccount').value);
-    }
-    if (data.length) {
-      console.log(data, this.tablePropsFunc());
-      data.forEach((res, index) => {
-        newData.push(this.tablePropsFunc().tableData);
-        newData[index].invoiceAmount.value = res.amount;
-        newData[index].dueDate.value = res.date;
-        newData[index].partyInvoiceNo.value = res.invoino;
-      })
-    }
-    //
-    this.addOrEditService.sendDynTableData({ type: 'add', data: newData, removeEmptyRow: 0 });
-    this.tableData = newData;
-  }
+
 
   getfunctionaldeptList() {
     const taxCodeUrl = String.Join('/', this.apiConfigService.getpurchaseinvoiceList);
@@ -386,7 +399,7 @@ export class ReceiptspaymentsComponent implements OnInit {
         });
   }
 
-  
+
   getbpList() {
     const costCenUrl = String.Join('/', this.apiConfigService.getBPList);
     this.apiService.apiGetRequest(costCenUrl)
@@ -435,7 +448,6 @@ export class ReceiptspaymentsComponent implements OnInit {
               this.costCenterList = res.response['costcenterList'];
             }
           }
-          this.dynTableProps = this.tablePropsFunc();
           if (this.routeEdit != '') {
             this.getreceiptpaymentDetail(this.routeEdit);
           }
@@ -477,9 +489,10 @@ export class ReceiptspaymentsComponent implements OnInit {
   emitColumnChanges(data) {
     if (data.column == 'adjustmentAmount') {
       this.loopTableData(data);
+      this.checkAjectAmount(true)
     }
     if (data.column == 'checkAll') {
-      console.log(data)
+      this.getDiscount(data);
     }
 
   }
@@ -491,8 +504,8 @@ export class ReceiptspaymentsComponent implements OnInit {
     // for (let r = 0; r < row.data.length; r++) {
     // if (row.column == 'adjustmentAmount' && r == row.index) {
     if (row.column == 'adjustmentAmount') {
-      if (+row.data[row.index].adjustmentAmount.value > +row.data[row.index].invoiceAmount.value) {
-        this.alertService.openSnackBar(`AdjustmentAmount can't be more than invoiceAmount`, Static.Close, SnackBar.error);
+      if (+row.data[row.index].adjustmentAmount.value > +row.data[row.index].totalAmount.value) {
+        this.alertService.openSnackBar(`AdjustmentAmount can't be more than totalAmount`, Static.Close, SnackBar.error);
         row.data[row.index].adjustmentAmount.value = 0;
         flag = true;
         // break;
@@ -513,6 +526,30 @@ export class ReceiptspaymentsComponent implements OnInit {
     }
   }
 
+  getDiscount(row) {
+    const getDiscountUrl = String.Join('/', this.apiConfigService.getDiscount);
+    const requestObj = {
+      dueDate: row.data[row.index].dueDate.value, partyAccount: row.data[row.index].partyAccount.value,
+      partyInvoiceNo: row.data[row.index].partyInvoiceNo.value, paymentterms: row.data[row.index].paymentterms.value,
+      postingDate: row.data[row.index].postingDate.value, totalAmount: row.data[row.index].totalAmount.value
+    };
+    this.apiService.apiPostRequest(getDiscountUrl, requestObj)
+      .subscribe(
+        response => {
+          this.spinner.hide();
+          const res = response.body;
+          if (!this.commonService.checkNullOrUndefined(res) && res.status === StatusCodes.pass) {
+            if (!this.commonService.checkNullOrUndefined(res.response)) {
+              row.data[row.index].discount.value = res.response['discount']
+              this.addOrEditService.sendDynTableData({ type: 'add', data: row.data });
+            }
+          }
+          if (this.routeEdit != '') {
+            this.getreceiptpaymentDetail(this.routeEdit);
+          }
+        });
+  }
+
   emitTableData(data) {
     this.tableData = data;
     console.log(this.tableData)
@@ -522,7 +559,7 @@ export class ReceiptspaymentsComponent implements OnInit {
     this.router.navigate(['dashboard/transaction/receiptspayments'])
   }
 
-  checkAjectAmount() {
+  checkAjectAmount(flag = false) {
     let adjustmentAmount = 0;
     if (this.tableData.length) {
       this.tableData.forEach(res => {
@@ -530,10 +567,10 @@ export class ReceiptspaymentsComponent implements OnInit {
           adjustmentAmount = adjustmentAmount + (+res.adjustmentAmount)
         }
       });
-      if (adjustmentAmount == +this.formData.get('amount').value) {
+      if (adjustmentAmount == +this.formData.get('amount').value && !this.commonService.checkNullOrUndefined(adjustmentAmount) && flag) {
         this.alertService.openSnackBar(`AdjustmentAmount can't be same as total amount`, Static.Close, SnackBar.error);
       }
-      return (adjustmentAmount == +this.formData.get('amount').value) ? false : true;
+      return (adjustmentAmount == +this.formData.get('amount').value && !this.commonService.checkNullOrUndefined(adjustmentAmount)) ? false : true;
     }
     return true;
   }
