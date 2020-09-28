@@ -36,7 +36,7 @@ export class CreationOfCostUnitsComponent implements OnInit {
   cotList: any;
   costunit: CostUnit[] =
     [
-      { value: 'Fixed list', viewValue: ' Fixed list' },
+      //{ value: 'Fixed list', viewValue: ' Fixed list' },
       { value: 'Product', viewValue: 'Product' },
       { value: 'Job', viewValue: 'Job' },
       { value: 'Contract', viewValue: 'Contract' },
@@ -44,7 +44,7 @@ export class CreationOfCostUnitsComponent implements OnInit {
     ];
   perunitcost: PerUnitCost[] =
     [
-      { value: 'Fixed list', viewValue: ' Fixed list' },
+      //{ value: 'Fixed list', viewValue: ' Fixed list' },
       { value: 'Order', viewValue: 'Order' },
       { value: 'Batch', viewValue: 'Batch' },
       { value: 'Period', viewValue: 'Period' },
@@ -55,13 +55,14 @@ export class CreationOfCostUnitsComponent implements OnInit {
     ];
   manufacturing: Manufacturing[] =
     [
-      { value: 'Fixed list', viewValue: ' Fixed list' },
+      //{ value: 'Fixed list', viewValue: ' Fixed list' },
       { value: 'Final product(finished)', viewValue: 'Final product(finished)' },
       { value: 'Sub-assembly', viewValue: 'Sub-assembly' },
       { value: 'Components/parts', viewValue: 'Components/parts' }
      
     ];
     objectum: any;
+    materialList: any;
     
    
   constructor(private commonService: CommonService,
@@ -127,7 +128,8 @@ export class CreationOfCostUnitsComponent implements OnInit {
           const res = response.body;
           if (!this.commonService.checkNullOrUndefined(res) && res.status === StatusCodes.pass) {
             if (!this.commonService.checkNullOrUndefined(res.response)) {
-              this.cotList = res.response['cotList'];
+              //this.cotList = res.response['cotList'];
+              this.cotList = res.response['cotList'].filter(resp => resp.usage == 'Cost unit');
             }
           }
           this.spinner.hide();
@@ -143,7 +145,7 @@ export class CreationOfCostUnitsComponent implements OnInit {
           console.log(res);
           if (!this.commonService.checkNullOrUndefined(res) && res.status === StatusCodes.pass) {
             if (!this.commonService.checkNullOrUndefined(res.response)) {
-              this.matypeList = res.response['matypeList'];
+              this.materialList = res.response['materialList'];
             }
           }
           this.spinner.hide();

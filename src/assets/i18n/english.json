@@ -169,21 +169,22 @@
   },
   "costcenter": {
     "title": "Cost Center",
-    "code": "Code",
-    "name": "Name",
-    "compCode": "Comp Code",
-    "companyName": "Company",
-    "address1": "Address",
-    "address2": "Address2",
-    "place": "Place",
-    "state": "State",
-    "stateName": "State",
-    "pinCode": "Pin Code",
-    "phone1": "Phone",
-    "email": "Email",
+    "objectType": "Object Type",
+    "number": "Number",
+    "shortName": "Short Name",
+    "longName": "Long Name",
+    "functions": "Functions",
+    "type": "Type",
+    "quantity": "Quantity",
+    "department": "Department",
+    "uom": "UOM",
     "responsiblePerson": "Responsible Person",
-    "responsibleName": "Responsible Person",
-    "active": "Active"
+    "fromDate": "From Date",
+    "costType": "Cost Type",
+    "responsibleName": "ResponsibleName",
+    "objectName": "ObjectName",
+    "departmentName": "DepartmentName",
+    "uomName": "UOM Name"
   },
   "plant": {
     "title": "Plant",
@@ -1483,7 +1484,7 @@
     "usage": "Usage"
   },
   "costobjectnumberseries": {
-    "title": "Cost Object Number Series",
+    "title": "CostObject NumberSeries",
     "numberObject": "Number Object",
     "fromInterval": "From Interval",
     "toInterval": "To Interval",
@@ -1496,7 +1497,8 @@
     "objectType": "Object Type",
     "numberSeries": "Number Series",
     "objectName": "Object Name",
-    "seriesName": "Number Series"
+    "seriesName": "Number Series",
+    "presentNumber": "PresentNumber"
   },
   "costunits": {
     "title": " Cost Units",

@@ -107,16 +107,16 @@ export class TableComponent implements OnInit, OnChanges, AfterViewInit, OnDestr
       data = { action: val, item: this.highlightedRows[0] };
     }
 
-      if (data.action === 'Delete' && this.highlightedRows.length) {
-        this.addOrUpdateEvent.emit(data);
-      }
-      else if (data.action === 'Edit' && this.highlightedRows.length  && this.commonService.userPermission.canEdit) {
-        this.addOrUpdateEvent.emit(data);
-      }
-      else if (data.action === 'Add') {
-        data.item = null;
-        this.addOrUpdateEvent.emit(data);
-      }
+    if (data.action === 'Delete' && this.highlightedRows.length) {
+      this.addOrUpdateEvent.emit(data);
+    }
+    else if (data.action === 'Edit' && this.highlightedRows.length && this.commonService.userPermission.canEdit) {
+      this.addOrUpdateEvent.emit(data);
+    }
+    else if (data.action === 'Add') {
+      data.item = null;
+      this.addOrUpdateEvent.emit(data);
+    }
   }
 
 
@@ -150,19 +150,19 @@ export class TableComponent implements OnInit, OnChanges, AfterViewInit, OnDestr
       });
 
       // this.translate.get(this.routeParam).subscribe(res => {
-        // let key;
-        // tslint:disable-next-line: forin
-        for (const key in this.runtimeConfigService.tableColumnsData[this.routeParam]) {
-          // tslint:disable-next-line: prefer-for-of
-          if (this.runtimeConfigService.tableColumnsData[this.routeParam][key] == 'Date') {
-            this.formatDate(key)
-          }
-          for (let c = 0; c < col.length; c++) {
-            if (key == col[c].def) {
-              this.columnDefinitions.push(col[c]);
-            }
+      // let key;
+      // tslint:disable-next-line: forin
+      for (const key in this.runtimeConfigService.tableColumnsData[this.routeParam]) {
+        // tslint:disable-next-line: prefer-for-of
+        if (this.runtimeConfigService.tableColumnsData[this.routeParam][key] == 'Date') {
+          this.formatDate(key)
+        }
+        for (let c = 0; c < col.length; c++) {
+          if (key == col[c].def) {
+            this.columnDefinitions.push(col[c]);
           }
         }
+      }
       // });
     }
 
@@ -177,7 +177,7 @@ export class TableComponent implements OnInit, OnChanges, AfterViewInit, OnDestr
     }
 
   }
-  
+
   formatDate(col) {
     this.tableData.map(res => !this.commonService.checkNullOrUndefined(res[col]) ? res[col] = this.commonService.formatDateValue(res[col]) : '');
   }

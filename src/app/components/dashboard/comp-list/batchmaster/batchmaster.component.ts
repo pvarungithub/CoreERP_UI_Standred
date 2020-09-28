@@ -26,10 +26,10 @@ export class BatchMasterComponent implements OnInit {
 
   modelFormData: FormGroup;
   formData: any;
-    UomList: any;
-    companiesList: any;
-    plantList: any;
-    empList: any;
+  UomList: any;
+  companiesList: any;
+  plantList: any;
+  empList: any;
   constructor(private commonService: CommonService,
     private addOrEditService: AddOrEditService,
     private formBuilder: FormBuilder,
@@ -57,14 +57,14 @@ export class BatchMasterComponent implements OnInit {
       actualStartTime: [null],
       actualEndDate: [null],
       actualEndTime: [null]
-     
-   });
+
+    });
 
 
     this.formData = { ...data };
     if (!this.commonService.checkNullOrUndefined(this.formData.item)) {
       this.modelFormData.patchValue(this.formData.item);
-     this.modelFormData.controls['batchNumber'].disable();
+      this.modelFormData.controls['batchNumber'].disable();
     }
 
   }
@@ -75,7 +75,7 @@ export class BatchMasterComponent implements OnInit {
     this.getuomTypeData();
     this.getemployeeData();
   }
-  
+
   getcompanyData() {
     const getompanyUrl = String.Join('/', this.apiConfigService.getCompanyList);
     this.apiService.apiGetRequest(getompanyUrl)
@@ -141,7 +141,7 @@ export class BatchMasterComponent implements OnInit {
     //if (this.modelFormData.invalid) {
     //  return;
     //}
-   this.modelFormData.controls['batchNumber'].enable();
+    this.modelFormData.controls['batchNumber'].enable();
     this.formData.item = this.modelFormData.value;
     this.addOrEditService[this.formData.action](this.formData, (res) => {
       this.dialogRef.close(this.formData);

@@ -7,75 +7,76 @@
     <form [formGroup]="modelFormData" autocomplete="off">
 
       <div class="d--flex">
-        <mat-form-field class="form-element" [ngClass]="{ 'ng--valid': formControls.code.valid }">
-          <input matInput placeholder=" {{'costcenter.code' | translate }}" formControlName="code" maxlength="5"
-            appFocusOnEnter tabIndex="1">
-          <mat-error *ngIf="formControls.code.errors" class="help-block">
-            <div *ngIf="formControls.code.errors.required">Code is required </div>
+        <mat-form-field>
+          <mat-label>{{'costcenter.objectType' | translate }}</mat-label>
+          <mat-select formControlName="objectType" (selectionChange)="getobjectNumberData()" appFocusOnEnter tabIndex="1">
+            <mat-option>None</mat-option>
+            <mat-option *ngFor="let cot of cotList" [value]="cot.id">
+              {{cot.text}}
+            </mat-option>
+          </mat-select>
+          <mat-error *ngIf="formControls.objectType.errors" class="help-block">
+            <div *ngIf="formControls.objectType.errors.required">ObjectType is required </div>
           </mat-error>
         </mat-form-field>
 
-        <mat-form-field class="form-element" [ngClass]="{ 'ng--valid': formControls.name.valid }">
-          <input matInput placeholder=" {{'costcenter.name' | translate }}" formControlName="name" maxlength="50"
-            appFocusOnEnter tabIndex="2">
-          <mat-error *ngIf="formControls.name.errors" class="help-block">
-            <div *ngIf="formControls.name.errors.required">Name is required</div>
+        <mat-form-field class="form-element" [ngClass]="{ 'ng--valid': formControls.number.valid }">
+          <input matInput placeholder=" {{'costcenter.number' | translate }}" formControlName="number" maxlength="50"
+                 appFocusOnEnter tabIndex="2">
+          <mat-error *ngIf="formControls.number.errors" class="help-block">
+            <div *ngIf="formControls.number.errors.required">Number is required</div>
           </mat-error>
+        </mat-form-field>
+
+        <mat-form-field class="form-element">
+          <input matInput placeholder="{{'costcenter.shortName' | translate }}"
+                 formControlName="shortName" maxlength="50"
+                 appFocusOnEnter tabIndex="3">
         </mat-form-field>
 
         <mat-form-field>
-          <mat-label>{{'costcenter.compCode' | translate }}</mat-label>
-          <mat-select formControlName="compCode" appFocusOnEnter tabIndex="3">
+          <mat-label>{{'costcenter.functions' | translate }}</mat-label>
+          <mat-select formControlName="functions" appFocusOnEnter tabIndex="4">
             <mat-option>None</mat-option>
-            <mat-option *ngFor="let comp of companyList" [value]="comp.companyCode">
-              {{comp.companyName}}
+            <mat-option *ngFor="let functions of Function" [value]="functions.value">
+              {{functions.viewValue}}
             </mat-option>
           </mat-select>
         </mat-form-field>
 
-        <mat-form-field class="form-element">
-          <input matInput placeholder="{{'costcenter.address1' | translate }}" formControlName="address1" maxlength="50"
-            appFocusOnEnter tabIndex="4">
-        </mat-form-field>
-
-        <mat-form-field class="form-element">
-          <input matInput placeholder="{{'costcenter.address2' | translate }}" formControlName="address2" maxlength="50"
-            appFocusOnEnter tabIndex="5">
-        </mat-form-field>
-
-        <mat-form-field class="form-element">
-          <input matInput placeholder="{{'costcenter.place' | translate }}" formControlName="place" appFocusOnEnter
-            maxlength="30" tabIndex="6">
-        </mat-form-field>
-
         <mat-form-field>
-          <mat-label>{{'costcenter.state' | translate }}</mat-label>
-          <mat-select formControlName="state" appFocusOnEnter tabIndex="7">
+          <mat-label>{{'costcenter.type' | translate }}</mat-label>
+          <mat-select formControlName="type" appFocusOnEnter tabIndex="5">
             <mat-option>None</mat-option>
-            <mat-option *ngFor="let state of stateList" [value]="state.id">
-              {{state.text}}
+            <mat-option *ngFor="let type of Type" [value]="type.value">
+              {{type.viewValue}}
             </mat-option>
           </mat-select>
         </mat-form-field>
 
-        <mat-form-field class="form-element">
-          <input matInput placeholder="{{'costcenter.pinCode' | translate }}" formControlName="pinCode" appFocusOnEnter
-            maxlength="6" tabIndex="8">
+        <mat-form-field>
+          <mat-label>{{'costcenter.uom' | translate }}</mat-label>
+          <mat-select formControlName="uom" appFocusOnEnter tabIndex="6">
+            <mat-option>None</mat-option>
+            <mat-option *ngFor="let uom of UomList" [value]="uom.id">
+              {{uom.text}}
+            </mat-option>
+          </mat-select>
         </mat-form-field>
 
-        <mat-form-field class="form-element">
-          <input matInput placeholder="{{'costcenter.phone1' | translate }}" formControlName="phone1" appFocusOnEnter
-            maxlength="10" tabIndex="9">
-        </mat-form-field>
-
-        <mat-form-field class="form-element">
-          <input matInput placeholder="{{'costcenter.email' | translate }}" formControlName="email" appFocusOnEnter
-            maxlength="3" tabIndex="10">
+        <mat-form-field>
+          <mat-label>{{'costcenter.department' | translate }}</mat-label>
+          <mat-select formControlName="department" appFocusOnEnter tabIndex="7">
+            <mat-option>None</mat-option>
+            <mat-option *ngFor="let dept of deptList" [value]="dept.id">
+              {{dept.text}}
+            </mat-option>
+          </mat-select>
         </mat-form-field>
 
         <mat-form-field>
           <mat-label>{{'costcenter.responsiblePerson' | translate }}</mat-label>
-          <mat-select formControlName="responsiblePerson" appFocusOnEnter tabIndex="11">
+          <mat-select formControlName="responsiblePerson" appFocusOnEnter tabIndex="8">
             <mat-option>None</mat-option>
             <mat-option *ngFor="let emp of employeesList" [value]="emp.id">
               {{emp.id}} - {{emp.text}}
@@ -84,15 +85,31 @@
         </mat-form-field>
 
         <mat-form-field>
-          <mat-label [translate]="'costcenter.active'"></mat-label>
-          <mat-select formControlName="active" appFocusOnEnter tabIndex="12" maxlength="1">
-            <mat-option *ngFor="let active of active" [value]="active.value">
-              {{active.viewValue}}
+          <mat-label>{{'costcenter.costType' | translate }}</mat-label>
+          <mat-select formControlName="costType" appFocusOnEnter tabIndex="10">
+            <mat-option>None</mat-option>
+            <mat-option *ngFor="let CostType of costType" [value]="CostType.value">
+              {{CostType.viewValue}}
             </mat-option>
           </mat-select>
         </mat-form-field>
+        <mat-form-field class="form-element">
+          <input matInput [matDatepicker]="picker1" placeholder="{{'costcenter.fromDate' | translate }}"
+                 formControlName="fromDate" appFocusOnEnter tabIndex="9">
+          <mat-datepicker-toggle matSuffix [for]="picker1"></mat-datepicker-toggle>
+          <mat-datepicker #picker1></mat-datepicker>
+        </mat-form-field>
+
+        <mat-slide-toggle formControlName="quantity" (change)="approveOrReject($event.checked)">
+          {{(modelFormData.get('quantity').value != null) ? 'Accept' : 'Reject'}}
+        </mat-slide-toggle>
+        <mat-divider></mat-divider>
+
+
+
+
       </div>
-      <mat-divider></mat-divider>
+      
     </form>
   </mat-card-content>
   <div class="form-element p-2 d-flex justify-content-end">

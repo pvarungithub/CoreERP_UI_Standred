@@ -70,8 +70,8 @@
           <mat-label>{{'costunits.material' | translate }}</mat-label>
           <mat-select formControlName="material" appFocusOnEnter tabIndex="6">
             <mat-option>None</mat-option>
-            <mat-option *ngFor="let mtype of matypeList" [value]="mtype.code">
-              {{mtype.description}}
+            <mat-option *ngFor="let mtype of materialList" [value]="mtype.text">
+              {{mtype.text}}
             </mat-option>
           </mat-select>
         </mat-form-field>

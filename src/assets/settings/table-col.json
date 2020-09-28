@@ -125,18 +125,17 @@
   },
   "costcenter": {
     "title": "Cost Center",
-    "code": "Code",
-    "name": "Name",
-    "companyName": "Company",
-    "address1": "Address",
-    "address2": "Address2",
-    "place": "Place",
-    "stateName": "State",
-    "pinCode": "Pin Code",
-    "phone1": "Phone",
-    "email": "Email",
-    "responsibleName": "Responsible Person",
-    "active": "Active"
+    "objectName": "ObjectName",
+    "number": "Number",
+    "shortName": "Short Name",
+    "functions": "Functions",
+    "type": "Type",
+    "quantity": "Quantity",
+    "departmentName": "DepartmentName",
+    "uomName": "UOM Name",
+    "responsibleName": "ResponsibleName",
+    "fromDate": "From Date",
+    "costType": "Cost Type"
   },
   "plant": {
     "title": "Plant",
@@ -1271,17 +1270,19 @@
     "usage": "Usage"
   },
   "costobjectnumberseries": {
-    "title": "Cost Object Number Series",
+    "title": "CostObject NumberSeries",
     "numberObject": "Number Object",
     "fromInterval": "From Interval",
     "toInterval": "To Interval",
     "prefix": "Prefix",
-    "nonNumaric": "Non Numaric"
+    "nonNumaric": "Non Numaric",
+    "presentNumber": "Present Number"
   },
   "assignnumberseries": {
     "title": " Assignment of Number Series to Object Types",
     "objectName": "Object Name",
-    "seriesName": "Number Series"
+    "seriesName": "Number Series",
+    "presentNumber": "Present Number"
   },
   "costunits": {
     "title": " Cost Units",

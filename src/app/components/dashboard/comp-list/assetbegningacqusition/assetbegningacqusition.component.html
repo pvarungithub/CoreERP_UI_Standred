@@ -31,26 +31,25 @@
             </mat-form-field>
 
             <mat-form-field>
-              <input matInput [matDatepicker]="picker4" placeholder="{{'assetbegningacqusition.acquisitionDate' | translate }}"
-                     formControlName="acquisitionDate" appFocusOnEnter tabIndex="3">
+              <input matInput [matDatepicker]="picker4"
+                placeholder="{{'assetbegningacqusition.acquisitionDate' | translate }}"
+                formControlName="acquisitionDate" appFocusOnEnter tabIndex="3">
               <mat-datepicker-toggle matSuffix [for]="picker4"></mat-datepicker-toggle>
               <mat-datepicker #picker4></mat-datepicker>
             </mat-form-field>
 
             <mat-form-field class="form-element">
               <input matInput placeholder="{{'assetbegningacqusition.acquisitionCost' | translate }}"
-                     formControlName="acquisitionCost" maxlength="7"
-                     appFocusOnEnter tabIndex="4">
+                formControlName="acquisitionCost" maxlength="7" appFocusOnEnter tabIndex="4">
             </mat-form-field>
-            
+
           </div>
 
         </mat-card-content>
 
       </mat-tab>
       <mat-tab label="Accumulated Depreciation">
-        <app-dynamic-table [tableObJect]="dynTableProps" (emitTableData)="emitTableData($event)"
-                          ></app-dynamic-table>
+        <app-dynamic-table [tableObJect]="dynTableProps" (emitTableData)="emitTableData($event)"></app-dynamic-table>
       </mat-tab>
     </form>
 
@@ -60,7 +59,7 @@
       {{ 'COMMON.CANCEL' | translate }}
     </button>
     <button mat-raised-button type="submit" class="button-color-bule text-white ml-1" (click)="save()" appFocusOnEnter
-            tabIndex="22">
+      tabIndex="22">
       {{ 'COMMON.SAVE' | translate }}
     </button>
   </div>

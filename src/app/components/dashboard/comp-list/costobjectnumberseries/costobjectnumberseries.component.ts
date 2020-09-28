@@ -36,19 +36,16 @@ export class CostingObjectNumberSeriesComponent implements OnInit {
       numberObject: [null, [Validators.required, Validators.minLength(1), Validators.maxLength(4)]],
       fromInterval: [null, [Validators.required, Validators.minLength(1), Validators.maxLength(30)]],
       toInterval: [null],
-      nonNumaric: [false],
+      nonNumaric: [null],
       prefix: [null],
       presentNumber: [null]
-
+       
     });
 
 
     this.formData = { ...data };
     if (!this.commonService.checkNullOrUndefined(this.formData.item)) {
       this.modelFormData.patchValue(this.formData.item);
-      this.modelFormData.patchValue({
-        nonNumaric: (+this.formData.item.nonNumaric == 0) ? false : true
-      })
       this.modelFormData.controls['numberObject'].disable();
     }
 
@@ -71,20 +68,31 @@ export class CostingObjectNumberSeriesComponent implements OnInit {
     if (i <= j) {
     }
     else {
-      this.alertService.openSnackBar("To Interval Greatee than to From Interval", Static.Close, SnackBar.error);
+      this.alertService.openSnackBar("Enter correct Value", Static.Close, SnackBar.error);
     }
 
   }
 
+  approveOrReject(event) {
+    //debugger;
+    if (event) {
+      this.modelFormData.patchValue({
+        nonNumaric: "A",
+        reject: null
+      });
+    } else {
+      this.modelFormData.patchValue({
+        nonNumaric: null,
+        reject: "R"
+      });
+    }
+  }
   get formControls() { return this.modelFormData.controls; }
 
   save() {
     if (this.modelFormData.invalid) {
       return;
     }
-    this.modelFormData.patchValue({
-      nonNumaric: this.modelFormData.get('nonNumaric').value ? 1 : 0
-    })
     this.modelFormData.controls['numberObject'].enable();
     this.formData.item = this.modelFormData.value;
     this.addOrEditService[this.formData.action](this.formData, (res) => {

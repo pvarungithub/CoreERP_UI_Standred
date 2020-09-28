@@ -7,30 +7,33 @@
   <!-- <mat-card-title class="background-header-style">
     {{ ( routeParam + '.title') | translate }}
   </mat-card-title> -->
-<div class="background-header-boarder">
-  <div class="d-flex justify-content-between align-items-center border">
-    <div class="">
-      <button class="ml-2" mat-raised-button (click)="openDialog('Add')"  [hidden]="!commonService.userPermission?.canAdd">
-        <mat-icon>add</mat-icon> New
-      </button>
-      <button class="ml-2" mat-raised-button (click)="openDialog('Edit')" [hidden]="!commonService.userPermission?.canEdit">
-        <mat-icon>edit</mat-icon> Edit
-      </button>
-      <button class="ml-2" mat-raised-button (click)="openDialog('Delete')" [hidden]="!commonService.userPermission?.canDelete">
-        <mat-icon>delete</mat-icon> Delete
-      </button>
-      <button class="ml-2" mat-raised-button >
-        <mat-icon>print</mat-icon> Print
-      </button>
-    </div>
-    <div class="btn-group align-items-center" dropdown #dropdown="bs-dropdown" [autoClose]="false">
+  <div class="background-header-boarder">
+    <div class="d-flex justify-content-between align-items-center border">
+      <div class="">
+        <button class="ml-2" mat-raised-button (click)="openDialog('Add')"
+          [hidden]="!commonService.userPermission?.canAdd">
+          <mat-icon>add</mat-icon> New
+        </button>
+        <button class="ml-2" mat-raised-button (click)="openDialog('Edit')"
+          [hidden]="!commonService.userPermission?.canEdit">
+          <mat-icon>edit</mat-icon> Edit
+        </button>
+        <button class="ml-2" mat-raised-button (click)="openDialog('Delete')"
+          [hidden]="!commonService.userPermission?.canDelete">
+          <mat-icon>delete</mat-icon> Delete
+        </button>
+        <button class="ml-2" mat-raised-button>
+          <mat-icon>print</mat-icon> Print
+        </button>
+      </div>
+      <div class="btn-group align-items-center" dropdown #dropdown="bs-dropdown" [autoClose]="false">
 
         <mat-form-field class="pl-2 filter" [floatLabel]="'never'">
           <input matInput type="text" (keyup)="doFilter($event.target.value)" placeholder="Filter" />
         </mat-form-field>
         <div class="">
           <button dropdownToggle mat-raised-button class="dropdown-toggle ml-2" (click)="filterData()">
-             Columns
+            Columns
           </button>
         </div>
 
@@ -61,7 +64,7 @@
 
     </div>
 
-    <div *ngIf="showDataNotFound"  class="d-flex justify-content-center align-items-center">
+    <div *ngIf="showDataNotFound" class="d-flex justify-content-center align-items-center">
       <img class="text-bottom" width="500" height="300" src="assets/images/Data_not_found.png">
     </div>
 
@@ -72,19 +75,18 @@
           <th mat-header-cell *matHeaderCellDef mat-sort-header>
             <strong> {{ ( routeParam + '.' +  column) | translate }} </strong>
           </th>
-          <td mat-cell *matCellDef="let element;"
-            (click)="setIndex(element, dataSource.filteredData.indexOf(element))">
+          <td mat-cell *matCellDef="let element;" (click)="setIndex(element, dataSource.filteredData.indexOf(element))">
             {{ element[column] }}
           </td>
         </ng-container>
         <tr mat-header-row *matHeaderRowDef="getDisplayedColumns()"></tr>
-        <tr mat-row *matRowDef="let row; columns: getDisplayedColumns();"
-          (dblclick)="openDialog('Edit', row)" [style.background]="
+        <tr mat-row *matRowDef="let row; columns: getDisplayedColumns();" (dblclick)="openDialog('Edit', row)"
+          [style.background]="
         highlightedRows.indexOf(row) != -1 ? 'lightblue' : ''
       "></tr>
       </table>
     </div>
     <mat-paginator [pageSizeOptions]="[10 ,25, 50, 100]" showFirstLastButtons></mat-paginator>
   </div>
-<!-- </div> -->
+  <!-- </div> -->
 </mat-card>
