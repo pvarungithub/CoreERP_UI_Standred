@@ -1453,7 +1453,7 @@
     "chartofAccount": "Chart of Account",
     "description": "Description",
     "type": "Type",
-    "recordQty": "Qty",
+    "recordQty": "Record Quantity",
     "uom": "UOM",
     "companyName": "Company Name",
     "chartAccountName": "Chart of Account Name",
@@ -1464,10 +1464,10 @@
     "activityCode": "Activity Code",
     "description": "Description",
     "uom": "UOM",
-    "basisofFixedPrice": "BasisOf FixedPrice",
-    "costElement": "Cost Element",
-    "uomName": "UomName",
-    "secondCostName": "SecondCostName"
+    "basisofFixedPrice": "Basis Of Fixed Price",
+    "costElement": "Secondary Cost Element",
+    "uomName": "Uom Name",
+    "secondCostName": "Secondary Cost Element Name"
   },
   "keyfigures": {
     "title": "Key Figures",
@@ -1483,7 +1483,7 @@
     "usage": "Usage"
   },
   "costobjectnumberseries": {
-    "title": "CostObject NumberSeries",
+    "title": "Cost Object Number Series",
     "numberObject": "Number Object",
     "fromInterval": "From Interval",
     "toInterval": "To Interval",
@@ -1515,15 +1515,15 @@
     "company": "Company",
     "plant": "Plant",
     "batchNumber": "Batch Number",
-    "dob": "DOB",
+    "dob": "Date of Batch",
     "year": "Year",
     "createdBy": "Created By",
     "createdDate": "Created Date",
     "description": "Description",
     "batchSize": "Batch Size",
     "uom": "UOM",
-    "plantStart": "Plant Start",
-    "plantEndDate": "Plant End Date",
+    "plantStart": "Plan Start",
+    "plantEndDate": "Plan End Date",
     "actualStartDate": "Actual Start Date",
     "actualStartTime": "Actual Start Time",
     "actualEndDate": "Actual End Date",
@@ -1558,7 +1558,7 @@
     "byProduct": "BY Product",
     "jointProduct": "Joint Product",
     "reWork": "Re Work",
-    "normalLossIn": "Normal Loss In",
-    "abnormalLossIn": "Abnormal Loss In"
+    "normalLossIn": "Normal Loss %",
+    "abnormalLossIn": "Abnormal Loss %"
   }
 }

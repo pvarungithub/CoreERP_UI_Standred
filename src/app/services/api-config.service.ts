@@ -23,7 +23,7 @@ export class ApiConfigService {
    getttingobjectNumbers = `${this.environment.runtimeConfig.serverUrl}CreationOfCostUnits/GetObjectNumber`;
    getttingmaterialNumbers = `${this.environment.runtimeConfig.serverUrl}MaterialMaster/GetMaterialNumber`;
    getuomList = `${this.environment.runtimeConfig.serverUrl}Common/GetUOMList`;
-   getmaterialdata = `${this.environment.runtimeConfig.serverUrl}MaterialMaster/GetMaterialMasterList`;
+   getmaterialdata = `${this.environment.runtimeConfig.serverUrl}Common/GetMaterialMasterList`;
    getModelPatternList = `${this.environment.runtimeConfig.serverUrl}ModelPattern/GetModelPatternList`;
    getmsizeList = `${this.environment.runtimeConfig.serverUrl}MaterialSize/GetMaterialSizeList`;
    getmaterialgroupList = `${this.environment.runtimeConfig.serverUrl}MaterialGroups/GetMaterialGroupsList`;

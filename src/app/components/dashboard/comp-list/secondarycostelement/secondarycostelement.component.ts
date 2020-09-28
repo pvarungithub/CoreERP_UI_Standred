@@ -25,22 +25,21 @@ export class SecondaryCostElementsCreationComponent implements OnInit {
   modelFormData: FormGroup;
   formData: any;
   companiesList: any;
-  glList: any; 
-    porangeList: any;
-    porderList: any;
-    lotList: any;
+  glList: any;
+  porangeList: any;
+  porderList: any;
+  lotList: any;
   coaList: any;
   matypeList: any;
+  UomList: any;
 
- 
   type: Type[] =
     [
-      { value: 'Fixed list', viewValue: ' Fixed list' },
       { value: 'Apportionment', viewValue: 'Apportionment' },
       { value: 'Absorption', viewValue: 'Absorption' },
       { value: 'Activity', viewValue: 'Activity' }
     ];
-    UomList: any;
+
   constructor(private commonService: CommonService,
     private addOrEditService: AddOrEditService,
     private formBuilder: FormBuilder,
@@ -57,15 +56,17 @@ export class SecondaryCostElementsCreationComponent implements OnInit {
       chartofAccount: [null],
       description: [null],
       type: [null],
-      recordQty: [null],
+      recordQty: [false],
       uom: [null]
-      
-   });
 
+    });
 
     this.formData = { ...data };
     if (!this.commonService.checkNullOrUndefined(this.formData.item)) {
       this.modelFormData.patchValue(this.formData.item);
+      this.modelFormData.patchValue({
+        recordQty: (+this.formData.item.recordQty == 0) ? false : true
+      })
       this.modelFormData.controls['secondaryCostCode'].disable();
     }
 
@@ -76,20 +77,7 @@ export class SecondaryCostElementsCreationComponent implements OnInit {
     this.getcompanyData();
     this.getuomTypeData();
   }
-  approveOrReject(event) {
-    //debugger;
-    if (event) {
-      this.modelFormData.patchValue({
-        recordQty: "1",
-        reject: null
-      });
-    } else {
-      this.modelFormData.patchValue({
-        ChkAcceptReject: null,
-        recordQty: "0"
-      });
-    }
-  }
+
   getChartofAccountData() {
     const getchartaccUrl = String.Join('/', this.apiConfigService.getChartOfAccountList);
     this.apiService.apiGetRequest(getchartaccUrl)
@@ -136,12 +124,16 @@ export class SecondaryCostElementsCreationComponent implements OnInit {
           this.spinner.hide();
         });
   }
+
   get formControls() { return this.modelFormData.controls; }
 
   save() {
     if (this.modelFormData.invalid) {
       return;
     }
+    this.modelFormData.patchValue({
+      recordQty: this.modelFormData.get('recordQty').value ? 1 : 0
+    })
     this.modelFormData.controls['secondaryCostCode'].enable();
     this.formData.item = this.modelFormData.value;
     this.addOrEditService[this.formData.action](this.formData, (res) => {

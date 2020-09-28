@@ -40,7 +40,6 @@ export class PrimaryCostElementsCreationComponent implements OnInit {
 
   usage: Usage[] =
     [
-      { value: ' Fixed list', viewValue: ' Fixed list' },
       { value: 'Material cost', viewValue: 'Material cost' },
       { value: ' Labour cost', viewValue: ' Labour cost' },
       { value: 'Personal cost', viewValue: 'Personal cost' },
@@ -53,7 +52,6 @@ export class PrimaryCostElementsCreationComponent implements OnInit {
     ];
   element: Element[] =
     [
-      { value: 'Fixed list', viewValue: ' Fixed list' },
       { value: 'Direct cost', viewValue: 'Direct cost' },
       { value: 'Indirect cost', viewValue: 'Indirect cost' }
     ];

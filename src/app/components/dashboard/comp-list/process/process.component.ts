@@ -26,17 +26,19 @@ export class ProcessComponent implements OnInit {
   formData: any;
   csList: any;
   UomList: any;
+  companiesList: any;
+  plantList: any;
+  costunitList: any;
+  matypeList: any;
+
   processType: ProcessType[] =
     [
       { value: 'Independent', viewValue: 'Independent' },
       { value: 'Dependent', viewValue: 'Dependent' },
       { value: 'Parallel', viewValue: 'Parallel' }
     ];
-    companiesList: any;
-    plantList: any;
-    costunitList: any;
-    matypeList: any;
-    
+
+
   constructor(private commonService: CommonService,
     private addOrEditService: AddOrEditService,
     private formBuilder: FormBuilder,
@@ -54,18 +56,24 @@ export class ProcessComponent implements OnInit {
       costUnit: [null],
       material: [null],
       nextProcess: [null],
-      wipcalculation: [null],
+      wipcalculation: [false],
       byProduct: [null],
       jointProduct: [null],
-      reWork: [null],
+      reWork: [false],
       normalLossIn: [null],
       abnormalLossIn: [null]
-   });
+    });
 
 
     this.formData = { ...data };
     if (!this.commonService.checkNullOrUndefined(this.formData.item)) {
       this.modelFormData.patchValue(this.formData.item);
+      this.modelFormData.patchValue({
+        wipcalculation: (+this.formData.item.wipcalculation == 0) ? false : true
+      })
+      this.modelFormData.patchValue({
+        reWork: (+this.formData.item.reWork == 0) ? false : true
+      })
       this.modelFormData.controls['processKey'].disable();
     }
 
@@ -77,34 +85,7 @@ export class ProcessComponent implements OnInit {
     this.getcostunitsData();
     this.getmaterialData();
   }
-  approveOrReject(event) {
-    //debugger;
-    if (event) {
-      this.modelFormData.patchValue({
-        wipcalculation: "Acept",
-        reject: null
-      });
-    } else {
-      this.modelFormData.patchValue({
-        wipcalculation: null,
-        reject: "Rejct"
-      });
-    }
-  }
-  approveOrRejects(event) {
-    //debugger;
-    if (event) {
-      this.modelFormData.patchValue({
-        reWork: "Accept",
-        reject: null
-      });
-    } else {
-      this.modelFormData.patchValue({
-        reWork: null,
-        reject: "Reject"
-      });
-    }
-  }
+
   getcompanyData() {
     const getompanyUrl = String.Join('/', this.apiConfigService.getCompanyList);
     this.apiService.apiGetRequest(getompanyUrl)
@@ -119,6 +100,7 @@ export class ProcessComponent implements OnInit {
           this.spinner.hide();
         });
   }
+
   getplantData() {
     const getplantUrl = String.Join('/', this.apiConfigService.getPlantsList);
     this.apiService.apiGetRequest(getplantUrl)
@@ -133,6 +115,7 @@ export class ProcessComponent implements OnInit {
           this.spinner.hide();
         });
   }
+
   getcostunitsData() {
     const getsecondelementUrl = String.Join('/', this.apiConfigService.getcostingunitsList);
     this.apiService.apiGetRequest(getsecondelementUrl)
@@ -149,7 +132,7 @@ export class ProcessComponent implements OnInit {
   }
 
   getmaterialData() {
-    const getmaterialUrl = String.Join('/', this.apiConfigService.getMaterialList);
+    const getmaterialUrl = String.Join('/', this.apiConfigService.getmaterialdata);
     this.apiService.apiGetRequest(getmaterialUrl)
       .subscribe(
         response => {
@@ -157,7 +140,7 @@ export class ProcessComponent implements OnInit {
           console.log(res);
           if (!this.commonService.checkNullOrUndefined(res) && res.status === StatusCodes.pass) {
             if (!this.commonService.checkNullOrUndefined(res.response)) {
-              this.matypeList = res.response['matypeList'];
+              this.matypeList = res.response['mmasterList'];
             }
           }
           this.spinner.hide();
@@ -170,6 +153,12 @@ export class ProcessComponent implements OnInit {
     if (this.modelFormData.invalid) {
       return;
     }
+    this.modelFormData.patchValue({
+      wipcalculation: this.modelFormData.get('wipcalculation').value ? 1 : 0
+    })
+    this.modelFormData.patchValue({
+      reWork: this.modelFormData.get('reWork').value ? 1 : 0
+    })
     this.modelFormData.controls['processKey'].enable();
     this.formData.item = this.modelFormData.value;
     this.addOrEditService[this.formData.action](this.formData, (res) => {

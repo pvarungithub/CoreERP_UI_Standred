@@ -1247,16 +1247,16 @@
     "chartAccountName": "Chart of Account Name",
     "description": "Description",
     "type": "Type",
-    "recordQty": "Qty",
+    "recordQty": "Record Quantity",
     "uomName": "Uom Name"
   },
   "activities": {
     "title": "Activities",
     "activityCode": "Activity Code",
     "description": "Description",
-    "uomName": "UomName",
-    "basisofFixedPrice": "BasisOf FixedPrice",
-    "secondCostName": "SecondCostName"
+    "uomName": "Uom Name",
+    "basisofFixedPrice": "Basis Of Fixed Price",
+    "secondCostName": "Secondary Cost Element Name"
   },
   "keyfigures": {
     "title": "Key Figures",
@@ -1271,7 +1271,7 @@
     "usage": "Usage"
   },
   "costobjectnumberseries": {
-    "title": "CostObject NumberSeries",
+    "title": "Cost Object Number Series",
     "numberObject": "Number Object",
     "fromInterval": "From Interval",
     "toInterval": "To Interval",
@@ -1304,7 +1304,7 @@
     "description": "Description",
     "batchSize": "Batch Size",
     "uom": "UOM",
-    "plantStart": "Plant Start",
+    "plantStart": "Plan Start",
     "plantEndDate": "Date",
     "actualStartDate": "Date",
     "actualStartTime": "Actual Start Time",
@@ -1332,8 +1332,8 @@
     "byProduct": "BY Product",
     "jointProduct": "Joint Product",
     "reWork": "Re Work",
-    "normalLossIn": "Normal Loss In",
-    "abnormalLossIn": "Abnormal Loss In",
+    "normalLossIn": "Normal Loss %",
+    "abnormalLossIn": "Abnormal Loss %",
     "companyName": "Company Name",
     "plantName": "Plant Name",
     "costunitName": "Cost Unit Name",

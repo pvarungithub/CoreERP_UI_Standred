@@ -487,12 +487,18 @@ export class ReceiptspaymentsComponent implements OnInit {
   }
 
   emitColumnChanges(data) {
+    this.spinner.show();
     if (data.column == 'adjustmentAmount') {
       this.loopTableData(data);
       this.checkAjectAmount(true)
     }
     if (data.column == 'checkAll') {
-      this.getDiscount(data);
+      if(data.data[data.index].checkAll.value) {
+        this.getDiscount(data);
+      } else {
+        data.data[data.index].discount.value = 0;
+        this.addOrEditService.sendDynTableData({ type: 'add', data: data.data });
+      }
     }
 
   }

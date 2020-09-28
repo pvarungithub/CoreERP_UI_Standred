@@ -25,14 +25,13 @@ export class CoastingActivitiesComponent implements OnInit {
   modelFormData: FormGroup;
   formData: any;
   csList: any;
- 
+
   price: Fixedprice[] =
     [
-      { value: 'Fixed list', viewValue: ' Fixed list' },
       { value: 'Capacity', viewValue: 'Capacity' },
       { value: 'Actual activity', viewValue: 'Actual activity' }
     ];
-    UomList: any;
+  UomList: any;
   constructor(private commonService: CommonService,
     private addOrEditService: AddOrEditService,
     private formBuilder: FormBuilder,
@@ -49,22 +48,20 @@ export class CoastingActivitiesComponent implements OnInit {
       basisofFixedPrice: [null],
       costElement: [null],
       uom: [null]
-   });
-
+    });
 
     this.formData = { ...data };
     if (!this.commonService.checkNullOrUndefined(this.formData.item)) {
       this.modelFormData.patchValue(this.formData.item);
       this.modelFormData.controls['activityCode'].disable();
     }
-
   }
 
   ngOnInit() {
     this.getcostsecondaryelementData();
     this.getuomTypeData();
   }
-  
+
   getcostsecondaryelementData() {
     const getsecondelementUrl = String.Join('/', this.apiConfigService.getsecondelementList);
     this.apiService.apiGetRequest(getsecondelementUrl)
@@ -95,6 +92,7 @@ export class CoastingActivitiesComponent implements OnInit {
           this.spinner.hide();
         });
   }
+
   get formControls() { return this.modelFormData.controls; }
 
   save() {
