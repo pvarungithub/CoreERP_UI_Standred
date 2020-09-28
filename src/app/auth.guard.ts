@@ -38,12 +38,12 @@ export class AuthGuard implements CanActivate, Resolve<any> {
     state: RouterStateSnapshot): Observable<boolean | UrlTree> | Promise<boolean | UrlTree> | boolean | UrlTree {
     let obj = JSON.parse(localStorage.getItem("user"));
     if (next.url.length > 1) {
-      // const getMenuUrl = String.Join('/', this.apiConfigService.getUserPermissions, obj.userName, next.url[1].path);
-      // return this.http.get(getMenuUrl, { headers: this.options, observe: 'response' })
-      //   .pipe((map(resp => {
-      // const res = resp.body;
-      // this.commomService.userPermission = res['Permissions'];
-      // if (!this.commonService.checkNullOrUndefined(res) && res['status'] === StatusCodes.pass) {
+      const getMenuUrl = String.Join('/', this.apiConfigService.getUserPermissions, obj.role, next.url[1].path);
+      return this.http.get(getMenuUrl, { headers: this.options, observe: 'response' })
+        .pipe((map(resp => {
+      const res = resp.body;
+      this.commomService.userPermission = res['response']['Permissions'];
+      if (!this.commomService.checkNullOrUndefined(res) && res['status'] === StatusCodes.pass) {
       if (this.authService.isLoggedIn()) {
         if (state.url.includes('Edit') || state.url.includes('Add') || state.url.includes('New')) {
           if (!this.addOrEditService.editData && next.url.length > 1) {
@@ -53,22 +53,22 @@ export class AuthGuard implements CanActivate, Resolve<any> {
         }
         return true;
       }
-      // } else if (!this.commonService.checkNullOrUndefined(res) && res['status'] === StatusCodes.fail) {
+      } else if (!this.commomService.checkNullOrUndefined(res) && res['status'] === StatusCodes.fail) {
       this.router.navigate(['/login']);
       return false;
-      // }
-      // })));
+      }
+      })));
     }
     return false;
   }
 
   resolve(route: ActivatedRouteSnapshot) {
     let obj = JSON.parse(localStorage.getItem("user"));
-    const configUrl = String.Join('/', this.apiConfigService.getFieldsConfig, route.url[0].path, route.url[1].path, obj.userName);
+    const configUrl = String.Join('/', this.apiConfigService.getFieldsConfig , obj.role, route.url[1].path);
 
-    return true;
-    // this.http.get(configUrl, { headers: this.options, observe: 'response' })
-    //   .pipe((map(res => console.log(res.body['response']['FieldsConfiguration']))));
+    return true
+      this.http.get(configUrl, { headers: this.options, observe: 'response' })
+      .pipe((map(res => console.log(res.body['response']['FieldsConfiguration']))));
 
   }
 

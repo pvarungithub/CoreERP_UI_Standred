@@ -31,7 +31,7 @@
 
         <mat-form-field>
           <mat-label>{{'process.costUnit' | translate }}</mat-label>
-          <mat-select formControlName="costUnit" appFocusOnEnter tabIndex="3">
+          <mat-select formControlName="costUnit" appFocusOnEnter tabIndex="3" (selectionChange)="costunitSelect()">
             <mat-option>None</mat-option>
             <mat-option *ngFor="let costunit of costunitList" [value]="costunit.id">
               {{costunit.text}}

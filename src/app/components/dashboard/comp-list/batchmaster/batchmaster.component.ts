@@ -8,13 +8,18 @@ import { ApiConfigService } from '../../../../services/api-config.service';
 import { ApiService } from '../../../../services/api.service';
 import { String } from 'typescript-string-operations';
 import { AddOrEditService } from '../add-or-edit.service';
-
+import { DateAdapter, MAT_DATE_FORMATS } from '@angular/material/core';
+import { AppDateAdapter, APP_DATE_FORMATS } from '../../../../directives/format-datepicker';
 
 
 @Component({
   selector: 'app-batchmaster',
   templateUrl: './batchmaster.component.html',
-  styleUrls: ['./batchmaster.component.scss']
+  styleUrls: ['./batchmaster.component.scss'],
+  providers: [
+    { provide: DateAdapter, useClass: AppDateAdapter },
+    { provide: MAT_DATE_FORMATS, useValue: APP_DATE_FORMATS }
+  ]
 })
 
 export class BatchMasterComponent implements OnInit {

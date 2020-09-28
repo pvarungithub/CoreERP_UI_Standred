@@ -10,13 +10,13 @@
 <div class="background-header-boarder">
   <div class="d-flex justify-content-between align-items-center border">
     <div class="">
-      <button class="ml-2" mat-raised-button (click)="openDialog('Add')"  [hidden]="commonService.userPermission?.canAdd">
+      <button class="ml-2" mat-raised-button (click)="openDialog('Add')"  [hidden]="!commonService.userPermission?.canAdd">
         <mat-icon>add</mat-icon> New
       </button>
-      <button class="ml-2" mat-raised-button (click)="openDialog('Edit')" [hidden]="commonService.userPermission?.canEdit">
+      <button class="ml-2" mat-raised-button (click)="openDialog('Edit')" [hidden]="!commonService.userPermission?.canEdit">
         <mat-icon>edit</mat-icon> Edit
       </button>
-      <button class="ml-2" mat-raised-button (click)="openDialog('Delete')" [hidden]="commonService.userPermission?.canDelete">
+      <button class="ml-2" mat-raised-button (click)="openDialog('Delete')" [hidden]="!commonService.userPermission?.canDelete">
         <mat-icon>delete</mat-icon> Delete
       </button>
       <button class="ml-2" mat-raised-button >

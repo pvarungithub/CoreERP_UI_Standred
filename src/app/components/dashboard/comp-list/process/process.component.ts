@@ -69,13 +69,12 @@ export class ProcessComponent implements OnInit {
     if (!this.commonService.checkNullOrUndefined(this.formData.item)) {
       this.modelFormData.patchValue(this.formData.item);
       this.modelFormData.patchValue({
-        wipcalculation: (+this.formData.item.wipcalculation == 0) ? false : true
-      })
-      this.modelFormData.patchValue({
+        wipcalculation: (+this.formData.item.wipcalculation == 0) ? false : true,
         reWork: (+this.formData.item.reWork == 0) ? false : true
       })
-      this.modelFormData.controls['processKey'].disable();
+      this.modelFormData.controls['material'].disable();
     }
+    this.modelFormData.controls['processKey'].disable();
 
   }
 
@@ -84,6 +83,13 @@ export class ProcessComponent implements OnInit {
     this.getplantData();
     this.getcostunitsData();
     this.getmaterialData();
+  }
+
+  costunitSelect() {
+    const object = this.costunitList.find(res => res.id === this.modelFormData.get('costUnit').value)
+    this.modelFormData.patchValue({
+      material: !this.commonService.checkNullOrUndefined(object) ? object.material : null
+    })
   }
 
   getcompanyData() {

@@ -110,7 +110,7 @@ export class TableComponent implements OnInit, OnChanges, AfterViewInit, OnDestr
       if (data.action === 'Delete' && this.highlightedRows.length) {
         this.addOrUpdateEvent.emit(data);
       }
-      else if (data.action === 'Edit' && this.highlightedRows.length && this.user.canEdit !== 'Edit' && !this.commonService.userPermission.canEdit) {
+      else if (data.action === 'Edit' && this.highlightedRows.length  && this.commonService.userPermission.canEdit) {
         this.addOrUpdateEvent.emit(data);
       }
       else if (data.action === 'Add') {
