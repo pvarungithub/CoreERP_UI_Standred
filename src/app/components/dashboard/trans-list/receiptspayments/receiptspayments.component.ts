@@ -127,27 +127,27 @@ export class ReceiptspaymentsComponent implements OnInit {
         },
 
         partyInvoiceNo: {
-          value: null, type: 'number', width: 150, disabled: true, fieldEnable: true
+          value: null, type: 'number', width: 150, disabled: true
         },
         partyInvoiceDate: {
           // value: null, type: 'dropdown', list: this.date, id: 'date', text: 'date', displayMul: true, width: 100
-          value: new Date(), type: 'datepicker', width: 100, disabled: true, fieldEnable: true
+          value: new Date(), type: 'datepicker', width: 100, disabled: true
         },
         dueDate: {
-          value: null, type: 'datepicker', width: 100, disabled: true, fieldEnable: true
+          value: null, type: 'datepicker', width: 100, disabled: true
         },
         totalAmount: {
           //value: null, type: 'dropdown', list: this.amount, id: 'amount', text: 'amount', displayMul: true, width: 100
-          value: 0, type: 'number', width: 75, disabled: true, fieldEnable: true
+          value: 0, type: 'number', width: 75, disabled: true
         },
         memoAmount: {
-          value: 0, type: 'number', width: 75, disabled: true, fieldEnable: true
+          value: 0, type: 'number', width: 75, disabled: true
         },
         clearedAmount: {
-          value: 0, type: 'number', width: 75, disabled: true, fieldEnable: true
+          value: 0, type: 'number', width: 75, disabled: true
         },
         balanceDue: {
-          value: 0, type: 'number', width: 75, disabled: true, fieldEnable: true
+          value: 0, type: 'number', width: 75, disabled: true
         },
         notDue: {
           value: 0, type: 'number', width: 75, disabled: true, fieldEnable: true
@@ -156,7 +156,7 @@ export class ReceiptspaymentsComponent implements OnInit {
           value: 0, type: 'number', width: 75, disabled: true, fieldEnable: true
         },
         discount: {
-          value: 0, type: 'number', width: 75, disabled: true, fieldEnable: true
+          value: 0, type: 'number', width: 75, disabled: true
         },
         writeOffAmount: {
           value: 0, type: 'number', width: 75, disabled: true, fieldEnable: true

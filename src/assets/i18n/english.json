@@ -982,8 +982,7 @@
     "delete": "Delete"
   },
   "receiptspayments": {
-    "checkAll": "Check All",
-    "id": "id",
+    "checkAll": "Select",
     "title": "Party Payments / Receipts",
     "company": "Company",
     "branch": "Branch",
@@ -999,6 +998,7 @@
     "profitCenter": "Profit Center",
     "segment": "Segment",
     "amount": "Amount",
+    "totalAmount": "Amount",
     "chequeno": "Cheque No",
     "chequeDate": "Cheque Date",
     "bpcategory": "BP Category",
