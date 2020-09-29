@@ -21,7 +21,7 @@
             {{ "COMMON.RESET" | translate }}
           </button>
         </div>
-        <div class="ml-auto p-2" [hidden]="commonService.userPermission?.canAdd">
+        <div class="ml-auto p-2" [hidden]="!commonService.userPermission?.canAdd">
           <button mat-raised-button class="button-color-bule text-white" (click)="newTransOpen()">
             {{ "COMMON.NEW" | translate }}
           </button>

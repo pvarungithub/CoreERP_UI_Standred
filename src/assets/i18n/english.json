@@ -1155,10 +1155,13 @@
   },
   "purchasingperson": {
     "title": "Purchasing Person",
-    "purchasePerson": "PurchasePerson",
+    "purchasePerson": "Purchasing Person",
     "description": "Description",
     "purchaseGroup": "Purchase Group",
-    "purchaseTypes": "Purchase Types"
+    "purchaseTypes": "Purchase Types",
+    "personName": "Purchasing Person Name",
+    "purchaseGroupName": "Purchase Group Name",
+    "purchaseTypesName": "Purchase Types Name"
   },
   "requisitionnumberrange": {
     "title": "Requisition NumberRange",
@@ -1561,5 +1564,31 @@
     "reWork": "Re Work",
     "normalLossIn": "Normal Loss %",
     "abnormalLossIn": "Abnormal Loss %"
+  },
+  "downtimereasons": {
+    "title": " Down Time Reasons",
+    "reasonCode": "Code",
+    "description": "Description",
+    "type": "Type"
+  },
+  "standardrateoutput": {
+    "title": " Standard Rate Output",
+    "code": "Code",
+    "noofShifts": "Shifts",
+    "uom": "UOM",
+    "uomName": "UOM Name"
+  },
+  "formulas": {
+    "title": " Formulas",
+    "formulaKey": "Code",
+    "description": "Description",
+    "formulaType": "Formula Type",
+    "formulaBar": "Formula Bar"
+  },
+  "commitmentitem": {
+    "title": "Commitment Item",
+    "code": "Code",
+    "description": "Description",
+    "type": "Type"
   }
 }

@@ -1,4 +1,5 @@
 import { Injectable } from '@angular/core';
+import { ApiConfigService } from '../../../services/api-config.service';
 import { CompanyComponent } from './company/company.component';
 import { BranchesComponent } from './branches/branches.component';
 import { CostCenterComponent } from './cost-center/cost-center.component';
@@ -109,18 +110,31 @@ import { CreationOfCostUnitsComponent } from './costunits/costunits.component';
 import { BatchMasterComponent } from './batchmaster/batchmaster.component';
 import { OrderTypeComponent } from './ordertype/ordertype.component';
 import { ProcessComponent } from './process/process.component';
-
+import { DownTimeReasonComponent } from './downtimereasons/downtimereasons.component';
+import { StandardRateComponent } from './standardrateoutput/standardrateoutput.component';
+import { FormulasComponent } from './formulas/formulas.component';
+import { CommitmentItemComponent } from './commitmentitem/commitmentitem.component';
 @Injectable({
   providedIn: 'root'
 })
 export class CompListService {
-  dynamicComp = { component: null };
+  dynamicComp = { component: null, tableUrl: null, list: null, editKey: null, searchCol: null };
+ // dynamicComp = { component: null };
 
-  constructor() { }
+  constructor(
+    private apiConfigService: ApiConfigService) { }
 
   getDynComponents(data) {
+    debugger;
     switch (data) {
-     
+
+      //case 'bom':
+      //  this.dynamicComp.component = BillOfMaterialComponent;
+      //  this.dynamicComp.tableUrl = this.apiConfigService.getbommaster;
+      //  this.dynamicComp.list = 'bomMasters';
+      //  this.dynamicComp.editKey = 'bomNumber';
+      //  return this.dynamicComp;
+      //  break;
       case 'assignglaccount':
         this.dynamicComp.component = AssignGLaccounttoSubGroupComponent;
         return this.dynamicComp.component;
@@ -560,6 +574,22 @@ export class CompListService {
         break;
       case 'process':
         this.dynamicComp.component = ProcessComponent;
+        return this.dynamicComp.component;
+        break;
+      case 'downtimereasons':
+        this.dynamicComp.component = DownTimeReasonComponent;
+        return this.dynamicComp.component;
+        break;
+      case 'standardrateoutput':
+        this.dynamicComp.component = StandardRateComponent;
+        return this.dynamicComp.component;
+        break;
+      case 'formulas':
+        this.dynamicComp.component = FormulasComponent;
+        return this.dynamicComp.component;
+        break;
+      case 'commitmentitem':
+        this.dynamicComp.component = CommitmentItemComponent;
         return this.dynamicComp.component;
         break;
       default:

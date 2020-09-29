@@ -108,3 +108,7 @@ export { CreationOfCostUnitsComponent } from './costunits/costunits.component';
 export { BatchMasterComponent } from './batchmaster/batchmaster.component';
 export { OrderTypeComponent } from './ordertype/ordertype.component';
 export { ProcessComponent } from './process/process.component';
+export { DownTimeReasonComponent } from './downtimereasons/downtimereasons.component';
+export { StandardRateComponent } from './standardrateoutput/standardrateoutput.component';
+export { FormulasComponent } from './formulas/formulas.component';
+export { CommitmentItemComponent } from './commitmentitem/commitmentitem.component';

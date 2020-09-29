@@ -96,7 +96,8 @@ export class CashbankComponent implements OnInit {
       addWho: [null],
       editWho: [null],
       addDate: [null],
-      editDate: [null]
+      editDate: [null],
+      totalAmount: [0]
     });
   }
 

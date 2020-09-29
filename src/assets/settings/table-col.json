@@ -974,11 +974,11 @@
     "description": "Description"
   },
   "purchasingperson": {
-    "personName": "PurchasePersonName",
+    "personName": "Purchasig Person Name",
     "title": "Purchasing Person",
     "description": "Description",
-    "purchaseGroupName": "PurchaseGroup Name",
-    "purchaseTypesName": "PurchaseTypes Name"
+    "purchaseGroupName": "Purchase Group Name",
+    "purchaseTypesName": "Purchase Types Name"
   },
   "requisitionnumberrange": {
     "title": "Requisition NumberRange",
@@ -1339,5 +1339,30 @@
     "plantName": "Plant Name",
     "costunitName": "Cost Unit Name",
     "materialName": "Material Name"
+  },
+  "downtimereasons": {
+    "title": " Down Time Reasons",
+    "reasonCode": "Code",
+    "description": "Description",
+    "type": "Type"
+  },
+  "standardrateoutput": {
+    "title": " Standard Rate Output",
+    "code": "Code",
+    "noofShifts": "Shifts",
+    "uomName": "UOM Name"
+  },
+  "formulas": {
+    "title": " Formulas",
+    "formulaKey": "Code",
+    "description": "Description",
+    "formulaType": "Formula Type",
+    "formulaBar": "Formula Bar"
+  },
+  "commitmentitem": {
+    "title": "Commitment Item",
+    "code": "Code",
+    "description": "Description",
+    "type": "Type"
   }
 }
