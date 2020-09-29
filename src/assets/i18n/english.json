@@ -170,10 +170,9 @@
   "costcenter": {
     "title": "Cost Center",
     "objectType": "Object Type",
-    "number": "Number",
-    "shortName": "Short Name",
-    "longName": "Long Name",
-    "functions": "Functions",
+    "code": "Code",
+    "costCenterName": "Name",
+    "functions": "Function",
     "type": "Type",
     "quantity": "Quantity",
     "department": "Department",
@@ -181,9 +180,9 @@
     "responsiblePerson": "Responsible Person",
     "fromDate": "From Date",
     "costType": "Cost Type",
-    "responsibleName": "ResponsibleName",
-    "objectName": "ObjectName",
-    "departmentName": "DepartmentName",
+    "responsibleName": "Responsible Name",
+    "objectName": "Object Name",
+    "departmentName": "Department Name",
     "uomName": "UOM Name"
   },
   "plant": {

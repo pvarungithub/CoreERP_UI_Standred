@@ -9,7 +9,8 @@
       <div class="d--flex">
         <mat-form-field>
           <mat-label>{{'costcenter.objectType' | translate }}</mat-label>
-          <mat-select formControlName="objectType" (selectionChange)="getobjectNumberData()" appFocusOnEnter tabIndex="1">
+          <mat-select formControlName="objectType" (selectionChange)="getobjectNumberData()" appFocusOnEnter
+            tabIndex="1">
             <mat-option>None</mat-option>
             <mat-option *ngFor="let cot of cotList" [value]="cot.id">
               {{cot.text}}
@@ -20,18 +21,17 @@
           </mat-error>
         </mat-form-field>
 
-        <mat-form-field class="form-element" [ngClass]="{ 'ng--valid': formControls.number.valid }">
-          <input matInput placeholder=" {{'costcenter.number' | translate }}" formControlName="number" maxlength="50"
-                 appFocusOnEnter tabIndex="2">
-          <mat-error *ngIf="formControls.number.errors" class="help-block">
-            <div *ngIf="formControls.number.errors.required">Number is required</div>
+        <mat-form-field class="form-element" [ngClass]="{ 'ng--valid': formControls.code.valid }">
+          <input matInput placeholder=" {{'costcenter.code' | translate }}" formControlName="code" maxlength="50"
+            appFocusOnEnter tabIndex="2">
+          <mat-error *ngIf="formControls.code.errors" class="help-block">
+            <div *ngIf="formControls.code.errors.required">code is required</div>
           </mat-error>
         </mat-form-field>
 
         <mat-form-field class="form-element">
-          <input matInput placeholder="{{'costcenter.shortName' | translate }}"
-                 formControlName="shortName" maxlength="50"
-                 appFocusOnEnter tabIndex="3">
+          <input matInput placeholder="{{'costcenter.costCenterName' | translate }}" formControlName="costCenterName"
+            maxlength="50" appFocusOnEnter tabIndex="3">
         </mat-form-field>
 
         <mat-form-field>
@@ -93,23 +93,16 @@
             </mat-option>
           </mat-select>
         </mat-form-field>
+
         <mat-form-field class="form-element">
           <input matInput [matDatepicker]="picker1" placeholder="{{'costcenter.fromDate' | translate }}"
-                 formControlName="fromDate" appFocusOnEnter tabIndex="9">
+            formControlName="fromDate" appFocusOnEnter tabIndex="9">
           <mat-datepicker-toggle matSuffix [for]="picker1"></mat-datepicker-toggle>
           <mat-datepicker #picker1></mat-datepicker>
         </mat-form-field>
 
-        <mat-slide-toggle formControlName="quantity" (change)="approveOrReject($event.checked)">
-          {{(modelFormData.get('quantity').value != null) ? 'Accept' : 'Reject'}}
-        </mat-slide-toggle>
-        <mat-divider></mat-divider>
-
-
-
-
       </div>
-      
+
     </form>
   </mat-card-content>
   <div class="form-element p-2 d-flex justify-content-end">

@@ -32,6 +32,10 @@ export class CostCenterComponent implements OnInit {
   modelFormData: FormGroup;
   formData: any;
   employeesList: any;
+  cotList: any;
+  UomList: any;
+  deptList: any;
+  objectum: any;
 
   Function: Function[] =
     [
@@ -43,6 +47,7 @@ export class CostCenterComponent implements OnInit {
       { value: 'Material Management', viewValue: 'Material Management' },
       { value: 'Research and Development', viewValue: 'Research and Development' }
     ];
+
   Type: Type[] =
     [
       { value: 'Process', viewValue: 'Process' },
@@ -50,6 +55,7 @@ export class CostCenterComponent implements OnInit {
       { value: 'Service', viewValue: 'Service' },
       { value: 'Sales', viewValue: 'Sales' }
     ];
+
   costType: CostType[] =
     [
       { value: 'Manufacturing Cost', viewValue: 'Manufacturing Cost' },
@@ -57,10 +63,7 @@ export class CostCenterComponent implements OnInit {
       { value: 'Non Cost', viewValue: 'Non Cost' },
       { value: 'Capital Expenditure', viewValue: 'Capital Expenditure' }
     ];
-    cotList: any;
-    UomList: any;
-    deptList: any;
-    objectum: any;
+
 
   constructor(private commonService: CommonService,
     private apiService: ApiService,
@@ -74,9 +77,8 @@ export class CostCenterComponent implements OnInit {
 
     this.modelFormData = this.formBuilder.group({
       objectType: [null, [Validators.required, Validators.minLength(2), Validators.maxLength(4)]],
-      number: [null, [Validators.required, Validators.minLength(2), Validators.maxLength(50)]],
-      shortName: [null],
-      longName: [null],
+      code: [null, [Validators.required, Validators.minLength(2), Validators.maxLength(50)]],
+      costCenterName: [null],
       functions: [null],
       type: [null],
       quantity: [null],
@@ -91,15 +93,16 @@ export class CostCenterComponent implements OnInit {
     this.formData = { ...data };
     if (!this.commonService.checkNullOrUndefined(this.formData.item)) {
       this.modelFormData.patchValue(this.formData.item);
-      this.modelFormData.controls['number'].disable();
+      this.modelFormData.controls['code'].disable();
     }
 
   }
 
   ngOnInit() {
-    
+
     this.getcostofobjecttypeData();
   }
+
   getobjectNumberData() {
     const getobjectlist = String.Join('/', this.apiConfigService.getttingobjectNumbers,
       this.modelFormData.get('objectType').value);
@@ -112,13 +115,14 @@ export class CostCenterComponent implements OnInit {
 
               this.objectum = res.response['objectno'];
               this.modelFormData.patchValue({
-                number: this.objectum
+                code: this.objectum
               });
             }
           }
           this.spinner.hide();
         });
   }
+
   getcostofobjecttypeData() {
     const getcostofobjecttypeUrl = String.Join('/', this.apiConfigService.getcostofobjectList);
     this.apiService.apiGetRequest(getcostofobjecttypeUrl)
@@ -134,6 +138,7 @@ export class CostCenterComponent implements OnInit {
           this.getEmployeesList();
         });
   }
+
   getEmployeesList() {
     const getEmployeeList = String.Join('/', this.apiConfigService.getEmployeeList);
     this.apiService.apiGetRequest(getEmployeeList)
@@ -148,6 +153,7 @@ export class CostCenterComponent implements OnInit {
           this.getuomTypeData();
         });
   }
+
   getuomTypeData() {
     const getuomTypeUrl = String.Join('/', this.apiConfigService.getuomList);
     this.apiService.apiGetRequest(getuomTypeUrl)
@@ -163,6 +169,7 @@ export class CostCenterComponent implements OnInit {
           this.getDepartmentData();
         });
   }
+
   getDepartmentData() {
     const getdepteUrl = String.Join('/', this.apiConfigService.getdepartmentList);
     this.apiService.apiGetRequest(getdepteUrl)
@@ -183,12 +190,12 @@ export class CostCenterComponent implements OnInit {
     //debugger;
     if (event) {
       this.modelFormData.patchValue({
-        costType: "Accept",
+        quantity: "Accept",
         reject: null
       });
     } else {
       this.modelFormData.patchValue({
-        costType: null,
+        quantity: null,
         reject: "Reject"
       });
     }
@@ -199,13 +206,13 @@ export class CostCenterComponent implements OnInit {
     if (this.modelFormData.invalid) {
       return;
     }
-    this.modelFormData.controls['number'].enable();
+    this.modelFormData.controls['code'].enable();
     this.formData.item = this.modelFormData.value;
     this.addOrEditService[this.formData.action](this.formData, (res) => {
       this.dialogRef.close(this.formData);
     });
     if (this.formData.action == 'Edit') {
-      this.modelFormData.controls['number'].disable();
+      this.modelFormData.controls['code'].disable();
     }
   }
 

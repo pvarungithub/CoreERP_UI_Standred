@@ -125,16 +125,16 @@
   },
   "costcenter": {
     "title": "Cost Center",
-    "objectName": "ObjectName",
-    "number": "Number",
-    "shortName": "Short Name",
-    "functions": "Functions",
+    "objectName": "Object Name",
+    "code": "Code",
+    "costCenterName": "Name",
+    "functions": "Function",
     "type": "Type",
     "quantity": "Quantity",
-    "departmentName": "DepartmentName",
+    "departmentName": "Department Name",
     "uomName": "UOM Name",
-    "responsibleName": "ResponsibleName",
-    "fromDate": "From Date",
+    "responsibleName": "Responsible Name",
+    "fromDate": "Date",
     "costType": "Cost Type"
   },
   "plant": {
