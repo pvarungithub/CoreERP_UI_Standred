@@ -16,6 +16,8 @@ export class ApiConfigService {
    getComponentInfo = `${this.environment.runtimeConfig.serverUrl}Settings/GetComponentInfo`;
 
    // Common
+   getbatchList = `${this.environment.runtimeConfig.serverUrl}BatchMaster/GetBatchMasterList`;
+   getCostUnitListList = `${this.environment.runtimeConfig.serverUrl}CreationOfCostUnits/GetCreationOfCostUnitsList`;
    getcostnumberseriesList = `${this.environment.runtimeConfig.serverUrl}Common/GetCostingNumberSeriesList`;
    getcostofobjectList = `${this.environment.runtimeConfig.serverUrl}Common/GetCostingObjectTypeList`;
    getsecondelementList = `${this.environment.runtimeConfig.serverUrl}Common/GetCostingSecondaryList`;
@@ -145,14 +147,6 @@ export class ApiConfigService {
    getrolelist = `${this.environment.runtimeConfig.serverUrl}masters/UserCreation/GetRoleList`;
 
 
-   /*******************************BOM ****************************************************** */
-   addBOM = `${this.environment.runtimeConfig.serverUrl}BillOfMaterial/AddBOM`;
-   getBOMDetail = `${this.environment.runtimeConfig.serverUrl}BillOfMaterial/GetBomDetail`;
-   getbommaster = 'http://localhost:51414/api/BillOfMaterial/GetBOMMasters';
-   //getBOMMaster = `${this.environment.runtimeConfig.serverUrl}api/BillOfMaterial/GetBOMMasters`;
-   getBOMNumber = `${this.environment.runtimeConfig.serverUrl}BillOfMaterial/GetVoucherNumber`;
-   returnBOM = `${this.environment.runtimeConfig.serverUrl}BillOfMaterial/ReturnCashBank`;
-   // getDiscount = `${this.environment.runtimeConfig.serverUrl}Transactions/GetDiscount`;
 
 
    /******************************* Cash Bank ****************************************************** */
@@ -186,5 +180,12 @@ export class ApiConfigService {
    getPaymentsReceiptsDetail = `${this.environment.runtimeConfig.serverUrl}Transactions/GetPaymentsReceiptsDetail`;
    addPaymentsReceipts = `${this.environment.runtimeConfig.serverUrl}Transactions/AddPaymentsReceipts`;
    getPaymentsreceiptsMaster = `${this.environment.runtimeConfig.serverUrl}Transactions/GetPaymentsReceiptsMaster`;
+
+   /*******************************BOM ****************************************************** */
+   addBOM = `${this.environment.runtimeConfig.serverUrl}BillOfMaterial/AddBOM`;
+   getBOMDetail = `${this.environment.runtimeConfig.serverUrl}BillOfMaterial/GetBomDetail`;
+   getBOMMaster = `${this.environment.runtimeConfig.serverUrl}BillOfMaterial/GetBOMMasters`;
+   getBOMNumber = `${this.environment.runtimeConfig.serverUrl}BillOfMaterial/GetVoucherNumber`;
+   returnBOM = `${this.environment.runtimeConfig.serverUrl}BillOfMaterial/ReturnCashBank`;
 
 }

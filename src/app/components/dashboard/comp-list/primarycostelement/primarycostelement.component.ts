@@ -67,7 +67,7 @@ export class PrimaryCostElementsCreationComponent implements OnInit {
     @Optional() @Inject(MAT_DIALOG_DATA) public data: any) {
 
     this.modelFormData = this.formBuilder.group({
-      primaryCostCode: [null, [Validators.required, Validators.minLength(1), Validators.maxLength(4)]],
+      //primaryCostCode: [null, [Validators.required, Validators.minLength(1), Validators.maxLength(4)]],
       company: [null, [Validators.required, Validators.minLength(1), Validators.maxLength(30)]],
       chartofAccount: [null],
       generalLedger: [null],
@@ -75,14 +75,15 @@ export class PrimaryCostElementsCreationComponent implements OnInit {
       usage: [null],
       element: [null],
       qty: [null],
-      uom: [null]
+      uom: [null],
+      id: ['0']
     });
 
 
     this.formData = { ...data };
     if (!this.commonService.checkNullOrUndefined(this.formData.item)) {
       this.modelFormData.patchValue(this.formData.item);
-      this.modelFormData.controls['primaryCostCode'].disable();
+      //this.modelFormData.controls['primaryCostCode'].disable();
     }
 
   }
@@ -175,13 +176,13 @@ export class PrimaryCostElementsCreationComponent implements OnInit {
     if (this.modelFormData.invalid) {
       return;
     }
-    this.modelFormData.controls['primaryCostCode'].enable();
+    //this.modelFormData.controls['primaryCostCode'].enable();
     this.formData.item = this.modelFormData.value;
     this.addOrEditService[this.formData.action](this.formData, (res) => {
       this.dialogRef.close(this.formData);
     });
     if (this.formData.action == 'Edit') {
-      this.modelFormData.controls['primaryCostCode'].disable();
+      //this.modelFormData.controls['primaryCostCode'].disable();
     }
   }
 

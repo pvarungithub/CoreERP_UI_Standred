@@ -9,59 +9,23 @@ import { ApiConfigService } from '../../../../services/api-config.service';
 import { StatusCodes } from '../../../../enums/common/common';
 import { AddOrEditService } from '../add-or-edit.service';
 
-interface Function {
-  value: string;
-  viewValue: string;
-}
-interface Type {
-  value: string;
-  viewValue: string;
-}
-interface CostType {
-  value: string;
-  viewValue: string;
-}
+
 
 @Component({
-  selector: 'app-cost-center',
-  templateUrl: './cost-center.component.html',
-  styleUrls: ['./cost-center.component.scss']
+  selector: 'app-wbdse',
+  templateUrl: './wbdse.component.html',
+  styleUrls: ['./wbdse.component.scss']
 })
 
-export class CostCenterComponent implements OnInit {
+export class WorkBreakDownStructureComponent implements OnInit {
   modelFormData: FormGroup;
   formData: any;
   employeesList: any;
-
-  Function: Function[] =
-    [
-      { value: 'Manufacturing Operations', viewValue: 'Manufacturing Operations' },
-      { value: 'Administration', viewValue: 'Administration' },
-      { value: 'Personal', viewValue: 'Personal' },
-      { value: 'Sales', viewValue: 'Sales' },
-      { value: 'Distribution', viewValue: 'Distribution' },
-      { value: 'Material Management', viewValue: 'Material Management' },
-      { value: 'Research and Development', viewValue: 'Research and Development' }
-    ];
-  Type: Type[] =
-    [
-      { value: 'Process', viewValue: 'Process' },
-      { value: 'Operation ', viewValue: 'Operation ' },
-      { value: 'Service', viewValue: 'Service' }
-    ];
-  costType: CostType[] =
-    [
-      { value: 'Manufacturing Cost', viewValue: 'Manufacturing Cost' },
-      { value: 'Non-Manufacturing ', viewValue: 'Non-Manufacturing ' },
-      { value: 'Non Cost', viewValue: 'Non Cost' },
-      { value: 'Capital Expenditure', viewValue: 'Capital Expenditure' }
-    ];
   cotList: any;
   UomList: any;
   deptList: any;
   objectum: any;
-  fdeptList: any;
-  StatesList: any;
+  costunitList: any;
 
   constructor(private commonService: CommonService,
     private apiService: ApiService,
@@ -69,71 +33,49 @@ export class CostCenterComponent implements OnInit {
     private apiConfigService: ApiConfigService,
     private spinner: NgxSpinnerService,
     private formBuilder: FormBuilder,
-    public dialogRef: MatDialogRef<CostCenterComponent>,
+    public dialogRef: MatDialogRef<WorkBreakDownStructureComponent>,
     // @Optional() is used to prevent error if no data is passed
     @Optional() @Inject(MAT_DIALOG_DATA) public data: any) {
 
     this.modelFormData = this.formBuilder.group({
-      objectType: [null, [Validators.required, Validators.minLength(2), Validators.maxLength(4)]],
-      code: [null, [Validators.required, Validators.minLength(2), Validators.maxLength(50)]],
-      costCenterName: [null],
-      functions: [null],
-      type: [null],
-      quantity: [null],
-      department: [null],
-      uom: [null],
-      fromDate: [null],
+      costUnit: [null],
+      wbscode: [null, [Validators.required, Validators.minLength(2), Validators.maxLength(50)]],
+      description: [null],
       responsiblePerson: [null],
-      costType: [null],
-      address: [null],
-      city: [null],
-      state: [null],
-      location: [null],
-      email: [null],
-      phone: [null],
+      deliverables: [null],
+      risk: [null],
+      mileStones: [null],
+      additionalInformation: [null],
+      approvals: [null],
+      duration: [null],
+      startDate: [null],
+      endDate: [null],
+      underWbs: [null],
+
     });
 
     this.formData = { ...data };
     if (!this.commonService.checkNullOrUndefined(this.formData.item)) {
       this.modelFormData.patchValue(this.formData.item);
-      this.modelFormData.controls['code'].disable();
+      this.modelFormData.controls['wbscode'].disable();
     }
 
   }
 
   ngOnInit() {
 
-    this.getcostofobjecttypeData();
+    this.getcostunitData();
   }
-  getobjectNumberData() {
-    const getobjectlist = String.Join('/', this.apiConfigService.getttingobjectNumbers,
-      this.modelFormData.get('objectType').value);
-    this.apiService.apiGetRequest(getobjectlist)
-      .subscribe(
-        response => {
-          const res = response.body;
-          if (!this.commonService.checkNullOrUndefined(res) && res.status === StatusCodes.pass) {
-            if (!this.commonService.checkNullOrUndefined(res.response)) {
 
-              this.objectum = res.response['objectno'];
-              this.modelFormData.patchValue({
-                code: this.objectum
-              });
-            }
-          }
-          this.spinner.hide();
-        });
-  }
-  getcostofobjecttypeData() {
-    const getcostofobjecttypeUrl = String.Join('/', this.apiConfigService.getcostofobjectList);
-    this.apiService.apiGetRequest(getcostofobjecttypeUrl)
+  getcostunitData() {
+    const getcostunittypeUrl = String.Join('/', this.apiConfigService.getCostUnitListList);
+    this.apiService.apiGetRequest(getcostunittypeUrl)
       .subscribe(
         response => {
           const res = response.body;
           if (!this.commonService.checkNullOrUndefined(res) && res.status === StatusCodes.pass) {
             if (!this.commonService.checkNullOrUndefined(res.response)) {
-              //this.cotList = res.response['cotList'];
-              this.cotList = res.response['cotList'].filter(resp => resp.usage == 'Cost center');
+              this.costunitList = res.response['costunitList'];
             }
           }
           this.getEmployeesList();
@@ -169,29 +111,15 @@ export class CostCenterComponent implements OnInit {
         });
   }
   getDepartmentData() {
-    const getdepteUrl = String.Join('/', this.apiConfigService.getfunctionaldeptList);
+    const getdepteUrl = String.Join('/', this.apiConfigService.getdepartmentList);
     this.apiService.apiGetRequest(getdepteUrl)
       .subscribe(
         response => {
           const res = response.body;
+          console.log(res);
           if (!this.commonService.checkNullOrUndefined(res) && res.status === StatusCodes.pass) {
             if (!this.commonService.checkNullOrUndefined(res.response)) {
-              this.fdeptList = res.response['fdeptList'];
-            }
-          }
-          this.getStatetData();
-        });
-  }
-
-  getStatetData() {
-    const getdepteUrl = String.Join('/', this.apiConfigService.getstatesList);
-    this.apiService.apiGetRequest(getdepteUrl)
-      .subscribe(
-        response => {
-          const res = response.body;
-          if (!this.commonService.checkNullOrUndefined(res) && res.status === StatusCodes.pass) {
-            if (!this.commonService.checkNullOrUndefined(res.response)) {
-              this.StatesList = res.response['StatesList'];
+              this.deptList = res.response['deptList'];
             }
           }
           this.spinner.hide();
@@ -218,13 +146,13 @@ export class CostCenterComponent implements OnInit {
     if (this.modelFormData.invalid) {
       return;
     }
-    this.modelFormData.controls['code'].enable();
+    this.modelFormData.controls['wbscode'].enable();
     this.formData.item = this.modelFormData.value;
     this.addOrEditService[this.formData.action](this.formData, (res) => {
       this.dialogRef.close(this.formData);
     });
     if (this.formData.action == 'Edit') {
-      this.modelFormData.controls['code'].disable();
+      this.modelFormData.controls['wbscode'].disable();
     }
   }
 

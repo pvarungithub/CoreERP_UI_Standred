@@ -10,14 +10,6 @@
       <div class="d--flex">
 
 
-        <mat-form-field class="form-element" [ngClass]="{ 'ng--valid': formControls.primaryCostCode.valid }">
-          <input matInput placeholder="{{'primarycostelement.primaryCostCode' | translate }}"
-            formControlName="primaryCostCode" maxlength="5" appFocusOnEnter tabIndex="1">
-          <mat-error *ngIf="formControls.primaryCostCode.errors" class="help-block">
-            <div *ngIf="formControls.primaryCostCode.errors.required">Code is required </div>
-          </mat-error>
-        </mat-form-field>
-
         <mat-form-field>
           <mat-label>{{'primarycostelement.company' | translate }}</mat-label>
           <mat-select formControlName="company" appFocusOnEnter tabIndex="2">
@@ -87,7 +79,7 @@
         </mat-form-field>
 
         <mat-slide-toggle formControlName="qty" (change)="approveOrReject($event.checked)">
-          {{(modelFormData.get('qty').value != null) ? 'Accept' : 'Reject'}}
+          {{(modelFormData.get('qty').value != null) ? 'Quantity' : 'Reject'}}
         </mat-slide-toggle>
       </div>
       <mat-divider></mat-divider>

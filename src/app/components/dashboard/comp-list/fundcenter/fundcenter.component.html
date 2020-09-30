@@ -1,0 +1,89 @@
+<div class="position-relative popup-class">
+  <mat-card-title class="boader--color d-flex justify-content-between position-absolute w-100">
+    <span> {{'fundcenter.title' | translate }} </span>
+    <mat-icon class="p-2  cursor--pointer" (click)="cancel()">close</mat-icon>
+  </mat-card-title>
+  <mat-card-content class="pt-5 p-2 m-0 overflow-auto">
+    <form [formGroup]="modelFormData" autocomplete="off">
+
+      <div class="d--flex">
+
+        <mat-form-field class="form-element" [ngClass]="{ 'ng--valid': formControls.code.valid }">
+          <input matInput placeholder=" {{'fundcenter.code' | translate }}" formControlName="code" maxlength="5"
+            appFocusOnEnter tabIndex="2">
+          <mat-error *ngIf="formControls.code.errors" class="help-block">
+            <div *ngIf="formControls.code.errors.required">code is required</div>
+          </mat-error>
+        </mat-form-field>
+        <mat-form-field class="form-element" [ngClass]="{ 'ng--valid': formControls.description.valid }">
+          <input matInput placeholder=" {{'fundcenter.description' | translate }}" formControlName="description"
+            maxlength="50" appFocusOnEnter tabIndex="2">
+          <mat-error *ngIf="formControls.description.errors" class="help-block">
+            <div *ngIf="formControls.description.errors.required">Name is required</div>
+          </mat-error>
+        </mat-form-field>
+
+        <mat-form-field>
+          <mat-label>{{'fundcenter.person' | translate }}</mat-label>
+          <mat-select formControlName="person" appFocusOnEnter tabIndex="3">
+            <mat-option>None</mat-option>
+            <mat-option *ngFor="let emp of employeesList" [value]="emp.id">
+              {{emp.id}} - {{emp.text}}
+            </mat-option>
+          </mat-select>
+        </mat-form-field>
+
+        <mat-form-field>
+          <mat-label>{{'fundcenter.department' | translate }}</mat-label>
+          <mat-select formControlName="department" appFocusOnEnter tabIndex="4">
+            <mat-option>None</mat-option>
+            <mat-option *ngFor="let dept of deptList" [value]="dept.id">
+              {{dept.text}}
+            </mat-option>
+          </mat-select>
+        </mat-form-field>
+
+        <mat-form-field>
+          <mat-label>{{'fundcenter.costCenter' | translate }}</mat-label>
+          <mat-select formControlName="costCenter" appFocusOnEnter tabIndex="5">
+            <mat-option>None</mat-option>
+            <mat-option *ngFor="let cost of costcenterList" [value]="cost.code">
+              {{cost.costCenterName}}
+            </mat-option>
+          </mat-select>
+        </mat-form-field>
+        <mat-form-field>
+          <mat-label>{{'fundcenter.profitCenter' | translate }}</mat-label>
+          <mat-select formControlName="profitCenter" appFocusOnEnter tabIndex="6">
+            <mat-option>None</mat-option>
+            <mat-option *ngFor="let pft of profitCenterList" [value]="pft.code">
+              {{pft.description}}
+            </mat-option>
+          </mat-select>
+        </mat-form-field>
+        <mat-form-field>
+          <mat-label>{{'fundcenter.segment' | translate }}</mat-label>
+          <mat-select formControlName="segment" appFocusOnEnter tabIndex="7">
+            <mat-option>None</mat-option>
+            <mat-option *ngFor="let seg of segmentList" [value]="seg.id">
+              {{seg.name}}
+            </mat-option>
+          </mat-select>
+        </mat-form-field>
+
+
+        <mat-divider></mat-divider>
+      </div>
+
+    </form>
+  </mat-card-content>
+  <div class="form-element p-2 d-flex justify-content-end">
+    <button mat-raised-button class="button-color-red text-white mr-1" (click)="cancel()" appFocusOnEnter tabIndex="13">
+      {{ 'COMMON.CANCEL' | translate }}
+    </button>
+    <button mat-raised-button type="submit" class="button-color-bule text-white ml-1" (click)="save()" appFocusOnEnter
+      tabIndex="14">
+      {{ 'COMMON.SAVE' | translate }}
+    </button>
+  </div>
+</div>

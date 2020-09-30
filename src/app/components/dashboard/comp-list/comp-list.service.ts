@@ -92,7 +92,6 @@ import { MaterialRequisitionNoteAssignmentComponent } from './mrnassignment/mrna
 import { MaterialGroupsComponent } from './materialgroups/materialgroups.component';
 import { MaterialTypesComponent } from './materialtypes/materialtypes.component';
 import { ModelPatternComponent } from './modelpattern/modelpattern.component';
-
 import { MaterialNumberRangeComponent } from './materialnumberrange/materialnumberrange.component';
 import { MaterialNumberAsssignmentComponent } from './materialassignment/materialassignment.component';
 import { BinsCreationComponent } from './binscreation/binscreation.component';
@@ -114,6 +113,9 @@ import { DownTimeReasonComponent } from './downtimereasons/downtimereasons.compo
 import { StandardRateComponent } from './standardrateoutput/standardrateoutput.component';
 import { FormulasComponent } from './formulas/formulas.component';
 import { CommitmentItemComponent } from './commitmentitem/commitmentitem.component';
+import { FundCenterComponent } from './fundcenter/fundcenter.component';
+import { WorkBreakDownStructureComponent } from './wbdse/wbdse.component';
+
 @Injectable({
   providedIn: 'root'
 })
@@ -127,13 +129,6 @@ export class CompListService {
   getDynComponents(data) {
     switch (data) {
 
-      //case 'bom':
-      //  this.dynamicComp.component = BillOfMaterialComponent;
-      //  this.dynamicComp.tableUrl = this.apiConfigService.getbommaster;
-      //  this.dynamicComp.list = 'bomMasters';
-      //  this.dynamicComp.editKey = 'bomNumber';
-      //  return this.dynamicComp;
-      //  break;
       case 'assignglaccount':
         this.dynamicComp.component = AssignGLaccounttoSubGroupComponent;
         return this.dynamicComp.component;
@@ -589,6 +584,14 @@ export class CompListService {
         break;
       case 'commitmentitem':
         this.dynamicComp.component = CommitmentItemComponent;
+        return this.dynamicComp.component;
+        break;
+      case 'fundcenter':
+        this.dynamicComp.component = FundCenterComponent;
+        return this.dynamicComp.component;
+        break;
+      case 'wbdse':
+        this.dynamicComp.component = WorkBreakDownStructureComponent;
         return this.dynamicComp.component;
         break;
       default:
