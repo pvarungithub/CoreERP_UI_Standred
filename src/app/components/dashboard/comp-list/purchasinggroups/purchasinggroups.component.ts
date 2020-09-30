@@ -31,9 +31,9 @@ export class PurchasinggroupsComponent implements OnInit {
     @Optional() @Inject(MAT_DIALOG_DATA) public data: any) {
 
     this.modelFormData = this.formBuilder.group({
-      pruchaseGroup: ['',[Validators.required, Validators.minLength(2), Validators.maxLength(10)]],
-      description:  ['',[Validators.required, Validators.minLength(2), Validators.maxLength(50)]],
-     
+      pruchaseGroup: ['', [Validators.required, Validators.minLength(2), Validators.maxLength(10)]],
+      description: ['', [Validators.required, Validators.minLength(2), Validators.maxLength(50)]],
+
     });
 
 
@@ -47,11 +47,10 @@ export class PurchasinggroupsComponent implements OnInit {
 
   ngOnInit() {
   }
-  
+
   get formControls() { return this.modelFormData.controls; }
 
   save() {
-    debugger;
     if (this.modelFormData.invalid) {
       return;
     }

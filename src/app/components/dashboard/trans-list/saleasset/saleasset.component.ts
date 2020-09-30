@@ -454,7 +454,6 @@ export class SaleassetComponent implements OnInit {
   }
 
   assigndata(row) {
-    debugger;
     if (row.column == 'acquisitionValue') {
       const code = row.data[row.index]['acquisitionValue'].list.find(res => res.code == row.data[row.index]['acquisitionValue'].value);
       if (!this.commonService.checkNullOrUndefined(code)) {

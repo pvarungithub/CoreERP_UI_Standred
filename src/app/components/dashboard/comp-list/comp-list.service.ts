@@ -38,11 +38,11 @@ import { TDSComponent } from './tdstype/tdstype.component';
 import { IncomeTypeComponent } from './incometypes/incometypes.component';
 import { TdsRatesComponent } from './tdsrates/tdsrates.component';
 import { PostingComponent } from './posting/posting.component';
-import {AccountsGroupComponent} from './accountsgroup/accountsgroup.component';
-import {UndersubGroupComponent} from './undersubgroup/undersubgroup.component';
+import { AccountsGroupComponent } from './accountsgroup/accountsgroup.component';
+import { UndersubGroupComponent } from './undersubgroup/undersubgroup.component';
 import { AccountchartComponent } from './chartofaccount/chartofaccount.component';
 import { PartnerTypesComponent } from './partnertype/partnertype.component';
-import{AssignmentChartAccounttoCompanyComponent} from './AssignmentChartAccounttoCompany/AssignmentChartAccounttoCompany.component';
+import { AssignmentChartAccounttoCompanyComponent } from './AssignmentChartAccounttoCompany/AssignmentChartAccounttoCompany.component';
 import { BusienessPartnerGroupsComponent } from './partnergroup/partnergroup.component';
 import { NumberRangeComponent } from './numberrange/numberrange.component';
 import { AssignmentComponent } from './assignment/assignment.component';
@@ -52,26 +52,26 @@ import { AssetClassComponent } from './AssetClass/AssetClass.component';
 import { AssetBlockComponent } from './assetblock/assetblock.component';
 import { PaymentTermsComponent } from './paymentterms/paymentterms.component';
 import { AssetNumberRangeComponent } from './assetnumberrange/assetnumberrange.component';
-import{AseetClassToAssetBlockComponent} from './AssignmentAssetClasstoAssetBlock/AssignmentAssetClasstoAssetBlock.component';
-import{AssetTransactionTypeComponent} from './assettransactiontypes/assettransactiontypes.component';
-import{AccountKeyComponent} from './accountkey/accountkey.component';
-import{BankMasterComponent} from './bankmaster/bankmaster.component';
-import{AssignmentAccountKeytoAssetClassComponent} from './AssignmentsAccountKeytoAssetClass/AssignmentsAccountKeytoAssetClass.component';
-import{DepreciationcodeComponent} from './depreciationcode/depreciationcode.component';
-import{BusienessPartnerAccountComponent} from './businesspartner/businesspartner.component';
-import{GLAccountComponent} from './glaccount/glaccount.component';
-import{MainAssetMasterComponent} from './mainassetmasters/mainassetmasters.component';
-import{SubAssetsComponent} from './subassets/subassets.component';
-import{AssignGLaccounttoSubGroupComponent} from './assignglaccount/assignglaccount.component';
-import{GLSubAccountComponent} from './glsubaccount/glsubaccount.component';
-import{AssetBegningAcqusitionComponent} from './assetbegningacqusition/assetbegningacqusition.component';
-import{BusienessTransactionTypeComponent} from './businesstransactiontypes/businesstransactiontypes.component';
+import { AseetClassToAssetBlockComponent } from './AssignmentAssetClasstoAssetBlock/AssignmentAssetClasstoAssetBlock.component';
+import { AssetTransactionTypeComponent } from './assettransactiontypes/assettransactiontypes.component';
+import { AccountKeyComponent } from './accountkey/accountkey.component';
+import { BankMasterComponent } from './bankmaster/bankmaster.component';
+import { AssignmentAccountKeytoAssetClassComponent } from './AssignmentsAccountKeytoAssetClass/AssignmentsAccountKeytoAssetClass.component';
+import { DepreciationcodeComponent } from './depreciationcode/depreciationcode.component';
+import { BusienessPartnerAccountComponent } from './businesspartner/businesspartner.component';
+import { GLAccountComponent } from './glaccount/glaccount.component';
+import { MainAssetMasterComponent } from './mainassetmasters/mainassetmasters.component';
+import { SubAssetsComponent } from './subassets/subassets.component';
+import { AssignGLaccounttoSubGroupComponent } from './assignglaccount/assignglaccount.component';
+import { GLSubAccountComponent } from './glsubaccount/glsubaccount.component';
+import { AssetBegningAcqusitionComponent } from './assetbegningacqusition/assetbegningacqusition.component';
+import { BusienessTransactionTypeComponent } from './businesstransactiontypes/businesstransactiontypes.component';
 import { AssetBegningAccumulatedDepreciationComponent } from './assetbegningaccumulateddepreciation/assetbegningaccumulateddepreciation.component';
 import { PurchasinggroupsComponent } from './purchasinggroups/purchasinggroups.component';
 import { PurchasingpersonComponent } from './purchasingperson/purchasingperson.component';
 import { RequisitionNumberRangeComponent } from './requisitionnumberrange/requisitionnumberrange.component';
 import { RequisitionAssignmentComponent } from './requisitionassignment/requisitionassignment.component';
-import {PurchasingtypeComponent} from './purchasingtype/purchasingtype.component';
+import { PurchasingtypeComponent } from './purchasingtype/purchasingtype.component';
 import { QuotationNumberRangeComponent } from './quotationnumberrange/quotationnumberrange.component';
 import { QuotationAssignmentComponent } from './quotationnumberassignment/quotationnumberassignment.component';
 import { PurchaseordertypeComponent } from './purchaseordertype/purchaseordertype.component';
@@ -119,13 +119,12 @@ import { CommitmentItemComponent } from './commitmentitem/commitmentitem.compone
 })
 export class CompListService {
   dynamicComp = { component: null, tableUrl: null, list: null, editKey: null, searchCol: null };
- // dynamicComp = { component: null };
+  // dynamicComp = { component: null };
 
   constructor(
     private apiConfigService: ApiConfigService) { }
 
   getDynComponents(data) {
-    debugger;
     switch (data) {
 
       //case 'bom':
@@ -139,27 +138,27 @@ export class CompListService {
         this.dynamicComp.component = AssignGLaccounttoSubGroupComponent;
         return this.dynamicComp.component;
         break;
-        case 'glsubaccount':
-          this.dynamicComp.component = GLSubAccountComponent;
-          return this.dynamicComp.component;
-          break;
-          case 'assetbegningacqusition':
-          this.dynamicComp.component = AssetBegningAcqusitionComponent;
-          return this.dynamicComp.component;
-          break;
-          case 'businesstransactiontypes':
-            this.dynamicComp.component = BusienessTransactionTypeComponent;
-            return this.dynamicComp.component;
-            break;
-          case 'assetbegningaccumulateddepreciation':
-            this.dynamicComp.component = AssetBegningAccumulatedDepreciationComponent;
-            return this.dynamicComp.component;
-            break;
+      case 'glsubaccount':
+        this.dynamicComp.component = GLSubAccountComponent;
+        return this.dynamicComp.component;
+        break;
+      case 'assetbegningacqusition':
+        this.dynamicComp.component = AssetBegningAcqusitionComponent;
+        return this.dynamicComp.component;
+        break;
+      case 'businesstransactiontypes':
+        this.dynamicComp.component = BusienessTransactionTypeComponent;
+        return this.dynamicComp.component;
+        break;
+      case 'assetbegningaccumulateddepreciation':
+        this.dynamicComp.component = AssetBegningAccumulatedDepreciationComponent;
+        return this.dynamicComp.component;
+        break;
       case 'company':
         this.dynamicComp.component = CompanyComponent;
         return this.dynamicComp.component;
         break;
-      
+
       case 'branches':
         this.dynamicComp.component = BranchesComponent;
         return this.dynamicComp.component;
@@ -281,128 +280,128 @@ export class CompListService {
         this.dynamicComp.component = TaxTransactionComponent;
         return this.dynamicComp.component;
         break;
-       case 'taxtypes':
+      case 'taxtypes':
         this.dynamicComp.component = TaxIntegrationComponent;
         return this.dynamicComp.component;
         break;
       case 'assignmentoftaxaccountstotaxcodes':
         this.dynamicComp.component = AssignmentoftaxaccountstotaxcodesComponent;
         return this.dynamicComp.component;
-        break; 
-        case 'hsnsac':
+        break;
+      case 'hsnsac':
         this.dynamicComp.component = HsnSacComponent;
         return this.dynamicComp.component;
         break;
       case 'tdstypes':
         this.dynamicComp.component = TDSComponent;
         return this.dynamicComp.component;
-        break; 
-        case 'incometypes':
+        break;
+      case 'incometypes':
         this.dynamicComp.component = IncomeTypeComponent;
         return this.dynamicComp.component;
-        break; 
+        break;
       case 'tdsrates':
         this.dynamicComp.component = TdsRatesComponent;
         return this.dynamicComp.component;
-        break; 
+        break;
       case 'posting':
         this.dynamicComp.component = PostingComponent;
         return this.dynamicComp.component;
-        break; 
+        break;
       case 'accountgroup':
         this.dynamicComp.component = AccountsGroupComponent;
         return this.dynamicComp.component;
-        break; 
+        break;
       case 'glsubgroups':
         this.dynamicComp.component = UndersubGroupComponent;
         return this.dynamicComp.component;
-      break; 
+        break;
       case 'accountchart':
         this.dynamicComp.component = AccountchartComponent;
         return this.dynamicComp.component;
-      break; 
+        break;
       case 'AssignmentChartAccounttoCompany':
         this.dynamicComp.component = AssignmentChartAccounttoCompanyComponent;
         return this.dynamicComp.component;
-      break; 
+        break;
       case 'partnertype':
         this.dynamicComp.component = PartnerTypesComponent;
         return this.dynamicComp.component;
-      break; 
+        break;
       case 'partnergroup':
         this.dynamicComp.component = BusienessPartnerGroupsComponent;
         return this.dynamicComp.component;
-      break; 
+        break;
       case 'numberrange':
         this.dynamicComp.component = NumberRangeComponent;
         return this.dynamicComp.component;
-      break; 
+        break;
       case 'assignment':
         this.dynamicComp.component = AssignmentComponent;
         return this.dynamicComp.component;
-      break;  
+        break;
       case 'AlternateControlAccount':
         this.dynamicComp.component = AlternateControlAccountComponent;
         return this.dynamicComp.component;
-      break; 
+        break;
       case 'Depreciationareas':
         this.dynamicComp.component = DepreciationareasComponent;
         return this.dynamicComp.component;
-      break;  
+        break;
       case 'AssetClass':
         this.dynamicComp.component = AssetClassComponent;
         return this.dynamicComp.component;
-      break;  
+        break;
       case 'assetblock':
         this.dynamicComp.component = AssetBlockComponent;
         return this.dynamicComp.component;
-      break;  
-      
+        break;
+
       case 'paymentterms':
         this.dynamicComp.component = PaymentTermsComponent;
         return this.dynamicComp.component;
-      break; 
+        break;
 
       case 'assetnumberrange':
         this.dynamicComp.component = AssetNumberRangeComponent;
         return this.dynamicComp.component;
-      break;
+        break;
       case 'AssignmentAssetClasstoAssetBlock':
         this.dynamicComp.component = AseetClassToAssetBlockComponent;
         return this.dynamicComp.component;
-      break;
+        break;
       case 'assettransactiontypes':
         this.dynamicComp.component = AssetTransactionTypeComponent;
         return this.dynamicComp.component;
-      break;
+        break;
       case 'accountkey':
         this.dynamicComp.component = AccountKeyComponent;
         return this.dynamicComp.component;
-      break;
+        break;
       case 'AssignmentsAccountKeytoAssetClass':
         this.dynamicComp.component = AssignmentAccountKeytoAssetClassComponent;
         return this.dynamicComp.component;
-      break;
+        break;
       case 'bankmaster':
         this.dynamicComp.component = BankMasterComponent;
         return this.dynamicComp.component;
-      break;
-        case 'depreciationcode':
+        break;
+      case 'depreciationcode':
         this.dynamicComp.component = DepreciationcodeComponent;
         return this.dynamicComp.component;
-      break;
+        break;
       case 'glaccount':
         this.dynamicComp.component = GLAccountComponent;
         return this.dynamicComp.component;
-      break;
+        break;
       case 'businesspartner':
         this.dynamicComp.component = BusienessPartnerAccountComponent;
         return this.dynamicComp.component;
-      break;
+        break;
       case 'mainassetmaster':
         this.dynamicComp.component = MainAssetMasterComponent;
         return this.dynamicComp.component;
-      break;
+        break;
       case 'subassets':
         this.dynamicComp.component = SubAssetsComponent;
         return this.dynamicComp.component;
@@ -435,7 +434,7 @@ export class CompListService {
         this.dynamicComp.component = PurchaseordertypeComponent;
         return this.dynamicComp.component;
         break;
-        
+
       case 'suppliertermsandconditions':
         this.dynamicComp.component = SupplierTermsandconditionsComponent;
         return this.dynamicComp.component;
@@ -476,7 +475,7 @@ export class CompListService {
         this.dynamicComp.component = GoodsReceiptNoteAssignmentComponent;
         return this.dynamicComp.component;
         break;
-        case 'purchasingtype':
+      case 'purchasingtype':
         this.dynamicComp.component = PurchasingtypeComponent;
         return this.dynamicComp.component;
         break;

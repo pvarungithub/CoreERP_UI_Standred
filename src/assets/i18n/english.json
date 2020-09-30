@@ -1539,7 +1539,7 @@
   },
   "ordertype": {
     "title": " Order Type",
-    "orderType": "Order Type",
+    "orderType": "Code",
     "description": "Description",
     "printText": "Print Text",
     "natureofOrder": "Nature of Order",
@@ -1572,9 +1572,9 @@
     "type": "Type"
   },
   "standardrateoutput": {
-    "title": " Standard Rate Output",
-    "code": "Code",
-    "noofShifts": "Shifts",
+    "title": " Standard Rate OutPut",
+    "code": "Standard Rate of OutPut",
+    "noofShifts": "No of Shifts",
     "uom": "UOM",
     "uomName": "UOM Name"
   },

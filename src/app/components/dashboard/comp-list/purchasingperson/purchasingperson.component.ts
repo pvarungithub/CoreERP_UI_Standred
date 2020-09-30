@@ -43,7 +43,6 @@ export class PurchasingpersonComponent implements OnInit {
 
     this.formData = { ...data };
     if (!this.commonService.checkNullOrUndefined(this.formData.item)) {
-      debugger;
       this.modelFormData.patchValue(this.formData.item);
       this.modelFormData.controls['purchasePerson'].disable();
     }

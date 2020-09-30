@@ -50,7 +50,7 @@ export class ProcessComponent implements OnInit {
     @Optional() @Inject(MAT_DIALOG_DATA) public data: any) {
 
     this.modelFormData = this.formBuilder.group({
-      processKey: [null, [Validators.required, Validators.minLength(1), Validators.maxLength(4)]],
+      processKey: [null, [Validators.required, Validators.minLength(1), Validators.maxLength(5)]],
       company: [null],
       plant: [null],
       costUnit: [null],
@@ -72,9 +72,9 @@ export class ProcessComponent implements OnInit {
         wipcalculation: (+this.formData.item.wipcalculation == 0) ? false : true,
         reWork: (+this.formData.item.reWork == 0) ? false : true
       })
-      this.modelFormData.controls['material'].disable();
+      this.modelFormData.controls['processKey'].disable();
     }
-    this.modelFormData.controls['processKey'].disable();
+    this.modelFormData.controls['material'].disable();
 
   }
 

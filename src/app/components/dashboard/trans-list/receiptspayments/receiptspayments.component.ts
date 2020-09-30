@@ -493,7 +493,7 @@ export class ReceiptspaymentsComponent implements OnInit {
       this.checkAjectAmount(true)
     }
     if (data.column == 'checkAll') {
-      if(data.data[data.index].checkAll.value) {
+      if (data.data[data.index].checkAll.value) {
         this.getDiscount(data);
       } else {
         data.data[data.index].discount.value = 0;
@@ -610,7 +610,6 @@ export class ReceiptspaymentsComponent implements OnInit {
   }
 
   savePaymentsReceipts() {
-    debugger;
     this.formData.controls['voucherNumber'].enable();
     const addCashBank = String.Join('/', this.apiConfigService.addPaymentsReceipts);
     const requestObj = { pcbHdr: this.formData.value, pcbDtl: this.tableData };

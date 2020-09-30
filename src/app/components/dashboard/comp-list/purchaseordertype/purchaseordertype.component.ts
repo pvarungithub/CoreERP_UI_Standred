@@ -31,9 +31,9 @@ export class PurchaseordertypeComponent implements OnInit {
     @Optional() @Inject(MAT_DIALOG_DATA) public data: any) {
 
     this.modelFormData = this.formBuilder.group({
-      purchaseType:['',[Validators.required, Validators.minLength(2), Validators.maxLength(10)]],
-      description: ['',[Validators.required, Validators.minLength(2), Validators.maxLength(50)]],
-     
+      purchaseType: ['', [Validators.required, Validators.minLength(2), Validators.maxLength(10)]],
+      description: ['', [Validators.required, Validators.minLength(2), Validators.maxLength(50)]],
+
     });
 
 
@@ -47,11 +47,10 @@ export class PurchaseordertypeComponent implements OnInit {
 
   ngOnInit() {
   }
-  
+
   get formControls() { return this.modelFormData.controls; }
 
   save() {
-    debugger;
     if (this.modelFormData.invalid) {
       return;
     }

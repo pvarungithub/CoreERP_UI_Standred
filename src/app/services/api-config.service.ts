@@ -27,7 +27,7 @@ export class ApiConfigService {
    getModelPatternList = `${this.environment.runtimeConfig.serverUrl}ModelPattern/GetModelPatternList`;
    getmsizeList = `${this.environment.runtimeConfig.serverUrl}MaterialSize/GetMaterialSizeList`;
    getmaterialgroupList = `${this.environment.runtimeConfig.serverUrl}MaterialGroups/GetMaterialGroupsList`;
-  getMaterialList = `${this.environment.runtimeConfig.serverUrl}Common/GetMaterialList`;
+   getMaterialList = `${this.environment.runtimeConfig.serverUrl}Common/GetMaterialList`;
    getStList = `${this.environment.runtimeConfig.serverUrl}StorageLocation/GetStorageLocation`;
    getpurchaseOrderTypeList = `${this.environment.runtimeConfig.serverUrl}Purchaseordertype/GetPurchaseordertypeList`;
    getPurchaseorderNumberList = `${this.environment.runtimeConfig.serverUrl}PurchaseOrderNumberRange/GetPurchaseOrderNumberRangeList`;
@@ -142,17 +142,17 @@ export class ApiConfigService {
    getMenuList = `${this.environment.runtimeConfig.serverUrl}Auth/getMenuList`;
    giveAccess = `${this.environment.runtimeConfig.serverUrl}Auth/GiveAccess`;
    getMenuUrl = `${this.environment.runtimeConfig.serverUrl}Auth/getMenu`;
-  getrolelist = `${this.environment.runtimeConfig.serverUrl}masters/UserCreation/GetRoleList`;
+   getrolelist = `${this.environment.runtimeConfig.serverUrl}masters/UserCreation/GetRoleList`;
 
 
-  /*******************************BOM ****************************************************** */
-  addBOM = `${this.environment.runtimeConfig.serverUrl}BillOfMaterial/AddBOM`;
-  getBOMDetail = `${this.environment.runtimeConfig.serverUrl}BillOfMaterial/GetBomDetail`;
-  getbommaster='http://localhost:51414/api/BillOfMaterial/GetBOMMasters';
-  //getBOMMaster = `${this.environment.runtimeConfig.serverUrl}api/BillOfMaterial/GetBOMMasters`;
-  getBOMNumber = `${this.environment.runtimeConfig.serverUrl}BillOfMaterial/GetVoucherNumber`;
-  returnBOM = `${this.environment.runtimeConfig.serverUrl}BillOfMaterial/ReturnCashBank`;
- // getDiscount = `${this.environment.runtimeConfig.serverUrl}Transactions/GetDiscount`;
+   /*******************************BOM ****************************************************** */
+   addBOM = `${this.environment.runtimeConfig.serverUrl}BillOfMaterial/AddBOM`;
+   getBOMDetail = `${this.environment.runtimeConfig.serverUrl}BillOfMaterial/GetBomDetail`;
+   getbommaster = 'http://localhost:51414/api/BillOfMaterial/GetBOMMasters';
+   //getBOMMaster = `${this.environment.runtimeConfig.serverUrl}api/BillOfMaterial/GetBOMMasters`;
+   getBOMNumber = `${this.environment.runtimeConfig.serverUrl}BillOfMaterial/GetVoucherNumber`;
+   returnBOM = `${this.environment.runtimeConfig.serverUrl}BillOfMaterial/ReturnCashBank`;
+   // getDiscount = `${this.environment.runtimeConfig.serverUrl}Transactions/GetDiscount`;
 
 
    /******************************* Cash Bank ****************************************************** */

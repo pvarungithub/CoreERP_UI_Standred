@@ -44,7 +44,7 @@ export class CreationOfCostUnitsComponent implements OnInit {
     ];
   perunitcost: PerUnitCost[] =
     [
-      //{ value: 'Fixed list', viewValue: ' Fixed list' },
+      { value: 'Per Unit', viewValue: 'Per Unit' },
       { value: 'Order', viewValue: 'Order' },
       { value: 'Batch', viewValue: 'Batch' },
       { value: 'Period', viewValue: 'Period' },

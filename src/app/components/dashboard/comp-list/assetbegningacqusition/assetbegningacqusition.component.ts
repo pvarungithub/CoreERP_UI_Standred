@@ -187,7 +187,6 @@ export class AssetBegningAcqusitionComponent implements OnInit {
     this.addOrEditService.sendDynTableData(this.tableData);
   }
   saveBeingAcquisition() {
-    debugger;
     const addCashBank = String.Join('/', this.apiConfigService.registeraqsnList);
     const requestObj = { mainaqsnHdr: this.modelFormData.value, mainaqsnDetail: this.tableData };
     this.apiService.apiPostRequest(addCashBank, requestObj).subscribe(

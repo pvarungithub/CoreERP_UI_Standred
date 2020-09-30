@@ -55,7 +55,7 @@ export class SubAssetsComponent implements OnInit {
         },
         depreciationRate: {
           value: null, type: 'text', width: 150, maxLength: 10
-        },        
+        },
         depreciationArea: {
           value: null, type: 'dropdown', list: this.dpareaList, id: 'code', text: 'description', disabled: false, displayMul: true
         },
@@ -159,8 +159,8 @@ export class SubAssetsComponent implements OnInit {
             if (!this.commonService.checkNullOrUndefined(res.response)) {
               console.log(res.response['SubassetMasters']);
               console.log(res.response['SubassetDetail']);
-              this.modelFormData.setValue(res.response['SubassetMasters']);  
-              this.addOrEditService.sendDynTableData({ type: 'editValue', data: res.response['SubassetDetail']});
+              this.modelFormData.setValue(res.response['SubassetMasters']);
+              this.addOrEditService.sendDynTableData({ type: 'editValue', data: res.response['SubassetDetail'] });
             }
           }
         });
@@ -376,7 +376,6 @@ export class SubAssetsComponent implements OnInit {
   }
 
   assigndata(row) {
-    debugger;
     if (row.column == 'depreciationCode') {
       const code = row.data[row.index]['depreciationCode'].list.find(res => res.code == row.data[row.index]['depreciationCode'].value);
       if (!this.commonService.checkNullOrUndefined(code)) {
