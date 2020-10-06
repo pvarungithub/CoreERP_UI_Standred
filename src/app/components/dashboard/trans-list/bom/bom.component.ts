@@ -63,7 +63,7 @@ export class BillOfMaterialComponent implements OnInit {
   { id: 'Component', text: 'Component' }, { id: 'Raw Material', text: 'Raw Material' }];
 
   type = [{ id: 'BOM', text: 'BOM' }, { id: 'Item', text: 'Item' }]
-
+  
   profitCenterList = [];
   bpTypeList = [];
   segmentList = [];
@@ -82,18 +82,18 @@ export class BillOfMaterialComponent implements OnInit {
       { value: 'Service BOM', viewValue: 'Service BOM' },
       { value: 'Maintenance BOM', viewValue: 'Maintenance BOM' }
     ];
-
+  
   LevelType: LevelType[] =
     [
       { value: 'Single', viewValue: 'Single' },
       { value: 'Multiple', viewValue: 'Multiple' }
     ];
-  plantList: any;
-  costunitList: any;
-  // mmasterList: any;
-  employeesList: any;
-  batchmasterList: any;
-  //UomList: any;
+    plantList: any;
+    costunitList: any;
+   // mmasterList: any;
+    employeesList: any;
+    batchmasterList: any;
+    //UomList: any;
   constructor(private commonService: CommonService,
     private formBuilder: FormBuilder,
     private apiConfigService: ApiConfigService,
@@ -103,8 +103,10 @@ export class BillOfMaterialComponent implements OnInit {
     private spinner: NgxSpinnerService,
     public route: ActivatedRoute,
     private router: Router
-  ) {
-    if (!this.commonService.checkNullOrUndefined(this.route.snapshot.params.value)) {
+  )
+  {
+    if (!this.commonService.checkNullOrUndefined(this.route.snapshot.params.value))
+    {
       this.routeEdit = this.route.snapshot.params.value;
     }
   }
@@ -124,7 +126,7 @@ export class BillOfMaterialComponent implements OnInit {
   ngOnInit() {
     this.formDataGroup();
     this.getCompanyList();
-    this.formData.controls['bomnumber'].disable();
+   // this.formData.controls['bomnumber'].disable();
   }
 
   formDataGroup() {
@@ -139,9 +141,9 @@ export class BillOfMaterialComponent implements OnInit {
       batch: [null],
       createdBy: [null],
       levelType: [null]
-
+      
     });
-    // this.checkTransType();
+   // this.checkTransType();
   }
 
   tablePropsFunc() {
@@ -170,7 +172,7 @@ export class BillOfMaterialComponent implements OnInit {
         aboveLevel: {
           value: null, type: 'dropdown', list: this.level, id: 'id', text: 'text', displayMul: false, width: 100
         },
-
+       
         qty: {
           value: null, type: 'number', width: 75
         },
@@ -188,7 +190,7 @@ export class BillOfMaterialComponent implements OnInit {
     };
   }
 
-
+  
 
   //puchaseinvoiceselect() {
   //  let data = [];
@@ -351,7 +353,7 @@ export class BillOfMaterialComponent implements OnInit {
     })
   }
 
-
+  
 
   emitColumnChanges(data) {
     if (data.column == 'adjustmentAmount') {
@@ -442,8 +444,8 @@ export class BillOfMaterialComponent implements OnInit {
     return true;
   }
 
-  save() {
-    debugger;
+  save()
+  {
     if (this.tableData.length == 0) {
       return;
     }
@@ -467,7 +469,7 @@ export class BillOfMaterialComponent implements OnInit {
   reset() {
     this.tableData = [];
     this.formData.reset();
-    this.formData.controls['bomnumber'].disable();
+    //this.formData.controls['bomnumber'].disable();
     this.addOrEditService.sendDynTableData({ type: 'add', data: this.tableData });
   }
 

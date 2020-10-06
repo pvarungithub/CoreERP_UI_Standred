@@ -7,6 +7,7 @@ import { ReceiptspaymentsComponent } from './receiptspayments/receiptspayments.c
 import { PurchasesaleassetComponent } from './purchasesaleasset/purchasesaleasset.component';
 import { SaleassetComponent } from './saleasset/saleasset.component';
 import { NotFoundComponent } from '../../not-found/not-found.component';
+import {BillOfMaterialComponent} from './bom/bom.component'
 
 @Injectable({
   providedIn: 'root'
@@ -67,6 +68,14 @@ export class TransListService {
         this.dynamicComp.tableUrl = this.apiConfigService.getAssettransferMaster;
         this.dynamicComp.list = 'assettransferMasters';
         this.dynamicComp.editKey = 'voucherNumber';
+        return this.dynamicComp;
+        break;
+      }
+      case 'bom': {
+        this.dynamicComp.component = BillOfMaterialComponent;
+        this.dynamicComp.tableUrl = this.apiConfigService.getBOMMaster;
+        this.dynamicComp.list = 'bomMasters';
+        this.dynamicComp.editKey = 'bomnumber';
         return this.dynamicComp;
         break;
       }

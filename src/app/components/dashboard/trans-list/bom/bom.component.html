@@ -1,0 +1,128 @@
+<mat-card>
+
+    <mat-card-content>
+
+        <form [formGroup]="formData" autocomplete="off">
+
+          <div class="d--flex p-1 mat-form-field-height">
+
+            <mat-form-field class="form-element">
+              <mat-label>{{ 'bom.company' | translate }}</mat-label>
+              <mat-select formControlName="company">
+                <mat-option>None</mat-option>
+                <mat-option *ngFor="let comp of companyList" [value]="comp.id">
+                  {{comp.text}}
+                </mat-option>
+              </mat-select>
+            </mat-form-field>
+
+            <mat-form-field>
+              <mat-label>{{'bom.plant' | translate }}</mat-label>
+              <mat-select formControlName="plant" appFocusOnEnter tabIndex="2">
+                <mat-option>None</mat-option>
+                <mat-option *ngFor="let plant of plantList" [value]="plant.id">
+                  {{plant.text}}
+                </mat-option>
+              </mat-select>
+            </mat-form-field>
+            <mat-form-field>
+              <mat-label>{{'bom.bomtype' | translate }}</mat-label>
+              <mat-select formControlName="bomtype" appFocusOnEnter tabIndex="3">
+                <mat-option>None</mat-option>
+                <mat-option *ngFor="let btype of BomType" [value]="btype.value">
+                  {{btype.viewValue}}
+                </mat-option>
+              </mat-select>
+            </mat-form-field>
+            <mat-form-field class="form-element">
+              <input matInput placeholder="{{'bom.bomnumber' | translate }}"
+                     formControlName="bomnumber" appFocusOnEnter tabIndex="4">
+            </mat-form-field>
+
+            <mat-form-field class="form-element">
+              <input matInput placeholder="{{'bom.description' | translate }}"
+                     formControlName="description" appFocusOnEnter tabIndex="5">
+            </mat-form-field>
+
+            <mat-form-field>
+              <mat-label>{{'bom.costUnit' | translate }}</mat-label>
+              <mat-select formControlName="costUnit" appFocusOnEnter tabIndex="6">
+                <mat-option>None</mat-option>
+                <mat-option *ngFor="let culist of costunitList" [value]="culist.objectNumber">
+                  {{culist.description}}
+                </mat-option>
+              </mat-select>
+            </mat-form-field>
+            <mat-form-field>
+              <mat-label>{{'bom.material' | translate }}</mat-label>
+              <mat-select formControlName="material" appFocusOnEnter tabIndex="7">
+                <mat-option>None</mat-option>
+                <mat-option *ngFor="let malist of mmasterList" [value]="malist.materialCode">
+                  {{malist.description}}
+                </mat-option>
+              </mat-select>
+            </mat-form-field>
+
+            <mat-form-field>
+              <mat-label>{{'bom.batch' | translate }}</mat-label>
+              <mat-select formControlName="batch" appFocusOnEnter tabIndex="8">
+                <mat-option>None</mat-option>
+                <mat-option *ngFor="let batch of batchmasterList" [value]="batch.batchNumber">
+                  {{batch.description}}
+                </mat-option>
+              </mat-select>
+
+            </mat-form-field>
+            <mat-form-field>
+              <mat-label>{{'bom.createdBy' | translate }}</mat-label>
+              <mat-select formControlName="createdBy" appFocusOnEnter tabIndex="8">
+                <mat-option>None</mat-option>
+                <mat-option *ngFor="let emp of employeesList" [value]="emp.id">
+                  {{emp.id}} - {{emp.text}}
+                </mat-option>
+              </mat-select>
+            </mat-form-field>
+
+          
+
+            <mat-form-field>
+              <mat-label>{{'bom.levelType' | translate }}</mat-label>
+              <mat-select formControlName="levelType" appFocusOnEnter tabIndex="9">
+                <mat-option>None</mat-option>
+                <mat-option *ngFor="let levelType of LevelType" [value]="levelType.value">
+                  {{levelType.viewValue}}
+                </mat-option>
+              </mat-select>
+            </mat-form-field>
+          </div>
+        </form>  
+
+        <div>
+            <app-dynamic-table [tableObJect]="dynTableProps" (emitColumnChanges)="emitColumnChanges($event);"
+                (emitTableData)="emitTableData($event)"></app-dynamic-table>
+        </div>
+
+
+    </mat-card-content>
+
+    <mat-card-content class="d-flex justify-content-end pb-1">
+
+        <button [hidden]="routeEdit != ''"  mat-raised-button type="submit" class="button-color-bule mr-3 text-white"
+            (click)="save()">
+            {{ 'COMMON.SAVE' | translate }}
+        </button>
+        <button [hidden]="routeEdit != ''" mat-raised-button class="button-color-red text-white mr-3"
+            (click)="reset();">
+            {{ 'COMMON.RESET' | translate }}
+        </button>
+        <button mat-raised-button class="button-color-red text-white mr-3" (click)="back();">
+            {{ 'COMMON.BACK' | translate }}
+        </button>
+        <button [hidden]="routeEdit == ''" mat-raised-button class="button-color-red text-white mr-3"
+            (click)="return();">
+            {{ 'COMMON.RETURN' | translate }}
+        </button>
+
+    </mat-card-content>
+
+</mat-card>
