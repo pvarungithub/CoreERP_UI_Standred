@@ -2,21 +2,23 @@ import { Component, Inject, Optional, OnInit } from '@angular/core';
 import { MatDialogRef, MAT_DIALOG_DATA } from '@angular/material/dialog';
 import { CommonService } from '../../../../services/common.service';
 import { FormBuilder, FormGroup, Validators } from '@angular/forms';
-import { StatusCodes } from '../../../../enums/common/common';
-import { NgxSpinnerService } from 'ngx-spinner';
-import { ApiConfigService } from '../../../../services/api-config.service';
-import { ApiService } from '../../../../services/api.service';
-import { String } from 'typescript-string-operations';
 import { AddOrEditService } from '../add-or-edit.service';
 
 interface formulaType {
   value: string;
   viewValue: string;
 }
-interface formulaBar{
+
+interface operatorType {
   value: string;
   viewValue: string;
 }
+
+interface formula {
+  value: string;
+  viewValue: string;
+}
+
 @Component({
   selector: 'app-formulas',
   templateUrl: './formulas.component.html',
@@ -27,13 +29,26 @@ export class FormulasComponent implements OnInit {
 
   modelFormData: FormGroup;
   formData: any;
+
   formulaType: formulaType[] =
     [
       { value: 'Scheduling', viewValue: 'Scheduling' },
       { value: 'Capacity', viewValue: 'Capacity' },
       { value: 'Cost calculation', viewValue: 'Cost calculation' }
     ];
-  formulaBar: formulaBar[] =
+
+  operatorType: operatorType[] =
+    [
+      { value: '+', viewValue: '+' },
+      { value: '*', viewValue: '*' },
+      { value: '-', viewValue: '-' },
+      { value: '/', viewValue: '/' },
+      { value: '(', viewValue: '(' },
+      { value: ')', viewValue: ')' }
+
+    ];
+
+  formula: formula[] =
     [
       { value: 'Activity Quantity Per Unit', viewValue: 'Activity Quantity Per Unit' },
       { value: 'Operation Quantity', viewValue: 'Operation Quantity' },
@@ -49,13 +64,11 @@ export class FormulasComponent implements OnInit {
       { value: 'Actual Rate Of Production', viewValue: 'Actual Rate Of Production' },
       { value: 'Standard Rate Of Production', viewValue: 'Standard Rate Of Production' }
     ];
+
   constructor(private commonService: CommonService,
     private addOrEditService: AddOrEditService,
     private formBuilder: FormBuilder,
     public dialogRef: MatDialogRef<FormulasComponent>,
-    private spinner: NgxSpinnerService,
-    private apiConfigService: ApiConfigService,
-    private apiService: ApiService,
     // @Optional() is used to prevent error if no data is passed
     @Optional() @Inject(MAT_DIALOG_DATA) public data: any) {
 
@@ -63,35 +76,43 @@ export class FormulasComponent implements OnInit {
       formulaKey: [null, [Validators.required, Validators.minLength(1), Validators.maxLength(4)]],
       description: [null, [Validators.required, Validators.minLength(1), Validators.maxLength(30)]],
       formulaType: [null],
-      formulaBar: [null],
-   });
-
+      formula: [''],
+      formulaBar: [''],
+      operatorType: ['']
+    });
 
     this.formData = { ...data };
     if (!this.commonService.checkNullOrUndefined(this.formData.item)) {
       this.modelFormData.patchValue(this.formData.item);
       this.modelFormData.controls['formulaKey'].disable();
     }
-
   }
 
   ngOnInit() {
+    this.modelFormData.controls['formulaBar'].disable();
   }
-  
- 
+
   get formControls() { return this.modelFormData.controls; }
+
+  contactFormula(event) {
+    this.modelFormData.patchValue({
+      formulaBar: this.modelFormData.get('formulaBar').value + (!this.commonService.checkNullOrUndefined(event.value) ? event.value : '')
+    })
+  }
 
   save() {
     if (this.modelFormData.invalid) {
       return;
     }
     this.modelFormData.controls['formulaKey'].enable();
+    this.modelFormData.controls['formulaBar'].enable();
     this.formData.item = this.modelFormData.value;
     this.addOrEditService[this.formData.action](this.formData, (res) => {
       this.dialogRef.close(this.formData);
     });
     if (this.formData.action == 'Edit') {
       this.modelFormData.controls['formulaKey'].disable();
+      this.modelFormData.controls['formulaBar'].disable();
     }
   }
 

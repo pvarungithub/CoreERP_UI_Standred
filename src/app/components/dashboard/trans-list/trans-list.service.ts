@@ -7,7 +7,8 @@ import { ReceiptspaymentsComponent } from './receiptspayments/receiptspayments.c
 import { PurchasesaleassetComponent } from './purchasesaleasset/purchasesaleasset.component';
 import { SaleassetComponent } from './saleasset/saleasset.component';
 import { NotFoundComponent } from '../../not-found/not-found.component';
-import {BillOfMaterialComponent} from './bom/bom.component'
+import { BillOfMaterialComponent } from './bom/bom.component'
+import { GoodsissueComponent } from './goodsissue/goodsissue.component'
 
 @Injectable({
   providedIn: 'root'
@@ -21,7 +22,6 @@ export class TransListService {
   ) { }
 
   getDynComponents(data) {
-
     switch (data) {
       case 'cashbank': {
         this.dynamicComp.component = CashbankComponent;
@@ -76,6 +76,14 @@ export class TransListService {
         this.dynamicComp.tableUrl = this.apiConfigService.getBOMMaster;
         this.dynamicComp.list = 'bomMasters';
         this.dynamicComp.editKey = 'bomnumber';
+        return this.dynamicComp;
+        break;
+      }
+      case 'goodsissue': {
+        this.dynamicComp.component = GoodsissueComponent;
+        this.dynamicComp.tableUrl = this.apiConfigService.getGoodsissueMaster;
+        this.dynamicComp.list = 'Goodsissue';
+        this.dynamicComp.editKey = 'goodsIssueId';
         return this.dynamicComp;
         break;
       }

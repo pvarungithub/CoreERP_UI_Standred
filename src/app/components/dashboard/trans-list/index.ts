@@ -5,3 +5,4 @@ export {ReceiptspaymentsComponent} from './receiptspayments/receiptspayments.com
 export {PurchasesaleassetComponent} from './purchasesaleasset/purchasesaleasset.component'
 export {SaleassetComponent} from './saleasset/saleasset.component';
 export { BillOfMaterialComponent } from './bom/bom.component';
+export { GoodsissueComponent } from './goodsissue/goodsissue.component';

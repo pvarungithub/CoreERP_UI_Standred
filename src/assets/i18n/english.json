@@ -1588,7 +1588,9 @@
     "formulaKey": "Code",
     "description": "Description",
     "formulaType": "Formula Type",
-    "formulaBar": "Formula Bar"
+    "formulaBar": "Formula Bar",
+    "operatorType": "Operators",
+    "formula": "Formula Bar Type"
   },
   "commitmentitem": {
     "title": "Commitment Item",
@@ -1750,5 +1752,24 @@
     "title3": "Activities",
     "title4": "Material Assignment",
     "title5": "Tools & Equipment"
+  },
+  "goodsissue": {
+    "id": "ID",
+    "title": "Goods Issue",
+    "goodsIssueId": "ID",
+    "company": "Company",
+    "plant": "Plant",
+    "storesPerson": "Stores Person",
+    "department": "Department",
+    "requisitionNumber": "RequisitionNumber",
+    "movementType": "Movement Type",
+    "status": "status",
+    "qty": "Quantity",
+    "location": "Location",
+    "JoborProject": "Jobor Project",
+    "JobOrder": "Job Order",
+    "costCenter": "Cost Center",
+    "wbs": "WBS",
+    "delete": "Delete"
   }
 }
