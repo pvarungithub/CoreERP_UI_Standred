@@ -1364,7 +1364,7 @@
     "formulaType": "Formula Type",
     "formulaBar": "Formula Bar",
     "operatorType": "Operators",
-    "formula": "Formula Bar Type"
+    "formula": "Variable"
   },
   "commitmentitem": {
     "title": "Commitment Item",
@@ -1396,7 +1396,7 @@
     "startDate": "Start Date",
     "duration": "Duration",
     "endDate": "End Date",
-    "underWbs": "nderWbs"
+    "underWbs": "Under Wbs"
   },
   "bom": {
     "id": "ID",

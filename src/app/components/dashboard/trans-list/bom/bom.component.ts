@@ -29,6 +29,7 @@ interface Type {
   value: string;
   viewValue: string;
 }
+
 @Component({
   selector: 'app-bom',
   templateUrl: './bom.component.html',
@@ -55,15 +56,15 @@ export class BillOfMaterialComponent implements OnInit {
   accountList = [];
   accountFilterList = [];
   glAccountList = [];
-  level = [{ id: '1', text: '1' }, { id: '2', text: '2' }, { id: '3', text: '3' },
+  level = [{ id: '0', text: '0' }, { id: '1', text: '1' }, { id: '2', text: '2' }, { id: '3', text: '3' },
   { id: '4', text: '4' }, { id: '5', text: '5' }, { id: '6', text: '6' },
   { id: '7', text: '7' }, { id: '8', text: '8' }, { id: '9', text: '9' }, { id: '10', text: '10' }
   ];
   maftype = [{ id: 'Sub Assembly', text: 'Sub Assembly' },
-  { id: 'Component', text: 'Component' }, { id: 'Raw Material', text: 'Raw Material' }];
+  { id: 'Raw Material', text: 'Raw Material' }];
 
   type = [{ id: 'BOM', text: 'BOM' }, { id: 'Item', text: 'Item' }]
-  
+
   profitCenterList = [];
   bpTypeList = [];
   segmentList = [];
@@ -82,18 +83,18 @@ export class BillOfMaterialComponent implements OnInit {
       { value: 'Service BOM', viewValue: 'Service BOM' },
       { value: 'Maintenance BOM', viewValue: 'Maintenance BOM' }
     ];
-  
+
   LevelType: LevelType[] =
     [
       { value: 'Single', viewValue: 'Single' },
       { value: 'Multiple', viewValue: 'Multiple' }
     ];
-    plantList: any;
-    costunitList: any;
-   // mmasterList: any;
-    employeesList: any;
-    batchmasterList: any;
-    //UomList: any;
+
+  plantList: any;
+  costunitList: any;
+  employeesList: any;
+  batchmasterList: any;
+
   constructor(private commonService: CommonService,
     private formBuilder: FormBuilder,
     private apiConfigService: ApiConfigService,
@@ -103,32 +104,29 @@ export class BillOfMaterialComponent implements OnInit {
     private spinner: NgxSpinnerService,
     public route: ActivatedRoute,
     private router: Router
-  )
-  {
-    if (!this.commonService.checkNullOrUndefined(this.route.snapshot.params.value))
-    {
+  ) {
+    if (!this.commonService.checkNullOrUndefined(this.route.snapshot.params.value)) {
       this.routeEdit = this.route.snapshot.params.value;
     }
   }
 
   onbpChange() {
     this.bpgLists = [];
-    //if (!this.commonService.checkNullOrUndefined(this.formData.get('bpcategory').value)) {
-    //  let data = this.bpTypeList.find(res => res.code == this.formData.get('bpcategory').value);
-    //  this.bpgLists = this.bpList.filter(res => res.bptype == data.code);
-    //  this.formData.patchValue({
-    //    partyAccount: this.bpgLists.length ? this.bpgLists[0].id : null
-    //  })
-    //  this.puchaseinvoiceselect();
-    //}
+
   }
 
   ngOnInit() {
     this.formDataGroup();
     this.getCompanyList();
-   // this.formData.controls['bomnumber'].disable();
+    this.formData.controls['material'].disable();
   }
 
+  costunitSelect() {
+    const object = this.costunitList.find(res => res.objectNumber === this.formData.get('costUnit').value)
+    this.formData.patchValue({
+      material: !this.commonService.checkNullOrUndefined(object) ? object.material : null
+    })
+  }
   formDataGroup() {
     this.formData = this.formBuilder.group({
       company: [null, [Validators.required]],
@@ -141,9 +139,9 @@ export class BillOfMaterialComponent implements OnInit {
       batch: [null],
       createdBy: [null],
       levelType: [null]
-      
+
     });
-   // this.checkTransType();
+    // this.checkTransType();
   }
 
   tablePropsFunc() {
@@ -157,7 +155,7 @@ export class BillOfMaterialComponent implements OnInit {
           value: null, type: 'dropdown', list: this.level, id: 'id', text: 'text', displayMul: false, width: 100
         },
         component: {
-          value: null, type: 'dropdown', list: this.mmasterList, id: 'materialCode', text: 'materialName', displayMul: false, width: 100
+          value: null, type: 'dropdown', list: this.mmasterList, id: 'id', text: 'text', displayMul: false, width: 100
         },
         description: {
           value: null, type: 'text', width: 100, maxLength: 50
@@ -172,7 +170,7 @@ export class BillOfMaterialComponent implements OnInit {
         aboveLevel: {
           value: null, type: 'dropdown', list: this.level, id: 'id', text: 'text', displayMul: false, width: 100
         },
-       
+
         qty: {
           value: null, type: 'number', width: 75
         },
@@ -190,32 +188,8 @@ export class BillOfMaterialComponent implements OnInit {
     };
   }
 
-  
-
-  //puchaseinvoiceselect() {
-  //  let data = [];
-  //  let newData = [];
-  //  if (!this.commonService.checkNullOrUndefined(this.formData.get('partyAccount').value)) {
-  //    data = this.functionaldeptList.filter(resp => resp.partyAccount == this.formData.get('partyAccount').value);
-  //  }
-  //  if (data.length) {
-  //    console.log(data, this.tablePropsFunc());
-  //    data.forEach((res, index) => {
-  //      newData.push(this.tablePropsFunc().tableData);
-  //      newData[index].dueDate.value = res.dueDate;
-  //      newData[index].partyAccount.value = res.partyAccount;
-  //      newData[index].partyInvoiceNo.value = res.partyInvoiceNo;
-  //      newData[index].paymentterms.value = res.paymentterms;
-  //      newData[index].postingDate.value = res.postingDate;
-  //      newData[index].totalAmount.value = res.totalAmount;
-  //    })
-  //  }
-  //  //
-  //  this.addOrEditService.sendDynTableData({ type: 'add', data: newData, removeEmptyRow: 0 });
-  //}
 
   getbomDetail(val) {
-    debugger;
     const bomUrl = String.Join('/', this.apiConfigService.getBOMDetail, val);
     this.apiService.apiGetRequest(bomUrl)
       .subscribe(
@@ -286,6 +260,7 @@ export class BillOfMaterialComponent implements OnInit {
       .subscribe(
         response => {
           const res = response.body;
+          console.log(res);
           if (!this.commonService.checkNullOrUndefined(res) && res.status === StatusCodes.pass) {
             if (!this.commonService.checkNullOrUndefined(res.response)) {
               this.mmasterList = res.response['mmasterList'];
@@ -353,7 +328,7 @@ export class BillOfMaterialComponent implements OnInit {
     })
   }
 
-  
+
 
   emitColumnChanges(data) {
     if (data.column == 'adjustmentAmount') {
@@ -366,58 +341,7 @@ export class BillOfMaterialComponent implements OnInit {
 
   }
 
-  //loopTableData(row) {
-  //  const dublicateRow = [...row.data];
-  //  let flag = false;
-  //  // let checkAjectAmount = 0;
-  //  // for (let r = 0; r < row.data.length; r++) {
-  //  // if (row.column == 'adjustmentAmount' && r == row.index) {
-  //  //if (row.column == 'adjustmentAmount') {
-  //  //  if (+row.data[row.index].adjustmentAmount.value > +row.data[row.index].totalAmount.value) {
-  //  //    this.alertService.openSnackBar(`AdjustmentAmount can't be more than totalAmount`, Static.Close, SnackBar.error);
-  //  //    row.data[row.index].adjustmentAmount.value = 0;
-  //  //    flag = true;
-  //  //    // break;
-  //  //  }
-  //  //  // checkAjectAmount = checkAjectAmount + (+row.data[r].adjustmentAmount.value);
-  //  //  // if (checkAjectAmount == +this.formData.get('amount').value) {
-  //  //  //   this.alertService.openSnackBar(`AdjustmentAmount can't be same as total amount`, Static.Close, SnackBar.error);
-  //  //  //   row.data[row.index].adjustmentAmount.value = 0;
-  //  //  //   flag = true;
-  //  //  //   break;
-  //  //  // }
-  //  //}
 
-  //  // }
-  //  if (flag) {
-  //    this.spinner.show();
-  //    this.addOrEditService.sendDynTableData({ type: 'add', data: dublicateRow });
-  //  }
-  //}
-
-  //getDiscount(row) {
-  //  const getDiscountUrl = String.Join('/', this.apiConfigService.getDiscount);
-  //  const requestObj = {
-  //    dueDate: row.data[row.index].dueDate.value, partyAccount: row.data[row.index].partyAccount.value,
-  //    partyInvoiceNo: row.data[row.index].partyInvoiceNo.value, paymentterms: row.data[row.index].paymentterms.value,
-  //    postingDate: row.data[row.index].postingDate.value, totalAmount: row.data[row.index].totalAmount.value
-  //  };
-  //  this.apiService.apiPostRequest(getDiscountUrl, requestObj)
-  //    .subscribe(
-  //      response => {
-  //        this.spinner.hide();
-  //        const res = response.body;
-  //        if (!this.commonService.checkNullOrUndefined(res) && res.status === StatusCodes.pass) {
-  //          if (!this.commonService.checkNullOrUndefined(res.response)) {
-  //            row.data[row.index].discount.value = res.response['discount']
-  //            this.addOrEditService.sendDynTableData({ type: 'add', data: row.data });
-  //          }
-  //        }
-  //        if (this.routeEdit != '') {
-  //          this.getbomDetail(this.routeEdit);
-  //        }
-  //      });
-  //}
 
   emitTableData(data) {
     this.tableData = data;
@@ -429,23 +353,11 @@ export class BillOfMaterialComponent implements OnInit {
   }
 
   checkAjectAmount(flag = false) {
-    let adjustmentAmount = 0;
-    //if (this.tableData.length) {
-    //  this.tableData.forEach(res => {
-    //    if (res.adjustmentAmount) {
-    //      adjustmentAmount = adjustmentAmount + (+res.adjustmentAmount)
-    //    }
-    //  });
-    //  if (adjustmentAmount == +this.formData.get('amount').value && !this.commonService.checkNullOrUndefined(adjustmentAmount) && flag) {
-    //    this.alertService.openSnackBar(`AdjustmentAmount can't be same as total amount`, Static.Close, SnackBar.error);
-    //  }
-    //  return (adjustmentAmount == +this.formData.get('amount').value && !this.commonService.checkNullOrUndefined(adjustmentAmount)) ? false : true;
-    //}
+
     return true;
   }
 
-  save()
-  {
+  save() {
     if (this.tableData.length == 0) {
       return;
     }
@@ -469,12 +381,13 @@ export class BillOfMaterialComponent implements OnInit {
   reset() {
     this.tableData = [];
     this.formData.reset();
-    //this.formData.controls['bomnumber'].disable();
+    this.formData.controls['material'].disable();
     this.addOrEditService.sendDynTableData({ type: 'add', data: this.tableData });
   }
 
   savebom() {
     this.formData.controls['bomnumber'].enable();
+    this.formData.controls['material'].enable();
     const addbom = String.Join('/', this.apiConfigService.addBOM);
     const requestObj = { bomHdr: this.formData.value, bomDtl: this.tableData };
     this.apiService.apiPostRequest(addbom, requestObj).subscribe(

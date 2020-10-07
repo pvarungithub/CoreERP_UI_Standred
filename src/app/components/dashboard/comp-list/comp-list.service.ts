@@ -115,7 +115,9 @@ import { FormulasComponent } from './formulas/formulas.component';
 import { CommitmentItemComponent } from './commitmentitem/commitmentitem.component';
 import { FundCenterComponent } from './fundcenter/fundcenter.component';
 import { WorkBreakDownStructureComponent } from './wbdse/wbdse.component';
-
+import { TasksComponent } from './tasks/tasks.component';
+import { RoutingFileComponent } from './routingfile/routingfile.component';
+import { WorkCenterCreationComponent } from './workcentercreation/workcentercreation.component';
 @Injectable({
   providedIn: 'root'
 })
@@ -592,6 +594,18 @@ export class CompListService {
         break;
       case 'wbdse':
         this.dynamicComp.component = WorkBreakDownStructureComponent;
+        return this.dynamicComp.component;
+        break;
+      case 'tasks':
+        this.dynamicComp.component = TasksComponent;
+        return this.dynamicComp.component;
+        break;
+      case 'routingfile':
+        this.dynamicComp.component = RoutingFileComponent;
+        return this.dynamicComp.component;
+        break;
+      case 'workcentercreation':
+        this.dynamicComp.component = WorkCenterCreationComponent;
         return this.dynamicComp.component;
         break;
       default:
