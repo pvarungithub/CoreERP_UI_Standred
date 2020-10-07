@@ -13,16 +13,16 @@ import { AlertService } from '../../../../services/alert.service';
 import { DateAdapter, MAT_DATE_FORMATS } from '@angular/material/core';
 import { AppDateAdapter, APP_DATE_FORMATS } from '../../../../directives/format-datepicker';
 @Component({
-  selector: 'app-goodsissue',
-  templateUrl: './goodsissue.component.html',
-  styleUrls: ['./goodsissue.component.scss'],
+  selector: 'app-materialrequisition',
+  templateUrl: './materialrequisition.component.html',
+  styleUrls: ['./materialrequisition.component.scss'],
   providers: [
     { provide: DateAdapter, useClass: AppDateAdapter },
     { provide: MAT_DATE_FORMATS, useValue: APP_DATE_FORMATS }
   ]
 })
 
-export class GoodsissueComponent implements OnInit {
+export class MaterialrequisitionComponents implements OnInit {
 
   formData: FormGroup;
   routeEdit = '';
@@ -50,8 +50,6 @@ export class GoodsissueComponent implements OnInit {
   wbsElementList: any;
   ordertypeList: any;
   locationList: any;
-  mreqList: any;
-  mreqdetailsList: any;
   mmasterList: any;
 
   constructor(private commonService: CommonService,
@@ -73,17 +71,23 @@ export class GoodsissueComponent implements OnInit {
     this.formDataGroup();
     this.getCompanyList();
     this.getfunctionaldeptList();
+    /// this.formData.controls['requisitionNumber'].disable();
   }
 
   formDataGroup() {
     this.formData = this.formBuilder.group({
       company: [null, [Validators.required]],
       plant: [null, [Validators.required]],
-      goodsIssueId: ['0'],
-      storesPerson: [null],
+      branch: [null],
+      project: [null],
       department: [null],
-      requisitionNumber: [null],
-      movementType: [null],
+      requisitionNmber: [null],
+      bomorderNumber: [null],
+      requisitionDate: [null],
+      addWho: [null],
+      addDate: [null],
+      editDate: [null],
+      editWho: [null],
       status: [null],
     });
   }
@@ -94,57 +98,43 @@ export class GoodsissueComponent implements OnInit {
         //id: {
         //  value: 0, type: 'autoInc', width: 10, disabled: true
         //},
-        checkAll:
-        {
-          value: false, type: 'checkbox'
-        },
-        //materialCode: {
-        //  value: null, type: 'dropdown', list: this.mmasterList, id: 'id', text: 'text', displayMul: false, width: 100, disabled: true, fieldEnable: true
-        //},
         materialCode: {
-          value: null, type: 'text', width: 75, maxLength: 15, disabled: true,
+          value: null, type: 'dropdown', list: this.mmasterList, id: 'id', text: 'text', displayMul: false, width: 100
+        },
+        description: {
+          value: null, type: 'text', width: 75, maxLength: 15
         },
         qty: {
-          value: null, type: 'text', width: 75, maxLength: 15, disabled: true,
-        },
-        location: {
-          value: null, type: 'text', width: 75, maxLength: 15, disabled: true,
+          value: null, type: 'text', width: 75, maxLength: 15
         },
 
-        //location: {
-        //  value: null, type: 'dropdown', list: this.locationList, id: 'locationId', text: 'description', displayMul: false, width: 100, disabled: true, fieldEnable: true
-        //},
+        sotrageLocation: {
+          value: null, type: 'dropdown', list: this.locationList, id: 'locationId', text: 'description', displayMul: false, width: 100
+        },
+
         joborProject: {
-          value: null, type: 'text', width: 100, maxLength: 50, disabled: true,
+          value: null, type: 'text', width: 100, maxLength: 50
         },
-        order: {
-          value: null, type: 'text', width: 75, maxLength: 15, disabled: true,
+        costCenter: {
+          value: null, type: 'dropdown', list: this.costCenterList, id: 'id', text: 'text', displayMul: false, width: 100
         },
 
-        costCenter: {
-          value: null, type: 'text', width: 75, maxLength: 15, disabled: true,
+        profitCenter: {
+          value: null, type: 'dropdown', list: this.profitCenterList, id: 'id', text: 'text', displayMul: false, width: 100
         },
         wbs: {
-          value: null, type: 'text', width: 75, maxLength: 15, disabled: true,
+          value: null, type: 'dropdown', list: this.costCenterList, id: 'id', text: 'text', displayMul: false, width: 100
+        },
+        order: {
+          value: null, type: 'dropdown', list: this.ordertypeList, id: 'orderType', text: 'description', displayMul: false, width: 100
+        },
+        price: {
+          value: null, type: 'text', width: 75, maxLength: 15
+        },
+        value: {
+          value: null, type: 'text', width: 75, maxLength: 15
         },
 
-        //order: {
-        //  value: null, type: 'dropdown', list: this.ordertypeList, id: 'id', text: 'text', displayMul: false, width: 100, disabled: true, fieldEnable: true
-        //},
-
-        //costCenter: {
-        //  value: null, type: 'dropdown', list: this.costCenterList, id: 'id', text: 'text', displayMul: false, width: 100, disabled: true, fieldEnable: true
-        //},
-
-        //wbs: {
-        //  value: null, type: 'dropdown', list: this.costCenterList, id: 'id', text: 'text', displayMul: false, width: 100, disabled: true, fieldEnable: true
-        //},
-        availableqty: {
-          value: null, type: 'number', width: 100, maxLength: 7, disabled: true, fieldEnable: true
-        },
-        allocatedqty: {
-          value: null, type: 'number', width: 100, maxLength: 7, disabled: true, fieldEnable: true
-        },
         delete: {
           type: 'delete', width: 10
         }
@@ -155,8 +145,8 @@ export class GoodsissueComponent implements OnInit {
     }
   }
 
-  getGIDetail(val) {
-    const jvDetUrl = String.Join('/', this.apiConfigService.getGoodsissueDetail, val);
+  getMreqDetail(val) {
+    const jvDetUrl = String.Join('/', this.apiConfigService.getmreqDetail, val);
     this.apiService.apiGetRequest(jvDetUrl)
       .subscribe(
         response => {
@@ -164,9 +154,9 @@ export class GoodsissueComponent implements OnInit {
           const res = response.body;
           if (!this.commonService.checkNullOrUndefined(res) && res.status === StatusCodes.pass) {
             if (!this.commonService.checkNullOrUndefined(res.response)) {
-              this.formData.setValue(res.response['goodsissueasters']);
-              console.log(res.response['goodsissueastersDetail']);
-              this.addOrEditService.sendDynTableData({ type: 'edit', data: res.response['goodsissueastersDetail'] });
+              this.formData.setValue(res.response['mreqmasters']);
+              console.log(res.response['mreqDetail']);
+              this.addOrEditService.sendDynTableData({ type: 'edit', data: res.response['mreqDetail'] });
               this.formData.disable();
             }
           }
@@ -184,19 +174,20 @@ export class GoodsissueComponent implements OnInit {
               this.companyList = res.response['companiesList'];
             }
           }
-          this.getEmployeesList();
+          this.getbranchList();
         });
   }
 
-  getEmployeesList() {
-    const getEmployeeList = String.Join('/', this.apiConfigService.getEmployeeList);
-    this.apiService.apiGetRequest(getEmployeeList)
+  getbranchList() {
+    const getbranchList = String.Join('/', this.apiConfigService.getBranchList);
+    this.apiService.apiGetRequest(getbranchList)
       .subscribe(
         response => {
           const res = response.body;
+
           if (!this.commonService.checkNullOrUndefined(res) && res.status === StatusCodes.pass) {
             if (!this.commonService.checkNullOrUndefined(res.response)) {
-              this.employeesList = res.response['emplist'];
+              this.branchList = res.response['branchsList'];
             }
           }
           this.getDepartmentData();
@@ -229,47 +220,20 @@ export class GoodsissueComponent implements OnInit {
               this.plantList = res.response['plantsList'];
             }
           }
-          this.getMomentTypeList();
+          this.getprofircenterData();
         });
   }
 
-  getMomentTypeList() {
-    const MomentTypeList = String.Join('/', this.apiConfigService.getmomenttypeList);
-    this.apiService.apiGetRequest(MomentTypeList)
+  getprofircenterData() {
+    const getprofircenterData = String.Join('/', this.apiConfigService.getProfitCentersList);
+    this.apiService.apiGetRequest(getprofircenterData)
       .subscribe(
         response => {
           const res = response.body;
+          console.log(res);
           if (!this.commonService.checkNullOrUndefined(res) && res.status === StatusCodes.pass) {
             if (!this.commonService.checkNullOrUndefined(res.response)) {
-              this.movementList = res.response['movementList'];
-            }
-          }
-          this.getWbselementList();
-        });
-  }
-  getWbselementList() {
-    const getwbselementUrl = String.Join('/', this.apiConfigService.getwbselement);
-    this.apiService.apiGetRequest(getwbselementUrl)
-      .subscribe(
-        response => {
-          const res = response.body;
-          if (!this.commonService.checkNullOrUndefined(res) && res.status === StatusCodes.pass) {
-            if (!this.commonService.checkNullOrUndefined(res.response)) {
-              this.wbsElementList = res.response['wbsList'];
-            }
-          }
-          this.getOrderTypeList();
-        });
-  }
-  getOrderTypeList() {
-    const getOrderTypeUrl = String.Join('/', this.apiConfigService.getordernolist);
-    this.apiService.apiGetRequest(getOrderTypeUrl)
-      .subscribe(
-        response => {
-          const res = response.body;
-          if (!this.commonService.checkNullOrUndefined(res) && res.status === StatusCodes.pass) {
-            if (!this.commonService.checkNullOrUndefined(res.response)) {
-              this.ordertypeList = res.response['ordertypeList'];
+              this.profitCenterList = res.response['profitCenterList'];
             }
           }
           this.getmaterialList();
@@ -286,33 +250,34 @@ export class GoodsissueComponent implements OnInit {
               this.mmasterList = res.response['mmasterList'];
             }
           }
-          this.getreqList();
+          this.getWbselementList();
         });
   }
-  getreqList() {
-    const getreqListUrl = String.Join('/', this.apiConfigService.getreqList);
-    this.apiService.apiGetRequest(getreqListUrl)
+  getWbselementList() {
+    const getwbselementUrl = String.Join('/', this.apiConfigService.getwbselement);
+    this.apiService.apiGetRequest(getwbselementUrl)
       .subscribe(
         response => {
           const res = response.body;
+          console.log(res);
           if (!this.commonService.checkNullOrUndefined(res) && res.status === StatusCodes.pass) {
             if (!this.commonService.checkNullOrUndefined(res.response)) {
-              this.mreqList = res.response['mreqList'];
+              this.wbsElementList = res.response['wbsList'];
             }
           }
-          this.getreqdetailsList();
+          this.getOrderTypeList();
         });
   }
-
-  getreqdetailsList() {
-    const getreqdetailsListUrl = String.Join('/', this.apiConfigService.getreqdetailsList);
-    this.apiService.apiGetRequest(getreqdetailsListUrl)
+  getOrderTypeList() {
+    const getOrderTypeUrl = String.Join('/', this.apiConfigService.getordernolist);
+    this.apiService.apiGetRequest(getOrderTypeUrl)
       .subscribe(
         response => {
           const res = response.body;
+          console.log(res);
           if (!this.commonService.checkNullOrUndefined(res) && res.status === StatusCodes.pass) {
             if (!this.commonService.checkNullOrUndefined(res.response)) {
-              this.mreqdetailsList = res.response['mreqdetailsList'];
+              this.ordertypeList = res.response['ordertypeList'];
             }
           }
           this.getlocationList();
@@ -325,6 +290,7 @@ export class GoodsissueComponent implements OnInit {
       .subscribe(
         response => {
           const res = response.body;
+          console.log(res);
           if (!this.commonService.checkNullOrUndefined(res) && res.status === StatusCodes.pass) {
             if (!this.commonService.checkNullOrUndefined(res.response)) {
               this.locationList = res.response['locationList'];
@@ -361,48 +327,17 @@ export class GoodsissueComponent implements OnInit {
           }
           this.dynTableProps = this.tablePropsFunc();
           if (this.routeEdit != '') {
-            this.getGIDetail(this.routeEdit);
+            this.getMreqDetail(this.routeEdit);
           }
         });
   }
 
   emitColumnChanges(data) {
-    //this.dataChange(data);
-    if (data.column == 'checkAll') {
-      if (data.data[data.index].checkAll.value) {
-        //this.getDiscount(data);
-      }
-      else {
-        data.data[data.index].discount.value = 0;
-        this.addOrEditService.sendDynTableData({ type: 'add', data: data.data });
-      }
-    }
+    this.dataChange(data);
   }
 
   dataChange(row) {
-    //this.addOrEditService.sendDynTableData({ type: 'add', data: row.data });
-  }
-  reqnoselect() {
-    let data = [];
-    let newData = [];
-    if (!this.commonService.checkNullOrUndefined(this.formData.get('requisitionNumber').value)) {
-      data = this.mreqdetailsList.filter(resp => resp.requisitionNumber == this.formData.get('requisitionNumber').value);
-    }
-    if (data.length) {
-      console.log(data, this.tablePropsFunc());
-      data.forEach((res, index) => {
-        newData.push(this.tablePropsFunc().tableData);
-        newData[index].qty.value = res.qty;
-        newData[index].materialCode.value = res.materialCode;
-        newData[index].location.value = res.sotrageLocation;
-        newData[index].joborProject.value = res.joborProject;
-        newData[index].order.value = res.order;
-        newData[index].costCenter.value = res.costCenter;
-        newData[index].wbs.value = res.wbs;
-      })
-    }
-    //
-    this.addOrEditService.sendDynTableData({ type: 'add', data: newData, removeEmptyRow: 0 });
+    this.addOrEditService.sendDynTableData({ type: 'add', data: row.data });
   }
 
   emitTableData(data) {
@@ -411,19 +346,15 @@ export class GoodsissueComponent implements OnInit {
 
 
   back() {
-    this.router.navigate(['dashboard/transaction/goodsissue']);
+    this.router.navigate(['dashboard/transaction/materialrequisition']);
   }
 
-  checkAjectAmount(flag = false) {
-    // let adjustmentAmount = 0;
-    return true;
-  }
   save() {
     if (this.tableData.length == 0) {
       return;
     }
 
-    this.savegoodsissue();
+    this.savemreq();
   }
 
   return() { }
@@ -434,15 +365,15 @@ export class GoodsissueComponent implements OnInit {
     this.addOrEditService.sendDynTableData({ type: 'reset', data: this.tableData });
   }
 
-  savegoodsissue() {
-    const addJournal = String.Join('/', this.apiConfigService.addGoodsissue);
-    const requestObj = { gibHdr: this.formData.value, gibDtl: this.tableData };
+  savemreq() {
+    const addJournal = String.Join('/', this.apiConfigService.addmareq);
+    const requestObj = { mreqHdr: this.formData.value, mreqDtl: this.tableData };
     this.apiService.apiPostRequest(addJournal, requestObj).subscribe(
       response => {
         const res = response.body;
         if (!this.commonService.checkNullOrUndefined(res) && res.status === StatusCodes.pass) {
           if (!this.commonService.checkNullOrUndefined(res.response)) {
-            this.alertService.openSnackBar('GoodsIssue created Successfully..', Static.Close, SnackBar.success);
+            this.alertService.openSnackBar('Material Req created Successfully..', Static.Close, SnackBar.success);
           }
           this.reset();
           this.spinner.hide();

@@ -16,11 +16,13 @@ export class ApiConfigService {
    getComponentInfo = `${this.environment.runtimeConfig.serverUrl}Settings/GetComponentInfo`;
 
    // Common
-  getmomenttypeList = `${this.environment.runtimeConfig.serverUrl}Movementtype/GetMovementtypeList`;
-  getordernolist = `${this.environment.runtimeConfig.serverUrl}OrderType/GetOrderTypeList`;
-  getwbselement = `${this.environment.runtimeConfig.serverUrl}Common/GetWbsList`;
-  getbatchList = `${this.environment.runtimeConfig.serverUrl}BatchMaster/GetBatchMasterList`;
-  getCostUnitListList = `${this.environment.runtimeConfig.serverUrl}CreationOfCostUnits/GetCreationOfCostUnitsList`;
+   getreqdetailsList = `${this.environment.runtimeConfig.serverUrl}Common/GetMaterialreqDetailsList`;
+   getreqList = `${this.environment.runtimeConfig.serverUrl}Common/GetMaterialreqList`;
+   getmomenttypeList = `${this.environment.runtimeConfig.serverUrl}Movementtype/GetMovementtypeList`;
+   getordernolist = `${this.environment.runtimeConfig.serverUrl}OrderType/GetOrderTypeList`;
+   getwbselement = `${this.environment.runtimeConfig.serverUrl}Common/GetWbsList`;
+   getbatchList = `${this.environment.runtimeConfig.serverUrl}BatchMaster/GetBatchMasterList`;
+   getCostUnitListList = `${this.environment.runtimeConfig.serverUrl}CreationOfCostUnits/GetCreationOfCostUnitsList`;
    getcostnumberseriesList = `${this.environment.runtimeConfig.serverUrl}Common/GetCostingNumberSeriesList`;
    getcostofobjectList = `${this.environment.runtimeConfig.serverUrl}Common/GetCostingObjectTypeList`;
    getsecondelementList = `${this.environment.runtimeConfig.serverUrl}Common/GetCostingSecondaryList`;
@@ -32,7 +34,7 @@ export class ApiConfigService {
    getModelPatternList = `${this.environment.runtimeConfig.serverUrl}ModelPattern/GetModelPatternList`;
    getmsizeList = `${this.environment.runtimeConfig.serverUrl}MaterialSize/GetMaterialSizeList`;
    getmaterialgroupList = `${this.environment.runtimeConfig.serverUrl}MaterialGroups/GetMaterialGroupsList`;
-  getMaterialList = `${this.environment.runtimeConfig.serverUrl}Common/GetMaterialList`;
+   getMaterialList = `${this.environment.runtimeConfig.serverUrl}Common/GetMaterialList`;
    getStList = `${this.environment.runtimeConfig.serverUrl}StorageLocation/GetStorageLocation`;
    getpurchaseOrderTypeList = `${this.environment.runtimeConfig.serverUrl}Purchaseordertype/GetPurchaseordertypeList`;
    getPurchaseorderNumberList = `${this.environment.runtimeConfig.serverUrl}PurchaseOrderNumberRange/GetPurchaseOrderNumberRangeList`;
@@ -147,7 +149,7 @@ export class ApiConfigService {
    getMenuList = `${this.environment.runtimeConfig.serverUrl}Auth/getMenuList`;
    giveAccess = `${this.environment.runtimeConfig.serverUrl}Auth/GiveAccess`;
    getMenuUrl = `${this.environment.runtimeConfig.serverUrl}Auth/getMenu`;
-  getrolelist = `${this.environment.runtimeConfig.serverUrl}masters/UserCreation/GetRoleList`;
+   getrolelist = `${this.environment.runtimeConfig.serverUrl}masters/UserCreation/GetRoleList`;
 
 
 
@@ -182,19 +184,25 @@ export class ApiConfigService {
    /******************************* Payment Receipts ****************************************************** */
    getPaymentsReceiptsDetail = `${this.environment.runtimeConfig.serverUrl}Transactions/GetPaymentsReceiptsDetail`;
    addPaymentsReceipts = `${this.environment.runtimeConfig.serverUrl}Transactions/AddPaymentsReceipts`;
-  getPaymentsreceiptsMaster = `${this.environment.runtimeConfig.serverUrl}Transactions/GetPaymentsReceiptsMaster`;
+   getPaymentsreceiptsMaster = `${this.environment.runtimeConfig.serverUrl}Transactions/GetPaymentsReceiptsMaster`;
 
-  /*******************************BOM ****************************************************** */
-  addBOM = `${this.environment.runtimeConfig.serverUrl}BillOfMaterial/AddBOM`;
-  getBOMDetail = `${this.environment.runtimeConfig.serverUrl}BillOfMaterial/GetBomDetail`;
-  getBOMMaster = `${this.environment.runtimeConfig.serverUrl}BillOfMaterial/GetBOMMasters`;
-  getBOMNumber = `${this.environment.runtimeConfig.serverUrl}BillOfMaterial/GetVoucherNumber`;
-  returnBOM = `${this.environment.runtimeConfig.serverUrl}BillOfMaterial/ReturnCashBank`;
+   /*******************************BOM ****************************************************** */
+   addBOM = `${this.environment.runtimeConfig.serverUrl}BillOfMaterial/AddBOM`;
+   getBOMDetail = `${this.environment.runtimeConfig.serverUrl}BillOfMaterial/GetBomDetail`;
+   getBOMMaster = `${this.environment.runtimeConfig.serverUrl}BillOfMaterial/GetBOMMasters`;
+   getBOMNumber = `${this.environment.runtimeConfig.serverUrl}BillOfMaterial/GetVoucherNumber`;
+   returnBOM = `${this.environment.runtimeConfig.serverUrl}BillOfMaterial/ReturnCashBank`;
 
-  /*******************************BOM ****************************************************** */
-  addGoodsissue = `${this.environment.runtimeConfig.serverUrl}Transactions/AddGoodsissue`;
-  getGoodsissueDetail = `${this.environment.runtimeConfig.serverUrl}Transactions/GetGoodsissueDetail`;
-  getGoodsissueMaster = `${this.environment.runtimeConfig.serverUrl}Transactions/GetGoodsissue`;
-  returnGoodsissue = `${this.environment.runtimeConfig.serverUrl}Transactions/ReturnGoodsissue`;
+   /*******************************Goods Issue ****************************************************** */
+   addGoodsissue = `${this.environment.runtimeConfig.serverUrl}Transactions/AddGoodsissue`;
+   getGoodsissueDetail = `${this.environment.runtimeConfig.serverUrl}Transactions/GetGoodsissueDetail`;
+   getGoodsissueMaster = `${this.environment.runtimeConfig.serverUrl}Transactions/GetGoodsissue`;
+   returnGoodsissue = `${this.environment.runtimeConfig.serverUrl}Transactions/ReturnGoodsissue`;
+
+   /*******************************Material Requisition ****************************************************** */
+   addmareq = `${this.environment.runtimeConfig.serverUrl}Transactions/AddMaterialRequisition`;
+   getmreqDetail = `${this.environment.runtimeConfig.serverUrl}Transactions/GetMaterialRequisitionDetail`;
+   getmreqMaster = `${this.environment.runtimeConfig.serverUrl}Transactions/GetMaterialRequisition`;
+   returnmreq = `${this.environment.runtimeConfig.serverUrl}Transactions/ReturnMaterialRequisition`;
 
 }

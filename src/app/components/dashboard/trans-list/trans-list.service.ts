@@ -9,7 +9,7 @@ import { SaleassetComponent } from './saleasset/saleasset.component';
 import { NotFoundComponent } from '../../not-found/not-found.component';
 import { BillOfMaterialComponent } from './bom/bom.component'
 import { GoodsissueComponent } from './goodsissue/goodsissue.component'
-
+import { MaterialrequisitionComponents } from './materialrequisition/materialrequisition.component'
 @Injectable({
   providedIn: 'root'
 })
@@ -84,6 +84,14 @@ export class TransListService {
         this.dynamicComp.tableUrl = this.apiConfigService.getGoodsissueMaster;
         this.dynamicComp.list = 'Goodsissue';
         this.dynamicComp.editKey = 'goodsIssueId';
+        return this.dynamicComp;
+        break;
+      }
+      case 'materialrequisition': {
+        this.dynamicComp.component = MaterialrequisitionComponents;
+        this.dynamicComp.tableUrl = this.apiConfigService.getmreqMaster;
+        this.dynamicComp.list = 'materialreq';
+        this.dynamicComp.editKey = 'requisitionNmber';
         return this.dynamicComp;
         break;
       }

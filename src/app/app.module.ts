@@ -5,27 +5,27 @@ import { AppComponent } from './app.component';
 
 import { SharedImportModule } from './shared/shared-import';
 
-import { 
-  CompListComponent, CompanyComponent, BranchesComponent ,CostCenterComponent,LanguageComponent,CurrencyComponent,CountryComponent,RegionComponent,StateComponent,UOMComponent,
-  SegmentComponent,ProfitCenterComponent,DivisionComponent,FunctionalDepartmentComponent,PlantsComponent,LocationsComponent,SalesDepartmentComponent,DistributionchannelsComponent,
-  SalesofficeComponent,SalesGroupComponent,MaintenceAreaComponent,PurchaseDepartmentComponent,StorageLocationsComponent,ErpUsersComponent,LedgerComponent,
-  OpenLedgerComponent,VoucherClassComponent,VoucherTypesComponent,VoucherSeriesComponents,AssignmentVoucherSeriestoVoucherTypesComponent,TaxRatesComponents,TaxTransactionComponent,
-  TaxIntegrationComponent, AssignmentoftaxaccountstotaxcodesComponent, HsnSacComponent, TDSComponent,IncomeTypeComponent,TdsRatesComponent,PostingComponent,AccountsGroupComponent,
+import {
+  CompListComponent, CompanyComponent, BranchesComponent, CostCenterComponent, LanguageComponent, CurrencyComponent, CountryComponent, RegionComponent, StateComponent, UOMComponent,
+  SegmentComponent, ProfitCenterComponent, DivisionComponent, FunctionalDepartmentComponent, PlantsComponent, LocationsComponent, SalesDepartmentComponent, DistributionchannelsComponent,
+  SalesofficeComponent, SalesGroupComponent, MaintenceAreaComponent, PurchaseDepartmentComponent, StorageLocationsComponent, ErpUsersComponent, LedgerComponent,
+  OpenLedgerComponent, VoucherClassComponent, VoucherTypesComponent, VoucherSeriesComponents, AssignmentVoucherSeriestoVoucherTypesComponent, TaxRatesComponents, TaxTransactionComponent,
+  TaxIntegrationComponent, AssignmentoftaxaccountstotaxcodesComponent, HsnSacComponent, TDSComponent, IncomeTypeComponent, TdsRatesComponent, PostingComponent, AccountsGroupComponent,
   UndersubGroupComponent, AccountchartComponent, AssignmentChartAccounttoCompanyComponent, PartnerTypesComponent, BusienessPartnerGroupsComponent, NumberRangeComponent, AssignmentComponent,
   AssetClassComponent, AccountKeyComponent, PaymentTermsComponent, AlternateControlAccountComponent, DepreciationareasComponent, AssetBlockComponent, AssetNumberRangeComponent, AseetClassToAssetBlockComponent,
-  AssetTransactionTypeComponent, StoresTypeComponent,AssignmentAccountKeytoAssetClassComponent,BankMasterComponent
+  AssetTransactionTypeComponent, StoresTypeComponent, AssignmentAccountKeytoAssetClassComponent, BankMasterComponent
   , DepreciationcodeComponent, GLAccountComponent, BusienessPartnerAccountComponent, MainAssetMasterComponent, SubAssetsComponent, RequisitionAssignmentComponent,
-  
-  AssignGLaccounttoSubGroupComponent, GLSubAccountComponent, PurchasinggroupsComponent,PurchasingtypeComponent,
+
+  AssignGLaccounttoSubGroupComponent, GLSubAccountComponent, PurchasinggroupsComponent, PurchasingtypeComponent,
   PurchasingpersonComponent, RequisitionNumberRangeComponent, PurchaseordertypeComponent,
   QuotationNumberRangeComponent, QuotationAssignmentComponent, PurchaseOrderAssignmentComponent, SupplierTermsandconditionsComponent,
   BusienessTransactionTypeComponent, AssetBegningAccumulatedDepreciationComponent,
   AssetBegningAcqusitionComponent, PurchaseOrderNumberRangeComponent, GoodsReceiptNoteNumberSeriesComponent,
   RejectionReasonsComponent, MovementtypeComponent, LotSeriesComponent, StoresAssignmentComponent,
-  GoodsReceiptNoteAssignmentComponent, MaterialTypesComponent, MaterialGroupsComponent, 
+  GoodsReceiptNoteAssignmentComponent, MaterialTypesComponent, MaterialGroupsComponent,
   MaterialRequisitionNoteAssignmentComponent, MaterialRequisitionNoteNumberSeriesComponent,
   GoodsIssueNoteAssignmentComponent, GoodsIssueNoteNumberSeriesComponent, BinsCreationComponent, PurchaseRequisitionNumberRangeComponent,
-  ModelPatternComponent, MaterialNumberRangeComponent , MaterialNumberAsssignmentComponent, ProcessComponent,
+  ModelPatternComponent, MaterialNumberRangeComponent, MaterialNumberAsssignmentComponent, ProcessComponent,
   MaterialSizeComponent, MaterialMasterComponent, PrimaryCostElementsCreationComponent, CreationOfCostUnitsComponent, BatchMasterComponent, OrderTypeComponent,
   SecondaryCostElementsCreationComponent, CoastingActivitiesComponent,
   CostingKeyFiguresComponent, WorkCenterCreationComponent,
@@ -36,11 +36,11 @@ import {
 } from './components/dashboard/comp-list/index';
 
 import {
-  CashbankComponent, JournalComponent,GoodsissueComponent, MemoinvoiceComponent,
-  ReceiptspaymentsComponent, BillOfMaterialComponent, PurchasesaleassetComponent, SaleassetComponent
+  CashbankComponent, JournalComponent, GoodsissueComponent, MemoinvoiceComponent,
+  ReceiptspaymentsComponent, BillOfMaterialComponent, MaterialrequisitionComponents, PurchasesaleassetComponent, SaleassetComponent
 } from './components/dashboard/trans-list/index';
 
-import { NavbarComponent, TableComponent, DeleteItemComponent, SearchFilterTableComponent , TransTableComponent, DynamicTableComponent, AutocompleteComponent } from './reuse-components/index';
+import { NavbarComponent, TableComponent, DeleteItemComponent, SearchFilterTableComponent, TransTableComponent, DynamicTableComponent, AutocompleteComponent } from './reuse-components/index';
 import {
   DashboardComponent, LoginComponent, SidebarComponent, NotFoundComponent
 } from './components/index';
@@ -62,7 +62,7 @@ import { NgxDaterangepickerMd } from 'ngx-daterangepicker-material';
 
 import { TokenInterceptor } from './token-interceptor';
 import { HTTP_INTERCEPTORS } from '@angular/common/http';
-  import { from } from 'rxjs';
+import { from } from 'rxjs';
 import { MaxlengthDirective } from './directives/maxlength.directive';
 //import { AccountKeyComponent } from './components/dashboard/comp-list/assetblock/accountkey/accountkey.component';
 // AoT requires an exported function for factories
@@ -82,23 +82,23 @@ export function HttpLoaderFactory(httpClient: HttpClient) {
     // component
 
     // component list
-    BranchesComponent,CostCenterComponent,LanguageComponent,CurrencyComponent,CountryComponent,RegionComponent,StateComponent,UOMComponent,
-    SegmentComponent,ProfitCenterComponent,DivisionComponent,FunctionalDepartmentComponent,PlantsComponent,LocationsComponent,SalesDepartmentComponent,
-    DistributionchannelsComponent,SalesofficeComponent,SalesGroupComponent,MaintenceAreaComponent,PurchaseDepartmentComponent,StorageLocationsComponent,
-    ErpUsersComponent,RolesprevilagesComponent,LedgerComponent,OpenLedgerComponent,VoucherClassComponent,VoucherTypesComponent,VoucherSeriesComponents,
-    AssignmentVoucherSeriestoVoucherTypesComponent,TaxRatesComponents,TaxTransactionComponent,TaxIntegrationComponent,AssignmentoftaxaccountstotaxcodesComponent,
-    HsnSacComponent,TDSComponent,IncomeTypeComponent,TdsRatesComponent,PostingComponent,AccountsGroupComponent,UndersubGroupComponent,AssignmentComponent,
-    AccountchartComponent,CompanyComponent,PartnerTypesComponent,  NumberRangeComponent,BusienessPartnerGroupsComponent ,PaymentTermsComponent,
-    AssetClassComponent,AccountKeyComponent,AlternateControlAccountComponent,DepreciationareasComponent,AssetBlockComponent,AssetNumberRangeComponent
-    
-    , AseetClassToAssetBlockComponent, AssetTransactionTypeComponent, StoresTypeComponent,PurchasingtypeComponent,
-    AssignmentAccountKeytoAssetClassComponent,BankMasterComponent,DepreciationcodeComponent,GLAccountComponent,BusienessPartnerAccountComponent,MainAssetMasterComponent,SubAssetsComponent,
+    BranchesComponent, CostCenterComponent, LanguageComponent, CurrencyComponent, CountryComponent, RegionComponent, StateComponent, UOMComponent,
+    SegmentComponent, ProfitCenterComponent, DivisionComponent, FunctionalDepartmentComponent, PlantsComponent, LocationsComponent, SalesDepartmentComponent,
+    DistributionchannelsComponent, SalesofficeComponent, SalesGroupComponent, MaintenceAreaComponent, PurchaseDepartmentComponent, StorageLocationsComponent,
+    ErpUsersComponent, RolesprevilagesComponent, LedgerComponent, OpenLedgerComponent, VoucherClassComponent, VoucherTypesComponent, VoucherSeriesComponents,
+    AssignmentVoucherSeriestoVoucherTypesComponent, TaxRatesComponents, TaxTransactionComponent, TaxIntegrationComponent, AssignmentoftaxaccountstotaxcodesComponent,
+    HsnSacComponent, TDSComponent, IncomeTypeComponent, TdsRatesComponent, PostingComponent, AccountsGroupComponent, UndersubGroupComponent, AssignmentComponent,
+    AccountchartComponent, CompanyComponent, PartnerTypesComponent, NumberRangeComponent, BusienessPartnerGroupsComponent, PaymentTermsComponent,
+    AssetClassComponent, AccountKeyComponent, AlternateControlAccountComponent, DepreciationareasComponent, AssetBlockComponent, AssetNumberRangeComponent
+
+    , AseetClassToAssetBlockComponent, AssetTransactionTypeComponent, StoresTypeComponent, PurchasingtypeComponent,
+    AssignmentAccountKeytoAssetClassComponent, BankMasterComponent, DepreciationcodeComponent, GLAccountComponent, BusienessPartnerAccountComponent, MainAssetMasterComponent, SubAssetsComponent,
     AssignGLaccounttoSubGroupComponent, GLSubAccountComponent, PurchasinggroupsComponent, PurchasingpersonComponent, RequisitionAssignmentComponent, RequisitionNumberRangeComponent, PurchaseordertypeComponent, SupplierTermsandconditionsComponent,
     PurchaseOrderNumberRangeComponent, RejectionReasonsComponent, MovementtypeComponent, LotSeriesComponent,
     StoresAssignmentComponent, GoodsReceiptNoteNumberSeriesComponent, GoodsReceiptNoteAssignmentComponent, MaterialTypesComponent, MaterialGroupsComponent, MaterialRequisitionNoteAssignmentComponent, MaterialRequisitionNoteNumberSeriesComponent, GoodsIssueNoteAssignmentComponent,
     GoodsIssueNoteNumberSeriesComponent, BinsCreationComponent, PurchaseRequisitionNumberRangeComponent, BatchMasterComponent, OrderTypeComponent, ProcessComponent, PrimaryCostElementsCreationComponent, CreationOfCostUnitsComponent, CreationOfCostUnitsComponent, BatchMasterComponent, OrderTypeComponent, ProcessComponent, PrimaryCostElementsCreationComponent, CostingKeyFiguresComponent, CostingKeyFiguresComponent, CostingObjectTypesComponent,
-    CostingObjectNumberSeriesComponent, StandardRateComponent, WorkCenterCreationComponent, RoutingFileComponent, TasksComponent, FormulasComponent, FundCenterComponent, CommitmentItemComponent, WorkBreakDownStructureComponent, CostingObjectTypesComponent, DownTimeReasonComponent, FundCenterComponent, DownTimeReasonComponent, WorkBreakDownStructureComponent, CommitmentItemComponent, RoutingFileComponent, TasksComponent, FormulasComponent, WorkCenterCreationComponent, StandardRateComponent, CostingObjectNumberSeriesComponent, AssignmentOfNumberSeriesToObjectTypesComponent, CoastingActivitiesComponent, AssignmentOfNumberSeriesToObjectTypesComponent, CoastingActivitiesComponent, SecondaryCostElementsCreationComponent, SecondaryCostElementsCreationComponent, MaterialMasterComponent, MaterialMasterComponent, MaterialSizeComponent, MaterialSizeComponent, MaterialNumberAsssignmentComponent,
-    ModelPatternComponent,MaterialNumberRangeComponent,QuotationNumberRangeComponent, PurchaseOrderAssignmentComponent, QuotationAssignmentComponent, BusienessTransactionTypeComponent, AssetBegningAccumulatedDepreciationComponent, AssetBegningAcqusitionComponent,
+    CostingObjectNumberSeriesComponent, StandardRateComponent, WorkCenterCreationComponent, RoutingFileComponent, TasksComponent, FormulasComponent, FundCenterComponent, CommitmentItemComponent, WorkBreakDownStructureComponent, CostingObjectTypesComponent, DownTimeReasonComponent, FundCenterComponent, DownTimeReasonComponent, WorkBreakDownStructureComponent, CommitmentItemComponent, RoutingFileComponent, FormulasComponent, WorkCenterCreationComponent, StandardRateComponent, CostingObjectNumberSeriesComponent, AssignmentOfNumberSeriesToObjectTypesComponent, CoastingActivitiesComponent, AssignmentOfNumberSeriesToObjectTypesComponent, CoastingActivitiesComponent, SecondaryCostElementsCreationComponent, SecondaryCostElementsCreationComponent, MaterialMasterComponent, MaterialMasterComponent, MaterialSizeComponent, MaterialSizeComponent, MaterialNumberAsssignmentComponent,
+    ModelPatternComponent, MaterialNumberRangeComponent, QuotationNumberRangeComponent, PurchaseOrderAssignmentComponent, QuotationAssignmentComponent, BusienessTransactionTypeComponent, AssetBegningAccumulatedDepreciationComponent, AssetBegningAcqusitionComponent,
     CompTabsComponent,
     TransListComponent,
     TransTableComponent,
@@ -111,22 +111,22 @@ export function HttpLoaderFactory(httpClient: HttpClient) {
     LoginComponent,
     SidebarComponent,
     NotFoundComponent,
-    TableComponent, DeleteItemComponent, TaxIntegrationComponent,AssignmentoftaxaccountstotaxcodesComponent,
-    HsnSacComponent, TDSComponent,IncomeTypeComponent,TdsRatesComponent,PostingComponent,AccountsGroupComponent,UndersubGroupComponent,
-    AccountchartComponent,AssignmentChartAccounttoCompanyComponent,PartnerTypesComponent, BusienessPartnerGroupsComponent,NumberRangeComponent,AseetClassToAssetBlockComponent, 
-    AssignmentComponent,AssetClassComponent,AccountKeyComponent,PaymentTermsComponent,AlternateControlAccountComponent,DepreciationareasComponent,AssetBlockComponent,
+    TableComponent, DeleteItemComponent, TaxIntegrationComponent, AssignmentoftaxaccountstotaxcodesComponent,
+    HsnSacComponent, TDSComponent, IncomeTypeComponent, TdsRatesComponent, PostingComponent, AccountsGroupComponent, UndersubGroupComponent,
+    AccountchartComponent, AssignmentChartAccounttoCompanyComponent, PartnerTypesComponent, BusienessPartnerGroupsComponent, NumberRangeComponent, AseetClassToAssetBlockComponent,
+    AssignmentComponent, AssetClassComponent, AccountKeyComponent, PaymentTermsComponent, AlternateControlAccountComponent, DepreciationareasComponent, AssetBlockComponent,
     AssetNumberRangeComponent, AssetTransactionTypeComponent, StoresTypeComponent, AssignmentAccountKeytoAssetClassComponent,
     BankMasterComponent, DepreciationcodeComponent, GLAccountComponent, GLSubAccountComponent, PurchasinggroupsComponent, PurchasingpersonComponent, RequisitionAssignmentComponent, RequisitionNumberRangeComponent, PurchaseordertypeComponent, SupplierTermsandconditionsComponent,
     PurchaseOrderNumberRangeComponent, RejectionReasonsComponent, MovementtypeComponent, LotSeriesComponent,
     StoresAssignmentComponent, QuotationNumberRangeComponent, GoodsReceiptNoteNumberSeriesComponent, GoodsReceiptNoteAssignmentComponent, MaterialTypesComponent, MaterialGroupsComponent, MaterialRequisitionNoteAssignmentComponent, MaterialRequisitionNoteNumberSeriesComponent, GoodsIssueNoteAssignmentComponent, MaterialNumberRangeComponent, ModelPatternComponent,
     GoodsIssueNoteNumberSeriesComponent, BinsCreationComponent, PurchaseRequisitionNumberRangeComponent, MaterialNumberRangeComponent, MaterialNumberAsssignmentComponent,
     PurchaseOrderAssignmentComponent, QuotationAssignmentComponent, BusienessTransactionTypeComponent, AssetBegningAccumulatedDepreciationComponent, AssetBegningAcqusitionComponent,
-    BusienessPartnerAccountComponent,AssignGLaccounttoSubGroupComponent,MainAssetMasterComponent,SubAssetsComponent,
-    DynamicTableComponent, AutocompleteComponent, CashbankComponent, JournalComponent, GoodsissueComponent, MemoinvoiceComponent, ReceiptspaymentsComponent, BillOfMaterialComponent, MaxlengthDirective,PurchasesaleassetComponent,
+    BusienessPartnerAccountComponent, AssignGLaccounttoSubGroupComponent, MainAssetMasterComponent, SubAssetsComponent,
+    DynamicTableComponent, AutocompleteComponent, CashbankComponent, JournalComponent, MaterialRequisitionNoteAssignmentComponent, GoodsissueComponent, MemoinvoiceComponent, ReceiptspaymentsComponent, MaterialrequisitionComponents, BillOfMaterialComponent, MaxlengthDirective, PurchasesaleassetComponent,
     SaleassetComponent, RoutingFileComponent
     //LeaveopeningbalanceComponent,
     //selfserviceComponent,
-    
+
   ],
   imports: [
     AppRoutingModule,
@@ -161,17 +161,17 @@ export function HttpLoaderFactory(httpClient: HttpClient) {
     // component
 
     // component list
-    BranchesComponent,CostCenterComponent,LanguageComponent,CurrencyComponent,CountryComponent,RegionComponent,StateComponent,UOMComponent,
-    SegmentComponent,ProfitCenterComponent,DivisionComponent,FunctionalDepartmentComponent,PlantsComponent,LocationsComponent,SalesDepartmentComponent,
-    DistributionchannelsComponent,SalesofficeComponent,SalesGroupComponent,MaintenceAreaComponent,PurchaseDepartmentComponent,StorageLocationsComponent,
-    ErpUsersComponent,RolesprevilagesComponent,LedgerComponent,OpenLedgerComponent,VoucherClassComponent,VoucherTypesComponent,VoucherSeriesComponents,
-    AssignmentVoucherSeriestoVoucherTypesComponent,TaxRatesComponents,TaxTransactionComponent,TaxIntegrationComponent,
+    BranchesComponent, CostCenterComponent, LanguageComponent, CurrencyComponent, CountryComponent, RegionComponent, StateComponent, UOMComponent,
+    SegmentComponent, ProfitCenterComponent, DivisionComponent, FunctionalDepartmentComponent, PlantsComponent, LocationsComponent, SalesDepartmentComponent,
+    DistributionchannelsComponent, SalesofficeComponent, SalesGroupComponent, MaintenceAreaComponent, PurchaseDepartmentComponent, StorageLocationsComponent,
+    ErpUsersComponent, RolesprevilagesComponent, LedgerComponent, OpenLedgerComponent, VoucherClassComponent, VoucherTypesComponent, VoucherSeriesComponents,
+    AssignmentVoucherSeriestoVoucherTypesComponent, TaxRatesComponents, TaxTransactionComponent, TaxIntegrationComponent,
 
-     UndersubGroupComponent, TaxIntegrationComponent,
-    DeleteItemComponent, 
-    CompanyComponent, 
-   // LeaveopeningbalanceComponent,
-   
+    UndersubGroupComponent, TaxIntegrationComponent,
+    DeleteItemComponent,
+    CompanyComponent
+    // LeaveopeningbalanceComponent,
+
     // MemberMasterComponent, VehicleComponent
   ]
 })
