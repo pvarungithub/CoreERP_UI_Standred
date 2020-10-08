@@ -64,6 +64,8 @@ import { TokenInterceptor } from './token-interceptor';
 import { HTTP_INTERCEPTORS } from '@angular/common/http';
 import { from } from 'rxjs';
 import { MaxlengthDirective } from './directives/maxlength.directive';
+import { NonEditableDatepicker } from './directives/format-datepicker';
+
 //import { AccountKeyComponent } from './components/dashboard/comp-list/assetblock/accountkey/accountkey.component';
 // AoT requires an exported function for factories
 export function HttpLoaderFactory(httpClient: HttpClient) {
@@ -123,7 +125,7 @@ export function HttpLoaderFactory(httpClient: HttpClient) {
     PurchaseOrderAssignmentComponent, QuotationAssignmentComponent, BusienessTransactionTypeComponent, AssetBegningAccumulatedDepreciationComponent, AssetBegningAcqusitionComponent,
     BusienessPartnerAccountComponent, AssignGLaccounttoSubGroupComponent, MainAssetMasterComponent, SubAssetsComponent,
     DynamicTableComponent, AutocompleteComponent, CashbankComponent, JournalComponent, MaterialRequisitionNoteAssignmentComponent, GoodsissueComponent, MemoinvoiceComponent, ReceiptspaymentsComponent, MaterialrequisitionComponents, BillOfMaterialComponent, MaxlengthDirective, PurchasesaleassetComponent,
-    SaleassetComponent, RoutingFileComponent
+    SaleassetComponent, RoutingFileComponent, NonEditableDatepicker
     //LeaveopeningbalanceComponent,
     //selfserviceComponent,
 

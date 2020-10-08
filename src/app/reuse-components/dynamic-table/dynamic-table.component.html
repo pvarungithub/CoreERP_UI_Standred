@@ -15,7 +15,6 @@
         <input *ngSwitchCase="'autoInc'" matInput [disabled]="element[column].disabled"
           [value]="dataSource.filteredData.indexOf(element) + 1" />
 
-
         <mat-checkbox *ngSwitchCase="'checkbox'" [ngStyle]="{'width': element[column].width + 'px'}"
           id="{{column}}{{dataSource.filteredData.indexOf(element)}}" [disabled]="element[column].disabled"
           [value]="element[column].value" [(ngModel)]="element[column].value"
@@ -62,8 +61,8 @@
 
         <mat-form-field class="form-element" *ngSwitchCase="'datepicker'"
           [ngStyle]="{'width': element[column].width + 'px'}">
-          <input id="{{column}}{{dataSource.filteredData.indexOf(element)}}" matInput [matDatepicker]="picker" readonly
-            (click)="picker.open()" [disabled]="element[column].disabled" [(ngModel)]="element[column].value"
+          <input id="{{column}}{{dataSource.filteredData.indexOf(element)}}" matInput [matDatepicker]="picker"
+            [disabled]="element[column].disabled" [(ngModel)]="element[column].value" [nonEditable]="picker"
             (dateChange)="formControlValid(column, element, element[column].value, dataSource.filteredData.indexOf(element)); setFocus(column, dataSource.filteredData.indexOf(element), element[column].value);">
           <mat-datepicker-toggle matSuffix [for]="picker">
             <mat-icon matDatepickerToggleIcon class="mat--icon">date_range</mat-icon>

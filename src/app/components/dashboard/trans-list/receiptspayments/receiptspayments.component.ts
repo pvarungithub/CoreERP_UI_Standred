@@ -224,8 +224,10 @@ export class ReceiptspaymentsComponent implements OnInit {
               this.formData.setValue(res.response['paymentreceiptMasters']);
               this.addOrEditService.sendDynTableData({ type: 'edit', data: res.response['paymentreceiptDetail'] });
               this.formData.disable();
-              this.accountSelect();
-              this.onbpChange();
+              if (this.routeEdit == '') {
+                this.accountSelect();
+                this.onbpChange();
+              }
             }
           }
         });
@@ -240,9 +242,11 @@ export class ReceiptspaymentsComponent implements OnInit {
           if (!this.commonService.checkNullOrUndefined(res) && res.status === StatusCodes.pass) {
             if (!this.commonService.checkNullOrUndefined(res.response)) {
               this.companyList = res.response['companiesList'];
-              this.formData.patchValue({
-                company: this.companyList.length ? this.companyList[0].id : null
-              })
+              if (this.routeEdit == '') {
+                this.formData.patchValue({
+                  company: this.companyList.length ? this.companyList[0].id : null
+                })
+              }
             }
           }
           this.getBranchList();
@@ -258,9 +262,11 @@ export class ReceiptspaymentsComponent implements OnInit {
           if (!this.commonService.checkNullOrUndefined(res) && res.status === StatusCodes.pass) {
             if (!this.commonService.checkNullOrUndefined(res.response)) {
               this.branchList = res.response['branchsList'];
-              this.formData.patchValue({
-                branch: this.branchList.length ? this.branchList[0].id : null
-              })
+              if (this.routeEdit == '') {
+                this.formData.patchValue({
+                  branch: this.branchList.length ? this.branchList[0].id : null
+                })
+              }
             }
           }
           this.getTransVoucherClassList();
@@ -291,9 +297,11 @@ export class ReceiptspaymentsComponent implements OnInit {
           if (!this.commonService.checkNullOrUndefined(res) && res.status === StatusCodes.pass) {
             if (!this.commonService.checkNullOrUndefined(res.response)) {
               this.voucherTypeList = res.response['vouchertypeList'];
-              this.formData.patchValue({
-                voucherType: this.voucherTypeList.length ? this.voucherTypeList[0].voucherTypeId : null
-              })
+              if (this.routeEdit == '') {
+                this.formData.patchValue({
+                  voucherType: this.voucherTypeList.length ? this.voucherTypeList[0].voucherTypeId : null
+                })
+              }
             }
           }
           this.getGLAccountsList();
@@ -425,10 +433,12 @@ export class ReceiptspaymentsComponent implements OnInit {
           if (!this.commonService.checkNullOrUndefined(res) && res.status === StatusCodes.pass) {
             if (!this.commonService.checkNullOrUndefined(res.response)) {
               this.bpTypeList = res.response['ptypeList'];
-              this.formData.patchValue({
-                bpcategory: this.bpTypeList.length ? this.bpTypeList[0].code : null
-              })
-              this.onbpChange();
+              if (this.routeEdit == '') {
+                this.formData.patchValue({
+                  bpcategory: this.bpTypeList.length ? this.bpTypeList[0].code : null
+                })
+                this.onbpChange();
+              }
             }
           }
           this.getCostcenters();
@@ -549,9 +559,6 @@ export class ReceiptspaymentsComponent implements OnInit {
               row.data[row.index].discount.value = res.response['discount']
               this.addOrEditService.sendDynTableData({ type: 'add', data: row.data });
             }
-          }
-          if (this.routeEdit != '') {
-            this.getreceiptpaymentDetail(this.routeEdit);
           }
         });
   }

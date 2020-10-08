@@ -60,7 +60,6 @@ export class CashbankComponent implements OnInit {
     public route: ActivatedRoute,
     private router: Router
   ) {
-    console.log(this.commonService)
     if (!this.commonService.checkNullOrUndefined(this.route.snapshot.params.value)) {
       this.routeEdit = this.route.snapshot.params.value;
     }

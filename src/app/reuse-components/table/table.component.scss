@@ -73,4 +73,6 @@
   width: 20rem;
 }
 
-
+::ng-deep .mat-pseudo-checkbox {
+  display: none !important; 
+}

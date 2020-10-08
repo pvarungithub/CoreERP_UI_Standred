@@ -42,7 +42,8 @@ export class LoginComponent implements OnInit {
   ngOnInit() {
     this.loginForm = this.formBuilder.group({
       username: ['', Validators.required],
-      password: ['', Validators.required]
+      password: ['', Validators.required],
+      langSelect: ['english', Validators.required]
     });
   }
 
@@ -81,7 +82,7 @@ export class LoginComponent implements OnInit {
   }
 
   getBranchesForUser(obj) {
-    const getBranchesForUserUrl = String.Join('/', this.apiConfigService.getBranchesForUser, obj.seqId );
+    const getBranchesForUserUrl = String.Join('/', this.apiConfigService.getBranchesForUser, obj.seqId);
     this.apiService.apiGetRequest(getBranchesForUserUrl).subscribe(
       response => {
         const res = response.body;
