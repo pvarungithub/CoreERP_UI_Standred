@@ -76,7 +76,7 @@
               <mat-select formControlName="person" appFocusOnEnter tabIndex="7">
                 <mat-option>None</mat-option>
                 <mat-option *ngFor="let emp of empList" [value]="emp.id">
-                  {{emp.text}}
+                  {{emp.id}}-{{emp.text}}
                 </mat-option>
               </mat-select>
             </mat-form-field>
@@ -180,19 +180,19 @@
           <div class="d--flex">
             <mat-form-field class="form-element">
               <input matInput placeholder="{{'workcentercreation.moveTime' | translate }}" formControlName="moveTime"
-                appFocusOnEnter tabIndex="27">
+                appFocusOnEnter tabIndex="27" (change)="calculateTime1()">
             </mat-form-field>
             <mat-form-field class="form-element">
               <input matInput placeholder="{{'workcentercreation.waitTime' | translate }}" formControlName="waitTime"
-                appFocusOnEnter tabIndex="28">
+                appFocusOnEnter tabIndex="28" (change)="calculateTime2()">
             </mat-form-field>
             <mat-form-field class="form-element">
               <input matInput placeholder="{{'workcentercreation.queueTime' | translate }}" formControlName="queueTime"
-                appFocusOnEnter tabIndex="29">
+                appFocusOnEnter tabIndex="29" (change)="calculateTime3()">
             </mat-form-field>
             <mat-form-field class="form-element">
               <input matInput placeholder="{{'workcentercreation.setupTime' | translate }}" formControlName="setupTime"
-                appFocusOnEnter tabIndex="30">
+                appFocusOnEnter tabIndex="30" (change)="calculateTime4()">
             </mat-form-field>
             <mat-form-field class="form-element">
               <input matInput placeholder="{{'workcentercreation.runTimeforEachUnit' | translate }}"
@@ -200,7 +200,7 @@
             </mat-form-field>
             <mat-form-field class="form-element">
               <input matInput placeholder="{{'workcentercreation.leadTime' | translate }}" formControlName="leadTime"
-                appFocusOnEnter tabIndex="32">
+                appFocusOnEnter tabIndex="32" disabled="disabled">
             </mat-form-field>
 
           </div>

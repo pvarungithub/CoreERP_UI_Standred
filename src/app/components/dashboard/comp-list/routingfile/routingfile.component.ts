@@ -3,11 +3,13 @@ import { ApiConfigService } from '../../../../services/api-config.service';
 import { String } from 'typescript-string-operations';
 import { ApiService } from '../../../../services/api.service';
 import { CommonService } from '../../../../services/common.service';
-import { StatusCodes } from '../../../../enums/common/common';
 import { FormGroup, FormBuilder, Validators } from '@angular/forms';
 import { NgxSpinnerService } from 'ngx-spinner';
 import { AddOrEditService } from '../add-or-edit.service';
 import { Router, ActivatedRoute } from '@angular/router';
+import { AlertService } from '../../../../services/alert.service';
+import { StatusCodes, SnackBar } from '../../../../enums/common/common';
+import { Static } from '../../../../enums/common/static';
 @Component({
   selector: 'app-routingfile',
   templateUrl: './routingfile.component.html',
@@ -18,6 +20,7 @@ import { Router, ActivatedRoute } from '@angular/router';
 export class RoutingFileComponent implements OnInit {
 
   modelFormData: FormGroup;
+  routeEdit = '';
   formData: any;
   companyList = [];
   plantList: any;
@@ -36,16 +39,25 @@ export class RoutingFileComponent implements OnInit {
   activityTableData = [];
   materialAssTableData = [];
   equipmentTableData = [];
-
+  formulaList: any;
+  wcList: any;
+  wcLists: any;
+  dynTableroutingTableData: void;
   constructor(
     private addOrEditService: AddOrEditService,
     private apiConfigService: ApiConfigService,
     private apiService: ApiService,
+    private alertService: AlertService,
     private commonService: CommonService,
     private spinner: NgxSpinnerService,
+    public route: ActivatedRoute,
     private router: Router,
     private formBuilder: FormBuilder
-  ) { }
+  ) {
+    if (!this.commonService.checkNullOrUndefined(this.route.snapshot.params.value)) {
+      this.routeEdit = this.route.snapshot.params.value;
+    }
+  }
 
   ngOnInit(): void {
     this.formDataGroup();
@@ -62,7 +74,8 @@ export class RoutingFileComponent implements OnInit {
           value: null, type: 'text', width: 150
         },
         workCenter: {
-          value: null, type: 'text', width: 150
+          value: null, type: 'dropdown', list: this.wcLists, id: 'id', text: 'text',
+          disabled: false, displayMul: true
         },
         baseQuantity: {
           value: null, type: 'text', width: 150
@@ -70,6 +83,7 @@ export class RoutingFileComponent implements OnInit {
         operationUnit: {
           value: null, type: 'text', width: 150
         },
+
         delete: {
           type: 'delete',
           newObject: true
@@ -85,7 +99,8 @@ export class RoutingFileComponent implements OnInit {
     return {
       tableData: {
         workCenter: {
-          value: null, type: 'text', width: 150
+          value: null, type: 'dropdown', list: this.wcList, id: 'id', text: 'text',
+          disabled: false, displayMul: true
         },
         costCenter: {
           value: null, type: 'dropdown', list: this.costCenterList, id: 'code', text: 'costCenterName',
@@ -99,7 +114,8 @@ export class RoutingFileComponent implements OnInit {
           disabled: false, displayMul: true
         },
         formula: {
-          value: null, type: 'text', width: 150
+          value: null, type: 'dropdown', list: this.formulaList, id: 'formulaKey', text: 'description',
+          disabled: false, displayMul: true
         },
         activity: {
           value: null, type: 'toggle', width: 150
@@ -219,7 +235,6 @@ export class RoutingFileComponent implements OnInit {
           this.getplantsList();
         });
   }
-
   getplantsList() {
     const getplantsList = String.Join('/', this.apiConfigService.getPlantsList);
     this.apiService.apiGetRequest(getplantsList)
@@ -241,7 +256,6 @@ export class RoutingFileComponent implements OnInit {
       .subscribe(
         response => {
           const res = response.body;
-          console.log(res);
           if (!this.commonService.checkNullOrUndefined(res) && res.status === StatusCodes.pass) {
             if (!this.commonService.checkNullOrUndefined(res.response)) {
               this.ordertypeList = res.response['ordertypeList'];
@@ -250,7 +264,6 @@ export class RoutingFileComponent implements OnInit {
           this.getcostunitsData();
         });
   }
-
   getcostunitsData() {
     const getsecondelementUrl = String.Join('/', this.apiConfigService.getcostingunitsList);
     this.apiService.apiGetRequest(getsecondelementUrl)
@@ -265,7 +278,6 @@ export class RoutingFileComponent implements OnInit {
           this.getmaterialData();
         });
   }
-
   getmaterialData() {
     const getmaterialUrl = String.Join('/', this.apiConfigService.getMaterialList);
     this.apiService.apiGetRequest(getmaterialUrl)
@@ -287,31 +299,61 @@ export class RoutingFileComponent implements OnInit {
       .subscribe(
         response => {
           const res = response.body;
-          console.log(res);
           if (!this.commonService.checkNullOrUndefined(res) && res.status === StatusCodes.pass) {
             if (!this.commonService.checkNullOrUndefined(res.response)) {
               this.uomList = res.response['UomList'];
             }
           }
-          this.getCostCenterData();
+          this.getWCList();
         });
   }
-
-  getCostCenterData() {
-    const getccUrl = String.Join('/', this.apiConfigService.GetCostCenterList);
-    this.apiService.apiGetRequest(getccUrl)
+  getWCList() {
+    const getWCListurl = String.Join('/', this.apiConfigService.getWCList);
+    this.apiService.apiGetRequest(getWCListurl)
       .subscribe(
         response => {
           const res = response.body;
           console.log(res);
           if (!this.commonService.checkNullOrUndefined(res) && res.status === StatusCodes.pass) {
             if (!this.commonService.checkNullOrUndefined(res.response)) {
+              this.wcList = res.response['wcList'];
+            }
+          }
+          this.getFormulaList();
+        });
+  }
+  getFormulaList() {
+    const getformulaUrl = String.Join('/', this.apiConfigService.getFormulaList);
+    this.apiService.apiGetRequest(getformulaUrl)
+      .subscribe(
+        response => {
+          const res = response.body;
+          if (!this.commonService.checkNullOrUndefined(res) && res.status === StatusCodes.pass) {
+            if (!this.commonService.checkNullOrUndefined(res.response)) {
+              this.formulaList = res.response['formulaList'];
+            }
+          }
+          this.getCostCenterData();
+        });
+  }
+  getCostCenterData() {
+    const getccUrl = String.Join('/', this.apiConfigService.GetCostCenterList);
+    this.apiService.apiGetRequest(getccUrl)
+      .subscribe(
+        response => {
+          const res = response.body;
+          if (!this.commonService.checkNullOrUndefined(res) && res.status === StatusCodes.pass) {
+            if (!this.commonService.checkNullOrUndefined(res.response)) {
               this.costCenterList = res.response['costcenterList'];
             }
+          }
+          if (this.routeEdit != '') {
+            this.getreceiptpaymentDetail(this.routeEdit);
           }
           this.dynTablePropsActivity = this.tablePropsActivityFunc();
           this.dynTablePropsMaterialAss = this.tablePropsMaterialAssFunc();
           this.dynTablePropsToolsEquipment = this.tablePropsToolsEquipmentFunc();
+
           this.spinner.hide();
         });
   }
@@ -326,17 +368,50 @@ export class RoutingFileComponent implements OnInit {
   }
 
   save() {
-    if (this.modelFormData.invalid) {
-      return;
-    }
-    this.formData.item = this.modelFormData.value;
-    this.addOrEditService[this.formData.action](this.formData, (res) => {
-      this.router.navigate(['/dashboard/master/routingfile']);
-    });
-    if (this.formData.action == 'Edit') {
-      this.modelFormData.controls[''].disable();
-    }
+    this.saverouting();
 
+  }
+
+  saverouting() {
+    const addrouting = String.Join('/', this.apiConfigService.addrouting);
+    const requestObj = {
+      routeHdr: this.modelFormData.value, routingDetail: this.routingTableData,
+      activityDetail: this.activityTableData, materialDetail: this.materialAssTableData, equipmentDetail: this.equipmentTableData,
+    };
+    this.apiService.apiPostRequest(addrouting, requestObj).subscribe(
+      response => {
+        const res = response.body;
+        if (!this.commonService.checkNullOrUndefined(res) && res.status === StatusCodes.pass) {
+          if (!this.commonService.checkNullOrUndefined(res.response)) {
+            this.alertService.openSnackBar('Routing File created Successfully..', Static.Close, SnackBar.success);
+          }
+          this.reset();
+          this.spinner.hide();
+        }
+      });
+  }
+
+
+
+  getreceiptpaymentDetail(val) {
+    const cashDetUrl = String.Join('/', this.apiConfigService.getroutingfileDetail, val);
+    this.apiService.apiGetRequest(cashDetUrl)
+      .subscribe(
+        response => {
+          this.spinner.hide();
+          const res = response.body;
+          console.log(res.response['routebasicDetail']);
+          if (!this.commonService.checkNullOrUndefined(res) && res.status === StatusCodes.pass) {
+            if (!this.commonService.checkNullOrUndefined(res.response)) {
+              this.addOrEditService.sendDynTableData({ type: 'edit', data: res.response['routebasicDetail'] });
+              this.addOrEditService.sendDynTableData({ type: 'edit', data: res.response['materialDetail'] });
+              this.addOrEditService.sendDynTableData({ type: 'edit', data: res.response['activityDetail'] });
+              this.addOrEditService.sendDynTableData({ type: 'edit', data: res.response['toolsequpmentDetail'] });
+              this.modelFormData.disable();
+
+            }
+          }
+        });
   }
 
 }

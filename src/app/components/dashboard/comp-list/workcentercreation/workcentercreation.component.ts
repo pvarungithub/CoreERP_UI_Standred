@@ -3,11 +3,13 @@ import { ApiConfigService } from '../../../../services/api-config.service';
 import { String } from 'typescript-string-operations';
 import { ApiService } from '../../../../services/api.service';
 import { CommonService } from '../../../../services/common.service';
-import { StatusCodes } from '../../../../enums/common/common';
 import { FormGroup, FormBuilder, Validators } from '@angular/forms';
 import { NgxSpinnerService } from 'ngx-spinner';
 import { AddOrEditService } from '../add-or-edit.service';
 import { Router, ActivatedRoute } from '@angular/router';
+import { Static } from '../../../../enums/common/static';
+import { AlertService } from '../../../../services/alert.service';
+import { StatusCodes, SnackBar } from '../../../../enums/common/common';
 
 @Component({
   selector: 'app-workcentercreation',
@@ -33,11 +35,13 @@ export class WorkCenterCreationComponent implements OnInit {
 
   activityTableData = [];
   capacityTableData = [];
+  formulaList: any;
 
   constructor(
     private addOrEditService: AddOrEditService,
     private apiConfigService: ApiConfigService,
     private apiService: ApiService,
+    private alertService: AlertService,
     private commonService: CommonService,
     private spinner: NgxSpinnerService,
     private router: Router,
@@ -47,6 +51,7 @@ export class WorkCenterCreationComponent implements OnInit {
   ngOnInit() {
     this.formDataGroup();
     this.getCompanyList();
+    this.modelFormData.controls['leadTime'].disable();
   }
 
   tablePropsActivityFunc() {
@@ -67,7 +72,8 @@ export class WorkCenterCreationComponent implements OnInit {
           disabled: false, displayMul: true
         },
         formula: {
-          value: null, type: 'text', width: 150
+          value: null, type: 'dropdown', list: this.formulaList, id: 'formulaKey', text: 'description',
+          disabled: false, displayMul: true
         },
         delete: {
           type: 'delete',
@@ -226,6 +232,21 @@ export class WorkCenterCreationComponent implements OnInit {
               this.empList = res.response['emplist'];
             }
           }
+          this.getFormulaList();
+        });
+  }
+  getFormulaList() {
+    const getformulaUrl = String.Join('/', this.apiConfigService.getFormulaList);
+    this.apiService.apiGetRequest(getformulaUrl)
+      .subscribe(
+        response => {
+          const res = response.body;
+          console.log(res);
+          if (!this.commonService.checkNullOrUndefined(res) && res.status === StatusCodes.pass) {
+            if (!this.commonService.checkNullOrUndefined(res.response)) {
+              this.formulaList = res.response['formulaList'];
+            }
+          }
           this.getUomTypeData();
         });
   }
@@ -262,6 +283,30 @@ export class WorkCenterCreationComponent implements OnInit {
           this.spinner.hide();
         });
   }
+  calculateTime1() {
+    this.calculateTime();
+  }
+  calculateTime2() {
+    this.calculateTime();
+  }
+  calculateTime3() {
+    this.calculateTime();
+  }
+  calculateTime4() {
+    this.calculateTime();
+  }
+  calculateTime() {
+    let total = 0;
+    let movetime = parseInt(this.modelFormData.get('moveTime').value) ? parseInt(this.modelFormData.get('moveTime').value) : 0;
+    let waittime = parseInt(this.modelFormData.get('waitTime').value) ? parseInt(this.modelFormData.get('waitTime').value) : 0;
+    let setuptime = parseInt(this.modelFormData.get('setupTime').value) ? parseInt(this.modelFormData.get('setupTime').value) : 0;
+    let queuetime = parseInt(this.modelFormData.get('queueTime').value) ? parseInt(this.modelFormData.get('queueTime').value) : 0;
+    total = (movetime + waittime + setuptime + queuetime);
+    this.modelFormData.patchValue({
+      leadTime: total
+    })
+
+  }
 
   reset() {
     this.modelFormData.reset();
@@ -271,16 +316,32 @@ export class WorkCenterCreationComponent implements OnInit {
   }
 
   save() {
-    if (this.modelFormData.invalid) {
-      return;
-    }
-    this.formData.item = this.modelFormData.value;
-    this.addOrEditService[this.formData.action](this.formData, (res) => {
-      this.router.navigate(['/dashboard/master/workcentercreation']);
-    });
-    if (this.formData.action == 'Edit') {
-      this.modelFormData.controls[''].disable();
-    }
+    this.saveWRC();
+    //if (this.modelFormData.invalid) {
+    //  return;
+    //}
+    //this.formData.item = this.modelFormData.value;
+    //this.addOrEditService[this.formData.action](this.formData, (res) => {
+    //  this.router.navigate(['/dashboard/master/workcentercreation']);
+    //});
+    //if (this.formData.action == 'Edit') {
+    //  this.modelFormData.controls[''].disable();
+    //}
+  }
+  saveWRC() {
+    const addCashBank = String.Join('/', this.apiConfigService.addWCr);
+    const requestObj = { mainasstHdr: this.modelFormData.value, mainactvtyDetail: this.activityTableData, mainassetcapacityDetail: this.capacityTableData };
+    this.apiService.apiPostRequest(addCashBank, requestObj).subscribe(
+      response => {
+        const res = response.body;
+        if (!this.commonService.checkNullOrUndefined(res) && res.status === StatusCodes.pass) {
+          if (!this.commonService.checkNullOrUndefined(res.response)) {
+            this.alertService.openSnackBar('Work Center created Successfully..', Static.Close, SnackBar.success);
+          }
+          this.reset();
+          this.spinner.hide();
+        }
+      });
   }
 
 }
