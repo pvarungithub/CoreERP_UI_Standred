@@ -26,7 +26,13 @@ export class WorkCenterCreationComponent implements OnInit {
   usageList = [{ id: 'Routing', text: 'Routing' }, { id: 'Maintenance task list', text: 'Maintenance task list' }, { id: 'Quality inspection', text: 'Quality inspection' }, { id: 'Standard net work', text: 'Standard net work' }]
 
   modelFormData: FormGroup;
-    formData: any;
+  formData: any;
+
+  dynTablePropsActivity: any;
+  dynTablePropsCapacity = this.tablePropsCapacityFunc();
+
+  activityTableData = [];
+  capacityTableData = [];
 
   constructor(
     private addOrEditService: AddOrEditService,
@@ -43,6 +49,86 @@ export class WorkCenterCreationComponent implements OnInit {
     this.getCompanyList();
   }
 
+  tablePropsActivityFunc() {
+    return {
+      tableData: {
+        activity: {
+          value: null, type: 'text', width: 150
+        },
+        description: {
+          value: null, type: 'text', width: 150
+        },
+        uom: {
+          value: null, type: 'dropdown', list: this.uomList, id: 'id', text: 'text',
+          disabled: false, displayMul: true
+        },
+        costCenter: {
+          value: null, type: 'dropdown', list: this.costCenterList, id: 'code', text: 'costCenterName',
+          disabled: false, displayMul: true
+        },
+        formula: {
+          value: null, type: 'text', width: 150
+        },
+        delete: {
+          type: 'delete',
+          newObject: true
+        }
+      },
+      formControl: {
+        activity: [null, [Validators.required]]
+      }
+    }
+  }
+
+  tablePropsCapacityFunc() {
+    return {
+      tableData: {
+        resource: {
+          value: null, type: 'text', width: 150
+        },
+        capacity: {
+          value: null, type: 'text', width: 150
+        },
+        workingHours: {
+          value: null, type: 'text', width: 150
+        },
+        breakTime: {
+          value: null, type: 'text', width: 150
+        },
+        netHours: {
+          value: null, type: 'text', width: 150
+        },
+        shifts: {
+          value: null, type: 'text', width: 150
+        },
+        totalCapacity: {
+          value: null, type: 'text', width: 150
+        },
+        weekDays: {
+          value: null, type: 'text', width: 150
+        },
+        hoursPerWeek: {
+          value: null, type: 'text', width: 150
+        },
+        delete: {
+          type: 'delete',
+          newObject: true
+        }
+      },
+      formControl: {
+        resource: [null, [Validators.required]]
+      }
+    }
+  }
+
+  emitTableActivityData(data) {
+    this.activityTableData = data;
+  }
+
+  emitTableCapacityData(data) {
+    this.capacityTableData = data;
+  }
+
   formDataGroup() {
     this.modelFormData = this.formBuilder.group({
       company: [null, [Validators.required]],
@@ -53,25 +139,13 @@ export class WorkCenterCreationComponent implements OnInit {
       person: [null],
       usage: [null],
       autoPostingOfGoods: [false],
-      activity: [null],
-      description: [null],
-      uom: [null],
-      costCenter: [null],
       formula: [null],
       scheduling: [null],
       costDerivation: [null],
       capacityRequirement: [null],
       goodsReceiptPosting: [null],
       qualityInspection: [null],
-      resource: [null],
-      capacity: [null],
-      workingHours: [null],
-      breakTime: [null],
       netHours: [null],
-      shifts: [null],
-      totalCapacity: [null],
-      weekDays: [null],
-      hoursPerWeek: [null],
       moveTime: [null],
       waitTime: [null],
       queueTime: [null],
@@ -184,12 +258,16 @@ export class WorkCenterCreationComponent implements OnInit {
               this.costCenterList = res.response['costcenterList'];
             }
           }
+          this.dynTablePropsActivity = this.tablePropsActivityFunc();
           this.spinner.hide();
         });
   }
 
-  cancel() {
+  reset() {
     this.modelFormData.reset();
+    this.activityTableData = [];
+    this.capacityTableData = [];
+    this.addOrEditService.sendDynTableData({ type: 'reset', data: [] });
   }
 
   save() {

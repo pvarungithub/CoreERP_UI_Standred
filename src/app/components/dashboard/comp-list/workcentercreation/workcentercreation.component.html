@@ -41,12 +41,12 @@
 
             <mat-form-field class="form-element">
               <input matInput placeholder="{{'workcentercreation.workcenterCode' | translate }}"
-                     formControlName="workcenterCode" appFocusOnEnter tabIndex="4">
+                formControlName="workcenterCode" appFocusOnEnter tabIndex="4">
             </mat-form-field>
 
             <mat-form-field class="form-element">
-              <input matInput placeholder="{{'workcentercreation.name' | translate }}"
-                     formControlName="name" appFocusOnEnter tabIndex="5">
+              <input matInput placeholder="{{'workcentercreation.name' | translate }}" formControlName="name"
+                appFocusOnEnter tabIndex="5">
             </mat-form-field>
 
           </div>
@@ -106,49 +106,10 @@
 
       <mat-tab label="{{'workcentercreation.title3' | translate }}">
 
-        <mat-card-content class="pt-5 p-2 m-0">
+        <mat-card-content class="pt-3">
 
-          <div class="d--flex">
-
-
-            <mat-form-field class="form-element">
-              <input matInput placeholder="{{'workcentercreation.activity' | translate }}"
-                     formControlName="activity" appFocusOnEnter tabIndex="10">
-            </mat-form-field>
-
-            <mat-form-field class="form-element">
-              <input matInput placeholder="{{'workcentercreation.description' | translate }}"
-                     formControlName="description" maxlength="50" appFocusOnEnter tabIndex="11">
-            </mat-form-field>
-
-            <mat-form-field>
-              <mat-label [translate]="'workcentercreation.uom'"></mat-label>
-              <mat-select formControlName="uom" appFocusOnEnter tabIndex="12">
-                <mat-option>None</mat-option>
-                <mat-option *ngFor="let uom of uomList" [value]="uom.id">
-                  {{uom.text}}
-                </mat-option>
-              </mat-select>
-            </mat-form-field>
-
-
-            <mat-form-field>
-              <mat-label [translate]="'workcentercreation.costCenter'"></mat-label>
-              <mat-select formControlName="costCenter" appFocusOnEnter tabIndex="13">
-                <mat-option>None</mat-option>
-                <mat-option *ngFor="let cost of costCenterList" [value]="cost.code">
-                  {{cost.costCenterName}}
-                </mat-option>
-              </mat-select>
-            </mat-form-field>
-
-            <mat-form-field class="form-element">
-              <input matInput placeholder="{{'workcentercreation.formula' | translate }}"
-                     formControlName="formula" maxlength="50" appFocusOnEnter tabIndex="14">
-            </mat-form-field>
-
-
-          </div>
+          <app-dynamic-table [tableObJect]="dynTablePropsActivity" (emitTableData)="emitTableActivityData($event)">
+          </app-dynamic-table>
 
           <mat-divider></mat-divider>
 
@@ -164,13 +125,13 @@
 
             <mat-form-field floatLabel="always" appearance="none">
               <mat-label [translate]="'workcentercreation.scheduling'"></mat-label>
-              <mat-slide-toggle formControlName="scheduling"  appFocusOnEnter tabIndex="15"></mat-slide-toggle>
+              <mat-slide-toggle formControlName="scheduling" appFocusOnEnter tabIndex="15"></mat-slide-toggle>
               <textarea matInput hidden></textarea>
             </mat-form-field>
 
             <mat-form-field floatLabel="always" appearance="none">
               <mat-label [translate]="'workcentercreation.costDerivation'"></mat-label>
-              <mat-slide-toggle formControlName="costDerivation"  appFocusOnEnter tabIndex="16"></mat-slide-toggle>
+              <mat-slide-toggle formControlName="costDerivation" appFocusOnEnter tabIndex="16"></mat-slide-toggle>
               <textarea matInput hidden></textarea>
             </mat-form-field>
 
@@ -182,14 +143,14 @@
 
             <mat-form-field floatLabel="always" appearance="none">
               <mat-label [translate]="'workcentercreation.goodsReceiptPosting'"></mat-label>
-              <mat-slide-toggle formControlName="goodsReceiptPosting"  appFocusOnEnter tabIndex="17"></mat-slide-toggle>
+              <mat-slide-toggle formControlName="goodsReceiptPosting" appFocusOnEnter tabIndex="17"></mat-slide-toggle>
               <textarea matInput hidden></textarea>
             </mat-form-field>
 
 
             <mat-form-field floatLabel="always" appearance="none">
               <mat-label [translate]="'workcentercreation.qualityInspection'"></mat-label>
-              <mat-slide-toggle formControlName="qualityInspection"  appFocusOnEnter tabIndex="18"></mat-slide-toggle>
+              <mat-slide-toggle formControlName="qualityInspection" appFocusOnEnter tabIndex="18"></mat-slide-toggle>
               <textarea matInput hidden></textarea>
             </mat-form-field>
 
@@ -203,49 +164,10 @@
 
       <mat-tab label="{{'workcentercreation.title5' | translate }}">
 
-        <mat-card-content class="pt-5 p-2 m-0">
+        <mat-card-content class="pt-3">
 
-          <div class="d--flex">
-
-            <mat-form-field class="form-element">
-              <input matInput placeholder="{{'workcentercreation.resource' | translate }}"
-                     formControlName="resource" appFocusOnEnter tabIndex="19">
-            </mat-form-field>
-
-            <mat-form-field class="form-element">
-              <input matInput placeholder="{{'workcentercreation.capacity' | translate }}"
-                     formControlName="capacity" appFocusOnEnter tabIndex="20">
-            </mat-form-field>
-            <mat-form-field class="form-element">
-              <input matInput placeholder="{{'workcentercreation.workingHours' | translate }}"
-                     formControlName="workingHours" appFocusOnEnter tabIndex="21">
-            </mat-form-field>
-            <mat-form-field class="form-element">
-              <input matInput placeholder="{{'workcentercreation.breakTime' | translate }}"
-                     formControlName="breakTime" appFocusOnEnter tabIndex="22">
-            </mat-form-field>
-            <mat-form-field class="form-element">
-              <input matInput placeholder="{{'workcentercreation.netHours' | translate }}"
-                     formControlName="netHours" appFocusOnEnter tabIndex="23">
-            </mat-form-field>
-            <mat-form-field class="form-element">
-              <input matInput placeholder="{{'workcentercreation.shifts' | translate }}"
-                     formControlName="shifts" appFocusOnEnter tabIndex="24">
-            </mat-form-field>
-            <mat-form-field class="form-element">
-              <input matInput placeholder="{{'workcentercreation.totalCapacity' | translate }}"
-                     formControlName="totalCapacity" appFocusOnEnter tabIndex="4">
-            </mat-form-field>
-            <mat-form-field class="form-element">
-              <input matInput placeholder="{{'workcentercreation.weekDays' | translate }}"
-                     formControlName="weekDays" appFocusOnEnter tabIndex="25">
-            </mat-form-field>
-            <mat-form-field class="form-element">
-              <input matInput placeholder="{{'workcentercreation.hoursPerWeek' | translate }}"
-                     formControlName="hoursPerWeek" appFocusOnEnter tabIndex="26">
-            </mat-form-field>
-
-          </div>
+          <app-dynamic-table [tableObJect]="dynTablePropsCapacity" (emitTableData)="emitTableCapacityData($event)">
+          </app-dynamic-table>
 
         </mat-card-content>
 
@@ -257,28 +179,28 @@
 
           <div class="d--flex">
             <mat-form-field class="form-element">
-              <input matInput placeholder="{{'workcentercreation.moveTime' | translate }}"
-                     formControlName="moveTime" appFocusOnEnter tabIndex="27">
+              <input matInput placeholder="{{'workcentercreation.moveTime' | translate }}" formControlName="moveTime"
+                appFocusOnEnter tabIndex="27">
             </mat-form-field>
             <mat-form-field class="form-element">
-              <input matInput placeholder="{{'workcentercreation.waitTime' | translate }}"
-                     formControlName="waitTime" appFocusOnEnter tabIndex="28">
+              <input matInput placeholder="{{'workcentercreation.waitTime' | translate }}" formControlName="waitTime"
+                appFocusOnEnter tabIndex="28">
             </mat-form-field>
             <mat-form-field class="form-element">
-              <input matInput placeholder="{{'workcentercreation.queueTime' | translate }}"
-                     formControlName="queueTime" appFocusOnEnter tabIndex="29">
+              <input matInput placeholder="{{'workcentercreation.queueTime' | translate }}" formControlName="queueTime"
+                appFocusOnEnter tabIndex="29">
             </mat-form-field>
             <mat-form-field class="form-element">
-              <input matInput placeholder="{{'workcentercreation.setupTime' | translate }}"
-                     formControlName="setupTime" appFocusOnEnter tabIndex="30">
+              <input matInput placeholder="{{'workcentercreation.setupTime' | translate }}" formControlName="setupTime"
+                appFocusOnEnter tabIndex="30">
             </mat-form-field>
             <mat-form-field class="form-element">
               <input matInput placeholder="{{'workcentercreation.runTimeforEachUnit' | translate }}"
-                     formControlName="runTimeforEachUnit" appFocusOnEnter tabIndex="31">
+                formControlName="runTimeforEachUnit" appFocusOnEnter tabIndex="31">
             </mat-form-field>
             <mat-form-field class="form-element">
-              <input matInput placeholder="{{'workcentercreation.leadTime' | translate }}"
-                     formControlName="leadTime" appFocusOnEnter tabIndex="32">
+              <input matInput placeholder="{{'workcentercreation.leadTime' | translate }}" formControlName="leadTime"
+                appFocusOnEnter tabIndex="32">
             </mat-form-field>
 
           </div>
@@ -290,12 +212,11 @@
   </mat-tab-group>
 
   <div class="form-element p-2 d-flex justify-content-end">
-    <button mat-raised-button class="button-color-red text-white mr-1" (click)="cancel()" appFocusOnEnter
-            tabIndex="21">
-      {{ 'COMMON.CANCEL' | translate }}
+    <button mat-raised-button class="button-color-red text-white mr-1" (click)="reset()" appFocusOnEnter tabIndex="21">
+      {{ 'COMMON.RESET' | translate }}
     </button>
-    <button mat-raised-button type="submit" class="button-color-bule text-white ml-1" (click)="save()"
-            appFocusOnEnter tabIndex="22">
+    <button mat-raised-button type="submit" class="button-color-bule text-white ml-1" (click)="save()" appFocusOnEnter
+      tabIndex="22">
       {{ 'COMMON.SAVE' | translate }}
     </button>
   </div>

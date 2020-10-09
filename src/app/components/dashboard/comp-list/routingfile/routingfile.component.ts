@@ -20,12 +20,22 @@ export class RoutingFileComponent implements OnInit {
   modelFormData: FormGroup;
   formData: any;
   companyList = [];
-    plantList: any;
-    costunitList: any;
-    matypeList: any;
-    ordertypeList: any;
-    costCenterList: any;
-    uomList: any;
+  plantList: any;
+  costunitList: any;
+  matypeList: any;
+  ordertypeList: any;
+  costCenterList: any;
+  uomList: any;
+
+  dynTablePropsRouting = this.tablePropsRoutingFunc();
+  dynTablePropsActivity: any;
+  dynTablePropsMaterialAss: any;
+  dynTablePropsToolsEquipment: any;
+
+  routingTableData = [];
+  activityTableData = [];
+  materialAssTableData = [];
+  equipmentTableData = [];
 
   constructor(
     private addOrEditService: AddOrEditService,
@@ -42,7 +52,137 @@ export class RoutingFileComponent implements OnInit {
     this.getCompanyList();
   }
 
-  
+  tablePropsRoutingFunc() {
+    return {
+      tableData: {
+        operation: {
+          value: null, type: 'text', width: 150
+        },
+        subOperation: {
+          value: null, type: 'text', width: 150
+        },
+        workCenter: {
+          value: null, type: 'text', width: 150
+        },
+        baseQuantity: {
+          value: null, type: 'text', width: 150
+        },
+        operationUnit: {
+          value: null, type: 'text', width: 150
+        },
+        delete: {
+          type: 'delete',
+          newObject: true
+        }
+      },
+      formControl: {
+        operation: [null, [Validators.required]]
+      }
+    }
+  }
+
+  tablePropsActivityFunc() {
+    return {
+      tableData: {
+        workCenter: {
+          value: null, type: 'text', width: 150
+        },
+        costCenter: {
+          value: null, type: 'dropdown', list: this.costCenterList, id: 'code', text: 'costCenterName',
+          disabled: false, displayMul: true
+        },
+        standardValue: {
+          value: null, type: 'text', width: 150
+        },
+        uom: {
+          value: null, type: 'dropdown', list: this.uomList, id: 'id', text: 'text',
+          disabled: false, displayMul: true
+        },
+        formula: {
+          value: null, type: 'text', width: 150
+        },
+        activity: {
+          value: null, type: 'toggle', width: 150
+        },
+        delete: {
+          type: 'delete',
+          newObject: true
+        }
+      },
+      formControl: {
+        workCenter: [null, [Validators.required]]
+      }
+    }
+  }
+
+  tablePropsMaterialAssFunc() {
+    return {
+      tableData: {
+        material: {
+          value: null, type: 'dropdown', list: this.matypeList, id: 'id', text: 'text',
+          disabled: false, displayMul: true
+        },
+        description: {
+          value: null, type: 'text', width: 150
+        },
+        qty: {
+          value: null, type: 'text', width: 150
+        },
+        uom: {
+          value: null, type: 'dropdown', list: this.uomList, id: 'id', text: 'text',
+          disabled: false, displayMul: true
+        },
+        delete: {
+          type: 'delete',
+          newObject: true
+        }
+      },
+      formControl: {
+        material: [null, [Validators.required]]
+      }
+    }
+  }
+
+  tablePropsToolsEquipmentFunc() {
+    return {
+      tableData: {
+        toolsEqupment: {
+          value: null, type: 'text', width: 150
+        },
+        description: {
+          value: null, type: 'text', width: 150
+        },
+        numbers: {
+          value: null, type: 'text', width: 150
+        },
+        delete: {
+          type: 'delete',
+          newObject: true
+        }
+      },
+      formControl: {
+        toolsEqupment: [null, [Validators.required]]
+      }
+    }
+  }
+
+  emitTableRoutingData(data) {
+    this.routingTableData = data;
+  }
+
+  emitTableActivityData(data) {
+    this.activityTableData = data;
+  }
+
+  emitTableMaterialAssData(data) {
+    this.materialAssTableData = data;
+  }
+
+  emitTableToolsEquipmentData(data) {
+    this.equipmentTableData = data;
+  }
+
+
 
   formDataGroup() {
     this.modelFormData = this.formBuilder.group({
@@ -56,20 +196,7 @@ export class RoutingFileComponent implements OnInit {
       routingKey: null,
       description: null,
       creationDate: null,
-      version: null,
-      operation: null,
-      subOperation: null,
-      workCenter: null,
-      baseQuantity: null,
-      operationUnit: null,
-      costCenter: null,
-      activity: null,
-      standardValue: null,
-      uom: null,
-      formula: null,
-      qty: null,
-      toolsEqupment: null,
-      numbers:null
+      version: null
     })
     this.formData = { ...this.addOrEditService.editData };
     if (!this.commonService.checkNullOrUndefined(this.formData.item)) {
@@ -86,7 +213,7 @@ export class RoutingFileComponent implements OnInit {
           if (!this.commonService.checkNullOrUndefined(res) && res.status === StatusCodes.pass) {
             if (!this.commonService.checkNullOrUndefined(res.response)) {
               this.companyList = res.response['companiesList'];
-              
+
             }
           }
           this.getplantsList();
@@ -102,7 +229,7 @@ export class RoutingFileComponent implements OnInit {
           if (!this.commonService.checkNullOrUndefined(res) && res.status === StatusCodes.pass) {
             if (!this.commonService.checkNullOrUndefined(res.response)) {
               this.plantList = res.response['plantsList'];
-             
+
             }
           }
           this.getordernumberData();
@@ -145,7 +272,7 @@ export class RoutingFileComponent implements OnInit {
       .subscribe(
         response => {
           const res = response.body;
-         
+
           if (!this.commonService.checkNullOrUndefined(res) && res.status === StatusCodes.pass) {
             if (!this.commonService.checkNullOrUndefined(res.response)) {
               this.matypeList = res.response['materialList'];
@@ -182,11 +309,20 @@ export class RoutingFileComponent implements OnInit {
               this.costCenterList = res.response['costcenterList'];
             }
           }
+          this.dynTablePropsActivity = this.tablePropsActivityFunc();
+          this.dynTablePropsMaterialAss = this.tablePropsMaterialAssFunc();
+          this.dynTablePropsToolsEquipment = this.tablePropsToolsEquipmentFunc();
           this.spinner.hide();
         });
   }
 
-  cancel() {
+  reset() {
+    this.routingTableData = [];
+    this.activityTableData = [];
+    this.materialAssTableData = [];
+    this.equipmentTableData = [];
+    this.modelFormData.reset();
+    this.addOrEditService.sendDynTableData({ type: 'reset', data: [] });
   }
 
   save() {
@@ -202,5 +338,5 @@ export class RoutingFileComponent implements OnInit {
     }
 
   }
-  
+
 }

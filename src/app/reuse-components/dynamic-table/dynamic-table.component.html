@@ -21,6 +21,14 @@
           (change)="formControlValid(column, element, $event.checked, dataSource.filteredData.indexOf(element)); setFocus(column, dataSource.filteredData.indexOf(element), $event.value);">
         </mat-checkbox>
 
+        <mat-form-field *ngSwitchCase="'toggle'" floatLabel="activity" appearance="none"
+          [ngStyle]="{'width': element[column].width + 'px'}">
+          <mat-slide-toggle id="{{column}}{{dataSource.filteredData.indexOf(element)}}"
+            [disabled]="element[column].disabled" [(ngModel)]="element[column].value"
+            (change)="formControlValid(column, element, $event.checked, dataSource.filteredData.indexOf(element)); setFocus(column, dataSource.filteredData.indexOf(element), $event.value);">
+          </mat-slide-toggle>
+          <textarea matInput hidden></textarea>
+        </mat-form-field>
 
         <mat-form-field class="form-element" *ngSwitchCase="'text'" [ngStyle]="{'width': element[column].width + 'px'}">
           <input *ngIf="element[column].maxLength" id="{{column}}{{dataSource.filteredData.indexOf(element)}}" matInput

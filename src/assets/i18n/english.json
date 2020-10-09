@@ -1751,7 +1751,8 @@
     "title2": "Resources",
     "title3": "Activities",
     "title4": "Material Assignment",
-    "title5": "Tools & Equipment"
+    "title5": "Tools & Equipment",
+    "delete": "Delete"
   },
   "goodsissue": {
     "checkAll": "Select",
