@@ -145,10 +145,7 @@
                     </mat-select>
                 </mat-form-field>
 
-                <!-- <mat-form-field class="form-element">
-                    <input matInput placeholder="{{'invoicesmemos.totalAmount' | translate }}" formControlName="totalAmount"
-                        appFocusOnEnter tabIndex="2">
-                </mat-form-field> -->
+
 
                 <mat-form-field class="form-element">
                     <input matInput placeholder="{{'invoicesmemos.narration' | translate }}" formControlName="narration"
@@ -159,7 +156,7 @@
 
         <div>
             <app-dynamic-table [tableObJect]="dynTableProps" (emitColumnChanges)="emitColumnChanges($event);"
-                (emitTableData)="emitTableData($event)"></app-dynamic-table>
+                (emitTableData)="emitTableData($event)" [dynamicTableUpdate]="sendDynTableData"></app-dynamic-table>
         </div>
 
 

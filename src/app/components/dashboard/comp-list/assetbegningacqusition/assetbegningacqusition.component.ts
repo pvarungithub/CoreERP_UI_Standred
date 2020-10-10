@@ -21,6 +21,8 @@ import { SnackBar } from '../../../../enums/common/common';
 
 export class AssetBegningAcqusitionComponent implements OnInit {
 
+  sendDynTableData: any;
+
   modelFormData: FormGroup;
   tableFormData: FormGroup;
   routeEdit = '';
@@ -161,7 +163,7 @@ export class AssetBegningAcqusitionComponent implements OnInit {
               console.log((res.response['AqsnMasters']));
               //console.log((res.response['AqsnDetail']));
               this.modelFormData.setValue(res.response['AqsnMasters']);
-              this.addOrEditService.sendDynTableData({ type: 'editValue', data: res.response['AqsnDetail'] });
+              this.sendDynTableData = { type: 'editValue', data: res.response['AqsnDetail'] };
             }
           }
         });
@@ -184,7 +186,7 @@ export class AssetBegningAcqusitionComponent implements OnInit {
   reset() {
     this.tableData = [];
     this.modelFormData.reset();
-    this.addOrEditService.sendDynTableData(this.tableData);
+    this.sendDynTableData = { type: 'reset', data: this.tableData };
   }
   saveBeingAcquisition() {
     const addCashBank = String.Join('/', this.apiConfigService.registeraqsnList);

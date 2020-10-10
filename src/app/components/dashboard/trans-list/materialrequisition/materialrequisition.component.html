@@ -78,7 +78,7 @@
 
     <div>
       <app-dynamic-table [tableObJect]="dynTableProps" (emitColumnChanges)="emitColumnChanges($event);"
-        (emitTableData)="emitTableData($event)"></app-dynamic-table>
+        (emitTableData)="emitTableData($event)" [dynamicTableUpdate]="sendDynTableData"></app-dynamic-table>
     </div>
 
 

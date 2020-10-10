@@ -42,8 +42,8 @@
                         (selectionChange)="voucherTypeSelect(); voucherNoCalculate();">
                         <mat-option>None</mat-option>
                         <mat-option *ngFor="let type of voucherTypeList" [value]="type.voucherTypeId">
-                            {{type.voucherTypeId}}-  {{type.voucherTypeName}}
-                          </mat-option>
+                            {{type.voucherTypeId}}- {{type.voucherTypeName}}
+                        </mat-option>
                     </mat-select>
                 </mat-form-field>
 
@@ -67,17 +67,7 @@
                 </mat-form-field>
 
 
-                <!-- <mat-form-field class="form-element">
-                    <input matInput [matDatepicker]="picker5" placeholder="{{'saleasset.period' | translate }}"
-                        formControlName="period" appFocusOnEnter tabIndex="4">
-                    <mat-datepicker-toggle matSuffix [for]="picker5"></mat-datepicker-toggle>
-                    <mat-datepicker #picker5></mat-datepicker>
-                </mat-form-field> -->
 
-                <!-- <mat-form-field class="form-element">
-                    <input matInput placeholder="{{'saleasset.assetTransactionType' | translate }}"
-                        formControlName="assetTransactionType" appFocusOnEnter tabIndex="2">
-                </mat-form-field> -->
 
                 <mat-form-field class="form-element">
                     <input matInput [matDatepicker]="picker4" placeholder="{{'saleasset.transferDate' | translate }}"
@@ -90,7 +80,7 @@
 
         <div>
             <app-dynamic-table [tableObJect]="dynTableProps" (emitColumnChanges)="emitColumnChanges($event);"
-                (emitTableData)="emitTableData($event)"></app-dynamic-table>
+                (emitTableData)="emitTableData($event)" [dynamicTableUpdate]="sendDynTableData"></app-dynamic-table>
         </div>
 
     </mat-card-content>

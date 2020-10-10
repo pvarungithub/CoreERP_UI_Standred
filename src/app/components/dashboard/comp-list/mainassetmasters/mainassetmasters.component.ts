@@ -26,6 +26,9 @@ export class MainAssetMasterComponent implements OnInit {
 
   modelFormData: FormGroup;
   tableFormData: FormGroup;
+
+  sendDynTableData: any;
+
   routeEdit = '';
   tableData = [];
   dynTableProps = this.tablePropsFunc()
@@ -192,7 +195,7 @@ export class MainAssetMasterComponent implements OnInit {
               console.log(res.response['MainassetDetail']);
               this.modelFormData.setValue(res.response['MainassetMasters']);
               //this.addOrEditService.sendDynTableData(res.response['MainassetDetail']);
-              this.addOrEditService.sendDynTableData({ type: 'editValue', data: res.response['MainassetDetail'] });
+              this.sendDynTableData = { type: 'editValue', data: res.response['MainassetDetail'] };
             }
           }
         });
@@ -425,7 +428,7 @@ export class MainAssetMasterComponent implements OnInit {
       const code = row.data[row.index]['depreciationCode'].list.find(res => res.code == row.data[row.index]['depreciationCode'].value);
       if (!this.commonService.checkNullOrUndefined(code)) {
         row.data[row.index].rate.value = code.rate;
-        this.addOrEditService.sendDynTableData({ type: 'add', data: row.data });
+        this.sendDynTableData = { type: 'add', data: row.data };
       }
     }
   }
@@ -445,7 +448,7 @@ export class MainAssetMasterComponent implements OnInit {
   reset() {
     this.tableData = [];
     this.modelFormData.reset();
-    this.addOrEditService.sendDynTableData(this.tableData);
+    this.sendDynTableData = { type: 'reset', data: this.tableData };
   }
   saveMainassets() {
     const addCashBank = String.Join('/', this.apiConfigService.registermainAssetsList);

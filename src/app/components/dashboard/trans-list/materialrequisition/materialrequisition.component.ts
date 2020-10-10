@@ -6,7 +6,6 @@ import { ApiService } from '../../../../services/api.service';
 import { StatusCodes, SnackBar } from '../../../../enums/common/common';
 import { CommonService } from '../../../../services/common.service';
 import { NgxSpinnerService } from 'ngx-spinner';
-import { AddOrEditService } from '../../comp-list/add-or-edit.service';
 import { ActivatedRoute, Router } from '@angular/router';
 import { Static } from '../../../../enums/common/static';
 import { AlertService } from '../../../../services/alert.service';
@@ -25,6 +24,8 @@ import { AppDateAdapter, APP_DATE_FORMATS } from '../../../../directives/format-
 export class MaterialrequisitionComponents implements OnInit {
 
   formData: FormGroup;
+  sendDynTableData: any;
+
   routeEdit = '';
   hsnsacList = [];
   debitValue = 0;
@@ -56,7 +57,6 @@ export class MaterialrequisitionComponents implements OnInit {
     private formBuilder: FormBuilder,
     private apiConfigService: ApiConfigService,
     private apiService: ApiService,
-    private addOrEditService: AddOrEditService,
     private alertService: AlertService,
     private spinner: NgxSpinnerService,
     public route: ActivatedRoute,
@@ -156,7 +156,7 @@ export class MaterialrequisitionComponents implements OnInit {
             if (!this.commonService.checkNullOrUndefined(res.response)) {
               this.formData.setValue(res.response['mreqmasters']);
               console.log(res.response['mreqDetail']);
-              this.addOrEditService.sendDynTableData({ type: 'edit', data: res.response['mreqDetail'] });
+              this.sendDynTableData = { type: 'edit', data: res.response['mreqDetail'] };
               this.formData.disable();
             }
           }
@@ -337,7 +337,7 @@ export class MaterialrequisitionComponents implements OnInit {
   }
 
   dataChange(row) {
-    this.addOrEditService.sendDynTableData({ type: 'add', data: row.data });
+    this.sendDynTableData = { type: 'add', data: row.data };
   }
 
   emitTableData(data) {
@@ -362,7 +362,7 @@ export class MaterialrequisitionComponents implements OnInit {
   reset() {
     this.tableData = [];
     this.formData.reset();
-    this.addOrEditService.sendDynTableData({ type: 'reset', data: this.tableData });
+    this.sendDynTableData = { type: 'reset', data: this.tableData };
   }
 
   savemreq() {

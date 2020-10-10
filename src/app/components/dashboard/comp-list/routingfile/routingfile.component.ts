@@ -20,6 +20,11 @@ import { Static } from '../../../../enums/common/static';
 export class RoutingFileComponent implements OnInit {
 
   modelFormData: FormGroup;
+  sendRoutingDynTableData: any;
+  sendActivityDynTableData: any;
+  sendMaterialAssDynTableData: any;
+  sendToolsEquipmentDynTableData: any;
+
   routeEdit = '';
   formData: any;
   companyList = [];
@@ -364,7 +369,10 @@ export class RoutingFileComponent implements OnInit {
     this.materialAssTableData = [];
     this.equipmentTableData = [];
     this.modelFormData.reset();
-    this.addOrEditService.sendDynTableData({ type: 'reset', data: [] });
+    this.sendRoutingDynTableData = { type: 'reset', data: [] };
+    this.sendActivityDynTableData = { type: 'reset', data: [] };
+    this.sendMaterialAssDynTableData = { type: 'reset', data: [] };
+    this.sendToolsEquipmentDynTableData = { type: 'reset', data: [] };
   }
 
   save() {
@@ -403,10 +411,10 @@ export class RoutingFileComponent implements OnInit {
           console.log(res.response['routebasicDetail']);
           if (!this.commonService.checkNullOrUndefined(res) && res.status === StatusCodes.pass) {
             if (!this.commonService.checkNullOrUndefined(res.response)) {
-              this.addOrEditService.sendDynTableData({ type: 'edit', data: res.response['routebasicDetail'] });
-              this.addOrEditService.sendDynTableData({ type: 'edit', data: res.response['materialDetail'] });
-              this.addOrEditService.sendDynTableData({ type: 'edit', data: res.response['activityDetail'] });
-              this.addOrEditService.sendDynTableData({ type: 'edit', data: res.response['toolsequpmentDetail'] });
+              this.sendRoutingDynTableData = { type: 'edit', data: res.response['routebasicDetail'] };
+              this.sendActivityDynTableData = { type: 'edit', data: res.response['activityDetail'] };
+              this.sendMaterialAssDynTableData = { type: 'edit', data: res.response['materialDetail'] };
+              this.sendToolsEquipmentDynTableData = { type: 'edit', data: res.response['toolsequpmentDetail'] };
               this.modelFormData.disable();
 
             }

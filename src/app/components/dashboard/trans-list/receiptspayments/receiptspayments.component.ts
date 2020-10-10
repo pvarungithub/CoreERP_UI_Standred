@@ -6,7 +6,6 @@ import { ApiService } from '../../../../services/api.service';
 import { StatusCodes, SnackBar } from '../../../../enums/common/common';
 import { CommonService } from '../../../../services/common.service';
 import { NgxSpinnerService } from 'ngx-spinner';
-import { AddOrEditService } from '../../comp-list/add-or-edit.service';
 import { ActivatedRoute, Router } from '@angular/router';
 import { Static } from '../../../../enums/common/static';
 import { AlertService } from '../../../../services/alert.service';
@@ -25,6 +24,7 @@ import { AppDateAdapter, APP_DATE_FORMATS } from '../../../../directives/format-
 export class ReceiptspaymentsComponent implements OnInit {
 
   formData: FormGroup;
+  sendDynTableData: any;
   routeEdit = '';
   bpList = [];
   tableData = [];
@@ -53,7 +53,6 @@ export class ReceiptspaymentsComponent implements OnInit {
     private formBuilder: FormBuilder,
     private apiConfigService: ApiConfigService,
     private apiService: ApiService,
-    private addOrEditService: AddOrEditService,
     private alertService: AlertService,
     private spinner: NgxSpinnerService,
     public route: ActivatedRoute,
@@ -207,7 +206,7 @@ export class ReceiptspaymentsComponent implements OnInit {
       })
     }
     //
-    this.addOrEditService.sendDynTableData({ type: 'add', data: newData, removeEmptyRow: 0 });
+    this.sendDynTableData = { type: 'add', data: newData, removeEmptyRow: 0 };
   }
 
   getreceiptpaymentDetail(val) {
@@ -222,7 +221,7 @@ export class ReceiptspaymentsComponent implements OnInit {
               //console.log( res.response['paymentreceiptMasters']);
               //console.log( res.response['paymentreceiptDetail']);
               this.formData.setValue(res.response['paymentreceiptMasters']);
-              this.addOrEditService.sendDynTableData({ type: 'edit', data: res.response['paymentreceiptDetail'] });
+              this.sendDynTableData = { type: 'edit', data: res.response['paymentreceiptDetail'] };
               this.formData.disable();
               if (this.routeEdit == '') {
                 this.accountSelect();
@@ -507,7 +506,7 @@ export class ReceiptspaymentsComponent implements OnInit {
         this.getDiscount(data);
       } else {
         data.data[data.index].discount.value = 0;
-        this.addOrEditService.sendDynTableData({ type: 'add', data: data.data });
+        this.sendDynTableData = { type: 'add', data: data.data };
       }
     }
 
@@ -526,19 +525,13 @@ export class ReceiptspaymentsComponent implements OnInit {
         flag = true;
         // break;
       }
-      // checkAjectAmount = checkAjectAmount + (+row.data[r].adjustmentAmount.value);
-      // if (checkAjectAmount == +this.formData.get('amount').value) {
-      //   this.alertService.openSnackBar(`AdjustmentAmount can't be same as total amount`, Static.Close, SnackBar.error);
-      //   row.data[row.index].adjustmentAmount.value = 0;
-      //   flag = true;
-      //   break;
-      // }
+
     }
 
     // }
     if (flag) {
       this.spinner.show();
-      this.addOrEditService.sendDynTableData({ type: 'add', data: dublicateRow });
+      this.sendDynTableData == { type: 'add', data: dublicateRow };
     }
   }
 
@@ -557,7 +550,7 @@ export class ReceiptspaymentsComponent implements OnInit {
           if (!this.commonService.checkNullOrUndefined(res) && res.status === StatusCodes.pass) {
             if (!this.commonService.checkNullOrUndefined(res.response)) {
               row.data[row.index].discount.value = res.response['discount']
-              this.addOrEditService.sendDynTableData({ type: 'add', data: row.data });
+              this.sendDynTableData = { type: 'add', data: row.data };
             }
           }
         });
@@ -613,7 +606,7 @@ export class ReceiptspaymentsComponent implements OnInit {
     this.tableData = [];
     this.formData.reset();
     this.formData.controls['voucherNumber'].disable();
-    this.addOrEditService.sendDynTableData({ type: 'add', data: this.tableData });
+    this.sendDynTableData = { type: 'reset', data: this.tableData };
   }
 
   savePaymentsReceipts() {

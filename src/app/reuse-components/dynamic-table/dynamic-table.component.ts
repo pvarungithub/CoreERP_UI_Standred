@@ -3,7 +3,6 @@ import { MatTableDataSource, MatTable } from '@angular/material/table';
 import { ActivatedRoute } from '@angular/router';
 import { TranslateService } from '@ngx-translate/core';
 import { FormBuilder, FormGroup, FormControl } from '@angular/forms';
-import { Subscription } from 'rxjs';
 import { AddOrEditService } from '../../components/dashboard/comp-list/add-or-edit.service';
 import { RuntimeConfigService } from '../../services/runtime-config.service';
 import { CommonService } from '../../services/common.service';
@@ -13,10 +12,9 @@ import { NgxSpinnerService } from 'ngx-spinner';
   templateUrl: './dynamic-table.component.html',
   styleUrls: ['./dynamic-table.component.scss']
 })
-export class DynamicTableComponent implements OnInit, OnDestroy {
+export class DynamicTableComponent implements OnInit {
 
 
-  emitDynTableData: Subscription;
   @Output() emitColumnChanges = new EventEmitter();
   @Output() emitTableData = new EventEmitter();
 
@@ -26,6 +24,31 @@ export class DynamicTableComponent implements OnInit, OnDestroy {
       this.formControl = res.formControl;
       this.tableForm = this.formBuilder.group(this.formControl);
       this.setTableData();
+    }
+  }
+
+  @Input() set dynamicTableUpdate(res) {
+    if (!this.commonService.checkNullOrUndefined(res)) {
+      this.dataSource = new MatTableDataSource();
+      if (res.type == 'editValue') {
+        let editData = this.formalTableData(res.data);
+        editData.push(this.tableData[0])
+        this.dataSource = new MatTableDataSource(JSON.parse(JSON.stringify(editData)));
+      } else if (res.type == 'edit') {
+        this.dataSource = new MatTableDataSource(JSON.parse(JSON.stringify(this.formalTableData(res.data))));
+      } else if (res.type == 'reset') {
+        this.setTableData();
+      } else if (res.type == 'add') {
+        if (res.data.length) {
+          this.dataSource = new MatTableDataSource(JSON.parse(JSON.stringify(res.data)));
+          this.removeEmptyRow = !this.commonService.checkNullOrUndefined(res.removeEmptyRow) ? res.removeEmptyRow : 1;
+          (this.isDropdown) ? this.setFocus() : this.setCurrentFocus();
+        } else {
+          this.dataSource = new MatTableDataSource();
+        }
+      }
+      this.spinner.hide();
+      this.cdr.detectChanges();
     }
   }
 
@@ -54,33 +77,10 @@ export class DynamicTableComponent implements OnInit, OnDestroy {
   ) {
     activatedRoute.params.subscribe(params => {
       this.routeParam = params.id;
-      this.emitDynTableData = addOrEditService.emitDynTableData.subscribe(res => {
-        if (!this.commonService.checkNullOrUndefined(res)) {
-          this.dataSource = new MatTableDataSource();
-          if (res.type == 'editValue') {
-            let editData = this.formalTableData(res.data);
-            editData.push(this.tableData[0])
-            this.dataSource = new MatTableDataSource(JSON.parse(JSON.stringify(editData)));
-          } else if (res.type == 'edit') {
-            this.dataSource = new MatTableDataSource(JSON.parse(JSON.stringify(this.formalTableData(res.data))));
-          } else if (res.type == 'reset') {
-            this.setTableData();
-          } else if (res.type == 'add') {
-            if (res.data.length) {
-              this.dataSource = new MatTableDataSource(JSON.parse(JSON.stringify(res.data)));
-              this.removeEmptyRow = !this.commonService.checkNullOrUndefined(res.removeEmptyRow) ? res.removeEmptyRow : 1;
-              (this.isDropdown) ? this.setFocus() : this.setCurrentFocus();
-            } else {
-              this.dataSource = new MatTableDataSource();
-            }
-          }
-          this.spinner.hide();
-          this.cdr.detectChanges();
-          addOrEditService.sendDynTableData(null);
-        }
-      });
     });
   }
+
+
 
 
   formalTableData(list) {
@@ -280,7 +280,5 @@ export class DynamicTableComponent implements OnInit, OnDestroy {
     return true;
   }
 
-  ngOnDestroy() {
-    this.emitDynTableData.unsubscribe();
-  }
+
 }

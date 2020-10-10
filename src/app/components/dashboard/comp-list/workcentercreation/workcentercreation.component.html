@@ -108,7 +108,8 @@
 
         <mat-card-content class="pt-3">
 
-          <app-dynamic-table [tableObJect]="dynTablePropsActivity" (emitTableData)="emitTableActivityData($event)">
+          <app-dynamic-table [tableObJect]="dynTablePropsActivity" (emitTableData)="emitTableActivityData($event)"
+            [dynamicTableUpdate]="sendActivityDynTableData">
           </app-dynamic-table>
 
           <mat-divider></mat-divider>
@@ -166,7 +167,8 @@
 
         <mat-card-content class="pt-3">
 
-          <app-dynamic-table [tableObJect]="dynTablePropsCapacity" (emitTableData)="emitTableCapacityData($event)">
+          <app-dynamic-table [tableObJect]="dynTablePropsCapacity" (emitTableData)="emitTableCapacityData($event)"
+            [dynamicTableUpdate]="sendCapacityDynTableData">
           </app-dynamic-table>
 
         </mat-card-content>

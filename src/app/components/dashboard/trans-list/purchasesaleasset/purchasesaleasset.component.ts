@@ -6,7 +6,6 @@ import { ApiService } from '../../../../services/api.service';
 import { StatusCodes, SnackBar } from '../../../../enums/common/common';
 import { CommonService } from '../../../../services/common.service';
 import { NgxSpinnerService } from 'ngx-spinner';
-import { AddOrEditService } from '../../comp-list/add-or-edit.service';
 import { ActivatedRoute, Router } from '@angular/router';
 import { Static } from '../../../../enums/common/static';
 import { AlertService } from '../../../../services/alert.service';
@@ -25,6 +24,8 @@ import { AppDateAdapter, APP_DATE_FORMATS } from '../../../../directives/format-
 export class PurchasesaleassetComponent implements OnInit {
 
   formData: FormGroup;
+  sendDynTableData: any;
+
   routeEdit = '';
   btList = [];
   hsnsacList = [];
@@ -62,7 +63,6 @@ export class PurchasesaleassetComponent implements OnInit {
     private formBuilder: FormBuilder,
     private apiConfigService: ApiConfigService,
     private apiService: ApiService,
-    private addOrEditService: AddOrEditService,
     private alertService: AlertService,
     private spinner: NgxSpinnerService,
     public route: ActivatedRoute,
@@ -225,7 +225,7 @@ export class PurchasesaleassetComponent implements OnInit {
           if (!this.commonService.checkNullOrUndefined(res) && res.status === StatusCodes.pass) {
             if (!this.commonService.checkNullOrUndefined(res.response)) {
               this.formData.setValue(res.response['assetMasters']);
-              this.addOrEditService.sendDynTableData({ type: 'add', data: res.response['assetDetail'] });
+              this.sendDynTableData = { type: 'add', data: res.response['assetDetail'] };
               this.formData.disable();
             }
           }
@@ -512,7 +512,7 @@ export class PurchasesaleassetComponent implements OnInit {
         row.data[row.index].igstamount.value = (row.data[row.index].amount.value * code.igst) / 100;
         row.data[row.index].cgstamount.value = (row.data[row.index].amount.value * code.sgst) / 100;
         row.data[row.index].cgstamount.value = (row.data[row.index].amount.value * code.cgst) / 100;
-        this.addOrEditService.sendDynTableData({ type: 'add', data: row.data });
+        this.sendDynTableData = { type: 'add', data: row.data };
       }
     }
   }
@@ -550,7 +550,7 @@ export class PurchasesaleassetComponent implements OnInit {
     this.tableData = [];
     this.formData.reset();
     this.formData.controls['voucherNumber'].disable();
-    this.addOrEditService.sendDynTableData({ type: 'reset', data: this.tableData });
+    this.sendDynTableData = { type: 'reset', data: this.tableData };
   }
 
   saveAssetSalePurchase() {

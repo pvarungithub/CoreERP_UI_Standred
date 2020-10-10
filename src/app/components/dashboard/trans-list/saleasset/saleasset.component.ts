@@ -30,6 +30,8 @@ export class SaleassetComponent implements OnInit {
   btList = [];
   tableData = [];
   dynTableProps: any;
+  sendDynTableData: any;
+
   ptermsList = [];
   companyList = [];
   branchList = [];
@@ -179,7 +181,7 @@ export class SaleassetComponent implements OnInit {
           if (!this.commonService.checkNullOrUndefined(res) && res.status === StatusCodes.pass) {
             if (!this.commonService.checkNullOrUndefined(res.response)) {
               this.formData.setValue(res.response['assettransferMasters']);
-              this.addOrEditService.sendDynTableData({ type: 'edit', data: res.response['assettransferDetail'] });
+              this.sendDynTableData = { type: 'edit', data: res.response['assettransferDetail'] };
               this.formData.disable();
             }
           }
@@ -458,7 +460,7 @@ export class SaleassetComponent implements OnInit {
       const code = row.data[row.index]['acquisitionValue'].list.find(res => res.code == row.data[row.index]['acquisitionValue'].value);
       if (!this.commonService.checkNullOrUndefined(code)) {
         row.data[row.index].rate.value = code.rate;
-        this.addOrEditService.sendDynTableData({ type: 'add', data: row.data });
+        this.sendDynTableData = { type: 'add', data: row.data };
       }
     }
   }
@@ -496,7 +498,7 @@ export class SaleassetComponent implements OnInit {
     this.tableData = [];
     this.formData.reset();
     this.formData.controls['voucherNumber'].disable();
-    this.addOrEditService.sendDynTableData({ type: 'reset', data: this.tableData });
+    this.sendDynTableData = { type: 'reset', data: this.tableData };
   }
 
   saveAssetTransfer() {

@@ -56,35 +56,7 @@
                     <mat-datepicker #picker2></mat-datepicker>
                 </mat-form-field>
 
-                <!-- <mat-form-field class="form-element">
-                    <mat-label>{{ 'journals.transactionType' | translate }}</mat-label>
-                    <mat-select formControlName="transactionType">
-                        <mat-option>None</mat-option>
-                        <mat-option *ngFor="let trans of transactionTypeList" [value]="trans">
-                            {{ trans }}
-                        </mat-option>
-                    </mat-select>
-                </mat-form-field>
 
-                <mat-form-field class="form-element">
-                    <mat-label>{{ 'journals.natureofTransaction' | translate }}</mat-label>
-                    <mat-select formControlName="natureofTransaction">
-                        <mat-option>None</mat-option>
-                        <mat-option *ngFor="let nature of natureofTransactionList" [value]="nature">
-                            {{ nature }}
-                        </mat-option>
-                    </mat-select>
-                </mat-form-field>
-
-                <mat-form-field class="form-element">
-                    <mat-label>{{ 'journals.account' | translate }}</mat-label>
-                    <mat-select formControlName="account">
-                        <mat-option>None</mat-option>
-                        <mat-option *ngFor="let acc of accountList" [value]="acc.id">
-                            {{ acc.id }} - {{acc.text}}
-                        </mat-option>
-                    </mat-select>
-                </mat-form-field> -->
 
                 <mat-form-field class="form-element">
                     <input matInput placeholder="{{'journals.referenceNo' | translate }}" formControlName="referenceNo"
@@ -98,25 +70,7 @@
                     <mat-datepicker #picker4></mat-datepicker>
                 </mat-form-field>
 
-                <!-- <mat-form-field class="form-element">
-                    <mat-label>{{ 'journals.profitCenter' | translate }}</mat-label>
-                    <mat-select formControlName="profitCenter">
-                        <mat-option>None</mat-option>
-                        <mat-option *ngFor="let profCen of profitCenterList" [value]="profCen.id">
-                            {{profCen.text}}
-                        </mat-option>
-                    </mat-select>
-                </mat-form-field>
 
-                <mat-form-field class="form-element">
-                    <mat-label>{{ 'journals.segment' | translate }}</mat-label>
-                    <mat-select formControlName="segment">
-                        <mat-option>None</mat-option>
-                        <mat-option *ngFor="let segm of segmentList" [value]="segm.id">
-                            {{segm.name}}
-                        </mat-option>
-                    </mat-select>
-                </mat-form-field> -->
 
                 <mat-form-field class="form-element">
                     <input matInput placeholder="{{'journals.narration' | translate }}" formControlName="narration"
@@ -127,7 +81,7 @@
 
         <div>
             <app-dynamic-table [tableObJect]="dynTableProps" (emitColumnChanges)="emitColumnChanges($event);"
-                (emitTableData)="emitTableData($event)"></app-dynamic-table>
+                (emitTableData)="emitTableData($event)" [dynamicTableUpdate]="sendDynTableData"></app-dynamic-table>
         </div>
 
 
@@ -136,14 +90,17 @@
     <mat-card-content class="d-flex justify-content-between pb-1">
 
         <div class="d-flex">
-            <div class="px-1"> <span class="px-1">{{'Total Debit Amount' | translate }}</span> : <strong>{{ debitValue }} </strong></div>
-            <div class="px-1"> <span class="px-1">{{'Total Credit Amount' | translate }}</span> : <strong> {{ creditValue}} </strong></div>
-            <div class="px-1"> <span class="px-1">{{'Total Tax Amount' | translate }}</span> : <strong> {{ totalTaxValue}} </strong></div>
+            <div class="px-1"> <span class="px-1">{{'Total Debit Amount' | translate }}</span> :
+                <strong>{{ debitValue }} </strong></div>
+            <div class="px-1"> <span class="px-1">{{'Total Credit Amount' | translate }}</span> : <strong>
+                    {{ creditValue}} </strong></div>
+            <div class="px-1"> <span class="px-1">{{'Total Tax Amount' | translate }}</span> : <strong>
+                    {{ totalTaxValue}} </strong></div>
         </div>
 
         <div>
-            <button [hidden]="routeEdit != ''" [disabled]="checkCreditDebit()" mat-raised-button type="submit" class="button-color-bule mr-3 text-white"
-                (click)="save()">
+            <button [hidden]="routeEdit != ''" [disabled]="checkCreditDebit()" mat-raised-button type="submit"
+                class="button-color-bule mr-3 text-white" (click)="save()">
                 {{ 'COMMON.SAVE' | translate }}
             </button>
             <button [hidden]="routeEdit != ''" mat-raised-button class="button-color-red text-white mr-3"

@@ -6,7 +6,6 @@ import { ApiService } from '../../../../services/api.service';
 import { StatusCodes, SnackBar } from '../../../../enums/common/common';
 import { CommonService } from '../../../../services/common.service';
 import { NgxSpinnerService } from 'ngx-spinner';
-import { AddOrEditService } from '../../comp-list/add-or-edit.service';
 import { ActivatedRoute, Router } from '@angular/router';
 import { Static } from '../../../../enums/common/static';
 import { AlertService } from '../../../../services/alert.service';
@@ -23,6 +22,8 @@ import { AppDateAdapter, APP_DATE_FORMATS } from '../../../../directives/format-
 })
 
 export class GoodsissueComponent implements OnInit {
+
+  sendDynTableData: any;
 
   formData: FormGroup;
   routeEdit = '';
@@ -58,7 +59,6 @@ export class GoodsissueComponent implements OnInit {
     private formBuilder: FormBuilder,
     private apiConfigService: ApiConfigService,
     private apiService: ApiService,
-    private addOrEditService: AddOrEditService,
     private alertService: AlertService,
     private spinner: NgxSpinnerService,
     public route: ActivatedRoute,
@@ -91,16 +91,12 @@ export class GoodsissueComponent implements OnInit {
   tablePropsFunc() {
     return {
       tableData: {
-        //id: {
-        //  value: 0, type: 'autoInc', width: 10, disabled: true
-        //},
+
         checkAll:
         {
           value: false, type: 'checkbox'
         },
-        //materialCode: {
-        //  value: null, type: 'dropdown', list: this.mmasterList, id: 'id', text: 'text', displayMul: false, width: 100, disabled: true, fieldEnable: true
-        //},
+
         materialCode: {
           value: null, type: 'text', width: 75, maxLength: 15, disabled: true,
         },
@@ -111,9 +107,7 @@ export class GoodsissueComponent implements OnInit {
           value: null, type: 'text', width: 75, maxLength: 15, disabled: true,
         },
 
-        //location: {
-        //  value: null, type: 'dropdown', list: this.locationList, id: 'locationId', text: 'description', displayMul: false, width: 100, disabled: true, fieldEnable: true
-        //},
+
         joborProject: {
           value: null, type: 'text', width: 100, maxLength: 50, disabled: true,
         },
@@ -128,17 +122,7 @@ export class GoodsissueComponent implements OnInit {
           value: null, type: 'text', width: 75, maxLength: 15, disabled: true,
         },
 
-        //order: {
-        //  value: null, type: 'dropdown', list: this.ordertypeList, id: 'id', text: 'text', displayMul: false, width: 100, disabled: true, fieldEnable: true
-        //},
 
-        //costCenter: {
-        //  value: null, type: 'dropdown', list: this.costCenterList, id: 'id', text: 'text', displayMul: false, width: 100, disabled: true, fieldEnable: true
-        //},
-
-        //wbs: {
-        //  value: null, type: 'dropdown', list: this.costCenterList, id: 'id', text: 'text', displayMul: false, width: 100, disabled: true, fieldEnable: true
-        //},
         availableqty: {
           value: null, type: 'number', width: 100, maxLength: 7, disabled: true, fieldEnable: true
         },
@@ -166,7 +150,7 @@ export class GoodsissueComponent implements OnInit {
             if (!this.commonService.checkNullOrUndefined(res.response)) {
               this.formData.setValue(res.response['goodsissueasters']);
               console.log(res.response['goodsissueastersDetail']);
-              this.addOrEditService.sendDynTableData({ type: 'edit', data: res.response['goodsissueastersDetail'] });
+              this.sendDynTableData = { type: 'edit', data: res.response['goodsissueastersDetail'] };
               this.formData.disable();
             }
           }
@@ -374,13 +358,13 @@ export class GoodsissueComponent implements OnInit {
       }
       else {
         data.data[data.index].discount.value = 0;
-        this.addOrEditService.sendDynTableData({ type: 'add', data: data.data });
+        this.sendDynTableData = { type: 'add', data: data.data };
       }
     }
   }
 
   dataChange(row) {
-    //this.addOrEditService.sendDynTableData({ type: 'add', data: row.data });
+    //this.sendDynTableData = { type: 'add', data: row.data };
   }
   reqnoselect() {
     let data = [];
@@ -402,7 +386,7 @@ export class GoodsissueComponent implements OnInit {
       })
     }
     //
-    this.addOrEditService.sendDynTableData({ type: 'add', data: newData, removeEmptyRow: 0 });
+    this.sendDynTableData = { type: 'add', data: newData, removeEmptyRow: 0 };
   }
 
   emitTableData(data) {
@@ -431,7 +415,7 @@ export class GoodsissueComponent implements OnInit {
   reset() {
     this.tableData = [];
     this.formData.reset();
-    this.addOrEditService.sendDynTableData({ type: 'reset', data: this.tableData });
+    this.sendDynTableData = { type: 'reset', data: this.tableData };
   }
 
   savegoodsissue() {

@@ -109,7 +109,8 @@
 
         <mat-card-content class="pt-3">
 
-          <app-dynamic-table [tableObJect]="dynTablePropsRouting" (emitTableData)="emitTableRoutingData($event)">
+          <app-dynamic-table [tableObJect]="dynTablePropsRouting" (emitTableData)="emitTableRoutingData($event)"
+            [dynamicTableUpdate]="sendRoutingDynTableData">
           </app-dynamic-table>
 
         </mat-card-content>
@@ -122,7 +123,8 @@
 
         <mat-card-content class="pt-3">
 
-          <app-dynamic-table [tableObJect]="dynTablePropsActivity" (emitTableData)="emitTableActivityData($event)">
+          <app-dynamic-table [tableObJect]="dynTablePropsActivity" (emitTableData)="emitTableActivityData($event)"
+            [dynamicTableUpdate]="sendActivityDynTableData">
           </app-dynamic-table>
 
         </mat-card-content>
@@ -133,8 +135,8 @@
 
         <mat-card-content class="pt-3">
 
-          <app-dynamic-table [tableObJect]="dynTablePropsMaterialAss"
-            (emitTableData)="emitTableMaterialAssData($event)"></app-dynamic-table>
+          <app-dynamic-table [tableObJect]="dynTablePropsMaterialAss" (emitTableData)="emitTableMaterialAssData($event)"
+            [dynamicTableUpdate]="sendMaterialAssDynTableData"></app-dynamic-table>
 
         </mat-card-content>
 
@@ -145,7 +147,8 @@
         <mat-card-content class="pt-3">
 
           <app-dynamic-table [tableObJect]="dynTablePropsToolsEquipment"
-            (emitTableData)="emitTableToolsEquipmentData($event)"></app-dynamic-table>
+            (emitTableData)="emitTableToolsEquipmentData($event)" [dynamicTableUpdate]="sendToolsEquipmentDynTableData">
+          </app-dynamic-table>
 
         </mat-card-content>
 

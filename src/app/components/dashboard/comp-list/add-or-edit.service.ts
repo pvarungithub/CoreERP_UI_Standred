@@ -16,7 +16,6 @@ export class AddOrEditService {
   tableParameters: any;
   editData: any;
 
-  public emitDynTableData = new BehaviorSubject<any>(null);
 
   constructor(
     private commonService: CommonService,
@@ -25,10 +24,6 @@ export class AddOrEditService {
     private alertService: AlertService,
     private spinner: NgxSpinnerService
   ) { }
-
-  sendDynTableData(data) {
-    this.emitDynTableData.next(data);
-  }
 
   Add(result, callBack) {
     const addCompanyUrl = String.Join('', this.environment.runtimeConfig.serverUrl, this.tableParameters.registerUrl);

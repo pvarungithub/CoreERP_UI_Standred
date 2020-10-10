@@ -21,6 +21,8 @@ import { SnackBar } from '../../../../enums/common/common';
 export class SubAssetsComponent implements OnInit {
 
   modelFormData: FormGroup;
+  sendDynTableData: any;
+
   routeEdit = '';
   tableData = [];
   dynTableProps = this.tablePropsFunc()
@@ -160,7 +162,7 @@ export class SubAssetsComponent implements OnInit {
               console.log(res.response['SubassetMasters']);
               console.log(res.response['SubassetDetail']);
               this.modelFormData.setValue(res.response['SubassetMasters']);
-              this.addOrEditService.sendDynTableData({ type: 'editValue', data: res.response['SubassetDetail'] });
+              this.sendDynTableData = { type: 'editValue', data: res.response['SubassetDetail'] };
             }
           }
         });
@@ -380,7 +382,7 @@ export class SubAssetsComponent implements OnInit {
       const code = row.data[row.index]['depreciationCode'].list.find(res => res.code == row.data[row.index]['depreciationCode'].value);
       if (!this.commonService.checkNullOrUndefined(code)) {
         row.data[row.index].depreciationRate.value = code.rate;
-        this.addOrEditService.sendDynTableData({ type: 'add', data: row.data });
+        this.sendDynTableData = { type: 'add', data: row.data };
       }
     }
   }
@@ -402,7 +404,8 @@ export class SubAssetsComponent implements OnInit {
   reset() {
     this.tableData = [];
     this.modelFormData.reset();
-    this.addOrEditService.sendDynTableData(this.tableData);
+    this.sendDynTableData = { type: 'reset', data: this.tableData };
+
   }
   saveSubassets() {
     const addCashBank = String.Join('/', this.apiConfigService.registerSubAssetsList);

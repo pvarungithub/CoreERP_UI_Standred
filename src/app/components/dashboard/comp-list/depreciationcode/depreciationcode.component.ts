@@ -24,22 +24,25 @@ interface Methodofdepreciation {
   styleUrls: ['./depreciationcode.component.scss']
 })
 export class DepreciationcodeComponent implements OnInit {
+
+  sendDynTableData: any;
+
   routeEdit = '';
   tableData = [];
   dynTableProps = this.tablePropsFunc()
   modelFormData: FormGroup;
-  isSubmitted  =  false;
+  isSubmitted = false;
   formData: any;
- 
+
   Methodofdepreciation: Methodofdepreciation[] =
-  [
-    { value: 'Straight line', viewValue: 'Straight line' },
-    { value: 'Written down value', viewValue: 'Written down value' },
-    { value: 'Useful life ', viewValue: 'Useful life' }   
-  ];
+    [
+      { value: 'Straight line', viewValue: 'Straight line' },
+      { value: 'Written down value', viewValue: 'Written down value' },
+      { value: 'Useful life ', viewValue: 'Useful life' }
+    ];
   tablePropsFunc() {
     return {
-      tableData:  {
+      tableData: {
         yearsupto: {
           value: null, type: 'text', width: 150
         },
@@ -49,17 +52,17 @@ export class DepreciationcodeComponent implements OnInit {
         rateupto: {
           value: null, type: 'text', width: 150
         },
-        
-          delete: {
-            type: 'delete',
-            newObject: true
-          }
-        },
-      
+
+        delete: {
+          type: 'delete',
+          newObject: true
+        }
+      },
+
       formControl: {
         yearsupto: [null,],
         monthupto: [null,],
-        rateupto:[null, [Validators.required]]
+        rateupto: [null, [Validators.required]]
         //ext: [null,]
       }
     }
@@ -93,9 +96,9 @@ export class DepreciationcodeComponent implements OnInit {
       depreciationMethod: [null],
       purchaseWithin: [null],
       rate: [null],
-      upto1Years : [null],
+      upto1Years: [null],
       upto1Months: [null],
-      upto1Rate: [null],     
+      upto1Rate: [null],
       upto2Years: [null],
       upto2Months: [null],
       upto2Rate: [null],
@@ -106,12 +109,12 @@ export class DepreciationcodeComponent implements OnInit {
       upto4Months: [null],
       upto4Rate: [null],
       maxDepreciationAmount: [null],
-      maxDepreciationRate:[null],
+      maxDepreciationRate: [null],
 
     });
 
     this.formData = { ...this.addOrEditService.editData };
-    
+
   }
 
   getdepreciationDetail(val) {
@@ -124,28 +127,28 @@ export class DepreciationcodeComponent implements OnInit {
           if (!this.commonService.checkNullOrUndefined(res) && res.status === StatusCodes.pass) {
             if (!this.commonService.checkNullOrUndefined(res.response)) {
               this.modelFormData.setValue(res.response['DepreciationcodeMasters']);
-              this.addOrEditService.sendDynTableData(res.response['DepreciationcodeDetail']);
+              this.sendDynTableData = { type: 'edit', data: res.response['DepreciationcodeDetail'] };
               //this.modelFormData.disable();
             }
           }
         });
   }
- 
+
   ngOnInit() {
     if (this.routeEdit != '') {
       this.getdepreciationDetail(this.routeEdit);
     }
   }
-  
+
   get formControls() { return this.modelFormData.controls; }
 
   emitTableData(data) {
     this.tableData = data;
-    
+
   }
 
   save() {
-   
+
     this.savedepreciationcode();
   }
 
@@ -156,7 +159,7 @@ export class DepreciationcodeComponent implements OnInit {
     this.tableData = [];
     this.modelFormData.reset();
     //this.formData.controls['subAssetNumber'].disable();
-    this.addOrEditService.sendDynTableData(this.tableData);
+    this.sendDynTableData = { type: 'reset', data: this.tableData };
   }
   savedepreciationcode() {
     const addCashBank = String.Join('/', this.apiConfigService.registerdepreciationcodeList);
@@ -170,7 +173,7 @@ export class DepreciationcodeComponent implements OnInit {
           }
           this.reset();
           this.spinner.hide();
-         
+
         }
       });
   }

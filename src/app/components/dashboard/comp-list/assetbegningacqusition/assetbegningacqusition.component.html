@@ -49,7 +49,8 @@
 
       </mat-tab>
       <mat-tab label="Accumulated Depreciation">
-        <app-dynamic-table [tableObJect]="dynTableProps" (emitTableData)="emitTableData($event)"></app-dynamic-table>
+        <app-dynamic-table [tableObJect]="dynTableProps" (emitTableData)="emitTableData($event)"
+          [dynamicTableUpdate]="sendDynTableData"></app-dynamic-table>
       </mat-tab>
     </form>
 

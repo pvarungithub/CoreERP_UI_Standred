@@ -6,7 +6,6 @@ import { ApiService } from '../../../../services/api.service';
 import { StatusCodes, SnackBar } from '../../../../enums/common/common';
 import { CommonService } from '../../../../services/common.service';
 import { NgxSpinnerService } from 'ngx-spinner';
-import { AddOrEditService } from '../../comp-list/add-or-edit.service';
 import { ActivatedRoute, Router } from '@angular/router';
 import { Static } from '../../../../enums/common/static';
 import { AlertService } from '../../../../services/alert.service';
@@ -41,6 +40,8 @@ interface Type {
 })
 
 export class BillOfMaterialComponent implements OnInit {
+
+  sendDynTableData: any;
 
   formData: FormGroup;
   routeEdit = '';
@@ -99,7 +100,6 @@ export class BillOfMaterialComponent implements OnInit {
     private formBuilder: FormBuilder,
     private apiConfigService: ApiConfigService,
     private apiService: ApiService,
-    private addOrEditService: AddOrEditService,
     private alertService: AlertService,
     private spinner: NgxSpinnerService,
     public route: ActivatedRoute,
@@ -199,7 +199,7 @@ export class BillOfMaterialComponent implements OnInit {
           if (!this.commonService.checkNullOrUndefined(res) && res.status === StatusCodes.pass) {
             if (!this.commonService.checkNullOrUndefined(res.response)) {
               this.formData.setValue(res.response['bomMasters']);
-              this.addOrEditService.sendDynTableData({ type: 'edit', data: res.response['bomDetail'] });
+              this.sendDynTableData = { type: 'edit', data: res.response['bomDetail'] };
               this.formData.disable();
               //this.accountSelect();
               this.onbpChange();
@@ -382,7 +382,7 @@ export class BillOfMaterialComponent implements OnInit {
     this.tableData = [];
     this.formData.reset();
     this.formData.controls['material'].disable();
-    this.addOrEditService.sendDynTableData({ type: 'add', data: this.tableData });
+    this.sendDynTableData = { type: 'reset', data: this.tableData };
   }
 
   savebom() {

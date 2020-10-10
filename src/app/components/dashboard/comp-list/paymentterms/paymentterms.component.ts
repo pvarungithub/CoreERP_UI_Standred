@@ -25,6 +25,8 @@ interface Term {
 export class PaymentTermsComponent implements OnInit {
 
   modelFormData: FormGroup;
+  sendDynTableData: any;
+
   routeEdit = '';
   tableData = [];
   dynTableProps = this.tablePropsFunc()
@@ -128,7 +130,7 @@ export class PaymentTermsComponent implements OnInit {
           if (!this.commonService.checkNullOrUndefined(res) && res.status === StatusCodes.pass) {
             if (!this.commonService.checkNullOrUndefined(res.response)) {
               this.modelFormData.setValue(res.response['PaymentTermMasters']);
-              this.addOrEditService.sendDynTableData({ type: 'editValue', data: res.response['PaymentTermDetail'] });
+              this.sendDynTableData = { type: 'editValue', data: res.response['PaymentTermDetail'] };
               //this.modelFormData.disable();
             }
           }
@@ -160,7 +162,7 @@ export class PaymentTermsComponent implements OnInit {
     this.tableData = [];
     this.modelFormData.reset();
     //this.formData.controls['subAssetNumber'].disable();
-    this.addOrEditService.sendDynTableData({ type: 'add', data: this.tableData });
+    this.sendDynTableData = { type: 'reset', data: this.tableData };
   }
   savepaymentterms() {
     const addCashBank = String.Join('/', this.apiConfigService.registerpaymenttermsList);

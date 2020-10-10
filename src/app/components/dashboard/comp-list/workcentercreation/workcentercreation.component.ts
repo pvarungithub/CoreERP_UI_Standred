@@ -18,6 +18,9 @@ import { StatusCodes, SnackBar } from '../../../../enums/common/common';
 })
 export class WorkCenterCreationComponent implements OnInit {
 
+  sendCapacityDynTableData: any;
+  sendActivityDynTableData: any;
+
   companyList = [];
   plantList = [];
   locList = [];
@@ -312,21 +315,14 @@ export class WorkCenterCreationComponent implements OnInit {
     this.modelFormData.reset();
     this.activityTableData = [];
     this.capacityTableData = [];
-    this.addOrEditService.sendDynTableData({ type: 'reset', data: [] });
+
+    this.sendCapacityDynTableData = { type: 'reset', data: [] };
+    this.sendActivityDynTableData = { type: 'reset', data: [] };
   }
 
   save() {
     this.saveWRC();
-    //if (this.modelFormData.invalid) {
-    //  return;
-    //}
-    //this.formData.item = this.modelFormData.value;
-    //this.addOrEditService[this.formData.action](this.formData, (res) => {
-    //  this.router.navigate(['/dashboard/master/workcentercreation']);
-    //});
-    //if (this.formData.action == 'Edit') {
-    //  this.modelFormData.controls[''].disable();
-    //}
+
   }
   saveWRC() {
     const addCashBank = String.Join('/', this.apiConfigService.addWCr);
