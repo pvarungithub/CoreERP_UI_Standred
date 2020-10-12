@@ -8,20 +8,20 @@ z<div class="position-relative popup-class">
     <form [formGroup]="modelFormData" autocomplete="off">
       <div class="d--flex">
 
-        <mat-form-field class="form-element" [ngClass]="{ 'ng--valid': formControls.userName.valid }">
+        <mat-form-field class="form-element"
+          [ngClass]="{ 'ng--valid': formControls.userName.valid, 'ng--invalid': !formControls.userName.valid  }">
           <input matInput placeholder="{{'erpuser.userName' | translate }}" formControlName="userName" maxlength="5"
             appFocusOnEnter tabIndex="1">
-          <mat-error *ngIf="formControls.userName.errors" class="help-block">
-            <div *ngIf="formControls.userName.errors.required">userName is required </div>
-          </mat-error>
+          <mat-hint *ngIf="!formControls.userName.valid" [ngClass]="{ 'ng--invalid': !formControls.userName.valid  }">
+            User Name is required</mat-hint>
         </mat-form-field>
 
-        <mat-form-field class="form-element" [ngClass]="{ 'ng--valid': formControls.password.valid }">
+        <mat-form-field class="form-element"
+          [ngClass]="{ 'ng--valid': formControls.password.valid, 'ng--invalid': !formControls.password.valid  }">
           <input matInput placeholder="{{'erpuser.password' | translate }}" formControlName="password" maxlength="50"
             appFocusOnEnter tabIndex="2">
-          <mat-error *ngIf="formControls.password.errors" class="help-block">
-            <div *ngIf="formControls.password.errors.required">password is required</div>
-          </mat-error>
+          <mat-hint *ngIf="!formControls.password.valid" [ngClass]="{ 'ng--invalid': !formControls.password.valid  }">
+            Password is required</mat-hint>
         </mat-form-field>
 
         <mat-form-field>
@@ -36,8 +36,8 @@ z<div class="position-relative popup-class">
         <mat-form-field>
           <mat-label [translate]="'erpuser.companyCode'"></mat-label>
           <mat-select formControlName="companyCode" appFocusOnEnter tabIndex="5">
-            <mat-option *ngFor="let comp of companyList" [value]="comp.companyId">
-              {{comp.companyId}}- {{comp.companyName}}
+            <mat-option *ngFor="let comp of companyList" [value]="comp.companyCode">
+              {{comp.companyCode}}- {{comp.companyName}}
             </mat-option>
           </mat-select>
         </mat-form-field>

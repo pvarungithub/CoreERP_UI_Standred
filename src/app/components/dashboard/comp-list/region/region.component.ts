@@ -73,9 +73,10 @@ export class RegionComponent implements OnInit {
           if (!this.commonService.checkNullOrUndefined(res) && res.status === StatusCodes.pass) {
             if (!this.commonService.checkNullOrUndefined(res.response)) {
               this.countrysList = res.response['CountryList'];
+              this.spinner.hide();
             }
           }
-          this.spinner.hide();
+
         });
   }
 }

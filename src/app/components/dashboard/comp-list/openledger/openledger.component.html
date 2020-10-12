@@ -8,13 +8,16 @@
     <form [formGroup]="modelFormData" autocomplete="off">
 
       <div class="d--flex">
-        <mat-form-field>
+        <mat-form-field class="form-element"
+          [ngClass]="{ 'ng--valid': formControls.ledgerKey.valid, 'ng--invalid': !formControls.ledgerKey.valid  }">
           <mat-label>{{'openledger.ledgerKey' | translate }}</mat-label>
           <mat-select formControlName="ledgerKey" appFocusOnEnter tabIndex="1">
             <mat-option *ngFor="let ledger of ledgerList" [value]="ledger.code">
               {{ledger.description}}
             </mat-option>
           </mat-select>
+          <mat-hint *ngIf="!formControls.ledgerKey.valid" [ngClass]="{ 'ng--invalid': !formControls.ledgerKey.valid  }">
+            Code is required</mat-hint>
         </mat-form-field>
 
         <mat-form-field>

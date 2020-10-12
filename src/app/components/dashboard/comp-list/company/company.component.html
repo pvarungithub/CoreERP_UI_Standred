@@ -9,20 +9,20 @@
     <form [formGroup]="modelFormData" autocomplete="off">
 
       <div class="d--flex">
-        <mat-form-field class="form-element" [ngClass]="{ 'ng--valid': formControls.companyCode.valid }">
+        <mat-form-field class="form-element"
+          [ngClass]="{ 'ng--valid': formControls.companyCode.valid, 'ng--invalid': !formControls.companyCode.valid  }">
           <input matInput placeholder="{{'company.companyCode' | translate }}" disabled formControlName="companyCode"
             maxlength="5" appFocusOnEnter tabIndex="1">
-          <mat-error *ngIf="formControls.companyCode.errors" class="help-block">
-            <div *ngIf="formControls.companyCode.errors.required">Code is required</div>
-          </mat-error>
+          <mat-hint *ngIf="!formControls.companyCode.valid"
+            [ngClass]="{ 'ng--invalid': !formControls.companyCode.valid  }">Company Code is required</mat-hint>
         </mat-form-field>
 
-        <mat-form-field class="form-element" [ngClass]="{ 'ng--valid': formControls.companyName.valid }">
+        <mat-form-field class="form-element"
+          [ngClass]="{ 'ng--valid': formControls.companyName.valid, 'ng--invalid': !formControls.companyName.valid  }">
           <input matInput placeholder="{{'company.companyName' | translate }}" formControlName="companyName"
             maxlength="50" appFocusOnEnter tabIndex="2">
-          <mat-error *ngIf="formControls.companyName.errors" class="help-block">
-            <div *ngIf="formControls.companyName.errors.required">Name is required</div>
-          </mat-error>
+          <mat-hint *ngIf="!formControls.companyName.valid"
+            [ngClass]="{ 'ng--invalid': !formControls.companyName.valid  }">Company Name is required</mat-hint>
         </mat-form-field>
 
         <mat-form-field class="form-element">

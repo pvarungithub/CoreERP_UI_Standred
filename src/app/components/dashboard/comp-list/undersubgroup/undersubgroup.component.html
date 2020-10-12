@@ -1,69 +1,85 @@
 <div class="position-relative popup-class">
-  <mat-card-title  class="boader--color d-flex justify-content-between position-absolute w-100" >
+  <mat-card-title class="boader--color d-flex justify-content-between position-absolute w-100">
     <span> {{'glsubgroups.title' | translate }} </span>
     <mat-icon class="p-2 cursor--pointer" (click)="cancel()">close</mat-icon>
   </mat-card-title>
-    <mat-card-content class="pt-5 p-2 m-0 overflow-auto">
-       <form [formGroup]="modelFormData" autocomplete="off">
-        <div class="d--flex">
-          <mat-form-field class="form-element">
-            <input matInput placeholder="{{'glsubgroups.structureKey' | translate }}" formControlName="structureKey" appFocusOnEnter tabIndex="1">
-          </mat-form-field>  
-          <mat-form-field>
-            <mat-label>{{'glsubgroups.nature' | translate }}</mat-label>
-            <mat-select formControlName="nature" (selectionChange)= "getAccountNamelist()" appFocusOnEnter tabIndex="2">
-              <mat-option>None</mat-option>
-              <mat-option *ngFor="let accgrp of glAccgrpList" [value]="accgrp.groupName">
-                {{accgrp.groupName}}
-              </mat-option>
-            </mat-select>
-          </mat-form-field>
-          <mat-form-field>
-            <mat-label>{{'glsubgroups.groupUnder' | translate }}</mat-label>
-            <mat-select formControlName="groupUnder" (selectionChange)= "getGLUnderGroupList()" appFocusOnEnter tabIndex="3">
-              <mat-option>None</mat-option>
-              <mat-option *ngFor="let under of glAccNameList" [value]="under.accountGroupId">
-                {{under.accountGroupId}} - {{under.accountGroupName}}
-              </mat-option>
-            </mat-select>
-          </mat-form-field>
-          <mat-form-field [hidden]="formData.item">
-            <mat-label>{{'glsubgroups.Undersubaccount' | translate }}</mat-label>
-            <mat-select formControlName="Undersubaccount" appFocusOnEnter tabIndex="4">
-              <mat-option>None</mat-option>
-              <mat-option *ngFor="let under of getAccSubGrpList" [value]="under.accountGroupId">
-                {{under.accountGroupId}} -  {{under.accountGroupName}}
-              </mat-option>
-            </mat-select>
-          </mat-form-field>
-          <mat-form-field class="form-element" [ngClass]="{ 'ng--valid': formControls.accountGroupId.valid }" >
-            <input matInput placeholder="{{'glsubgroups.accountGroupId' | translate }}" disabled formControlName="accountGroupId" appFocusOnEnter tabIndex="5" >
-            <mat-error *ngIf="formControls.accountGroupId.errors" class="help-block">
-              <div *ngIf="formControls.accountGroupId.errors.required">Account Group Name is required </div>
-            </mat-error>
-          </mat-form-field> 
-          <mat-form-field class="form-element" [ngClass]="{ 'ng--valid': formControls.accountGroupName.valid }" >
-            <input matInput placeholder="{{'glsubgroups.accountGroupName' | translate }}" disabled formControlName="accountGroupName" appFocusOnEnter tabIndex="6">
-            <mat-error *ngIf="formControls.accountGroupName.errors" class="help-block">
-              <div *ngIf="formControls.accountGroupName.errors.required">Account Group Name is required </div>
-            </mat-error>
-          </mat-form-field>              
-          <mat-form-field class="form-element">
-            <input matInput placeholder="{{'glsubgroups.narration' | translate }}" formControlName="narration" appFocusOnEnter tabIndex="7">
-          </mat-form-field>   
-          <mat-slide-toggle class="form-element" formControlName="isDefault" style="margin-top: 25px;margin-left: 5px;"appFocusOnEnter tabIndex="8">
-            No Further Group
-          </mat-slide-toggle>
+  <mat-card-content class="pt-5 p-2 m-0 overflow-auto">
+    <form [formGroup]="modelFormData" autocomplete="off">
+      <div class="d--flex">
+        <mat-form-field class="form-element">
+          <input matInput placeholder="{{'glsubgroups.structureKey' | translate }}" formControlName="structureKey"
+            appFocusOnEnter tabIndex="1">
+        </mat-form-field>
+
+        <mat-form-field class="form-element"
+          [ngClass]="{ 'ng--valid': formControls.nature.valid, 'ng--invalid': !formControls.nature.valid  }">
+          <mat-label>{{'glsubgroups.nature' | translate }}</mat-label>
+          <mat-select formControlName="nature" (selectionChange)="getAccountNamelist()" appFocusOnEnter tabIndex="2">
+            <mat-option>None</mat-option>
+            <mat-option *ngFor="let accgrp of glAccgrpList" [value]="accgrp.groupName">
+              {{accgrp.groupName}}
+            </mat-option>
+          </mat-select>
+          <mat-hint *ngIf="!formControls.nature.valid" [ngClass]="{ 'ng--invalid': !formControls.nature.valid  }"> GL
+            Account is required</mat-hint>
+        </mat-form-field>
+
+        <mat-form-field>
+          <mat-label>{{'glsubgroups.groupUnder' | translate }}</mat-label>
+          <mat-select formControlName="groupUnder" (selectionChange)="getGLUnderGroupList()" appFocusOnEnter
+            tabIndex="3">
+            <mat-option>None</mat-option>
+            <mat-option *ngFor="let under of glAccNameList" [value]="under.accountGroupId">
+              {{under.accountGroupId}} - {{under.accountGroupName}}
+            </mat-option>
+          </mat-select>
+        </mat-form-field>
+        <mat-form-field [hidden]="formData.item">
+          <mat-label>{{'glsubgroups.Undersubaccount' | translate }}</mat-label>
+          <mat-select formControlName="Undersubaccount" appFocusOnEnter tabIndex="4">
+            <mat-option>None</mat-option>
+            <mat-option *ngFor="let under of getAccSubGrpList" [value]="under.accountGroupId">
+              {{under.accountGroupId}} - {{under.accountGroupName}}
+            </mat-option>
+          </mat-select>
+        </mat-form-field>
+
+        <mat-form-field class="form-element"
+          [ngClass]="{ 'ng--valid': formControls.accountGroupId.valid, 'ng--invalid': !formControls.accountGroupId.valid  }">
+          <input matInput placeholder="{{'glsubgroups.accountGroupId' | translate }}" disabled
+            formControlName="accountGroupId" appFocusOnEnter tabIndex="5">
+          <mat-hint *ngIf="!formControls.accountGroupId.valid"
+            [ngClass]="{ 'ng--invalid': !formControls.accountGroupId.valid  }"> Code is required</mat-hint>
+        </mat-form-field>
+
+        <mat-form-field class="form-element"
+          [ngClass]="{ 'ng--valid': formControls.accountGroupName.valid, 'ng--invalid': !formControls.accountGroupName.valid  }">
+          <input matInput placeholder="{{'glsubgroups.accountGroupName' | translate }}" disabled
+            formControlName="accountGroupName" appFocusOnEnter tabIndex="6">
+          <mat-hint *ngIf="!formControls.accountGroupName.valid"
+            [ngClass]="{ 'ng--invalid': !formControls.accountGroupName.valid  }"> Name is required</mat-hint>
+        </mat-form-field>
+
+        <mat-form-field class="form-element">
+          <input matInput placeholder="{{'glsubgroups.narration' | translate }}" formControlName="narration"
+            appFocusOnEnter tabIndex="7">
+        </mat-form-field>
+
+        <mat-slide-toggle class="form-element" formControlName="isDefault" style="margin-top: 25px;margin-left: 5px;"
+          appFocusOnEnter tabIndex="8">
+          No Further Group
+        </mat-slide-toggle>
       </div>
       <mat-divider></mat-divider>
-      </form>
-    </mat-card-content>
-    <div  class="form-element p-2 d-flex justify-content-end">
-      <button mat-raised-button class="button-color-red text-white mr-1"  (click)="cancel()" appFocusOnEnter tabIndex="9">        
-        {{ 'COMMON.CANCEL' | translate }}
-      </button>
-          <button mat-raised-button  type="submit" class="button-color-bule text-white ml-1"  (click)="save()" appFocusOnEnter tabIndex="10">            
-            {{ 'COMMON.SAVE' | translate }}
-           </button>
-    </div>
+    </form>
+  </mat-card-content>
+  <div class="form-element p-2 d-flex justify-content-end">
+    <button mat-raised-button class="button-color-red text-white mr-1" (click)="cancel()" appFocusOnEnter tabIndex="9">
+      {{ 'COMMON.CANCEL' | translate }}
+    </button>
+    <button mat-raised-button type="submit" class="button-color-bule text-white ml-1" (click)="save()" appFocusOnEnter
+      tabIndex="10">
+      {{ 'COMMON.SAVE' | translate }}
+    </button>
   </div>
+</div>

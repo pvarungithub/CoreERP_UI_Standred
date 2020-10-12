@@ -6,20 +6,20 @@
   <mat-card-content class="pt-5 p-2 m-0 overflow-auto ">
     <form [formGroup]="modelFormData" autocomplete="off">
       <div class="d--flex">
-        <mat-form-field class="form-element" [ngClass]="{ 'ng--valid': formControls.departmentCode.valid }">
+        <mat-form-field class="form-element"
+          [ngClass]="{ 'ng--valid': formControls.departmentCode.valid, 'ng--invalid': !formControls.departmentCode.valid  }">
           <input matInput placeholder="{{'salesdepartment.departmentCode' | translate }}"
             formControlName="departmentCode" maxlength="5" appFocusOnEnter tabIndex="1">
-          <mat-error *ngIf="formControls.departmentCode.errors" class="help-block">
-            <div *ngIf="formControls.departmentCode.errors.required">Code is required </div>
-          </mat-error>
+          <mat-hint *ngIf="!formControls.departmentCode.valid"
+            [ngClass]="{ 'ng--invalid': !formControls.departmentCode.valid  }">Department Code is required</mat-hint>
         </mat-form-field>
 
-        <mat-form-field class="form-element" [ngClass]="{ 'ng--valid': formControls.name.valid }">
+        <mat-form-field class="form-element"
+          [ngClass]="{ 'ng--valid': formControls.name.valid, 'ng--invalid': !formControls.name.valid  }">
           <input matInput placeholder="{{'salesdepartment.name' | translate }}" formControlName="name" maxlength="50"
             appFocusOnEnter tabIndex="2">
-          <mat-error *ngIf="formControls.name.errors" class="help-block">
-            <div *ngIf="formControls.name.errors.required">Name is required</div>
-          </mat-error>
+          <mat-hint *ngIf="!formControls.name.valid" [ngClass]="{ 'ng--invalid': !formControls.name.valid  }">Department
+            Name is required</mat-hint>
         </mat-form-field>
 
         <mat-form-field class="form-element">

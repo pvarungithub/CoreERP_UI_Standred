@@ -48,7 +48,6 @@ export class AssignmentVoucherSeriestoVoucherTypesComponent implements OnInit {
 
   ngOnInit() {
     this.getvochertypesList();
-    this.getvoucherseriesList();
   }
 
   getvochertypesList() {
@@ -57,12 +56,13 @@ export class AssignmentVoucherSeriestoVoucherTypesComponent implements OnInit {
       .subscribe(
         response => {
           const res = response.body;
+          console.log(res);
           if (!this.commonService.checkNullOrUndefined(res) && res.status === StatusCodes.pass) {
             if (!this.commonService.checkNullOrUndefined(res.response)) {
               this.vtypeList = res.response['vouchertypeList'];
             }
           }
-          this.spinner.hide();
+          this.getvoucherseriesList();
         });
   }
 

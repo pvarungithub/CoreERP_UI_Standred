@@ -49,7 +49,7 @@ export class ErpUsersComponent implements OnInit {
 
   ngOnInit() {
     this.getRolesList();
-    this.getTableData();
+    //this.getTableData();
   }
 
   getRolesList() {
@@ -57,14 +57,16 @@ export class ErpUsersComponent implements OnInit {
     this.apiService.apiGetRequest(getRolesListsUrl).subscribe(
       response => {
         const res = response.body;
+        console.log(res);
         if (!this.commonService.checkNullOrUndefined(res) && res.status === StatusCodes.pass) {
           if (!this.commonService.checkNullOrUndefined(res.response)) {
             if (!this.commonService.checkNullOrUndefined(res.response['roleList']) && res.response['roleList'].length) {
               this.RolesList = res.response['roleList'];
-              this.spinner.hide();
+              //this.spinner.hide();
             }
           }
         }
+        this.getTableData();
       });
   }
 
@@ -74,6 +76,7 @@ export class ErpUsersComponent implements OnInit {
       .subscribe(
         response => {
           const res = response.body;
+          console.log(res);
           if (!this.commonService.checkNullOrUndefined(res) && res.status === StatusCodes.pass) {
             if (!this.commonService.checkNullOrUndefined(res.response)) {
               this.companyList = res.response['companiesList'];

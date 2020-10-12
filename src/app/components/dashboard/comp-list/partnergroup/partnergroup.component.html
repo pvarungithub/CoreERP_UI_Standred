@@ -8,20 +8,20 @@
     <form [formGroup]="modelFormData" autocomplete="off">
 
       <div class="d--flex">
-        <mat-form-field class="form-element" [ngClass]="{ 'ng--valid': formControls.bpgroup.valid }">
+        <mat-form-field class="form-element"
+          [ngClass]="{ 'ng--valid': formControls.bpgroup.valid, 'ng--invalid': !formControls.bpgroup.valid  }">
           <input matInput placeholder="{{'partnergroup.bpgroup' | translate }}" formControlName="bpgroup" maxlength="5"
             appFocusOnEnter tabIndex="1">
-          <mat-error *ngIf="formControls.bpgroup.errors" class="help-block">
-            <div *ngIf="formControls.bpgroup.errors.required">code is required </div>
-          </mat-error>
+          <mat-hint *ngIf="!formControls.bpgroup.valid" [ngClass]="{ 'ng--invalid': !formControls.bpgroup.valid  }">
+            Code is required</mat-hint>
         </mat-form-field>
 
-        <mat-form-field class="form-element" [ngClass]="{ 'ng--valid': formControls.description.valid }">
+        <mat-form-field class="form-element"
+          [ngClass]="{ 'ng--valid': formControls.description.valid, 'ng--invalid': !formControls.description.valid  }">
           <input matInput placeholder="{{'partnergroup.description' | translate }}" formControlName="description"
             maxlength="50" appFocusOnEnter tabIndex="2">
-          <mat-error *ngIf="formControls.description.errors" class="help-block">
-            <div *ngIf="formControls.description.errors.required">description is required </div>
-          </mat-error>
+          <mat-hint *ngIf="!formControls.description.valid"
+            [ngClass]="{ 'ng--invalid': !formControls.description.valid  }"> Name is required</mat-hint>
         </mat-form-field>
 
         <mat-form-field>

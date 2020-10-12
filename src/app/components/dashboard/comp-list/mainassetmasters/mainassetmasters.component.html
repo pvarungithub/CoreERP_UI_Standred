@@ -30,20 +30,20 @@
               </mat-select>
             </mat-form-field>
 
-            <mat-form-field class="form-element" [ngClass]="{ 'ng--valid': formControls.assetNumber.valid }">
+            <mat-form-field class="form-element"
+              [ngClass]="{ 'ng--valid': formControls.assetNumber.valid, 'ng--invalid': !formControls.assetNumber.valid  }">
               <input matInput placeholder="{{'mainassetmaster.assetNumber' | translate }}" formControlName="assetNumber"
                 maxlength="7" (change)="onChange($event)" appFocusOnEnter tabIndex="3">
-              <mat-error *ngIf="formControls.assetNumber.errors" class="help-block">
-                <div *ngIf="formControls.assetNumber.errors.required">Code is required </div>
-              </mat-error>
+              <mat-hint *ngIf="!formControls.assetNumber.valid"
+                [ngClass]="{ 'ng--invalid': !formControls.assetNumber.valid  }"> Code is required</mat-hint>
             </mat-form-field>
 
-            <mat-form-field class="form-element" [ngClass]="{ 'ng--valid': formControls.name.valid }">
+            <mat-form-field class="form-element"
+              [ngClass]="{ 'ng--valid': formControls.name.valid, 'ng--invalid': !formControls.name.valid  }">
               <input matInput placeholder="{{'mainassetmaster.name' | translate }}" formControlName="name"
                 maxlength="50" appFocusOnEnter tabIndex="4">
-              <mat-error *ngIf="formControls.name.errors" class="help-block">
-                <div *ngIf="formControls.name.errors.required">Name is required</div>
-              </mat-error>
+              <mat-hint *ngIf="!formControls.name.valid" [ngClass]="{ 'ng--invalid': !formControls.name.valid  }"> Name
+                is required</mat-hint>
             </mat-form-field>
 
             <mat-form-field class="form-element">

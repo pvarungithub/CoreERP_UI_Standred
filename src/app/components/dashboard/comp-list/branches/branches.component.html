@@ -8,20 +8,20 @@
     <form [formGroup]="modelFormData" autocomplete="off">
       <div class="d--flex">
 
-        <mat-form-field class="form-element" [ngClass]="{ 'ng--valid': formControls.branchCode.valid }">
+        <mat-form-field class="form-element"
+          [ngClass]="{ 'ng--valid': formControls.branchCode.valid, 'ng--invalid': !formControls.branchCode.valid  }">
           <input matInput placeholder="{{'branches.branchCode' | translate }}" formControlName="branchCode"
             maxlength="5" appFocusOnEnter tabIndex="1">
-          <mat-error *ngIf="formControls.branchCode.errors" class="help-block">
-            <div *ngIf="formControls.branchCode.errors.required">Code is required </div>
-          </mat-error>
+          <mat-hint *ngIf="!formControls.branchCode.valid"
+            [ngClass]="{ 'ng--invalid': !formControls.branchCode.valid  }">Branch Code is required</mat-hint>
         </mat-form-field>
 
-        <mat-form-field class="form-element" [ngClass]="{ 'ng--valid': formControls.branchName.valid }">
+        <mat-form-field class="form-element"
+          [ngClass]="{ 'ng--valid': formControls.branchName.valid, 'ng--invalid': !formControls.branchName.valid  }">
           <input matInput placeholder="{{'branches.branchName' | translate }}" formControlName="branchName"
             maxlength="50" appFocusOnEnter tabIndex="2">
-          <mat-error *ngIf="formControls.branchName.errors" class="help-block">
-            <div *ngIf="formControls.branchName.errors.required">Name is required</div>
-          </mat-error>
+          <mat-hint *ngIf="!formControls.branchName.valid"
+            [ngClass]="{ 'ng--invalid': !formControls.branchName.valid  }">Branch Name is required</mat-hint>
         </mat-form-field>
 
         <mat-form-field>
@@ -108,11 +108,12 @@
             appFocusOnEnter tabIndex="13">
         </mat-form-field>
 
-        <mat-form-field class="form-element">
+        <mat-form-field
+          [ngClass]="{ 'ng--valid': formControls.phone.valid, 'ng--invalid': !formControls.phone.valid  }">
           <input matInput placeholder="{{'branches.phone' | translate }}" formControlName="phone" maxlength="10"
             appFocusOnEnter tabIndex="14">
-          <mat-error *ngIf="formControls.phone.errors" class="help-block">
-          </mat-error>
+          <mat-hint *ngIf="!formControls.phone.valid" [ngClass]="{ 'ng--invalid': !formControls.phone.valid  }">Phone is
+            required</mat-hint>
         </mat-form-field>
 
         <mat-form-field class="form-element">

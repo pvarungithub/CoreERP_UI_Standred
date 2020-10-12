@@ -97,9 +97,6 @@ export class TaxRatesComponents implements OnInit {
   get formControls() { return this.modelFormData.controls; }
 
   save() {
-    if (this.modelFormData.invalid) {
-      return;
-    }
     this.modelFormData.controls['taxRateCode'].enable();
     this.formData.item = this.modelFormData.value;
     this.addOrEditService[this.formData.action](this.formData, (res) => {

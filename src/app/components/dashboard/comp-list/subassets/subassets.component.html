@@ -19,20 +19,21 @@
               </mat-select>
             </mat-form-field>
 
-            <mat-form-field class="form-element" [ngClass]="{ 'ng--valid': formControls.subAssetNumber.valid }">
+            <mat-form-field class="form-element"
+              [ngClass]="{ 'ng--valid': formControls.subAssetNumber.valid, 'ng--invalid': !formControls.subAssetNumber.valid  }">
               <input matInput placeholder="{{'subassets.subAssetNumber' | translate }}" formControlName="subAssetNumber"
                 maxlength="7" appFocusOnEnter tabIndex="2">
-              <mat-error *ngIf="formControls.subAssetNumber.errors" class="help-block">
-                <div *ngIf="formControls.subAssetNumber.errors.required">code is required </div>
-              </mat-error>
+              <mat-hint *ngIf="!formControls.subAssetNumber.valid"
+                [ngClass]="{ 'ng--invalid': !formControls.subAssetNumber.valid  }"> SubAsset Number is required
+              </mat-hint>
             </mat-form-field>
 
-            <mat-form-field class="form-element" [ngClass]="{ 'ng--valid': formControls.description.valid }">
+            <mat-form-field class="form-element"
+              [ngClass]="{ 'ng--valid': formControls.description.valid, 'ng--invalid': !formControls.description.valid  }">
               <input matInput placeholder="{{'subassets.description' | translate }}" formControlName="description"
                 maxlength="50" appFocusOnEnter tabIndex="3">
-              <mat-error *ngIf="formControls.description.errors" class="help-block">
-                <div *ngIf="formControls.description.errors.required">description is required </div>
-              </mat-error>
+              <mat-hint *ngIf="!formControls.description.valid"
+                [ngClass]="{ 'ng--invalid': !formControls.description.valid  }"> Name is required</mat-hint>
             </mat-form-field>
 
             <mat-form-field>

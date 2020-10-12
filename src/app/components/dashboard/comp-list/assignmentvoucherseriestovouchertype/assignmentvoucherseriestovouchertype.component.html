@@ -12,8 +12,8 @@
           <mat-label>{{'assignmentofvoucherseriestovouchertype.voucherType' | translate }}</mat-label>
           <mat-select formControlName="voucherType" appFocusOnEnter tabIndex="2">
             <mat-option>None</mat-option>
-            <mat-option *ngFor="let vttype of vtypeList" [value]="vttype.id">
-              {{vttype.text}}
+            <mat-option *ngFor="let vttype of vtypeList" [value]="vttype.voucherTypeId">
+              {{vttype.voucherTypeName}}
             </mat-option>
           </mat-select>
         </mat-form-field>

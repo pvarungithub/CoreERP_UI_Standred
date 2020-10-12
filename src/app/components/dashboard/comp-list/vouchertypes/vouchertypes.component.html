@@ -9,20 +9,20 @@
     <form [formGroup]="modelFormData" autocomplete="off">
 
       <div class="d--flex">
-        <mat-form-field class="form-element" [ngClass]="{ 'ng--valid': formControls.voucherTypeId.valid }">
+        <mat-form-field class="form-element"
+          [ngClass]="{ 'ng--valid': formControls.voucherTypeId.valid, 'ng--invalid': !formControls.voucherTypeId.valid  }">
           <input matInput placeholder="{{'vouchertype.voucherTypeId' | translate }}" formControlName="voucherTypeId"
             maxlength="4" appFocusOnEnter tabIndex="1">
-          <mat-error *ngIf="formControls.voucherTypeId.errors" class="help-block">
-            <div *ngIf="formControls.voucherTypeId.errors.required">Voucher Type is required </div>
-          </mat-error>
+          <mat-hint *ngIf="!formControls.voucherTypeId.valid"
+            [ngClass]="{ 'ng--invalid': !formControls.voucherTypeId.valid  }">Voucher Type Key is required</mat-hint>
         </mat-form-field>
 
-        <mat-form-field class="form-element" [ngClass]="{ 'ng--valid': formControls.voucherTypeName.valid }">
+        <mat-form-field class="form-element"
+          [ngClass]="{ 'ng--valid': formControls.voucherTypeName.valid, 'ng--invalid': !formControls.voucherTypeName.valid  }">
           <input matInput placeholder="{{'vouchertype.voucherTypeName' | translate }}" formControlName="voucherTypeName"
             maxlength="40" appFocusOnEnter tabIndex="2">
-          <mat-error *ngIf="formControls.voucherTypeName.errors" class="help-block">
-            <div *ngIf="formControls.voucherTypeName.errors.required">Voucher Type is required </div>
-          </mat-error>
+          <mat-hint *ngIf="!formControls.voucherTypeName.valid"
+            [ngClass]="{ 'ng--invalid': !formControls.voucherTypeName.valid  }">voucher Type Name is required</mat-hint>
         </mat-form-field>
 
         <mat-form-field>

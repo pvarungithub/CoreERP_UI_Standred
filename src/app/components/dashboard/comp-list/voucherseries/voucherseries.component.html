@@ -9,12 +9,13 @@
     <form [formGroup]="modelFormData" autocomplete="off">
       <div class="d--flex">
 
-        <mat-form-field class="form-element" [ngClass]="{ 'ng--valid': formControls.voucherSeriesKey.valid }">
+        <mat-form-field class="form-element"
+          [ngClass]="{ 'ng--valid': formControls.voucherSeriesKey.valid, 'ng--invalid': !formControls.voucherSeriesKey.valid  }">
           <input matInput placeholder="{{'voucherseries.voucherSeriesKey' | translate }}"
             formControlName="voucherSeriesKey" appFocusOnEnter tabIndex="1">
-          <mat-error *ngIf="formControls.voucherSeriesKey.errors" class="help-block">
-            <div *ngIf="formControls.voucherSeriesKey.errors.required">voucherSeriesKey is required </div>
-          </mat-error>
+          <mat-hint *ngIf="!formControls.voucherSeriesKey.valid"
+            [ngClass]="{ 'ng--invalid': !formControls.voucherSeriesKey.valid  }">voucher Series Key is required
+          </mat-hint>
         </mat-form-field>
 
         <mat-form-field class="form-element">

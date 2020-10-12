@@ -7,20 +7,20 @@
   <mat-card-content class="pt-5 p-2 m-0 overflow-auto ">
     <form [formGroup]="modelFormData" autocomplete="off">
       <div class="d--flex">
-        <mat-form-field class="form-element" [ngClass]="{ 'ng--valid': formControls.plantCode.valid }">
+        <mat-form-field class="form-element"
+          [ngClass]="{ 'ng--valid': formControls.plantCode.valid, 'ng--invalid': !formControls.plantCode.valid  }">
           <input matInput placeholder="{{'plant.plantCode' | translate }}" formControlName="plantCode" maxlength="5"
             appFocusOnEnter tabIndex="1">
-          <mat-error *ngIf="formControls.plantCode.errors" class="help-block">
-            <div *ngIf="formControls.plantCode.errors.required">Code is required </div>
-          </mat-error>
+          <mat-hint *ngIf="!formControls.plantCode.valid" [ngClass]="{ 'ng--invalid': !formControls.plantCode.valid  }">
+            Plant Code is required</mat-hint>
         </mat-form-field>
 
-        <mat-form-field class="form-element" [ngClass]="{ 'ng--valid': formControls.plantname.valid }">
+        <mat-form-field class="form-element"
+          [ngClass]="{ 'ng--valid': formControls.plantname.valid, 'ng--invalid': !formControls.plantname.valid  }">
           <input matInput placeholder="{{'plant.plantname' | translate }}" formControlName="plantname" maxlength="50"
             appFocusOnEnter tabIndex="2">
-          <mat-error *ngIf="formControls.plantname.errors" class="help-block">
-            <div *ngIf="formControls.plantname.errors.required">Name is required</div>
-          </mat-error>
+          <mat-hint *ngIf="!formControls.plantname.valid" [ngClass]="{ 'ng--invalid': !formControls.plantname.valid  }">
+            Plant Name is required</mat-hint>
         </mat-form-field>
 
         <mat-form-field class="form-element">

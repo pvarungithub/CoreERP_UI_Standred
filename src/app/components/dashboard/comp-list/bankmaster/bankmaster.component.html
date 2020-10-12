@@ -8,20 +8,20 @@
     <form [formGroup]="modelFormData" autocomplete="off">
       <div class="d--flex">
 
-        <mat-form-field class="form-element" [ngClass]="{ 'ng--valid': formControls.bankCode.valid }">
+        <mat-form-field class="form-element"
+          [ngClass]="{ 'ng--valid': formControls.bankCode.valid, 'ng--invalid': !formControls.bankCode.valid  }">
           <input matInput placeholder="{{'bankmaster.bankCode' | translate }}" formControlName="bankCode" maxlength="5"
             appFocusOnEnter tabIndex="1">
-          <mat-error *ngIf="formControls.bankCode.errors" class="help-block">
-            <div *ngIf="formControls.bankCode.errors.required">Code is required </div>
-          </mat-error>
+          <mat-hint *ngIf="!formControls.bankCode.valid" [ngClass]="{ 'ng--invalid': !formControls.bankCode.valid  }">
+            Code is required</mat-hint>
         </mat-form-field>
 
-        <mat-form-field class="form-element" [ngClass]="{ 'ng--valid': formControls.bankName.valid }">
+        <mat-form-field class="form-element"
+          [ngClass]="{ 'ng--valid': formControls.bankName.valid, 'ng--invalid': !formControls.bankName.valid  }">
           <input matInput placeholder="{{'bankmaster.bankName' | translate }}" formControlName="bankName" maxlength="50"
             appFocusOnEnter tabIndex="2">
-          <mat-error *ngIf="formControls.bankName.errors" class="help-block">
-            <div *ngIf="formControls.bankName.errors.required">Name is required</div>
-          </mat-error>
+          <mat-hint *ngIf="!formControls.bankName.valid" [ngClass]="{ 'ng--invalid': !formControls.bankName.valid  }">
+            Name is required</mat-hint>
         </mat-form-field>
 
         <mat-form-field>
