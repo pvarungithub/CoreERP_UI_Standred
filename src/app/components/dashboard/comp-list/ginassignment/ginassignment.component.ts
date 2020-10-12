@@ -55,9 +55,9 @@ export class GoodsIssueNoteAssignmentComponent implements OnInit {
 
   ngOnInit() {
     this.getGINSeriesData();
-    this.getcompanyData();
-    this.getPlantData();
-    this.getmaterialTypeData();
+    // this.getcompanyData();
+    // this.getPlantData();
+    // this.getmaterialTypeData();
   }
   getGINSeriesData() {
     const getGINSeriesUrl = String.Join('/', this.apiConfigService.getGINSeriesList);
@@ -70,7 +70,7 @@ export class GoodsIssueNoteAssignmentComponent implements OnInit {
               this.issuenoList = res.response['issuenoList'];
             }
           }
-          this.spinner.hide();
+          this.getcompanyData();
         });
   }
 
@@ -85,7 +85,7 @@ export class GoodsIssueNoteAssignmentComponent implements OnInit {
               this.companiesList = res.response['companiesList'];
             }
           }
-          this.spinner.hide();
+          this.getPlantData();
         });
   }
 
@@ -100,7 +100,7 @@ export class GoodsIssueNoteAssignmentComponent implements OnInit {
               this.plantsList = res.response['plantsList'];
             }
           }
-          this.spinner.hide();
+          this.getmaterialTypeData();
         });
   }
 
@@ -112,7 +112,7 @@ export class GoodsIssueNoteAssignmentComponent implements OnInit {
           const res = response.body;
           if (!this.commonService.checkNullOrUndefined(res) && res.status === StatusCodes.pass) {
             if (!this.commonService.checkNullOrUndefined(res.response)) {
-              this.matypeList = res.response['matypeList'];
+              this.matypeList = res.response['materialList'];
             }
           }
           this.spinner.hide();

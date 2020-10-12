@@ -20,12 +20,12 @@ export class MaterialRequisitionNoteAssignmentComponent implements OnInit {
   modelFormData: FormGroup;
   formData: any;
   companiesList: any;
-  plantsList: any; 
-    porangeList: any;
-    porderList: any;
-    lotList: any;
+  plantsList: any;
+  porangeList: any;
+  porderList: any;
+  lotList: any;
   mseriesnoList: any;
-    matypeList: any;
+  matypeList: any;
   constructor(private commonService: CommonService,
     private addOrEditService: AddOrEditService,
     private formBuilder: FormBuilder,
@@ -42,7 +42,7 @@ export class MaterialRequisitionNoteAssignmentComponent implements OnInit {
       plant: [null],
       materialType: [null],
       currentNumber: [null]
-   });
+    });
 
 
     this.formData = { ...data };
@@ -55,9 +55,7 @@ export class MaterialRequisitionNoteAssignmentComponent implements OnInit {
 
   ngOnInit() {
     this.getMRNSeriesData();
-    this.getcompanyData();
-    this.getPlantData();
-    this.getmaterialTypeData();
+
   }
   getMRNSeriesData() {
     const getMRNSeriesUrl = String.Join('/', this.apiConfigService.getMRNSeriesList);
@@ -70,7 +68,7 @@ export class MaterialRequisitionNoteAssignmentComponent implements OnInit {
               this.mseriesnoList = res.response['mseriesnoList'];
             }
           }
-          this.spinner.hide();
+          this.getcompanyData();
         });
   }
 
@@ -85,7 +83,7 @@ export class MaterialRequisitionNoteAssignmentComponent implements OnInit {
               this.companiesList = res.response['companiesList'];
             }
           }
-          this.spinner.hide();
+          this.getPlantData();
         });
   }
 
@@ -100,7 +98,7 @@ export class MaterialRequisitionNoteAssignmentComponent implements OnInit {
               this.plantsList = res.response['plantsList'];
             }
           }
-          this.spinner.hide();
+          this.getmaterialTypeData();
         });
   }
 
@@ -113,7 +111,7 @@ export class MaterialRequisitionNoteAssignmentComponent implements OnInit {
           console.log(res);
           if (!this.commonService.checkNullOrUndefined(res) && res.status === StatusCodes.pass) {
             if (!this.commonService.checkNullOrUndefined(res.response)) {
-              this.matypeList = res.response['matypeList'];
+              this.matypeList = res.response['materialList'];
             }
           }
           this.spinner.hide();

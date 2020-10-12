@@ -20,11 +20,11 @@ export class StoresAssignmentComponent implements OnInit {
   modelFormData: FormGroup;
   formData: any;
   companiesList: any;
-  plantsList: any; 
-    porangeList: any;
-    porderList: any;
-    lotList: any;
-    matypeList: any;
+  plantsList: any;
+  porangeList: any;
+  porderList: any;
+  lotList: any;
+  matypeList: any;
   constructor(private commonService: CommonService,
     private addOrEditService: AddOrEditService,
     private formBuilder: FormBuilder,
@@ -41,7 +41,7 @@ export class StoresAssignmentComponent implements OnInit {
       plant: [null],
       materialType: [null],
       currentNumber: [null]
-      
+
     });
 
 
@@ -55,9 +55,7 @@ export class StoresAssignmentComponent implements OnInit {
 
   ngOnInit() {
     this.getLotSeriesData();
-    this.getcompanyData();
-    this.getPlantData();
-    this.getmaterialTypeData();
+
   }
   getLotSeriesData() {
     const getLotSeriesUrl = String.Join('/', this.apiConfigService.getLotSeriesUrlList);
@@ -70,7 +68,7 @@ export class StoresAssignmentComponent implements OnInit {
               this.lotList = res.response['lotList'];
             }
           }
-          this.spinner.hide();
+          this.getcompanyData();
         });
   }
 
@@ -85,7 +83,7 @@ export class StoresAssignmentComponent implements OnInit {
               this.companiesList = res.response['companiesList'];
             }
           }
-          this.spinner.hide();
+          this.getPlantData();
         });
   }
 
@@ -100,7 +98,7 @@ export class StoresAssignmentComponent implements OnInit {
               this.plantsList = res.response['plantsList'];
             }
           }
-          this.spinner.hide();
+          this.getmaterialTypeData();
         });
   }
 
@@ -110,9 +108,10 @@ export class StoresAssignmentComponent implements OnInit {
       .subscribe(
         response => {
           const res = response.body;
+          console.log(res);
           if (!this.commonService.checkNullOrUndefined(res) && res.status === StatusCodes.pass) {
             if (!this.commonService.checkNullOrUndefined(res.response)) {
-              this.matypeList = res.response['matypeList'];
+              this.matypeList = res.response['materialList'];
             }
           }
           this.spinner.hide();

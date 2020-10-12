@@ -47,7 +47,7 @@ export class MaterialMasterComponent implements OnInit, OnDestroy {
   magroupList: any;
   glList: any;
   controlAccountList: any;
-  bpgLists:any;
+  bpgLists: any;
   bpaNum: any;
   bpname: any;
   divisionsList: any;
@@ -83,10 +83,10 @@ export class MaterialMasterComponent implements OnInit, OnDestroy {
       { value: '0.125% (Schedule VI)', viewValue: '0.125% (Schedule VI)' }
     ];
 
-    plantsList: any;
-    PCGroupsList: any;
-    UomList: any;
-    materialnum: any;
+  plantsList: any;
+  PCGroupsList: any;
+  UomList: any;
+  materialnum: any;
 
   constructor(private commonService: CommonService,
     private apiService: ApiService,
@@ -129,7 +129,7 @@ export class MaterialMasterComponent implements OnInit, OnDestroy {
       taxable: [null],
       schedule: [null],
       chapter: [null],
-      netWeightUOM:[null],
+      netWeightUOM: [null],
       goodsServiceDescription: null
     });
 
@@ -176,7 +176,6 @@ export class MaterialMasterComponent implements OnInit, OnDestroy {
       .subscribe(
         response => {
           const res = response.body;
-          console.log(res);
           if (!this.commonService.checkNullOrUndefined(res) && res.status === StatusCodes.pass) {
             if (!this.commonService.checkNullOrUndefined(res.response)) {
               this.UomList = res.response['UomList'];
@@ -214,7 +213,7 @@ export class MaterialMasterComponent implements OnInit, OnDestroy {
         });
   }
   getMaterialTypeData() {
-    const getMaterialTypeUrl = String.Join('/', this.apiConfigService.getMaterialList);
+    const getMaterialTypeUrl = String.Join('/', this.apiConfigService.getMaterialtypeList);
     this.apiService.apiGetRequest(getMaterialTypeUrl)
       .subscribe(
         response => {
@@ -233,7 +232,6 @@ export class MaterialMasterComponent implements OnInit, OnDestroy {
       .subscribe(
         response => {
           const res = response.body;
-          console.log(res);
           if (!this.commonService.checkNullOrUndefined(res) && res.status === StatusCodes.pass) {
             if (!this.commonService.checkNullOrUndefined(res.response)) {
               this.magroupList = res.response['magroupList'];
@@ -248,7 +246,6 @@ export class MaterialMasterComponent implements OnInit, OnDestroy {
       .subscribe(
         response => {
           const res = response.body;
-          console.log(res);
           if (!this.commonService.checkNullOrUndefined(res) && res.status === StatusCodes.pass) {
             if (!this.commonService.checkNullOrUndefined(res.response)) {
               this.msizeList = res.response['msizeList'];
@@ -263,7 +260,6 @@ export class MaterialMasterComponent implements OnInit, OnDestroy {
       .subscribe(
         response => {
           const res = response.body;
-          console.log(res);
           if (!this.commonService.checkNullOrUndefined(res) && res.status === StatusCodes.pass) {
             if (!this.commonService.checkNullOrUndefined(res.response)) {
               this.mpatternList = res.response['mpatternList'];
@@ -278,7 +274,6 @@ export class MaterialMasterComponent implements OnInit, OnDestroy {
       .subscribe(
         response => {
           const res = response.body;
-          console.log(res);
           if (!this.commonService.checkNullOrUndefined(res) && res.status === StatusCodes.pass) {
             if (!this.commonService.checkNullOrUndefined(res.response)) {
               this.PCGroupsList = res.response['PCGroupsList'];
@@ -302,7 +297,7 @@ export class MaterialMasterComponent implements OnInit, OnDestroy {
           this.spinner.hide();
         });
   }
-  
+
   get formControls() { return this.modelFormData.controls; }
 
   save() {
@@ -311,8 +306,7 @@ export class MaterialMasterComponent implements OnInit, OnDestroy {
     }
     this.modelFormData.controls['materialCode'].enable();
     this.formData.item = this.modelFormData.value;
-    this.addOrEditService[this.formData.action](this.formData, (res) =>
-    {
+    this.addOrEditService[this.formData.action](this.formData, (res) => {
       this.router.navigate(['/dashboard/master/materialsmaster']);
     });
     if (this.formData.action == 'Edit') {

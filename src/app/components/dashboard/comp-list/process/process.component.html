@@ -44,12 +44,12 @@
             appFocusOnEnter tabIndex="4" readonly=true>
         </mat-form-field>
 
-        <mat-form-field class="form-element" [ngClass]="{ 'ng--valid': formControls.processKey.valid }">
+        <mat-form-field class="form-element"
+          [ngClass]="{ 'ng--valid': formControls.processKey.valid, 'ng--invalid': !formControls.processKey.valid  }">
           <input matInput placeholder="{{'process.processKey' | translate }}" formControlName="processKey" maxlength="5"
             appFocusOnEnter tabIndex="5">
-          <mat-error *ngIf="formControls.processKey.errors" class="help-block">
-            <div *ngIf="formControls.processKey.errors.required">Code is required </div>
-          </mat-error>
+          <mat-hint *ngIf="!formControls.processKey.valid"
+            [ngClass]="{ 'ng--invalid': !formControls.processKey.valid  }">Process Key is required</mat-hint>
         </mat-form-field>
 
         <mat-form-field class="form-element">

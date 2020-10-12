@@ -20,12 +20,12 @@ export class GoodsReceiptNoteAssignmentComponent implements OnInit {
   modelFormData: FormGroup;
   formData: any;
   companiesList: any;
-  plantsList: any; 
-    porangeList: any;
-    porderList: any;
-    lotList: any;
-    grnoList: any;
-    matypeList: any;
+  plantsList: any;
+  porangeList: any;
+  porderList: any;
+  lotList: any;
+  grnoList: any;
+  matypeList: any;
   constructor(private commonService: CommonService,
     private addOrEditService: AddOrEditService,
     private formBuilder: FormBuilder,
@@ -55,9 +55,7 @@ export class GoodsReceiptNoteAssignmentComponent implements OnInit {
 
   ngOnInit() {
     this.getGRNSeriesData();
-    this.getcompanyData();
-    this.getPlantData();
-    this.getmaterialTypeData();
+
   }
   getGRNSeriesData() {
     const getGRNSeriesUrl = String.Join('/', this.apiConfigService.getGRNSeriesList);
@@ -70,7 +68,7 @@ export class GoodsReceiptNoteAssignmentComponent implements OnInit {
               this.grnoList = res.response['grnoList'];
             }
           }
-          this.spinner.hide();
+          this.getcompanyData();
         });
   }
 
@@ -85,7 +83,7 @@ export class GoodsReceiptNoteAssignmentComponent implements OnInit {
               this.companiesList = res.response['companiesList'];
             }
           }
-          this.spinner.hide();
+          this.getPlantData();
         });
   }
 
@@ -100,7 +98,7 @@ export class GoodsReceiptNoteAssignmentComponent implements OnInit {
               this.plantsList = res.response['plantsList'];
             }
           }
-          this.spinner.hide();
+          this.getmaterialTypeData();
         });
   }
 
@@ -112,7 +110,7 @@ export class GoodsReceiptNoteAssignmentComponent implements OnInit {
           const res = response.body;
           if (!this.commonService.checkNullOrUndefined(res) && res.status === StatusCodes.pass) {
             if (!this.commonService.checkNullOrUndefined(res.response)) {
-              this.matypeList = res.response['matypeList'];
+              this.matypeList = res.response['materialList'];
             }
           }
           this.spinner.hide();

@@ -1,6 +1,6 @@
 <div class="position-relative popup-class">
   <mat-card-title class="boader--color d-flex justify-content-between position-absolute w-100">
-    <span>  {{'suppliertermsandconditions.title' | translate }} </span>
+    <span> {{'suppliertermsandconditions.title' | translate }} </span>
     <mat-icon class="p-2 cursor--pointer" (click)="cancel()">close</mat-icon>
   </mat-card-title>
 
@@ -8,33 +8,36 @@
     <form [formGroup]="modelFormData" autocomplete="off">
 
       <div class="d--flex">
-        <mat-form-field class="form-element" [ngClass]="{ 'ng--valid': formControls.code.valid }">
-          <input matInput placeholder="{{'suppliertermsandconditions.code' | translate }}" formControlName="code" maxlength="4"
-                 appFocusOnEnter tabIndex="1">
-          <mat-error *ngIf="formControls.code.errors" class="help-block">
-            <div *ngIf="formControls.code.errors.required">code  is required </div>
-          </mat-error>
+        <mat-form-field class="form-element"
+          [ngClass]="{ 'ng--valid': formControls.code.valid, 'ng--invalid': !formControls.code.valid  }">
+          <input matInput placeholder="{{'suppliertermsandconditions.code' | translate }}" formControlName="code"
+            maxlength="4" appFocusOnEnter tabIndex="1">
+          <mat-hint *ngIf="!formControls.code.valid" [ngClass]="{ 'ng--invalid': !formControls.code.valid  }"> Code is
+            required</mat-hint>
         </mat-form-field>
 
-        <mat-form-field class="form-element" [ngClass]="{ 'ng--valid': formControls.description.valid }">
+        <mat-form-field class="form-element"
+          [ngClass]="{ 'ng--valid': formControls.description.valid, 'ng--invalid': !formControls.description.valid  }">
           <input matInput placeholder="{{'suppliertermsandconditions.description' | translate }}"
-                 formControlName="description" maxlength="30" appFocusOnEnter tabIndex="2">
-          <mat-error *ngIf="formControls.description.errors" class="help-block">
-            <div *ngIf="formControls.description.errors.required">description  is required </div>
-          </mat-error>
+            formControlName="description" maxlength="30" appFocusOnEnter tabIndex="2">
+          <mat-hint *ngIf="!formControls.description.valid"
+            [ngClass]="{ 'ng--invalid': !formControls.description.valid  }"> Description is required</mat-hint>
         </mat-form-field>
 
         <mat-form-field class="form-element">
-          <input matInput placeholder="{{'suppliertermsandconditions.deliveryPeriod' | translate }}" formControlName="deliveryPeriod" maxlength="12"
-                 appFocusOnEnter tabIndex="3">
+          <input matInput placeholder="{{'suppliertermsandconditions.deliveryPeriod' | translate }}"
+            formControlName="deliveryPeriod" maxlength="12" appFocusOnEnter tabIndex="3">
         </mat-form-field>
 
         <mat-form-field class="form-element">
-          <input matInput [matDatepicker]="picker1" placeholder="{{'suppliertermsandconditions.deliveryDate' | translate }}"
-                 formControlName="deliveryDate" appFocusOnEnter tabIndex="4">
-          <mat-datepicker-toggle matSuffix [for]="picker1"></mat-datepicker-toggle>
-          <mat-datepicker #picker1></mat-datepicker>
+          <input matInput [matDatepicker]="picker2" [nonEditable]="picker2"
+            placeholder="{{'suppliertermsandconditions.deliveryDate' | translate }}" formControlName="deliveryDate"
+            appFocusOnEnter tabIndex="3">
+          <mat-datepicker-toggle matSuffix [for]="picker2"></mat-datepicker-toggle>
+          <mat-datepicker #picker2></mat-datepicker>
         </mat-form-field>
+
+
 
         <mat-form-field>
           <mat-label [translate]="'suppliertermsandconditions.deliveryMethod'"></mat-label>
@@ -47,24 +50,24 @@
         </mat-form-field>
 
         <mat-form-field class="form-element">
-          <input matInput placeholder="{{'suppliertermsandconditions.deliveryPlace' | translate }}" formControlName="deliveryPlace" maxlength="30"
-                 appFocusOnEnter tabIndex="6">
+          <input matInput placeholder="{{'suppliertermsandconditions.deliveryPlace' | translate }}"
+            formControlName="deliveryPlace" maxlength="30" appFocusOnEnter tabIndex="6">
         </mat-form-field>
         <mat-form-field class="form-element">
-          <input matInput placeholder="{{'suppliertermsandconditions.contactPerson' | translate }}" formControlName="contactPerson" maxlength="30"
-                 appFocusOnEnter tabIndex="7">
+          <input matInput placeholder="{{'suppliertermsandconditions.contactPerson' | translate }}"
+            formControlName="contactPerson" maxlength="30" appFocusOnEnter tabIndex="7">
         </mat-form-field>
         <mat-form-field class="form-element">
-          <input matInput placeholder="{{'suppliertermsandconditions.phoneNumber' | translate }}" formControlName="phoneNumber" maxlength="12"
-                 appFocusOnEnter tabIndex="8">
+          <input matInput placeholder="{{'suppliertermsandconditions.phoneNumber' | translate }}"
+            formControlName="phoneNumber" maxlength="12" appFocusOnEnter tabIndex="8">
         </mat-form-field>
         <mat-form-field class="form-element">
-          <input matInput placeholder="{{'suppliertermsandconditions.creditPeriod' | translate }}" type="number" formControlName="creditPeriod" maxlength="7"
-                 appFocusOnEnter tabIndex="9">
+          <input matInput placeholder="{{'suppliertermsandconditions.creditPeriod' | translate }}" type="number"
+            formControlName="creditPeriod" maxlength="7" appFocusOnEnter tabIndex="9">
         </mat-form-field>
         <mat-form-field class="form-element">
-          <input matInput placeholder="{{'suppliertermsandconditions.advance' | translate }}" type="number" formControlName="advance" maxlength="7"
-                 appFocusOnEnter tabIndex="10">
+          <input matInput placeholder="{{'suppliertermsandconditions.advance' | translate }}" type="number"
+            formControlName="advance" maxlength="7" appFocusOnEnter tabIndex="10">
         </mat-form-field>
 
       </div>

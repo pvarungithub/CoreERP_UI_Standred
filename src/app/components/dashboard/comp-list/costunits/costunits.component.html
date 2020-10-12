@@ -1,6 +1,6 @@
 <div class="position-relative popup-class">
   <mat-card-title class="boader--color d-flex justify-content-between position-absolute w-100">
-    <span>  {{'costunits.title' | translate }} </span>
+    <span> {{'costunits.title' | translate }} </span>
     <mat-icon class="p-2 cursor--pointer" (click)="cancel()">close</mat-icon>
   </mat-card-title>
 
@@ -8,32 +8,31 @@
     <form [formGroup]="modelFormData" autocomplete="off">
 
       <div class="d--flex">
-        <mat-form-field>
+        <mat-form-field
+          [ngClass]="{ 'ng--valid': formControls.objectType.valid, 'ng--invalid': !formControls.objectType.valid  }">
           <mat-label>{{'costunits.objectType' | translate }}</mat-label>
-          <mat-select formControlName="objectType"  (selectionChange)="getobjectNumberData()" appFocusOnEnter tabIndex="1">
+          <mat-select formControlName="objectType" (selectionChange)="getobjectNumberData()" appFocusOnEnter
+            tabIndex="1">
             <mat-option>None</mat-option>
             <mat-option *ngFor="let cot of cotList" [value]="cot.id">
               {{cot.text}}
             </mat-option>
           </mat-select>
-          <mat-error *ngIf="formControls.objectType.errors" class="help-block">
-            <div *ngIf="formControls.objectType.errors.required">ObjectType is required </div>
-          </mat-error>
+          <mat-hint *ngIf="!formControls.objectType.valid"
+            [ngClass]="{ 'ng--invalid': !formControls.objectType.valid  }"> Object Type is required</mat-hint>
         </mat-form-field>
 
-        <mat-form-field class="form-element" [ngClass]="{ 'ng--valid': formControls.objectNumber.valid }">
-          <input matInput placeholder="{{'costunits.objectNumber' | translate }}"
-                 formControlName="objectNumber" maxlength="50"
-                 appFocusOnEnter tabIndex="2">
-          <mat-error *ngIf="formControls.objectNumber.errors" class="help-block">
-            <div *ngIf="formControls.objectNumber.errors.required">ObjectNumber is required </div>
-          </mat-error>
+        <mat-form-field class="form-element"
+          [ngClass]="{ 'ng--valid': formControls.objectNumber.valid, 'ng--invalid': !formControls.objectNumber.valid  }">
+          <input matInput placeholder="{{'costunits.objectNumber' | translate }}" formControlName="objectNumber"
+            maxlength="50" appFocusOnEnter tabIndex="2">
+          <mat-hint *ngIf="!formControls.objectNumber.valid"
+            [ngClass]="{ 'ng--invalid': !formControls.objectNumber.valid  }"> Object Number is required</mat-hint>
         </mat-form-field>
 
         <mat-form-field class="form-element">
-          <input matInput placeholder="{{'costunits.description' | translate }}"
-                 formControlName="description" maxlength="50"
-                 appFocusOnEnter tabIndex="3">
+          <input matInput placeholder="{{'costunits.description' | translate }}" formControlName="description"
+            maxlength="50" appFocusOnEnter tabIndex="3">
         </mat-form-field>
 
         <mat-form-field>

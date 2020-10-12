@@ -1,6 +1,6 @@
 <div class="position-relative popup-class">
   <mat-card-title class="boader--color d-flex justify-content-between position-absolute w-100">
-    <span>  {{'batchmaster.title' | translate }} </span>
+    <span> {{'batchmaster.title' | translate }} </span>
     <mat-icon class="p-2 cursor--pointer" (click)="cancel()">close</mat-icon>
   </mat-card-title>
 
@@ -29,25 +29,25 @@
           </mat-select>
         </mat-form-field>
 
-        <mat-form-field class="form-element" [ngClass]="{ 'ng--valid': formControls.batchNumber.valid }">
-          <input matInput placeholder="{{'batchmaster.batchNumber' | translate }}"
-                 formControlName="batchNumber" maxlength="50"
-                 appFocusOnEnter tabIndex="3">
-          <mat-error *ngIf="formControls.batchNumber.errors" class="help-block">
-            <div *ngIf="formControls.batchNumber.errors.required">BatchNumber is required </div>
-          </mat-error>
-        </mat-form-field>
-        <mat-form-field class="form-element">
-          <input matInput [matDatepicker]="dob" placeholder="{{'batchmaster.dob' | translate }}"
-                 formControlName="dob" appFocusOnEnter tabIndex="4">
-          <mat-datepicker-toggle matSuffix [for]="dob"></mat-datepicker-toggle>
-          <mat-datepicker #dob></mat-datepicker>
+        <mat-form-field class="form-element"
+          [ngClass]="{ 'ng--valid': formControls.batchNumber.valid, 'ng--invalid': !formControls.batchNumber.valid  }">
+          <input matInput placeholder="{{'batchmaster.batchNumber' | translate }}" formControlName="batchNumber"
+            maxlength="50" appFocusOnEnter tabIndex="3">
+          <mat-hint *ngIf="!formControls.batchNumber.valid"
+            [ngClass]="{ 'ng--invalid': !formControls.batchNumber.valid  }">Batch Number is required</mat-hint>
         </mat-form-field>
 
         <mat-form-field class="form-element">
-          <input matInput placeholder="{{'batchmaster.year' | translate }}"
-                 formControlName="year" maxlength="50"
-                 appFocusOnEnter tabIndex="5">
+          <input matInput [matDatepicker]="picker1" [nonEditable]="picker1"
+            placeholder="{{'batchmaster.dob' | translate }}" formControlName="dob" appFocusOnEnter tabIndex="4">
+          <mat-datepicker-toggle matSuffix [for]="picker1"></mat-datepicker-toggle>
+          <mat-datepicker #picker1></mat-datepicker>
+        </mat-form-field>
+
+
+        <mat-form-field class="form-element">
+          <input matInput placeholder="{{'batchmaster.year' | translate }}" formControlName="year" maxlength="50"
+            appFocusOnEnter tabIndex="5">
         </mat-form-field>
 
         <mat-form-field>
@@ -55,27 +55,28 @@
           <mat-select formControlName="createdBy" appFocusOnEnter tabIndex="6">
             <mat-option>None</mat-option>
             <mat-option *ngFor="let emp of empList" [value]="emp.id">
-              {{emp.text}}
+              {{emp.id}}- {{emp.text}}
             </mat-option>
           </mat-select>
         </mat-form-field>
 
         <mat-form-field class="form-element">
-          <input matInput [matDatepicker]="createdDate" placeholder="{{'batchmaster.createdDate' | translate }}"
-                 formControlName="createdDate" appFocusOnEnter tabIndex="7">
-          <mat-datepicker-toggle matSuffix [for]="createdDate"></mat-datepicker-toggle>
-          <mat-datepicker #createdDate></mat-datepicker>
+          <input matInput [matDatepicker]="picker2" [nonEditable]="picker2"
+            placeholder="{{'batchmaster.createdDate' | translate }}" formControlName="createdDate" appFocusOnEnter
+            tabIndex="7">
+          <mat-datepicker-toggle matSuffix [for]="picker2"></mat-datepicker-toggle>
+          <mat-datepicker #picker2></mat-datepicker>
         </mat-form-field>
 
+
+
         <mat-form-field class="form-element">
-          <input matInput placeholder="{{'batchmaster.description' | translate }}"
-                 formControlName="description" maxlength="50"
-                 appFocusOnEnter tabIndex="8">
+          <input matInput placeholder="{{'batchmaster.description' | translate }}" formControlName="description"
+            maxlength="50" appFocusOnEnter tabIndex="8">
         </mat-form-field>
         <mat-form-field class="form-element">
-          <input matInput placeholder="{{'batchmaster.batchSize' | translate }}"
-                 formControlName="batchSize" maxlength="10"
-                 appFocusOnEnter tabIndex="9">
+          <input matInput placeholder="{{'batchmaster.batchSize' | translate }}" formControlName="batchSize"
+            maxlength="10" appFocusOnEnter tabIndex="9">
         </mat-form-field>
 
         <mat-form-field>
@@ -89,38 +90,42 @@
         </mat-form-field>
 
         <mat-form-field class="form-element">
-          <input matInput placeholder="{{'batchmaster.plantStart' | translate }}"
-                 formControlName="plantStart" maxlength="50"
-                 appFocusOnEnter tabIndex="11">
+          <input matInput placeholder="{{'batchmaster.plantStart' | translate }}" formControlName="plantStart"
+            maxlength="50" appFocusOnEnter tabIndex="11">
         </mat-form-field>
 
         <mat-form-field class="form-element">
-          <input matInput [matDatepicker]="plantEndDate" placeholder="{{'batchmaster.plantEndDate' | translate }}"
-                 formControlName="plantEndDate" appFocusOnEnter tabIndex="12">
+          <input matInput [matDatepicker]="plantEndDate" [nonEditable]="plantEndDate"
+            placeholder="{{'batchmaster.plantEndDate' | translate }}" formControlName="plantEndDate" appFocusOnEnter
+            tabIndex="12">
           <mat-datepicker-toggle matSuffix [for]="plantEndDate"></mat-datepicker-toggle>
           <mat-datepicker #plantEndDate></mat-datepicker>
         </mat-form-field>
+
         <mat-form-field class="form-element">
-          <input matInput [matDatepicker]="actualStartDate" placeholder="{{'batchmaster.actualStartDate' | translate }}"
-                 formControlName="actualStartDate" appFocusOnEnter tabIndex="13">
+          <input matInput [matDatepicker]="actualStartDate" [nonEditable]="actualStartDate"
+            placeholder="{{'batchmaster.actualStartDate' | translate }}" formControlName="actualStartDate"
+            appFocusOnEnter tabIndex="13">
           <mat-datepicker-toggle matSuffix [for]="actualStartDate"></mat-datepicker-toggle>
           <mat-datepicker #actualStartDate></mat-datepicker>
         </mat-form-field>
+
         <mat-form-field class="form-element">
-          <input matInput placeholder="{{'batchmaster.actualStartTime' | translate }}"
-                 formControlName="actualStartTime" maxlength="5"
-                 appFocusOnEnter tabIndex="14">
+          <input matInput placeholder="{{'batchmaster.actualStartTime' | translate }}" formControlName="actualStartTime"
+            maxlength="5" appFocusOnEnter tabIndex="14">
         </mat-form-field>
+
         <mat-form-field class="form-element">
-          <input matInput [matDatepicker]="actualEndDate" placeholder="{{'batchmaster.actualEndDate' | translate }}"
-                 formControlName="actualEndDate" appFocusOnEnter tabIndex="15">
+          <input matInput [matDatepicker]="actualEndDate" [nonEditable]="actualEndDate"
+            placeholder="{{'batchmaster.actualEndDate' | translate }}" formControlName="actualEndDate" appFocusOnEnter
+            tabIndex="15">
           <mat-datepicker-toggle matSuffix [for]="actualEndDate"></mat-datepicker-toggle>
           <mat-datepicker #actualEndDate></mat-datepicker>
         </mat-form-field>
+
         <mat-form-field class="form-element">
-          <input matInput placeholder="{{'batchmaster.actualEndTime' | translate }}"
-                 formControlName="actualEndTime" maxlength="5"
-                 appFocusOnEnter tabIndex="16">
+          <input matInput placeholder="{{'batchmaster.actualEndTime' | translate }}" formControlName="actualEndTime"
+            maxlength="5" appFocusOnEnter tabIndex="16">
         </mat-form-field>
 
       </div>

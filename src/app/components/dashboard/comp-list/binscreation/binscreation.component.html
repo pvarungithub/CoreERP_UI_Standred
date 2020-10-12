@@ -9,20 +9,20 @@
 
       <div class="d--flex">
 
-        <mat-form-field class="form-element" [ngClass]="{ 'ng--valid': formControls.binNumber.valid }">
+        <mat-form-field class="form-element"
+          [ngClass]="{ 'ng--valid': formControls.binNumber.valid, 'ng--invalid': !formControls.binNumber.valid  }">
           <input matInput placeholder="{{'binscreation.binNumber' | translate }}" formControlName="binNumber"
             maxlength="5" appFocusOnEnter tabIndex="1">
-          <mat-error *ngIf="formControls.binNumber.errors" class="help-block">
-            <div *ngIf="formControls.binNumber.errors.required">BinNumber is required </div>
-          </mat-error>
+          <mat-hint *ngIf="!formControls.binNumber.valid" [ngClass]="{ 'ng--invalid': !formControls.binNumber.valid  }">
+            Bin Number is required</mat-hint>
         </mat-form-field>
 
-        <mat-form-field class="form-element" [ngClass]="{ 'ng--valid': formControls.description.valid }">
+        <mat-form-field class="form-element"
+          [ngClass]="{ 'ng--valid': formControls.description.valid, 'ng--invalid': !formControls.description.valid  }">
           <input matInput placeholder="{{'binscreation.description' | translate }}" formControlName="description"
             maxlength="30" appFocusOnEnter tabIndex="2">
-          <mat-error *ngIf="formControls.description.errors" class="help-block">
-            <div *ngIf="formControls.description.errors.required">description is required </div>
-          </mat-error>
+          <mat-hint *ngIf="!formControls.description.valid"
+            [ngClass]="{ 'ng--invalid': !formControls.description.valid  }"> Description is required</mat-hint>
         </mat-form-field>
 
         <mat-form-field>

@@ -30,6 +30,7 @@ export class ApiConfigService {
    getsecondelementList = `${this.environment.runtimeConfig.serverUrl}Common/GetCostingSecondaryList`;
    getdepartmentList = `${this.environment.runtimeConfig.serverUrl}Common/GetDepartmentList`;
    getttingobjectNumbers = `${this.environment.runtimeConfig.serverUrl}CreationOfCostUnits/GetObjectNumber`;
+   getMaterialtypeList = `${this.environment.runtimeConfig.serverUrl}MaterialTypes/GetMaterialTypesList`;
    getttingmaterialNumbers = `${this.environment.runtimeConfig.serverUrl}MaterialMaster/GetMaterialNumber`;
    getuomList = `${this.environment.runtimeConfig.serverUrl}Common/GetUOMList`;
    getmaterialdata = `${this.environment.runtimeConfig.serverUrl}Common/GetMaterialMasterList`;

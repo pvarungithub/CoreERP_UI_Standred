@@ -20,11 +20,12 @@ export class PurchaseRequisitionNumberRangeComponent implements OnInit {
   modelFormData: FormGroup;
   formData: any;
   companiesList: any;
-  plantsList: any; 
-    porangeList: any;
-    porderList: any;
-    lotList: any;
+  plantsList: any;
+  porangeList: any;
+  porderList: any;
+  lotList: any;
   mseriesnoList: any;
+  fdeptList: any;
   constructor(private commonService: CommonService,
     private addOrEditService: AddOrEditService,
     private formBuilder: FormBuilder,
@@ -42,9 +43,9 @@ export class PurchaseRequisitionNumberRangeComponent implements OnInit {
       fromInterval: [null],
       toInterval: [null],
       currentNumber: [null],
-      prefix:[null]
-     
-   });
+      prefix: [null]
+
+    });
 
 
     this.formData = { ...data };
@@ -57,7 +58,6 @@ export class PurchaseRequisitionNumberRangeComponent implements OnInit {
 
   ngOnInit() {
     this.getPlantData();
-    this.getpurchaseOrderTypeData();
   }
 
   getPlantData() {
@@ -71,7 +71,21 @@ export class PurchaseRequisitionNumberRangeComponent implements OnInit {
               this.plantsList = res.response['plantsList'];
             }
           }
-          this.spinner.hide();
+          this.getDepartmentData();
+        });
+  }
+  getDepartmentData() {
+    const getPlantTypeUrl = String.Join('/', this.apiConfigService.getfunctionaldeptList);
+    this.apiService.apiGetRequest(getPlantTypeUrl)
+      .subscribe(
+        response => {
+          const res = response.body;
+          if (!this.commonService.checkNullOrUndefined(res) && res.status === StatusCodes.pass) {
+            if (!this.commonService.checkNullOrUndefined(res.response)) {
+              this.fdeptList = res.response['fdeptList'];
+            }
+          }
+          this.getpurchaseOrderTypeData();
         });
   }
 

@@ -44,18 +44,18 @@ export class BatchMasterComponent implements OnInit {
       company: [null],
       plant: [null],
       batchNumber: [null, [Validators.required, Validators.minLength(1), Validators.maxLength(4)]],
-      dob: [null],
+      dob: [new Date()],
       year: [null],
       createdBy: [null],
-      createdDate: [null],
+      createdDate: [new Date()],
       description: [null],
       batchSize: [null],
       uom: [null],
       plantStart: [null],
-      plantEndDate: [null],
-      actualStartDate: [null],
+      plantEndDate: [new Date()],
+      actualStartDate: [new Date()],
       actualStartTime: [null],
-      actualEndDate: [null],
+      actualEndDate: [new Date()],
       actualEndTime: [null]
 
     });
@@ -71,9 +71,9 @@ export class BatchMasterComponent implements OnInit {
 
   ngOnInit() {
     this.getcompanyData();
-    this.getplantData();
-    this.getuomTypeData();
-    this.getemployeeData();
+    // this.getplantData();
+    // this.getuomTypeData();
+    // this.getemployeeData();
   }
 
   getcompanyData() {
@@ -87,7 +87,7 @@ export class BatchMasterComponent implements OnInit {
               this.companiesList = res.response['companiesList'];
             }
           }
-          this.spinner.hide();
+          this.getplantData();
         });
   }
   getplantData() {
@@ -101,7 +101,7 @@ export class BatchMasterComponent implements OnInit {
               this.plantList = res.response['plantsList'];
             }
           }
-          this.spinner.hide();
+          this.getemployeeData();
         });
   }
   getemployeeData() {
@@ -115,7 +115,7 @@ export class BatchMasterComponent implements OnInit {
               this.empList = res.response['emplist'];
             }
           }
-          this.spinner.hide();
+          this.getuomTypeData();
         });
   }
   getuomTypeData() {

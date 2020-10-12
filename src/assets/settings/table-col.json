@@ -1122,7 +1122,7 @@
     "mrnseries": "MRN Series Key",
     "description": "Description",
     "fromInterval": "From Interval",
-    "tointerval": "To Interval",
+    "toInterval": "To Interval",
     "currentNumber": "Current Number",
     "prefix": "Prefix"
   },

@@ -1,6 +1,6 @@
 <div class="position-relative popup-class">
   <mat-card-title class="boader--color d-flex justify-content-between position-absolute w-100">
-    <span>  {{'requisitionnumberassignment.title' | translate }} </span>
+    <span> {{'requisitionnumberassignment.title' | translate }} </span>
     <mat-icon class="p-2 cursor--pointer" (click)="cancel()">close</mat-icon>
   </mat-card-title>
 
@@ -9,30 +9,30 @@
 
       <div class="d--flex">
 
-        <mat-form-field>
+        <mat-form-field
+          [ngClass]="{ 'ng--valid': formControls.numberRange.valid, 'ng--invalid': !formControls.numberRange.valid  }">
           <mat-label>{{'requisitionnumberassignment.numberRange' | translate }}</mat-label>
           <mat-select formControlName="numberRange" appFocusOnEnter tabIndex="1">
             <mat-option>None</mat-option>
             <mat-option *ngFor="let norange of reqnorangeList" [value]="norange.numberRange">
-             {{norange.numberRange}}
+              {{norange.numberRange}}
             </mat-option>
           </mat-select>
-          <mat-error *ngIf="formControls.numberRange.errors" class="help-block">
-            <div *ngIf="formControls.numberRange.errors.required">NumberRange  is required </div>
-          </mat-error>
+          <mat-hint *ngIf="!formControls.numberRange.valid"
+            [ngClass]="{ 'ng--invalid': !formControls.numberRange.valid  }"> Number Range is required</mat-hint>
         </mat-form-field>
 
-        <mat-form-field>
+        <mat-form-field
+          [ngClass]="{ 'ng--valid': formControls.company.valid, 'ng--invalid': !formControls.company.valid  }">
           <mat-label>{{'requisitionnumberassignment.company' | translate }}</mat-label>
           <mat-select formControlName="company" appFocusOnEnter tabIndex="2">
             <mat-option>None</mat-option>
             <mat-option *ngFor="let company of companiesList" [value]="company.id">
-               {{company.text}}
+              {{company.text}}
             </mat-option>
           </mat-select>
-          <mat-error *ngIf="formControls.company.errors" class="help-block">
-            <div *ngIf="formControls.company.errors.required">company  is required </div>
-          </mat-error>
+          <mat-hint *ngIf="!formControls.company.valid" [ngClass]="{ 'ng--invalid': !formControls.company.valid  }">
+            Company is required</mat-hint>
         </mat-form-field>
 
         <mat-form-field>

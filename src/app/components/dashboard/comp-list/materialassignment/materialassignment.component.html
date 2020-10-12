@@ -1,6 +1,6 @@
 <div class="position-relative popup-class">
   <mat-card-title class="boader--color d-flex justify-content-between position-absolute w-100">
-    <span>  {{'materialassignment.title' | translate }} </span>
+    <span> {{'materialassignment.title' | translate }} </span>
     <mat-icon class="p-2 cursor--pointer" (click)="cancel()">close</mat-icon>
   </mat-card-title>
 
@@ -9,7 +9,8 @@
 
       <div class="d--flex">
 
-        <mat-form-field>
+        <mat-form-field
+          [ngClass]="{ 'ng--valid': formControls.numberRange.valid, 'ng--invalid': !formControls.numberRange.valid  }">
           <mat-label>{{'materialassignment.numberRange' | translate }}</mat-label>
           <mat-select formControlName="numberRange" appFocusOnEnter tabIndex="1">
             <mat-option>None</mat-option>
@@ -17,22 +18,21 @@
               {{mseries.code}}
             </mat-option>
           </mat-select>
-          <mat-error *ngIf="formControls.numberRange.errors" class="help-block">
-            <div *ngIf="formControls.numberRange.errors.required">NumberRange  is required </div>
-          </mat-error>
+          <mat-hint *ngIf="!formControls.numberRange.valid"
+            [ngClass]="{ 'ng--invalid': !formControls.numberRange.valid  }"> Number Range is required</mat-hint>
         </mat-form-field>
 
-        <mat-form-field>
+        <mat-form-field
+          [ngClass]="{ 'ng--valid': formControls.companyCode.valid, 'ng--invalid': !formControls.companyCode.valid  }">
           <mat-label>{{'materialassignment.companyCode' | translate }}</mat-label>
           <mat-select formControlName="companyCode" appFocusOnEnter tabIndex="2">
             <mat-option>None</mat-option>
             <mat-option *ngFor="let company of companiesList" [value]="company.id">
-             {{company.text}}
+              {{company.text}}
             </mat-option>
           </mat-select>
-          <mat-error *ngIf="formControls.companyCode.errors" class="help-block">
-            <div *ngIf="formControls.companyCode.errors.required">company  is required </div>
-          </mat-error>
+          <mat-hint *ngIf="!formControls.companyCode.valid"
+            [ngClass]="{ 'ng--invalid': !formControls.companyCode.valid  }">Company is required</mat-hint>
         </mat-form-field>
 
         <mat-form-field>
@@ -44,17 +44,17 @@
             </mat-option>
           </mat-select>
         </mat-form-field>
-       
+
         <mat-form-field>
           <mat-label>{{'materialassignment.materialType' | translate }}</mat-label>
           <mat-select formControlName="materialType" appFocusOnEnter tabIndex="4">
             <mat-option>None</mat-option>
-            <mat-option *ngFor="let mtype of matypeList" [value]="mtype.code">
-              {{mtype.description}}
+            <mat-option *ngFor="let mtype of matypeList" [value]="mtype.id">
+              {{mtype.text}}
             </mat-option>
           </mat-select>
         </mat-form-field>
-        
+
       </div>
       <mat-divider></mat-divider>
     </form>

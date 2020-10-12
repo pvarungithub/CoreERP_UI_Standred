@@ -10,7 +10,8 @@
       <div class="d--flex">
 
 
-        <mat-form-field>
+        <mat-form-field
+          [ngClass]="{ 'ng--valid': formControls.company.valid, 'ng--invalid': !formControls.company.valid  }">
           <mat-label>{{'primarycostelement.company' | translate }}</mat-label>
           <mat-select formControlName="company" appFocusOnEnter tabIndex="2">
             <mat-option>None</mat-option>
@@ -18,9 +19,9 @@
               {{company.text}}
             </mat-option>
           </mat-select>
-          <mat-error *ngIf="formControls.company.errors" class="help-block">
-            <div *ngIf="formControls.company.errors.required">company is required </div>
-          </mat-error>
+          <mat-hint *ngIf="!formControls.company.valid" [ngClass]="{ 'ng--invalid': !formControls.company.valid  }">
+            Company is
+            required</mat-hint>
         </mat-form-field>
 
         <mat-form-field>

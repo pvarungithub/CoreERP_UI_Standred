@@ -1183,7 +1183,11 @@
     "company": "Company",
     "plant": "Plant",
     "department": "Department",
-    "currentNumber": "CurrentNumber"
+    "currentNumber": "CurrentNumber",
+    "noRangeName": "NoRangeName",
+    "companyName": "CompanyName",
+    "plantName": "PlantName",
+    "departmentName": "DepartmentName"
   },
   "quotationnumberrange": {
     "title": "Quotation NumberRange",
@@ -1199,7 +1203,10 @@
     "company": "Company",
     "plant": "Plant",
     "department": "Department",
-    "currentNumber": "CurrentNumber"
+    "currentNumber": "CurrentNumber",
+    "noRangeName": "NoRangeName",
+    "companyName": "CompanyName",
+    "plantName": "PlantName"
   },
   "purchaseordertype": {
     "title": "Purchase OrderType",
@@ -1238,7 +1245,11 @@
     "companyCode": "Company",
     "plant": "Plant",
     "purchaseOrderType": "PurchaseOrder Type",
-    "currentNumber": "CurrentNumber"
+    "currentNumber": "CurrentNumber",
+    "noRangeName": "NoRangeName",
+    "companyName": "CompanyName",
+    "plantName": "PlantName",
+    "porderGroupName": "PorderGroupName"
   },
   "storetypes": {
     "title": "Store Types",
@@ -1270,7 +1281,11 @@
     "lotSeries": "Lot Series",
     "company": "Company",
     "plant": "Plant",
-    "materialType": "Material Type"
+    "materialType": "Material Type",
+    "noRangeName": "NoRangeName",
+    "companyName": "CompanyName",
+    "plantName": "PlantName",
+    "materialName": "MaterialName"
   },
   "grnnumberseries": {
     "title": "Goods Receipt Note Numberseries",
@@ -1286,14 +1301,22 @@
     "grnseries": "GRN Series",
     "company": "Company",
     "plant": "Plant",
-    "materialType": "Material Type"
+    "materialType": "Material Type",
+    "grnseriesName": "GrnseriesName",
+    "companyName": "CompanyName",
+    "plantName": "PlantName",
+    "materialName": "MaterialName"
   },
   "ginassignment": {
     "title": "Goods Issue Note Assignment",
     "ginseries": "GIN Series",
     "company": "Company",
     "plant": "Plant",
-    "materilaType": "Material Type"
+    "materilaType": "Material Type",
+    "ginseriesName": "GINSeries Name",
+    "companyName": "CompanyName",
+    "plantName": "PlantName",
+    "materialName": "MaterialName"
   },
   "ginnumberseries": {
     "title": "Goods Issue Note Number Series",
@@ -1309,7 +1332,7 @@
     "mrnseries": "MRN Series Key",
     "description": "Description",
     "fromInterval": "From Interval",
-    "tointerval": "To Interval",
+    "toInterval": "To Interval",
     "currentNumber": "Current Number",
     "prefix": "Prefix"
   },
@@ -1318,7 +1341,11 @@
     "mrnseries": "MRN Series",
     "company": "Company",
     "plant": "Plant",
-    "materialType": "Material Type"
+    "materialType": "Material Type",
+    "materialseriesName": "Material series Name",
+    "companyName": "CompanyName",
+    "plantName": "PlantName",
+    "materialName": "MaterialName"
   },
   "materialgroups": {
     "title": "Material Groups",

@@ -1,6 +1,6 @@
 <div class="position-relative popup-class">
   <mat-card-title class="boader--color d-flex justify-content-between position-absolute w-100">
-    <span>  {{'mrnassignment.title' | translate }} </span>
+    <span> {{'mrnassignment.title' | translate }} </span>
     <mat-icon class="p-2 cursor--pointer" (click)="cancel()">close</mat-icon>
   </mat-card-title>
 
@@ -9,7 +9,8 @@
 
       <div class="d--flex">
 
-        <mat-form-field>
+        <mat-form-field
+          [ngClass]="{ 'ng--valid': formControls.mrnseries.valid, 'ng--invalid': !formControls.mrnseries.valid  }">
           <mat-label>{{'mrnassignment.mrnseries' | translate }}</mat-label>
           <mat-select formControlName="mrnseries" appFocusOnEnter tabIndex="1">
             <mat-option>None</mat-option>
@@ -17,22 +18,21 @@
               {{mseries.description}}
             </mat-option>
           </mat-select>
-          <mat-error *ngIf="formControls.mrnseries.errors" class="help-block">
-            <div *ngIf="formControls.mrnseries.errors.required">MRNSeries  is required </div>
-          </mat-error>
+          <mat-hint *ngIf="!formControls.mrnseries.valid" [ngClass]="{ 'ng--invalid': !formControls.mrnseries.valid  }">
+            MRN Series is required</mat-hint>
         </mat-form-field>
 
-        <mat-form-field>
+        <mat-form-field
+          [ngClass]="{ 'ng--valid': formControls.company.valid, 'ng--invalid': !formControls.company.valid  }">
           <mat-label>{{'mrnassignment.company' | translate }}</mat-label>
           <mat-select formControlName="company" appFocusOnEnter tabIndex="2">
             <mat-option>None</mat-option>
             <mat-option *ngFor="let company of companiesList" [value]="company.id">
-             {{company.text}}
+              {{company.text}}
             </mat-option>
           </mat-select>
-          <mat-error *ngIf="formControls.company.errors" class="help-block">
-            <div *ngIf="formControls.company.errors.required">company  is required </div>
-          </mat-error>
+          <mat-hint *ngIf="!formControls.company.valid" [ngClass]="{ 'ng--invalid': !formControls.company.valid  }">
+            Company is required</mat-hint>
         </mat-form-field>
 
         <mat-form-field>
@@ -44,17 +44,17 @@
             </mat-option>
           </mat-select>
         </mat-form-field>
-       
+
         <mat-form-field>
           <mat-label>{{'mrnassignment.materialType' | translate }}</mat-label>
           <mat-select formControlName="materialType" appFocusOnEnter tabIndex="4">
             <mat-option>None</mat-option>
-            <mat-option *ngFor="let mtype of matypeList" [value]="mtype.code">
-              {{mtype.description}}
+            <mat-option *ngFor="let mtype of matypeList" [value]="mtype.id">
+              {{mtype.text}}
             </mat-option>
           </mat-select>
         </mat-form-field>
-        
+
       </div>
       <mat-divider></mat-divider>
     </form>
