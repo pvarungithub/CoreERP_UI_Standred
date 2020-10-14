@@ -59,6 +59,10 @@ export class MemoinvoiceComponent implements OnInit {
   bpgLists: any;
   taxAmount = [];
   totalAmount = [];
+  wbsList: any;
+  fcList: any;
+  citemList: any;
+  ordertypeList: any;
 
   constructor(private commonService: CommonService,
     private formBuilder: FormBuilder,
@@ -176,19 +180,19 @@ export class MemoinvoiceComponent implements OnInit {
           value: null, type: 'text', width: 100, maxLength: 50
         },
         workBreakStructureElement: {
-          value: null, type: 'dropdown', list: this.costCenterList, id: 'id', text: 'text', displayMul: false, width: 100
+          value: null, type: 'dropdown', list: this.wbsList, id: 'id', text: 'text', displayMul: false, width: 100
         },
         netWork: {
           value: null, type: 'dropdown', list: this.costCenterList, id: 'id', text: 'text', displayMul: false, width: 100
         },
         orderNo: {
-          value: null, type: 'dropdown', list: this.costCenterList, id: 'id', text: 'text', displayMul: false, width: 100
+          value: null, type: 'dropdown', list: this.ordertypeList, id: 'orderType', text: 'description', displayMul: false, width: 100
         },
         fundCenter: {
-          value: null, type: 'dropdown', list: this.costCenterList, id: 'id', text: 'text', displayMul: false, width: 100
+          value: null, type: 'dropdown', list: this.fcList, id: 'code', text: 'description', displayMul: false, width: 100
         },
         commitment: {
-          value: null, type: 'dropdown', list: this.costCenterList, id: 'id', text: 'text', displayMul: false, width: 100
+          value: null, type: 'dropdown', list: this.citemList, id: 'code', text: 'description', displayMul: false, width: 100
         },
         hsnsac: {
           value: null, type: 'dropdown', list: this.hsnsacList, id: 'code', text: 'description', displayMul: false, width: 100
@@ -416,10 +420,66 @@ export class MemoinvoiceComponent implements OnInit {
               this.hsnsacList = res.response['hsnsacList'];
             }
           }
-          this.getCostcenters();
+          this.getWbsList();
         });
   }
 
+  getWbsList() {
+    const segUrl = String.Join('/', this.apiConfigService.getwbselement);
+    this.apiService.apiGetRequest(segUrl)
+      .subscribe(
+        response => {
+          const res = response.body;
+          if (!this.commonService.checkNullOrUndefined(res) && res.status === StatusCodes.pass) {
+            if (!this.commonService.checkNullOrUndefined(res.response)) {
+              this.wbsList = res.response['wbsList'];
+            }
+          }
+          this.getFundCenterList();
+        });
+  }
+  getFundCenterList() {
+    const fcUrl = String.Join('/', this.apiConfigService.getfundcenterList);
+    this.apiService.apiGetRequest(fcUrl)
+      .subscribe(
+        response => {
+          const res = response.body;
+          if (!this.commonService.checkNullOrUndefined(res) && res.status === StatusCodes.pass) {
+            if (!this.commonService.checkNullOrUndefined(res.response)) {
+              this.fcList = res.response['fcList'];
+            }
+          }
+          this.getCommitmentList();
+        });
+  }
+  getCommitmentList() {
+    const cmntUrl = String.Join('/', this.apiConfigService.getCommitmentList);
+    this.apiService.apiGetRequest(cmntUrl)
+      .subscribe(
+        response => {
+          const res = response.body;
+          if (!this.commonService.checkNullOrUndefined(res) && res.status === StatusCodes.pass) {
+            if (!this.commonService.checkNullOrUndefined(res.response)) {
+              this.citemList = res.response['citemList'];
+            }
+          }
+          this.getordernoList();
+        });
+  }
+  getordernoList() {
+    const onoUrl = String.Join('/', this.apiConfigService.getordernolist);
+    this.apiService.apiGetRequest(onoUrl)
+      .subscribe(
+        response => {
+          const res = response.body;
+          if (!this.commonService.checkNullOrUndefined(res) && res.status === StatusCodes.pass) {
+            if (!this.commonService.checkNullOrUndefined(res.response)) {
+              this.ordertypeList = res.response['ordertypeList'];
+            }
+          }
+          this.getCostcenters();
+        });
+  }
   getCostcenters() {
     const costCenUrl = String.Join('/', this.apiConfigService.getCostCentersList);
     this.apiService.apiGetRequest(costCenUrl)

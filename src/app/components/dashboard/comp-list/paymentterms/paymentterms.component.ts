@@ -60,9 +60,7 @@ export class PaymentTermsComponent implements OnInit {
         discount: {
           value: null, type: 'text', width: 150
         },
-        // ext: {
-        //   value: null, type: 'text', width: 150
-        // },
+
 
         delete: {
           type: 'delete',
@@ -103,16 +101,7 @@ export class PaymentTermsComponent implements OnInit {
     this.modelFormData = this.formBuilder.group({
       code: [null, [Validators.required, Validators.minLength(1), Validators.maxLength(4)]],
       description: [null, [Validators.required, Validators.minLength(1), Validators.maxLength(30)]],
-      term1Days: [null],
-      term1Discount: [null],
-      term2Days: [null],
-      term2Discount: [null],
-      term3Days: [null],
-      term3Discount: [null],
-      term4Days: [null],
-      term4Discount: [null],
-      term5Days: [null],
-      term5Discount: [null]
+
 
     });
 
@@ -129,6 +118,7 @@ export class PaymentTermsComponent implements OnInit {
           const res = response.body;
           if (!this.commonService.checkNullOrUndefined(res) && res.status === StatusCodes.pass) {
             if (!this.commonService.checkNullOrUndefined(res.response)) {
+              console.log(res.response['PaymentTermDetail']);
               this.modelFormData.setValue(res.response['PaymentTermMasters']);
               this.sendDynTableData = { type: 'editValue', data: res.response['PaymentTermDetail'] };
               //this.modelFormData.disable();

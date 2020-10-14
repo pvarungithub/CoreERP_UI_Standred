@@ -46,7 +46,6 @@ export class RoutingFileComponent implements OnInit {
   equipmentTableData = [];
   formulaList: any;
   wcList: any;
-  wcLists: any;
   dynTableroutingTableData: void;
   constructor(
     private addOrEditService: AddOrEditService,
@@ -69,36 +68,7 @@ export class RoutingFileComponent implements OnInit {
     this.getCompanyList();
   }
 
-  tablePropsRoutingFunc() {
-    return {
-      tableData: {
-        operation: {
-          value: null, type: 'text', width: 150
-        },
-        subOperation: {
-          value: null, type: 'text', width: 150
-        },
-        workCenter: {
-          value: null, type: 'dropdown', list: this.wcLists, id: 'id', text: 'text',
-          disabled: false, displayMul: true
-        },
-        baseQuantity: {
-          value: null, type: 'text', width: 150
-        },
-        operationUnit: {
-          value: null, type: 'text', width: 150
-        },
 
-        delete: {
-          type: 'delete',
-          newObject: true
-        }
-      },
-      formControl: {
-        operation: [null, [Validators.required]]
-      }
-    }
-  }
 
   tablePropsActivityFunc() {
     return {
@@ -132,6 +102,41 @@ export class RoutingFileComponent implements OnInit {
       },
       formControl: {
         workCenter: [null, [Validators.required]]
+      }
+    }
+  }
+
+  tablePropsRoutingFunc() {
+    return {
+      tableData: {
+        operation: {
+          value: null, type: 'text', width: 150
+        },
+        subOperation: {
+          value: null, type: 'text', width: 150
+        },
+        //costCenter: {
+        //  value: null, type: 'dropdown', list: this.costCenterList, id: 'code', text: 'costCenterName',
+        //  disabled: false, displayMul: true
+        //},
+        workCenter: {
+          value: null, type: 'dropdown', list: this.wcList, id: 'id', text: 'text',
+          disabled: false, displayMul: true
+        },
+        baseQuantity: {
+          value: null, type: 'text', width: 150
+        },
+        operationUnit: {
+          value: null, type: 'text', width: 150
+        },
+
+        delete: {
+          type: 'delete',
+          newObject: true
+        }
+      },
+      formControl: {
+        operation: [null, [Validators.required]]
       }
     }
   }

@@ -16,6 +16,8 @@ export class ApiConfigService {
    getComponentInfo = `${this.environment.runtimeConfig.serverUrl}Settings/GetComponentInfo`;
 
    // Common
+   getCommitmentList = `${this.environment.runtimeConfig.serverUrl}CommitmentItem/GetCommitmentItemList`;
+   getfundcenterList = `${this.environment.runtimeConfig.serverUrl}FundCenter/GetFundCenterList`;
    getWCList = `${this.environment.runtimeConfig.serverUrl}Common/GetWorkcenterList`;
    getFormulaList = `${this.environment.runtimeConfig.serverUrl}Formulas/GetFormulasList`;
    getreqdetailsList = `${this.environment.runtimeConfig.serverUrl}Common/GetMaterialreqDetailsList`;
@@ -216,6 +218,8 @@ export class ApiConfigService {
    getroutingfileDetail = `${this.environment.runtimeConfig.serverUrl}RoutingFile/GetRoutingFileDetail`;
    addrouting = `${this.environment.runtimeConfig.serverUrl}RoutingFile/RegisterRoutingFile`;
    //getPaymentsreceiptsMaster = `${this.environment.runtimeConfig.serverUrl}Transactions/GetPaymentsReceiptsMaster`;
-
+   /******************************* Task****************************************************** */
+   getaskDetail = `${this.environment.runtimeConfig.serverUrl}Tasks/GetTaskDetail`;
+   addtask = `${this.environment.runtimeConfig.serverUrl}Tasks/RegisterTasks`;
 
 }

@@ -1,191 +1,135 @@
 <div class="bg-white">
 
-    <mat-tab-group>
+  <mat-tab-group>
 
-        <form [formGroup]="modelFormData" autocomplete="off">
+    <form [formGroup]="modelFormData" autocomplete="off">
 
-            <mat-tab label="{{'tasks.title1' | translate }}">
+      <mat-tab label="{{'tasks.title1' | translate }}">
+        <mat-card-content class="pt-5 p-2 m-0">
+          <div class="d--flex">
+            <mat-form-field>
+              <mat-label [translate]="'tasks.wbselement'"></mat-label>
+              <mat-select formControlName="wbselement" appFocusOnEnter tabIndex="1">
+                <mat-option>None</mat-option>
+                <mat-option *ngFor="let wbs of wbsElementList" [value]="wbs.id">
+                  {{wbs.text}}
+                </mat-option>
+              </mat-select>
+            </mat-form-field>
 
-                <mat-card-content class="pt-5 p-2 m-0">
+            <mat-form-field class="form-element">
+              <input matInput placeholder="{{'tasks.taskNumber' | translate }}" formControlName="taskNumber"
+                appFocusOnEnter tabIndex="4">
+            </mat-form-field>
 
-                    <div class="d--flex">
+            <mat-form-field class="form-element">
+              <input matInput placeholder="{{'tasks.description' | translate }}" formControlName="description"
+                appFocusOnEnter tabIndex="4">
+            </mat-form-field>
 
-                        <mat-form-field>
-                            <mat-label [translate]="'tasks.wbselement'"></mat-label>
-                            <mat-select formControlName="wbselement" appFocusOnEnter tabIndex="1">
-                                <mat-option>None</mat-option>
-                                <mat-option *ngFor="let wbs of wbsElementList" [value]="wbs.id">
-                                    {{wbs.text}}
-                                </mat-option>
-                            </mat-select>
-                        </mat-form-field>
+            <mat-form-field>
+              <mat-label [translate]="'tasks.immediatePrecedessors'"></mat-label>
+              <mat-select formControlName="immediatePrecedessors" appFocusOnEnter tabIndex="1">
+                <mat-option>None</mat-option>
+                <mat-option *ngFor="let wbs of wbsElementList" [value]="wbs.id">
+                  {{wbs.text}}
+                </mat-option>
 
-                        <mat-form-field class="form-element">
-                            <input matInput placeholder="{{'tasks.taskNumber' | translate }}"
-                                formControlName="taskNumber" appFocusOnEnter tabIndex="4">
-                        </mat-form-field>
+              </mat-select>
+            </mat-form-field>
 
-                        <mat-form-field class="form-element">
-                            <input matInput placeholder="{{'tasks.description' | translate }}"
-                                formControlName="description" appFocusOnEnter tabIndex="4">
-                        </mat-form-field>
+            <mat-form-field>
+              <mat-label [translate]="'tasks.successorTask'"></mat-label>
+              <mat-select formControlName="successorTask" appFocusOnEnter tabIndex="1">
+                <mat-option>None</mat-option>
+                <mat-option *ngFor="let wbs of wbsElementList" [value]="wbs.id">
+                  {{wbs.text}}
+                </mat-option>
 
-                        <mat-form-field>
-                            <mat-label [translate]="'tasks.immediatePrecedessors'"></mat-label>
-                            <mat-select formControlName="immediatePrecedessors" appFocusOnEnter tabIndex="1">
-                              <mat-option>None</mat-option>
-                              <mat-option *ngFor="let wbs of wbsElementList" [value]="wbs.id">
-                                {{wbs.text}}
-                              </mat-option>
-                              <!--<mat-option *ngFor="let imdProc of immediatePrecedessorsList" [value]="imdProc.id">
-                               {{imdProc.text}}
-                              </mat-option>-->
-                            </mat-select>
-                        </mat-form-field>
+              </mat-select>
+            </mat-form-field>
 
-                        <mat-form-field>
-                            <mat-label [translate]="'tasks.successorTask'"></mat-label>
-                            <mat-select formControlName="successorTask" appFocusOnEnter tabIndex="1">
-                              <mat-option>None</mat-option>
-                              <mat-option *ngFor="let wbs of wbsElementList" [value]="wbs.id">
-                                {{wbs.text}}
-                              </mat-option>
-                              <!--<mat-option *ngFor="let succTask of successorTaskList" [value]="succTask.id">
-                                        {{succTask.text}}
-                                   </mat-option>-->
-                            </mat-select>
-                        </mat-form-field>
-
-                        <mat-form-field class="form-element">
-                            <input matInput placeholder="{{'tasks.timeNeeded' | translate }}"
-                                formControlName="timeNeeded" appFocusOnEnter tabIndex="4">
-                        </mat-form-field>
-
-                        <!--<mat-form-field>
-                            <mat-label [translate]="'tasks.period'"></mat-label>
-                            <mat-select formControlName="period" appFocusOnEnter tabIndex="1">
-                                <mat-option>None</mat-option>
-                                <mat-option *ngFor="let period of periodList" [value]="period.id">
-                                    {{period.text}}
-                                </mat-option>
-                            </mat-select>
-                        </mat-form-field>-->
-
-                        <mat-form-field class="form-element">
-                            <input matInput placeholder="{{'tasks.earlyStart' | translate }}"
-                                formControlName="earlyStart" appFocusOnEnter tabIndex="4">
-                        </mat-form-field>
-
-                        <mat-form-field class="form-element">
-                            <input matInput placeholder="{{'tasks.earlyFinish' | translate }}"
-                                formControlName="earlyFinish" appFocusOnEnter tabIndex="4">
-                        </mat-form-field>
-
-                        <mat-form-field class="form-element">
-                            <input matInput placeholder="{{'tasks.lateFinish' | translate }}"
-                                formControlName="lateFinish" appFocusOnEnter tabIndex="4">
-                        </mat-form-field>
-
-                        <mat-form-field class="form-element">
-                            <input matInput placeholder="{{'tasks.forwardTotal' | translate }}"
-                                formControlName="forwardTotal" appFocusOnEnter tabIndex="4">
-                        </mat-form-field>
-
-                        <mat-form-field class="form-element">
-                            <input matInput placeholder="{{'tasks.backwardTotal' | translate }}"
-                                formControlName="backwardTotal" appFocusOnEnter tabIndex="4">
-                        </mat-form-field>
-
-                        <mat-form-field>
-                            <mat-label [translate]="'tasks.person'"></mat-label>
-                            <mat-select formControlName="person" appFocusOnEnter tabIndex="1">
-                                <mat-option>None</mat-option>
-                                <mat-option *ngFor="let person of personList" [value]="person.id">
-                                    {{person.text}}
-                                </mat-option>
-                            </mat-select>
-                        </mat-form-field>
-
-                        <mat-form-field class="form-element">
-                            <input matInput placeholder="{{'tasks.risk' | translate }}" formControlName="risk"
-                                appFocusOnEnter tabIndex="4">
-                        </mat-form-field>
-
-                    </div>
-                </mat-card-content>
-
-            </mat-tab>
-
-            <mat-tab label="{{'tasks.title2' | translate }}">
-
-                <mat-card-content class="pt-5 p-2 m-0">
-
-                  <div class="d--flex">
-                    <mat-form-field class="form-element">
-                      <mat-label [translate]="'tasks.resource'"></mat-label>
-                      <mat-select formControlName="resource" appFocusOnEnter tabIndex="3">
-                        <mat-option>None</mat-option>
-                        <mat-option *ngFor="let resource of resourceList" [value]="resource.id ">
-                          {{resource.text}}
-                        </mat-option>
-                      </mat-select>
-                    </mat-form-field>
-                    <mat-form-field>
-                      <mat-label [translate]="'tasks.materialCode'"></mat-label>
-                      <mat-select formControlName="materialCode" appFocusOnEnter tabIndex="1">
-                        <mat-option>None</mat-option>
-                        <mat-option *ngFor="let materialCode of materialCodeList" [value]="materialCode.id">
-                          {{materialCode.text}}
-                        </mat-option>
-                      </mat-select>
-                    </mat-form-field>
-
-                    <mat-form-field class="form-element">
-                      <input matInput placeholder="{{'tasks.qty' | translate }}" formControlName="qty"
-                             appFocusOnEnter tabIndex="4">
-                    </mat-form-field>
-
-                    <mat-form-field>
-                      <mat-label [translate]="'tasks.costCenter'"></mat-label>
-                      <mat-select formControlName="costCenter" appFocusOnEnter tabIndex="1">
-                        <mat-option>None</mat-option>
-                        <mat-option *ngFor="let costCenter of costCenterList" [value]="costCenter.code">
-                          {{costCenter.costCenterName}}
-                        </mat-option>
-                      </mat-select>
-                    </mat-form-field>
-
-                    <mat-form-field class="form-element">
-                      <input matInput placeholder="{{'tasks.rate' | translate }}" formControlName="rate"
-                             appFocusOnEnter tabIndex="4">
-                    </mat-form-field>
-
-                    <mat-form-field floatLabel="always" appearance="none">
-                      <mat-label [translate]="'tasks.activity'"></mat-label>
-                      <mat-slide-toggle formControlName="activity"></mat-slide-toggle>
-                      <textarea matInput hidden></textarea>
-                    </mat-form-field>
+            <mat-form-field class="form-element">
+              <input matInput placeholder="{{'tasks.timeNeeded' | translate }}" formControlName="timeNeeded"
+                appFocusOnEnter tabIndex="4">
+            </mat-form-field>
 
 
-                  </div>
 
-                </mat-card-content>
+            <mat-form-field class="form-element">
+              <input matInput placeholder="{{'tasks.earlyStart' | translate }}" formControlName="earlyStart"
+                appFocusOnEnter tabIndex="4">
+            </mat-form-field>
 
-            </mat-tab>
+            <mat-form-field class="form-element">
+              <input matInput placeholder="{{'tasks.earlyFinish' | translate }}" formControlName="earlyFinish"
+                appFocusOnEnter tabIndex="4">
+            </mat-form-field>
 
-        </form>
+            <mat-form-field class="form-element">
+              <input matInput placeholder="{{'tasks.lateFinish' | translate }}" formControlName="lateFinish"
+                appFocusOnEnter tabIndex="4">
+            </mat-form-field>
 
-    </mat-tab-group>
+            <mat-form-field class="form-element">
+              <input matInput placeholder="{{'tasks.forwardTotal' | translate }}" formControlName="forwardTotal"
+                appFocusOnEnter tabIndex="4">
+            </mat-form-field>
 
-    <div class="form-element p-2 d-flex justify-content-end">
-        <button mat-raised-button class="button-color-red text-white mr-1" (click)="cancel()" appFocusOnEnter
-            tabIndex="21">
-            {{ 'COMMON.CANCEL' | translate }}
-        </button>
-        <button mat-raised-button type="submit" class="button-color-bule text-white ml-1" (click)="save()"
-            appFocusOnEnter tabIndex="22">
-            {{ 'COMMON.SAVE' | translate }}
-        </button>
-    </div>
+            <mat-form-field class="form-element">
+              <input matInput placeholder="{{'tasks.backwardTotal' | translate }}" formControlName="backwardTotal"
+                appFocusOnEnter tabIndex="4">
+            </mat-form-field>
+
+            <mat-form-field>
+              <mat-label [translate]="'tasks.person'"></mat-label>
+              <mat-select formControlName="person" appFocusOnEnter tabIndex="1">
+                <mat-option>None</mat-option>
+                <mat-option *ngFor="let person of personList" [value]="person.id">
+                  {{person.id}}- {{person.text}}
+                </mat-option>
+              </mat-select>
+            </mat-form-field>
+
+            <mat-form-field class="form-element">
+              <input matInput placeholder="{{'tasks.risk' | translate }}" formControlName="risk" appFocusOnEnter
+                tabIndex="4">
+            </mat-form-field>
+
+
+          </div>
+        </mat-card-content>
+      </mat-tab>
+
+
+      <mat-tab label="{{'routingfile.title2' | translate }}">
+
+        <mat-card-content class="pt-3">
+
+          <app-dynamic-table [tableObJect]="dynTablePropsRouting" (emitTableData)="emitTableRoutingData($event)"
+            [dynamicTableUpdate]="sendRoutingDynTableData">
+          </app-dynamic-table>
+
+        </mat-card-content>
+
+
+
+      </mat-tab>
+
+
+
+    </form>
+
+  </mat-tab-group>
+
+  <div class="form-element p-2 d-flex justify-content-end">
+    <button mat-raised-button class="button-color-red text-white mr-1" (click)="reset()" appFocusOnEnter tabIndex="21">
+      {{ 'COMMON.RESET' | translate }}
+    </button>
+    <button mat-raised-button type="submit" class="button-color-bule text-white ml-1" (click)="save()" appFocusOnEnter
+      tabIndex="22">
+      {{ 'COMMON.SAVE' | translate }}
+    </button>
+  </div>
 
 </div>
