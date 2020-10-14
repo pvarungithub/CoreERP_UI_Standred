@@ -221,5 +221,17 @@ export class ApiConfigService {
    /******************************* Task****************************************************** */
    getaskDetail = `${this.environment.runtimeConfig.serverUrl}Tasks/GetTaskDetail`;
    addtask = `${this.environment.runtimeConfig.serverUrl}Tasks/RegisterTasks`;
+   /*******************************Purchase Requisition ****************************************************** */
+   addpurchasereq = `${this.environment.runtimeConfig.serverUrl}Transactions/AddPurchaseRequisition`;
+   getpurchasereqDetail = `${this.environment.runtimeConfig.serverUrl}Transactions/GetPurchaseRequisitionDetail`;
+   getpurchasereqMaster = `${this.environment.runtimeConfig.serverUrl}Transactions/GetPurchaseRequisition`;
+   returnpurchasereq = `${this.environment.runtimeConfig.serverUrl}Transactions/ReturnPurchaseRequisition`;
+
+   /*******************************Supplier Requisition ****************************************************** */
+   addsupplierreq = `${this.environment.runtimeConfig.serverUrl}Transactions/AddSourceSupply`;
+   getsupplierDetail = `${this.environment.runtimeConfig.serverUrl}Transactions/GetSourceSupplyDetail`;
+   getsupplierreqMaster = `${this.environment.runtimeConfig.serverUrl}Transactions/GetSourceSupply`;
+   returnsupplierreq = `${this.environment.runtimeConfig.serverUrl}Transactions/ReturnSourceSupply`;
+
 
 }

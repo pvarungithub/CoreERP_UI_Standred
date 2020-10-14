@@ -36,7 +36,7 @@ import {
 } from './components/dashboard/comp-list/index';
 
 import {
-  CashbankComponent, JournalComponent, GoodsissueComponent, MemoinvoiceComponent,
+  CashbankComponent, JournalComponent, GoodsissueComponent, MemoinvoiceComponent, SourceOfSupplyComponent, PurchasingComponent,
   ReceiptspaymentsComponent, BillOfMaterialComponent, MaterialrequisitionComponents, PurchasesaleassetComponent, SaleassetComponent
 } from './components/dashboard/trans-list/index';
 
@@ -125,7 +125,7 @@ export function HttpLoaderFactory(httpClient: HttpClient) {
     PurchaseOrderAssignmentComponent, QuotationAssignmentComponent, BusienessTransactionTypeComponent, AssetBegningAccumulatedDepreciationComponent, AssetBegningAcqusitionComponent,
     BusienessPartnerAccountComponent, AssignGLaccounttoSubGroupComponent, MainAssetMasterComponent, SubAssetsComponent,
     DynamicTableComponent, AutocompleteComponent, CashbankComponent, JournalComponent, MaterialRequisitionNoteAssignmentComponent, GoodsissueComponent, MemoinvoiceComponent, ReceiptspaymentsComponent, MaterialrequisitionComponents, BillOfMaterialComponent, MaxlengthDirective, PurchasesaleassetComponent,
-    SaleassetComponent, RoutingFileComponent, NonEditableDatepicker
+    SaleassetComponent, RoutingFileComponent, SourceOfSupplyComponent, PurchasingComponent, NonEditableDatepicker
     //LeaveopeningbalanceComponent,
     //selfserviceComponent,
 

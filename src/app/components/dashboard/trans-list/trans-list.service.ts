@@ -10,6 +10,8 @@ import { NotFoundComponent } from '../../not-found/not-found.component';
 import { BillOfMaterialComponent } from './bom/bom.component'
 import { GoodsissueComponent } from './goodsissue/goodsissue.component'
 import { MaterialrequisitionComponents } from './materialrequisition/materialrequisition.component'
+import { SourceOfSupplyComponent } from './source-of-supply/source-of-supply.component'
+import { PurchasingComponent } from './purcahserequisition/purchasing.component'
 @Injectable({
   providedIn: 'root'
 })
@@ -92,6 +94,22 @@ export class TransListService {
         this.dynamicComp.tableUrl = this.apiConfigService.getmreqMaster;
         this.dynamicComp.list = 'materialreq';
         this.dynamicComp.editKey = 'requisitionNmber';
+        return this.dynamicComp;
+        break;
+      }
+      case 'purcahserequisition': {
+        this.dynamicComp.component = PurchasingComponent;
+        this.dynamicComp.tableUrl = this.apiConfigService.getpurchasereqMaster;
+        this.dynamicComp.list = 'purchasereq';
+        this.dynamicComp.editKey = 'requisitionNumber';
+        return this.dynamicComp;
+        break;
+      }
+      case 'sourceofsupply': {
+        this.dynamicComp.component = SourceOfSupplyComponent;
+        this.dynamicComp.tableUrl = this.apiConfigService.getsupplierreqMaster;
+        this.dynamicComp.list = 'sorcesupply';
+        this.dynamicComp.editKey = 'supplierCode';
         return this.dynamicComp;
         break;
       }
