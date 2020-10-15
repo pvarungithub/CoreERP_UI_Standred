@@ -12,6 +12,8 @@ import { GoodsissueComponent } from './goodsissue/goodsissue.component'
 import { MaterialrequisitionComponents } from './materialrequisition/materialrequisition.component'
 import { SourceOfSupplyComponent } from './source-of-supply/source-of-supply.component'
 import { PurchasingComponent } from './purcahserequisition/purchasing.component'
+import { QuotationSupplierComponent } from './quotationsupplier/quotationsupplier.component'
+import { QuotationAnalysisComponent } from './quotationanalysis/quotationanalysis.component'
 @Injectable({
   providedIn: 'root'
 })
@@ -110,6 +112,22 @@ export class TransListService {
         this.dynamicComp.tableUrl = this.apiConfigService.getsupplierreqMaster;
         this.dynamicComp.list = 'sorcesupply';
         this.dynamicComp.editKey = 'supplierCode';
+        return this.dynamicComp;
+        break;
+      }
+      case 'supplierquotation': {
+        this.dynamicComp.component = QuotationSupplierComponent;
+        this.dynamicComp.tableUrl = this.apiConfigService.getsupplierqsMaster;
+        this.dynamicComp.list = 'quotationsupplier';
+        this.dynamicComp.editKey = 'quotationNumber';
+        return this.dynamicComp;
+        break;
+      }
+      case 'quotationanalysis': {
+        this.dynamicComp.component = QuotationAnalysisComponent;
+        this.dynamicComp.tableUrl = this.apiConfigService.getquotationanalysisMaster;
+        this.dynamicComp.list = 'quotationanalysis';
+        this.dynamicComp.editKey = 'quotationNumber';
         return this.dynamicComp;
         break;
       }

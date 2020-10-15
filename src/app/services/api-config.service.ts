@@ -232,6 +232,16 @@ export class ApiConfigService {
    getsupplierDetail = `${this.environment.runtimeConfig.serverUrl}Transactions/GetSourceSupplyDetail`;
    getsupplierreqMaster = `${this.environment.runtimeConfig.serverUrl}Transactions/GetSourceSupply`;
    returnsupplierreq = `${this.environment.runtimeConfig.serverUrl}Transactions/ReturnSourceSupply`;
+   /*******************************Supplier Quotation ****************************************************** */
+   addsupplierqs = `${this.environment.runtimeConfig.serverUrl}Transactions/AddQuotationSupplier`;
+   getsupplierqsDetail = `${this.environment.runtimeConfig.serverUrl}Transactions/GetQuotationSupplierDetail`;
+   getsupplierqsMaster = `${this.environment.runtimeConfig.serverUrl}Transactions/GetQuotationSupplier`;
+   returnsupplierqs = `${this.environment.runtimeConfig.serverUrl}Transactions/ReturnQuotationSupplier`;
 
+   /*******************************Supplier Quotation ****************************************************** */
+   addquotationanalysis = `${this.environment.runtimeConfig.serverUrl}Transactions/AddQuotationAnalysis`;
+   getquotationanalysisDetail = `${this.environment.runtimeConfig.serverUrl}Transactions/GetQuotationAnalysisDetail`;
+   getquotationanalysisMaster = `${this.environment.runtimeConfig.serverUrl}Transactions/GetQuotationAnalysis`;
+   returnquotationanalysis = `${this.environment.runtimeConfig.serverUrl}Transactions/ReturnQuotationAnalysis`;
 
 }
