@@ -1,0 +1,161 @@
+<mat-card>
+
+    <mat-card-content>
+
+        <form [formGroup]="formData" autocomplete="off">
+
+            <div class="d--flex p-1 mat-form-field-height">
+
+
+                <mat-form-field class="form-element">
+                    <mat-label>{{'purchaseorder.quotationNumber' | translate }}</mat-label>
+                    <mat-select formControlName="quotationNumber" appFocusOnEnter tabIndex="4">
+                        <mat-option>None</mat-option>
+                        <mat-option *ngFor="let qno of qnoList " [value]="qno.id">
+                            {{qno.text}}
+                        </mat-option>
+                    </mat-select>
+                </mat-form-field>
+
+                <mat-form-field>
+                    <mat-label>{{ 'purchaseorder.company' | translate }}</mat-label>
+                    <mat-select formControlName="company">
+                        <mat-option>None</mat-option>
+                        <mat-option *ngFor="let comp of companyList" [value]="comp.id">
+                            {{comp.text}}
+                        </mat-option>
+                    </mat-select>
+                </mat-form-field>
+
+
+                <mat-form-field>
+                    <mat-label>{{'purchaseorder.plant' | translate }}</mat-label>
+                    <mat-select formControlName="plant" appFocusOnEnter tabIndex="12">
+                        <mat-option>None</mat-option>
+                        <mat-option *ngFor="let pnt of plantList" [value]="pnt.plantCode">
+                            {{pnt.plantCode}} - {{pnt.plantname}}
+                        </mat-option>
+                    </mat-select>
+                </mat-form-field>
+
+
+
+                <mat-form-field class="form-element">
+                    <mat-label>{{ 'purchaseorder.branch' | translate }}</mat-label>
+                    <mat-select formControlName="branch">
+                        <mat-option>None</mat-option>
+                        <mat-option *ngFor="let branch of branchList" [value]="branch.id">
+                            {{branch.text}}
+                        </mat-option>
+                    </mat-select>
+                </mat-form-field>
+
+                <mat-form-field>
+                    <mat-label>{{'purchaseorder.purchaseOrderType' | translate }}</mat-label>
+                    <mat-select formControlName="purchaseOrderType" appFocusOnEnter tabIndex="5">
+                        <mat-option>None</mat-option>
+                        <mat-option *ngFor="let potype of porderList" [value]="potype.purchaseType">
+                            {{potype.description}}
+                        </mat-option>
+                    </mat-select>
+                </mat-form-field>
+
+                <mat-form-field>
+                    <mat-label>{{'purchaseorder.profitCenter' | translate }}</mat-label>
+                    <mat-select formControlName="profitCenter" appFocusOnEnter tabIndex="6">
+                        <mat-option>None</mat-option>
+                        <mat-option *ngFor="let pft of profitCenterList" [value]="pft.code">
+                            {{pft.description}}
+                        </mat-option>
+                    </mat-select>
+                </mat-form-field>
+
+                <mat-form-field class="form-element">
+                    <input matInput type="number" placeholder="{{'purchaseorder.purchaseOrderNumber' | translate }}"
+                        formControlName="purchaseOrderNumber" maxlength="50" appFocusOnEnter tabIndex="2">
+                </mat-form-field>
+
+                <mat-form-field class="form-element">
+                    <input matInput [matDatepicker]="picker" [nonEditable]="picker"
+                        placeholder="{{'purchaseorder.quotationDate' | translate }}" formControlName="quotationDate"
+                        appFocusOnEnter tabIndex="3">
+                    <mat-datepicker-toggle matSuffix [for]="picker"></mat-datepicker-toggle>
+                    <mat-datepicker #picker></mat-datepicker>
+                </mat-form-field>
+
+                <mat-form-field class="form-element">
+                    <input matInput type="text" placeholder="{{'purchaseorder.supplierCode' | translate }}"
+                        formControlName="supplierCode" appFocusOnEnter tabIndex="2">
+                </mat-form-field>
+
+                <mat-form-field class="form-element">
+                    <input matInput type="text" placeholder="{{'purchaseorder.gstno' | translate }}"
+                        formControlName="gstno" appFocusOnEnter tabIndex="2">
+                </mat-form-field>
+
+
+                <mat-form-field class="form-element">
+                    <input matInput [matDatepicker]="picker2" [nonEditable]="picker2"
+                        placeholder="{{'purchaseorder.deliveryDate' | translate }}" formControlName="deliveryDate"
+                        appFocusOnEnter tabIndex="3">
+                    <mat-datepicker-toggle matSuffix [for]="picker2"></mat-datepicker-toggle>
+                    <mat-datepicker #picker2></mat-datepicker>
+                </mat-form-field>
+
+                <mat-form-field class="form-element">
+                    <input matInput type="number" placeholder="{{'purchaseorder.deliveryPeriod' | translate }}"
+                        formControlName="deliveryPeriod" appFocusOnEnter tabIndex="2">
+                </mat-form-field>
+
+                <mat-form-field class="form-element">
+                    <input matInput type="text" placeholder="{{'purchaseorder.termsofDelivery' | translate }}"
+                        formControlName="termsofDelivery" appFocusOnEnter tabIndex="2">
+                </mat-form-field>
+
+                <mat-form-field class="form-element">
+                    <input matInput type="text" placeholder="{{'purchaseorder.paymentTerms' | translate }}"
+                        formControlName="paymentTerms" appFocusOnEnter tabIndex="2">
+                </mat-form-field>
+
+                <mat-form-field class="form-element">
+                    <input matInput [matDatepicker]="picker3" [nonEditable]="picker3"
+                        placeholder="{{'purchaseorder.purchaseOrderDate' | translate }}"
+                        formControlName="purchaseOrderDate" appFocusOnEnter tabIndex="3">
+                    <mat-datepicker-toggle matSuffix [for]="picker3"></mat-datepicker-toggle>
+                    <mat-datepicker #picker3></mat-datepicker>
+                </mat-form-field>
+
+            </div>
+
+        </form>
+
+
+        <div>
+            <app-dynamic-table [tableObJect]="dynTableProps" (emitColumnChanges)="emitColumnChanges($event);"
+                (emitTableData)="emitTableData($event)" [dynamicTableUpdate]="sendDynTableData"></app-dynamic-table>
+        </div>
+
+
+    </mat-card-content>
+
+    <mat-card-content class="d-flex justify-content-end pb-1">
+
+        <button [hidden]="routeEdit != ''" mat-raised-button type="submit" class="button-color-bule mr-3 text-white"
+            (click)="save()">
+            {{ 'COMMON.SAVE' | translate }}
+        </button>
+        <button mat-raised-button class="button-color-red text-white mr-3" (click)="back();">
+            {{ 'COMMON.BACK' | translate }}
+        </button>
+        <button [hidden]="routeEdit != ''" mat-raised-button class="button-color-red text-white mr-3"
+            (click)="reset();">
+            {{ 'COMMON.RESET' | translate }}
+        </button>
+        <button [hidden]="routeEdit == ''" mat-raised-button class="button-color-red text-white mr-3"
+            (click)="return();">
+            {{ 'COMMON.RETURN' | translate }}
+        </button>
+
+    </mat-card-content>
+
+</mat-card>

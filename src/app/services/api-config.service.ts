@@ -16,6 +16,8 @@ export class ApiConfigService {
    getComponentInfo = `${this.environment.runtimeConfig.serverUrl}Settings/GetComponentInfo`;
 
    // Common
+   getpurchasenoList = `${this.environment.runtimeConfig.serverUrl}Common/GetPurchaseOrdernoList`;
+   getquotationnoList = `${this.environment.runtimeConfig.serverUrl}Common/GetQuotationnoList`;
    getCommitmentList = `${this.environment.runtimeConfig.serverUrl}CommitmentItem/GetCommitmentItemList`;
    getfundcenterList = `${this.environment.runtimeConfig.serverUrl}FundCenter/GetFundCenterList`;
    getWCList = `${this.environment.runtimeConfig.serverUrl}Common/GetWorkcenterList`;
@@ -243,5 +245,16 @@ export class ApiConfigService {
    getquotationanalysisDetail = `${this.environment.runtimeConfig.serverUrl}Transactions/GetQuotationAnalysisDetail`;
    getquotationanalysisMaster = `${this.environment.runtimeConfig.serverUrl}Transactions/GetQuotationAnalysis`;
    returnquotationanalysis = `${this.environment.runtimeConfig.serverUrl}Transactions/ReturnQuotationAnalysis`;
+   /*******************************Purchase Order ****************************************************** */
+   addpurchaseorder = `${this.environment.runtimeConfig.serverUrl}Transactions/AddPurchaseOrder`;
+   getpurchaseorderDetail = `${this.environment.runtimeConfig.serverUrl}Transactions/GetPurchaseOrderDetail`;
+   getpurchaseorderMaster = `${this.environment.runtimeConfig.serverUrl}Transactions/GetPurchaseOrder`;
+   returnpurchaseorder = `${this.environment.runtimeConfig.serverUrl}Transactions/ReturnPurchaseOrder`;
+
+   /*******************************Goods Receipt ****************************************************** */
+   addgoodsreceipt = `${this.environment.runtimeConfig.serverUrl}Transactions/AddGoodsReceipt`;
+   getgoodsreceiptDetail = `${this.environment.runtimeConfig.serverUrl}Transactions/GetGoodsReceiptDetail`;
+   getgoodsreceipt = `${this.environment.runtimeConfig.serverUrl}Transactions/GetGoodsReceipt`;
+   returngoodsreceipt = `${this.environment.runtimeConfig.serverUrl}Transactions/ReturnGoodsReceipt`;
 
 }

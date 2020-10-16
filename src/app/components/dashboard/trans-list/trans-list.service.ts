@@ -14,6 +14,8 @@ import { SourceOfSupplyComponent } from './source-of-supply/source-of-supply.com
 import { PurchasingComponent } from './purcahserequisition/purchasing.component'
 import { QuotationSupplierComponent } from './quotationsupplier/quotationsupplier.component'
 import { QuotationAnalysisComponent } from './quotationanalysis/quotationanalysis.component'
+import { PurchaseOrderComponent } from './purcahseorder/purcahseorder.component'
+import { ReceiptOfGoodsComponent } from './goodsreceipts/receipt-of-goods.component'
 @Injectable({
   providedIn: 'root'
 })
@@ -128,6 +130,22 @@ export class TransListService {
         this.dynamicComp.tableUrl = this.apiConfigService.getquotationanalysisMaster;
         this.dynamicComp.list = 'quotationanalysis';
         this.dynamicComp.editKey = 'quotationNumber';
+        return this.dynamicComp;
+        break;
+      }
+      case 'purchaseorder': {
+        this.dynamicComp.component = PurchaseOrderComponent;
+        this.dynamicComp.tableUrl = this.apiConfigService.getpurchaseorderMaster;
+        this.dynamicComp.list = 'podetails';
+        this.dynamicComp.editKey = 'purchaseOrderNumber';
+        return this.dynamicComp;
+        break;
+      }
+      case 'goodsreceipts': {
+        this.dynamicComp.component = ReceiptOfGoodsComponent;
+        this.dynamicComp.tableUrl = this.apiConfigService.getgoodsreceipt;
+        this.dynamicComp.list = 'grdetails';
+        this.dynamicComp.editKey = 'purchaseOrderNo';
         return this.dynamicComp;
         break;
       }

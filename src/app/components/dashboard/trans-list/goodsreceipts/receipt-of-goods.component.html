@@ -1,0 +1,214 @@
+<mat-card>
+
+    <mat-card-content>
+
+        <form [formGroup]="formData" autocomplete="off" *ngIf="formData">
+
+            <div class="d--flex p-1 mat-form-field-height">
+
+                <mat-form-field class="form-element">
+                    <mat-label>{{ 'goodsreceipts.purchaseOrderNo' | translate }}</mat-label>
+                    <mat-select formControlName="purchaseOrderNo">
+                        <mat-option>None</mat-option>
+                        <mat-option *ngFor="let poNo of purchaseordernoList" [value]="poNo.id">
+                            {{poNo.text}}
+                        </mat-option>
+                    </mat-select>
+                </mat-form-field>
+
+                <mat-form-field class="form-element">
+                    <mat-label>{{ 'goodsreceipts.company' | translate }}</mat-label>
+                    <mat-select formControlName="company">
+                        <mat-option>None</mat-option>
+                        <mat-option *ngFor="let comp of companyList" [value]="comp.id">
+                            {{comp.text}}
+                        </mat-option>
+                    </mat-select>
+                </mat-form-field>
+
+                <mat-form-field>
+                    <mat-label>{{'goodsreceipts.plant' | translate }}</mat-label>
+                    <mat-select formControlName="plant" appFocusOnEnter tabIndex="12">
+                        <mat-option>None</mat-option>
+                        <mat-option *ngFor="let pnt of plantList" [value]="pnt.plantCode">
+                            {{pnt.plantCode}} - {{pnt.plantname}}
+                        </mat-option>
+                    </mat-select>
+                </mat-form-field>
+
+
+                <mat-form-field class="form-element">
+                    <mat-label>{{ 'goodsreceipts.branch' | translate }}</mat-label>
+                    <mat-select formControlName="branch">
+                        <mat-option>None</mat-option>
+                        <mat-option *ngFor="let branch of branchList" [value]="branch.id">
+                            {{branch.text}}
+                        </mat-option>
+                    </mat-select>
+                </mat-form-field>
+
+
+                <mat-form-field>
+                    <mat-label>{{'goodsreceipts.profitCenter' | translate }}</mat-label>
+                    <mat-select formControlName="profitCenter" appFocusOnEnter tabIndex="6">
+                        <mat-option>None</mat-option>
+                        <mat-option *ngFor="let pft of profitCenterList" [value]="pft.code">
+                            {{pft.description}}
+                        </mat-option>
+                    </mat-select>
+                </mat-form-field>
+
+                <mat-form-field class="form-element">
+                    <input matInput type="number" placeholder="{{'goodsreceipts.supplierCode' | translate }}"
+                        formControlName="supplierCode" appFocusOnEnter tabIndex="2">
+                </mat-form-field>
+
+                <!-- <mat-form-field class="form-element">
+                    <input matInput type="number" placeholder="{{'goodsreceipts.supplierName' | translate }}"
+                        formControlName="supplierName" appFocusOnEnter tabIndex="2">
+                </mat-form-field> -->
+
+                <mat-form-field class="form-element">
+                    <input matInput type="number" placeholder="{{'goodsreceipts.supplierReferenceNo' | translate }}"
+                        formControlName="supplierReferenceNo" appFocusOnEnter tabIndex="2">
+                </mat-form-field>
+
+                <!-- <mat-form-field class="form-element">
+                    <input matInput [matDatepicker]="picker" [nonEditable]="picker"
+                        placeholder="{{'goodsreceipts.supplierRefDate' | translate }}" formControlName="supplierRefDate"
+                        appFocusOnEnter tabIndex="3">
+                    <mat-datepicker-toggle matSuffix [for]="picker"></mat-datepicker-toggle>
+                    <mat-datepicker #picker></mat-datepicker>
+                </mat-form-field> -->
+
+                <mat-form-field class="form-element">
+                    <input matInput type="number" placeholder="{{'goodsreceipts.rrno' | translate }}"
+                        formControlName="rrno" appFocusOnEnter tabIndex="2">
+                </mat-form-field>
+
+                <mat-form-field class="form-element">
+                    <input matInput type="number" placeholder="{{'goodsreceipts.vehicleNo' | translate }}"
+                        formControlName="vehicleNo" appFocusOnEnter tabIndex="2">
+                </mat-form-field>
+
+                <mat-form-field class="form-element">
+                    <input matInput type="number" placeholder="{{'goodsreceipts.supplierGinno' | translate }}"
+                        formControlName="supplierGinno" appFocusOnEnter tabIndex="2">
+                </mat-form-field>
+
+                <!-- <mat-form-field class="form-element">
+                    <input matInput [matDatepicker]="picker1" [nonEditable]="picker1"
+                        placeholder="{{'goodsreceipts.supplierGINDate' | translate }}" formControlName="supplierGINDate"
+                        appFocusOnEnter tabIndex="3">
+                    <mat-datepicker-toggle matSuffix [for]="picker1"></mat-datepicker-toggle>
+                    <mat-datepicker #picker1></mat-datepicker>
+                </mat-form-field>
+
+                <mat-form-field>
+                    <mat-label>{{'goodsreceipts.receivedBy' | translate }}</mat-label>
+                    <mat-select formControlName="receivedBy" appFocusOnEnter tabIndex="3">
+                        <mat-option>None</mat-option>
+                        <mat-option *ngFor="let emp of employeesList" [value]="emp.id">
+                            {{emp.text}}
+                        </mat-option>
+                    </mat-select>
+                </mat-form-field> -->
+
+
+                <mat-form-field class="form-element">
+                    <input matInput [matDatepicker]="picker2" [nonEditable]="picker2"
+                        placeholder="{{'goodsreceipts.receivedDate' | translate }}" formControlName="receivedDate"
+                        appFocusOnEnter tabIndex="3">
+                    <mat-datepicker-toggle matSuffix [for]="picker2"></mat-datepicker-toggle>
+                    <mat-datepicker #picker2></mat-datepicker>
+                </mat-form-field>
+
+                <mat-form-field>
+                    <mat-label>{{'goodsreceipts.receivedBy' | translate }}</mat-label>
+                    <mat-select formControlName="receivedBy" appFocusOnEnter tabIndex="3">
+                        <mat-option>None</mat-option>
+                        <mat-option *ngFor="let emp of employeesList" [value]="emp.id">
+                            {{emp.text}}
+                        </mat-option>
+                    </mat-select>
+                </mat-form-field>
+
+                <!-- <mat-form-field class="form-element">
+                    <input matInput type="number" placeholder="{{'goodsreceipts.receiptTime' | translate }}"
+                        formControlName="receiptTime" appFocusOnEnter tabIndex="2">
+                </mat-form-field> -->
+
+                <mat-form-field>
+                    <mat-label>{{'goodsreceipts.movementType' | translate }}</mat-label>
+                    <mat-select formControlName="movementType" appFocusOnEnter tabIndex="6">
+                        <mat-option>None</mat-option>
+                        <mat-option *ngFor="let movement of movementList" [value]="movement.code">
+                            {{movement.description}}
+                        </mat-option>
+                    </mat-select>
+                </mat-form-field>
+
+                <mat-form-field class="form-element">
+                    <input matInput type="number" placeholder="{{'goodsreceipts.grnno' | translate }}"
+                        formControlName="grnno" appFocusOnEnter tabIndex="2">
+                </mat-form-field>
+
+                <!-- <mat-form-field class="form-element">
+                    <input matInput [matDatepicker]="picker3" [nonEditable]="picker3"
+                        placeholder="{{'goodsreceipts.grnDate' | translate }}" formControlName="grnDate" appFocusOnEnter
+                        tabIndex="3">
+                    <mat-datepicker-toggle matSuffix [for]="picker3"></mat-datepicker-toggle>
+                    <mat-datepicker #picker3></mat-datepicker>
+                </mat-form-field> -->
+
+                <mat-checkbox class="pt-4" formControlName="qualityCheck" appFocusOnEnter tabIndex="6">
+                    {{'goodsreceipts.qualityCheck' | translate }}</mat-checkbox>
+
+
+                <mat-form-field>
+                    <mat-label>{{'goodsreceipts.storageLocation' | translate }}</mat-label>
+                    <mat-select formControlName="storageLocation" appFocusOnEnter tabIndex="4">
+                        <mat-option>None</mat-option>
+                        <mat-option *ngFor="let stloc of stlocList" [value]="stloc.code">
+                            {{stloc.name}}
+                        </mat-option>
+                    </mat-select>
+                </mat-form-field>
+
+                <mat-form-field class="form-element">
+                    <input matInput type="number" placeholder="{{'goodsreceipts.inspectionNoteNo' | translate }}"
+                        formControlName="inspectionNoteNo" appFocusOnEnter tabIndex="2">
+                </mat-form-field>
+
+            </div>
+
+        </form>
+
+        <div>
+            <app-dynamic-table [tableObJect]="dynTableProps" (emitColumnChanges)="emitColumnChanges($event);"
+                (emitTableData)="emitTableData($event)" [dynamicTableUpdate]="sendDynTableData"></app-dynamic-table>
+        </div>
+
+    </mat-card-content>
+
+    <mat-card-content class="d-flex justify-content-end pb-1">
+
+        <button [hidden]="routeEdit != ''" mat-raised-button type="submit" class="button-color-bule mr-3 text-white"
+            (click)="save()">
+            {{ 'COMMON.SAVE' | translate }}
+        </button>
+        <button mat-raised-button class="button-color-red text-white mr-3" (click)="back();">
+            {{ 'COMMON.BACK' | translate }}
+        </button>
+        <button [hidden]="routeEdit != ''" mat-raised-button class="button-color-red text-white mr-3"
+            (click)="reset();">
+            {{ 'COMMON.RESET' | translate }}
+        </button>
+        <button [hidden]="routeEdit == ''" mat-raised-button class="button-color-red text-white mr-3"
+            (click)="return();">
+            {{ 'COMMON.RETURN' | translate }}
+        </button>
+
+    </mat-card-content>
+
+</mat-card>

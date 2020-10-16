@@ -11,3 +11,5 @@ export { SourceOfSupplyComponent } from './source-of-supply/source-of-supply.com
 export { PurchasingComponent } from './purcahserequisition/purchasing.component'
 export { QuotationSupplierComponent } from './quotationsupplier/quotationsupplier.component'
 export { QuotationAnalysisComponent } from './quotationanalysis/quotationanalysis.component'
+export { PurchaseOrderComponent } from './purcahseorder/purcahseorder.component'
+export { ReceiptOfGoodsComponent } from './goodsreceipts/receipt-of-goods.component'
