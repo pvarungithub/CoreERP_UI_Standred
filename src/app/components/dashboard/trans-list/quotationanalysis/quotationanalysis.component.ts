@@ -43,6 +43,7 @@ export class QuotationAnalysisComponent implements OnInit {
   materialList: any;
   pcgroupList: any;
   functionaldeptList: any;
+  ptypeList: any;
 
   constructor(
     private commonService: CommonService,
@@ -71,28 +72,28 @@ export class QuotationAnalysisComponent implements OnInit {
           value: null, type: 'dropdown', list: this.materialList, id: 'id', text: 'text', displayMul: true, width: 100
         },
         unitPrice: {
-          value: null, type: 'text', width: 100, maxLength: 50
+          value: null, type: 'number', width: 100, maxLength: 50
         },
         discount: {
-          value: null, type: 'text', width: 100, maxLength: 50
+          value: null, type: 'number', width: 100, maxLength: 50
         },
         netPrice: {
-          value: null, type: 'text', width: 100, maxLength: 50
+          value: null, type: 'number', width: 100, maxLength: 50
         },
         tax: {
-          value: null, type: 'text', width: 100, maxLength: 50
+          value: null, type: 'number', width: 100, maxLength: 50
         },
         total: {
-          value: null, type: 'text', width: 100, maxLength: 50
+          value: null, type: 'number', width: 100, maxLength: 50
         },
         delivery: {
-          value: null, type: 'text', width: 100, maxLength: 50
+          value: null, type: 'number', width: 100, maxLength: 50
         },
         credit: {
-          value: null, type: 'text', width: 100, maxLength: 50
+          value: null, type: 'number', width: 100, maxLength: 50
         },
         advance: {
-          value: null, type: 'text', width: 100, maxLength: 50
+          value: null, type: 'number', width: 100, maxLength: 50
         },
         delete: {
           type: 'delete', width: 10
@@ -125,6 +126,22 @@ export class QuotationAnalysisComponent implements OnInit {
           if (!this.commonService.checkNullOrUndefined(res) && res.status === StatusCodes.pass) {
             if (!this.commonService.checkNullOrUndefined(res.response)) {
               this.companyList = res.response['companiesList'];
+            }
+          }
+          this.getptypeList();
+        });
+  }
+  getptypeList() {
+    const getcurrencyList = String.Join('/', this.apiConfigService.getPartnerTypeList);
+    this.apiService.apiGetRequest(getcurrencyList)
+      .subscribe(
+        response => {
+          const res = response.body;
+          console.log(res);
+          if (!this.commonService.checkNullOrUndefined(res) && res.status === StatusCodes.pass) {
+            if (!this.commonService.checkNullOrUndefined(res.response)) {
+              this.ptypeList = res.response['ptypeList'];
+              this.ptypeList = res.response['ptypeList'].filter(resp => resp.bpcategory == 'Vendor')
             }
           }
           this.getplantList();

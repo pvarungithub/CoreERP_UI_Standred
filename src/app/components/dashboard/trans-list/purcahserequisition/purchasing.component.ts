@@ -36,7 +36,8 @@ export class PurchasingComponent implements OnInit {
   profitCenterList = [];
   projectNameList = [];
   wbsList = [];
-  listOfProdList = [{ id: "Stores consumption", text: "Stores consumption" }, { id: "General services", text: "General services" }];
+  listOfProdList = [{ id: "Stores consumption", text: "Stores consumption" },
+  { id: "General services", text: "General services" }, { id: "Production", text: "Production" }];
 
   // details props
   tableData = [];
@@ -45,6 +46,7 @@ export class PurchasingComponent implements OnInit {
   materialList: any;
   pcgroupList: any;
   functionaldeptList: any;
+  costunitList: any;
 
   constructor(
     private commonService: CommonService,
@@ -77,23 +79,22 @@ export class PurchasingComponent implements OnInit {
           value: null, type: 'text', width: 100, maxLength: 50
         },
         requiredQty: {
-          value: null, type: 'text', width: 100, maxLength: 50
+          value: null, type: 'number', width: 100, maxLength: 50
         },
         stockQty: {
-          value: null, type: 'text', width: 100, maxLength: 50
+          value: null, type: 'number', width: 100, maxLength: 50
         },
         requiredDate: {
           value: new Date(), type: 'datepicker', width: 100, disabled: true
         },
         purchaseGroup: {
-          value: null, type: 'dropdown', list: this.materialList, id: 'id', text: 'text', displayMul: true, width: 100
-          //value: null, type: 'dropdown', list: this.pcgroupList, id: 'pruchaseGroup', text: 'description', displayMul: true, width: 100
+          value: null, type: 'dropdown', list: this.pcgroupList, id: 'pruchaseGroup', text: 'description', displayMul: true, width: 100
         },
         productionOrder: {
           value: null, type: 'text', width: 100, maxLength: 50
         },
         reservationNumber: {
-          value: null, type: 'text', width: 100, maxLength: 50
+          value: null, type: 'number', width: 100, maxLength: 50
         },
         delete: {
           type: 'delete', width: 10
@@ -158,10 +159,24 @@ export class PurchasingComponent implements OnInit {
               this.plantList = res.response['plantList'];
             }
           }
+          this.getcostunitsData();
+        });
+  }
+  getcostunitsData() {
+    const getsecondelementUrl = String.Join('/', this.apiConfigService.getcostingunitsList);
+    this.apiService.apiGetRequest(getsecondelementUrl)
+      .subscribe(
+        response => {
+          const res = response.body;
+          if (!this.commonService.checkNullOrUndefined(res) && res.status === StatusCodes.pass) {
+            if (!this.commonService.checkNullOrUndefined(res.response)) {
+              this.costunitList = res.response['costunitList'];
+              this.costunitList = res.response['costunitList'].filter(resp => resp.costUnitType == 'Project')
+            }
+          }
           this.getdepartmentData();
         });
   }
-
   getdepartmentData() {
     const getdepartmentTypeUrl = String.Join('/', this.apiConfigService.getfunctionaldeptList);
     this.apiService.apiGetRequest(getdepartmentTypeUrl)
@@ -219,7 +234,7 @@ export class PurchasingComponent implements OnInit {
             }
           }
 
-          this.getmaterialData()
+          this.getPurchaseGroupData()
         });
   }
   getPurchaseGroupData() {
@@ -231,11 +246,11 @@ export class PurchasingComponent implements OnInit {
           console.log(res);
           if (!this.commonService.checkNullOrUndefined(res) && res.status === StatusCodes.pass) {
             if (!this.commonService.checkNullOrUndefined(res.response)) {
-              this.pcgroupList = res.response['pcgroupList'];
+              this.pcgroupList = res.response['PCGroupsList'];
             }
           }
 
-          this.spinner.hide()
+          this.getmaterialData()
         });
   }
   getmaterialData() {

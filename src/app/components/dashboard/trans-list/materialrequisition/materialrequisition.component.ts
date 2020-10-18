@@ -52,6 +52,7 @@ export class MaterialrequisitionComponents implements OnInit {
   ordertypeList: any;
   locationList: any;
   mmasterList: any;
+  costunitList: any;
 
   constructor(private commonService: CommonService,
     private formBuilder: FormBuilder,
@@ -105,7 +106,7 @@ export class MaterialrequisitionComponents implements OnInit {
           value: null, type: 'text', width: 75, maxLength: 15
         },
         qty: {
-          value: null, type: 'text', width: 75, maxLength: 15
+          value: null, type: 'number', width: 75, maxLength: 15
         },
 
         sotrageLocation: {
@@ -113,7 +114,7 @@ export class MaterialrequisitionComponents implements OnInit {
         },
 
         joborProject: {
-          value: null, type: 'text', width: 100, maxLength: 50
+          value: null, type: 'dropdown', list: this.costunitList, id: 'id', text: 'text', displayMul: false, width: 100
         },
         costCenter: {
           value: null, type: 'dropdown', list: this.costCenterList, id: 'id', text: 'text', displayMul: false, width: 100
@@ -129,7 +130,7 @@ export class MaterialrequisitionComponents implements OnInit {
           value: null, type: 'dropdown', list: this.ordertypeList, id: 'orderType', text: 'description', displayMul: false, width: 100
         },
         price: {
-          value: null, type: 'text', width: 75, maxLength: 15
+          value: null, type: 'number', width: 75, maxLength: 15
         },
         value: {
           value: null, type: 'text', width: 75, maxLength: 15
@@ -174,10 +175,24 @@ export class MaterialrequisitionComponents implements OnInit {
               this.companyList = res.response['companiesList'];
             }
           }
+          this.getcostunitsData();
+        });
+  }
+  getcostunitsData() {
+    const getsecondelementUrl = String.Join('/', this.apiConfigService.getcostingunitsList);
+    this.apiService.apiGetRequest(getsecondelementUrl)
+      .subscribe(
+        response => {
+          const res = response.body;
+          if (!this.commonService.checkNullOrUndefined(res) && res.status === StatusCodes.pass) {
+            if (!this.commonService.checkNullOrUndefined(res.response)) {
+              this.costunitList = res.response['costunitList'];
+              this.costunitList = res.response['costunitList'].filter(resp => resp.costUnitType == 'Project')
+            }
+          }
           this.getbranchList();
         });
   }
-
   getbranchList() {
     const getbranchList = String.Join('/', this.apiConfigService.getBranchList);
     this.apiService.apiGetRequest(getbranchList)
@@ -230,7 +245,6 @@ export class MaterialrequisitionComponents implements OnInit {
       .subscribe(
         response => {
           const res = response.body;
-          console.log(res);
           if (!this.commonService.checkNullOrUndefined(res) && res.status === StatusCodes.pass) {
             if (!this.commonService.checkNullOrUndefined(res.response)) {
               this.profitCenterList = res.response['profitCenterList'];
@@ -259,7 +273,6 @@ export class MaterialrequisitionComponents implements OnInit {
       .subscribe(
         response => {
           const res = response.body;
-          console.log(res);
           if (!this.commonService.checkNullOrUndefined(res) && res.status === StatusCodes.pass) {
             if (!this.commonService.checkNullOrUndefined(res.response)) {
               this.wbsElementList = res.response['wbsList'];
@@ -274,7 +287,6 @@ export class MaterialrequisitionComponents implements OnInit {
       .subscribe(
         response => {
           const res = response.body;
-          console.log(res);
           if (!this.commonService.checkNullOrUndefined(res) && res.status === StatusCodes.pass) {
             if (!this.commonService.checkNullOrUndefined(res.response)) {
               this.ordertypeList = res.response['ordertypeList'];
@@ -290,7 +302,6 @@ export class MaterialrequisitionComponents implements OnInit {
       .subscribe(
         response => {
           const res = response.body;
-          console.log(res);
           if (!this.commonService.checkNullOrUndefined(res) && res.status === StatusCodes.pass) {
             if (!this.commonService.checkNullOrUndefined(res.response)) {
               this.locationList = res.response['locationList'];

@@ -41,6 +41,7 @@ export class ReceiptOfGoodsComponent implements OnInit {
   stlocList = [];
   materialList = [];
   purchaseordernoList: any;
+  podetailsList: any;
 
   constructor(
     private formBuilder: FormBuilder,
@@ -98,38 +99,49 @@ export class ReceiptOfGoodsComponent implements OnInit {
   tablePropsFunc() {
     return {
       tableData: {
+        checkAll:
+        {
+          value: false, type: 'checkbox'
+        },
+
         materialCode: {
-          value: null, type: 'dropdown', list: this.materialList, id: 'id', text: 'text', displayMul: true, width: 100
+          value: null, type: 'text', width: 75, maxLength: 15, disabled: true,
+          //value: null, type: 'dropdown', list: this.materialList, id: 'id', text: 'text', displayMul: true, width: 100
         },
         description: {
-          value: null, type: 'text', width: 100, maxLength: 50
+          value: null, type: 'text', width: 75, maxLength: 15, disabled: true,
         },
         poqty: {
-          value: null, type: 'text', width: 100, maxLength: 50
+          value: null, type: 'text', width: 75, maxLength: 15, disabled: true,
         },
         receivedQty: {
-          value: null, type: 'text', width: 100, maxLength: 50
+          value: null, type: 'text', width: 75, maxLength: 15, disabled: true, fieldEnable: true
         },
         plant: {
-          value: null, type: 'dropdown', list: this.plantList, id: 'plantCode', text: 'plantname', displayMul: true, width: 100
+          value: null, type: 'text', width: 75, maxLength: 15, disabled: true,
+          //value: null, type: 'dropdown', list: this.plantList, id: 'plantCode', text: 'plantname', displayMul: true, width: 100
         },
         storageLocation: {
-          value: null, type: 'dropdown', list: this.stlocList, id: 'code', text: 'name', displayMul: true, width: 100
+          value: null, type: 'text', width: 75, maxLength: 15, disabled: true,
+          //value: null, type: 'dropdown', list: this.stlocList, id: 'code', text: 'name', displayMul: true, width: 100
         },
         profitCenter: {
-          value: null, type: 'dropdown', list: this.profitCenterList, id: 'code', text: 'description', displayMul: true, width: 100
+          value: null, type: 'text', width: 75, maxLength: 15, disabled: true,
+          //value: null, type: 'dropdown', list: this.profitCenterList, id: 'code', text: 'description', displayMul: true, width: 100
         },
         project: {
-          value: null, type: 'text', width: 100, maxLength: 50
+          value: null, type: 'text', width: 75, maxLength: 15, disabled: true, fieldEnable: true
         },
         branch: {
-          value: null, type: 'dropdown', list: this.branchList, id: 'id', text: 'text', displayMul: true, width: 100
+          value: null, type: 'text', width: 75, maxLength: 15, disabled: true,
+          //value: null, type: 'dropdown', list: this.branchList, id: 'id', text: 'text', displayMul: true, width: 100
         },
         movementType: {
-          value: null, type: 'dropdown', list: this.movementList, id: 'code', text: 'description', displayMul: true, width: 100
+          //value: null, type: 'text', width: 75, maxLength: 15, disabled: true,
+          value: null, type: 'dropdown', list: this.movementList, id: 'code', text: 'description', displayMul: true, width: 100, fieldEnable: true
         },
         lotNo: {
-          value: null, type: 'text', width: 100, maxLength: 50
+          value: null, type: 'number', width: 100, maxLength: 50, fieldEnable: true
         },
         lotDate: {
           value: new Date(), type: 'datepicker', width: 100, disabled: true
@@ -145,7 +157,29 @@ export class ReceiptOfGoodsComponent implements OnInit {
     };
   }
 
-
+  ponoselect() {
+    let data = [];
+    let newData = [];
+    if (!this.commonService.checkNullOrUndefined(this.formData.get('purchaseOrderNo').value)) {
+      data = this.podetailsList.filter(resp => resp.purchaseOrderNumber == this.formData.get('purchaseOrderNo').value);
+    }
+    if (data.length) {
+      console.log(data, this.tablePropsFunc());
+      data.forEach((res, index) => {
+        newData.push(this.tablePropsFunc().tableData);
+        newData[index].poqty.value = res.qty;
+        newData[index].materialCode.value = res.materialCode;
+        newData[index].storageLocation.value = res.location;
+        newData[index].description.value = res.description;
+        newData[index].project.value = res.joborProject;
+        newData[index].profitCenter.value = res.profitCenter;
+        newData[index].branch.value = res.branch;
+        newData[index].plant.value = res.plant;
+      })
+    }
+    //
+    this.sendDynTableData = { type: 'add', data: newData, removeEmptyRow: 0 };
+  }
   getpurchaseOrderTypeData() {
     const getpurchaseOrderTypeUrl = String.Join('/', this.apiConfigService.getpurchaseOrderTypeList);
     this.apiService.apiGetRequest(getpurchaseOrderTypeUrl)
@@ -172,6 +206,21 @@ export class ReceiptOfGoodsComponent implements OnInit {
               this.companyList = res.response['companiesList'];
             }
           }
+          this.getpodetailsList();
+        });
+  }
+  getpodetailsList() {
+    const getpodetailsListUrl = String.Join('/', this.apiConfigService.getpodetailsList);
+    this.apiService.apiGetRequest(getpodetailsListUrl)
+      .subscribe(
+        response => {
+          const res = response.body;
+          console.log(res);
+          if (!this.commonService.checkNullOrUndefined(res) && res.status === StatusCodes.pass) {
+            if (!this.commonService.checkNullOrUndefined(res.response)) {
+              this.podetailsList = res.response['podetailsList'];
+            }
+          }
           this.getpurchasenoList();
         });
   }
@@ -189,6 +238,7 @@ export class ReceiptOfGoodsComponent implements OnInit {
           this.getplantList();
         });
   }
+
 
   getplantList() {
     const getplantList = String.Join('/', this.apiConfigService.getplantList);
@@ -318,7 +368,16 @@ export class ReceiptOfGoodsComponent implements OnInit {
   }
 
   emitColumnChanges(data) {
-    // this.calculateAmount(data);
+    //this.dataChange(data);
+    if (data.column == 'checkAll') {
+      if (data.data[data.index].checkAll.value) {
+        //this.getDiscount(data);
+      }
+      else {
+        data.data[data.index].discount.value = 0;
+        this.sendDynTableData = { type: 'add', data: data.data };
+      }
+    }
   }
 
   emitTableData(data) {

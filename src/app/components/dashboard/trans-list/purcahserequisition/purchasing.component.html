@@ -76,11 +76,17 @@
                     </mat-select>
                 </mat-form-field>
 
-
-                <mat-form-field class="form-element">
-                    <input matInput type="text" placeholder="{{'purcahserequisition.projectName' | translate }}"
-                        formControlName="projectName" appFocusOnEnter tabIndex="2">
+                <mat-form-field>
+                    <mat-label [translate]="'purcahserequisition.projectName'"></mat-label>
+                    <mat-select formControlName="projectName" appFocusOnEnter tabIndex="1">
+                        <mat-option>None</mat-option>
+                        <mat-option *ngFor="let costUnit of costunitList" [value]="costUnit.id">
+                            {{costUnit.text}}
+                        </mat-option>
+                    </mat-select>
                 </mat-form-field>
+
+
 
                 <mat-form-field>
                     <mat-label>{{'purcahserequisition.requiredfor' | translate }}</mat-label>

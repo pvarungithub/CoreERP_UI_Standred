@@ -43,6 +43,9 @@ export class QuotationSupplierComponent implements OnInit {
   dynTableProps: any;
   routeEdit = '';
   costunitList: any;
+  materialList: any;
+  UomList: any;
+  ptypeList: any;
 
   constructor(
     private commonService: CommonService,
@@ -68,29 +71,29 @@ export class QuotationSupplierComponent implements OnInit {
     return {
       tableData: {
         itemCode: {
-          value: null, type: 'text', width: 100, maxLength: 50
+          value: null, type: 'dropdown', list: this.materialList, id: 'id', text: 'text', displayMul: true, width: 100
         },
         description: {
           value: null, type: 'text', width: 100, maxLength: 50
         },
         qty: {
-          value: null, type: 'text', width: 100, maxLength: 50
+          value: null, type: 'number', width: 100, maxLength: 50
         },
         price: {
-          value: null, type: 'text', width: 100, maxLength: 50
+          value: null, type: 'number', width: 100, maxLength: 50
         },
 
         unit: {
-          value: null, type: 'dropdown', list: this.costunitList, id: 'id', text: 'text', displayMul: true, width: 100
+          value: null, type: 'dropdown', list: this.UomList, id: 'id', text: 'text', displayMul: true, width: 100
         },
         discount: {
-          value: null, type: 'text', width: 100, maxLength: 50
+          value: null, type: 'number', width: 100, maxLength: 50
         },
         discountAmount: {
-          value: null, type: 'text', width: 100, maxLength: 50
+          value: null, type: 'number', width: 100, maxLength: 50
         },
         tax: {
-          value: null, type: 'text', width: 100, maxLength: 50
+          value: null, type: 'number', width: 100, maxLength: 50
         },
         delete: {
           type: 'delete', width: 10
@@ -133,10 +136,40 @@ export class QuotationSupplierComponent implements OnInit {
               this.companyList = res.response['companiesList'];
             }
           }
-          this.getplantList();
+          this.getmaterialData();
+        });
+  }
+  getmaterialData() {
+    const getmaterialUrl = String.Join('/', this.apiConfigService.getMaterialList);
+    this.apiService.apiGetRequest(getmaterialUrl)
+      .subscribe(
+        response => {
+          const res = response.body;
+          if (!this.commonService.checkNullOrUndefined(res) && res.status === StatusCodes.pass) {
+            if (!this.commonService.checkNullOrUndefined(res.response)) {
+              this.materialList = res.response['materialList'];
+            }
+          }
+          this.getptypeList();
         });
   }
 
+  getptypeList() {
+    const getcurrencyList = String.Join('/', this.apiConfigService.getPartnerTypeList);
+    this.apiService.apiGetRequest(getcurrencyList)
+      .subscribe(
+        response => {
+          const res = response.body;
+          console.log(res);
+          if (!this.commonService.checkNullOrUndefined(res) && res.status === StatusCodes.pass) {
+            if (!this.commonService.checkNullOrUndefined(res.response)) {
+              this.ptypeList = res.response['ptypeList'];
+              this.ptypeList = res.response['ptypeList'].filter(resp => resp.bpcategory == 'Vendor')
+            }
+          }
+          this.getplantList();
+        });
+  }
   getplantList() {
     const getplantList = String.Join('/', this.apiConfigService.getplantList);
     this.apiService.apiGetRequest(getplantList)
@@ -148,20 +181,20 @@ export class QuotationSupplierComponent implements OnInit {
               this.plantList = res.response['plantList'];
             }
           }
-          this.getcostunitsData();
+          this.getuomList();
         });
   }
 
 
-  getcostunitsData() {
-    const getsecondelementUrl = String.Join('/', this.apiConfigService.getcostingunitsList);
+  getuomList() {
+    const getsecondelementUrl = String.Join('/', this.apiConfigService.getuomList);
     this.apiService.apiGetRequest(getsecondelementUrl)
       .subscribe(
         response => {
           const res = response.body;
           if (!this.commonService.checkNullOrUndefined(res) && res.status === StatusCodes.pass) {
             if (!this.commonService.checkNullOrUndefined(res.response)) {
-              this.costunitList = res.response['costunitList'];
+              this.UomList = res.response['UomList'];
             }
           }
           this.getBranchList();

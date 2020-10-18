@@ -46,9 +46,15 @@
           </mat-select>
         </mat-form-field>
 
-        <mat-form-field class="form-element">
-          <input matInput placeholder="{{'materialrequisition.project' | translate }}" formControlName="project"
-            appFocusOnEnter tabIndex="7">
+
+        <mat-form-field>
+          <mat-label [translate]="'materialrequisition.project'"></mat-label>
+          <mat-select formControlName="project" appFocusOnEnter tabIndex="1">
+            <mat-option>None</mat-option>
+            <mat-option *ngFor="let costUnit of costunitList" [value]="costUnit.id">
+              {{costUnit.text}}
+            </mat-option>
+          </mat-select>
         </mat-form-field>
 
         <mat-form-field class="form-element">
@@ -70,10 +76,7 @@
         </mat-form-field>
 
 
-        <mat-form-field class="form-element">
-          <input matInput placeholder="{{'materialrequisition.status' | translate }}" formControlName="status"
-            appFocusOnEnter tabIndex="7">
-        </mat-form-field>
+
       </div>
     </form>
 

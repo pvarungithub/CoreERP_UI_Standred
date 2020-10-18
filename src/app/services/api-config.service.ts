@@ -16,6 +16,7 @@ export class ApiConfigService {
    getComponentInfo = `${this.environment.runtimeConfig.serverUrl}Settings/GetComponentInfo`;
 
    // Common
+   getpodetailsList = `${this.environment.runtimeConfig.serverUrl}Common/GetPOdetailsList`;
    getpurchasenoList = `${this.environment.runtimeConfig.serverUrl}Common/GetPurchaseOrdernoList`;
    getquotationnoList = `${this.environment.runtimeConfig.serverUrl}Common/GetQuotationnoList`;
    getCommitmentList = `${this.environment.runtimeConfig.serverUrl}CommitmentItem/GetCommitmentItemList`;

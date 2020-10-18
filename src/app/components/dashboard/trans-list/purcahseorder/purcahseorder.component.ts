@@ -83,16 +83,16 @@ export class PurchaseOrderComponent implements OnInit {
           value: null, type: 'text', width: 100, maxLength: 50
         },
         qty: {
-          value: null, type: 'text', width: 100, maxLength: 50
+          value: null, type: 'number', width: 100, maxLength: 50
         },
         rate: {
-          value: null, type: 'text', width: 100, maxLength: 50
+          value: null, type: 'number', width: 100, maxLength: 50
         },
         discount: {
-          value: null, type: 'text', width: 100, maxLength: 50
+          value: null, type: 'number', width: 100, maxLength: 50
         },
         tax: {
-          value: null, type: 'text', width: 100, maxLength: 50
+          value: null, type: 'number', width: 100, maxLength: 50
         },
         profitCenter: {
           value: null, type: 'dropdown', list: this.profitCenterList, id: 'code', text: 'description', displayMul: true, width: 100
@@ -194,7 +194,7 @@ export class PurchaseOrderComponent implements OnInit {
               this.plantList = res.response['plantList'];
             }
           }
-          this.getpurchaseordertypetData();
+          this.getquotationnoData();
         });
   }
   getquotationnoData() {
@@ -203,6 +203,7 @@ export class PurchaseOrderComponent implements OnInit {
       .subscribe(
         response => {
           const res = response.body;
+          console.log(res);
           if (!this.commonService.checkNullOrUndefined(res) && res.status === StatusCodes.pass) {
             if (!this.commonService.checkNullOrUndefined(res.response)) {
               this.qnoList = res.response['qnoList'];
@@ -231,7 +232,6 @@ export class PurchaseOrderComponent implements OnInit {
       .subscribe(
         response => {
           const res = response.body;
-          console.log(res);
           if (!this.commonService.checkNullOrUndefined(res) && res.status === StatusCodes.pass) {
             if (!this.commonService.checkNullOrUndefined(res.response)) {
               this.fcList = res.response['fcList'];
@@ -348,7 +348,6 @@ export class PurchaseOrderComponent implements OnInit {
       .subscribe(
         response => {
           const res = response.body;
-          console.log(res);
           if (!this.commonService.checkNullOrUndefined(res) && res.status === StatusCodes.pass) {
             if (!this.commonService.checkNullOrUndefined(res.response)) {
               this.pcgroupList = res.response['pcgroupList'];

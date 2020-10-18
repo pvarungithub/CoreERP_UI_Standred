@@ -62,26 +62,25 @@
                     <mat-datepicker #picker1></mat-datepicker>
                 </mat-form-field>
 
-                <mat-form-field class="form-element">
-                    <input matInput type="text" placeholder="{{'supplierquotation.supplier' | translate }}"
-                        formControlName="supplier" maxlength="50" appFocusOnEnter tabIndex="2">
+
+
+                <mat-form-field>
+                    <mat-label [translate]="'supplierquotation.supplier'"></mat-label>
+                    <mat-select formControlName="supplier" appFocusOnEnter tabIndex="2">
+                        <mat-option>None</mat-option>
+                        <mat-option *ngFor="let bptype of ptypeList" [value]="bptype.code">
+                            {{bptype.description}}
+                        </mat-option>
+                    </mat-select>
                 </mat-form-field>
 
                 <mat-form-field class="form-element">
-                    <input matInput [matDatepicker]="picker" [nonEditable]="picker"
-                        placeholder="{{'supplierquotation.supplierQuoteDate' | translate }}"
-                        formControlName="supplierQuoteDate" appFocusOnEnter tabIndex="3">
-                    <mat-datepicker-toggle matSuffix [for]="picker"></mat-datepicker-toggle>
-                    <mat-datepicker #picker></mat-datepicker>
-                </mat-form-field>
-
-                <mat-form-field class="form-element">
-                    <input matInput type="text" placeholder="{{'supplierquotation.deliveryPeriod' | translate }}"
+                    <input matInput type="number" placeholder="{{'supplierquotation.deliveryPeriod' | translate }}"
                         formControlName="deliveryPeriod" maxlength="50" appFocusOnEnter tabIndex="2">
                 </mat-form-field>
 
                 <mat-form-field class="form-element">
-                    <input matInput type="text" placeholder="{{'supplierquotation.creditDays' | translate }}"
+                    <input matInput type="number" placeholder="{{'supplierquotation.creditDays' | translate }}"
                         formControlName="creditDays" maxlength="50" appFocusOnEnter tabIndex="2">
                 </mat-form-field>
                 <mat-form-field class="form-element">
@@ -90,7 +89,7 @@
                 </mat-form-field>
 
                 <mat-form-field class="form-element">
-                    <input matInput type="text" placeholder="{{'supplierquotation.advance' | translate }}"
+                    <input matInput type="number" placeholder="{{'supplierquotation.advance' | translate }}"
                         formControlName="advance" maxlength="50" appFocusOnEnter tabIndex="2">
                 </mat-form-field>
 
