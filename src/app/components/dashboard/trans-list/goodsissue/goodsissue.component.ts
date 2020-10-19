@@ -103,15 +103,17 @@ export class GoodsissueComponent implements OnInit {
         qty: {
           value: null, type: 'text', width: 75, maxLength: 15, disabled: true,
         },
+        plant: {
+          value: null, type: 'text', width: 75, maxLength: 15, disabled: true,
+        },
         location: {
           value: null, type: 'text', width: 75, maxLength: 15, disabled: true,
         },
 
-
         joborProject: {
           value: null, type: 'text', width: 100, maxLength: 50, disabled: true,
         },
-        order: {
+        jobOrder: {
           value: null, type: 'text', width: 75, maxLength: 15, disabled: true,
         },
 
@@ -121,10 +123,8 @@ export class GoodsissueComponent implements OnInit {
         wbs: {
           value: null, type: 'text', width: 75, maxLength: 15, disabled: true,
         },
-
-
         availableqty: {
-          value: null, type: 'number', width: 100, maxLength: 7, disabled: true, fieldEnable: true
+          value: null, type: 'number', width: 100, maxLength: 7, disabled: true
         },
         allocatedqty: {
           value: null, type: 'number', width: 100, maxLength: 7, disabled: true, fieldEnable: true
@@ -351,16 +351,6 @@ export class GoodsissueComponent implements OnInit {
   }
 
   emitColumnChanges(data) {
-    //this.dataChange(data);
-    if (data.column == 'checkAll') {
-      if (data.data[data.index].checkAll.value) {
-        //this.getDiscount(data);
-      }
-      else {
-        data.data[data.index].discount.value = 0;
-        this.sendDynTableData = { type: 'add', data: data.data };
-      }
-    }
   }
 
   dataChange(row) {
@@ -380,9 +370,11 @@ export class GoodsissueComponent implements OnInit {
         newData[index].materialCode.value = res.materialCode;
         newData[index].location.value = res.sotrageLocation;
         newData[index].joborProject.value = res.joborProject;
-        newData[index].order.value = res.order;
+        newData[index].jobOrder.value = res.order;
         newData[index].costCenter.value = res.costCenter;
         newData[index].wbs.value = res.wbs;
+        const qty = this.mmasterList.find(resp => resp.id == res.materialCode);
+        newData[index].availableqty.value = qty.availQTY;
       })
     }
     //
@@ -398,10 +390,6 @@ export class GoodsissueComponent implements OnInit {
     this.router.navigate(['dashboard/transaction/goodsissue']);
   }
 
-  checkAjectAmount(flag = false) {
-    // let adjustmentAmount = 0;
-    return true;
-  }
   save() {
     if (this.tableData.length == 0) {
       return;
@@ -419,6 +407,7 @@ export class GoodsissueComponent implements OnInit {
   }
 
   savegoodsissue() {
+    debugger;
     const addJournal = String.Join('/', this.apiConfigService.addGoodsissue);
     const requestObj = { gibHdr: this.formData.value, gibDtl: this.tableData };
     this.apiService.apiPostRequest(addJournal, requestObj).subscribe(

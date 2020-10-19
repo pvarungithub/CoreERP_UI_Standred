@@ -47,7 +47,7 @@
           [ngStyle]="{'width': element[column].width + 'px'}">
           <input id="{{column}}{{dataSource.filteredData.indexOf(element)}}" matInput type="number"
             [disabled]="element[column].disabled" [value]="element[column].value" [(ngModel)]="element[column].value"
-            appMaxlength [pattern]="element[column].maxLength"
+            appMaxlength [inputMaxLength]="element[column].maxLength"
             (input)="formControlValid(column, element, $event.target.value, dataSource.filteredData.indexOf(element));"
             (keydown.enter)="setFocus(column, dataSource.filteredData.indexOf(element), $event.target.value);" />
         </mat-form-field>

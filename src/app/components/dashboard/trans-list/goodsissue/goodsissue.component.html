@@ -33,7 +33,7 @@
           <mat-select formControlName="storesPerson" appFocusOnEnter tabIndex="3">
             <mat-option>None</mat-option>
             <mat-option *ngFor="let emp of employeesList" [value]="emp.id">
-              {{emp.text}}
+              {{emp.id}}- {{emp.text}}
             </mat-option>
           </mat-select>
         </mat-form-field>
@@ -84,8 +84,8 @@
   </mat-card-content>
   <mat-card-content class="d-flex justify-content-end pb-1">
 
-    <button [hidden]="routeEdit != ''" [disabled]="checkAjectAmount()" mat-raised-button type="submit"
-      class="button-color-bule mr-3 text-white" (click)="save()">
+    <button [hidden]="routeEdit != ''" mat-raised-button type="submit" class="button-color-bule mr-3 text-white"
+      (click)="save()">
       {{ 'COMMON.SAVE' | translate }}
     </button>
     <button [hidden]="routeEdit != ''" mat-raised-button class="button-color-red text-white mr-3" (click)="reset();">
@@ -99,12 +99,5 @@
     </button>
 
   </mat-card-content>
-  <!--<mat-card-content class="d-flex justify-content-between pb-1">
-
-      <div>
-          
-      </div>
-
-  </mat-card-content>-->
 
 </mat-card>

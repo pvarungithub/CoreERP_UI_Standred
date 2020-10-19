@@ -1796,7 +1796,7 @@
     "plant": "Plant",
     "location": "Location",
     "joborProject": "Job/Project",
-    "JobOrder": "Job Order",
+    "jobOrder": "Job Order",
     "costCenter": "Cost Center",
     "wbs": "WBS",
     "availableqty": "Available QTY",
