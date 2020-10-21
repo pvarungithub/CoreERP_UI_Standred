@@ -36,7 +36,8 @@ export class PurchaseOrderComponent implements OnInit {
   profitCenterList = [];
   projectNameList = [];
   wbsList = [];
-
+  termsofDeliveryList = [{ id: "FOR", text: "FOR" },
+  { id: "FOB", text: "FOB" }, { id: "CIF", text: "CIF" }, { id: "FAS", text: "FAS" }];
 
   // details props
   tableData = [];
@@ -51,6 +52,11 @@ export class PurchaseOrderComponent implements OnInit {
   locList: any;
   employeesList: any;
   qnoList: any;
+  ptypeList: any;
+  ptermsList: any;
+
+  // user details
+  loginUser: any;
 
   constructor(
     private commonService: CommonService,
@@ -62,6 +68,7 @@ export class PurchaseOrderComponent implements OnInit {
     public route: ActivatedRoute,
     private router: Router
   ) {
+    this.loginUser = JSON.parse(localStorage.getItem('user'));
     if (!this.commonService.checkNullOrUndefined(this.route.snapshot.params.value)) {
       this.routeEdit = this.route.snapshot.params.value;
     }
@@ -123,14 +130,9 @@ export class PurchaseOrderComponent implements OnInit {
           value: null, type: 'dropdown', list: this.locList, id: 'id', text: 'text', displayMul: true, width: 100
         },
         preparedBy: {
-          value: null, type: 'dropdown', list: this.employeesList, id: 'id', text: 'text', displayMul: true, width: 100
+          value: null, type: 'dropdown', list: this.employeesList, id: 'roleId', text: 'role', displayMul: true, width: 100
         },
-        recommendedBy: {
-          value: null, type: 'dropdown', list: this.employeesList, id: 'id', text: 'text', displayMul: true, width: 100
-        },
-        approvedBy: {
-          value: null, type: 'dropdown', list: this.employeesList, id: 'id', text: 'text', displayMul: true, width: 100
-        },
+
         delete: {
           type: 'delete', width: 10
         }
@@ -179,10 +181,40 @@ export class PurchaseOrderComponent implements OnInit {
               this.companyList = res.response['companiesList'];
             }
           }
+          this.getPaymenttermsList();
+        });
+  }
+  getPaymenttermsList() {
+    const getpmList = String.Join('/', this.apiConfigService.getPaymentsTermsList);
+    this.apiService.apiGetRequest(getpmList)
+      .subscribe(
+        response => {
+          const res = response.body;
+          if (!this.commonService.checkNullOrUndefined(res) && res.status === StatusCodes.pass) {
+            if (!this.commonService.checkNullOrUndefined(res.response)) {
+              this.ptermsList = res.response['ptermsList'];
+            }
+          }
+          this.getptypeList();
+        });
+  }
+  getptypeList() {
+    const getcurrencyList = String.Join('/', this.apiConfigService.getPartnerTypeList);
+    this.apiService.apiGetRequest(getcurrencyList)
+      .subscribe(
+        response => {
+          const res = response.body;
+          console.log(res);
+          if (!this.commonService.checkNullOrUndefined(res) && res.status === StatusCodes.pass) {
+            if (!this.commonService.checkNullOrUndefined(res.response)) {
+              this.ptypeList = res.response['ptypeList'];
+              this.ptypeList = res.response['ptypeList'].filter(resp => resp.bpcategory == 'Vendor')
+
+            }
+          }
           this.getplantList();
         });
   }
-
   getplantList() {
     const getplantList = String.Join('/', this.apiConfigService.getplantList);
     this.apiService.apiGetRequest(getplantList)
@@ -325,18 +357,20 @@ export class PurchaseOrderComponent implements OnInit {
             }
           }
 
-          this.getEmployeesList()
+          this.getRolesList()
         });
   }
-  getEmployeesList() {
-    const getEmployeeList = String.Join('/', this.apiConfigService.getEmployeeList);
+  getRolesList() {
+    const getEmployeeList = String.Join('/', this.apiConfigService.getrolelist);
     this.apiService.apiGetRequest(getEmployeeList)
       .subscribe(
         response => {
           const res = response.body;
+          console.log(res);
           if (!this.commonService.checkNullOrUndefined(res) && res.status === StatusCodes.pass) {
             if (!this.commonService.checkNullOrUndefined(res.response)) {
-              this.employeesList = res.response['emplist'];
+              this.employeesList = res.response['roleList'];
+              this.employeesList = res.response['roleList'].filter(resp => resp.roleId == this.loginUser.role)
             }
           }
           this.getmaterialData();

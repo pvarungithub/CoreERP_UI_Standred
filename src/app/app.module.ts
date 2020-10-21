@@ -31,12 +31,12 @@ import {
   CostingKeyFiguresComponent, WorkCenterCreationComponent,
   AssignmentOfNumberSeriesToObjectTypesComponent, CommitmentItemComponent, FundCenterComponent, WorkBreakDownStructureComponent,
   CostingObjectTypesComponent, CostingObjectNumberSeriesComponent, FormulasComponent,
-  StandardRateComponent, DownTimeReasonComponent, TasksComponent, RoutingFileComponent
+  StandardRateComponent, DownTimeReasonComponent, TasksComponent, InvoiceverificationComponent, RoutingFileComponent
 
 } from './components/dashboard/comp-list/index';
 
 import {
-  CashbankComponent, JournalComponent, GoodsissueComponent, MemoinvoiceComponent, SourceOfSupplyComponent,
+  CashbankComponent, JournalComponent, GoodsissueComponent, MemoinvoiceComponent, SourceOfSupplyComponent, InspectioncheckComponent,
   QuotationAnalysisComponent, QuotationSupplierComponent, PurchasingComponent, PurchaseOrderComponent, ReceiptOfGoodsComponent,
   ReceiptspaymentsComponent, BillOfMaterialComponent, MaterialrequisitionComponents, PurchasesaleassetComponent, SaleassetComponent
 } from './components/dashboard/trans-list/index';
@@ -100,7 +100,8 @@ export function HttpLoaderFactory(httpClient: HttpClient) {
     PurchaseOrderNumberRangeComponent, RejectionReasonsComponent, MovementtypeComponent, LotSeriesComponent,
     StoresAssignmentComponent, GoodsReceiptNoteNumberSeriesComponent, GoodsReceiptNoteAssignmentComponent, MaterialTypesComponent, MaterialGroupsComponent, MaterialRequisitionNoteAssignmentComponent, MaterialRequisitionNoteNumberSeriesComponent, GoodsIssueNoteAssignmentComponent,
     GoodsIssueNoteNumberSeriesComponent, BinsCreationComponent, PurchaseRequisitionNumberRangeComponent, BatchMasterComponent, OrderTypeComponent, ProcessComponent, PrimaryCostElementsCreationComponent, CreationOfCostUnitsComponent, CreationOfCostUnitsComponent, BatchMasterComponent, OrderTypeComponent, ProcessComponent, PrimaryCostElementsCreationComponent, CostingKeyFiguresComponent, CostingKeyFiguresComponent, CostingObjectTypesComponent,
-    CostingObjectNumberSeriesComponent, StandardRateComponent, WorkCenterCreationComponent, RoutingFileComponent, TasksComponent, FormulasComponent, FundCenterComponent, CommitmentItemComponent, WorkBreakDownStructureComponent, CostingObjectTypesComponent, DownTimeReasonComponent, FundCenterComponent, DownTimeReasonComponent, WorkBreakDownStructureComponent, CommitmentItemComponent, RoutingFileComponent, FormulasComponent, WorkCenterCreationComponent, StandardRateComponent, CostingObjectNumberSeriesComponent, AssignmentOfNumberSeriesToObjectTypesComponent, CoastingActivitiesComponent, AssignmentOfNumberSeriesToObjectTypesComponent, CoastingActivitiesComponent, SecondaryCostElementsCreationComponent, SecondaryCostElementsCreationComponent, MaterialMasterComponent, MaterialMasterComponent, MaterialSizeComponent, MaterialSizeComponent, MaterialNumberAsssignmentComponent,
+    CostingObjectNumberSeriesComponent, StandardRateComponent, WorkCenterCreationComponent, InvoiceverificationComponent, RoutingFileComponent, TasksComponent, FormulasComponent, FundCenterComponent, CommitmentItemComponent, WorkBreakDownStructureComponent, CostingObjectTypesComponent, DownTimeReasonComponent, FundCenterComponent, DownTimeReasonComponent, WorkBreakDownStructureComponent, CommitmentItemComponent,
+    RoutingFileComponent, FormulasComponent, WorkCenterCreationComponent, StandardRateComponent, CostingObjectNumberSeriesComponent, AssignmentOfNumberSeriesToObjectTypesComponent, CoastingActivitiesComponent, AssignmentOfNumberSeriesToObjectTypesComponent, CoastingActivitiesComponent, SecondaryCostElementsCreationComponent, SecondaryCostElementsCreationComponent, MaterialMasterComponent, MaterialMasterComponent, MaterialSizeComponent, MaterialSizeComponent, MaterialNumberAsssignmentComponent,
     ModelPatternComponent, MaterialNumberRangeComponent, QuotationNumberRangeComponent, PurchaseOrderAssignmentComponent, QuotationAssignmentComponent, BusienessTransactionTypeComponent, AssetBegningAccumulatedDepreciationComponent, AssetBegningAcqusitionComponent,
     CompTabsComponent,
     TransListComponent,
@@ -127,7 +128,7 @@ export function HttpLoaderFactory(httpClient: HttpClient) {
     BusienessPartnerAccountComponent, AssignGLaccounttoSubGroupComponent, MainAssetMasterComponent, SubAssetsComponent,
     DynamicTableComponent, AutocompleteComponent, CashbankComponent, JournalComponent, MaterialRequisitionNoteAssignmentComponent, GoodsissueComponent, MemoinvoiceComponent, ReceiptspaymentsComponent, MaterialrequisitionComponents, BillOfMaterialComponent, MaxlengthDirective, PurchasesaleassetComponent,
     SaleassetComponent, RoutingFileComponent, SourceOfSupplyComponent, QuotationSupplierComponent, QuotationAnalysisComponent,
-    PurchasingComponent, PurchaseOrderComponent, ReceiptOfGoodsComponent, NonEditableDatepicker
+    PurchasingComponent, PurchaseOrderComponent, ReceiptOfGoodsComponent, InspectioncheckComponent, NonEditableDatepicker
     //LeaveopeningbalanceComponent,
     //selfserviceComponent,
 

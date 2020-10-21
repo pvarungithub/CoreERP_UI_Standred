@@ -16,6 +16,7 @@ import { QuotationSupplierComponent } from './quotationsupplier/quotationsupplie
 import { QuotationAnalysisComponent } from './quotationanalysis/quotationanalysis.component'
 import { PurchaseOrderComponent } from './purcahseorder/purcahseorder.component'
 import { ReceiptOfGoodsComponent } from './goodsreceipts/receipt-of-goods.component'
+import { InspectioncheckComponent } from './inspectioncheck/inspectioncheck.component'
 @Injectable({
   providedIn: 'root'
 })
@@ -146,6 +147,14 @@ export class TransListService {
         this.dynamicComp.tableUrl = this.apiConfigService.getgoodsreceipt;
         this.dynamicComp.list = 'grdetails';
         this.dynamicComp.editKey = 'purchaseOrderNo';
+        return this.dynamicComp;
+        break;
+      }
+      case 'inspectioncheck': {
+        this.dynamicComp.component = InspectioncheckComponent;
+        this.dynamicComp.tableUrl = this.apiConfigService.getinspectioncheck;
+        this.dynamicComp.list = 'icdetails';
+        this.dynamicComp.editKey = 'inspectionCheckNo';
         return this.dynamicComp;
         break;
       }

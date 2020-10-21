@@ -16,6 +16,7 @@ export class ApiConfigService {
    getComponentInfo = `${this.environment.runtimeConfig.serverUrl}Settings/GetComponentInfo`;
 
    // Common
+   gettinglotNumbers = `${this.environment.runtimeConfig.serverUrl}GoodsReceipt/GetLotNumber`;
    getpodetailsList = `${this.environment.runtimeConfig.serverUrl}Common/GetPOdetailsList`;
    getpurchasenoList = `${this.environment.runtimeConfig.serverUrl}Common/GetPurchaseOrdernoList`;
    getquotationnoList = `${this.environment.runtimeConfig.serverUrl}Common/GetQuotationnoList`;
@@ -257,5 +258,14 @@ export class ApiConfigService {
    getgoodsreceiptDetail = `${this.environment.runtimeConfig.serverUrl}Transactions/GetGoodsReceiptDetail`;
    getgoodsreceipt = `${this.environment.runtimeConfig.serverUrl}Transactions/GetGoodsReceipt`;
    returngoodsreceipt = `${this.environment.runtimeConfig.serverUrl}Transactions/ReturnGoodsReceipt`;
+
+   /*******************************Inspection Check ****************************************************** */
+   addinspectioncheck = `${this.environment.runtimeConfig.serverUrl}Transactions/AddInpectionCheck`;
+   getinspectioncheckDetail = `${this.environment.runtimeConfig.serverUrl}Transactions/GetInspectionCheckDetail`;
+   getinspectioncheck = `${this.environment.runtimeConfig.serverUrl}Transactions/GetInspectionCheck`;
+   returninspectioncheck = `${this.environment.runtimeConfig.serverUrl}Transactions/ReturnInpectionCheck`;
+   /*******************************Invoice Verification  ****************************************************** */
+   addinvoice = `${this.environment.runtimeConfig.serverUrl}Transactions/AddInvoiceverificationDetail`;
+   getinvoiceDetail = `${this.environment.runtimeConfig.serverUrl}Transactions/GetInvoiceverificationDetail`;
 
 }

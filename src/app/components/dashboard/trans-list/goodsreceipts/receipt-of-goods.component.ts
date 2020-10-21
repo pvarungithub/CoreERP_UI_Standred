@@ -42,7 +42,6 @@ export class ReceiptOfGoodsComponent implements OnInit {
   materialList = [];
   purchaseordernoList: any;
   podetailsList: any;
-
   constructor(
     private formBuilder: FormBuilder,
     private apiConfigService: ApiConfigService,
@@ -61,7 +60,20 @@ export class ReceiptOfGoodsComponent implements OnInit {
     this.formDataGroup();
     this.getpurchaseOrderTypeData();
   }
-
+  approveOrReject(event) {
+    //debugger;
+    if (event) {
+      this.formData.patchValue({
+        qualityCheck: "1",
+        reject: null
+      });
+    } else {
+      this.formData.patchValue({
+        ChkAcceptReject: null,
+        qualityCheck: "0"
+      });
+    }
+  }
 
   formDataGroup() {
     this.formData = this.formBuilder.group({
@@ -78,6 +90,7 @@ export class ReceiptOfGoodsComponent implements OnInit {
       //supplierGINDate: [null],
       receivedBy: [null],
       receivedDate: [null],
+      receiptDate: [null],
       supplierGinno: [null],
       movementType: [null],
       grnno: [null],
@@ -112,10 +125,10 @@ export class ReceiptOfGoodsComponent implements OnInit {
           value: null, type: 'text', width: 75, maxLength: 15, disabled: true,
         },
         poqty: {
-          value: null, type: 'text', width: 75, maxLength: 15, disabled: true,
+          value: null, type: 'number', width: 75, maxLength: 15, disabled: true,
         },
         receivedQty: {
-          value: null, type: 'text', width: 75, maxLength: 15, disabled: true, fieldEnable: true
+          value: null, type: 'number', width: 75, maxLength: 15, disabled: true, fieldEnable: true
         },
         plant: {
           value: null, type: 'text', width: 75, maxLength: 15, disabled: true,
@@ -130,15 +143,15 @@ export class ReceiptOfGoodsComponent implements OnInit {
           //value: null, type: 'dropdown', list: this.profitCenterList, id: 'code', text: 'description', displayMul: true, width: 100
         },
         project: {
-          value: null, type: 'text', width: 75, maxLength: 15, disabled: true, fieldEnable: true
+          value: null, type: 'text', width: 75, maxLength: 15, disabled: true,
         },
         branch: {
           value: null, type: 'text', width: 75, maxLength: 15, disabled: true,
           //value: null, type: 'dropdown', list: this.branchList, id: 'id', text: 'text', displayMul: true, width: 100
         },
         movementType: {
-          //value: null, type: 'text', width: 75, maxLength: 15, disabled: true,
-          value: null, type: 'dropdown', list: this.movementList, id: 'code', text: 'description', displayMul: true, width: 100, fieldEnable: true
+          value: null, type: 'text', width: 75, maxLength: 15, disabled: true,
+          // value: null, type: 'dropdown', list: this.movementList, id: 'code', text: 'description', displayMul: true, width: 100, 
         },
         lotNo: {
           value: null, type: 'number', width: 100, maxLength: 50, fieldEnable: true
@@ -167,6 +180,7 @@ export class ReceiptOfGoodsComponent implements OnInit {
       console.log(data, this.tablePropsFunc());
       data.forEach((res, index) => {
         newData.push(this.tablePropsFunc().tableData);
+        this.getLotNumberData(res.materialCode);
         newData[index].poqty.value = res.qty;
         newData[index].materialCode.value = res.materialCode;
         newData[index].storageLocation.value = res.location;
@@ -175,10 +189,27 @@ export class ReceiptOfGoodsComponent implements OnInit {
         newData[index].profitCenter.value = res.profitCenter;
         newData[index].branch.value = res.branch;
         newData[index].plant.value = res.plant;
+        // newData[index].lotNo.value = this.lotno;
       })
     }
     //
     this.sendDynTableData = { type: 'add', data: newData, removeEmptyRow: 0 };
+  }
+  getLotNumberData(val) {
+    const getlotnos = String.Join('/', this.apiConfigService.gettinglotNumbers, val);
+    this.apiService.apiGetRequest(getlotnos)
+      .subscribe(
+        response => {
+          const res = response.body;
+          if (!this.commonService.checkNullOrUndefined(res) && res.status === StatusCodes.pass) {
+            if (!this.commonService.checkNullOrUndefined(res.response)) {
+
+              // this.lotno = res.response['lotNum'];
+
+            }
+          }
+          this.spinner.hide();
+        });
   }
   getpurchaseOrderTypeData() {
     const getpurchaseOrderTypeUrl = String.Join('/', this.apiConfigService.getpurchaseOrderTypeList);

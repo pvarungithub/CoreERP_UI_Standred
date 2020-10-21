@@ -6,17 +6,6 @@
 
             <div class="d--flex p-1 mat-form-field-height">
 
-
-                <mat-form-field class="form-element">
-                    <mat-label>{{'purchaseorder.quotationNumber' | translate }}</mat-label>
-                    <mat-select formControlName="quotationNumber" appFocusOnEnter tabIndex="4">
-                        <mat-option>None</mat-option>
-                        <mat-option *ngFor="let qno of qnoList " [value]="qno.id">
-                            {{qno.text}}
-                        </mat-option>
-                    </mat-select>
-                </mat-form-field>
-
                 <mat-form-field>
                     <mat-label>{{ 'purchaseorder.company' | translate }}</mat-label>
                     <mat-select formControlName="company">
@@ -38,7 +27,15 @@
                     </mat-select>
                 </mat-form-field>
 
-
+                <mat-form-field>
+                    <mat-label>{{'purchaseorder.profitCenter' | translate }}</mat-label>
+                    <mat-select formControlName="profitCenter" appFocusOnEnter tabIndex="6">
+                        <mat-option>None</mat-option>
+                        <mat-option *ngFor="let pft of profitCenterList" [value]="pft.code">
+                            {{pft.description}}
+                        </mat-option>
+                    </mat-select>
+                </mat-form-field>
 
                 <mat-form-field class="form-element">
                     <mat-label>{{ 'purchaseorder.branch' | translate }}</mat-label>
@@ -51,28 +48,13 @@
                 </mat-form-field>
 
                 <mat-form-field>
-                    <mat-label>{{'purchaseorder.purchaseOrderType' | translate }}</mat-label>
-                    <mat-select formControlName="purchaseOrderType" appFocusOnEnter tabIndex="5">
+                    <mat-label>{{'purchaseorder.quotationNumber' | translate }}</mat-label>
+                    <mat-select formControlName="quotationNumber" appFocusOnEnter tabIndex="4">
                         <mat-option>None</mat-option>
-                        <mat-option *ngFor="let potype of porderList" [value]="potype.purchaseType">
-                            {{potype.description}}
+                        <mat-option *ngFor="let qno of qnoList " [value]="qno.id">
+                            {{qno.text}}
                         </mat-option>
                     </mat-select>
-                </mat-form-field>
-
-                <mat-form-field>
-                    <mat-label>{{'purchaseorder.profitCenter' | translate }}</mat-label>
-                    <mat-select formControlName="profitCenter" appFocusOnEnter tabIndex="6">
-                        <mat-option>None</mat-option>
-                        <mat-option *ngFor="let pft of profitCenterList" [value]="pft.code">
-                            {{pft.description}}
-                        </mat-option>
-                    </mat-select>
-                </mat-form-field>
-
-                <mat-form-field class="form-element">
-                    <input matInput type="number" placeholder="{{'purchaseorder.purchaseOrderNumber' | translate }}"
-                        formControlName="purchaseOrderNumber" maxlength="50" appFocusOnEnter tabIndex="2">
                 </mat-form-field>
 
                 <mat-form-field class="form-element">
@@ -83,10 +65,40 @@
                     <mat-datepicker #picker></mat-datepicker>
                 </mat-form-field>
 
-                <mat-form-field class="form-element">
-                    <input matInput type="text" placeholder="{{'purchaseorder.supplierCode' | translate }}"
-                        formControlName="supplierCode" appFocusOnEnter tabIndex="2">
+                <mat-form-field>
+                    <mat-label>{{'purchaseorder.purchaseOrderType' | translate }}</mat-label>
+                    <mat-select formControlName="purchaseOrderType" appFocusOnEnter tabIndex="5">
+                        <mat-option>None</mat-option>
+                        <mat-option *ngFor="let potype of porderList" [value]="potype.purchaseType">
+                            {{potype.description}}
+                        </mat-option>
+                    </mat-select>
                 </mat-form-field>
+
+                <mat-form-field class="form-element">
+                    <input matInput type="number" placeholder="{{'purchaseorder.purchaseOrderNumber' | translate }}"
+                        formControlName="purchaseOrderNumber" maxlength="50" appFocusOnEnter tabIndex="2">
+                </mat-form-field>
+
+
+                <mat-form-field class="form-element">
+                    <input matInput [matDatepicker]="picker3" [nonEditable]="picker3"
+                        placeholder="{{'purchaseorder.purchaseOrderDate' | translate }}"
+                        formControlName="purchaseOrderDate" appFocusOnEnter tabIndex="3">
+                    <mat-datepicker-toggle matSuffix [for]="picker3"></mat-datepicker-toggle>
+                    <mat-datepicker #picker3></mat-datepicker>
+                </mat-form-field>
+
+                <mat-form-field>
+                    <mat-label [translate]="'purchaseorder.supplierCode'"></mat-label>
+                    <mat-select formControlName="supplierCode" appFocusOnEnter tabIndex="2">
+                        <mat-option>None</mat-option>
+                        <mat-option *ngFor="let bptype of ptypeList" [value]="bptype.code">
+                            {{bptype.description}}
+                        </mat-option>
+                    </mat-select>
+                </mat-form-field>
+
 
                 <mat-form-field class="form-element">
                     <input matInput type="text" placeholder="{{'purchaseorder.gstno' | translate }}"
@@ -102,28 +114,38 @@
                     <mat-datepicker #picker2></mat-datepicker>
                 </mat-form-field>
 
+
                 <mat-form-field class="form-element">
                     <input matInput type="number" placeholder="{{'purchaseorder.deliveryPeriod' | translate }}"
                         formControlName="deliveryPeriod" appFocusOnEnter tabIndex="2">
                 </mat-form-field>
 
-                <mat-form-field class="form-element">
-                    <input matInput type="text" placeholder="{{'purchaseorder.termsofDelivery' | translate }}"
-                        formControlName="termsofDelivery" appFocusOnEnter tabIndex="2">
+
+                <mat-form-field>
+                    <mat-label>{{'purchaseorder.termsofDelivery' | translate }}</mat-label>
+                    <mat-select formControlName="termsofDelivery" appFocusOnEnter tabIndex="6">
+                        <mat-option>None</mat-option>
+                        <mat-option *ngFor="let prod of termsofDeliveryList" [value]="prod.id">
+                            {{prod.text}}
+                        </mat-option>
+                    </mat-select>
+                </mat-form-field>
+
+                <mat-form-field>
+                    <mat-label>{{'purchaseorder.paymentTerms' | translate }}</mat-label>
+                    <mat-select formControlName="paymentTerms" appFocusOnEnter tabIndex="6">
+                        <mat-option>None</mat-option>
+                        <mat-option *ngFor="let potype of ptermsList" [value]="potype.id">
+                            {{potype.text}}
+                        </mat-option>
+                    </mat-select>
                 </mat-form-field>
 
                 <mat-form-field class="form-element">
-                    <input matInput type="text" placeholder="{{'purchaseorder.paymentTerms' | translate }}"
-                        formControlName="paymentTerms" appFocusOnEnter tabIndex="2">
+                    <input matInput type="text" placeholder="{{'purchaseorder.advance' | translate }}"
+                        formControlName="advance" appFocusOnEnter tabIndex="2">
                 </mat-form-field>
 
-                <mat-form-field class="form-element">
-                    <input matInput [matDatepicker]="picker3" [nonEditable]="picker3"
-                        placeholder="{{'purchaseorder.purchaseOrderDate' | translate }}"
-                        formControlName="purchaseOrderDate" appFocusOnEnter tabIndex="3">
-                    <mat-datepicker-toggle matSuffix [for]="picker3"></mat-datepicker-toggle>
-                    <mat-datepicker #picker3></mat-datepicker>
-                </mat-form-field>
 
             </div>
 

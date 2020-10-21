@@ -118,6 +118,7 @@ import { WorkBreakDownStructureComponent } from './wbdse/wbdse.component';
 import { TasksComponent } from './tasks/tasks.component';
 import { RoutingFileComponent } from './routingfile/routingfile.component';
 import { WorkCenterCreationComponent } from './workcentercreation/workcentercreation.component';
+import { InvoiceverificationComponent } from './invoiceverification/invoiceverification.component';
 @Injectable({
   providedIn: 'root'
 })
@@ -606,6 +607,10 @@ export class CompListService {
         break;
       case 'workcentercreation':
         this.dynamicComp.component = WorkCenterCreationComponent;
+        return this.dynamicComp.component;
+        break;
+      case 'invoiceverification':
+        this.dynamicComp.component = InvoiceverificationComponent;
         return this.dynamicComp.component;
         break;
       default:
