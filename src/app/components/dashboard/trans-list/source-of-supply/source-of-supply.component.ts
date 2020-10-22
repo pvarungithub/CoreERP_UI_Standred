@@ -36,6 +36,7 @@ export class SourceOfSupplyComponent implements OnInit {
   dynTableProps: any;
   routeEdit = '';
   stateList: any;
+  bpaList: any;
 
   constructor(
     private commonService: CommonService,
@@ -91,7 +92,7 @@ export class SourceOfSupplyComponent implements OnInit {
       },
 
       formControl: {
-        poNumber: [null, [Validators.required]],
+        ponumber: [null, [Validators.required]],
       }
     };
   }
@@ -154,6 +155,23 @@ export class SourceOfSupplyComponent implements OnInit {
               this.stateList = res.response['StatesList'];
             }
           }
+          this.getsuppliercodeList();
+        });
+  }
+  getsuppliercodeList() {
+    const getsuppliercodeList = String.Join('/', this.apiConfigService.getBusienessPartnersAccList);
+    this.apiService.apiGetRequest(getsuppliercodeList)
+      .subscribe(
+        response => {
+          const res = response.body;
+          console.log(res);
+          if (!this.commonService.checkNullOrUndefined(res) && res.status === StatusCodes.pass) {
+            if (!this.commonService.checkNullOrUndefined(res.response)) {
+              this.bpaList = res.response['bpaList'];
+              this.bpaList = res.response['bpaList'].filter(resp => resp.bpTypeName == 'Vendor')
+
+            }
+          }
           this.getplantList();
         });
   }
@@ -195,8 +213,8 @@ export class SourceOfSupplyComponent implements OnInit {
   }
 
 
-  emitColumnChanges(data) {
-  }
+  // emitColumnChanges(data) {
+  // }
 
   emitTableData(data) {
     this.tableData = data;
@@ -215,6 +233,7 @@ export class SourceOfSupplyComponent implements OnInit {
   }
 
   saveSourcesupply() {
+    debugger;
     const addssapply = String.Join('/', this.apiConfigService.addsupplierreq);
     const requestObj = { ssHdr: this.formData.value, ssDtl: this.tableData };
     this.apiService.apiPostRequest(addssapply, requestObj).subscribe(

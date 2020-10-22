@@ -60,10 +60,16 @@
               </mat-select>
             </mat-form-field>
 
-            <mat-form-field class="form-element">
-              <input matInput placeholder="{{'invoiceverification.supplierCode' | translate }}"
-                formControlName="supplierCode" appFocusOnEnter tabIndex="5">
-            </mat-form-field>
+          
+            <mat-form-field>
+              <mat-label [translate]="'invoiceverification.supplierCode'"></mat-label>
+              <mat-select formControlName="supplierCode" appFocusOnEnter tabIndex="2">
+                  <mat-option>None</mat-option>
+                  <mat-option *ngFor="let bptype of bpaList" [value]="bptype.bpnumber">
+                      {{bptype.name}}
+                  </mat-option>
+              </mat-select>
+          </mat-form-field>
 
             <mat-form-field class="form-element">
               <input matInput placeholder="{{'invoiceverification.description' | translate }}"

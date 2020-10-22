@@ -7,7 +7,7 @@
             <div class="d--flex p-1 mat-form-field-height">
 
 
-                <mat-form-field class="form-element">
+                <!-- <mat-form-field class="form-element">
                     <input matInput placeholder="{{'sourceofsupply.supplierCode' | translate }}"
                         formControlName="supplierCode" appFocusOnEnter tabIndex="1">
                 </mat-form-field>
@@ -15,6 +15,15 @@
                 <mat-form-field class="form-element">
                     <input matInput placeholder="{{'sourceofsupply.supplierName' | translate }}"
                         formControlName="supplierName" appFocusOnEnter tabIndex="2">
+                </mat-form-field> -->
+                <mat-form-field>
+                    <mat-label [translate]="'sourceofsupply.supplierCode'"></mat-label>
+                    <mat-select formControlName="supplierCode" appFocusOnEnter tabIndex="2">
+                        <mat-option>None</mat-option>
+                        <mat-option *ngFor="let bptype of bpaList" [value]="bptype.bpnumber">
+                            {{bptype.name}}
+                        </mat-option>
+                    </mat-select>
                 </mat-form-field>
 
                 <mat-form-field class="form-element">
@@ -73,7 +82,8 @@
         </form>
 
         <div>
-            <app-dynamic-table [tableObJect]="dynTableProps" (emitColumnChanges)="emitColumnChanges($event);"
+            <!-- //(emitColumnChanges)="emitColumnChanges($event);" -->
+            <app-dynamic-table [tableObJect]="dynTableProps" 
                 (emitTableData)="emitTableData($event)" [dynamicTableUpdate]="sendDynTableData"></app-dynamic-table>
         </div>
 

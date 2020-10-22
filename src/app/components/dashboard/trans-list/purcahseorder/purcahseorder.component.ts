@@ -57,6 +57,7 @@ export class PurchaseOrderComponent implements OnInit {
 
   // user details
   loginUser: any;
+  bpaList: any;
 
   constructor(
     private commonService: CommonService,
@@ -129,9 +130,9 @@ export class PurchaseOrderComponent implements OnInit {
         location: {
           value: null, type: 'dropdown', list: this.locList, id: 'id', text: 'text', displayMul: true, width: 100
         },
-        preparedBy: {
-          value: null, type: 'dropdown', list: this.employeesList, id: 'roleId', text: 'role', displayMul: true, width: 100
-        },
+        // preparedBy: {
+        //   value: null, type: 'dropdown', list: this.employeesList, id: 'roleId', text: 'role', displayMul: true, width: 100
+        // },
 
         delete: {
           type: 'delete', width: 10
@@ -199,7 +200,7 @@ export class PurchaseOrderComponent implements OnInit {
         });
   }
   getptypeList() {
-    const getcurrencyList = String.Join('/', this.apiConfigService.getPartnerTypeList);
+    const getcurrencyList = String.Join('/', this.apiConfigService.getBusienessPartnersAccList);
     this.apiService.apiGetRequest(getcurrencyList)
       .subscribe(
         response => {
@@ -207,8 +208,8 @@ export class PurchaseOrderComponent implements OnInit {
           console.log(res);
           if (!this.commonService.checkNullOrUndefined(res) && res.status === StatusCodes.pass) {
             if (!this.commonService.checkNullOrUndefined(res.response)) {
-              this.ptypeList = res.response['ptypeList'];
-              this.ptypeList = res.response['ptypeList'].filter(resp => resp.bpcategory == 'Vendor')
+              this.bpaList = res.response['bpaList'];
+              this.bpaList = res.response['bpaList'].filter(resp => resp.bpTypeName == 'Vendor')
 
             }
           }

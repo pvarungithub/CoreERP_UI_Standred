@@ -45,6 +45,8 @@ export class InvoiceverificationComponent implements OnInit {
   materialList: any;
   costunitList: any;
   segmentList: any;
+  bpaList: any;
+  glList: any;
 
   constructor(
     private addOrEditService: AddOrEditService,
@@ -91,6 +93,9 @@ export class InvoiceverificationComponent implements OnInit {
         value: {
           value: null, type: 'number', width: 150
         },
+        plant: {
+          value: null, type: 'dropdown', list: this.plantList, id: 'id', text: 'text', displayMul: true, width: 100
+        },
         accountKeyAccount: {
           value: null, type: 'number', width: 150
         },
@@ -104,7 +109,9 @@ export class InvoiceverificationComponent implements OnInit {
         otherExpensesAccount: {
           value: null, type: 'number', width: 150
         },
-
+        account: {
+          value: null, type: 'dropdown', list: this.glList, id: 'id', text: 'text', displayMul: true, width: 100
+        },
         delete: {
           type: 'delete',
           newObject: true
@@ -120,7 +127,7 @@ export class InvoiceverificationComponent implements OnInit {
     return {
       tableData: {
         account: {
-          value: null, type: 'number', width: 150
+          value: null, type: 'dropdown', list: this.glList, id: 'id', text: 'text', displayMul: true, width: 100
         },
         amount: {
           value: null, type: 'number', width: 150
@@ -204,10 +211,39 @@ export class InvoiceverificationComponent implements OnInit {
               })
             }
           }
+          this.getsuppliercodeList();
+        });
+  }
+  getsuppliercodeList() {
+    const getsuppliercodeList = String.Join('/', this.apiConfigService.getBusienessPartnersAccList);
+    this.apiService.apiGetRequest(getsuppliercodeList)
+      .subscribe(
+        response => {
+          const res = response.body;
+          if (!this.commonService.checkNullOrUndefined(res) && res.status === StatusCodes.pass) {
+            if (!this.commonService.checkNullOrUndefined(res.response)) {
+              this.bpaList = res.response['bpaList'];
+              this.bpaList = res.response['bpaList'].filter(resp => resp.bpTypeName == 'Vendor')
+
+            }
+          }
+          this.getGLaccData();
+        });
+  }
+  getGLaccData() {
+    const getdptcnUrl = String.Join('/', this.apiConfigService.getGLAccountListbyCatetory);
+    this.apiService.apiGetRequest(getdptcnUrl)
+      .subscribe(
+        response => {
+          const res = response.body;
+          if (!this.commonService.checkNullOrUndefined(res) && res.status === StatusCodes.pass) {
+            if (!this.commonService.checkNullOrUndefined(res.response)) {
+              this.glList = res.response['glList'];
+            }
+          }
           this.getplantsList();
         });
   }
-
   getplantsList() {
     const getplantsList = String.Join('/', this.apiConfigService.getPlantsList);
     this.apiService.apiGetRequest(getplantsList)
@@ -306,6 +342,7 @@ export class InvoiceverificationComponent implements OnInit {
       .subscribe(
         response => {
           const res = response.body;
+          console.log(res);
           if (!this.commonService.checkNullOrUndefined(res) && res.status === StatusCodes.pass) {
             if (!this.commonService.checkNullOrUndefined(res.response)) {
               this.purchaseordernoList = res.response['purchaseordernoList'];
@@ -331,7 +368,7 @@ export class InvoiceverificationComponent implements OnInit {
           if (!this.commonService.checkNullOrUndefined(res) && res.status === StatusCodes.pass) {
             if (!this.commonService.checkNullOrUndefined(res.response)) {
               //console.log(res.response['ivcmasters']);
-              console.log(res.response['iecDetail']);
+              //console.log(res.response['iecDetail']);
               this.modelFormData.setValue(res.response['ivcmasters']);
               this.sendActivityDynTableData = { type: 'edit', data: res.response['ivcDetail'] };
               this.sendCapacityDynTableData = { type: 'edit', data: res.response['iecDetail'] };

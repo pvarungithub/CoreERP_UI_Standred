@@ -29,7 +29,7 @@ export class ReceiptOfGoodsComponent implements OnInit {
   tableData = [];
   dynTableProps: any;
   sendDynTableData: any;
-
+  grnDate:any;
   // header props
   porderList = [];
   companyList = [];
@@ -42,6 +42,7 @@ export class ReceiptOfGoodsComponent implements OnInit {
   materialList = [];
   purchaseordernoList: any;
   podetailsList: any;
+  bpaList: any;
   constructor(
     private formBuilder: FormBuilder,
     private apiConfigService: ApiConfigService,
@@ -64,13 +65,13 @@ export class ReceiptOfGoodsComponent implements OnInit {
     //debugger;
     if (event) {
       this.formData.patchValue({
-        qualityCheck: "1",
+        qualityCheck: "Accpt",
         reject: null
       });
     } else {
       this.formData.patchValue({
-        ChkAcceptReject: null,
-        qualityCheck: "0"
+        qualityCheck: null,
+        reject: "Reject"
       });
     }
   }
@@ -94,10 +95,10 @@ export class ReceiptOfGoodsComponent implements OnInit {
       supplierGinno: [null],
       movementType: [null],
       grnno: [null],
-      //grnDate: [null],
+      grndate: [null],
       qualityCheck: [null],
       storageLocation: [null],
-      inspectionNoteNo: [null],
+      inspectionNoteNo: [null, [Validators.required]],
       id: ['0'],
       rrno: [null],
       vehicleNo: [null],
@@ -157,7 +158,7 @@ export class ReceiptOfGoodsComponent implements OnInit {
           value: null, type: 'number', width: 100, maxLength: 50, fieldEnable: true
         },
         lotDate: {
-          value: new Date(), type: 'datepicker', width: 100, disabled: true
+          value: null, type: 'datepicker', width: 100,fieldEnable: true
         },
         delete: {
           type: 'delete', width: 10
@@ -169,7 +170,11 @@ export class ReceiptOfGoodsComponent implements OnInit {
       }
     };
   }
-
+  grndatechange($event)
+  {
+    this.grnDate=$event;
+   
+  }
   ponoselect() {
     let data = [];
     let newData = [];
@@ -180,7 +185,7 @@ export class ReceiptOfGoodsComponent implements OnInit {
       console.log(data, this.tablePropsFunc());
       data.forEach((res, index) => {
         newData.push(this.tablePropsFunc().tableData);
-        this.getLotNumberData(res.materialCode);
+        //this.getLotNumberData(res.materialCode);
         newData[index].poqty.value = res.qty;
         newData[index].materialCode.value = res.materialCode;
         newData[index].storageLocation.value = res.location;
@@ -189,28 +194,13 @@ export class ReceiptOfGoodsComponent implements OnInit {
         newData[index].profitCenter.value = res.profitCenter;
         newData[index].branch.value = res.branch;
         newData[index].plant.value = res.plant;
-        // newData[index].lotNo.value = this.lotno;
+       newData[index].lotDate.value = new Date();
       })
     }
     //
     this.sendDynTableData = { type: 'add', data: newData, removeEmptyRow: 0 };
   }
-  getLotNumberData(val) {
-    const getlotnos = String.Join('/', this.apiConfigService.gettinglotNumbers, val);
-    this.apiService.apiGetRequest(getlotnos)
-      .subscribe(
-        response => {
-          const res = response.body;
-          if (!this.commonService.checkNullOrUndefined(res) && res.status === StatusCodes.pass) {
-            if (!this.commonService.checkNullOrUndefined(res.response)) {
-
-              // this.lotno = res.response['lotNum'];
-
-            }
-          }
-          this.spinner.hide();
-        });
-  }
+ 
   getpurchaseOrderTypeData() {
     const getpurchaseOrderTypeUrl = String.Join('/', this.apiConfigService.getpurchaseOrderTypeList);
     this.apiService.apiGetRequest(getpurchaseOrderTypeUrl)
@@ -266,10 +256,26 @@ export class ReceiptOfGoodsComponent implements OnInit {
               this.purchaseordernoList = res.response['purchaseordernoList'];
             }
           }
+          this.getsuppliercodeList();
+        });
+  }
+  getsuppliercodeList() {
+    const getsuppliercodeList = String.Join('/', this.apiConfigService.getBusienessPartnersAccList);
+    this.apiService.apiGetRequest(getsuppliercodeList)
+      .subscribe(
+        response => {
+          const res = response.body;
+          console.log(res);
+          if (!this.commonService.checkNullOrUndefined(res) && res.status === StatusCodes.pass) {
+            if (!this.commonService.checkNullOrUndefined(res.response)) {
+              this.bpaList = res.response['bpaList'];
+              this.bpaList = res.response['bpaList'].filter(resp => resp.bpTypeName == 'Vendor')
+
+            }
+          }
           this.getplantList();
         });
   }
-
 
   getplantList() {
     const getplantList = String.Join('/', this.apiConfigService.getplantList);
@@ -397,22 +403,44 @@ export class ReceiptOfGoodsComponent implements OnInit {
           }
         });
   }
+  getLotNumData(row) {
+   
+    const getlotnos = String.Join('/', this.apiConfigService.gettinglotNumbers, row.data[row.index].materialCode.value);
+      this.apiService.apiGetRequest(getlotnos)
+        .subscribe(
+          response => {
+            const res = response.body;
+            if (!this.commonService.checkNullOrUndefined(res) && res.status === StatusCodes.pass) {
+              if (!this.commonService.checkNullOrUndefined(res.response)) {
+  
+                row.data[row.index].lotNo.value = res.response['lotNum']
+                //row.data[row.index].lotDate.value =JSON.stringify(this.grnDate);
+                this.sendDynTableData = { type: 'add', data: row.data,removeEmptyRow: 0  };
+  
+              }
+            }
+            //this.spinner.hide();
+          });
+   
+  }
 
   emitColumnChanges(data) {
-    //this.dataChange(data);
     if (data.column == 'checkAll') {
       if (data.data[data.index].checkAll.value) {
-        //this.getDiscount(data);
+        this.getLotNumData(data);
       }
-      else {
-        data.data[data.index].discount.value = 0;
-        this.sendDynTableData = { type: 'add', data: data.data };
-      }
+      // else {
+      //   data.data[data.index].discount.value = 0;
+      //   this.sendDynTableData = { type: 'add', data: data.data };
+      // }
     }
   }
 
-  emitTableData(data) {
-    this.tableData = data;
+  emitTableData(data) 
+  {
+    debugger;
+    this.tableData = data; 
+    
   }
 
 
@@ -421,6 +449,7 @@ export class ReceiptOfGoodsComponent implements OnInit {
   }
 
   save() {
+    debugger;
     if (this.tableData.length == 0 && this.formData.invalid) {
       return;
     }

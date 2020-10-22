@@ -1596,7 +1596,7 @@
   },
   "sourceofsupply": {
     "title": "Source of Supply",
-    "supplierCode": "Code",
+    "supplierCode": "Supplier Code",
     "phone": "Phone",
     "mobile": "Mobile",
     "email": "Email",
@@ -1710,6 +1710,7 @@
     "receiptDate": "Date",
     "receivedBy": "Receieved By",
     "grnno": "GRN No",
+    "grndate": "Date",
     "qualityCheck": "Quality Check",
     "inspectionNoteNo": "Inspection No",
     "materialCode": "Material code",
@@ -1722,11 +1723,12 @@
     "project": "Project",
     "branch": "Branch",
     "movementType": "Movement Type",
-    "lotNo": "LotNo",
-    "lotDate": "LotDate",
+    "lotNo": "Lot No",
+    "lotDate": "Lot Date",
     "delete": "Delete"
   },
   "inspectioncheck": {
+    "checkAll": "Select",
     "title": "Inspection Check",
     "inspectionCheckNo": "Inspection Check Number",
     "company": "Company",

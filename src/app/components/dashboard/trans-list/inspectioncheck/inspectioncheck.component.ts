@@ -46,6 +46,10 @@ export class InspectioncheckComponent implements OnInit {
   UomList: any;
   ptypeList: any;
   locationList: any;
+  purchaseordernoList: any;
+  inspectionnoList: any;
+  inspectiondetailsList: any;
+  grList: any;
 
   constructor(
     private commonService: CommonService,
@@ -70,35 +74,39 @@ export class InspectioncheckComponent implements OnInit {
   tablePropsFunc() {
     return {
       tableData: {
+        checkAll:
+        {
+          value: false, type: 'checkbox'
+        },
         materialCode: {
-          value: null, type: 'dropdown', list: this.materialList, id: 'id', text: 'text', displayMul: true, width: 100
+          value: null, type: 'number', width: 100, maxLength: 50,disabled: true
+          //value: null, type: 'dropdown', list: this.materialList, id: 'id', text: 'text', displayMul: true, width: 100
         },
         description: {
-          value: null, type: 'text', width: 100, maxLength: 50
+          value: null, type: 'text', width: 100, maxLength: 50,disabled: true
         },
         receivedQty: {
-          value: null, type: 'number', width: 100, maxLength: 50
+          value: null, type: 'number', width: 100, maxLength: 50,disabled: true
         },
         rejectedQty: {
-          value: null, type: 'number', width: 100, maxLength: 50
+          value: null, type: 'number', width: 100, maxLength: 50,disabled: true,fieldEnable: true
         },
         location: {
-          value: null, type: 'dropdown', list: this.locationList, id: 'locationId', text: 'description', displayMul: false, width: 100
+          value: null, type: 'text', width: 100, maxLength: 50,disabled: true
+          //value: null, type: 'dropdown', list: this.locationList, id: 'locationId', text: 'description', displayMul: false, width: 100
         },
-        // unit: {
-        //   value: null, type: 'dropdown', list: this.UomList, id: 'id', text: 'text', displayMul: true, width: 100
-        // },
+        
         movementTo: {
-          value: null, type: 'text', width: 100, maxLength: 50
+          value: null, type: 'text', width: 100, maxLength: 50,disabled: true
         },
         rejectReason: {
-          value: null, type: 'text', width: 100, maxLength: 50
+          value: null, type: 'text', width: 100, maxLength: 50,disabled: true,fieldEnable: true
         },
         text: {
-          value: null, type: 'text', width: 100, maxLength: 50
+          value: null, type: 'text', width: 100, maxLength: 50,disabled: true
         },
         lotNo: {
-          value: null, type: 'number', width: 100, maxLength: 50, fieldEnable: true
+          value: null, type: 'number', width: 100, maxLength: 50, disabled: true
         },
         lotDate: {
           value: new Date(), type: 'datepicker', width: 100, disabled: true
@@ -169,10 +177,23 @@ export class InspectioncheckComponent implements OnInit {
               this.materialList = res.response['materialList'];
             }
           }
-          this.getplantList();
+          this.getinspectionnoList();
         });
   }
-
+  getinspectionnoList() {
+    const poUrl = String.Join('/', this.apiConfigService.getinspectionnoList);
+    this.apiService.apiGetRequest(poUrl)
+      .subscribe(
+        response => {
+          const res = response.body;
+          if (!this.commonService.checkNullOrUndefined(res) && res.status === StatusCodes.pass) {
+            if (!this.commonService.checkNullOrUndefined(res.response)) {
+              this.inspectionnoList = res.response['inspectionnoList'];
+            }
+          }
+         this.getplantList();
+        });
+  }
 
   getplantList() {
     const getplantList = String.Join('/', this.apiConfigService.getplantList);
@@ -218,10 +239,37 @@ export class InspectioncheckComponent implements OnInit {
               this.profitCenterList = res.response['profitCenterList'];
             }
           }
+          this.getGoodsreceiptData();
+        });
+  }
+  getGoodsreceiptData() {
+    const getgrUrl = String.Join('/', this.apiConfigService.getGoodsreceiptDataList);
+    this.apiService.apiGetRequest(getgrUrl)
+      .subscribe(
+        response => {
+          const res = response.body;
+          if (!this.commonService.checkNullOrUndefined(res) && res.status === StatusCodes.pass) {
+            if (!this.commonService.checkNullOrUndefined(res.response)) {
+              this.grList = res.response['grList'];
+            }
+          }
+          this.getinspectioncheckdetailsList();
+        });
+  }
+  getinspectioncheckdetailsList() {
+    const getinspectioncheckListUrl = String.Join('/', this.apiConfigService.getinspectioncheckList);
+    this.apiService.apiGetRequest(getinspectioncheckListUrl)
+      .subscribe(
+        response => {
+          const res = response.body;
+          if (!this.commonService.checkNullOrUndefined(res) && res.status === StatusCodes.pass) {
+            if (!this.commonService.checkNullOrUndefined(res.response)) {
+              this.inspectiondetailsList = res.response['inspectiondetailsList'];
+            }
+          }
           this.getWbsList();
         });
   }
-
   getWbsList() {
     const segUrl = String.Join('/', this.apiConfigService.getwbselement);
     this.apiService.apiGetRequest(segUrl)
@@ -259,11 +307,44 @@ export class InspectioncheckComponent implements OnInit {
         });
   }
 
-  emitColumnChanges(data) {
-    // this.calculateAmount(data);
+  inspectionCheckNoselect() {
+    let data = [];
+    let newData = [];
+
+    if (!this.commonService.checkNullOrUndefined(this.formData.get('inspectionCheckNo').value)) {
+  var  data1 = this.grList.find(resp => resp.inspectionNoteNo == this.formData.get('inspectionCheckNo').value);
+
+      data = this.inspectiondetailsList.filter(resp => resp.purchaseOrderNo ==data1.purchaseOrderNo);
+    }
+    if (data.length) {
+      console.log(data, this.tablePropsFunc());
+      data.forEach((res, index) => {
+        newData.push(this.tablePropsFunc().tableData);
+        newData[index].materialCode.value = res.materialCode;
+        newData[index].location.value = res.storageLocation;
+        newData[index].description.value = res.description;
+        newData[index].movementTo.value = res.movementType;
+        newData[index].rejectReason.value = null;
+        newData[index].receivedQty.value = res.receivedQty;
+        newData[index].rejectedQty.value = null;
+        newData[index].text.value = null;
+        newData[index].lotNo.value = res.lotNo;
+       newData[index].lotDate.value = new Date();
+      })
+    }
+    //
+    this.sendDynTableData = { type: 'add', data: newData, removeEmptyRow: 0 };
+  }
+  emitColumnChanges(data) 
+  {
+    if (data.column == 'checkAll')
+    {
+      this.sendDynTableData = { type: 'add', data: data.data, removeEmptyRow: 0 };
+    }
   }
 
-  emitTableData(data) {
+  emitTableData(data)
+ {
     this.tableData = data;
   }
 

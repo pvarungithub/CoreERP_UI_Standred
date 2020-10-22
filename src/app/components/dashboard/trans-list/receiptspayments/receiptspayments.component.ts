@@ -502,9 +502,12 @@ export class ReceiptspaymentsComponent implements OnInit {
       this.checkAjectAmount(true)
     }
     if (data.column == 'checkAll') {
-      if (data.data[data.index].checkAll.value) {
+      if (data.data[data.index].checkAll.value) 
+      {
         this.getDiscount(data);
-      } else {
+      }
+       else
+       {
         data.data[data.index].discount.value = 0;
         this.sendDynTableData = { type: 'add', data: data.data };
       }
