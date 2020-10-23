@@ -44,6 +44,7 @@ export class QuotationAnalysisComponent implements OnInit {
   pcgroupList: any;
   functionaldeptList: any;
   ptypeList: any;
+  bpaList: any;
 
   constructor(
     private commonService: CommonService,
@@ -128,25 +129,27 @@ export class QuotationAnalysisComponent implements OnInit {
               this.companyList = res.response['companiesList'];
             }
           }
-          this.getptypeList();
+          this.getsuppliercodeList();
         });
   }
-  getptypeList() {
-    const getcurrencyList = String.Join('/', this.apiConfigService.getPartnerTypeList);
-    this.apiService.apiGetRequest(getcurrencyList)
+  getsuppliercodeList() {
+    const getsuppliercodeList = String.Join('/', this.apiConfigService.getBusienessPartnersAccList);
+    this.apiService.apiGetRequest(getsuppliercodeList)
       .subscribe(
         response => {
           const res = response.body;
           console.log(res);
           if (!this.commonService.checkNullOrUndefined(res) && res.status === StatusCodes.pass) {
             if (!this.commonService.checkNullOrUndefined(res.response)) {
-              this.ptypeList = res.response['ptypeList'];
-              this.ptypeList = res.response['ptypeList'].filter(resp => resp.bpcategory == 'Vendor')
+              this.bpaList = res.response['bpaList'];
+              this.bpaList = res.response['bpaList'].filter(resp => resp.bpTypeName == 'Vendor')
+
             }
           }
           this.getplantList();
         });
   }
+
 
   getplantList() {
     const getplantList = String.Join('/', this.apiConfigService.getplantList);

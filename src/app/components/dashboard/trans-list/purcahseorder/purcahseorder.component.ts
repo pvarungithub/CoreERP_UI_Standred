@@ -153,7 +153,7 @@ export class PurchaseOrderComponent implements OnInit {
       branch: [null],
       profitCenter: [null],
       purchaseOrderType: [null],
-      purchaseOrderNumber: [null],
+      purchaseOrderNumber: [null, [Validators.required]],
       quotationDate: [null],
       supplierCode: [null],
       gstno: [null],
@@ -166,9 +166,19 @@ export class PurchaseOrderComponent implements OnInit {
       addDate: [null],
       editWho: null,
       editDate: [null],
+      filePath: [null],
       advance: [null],
-      quotationNumber: [null],
+      quotationNumber: [null, [Validators.required]],
     });
+  }
+
+  onFileChange(event) {
+    if (event.target.files.length > 0) {
+      const file = event.target.files[0];
+      this.formData.patchValue({
+        filePath: file
+      });
+    }
   }
 
   getCompanyList() {
@@ -196,16 +206,15 @@ export class PurchaseOrderComponent implements OnInit {
               this.ptermsList = res.response['ptermsList'];
             }
           }
-          this.getptypeList();
+          this.getsuppliercodeList();
         });
   }
-  getptypeList() {
-    const getcurrencyList = String.Join('/', this.apiConfigService.getBusienessPartnersAccList);
-    this.apiService.apiGetRequest(getcurrencyList)
+  getsuppliercodeList() {
+    const getsuppliercodeList = String.Join('/', this.apiConfigService.getBusienessPartnersAccList);
+    this.apiService.apiGetRequest(getsuppliercodeList)
       .subscribe(
         response => {
           const res = response.body;
-          console.log(res);
           if (!this.commonService.checkNullOrUndefined(res) && res.status === StatusCodes.pass) {
             if (!this.commonService.checkNullOrUndefined(res.response)) {
               this.bpaList = res.response['bpaList'];
@@ -236,7 +245,6 @@ export class PurchaseOrderComponent implements OnInit {
       .subscribe(
         response => {
           const res = response.body;
-          console.log(res);
           if (!this.commonService.checkNullOrUndefined(res) && res.status === StatusCodes.pass) {
             if (!this.commonService.checkNullOrUndefined(res.response)) {
               this.qnoList = res.response['qnoList'];
@@ -367,7 +375,6 @@ export class PurchaseOrderComponent implements OnInit {
       .subscribe(
         response => {
           const res = response.body;
-          console.log(res);
           if (!this.commonService.checkNullOrUndefined(res) && res.status === StatusCodes.pass) {
             if (!this.commonService.checkNullOrUndefined(res.response)) {
               this.employeesList = res.response['roleList'];
@@ -436,7 +443,7 @@ export class PurchaseOrderComponent implements OnInit {
           if (!this.commonService.checkNullOrUndefined(res) && res.status === StatusCodes.pass) {
             if (!this.commonService.checkNullOrUndefined(res.response)) {
               this.formData.setValue(res.response['pomasters']);
-              console.log(res.response['poDetail']);
+
               this.sendDynTableData = { type: 'edit', data: res.response['poDetail'] };
               this.formData.disable();
             }
@@ -465,22 +472,40 @@ export class PurchaseOrderComponent implements OnInit {
   }
 
   savepurcahseorder() {
+
     const addprorder = String.Join('/', this.apiConfigService.addpurchaseorder);
     const requestObj = { poHdr: this.formData.value, poDtl: this.tableData };
     this.apiService.apiPostRequest(addprorder, requestObj).subscribe(
       response => {
+        // this.saveimage();
         const res = response.body;
         if (!this.commonService.checkNullOrUndefined(res) && res.status === StatusCodes.pass) {
           if (!this.commonService.checkNullOrUndefined(res.response)) {
             this.alertService.openSnackBar('Purchase Order created Successfully..', Static.Close, SnackBar.success);
             //this.spinner.hide();
+
           }
           this.reset();
           this.spinner.hide();
         }
       });
   }
+  saveimage() {
 
+    const requestObj = this.formData.get('filePath').value;
+    const getLoginUrl = String.Join('/', this.apiConfigService.saveimage);
+    this.apiService.apiPostRequest(getLoginUrl, requestObj)
+      .subscribe(
+        response => {
+          const res = response.body;
+          if (!this.commonService.checkNullOrUndefined(res) && res.status === StatusCodes.pass) {
+            if (!this.commonService.checkNullOrUndefined(res.response)) {
+              this.alertService.openSnackBar('Image Saved Successfully..', Static.Close, SnackBar.success);
+            }
+          }
+          this.spinner.hide();
+        });
+  }
   return() {
     const addpo = String.Join('/', this.apiConfigService.returnpurchaseorder, this.routeEdit);
     this.apiService.apiGetRequest(addpo).subscribe(

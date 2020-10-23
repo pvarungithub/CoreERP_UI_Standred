@@ -51,11 +51,14 @@
                     <mat-label [translate]="'quotationanalysis.supplier'"></mat-label>
                     <mat-select formControlName="supplier" appFocusOnEnter tabIndex="2">
                         <mat-option>None</mat-option>
-                        <mat-option *ngFor="let bptype of ptypeList" [value]="bptype.code">
-                            {{bptype.description}}
+                        <mat-option *ngFor="let bptype of bpaList" [value]="bptype.bpnumber">
+                            {{bptype.name}}
                         </mat-option>
                     </mat-select>
                 </mat-form-field>
+
+
+
 
 
 

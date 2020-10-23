@@ -36,9 +36,7 @@ export class QuotationSupplierComponent implements OnInit {
   profitCenterList = [];
   projectNameList = [];
   wbsList = [];
-  // listOfProdList = [ { id: "Stores consumption" , text: "Stores consumption" }, { id: "General services" , text: "General services" }];
 
-  // details props
   tableData = [];
   dynTableProps: any;
   routeEdit = '';
@@ -160,7 +158,7 @@ export class QuotationSupplierComponent implements OnInit {
       .subscribe(
         response => {
           const res = response.body;
-          console.log(res);
+
           if (!this.commonService.checkNullOrUndefined(res) && res.status === StatusCodes.pass) {
             if (!this.commonService.checkNullOrUndefined(res.response)) {
               this.ptypeList = res.response['ptypeList'];
@@ -192,9 +190,10 @@ export class QuotationSupplierComponent implements OnInit {
       .subscribe(
         response => {
           const res = response.body;
+
           if (!this.commonService.checkNullOrUndefined(res) && res.status === StatusCodes.pass) {
             if (!this.commonService.checkNullOrUndefined(res.response)) {
-              this.UomList = res.response['UomList'];
+              this.UomList = res.response['UOMList'];
             }
           }
           this.getBranchList();
@@ -227,10 +226,7 @@ export class QuotationSupplierComponent implements OnInit {
               this.profitCenterList = res.response['profitCenterList'];
             }
           }
-          // this.dynTableProps = this.tablePropsFunc();
-          // if (this.routeEdit != '') {
-          //   this.getQuotationSuppliersDetails(this.routeEdit);
-          // }
+
           this.getWbsList();
         });
   }
@@ -264,7 +260,7 @@ export class QuotationSupplierComponent implements OnInit {
           if (!this.commonService.checkNullOrUndefined(res) && res.status === StatusCodes.pass) {
             if (!this.commonService.checkNullOrUndefined(res.response)) {
               this.formData.setValue(res.response['qsmasters']);
-              console.log(res.response['qsDetail']);
+              //console.log(res.response['qsDetail']);
               this.sendDynTableData = { type: 'edit', data: res.response['qsDetail'] };
               this.formData.disable();
             }

@@ -16,10 +16,10 @@ export class ApiConfigService {
    getComponentInfo = `${this.environment.runtimeConfig.serverUrl}Settings/GetComponentInfo`;
 
    // Common
-   getGoodsreceiptDataList=`${this.environment.runtimeConfig.serverUrl}Common/GetGoodsReceiptList`
-   getinspectioncheckList= `${this.environment.runtimeConfig.serverUrl}Common/GetInspectiondetailsList`;
-   getinspectionnoList=`${this.environment.runtimeConfig.serverUrl}Common/GetInspectionnoList`;
-   getBusienessPartnersAccList=`${this.environment.runtimeConfig.serverUrl}BusienessPartnerAccount/GetBusienessPartnerAccountList`;
+   getGoodsreceiptDataList = `${this.environment.runtimeConfig.serverUrl}Common/GetGoodsReceiptList`
+   getinspectioncheckList = `${this.environment.runtimeConfig.serverUrl}Common/GetInspectiondetailsList`;
+   getinspectionnoList = `${this.environment.runtimeConfig.serverUrl}Common/GetInspectionnoList`;
+   getBusienessPartnersAccList = `${this.environment.runtimeConfig.serverUrl}BusienessPartnerAccount/GetBusienessPartnerAccountList`;
    gettinglotNumbers = `${this.environment.runtimeConfig.serverUrl}GoodsReceipt/GetLotNumber`;
    getpodetailsList = `${this.environment.runtimeConfig.serverUrl}Common/GetPOdetailsList`;
    getpurchasenoList = `${this.environment.runtimeConfig.serverUrl}Common/GetPurchaseOrdernoList`;
@@ -252,6 +252,7 @@ export class ApiConfigService {
    getquotationanalysisMaster = `${this.environment.runtimeConfig.serverUrl}Transactions/GetQuotationAnalysis`;
    returnquotationanalysis = `${this.environment.runtimeConfig.serverUrl}Transactions/ReturnQuotationAnalysis`;
    /*******************************Purchase Order ****************************************************** */
+   saveimage = `${this.environment.runtimeConfig.serverUrl}Transactions/SaveIssueImage`;
    addpurchaseorder = `${this.environment.runtimeConfig.serverUrl}Transactions/AddPurchaseOrder`;
    getpurchaseorderDetail = `${this.environment.runtimeConfig.serverUrl}Transactions/GetPurchaseOrderDetail`;
    getpurchaseorderMaster = `${this.environment.runtimeConfig.serverUrl}Transactions/GetPurchaseOrder`;

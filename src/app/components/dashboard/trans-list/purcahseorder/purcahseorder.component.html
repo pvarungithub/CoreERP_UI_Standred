@@ -93,7 +93,7 @@
                     <mat-label [translate]="'purchaseorder.supplierCode'"></mat-label>
                     <mat-select formControlName="supplierCode" appFocusOnEnter tabIndex="2">
                         <mat-option>None</mat-option>
-                        <mat-option *ngFor="let bptype of ptypeList" [value]="bptype.bpnumber">
+                        <mat-option *ngFor="let bptype of bpaList" [value]="bptype.bpnumber">
                             {{bptype.name}}
                         </mat-option>
                     </mat-select>
@@ -146,7 +146,9 @@
                         formControlName="advance" appFocusOnEnter tabIndex="2">
                 </mat-form-field>
 
-
+                <!-- <mat-form-field class="form-element"> -->
+                <input id="file" type="file" class="form-control" (change)="onFileChange($event)">
+                <!-- </mat-form-field> -->
             </div>
 
         </form>

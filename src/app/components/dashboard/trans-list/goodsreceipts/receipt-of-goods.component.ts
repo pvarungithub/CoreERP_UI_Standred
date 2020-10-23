@@ -27,9 +27,11 @@ export class ReceiptOfGoodsComponent implements OnInit {
   routeEdit = '';
 
   tableData = [];
+  editData = [];
+
   dynTableProps: any;
   sendDynTableData: any;
-  grnDate:any;
+  grnDate: any;
   // header props
   porderList = [];
   companyList = [];
@@ -43,6 +45,7 @@ export class ReceiptOfGoodsComponent implements OnInit {
   purchaseordernoList: any;
   podetailsList: any;
   bpaList: any;
+
   constructor(
     private formBuilder: FormBuilder,
     private apiConfigService: ApiConfigService,
@@ -86,9 +89,7 @@ export class ReceiptOfGoodsComponent implements OnInit {
       supplierCode: [null],
       //supplierName: [null],
       supplierReferenceNo: [null],
-      //supplierRefDate: [null],
-      //supplierGINNo: [null],
-      //supplierGINDate: [null],
+
       receivedBy: [null],
       receivedDate: [null],
       receiptDate: [null],
@@ -158,7 +159,7 @@ export class ReceiptOfGoodsComponent implements OnInit {
           value: null, type: 'number', width: 100, maxLength: 50, fieldEnable: true
         },
         lotDate: {
-          value: null, type: 'datepicker', width: 100,fieldEnable: true
+          value: null, type: 'datepicker', width: 100, fieldEnable: true
         },
         delete: {
           type: 'delete', width: 10
@@ -170,11 +171,14 @@ export class ReceiptOfGoodsComponent implements OnInit {
       }
     };
   }
-  grndatechange($event)
-  {
-    this.grnDate=$event;
-   
+
+  grndatechange() {
+    if (this.editData.length) {
+      this.editData.map(resp => resp.lotDate.value === this.formData.get('grndate').value)
+      this.sendDynTableData = { type: 'add', data: this.editData, removeEmptyRow: 0 };
+    }
   }
+
   ponoselect() {
     let data = [];
     let newData = [];
@@ -182,7 +186,7 @@ export class ReceiptOfGoodsComponent implements OnInit {
       data = this.podetailsList.filter(resp => resp.purchaseOrderNumber == this.formData.get('purchaseOrderNo').value);
     }
     if (data.length) {
-      console.log(data, this.tablePropsFunc());
+      // console.log(data, this.tablePropsFunc());
       data.forEach((res, index) => {
         newData.push(this.tablePropsFunc().tableData);
         //this.getLotNumberData(res.materialCode);
@@ -194,13 +198,14 @@ export class ReceiptOfGoodsComponent implements OnInit {
         newData[index].profitCenter.value = res.profitCenter;
         newData[index].branch.value = res.branch;
         newData[index].plant.value = res.plant;
-       newData[index].lotDate.value = new Date();
+        newData[index].lotDate.value = new Date();
       })
     }
     //
+    this.editData = newData;
     this.sendDynTableData = { type: 'add', data: newData, removeEmptyRow: 0 };
   }
- 
+
   getpurchaseOrderTypeData() {
     const getpurchaseOrderTypeUrl = String.Join('/', this.apiConfigService.getpurchaseOrderTypeList);
     this.apiService.apiGetRequest(getpurchaseOrderTypeUrl)
@@ -404,24 +409,24 @@ export class ReceiptOfGoodsComponent implements OnInit {
         });
   }
   getLotNumData(row) {
-   
+
     const getlotnos = String.Join('/', this.apiConfigService.gettinglotNumbers, row.data[row.index].materialCode.value);
-      this.apiService.apiGetRequest(getlotnos)
-        .subscribe(
-          response => {
-            const res = response.body;
-            if (!this.commonService.checkNullOrUndefined(res) && res.status === StatusCodes.pass) {
-              if (!this.commonService.checkNullOrUndefined(res.response)) {
-  
-                row.data[row.index].lotNo.value = res.response['lotNum']
-                //row.data[row.index].lotDate.value =JSON.stringify(this.grnDate);
-                this.sendDynTableData = { type: 'add', data: row.data,removeEmptyRow: 0  };
-  
-              }
+    this.apiService.apiGetRequest(getlotnos)
+      .subscribe(
+        response => {
+          const res = response.body;
+          if (!this.commonService.checkNullOrUndefined(res) && res.status === StatusCodes.pass) {
+            if (!this.commonService.checkNullOrUndefined(res.response)) {
+
+              row.data[row.index].lotNo.value = res.response['lotNum']
+              //row.data[row.index].lotDate.value =JSON.stringify(this.grnDate);
+              this.sendDynTableData = { type: 'add', data: row.data, removeEmptyRow: 0 };
+              this.editData = row.data;
             }
-            //this.spinner.hide();
-          });
-   
+          }
+          //this.spinner.hide();
+        });
+
   }
 
   emitColumnChanges(data) {
@@ -429,18 +434,15 @@ export class ReceiptOfGoodsComponent implements OnInit {
       if (data.data[data.index].checkAll.value) {
         this.getLotNumData(data);
       }
-      // else {
-      //   data.data[data.index].discount.value = 0;
-      //   this.sendDynTableData = { type: 'add', data: data.data };
-      // }
+
     }
+    this.editData = data.data;
   }
 
-  emitTableData(data) 
-  {
-    debugger;
-    this.tableData = data; 
-    
+  emitTableData(data) {
+
+    this.tableData = data;
+
   }
 
 
