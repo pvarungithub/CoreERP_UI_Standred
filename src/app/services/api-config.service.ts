@@ -16,7 +16,9 @@ export class ApiConfigService {
    getComponentInfo = `${this.environment.runtimeConfig.serverUrl}Settings/GetComponentInfo`;
 
    // Common
-   getGoodsreceiptDataList = `${this.environment.runtimeConfig.serverUrl}Common/GetGoodsReceiptList`
+   getMaterialListforcostunits = `${this.environment.runtimeConfig.serverUrl}Common/GetMaterialListForCostunits`;
+   gethsnsacList = `${this.environment.runtimeConfig.serverUrl}Common/GetHSNSACList`;
+   getGoodsreceiptDataList = `${this.environment.runtimeConfig.serverUrl}Common/GetGoodsReceiptList`;
    getinspectioncheckList = `${this.environment.runtimeConfig.serverUrl}Common/GetInspectiondetailsList`;
    getinspectionnoList = `${this.environment.runtimeConfig.serverUrl}Common/GetInspectionnoList`;
    getBusienessPartnersAccList = `${this.environment.runtimeConfig.serverUrl}BusienessPartnerAccount/GetBusienessPartnerAccountList`;

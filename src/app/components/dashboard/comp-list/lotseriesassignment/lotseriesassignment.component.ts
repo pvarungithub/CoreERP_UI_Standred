@@ -98,20 +98,19 @@ export class StoresAssignmentComponent implements OnInit {
               this.plantsList = res.response['plantsList'];
             }
           }
-          this.getmaterialTypeData();
+          this.getMaterialTypeData();
         });
   }
 
-  getmaterialTypeData() {
-    const getmaterialTypeUrl = String.Join('/', this.apiConfigService.getMaterialList);
-    this.apiService.apiGetRequest(getmaterialTypeUrl)
+  getMaterialTypeData() {
+    const getMaterialTypeUrl = String.Join('/', this.apiConfigService.getMaterialtypeList);
+    this.apiService.apiGetRequest(getMaterialTypeUrl)
       .subscribe(
         response => {
           const res = response.body;
-          console.log(res);
           if (!this.commonService.checkNullOrUndefined(res) && res.status === StatusCodes.pass) {
             if (!this.commonService.checkNullOrUndefined(res.response)) {
-              this.matypeList = res.response['materialList'];
+              this.matypeList = res.response['matypeList'];
             }
           }
           this.spinner.hide();

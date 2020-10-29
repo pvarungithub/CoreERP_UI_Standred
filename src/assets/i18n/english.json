@@ -1464,6 +1464,10 @@
     "taxable": "Taxable",
     "schedule": "Schedule",
     "chapter": "Chapter",
+    "openingPrice": "Opening Price",
+    "openingValue": "Opening Value",
+    "closingPrice": "Closing Price",
+    "closingValue": "Closing Value",
     "goodsServiceDescription": "Goods Service Description"
   },
   "primarycostelement": {

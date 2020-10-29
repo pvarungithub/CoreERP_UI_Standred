@@ -20,12 +20,12 @@ export class BinsCreationComponent implements OnInit {
   modelFormData: FormGroup;
   formData: any;
   companiesList: any;
-  plantsList: any; 
+  plantsList: any;
   UomList: any;
-    porderList: any;
-    lotList: any;
+  porderList: any;
+  lotList: any;
   mseriesnoList: any;
-    stlocList: any;
+  stlocList: any;
   mmasterList: any;
   emplist: any;
   constructor(private commonService: CommonService,
@@ -50,8 +50,8 @@ export class BinsCreationComponent implements OnInit {
       openQty: [null],
       uom: [null],
       storeIncharge: [null]
-      
-   });
+
+    });
 
 
     this.formData = { ...data };
@@ -119,7 +119,7 @@ export class BinsCreationComponent implements OnInit {
       .subscribe(
         response => {
           const res = response.body;
-          
+
           if (!this.commonService.checkNullOrUndefined(res) && res.status === StatusCodes.pass) {
             if (!this.commonService.checkNullOrUndefined(res.response)) {
               this.emplist = res.response['emplist'];
@@ -138,7 +138,7 @@ export class BinsCreationComponent implements OnInit {
           console.log(res);
           if (!this.commonService.checkNullOrUndefined(res) && res.status === StatusCodes.pass) {
             if (!this.commonService.checkNullOrUndefined(res.response)) {
-              this.UomList = res.response['UomList'];
+              this.UomList = res.response['UOMList'];
             }
           }
           this.spinner.hide();

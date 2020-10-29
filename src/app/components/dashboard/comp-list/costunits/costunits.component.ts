@@ -9,7 +9,7 @@ import { ApiService } from '../../../../services/api.service';
 import { String } from 'typescript-string-operations';
 import { AddOrEditService } from '../add-or-edit.service';
 
-interface CostUnit  {
+interface CostUnit {
   value: string;
   viewValue: string;
 }
@@ -17,8 +17,7 @@ interface PerUnitCost {
   value: string;
   viewValue: string;
 }
-interface Manufacturing
-{
+interface Manufacturing {
   value: string;
   viewValue: string;
 }
@@ -59,12 +58,12 @@ export class CreationOfCostUnitsComponent implements OnInit {
       { value: 'Final product(finished)', viewValue: 'Final product(finished)' },
       { value: 'Sub-assembly', viewValue: 'Sub-assembly' },
       { value: 'Components/parts', viewValue: 'Components/parts' }
-     
+
     ];
-    objectum: any;
-    materialList: any;
-    
-   
+  objectum: any;
+  materialList: any;
+
+
   constructor(private commonService: CommonService,
     private addOrEditService: AddOrEditService,
     private formBuilder: FormBuilder,
@@ -83,7 +82,7 @@ export class CreationOfCostUnitsComponent implements OnInit {
       perUnitCostBy: [null],
       manufacturingType: [null],
       material: [null]
-   });
+    });
 
 
     this.formData = { ...data };
@@ -119,7 +118,7 @@ export class CreationOfCostUnitsComponent implements OnInit {
           this.spinner.hide();
         });
   }
-  
+
   getcostofobjecttypeData() {
     const getcostofobjecttypeUrl = String.Join('/', this.apiConfigService.getcostofobjectList);
     this.apiService.apiGetRequest(getcostofobjecttypeUrl)
@@ -137,7 +136,8 @@ export class CreationOfCostUnitsComponent implements OnInit {
   }
 
   getmaterialData() {
-    const getmaterialUrl = String.Join('/', this.apiConfigService.getMaterialList);
+
+    const getmaterialUrl = String.Join('/', this.apiConfigService.getMaterialListforcostunits);
     this.apiService.apiGetRequest(getmaterialUrl)
       .subscribe(
         response => {
@@ -145,7 +145,8 @@ export class CreationOfCostUnitsComponent implements OnInit {
           console.log(res);
           if (!this.commonService.checkNullOrUndefined(res) && res.status === StatusCodes.pass) {
             if (!this.commonService.checkNullOrUndefined(res.response)) {
-              this.materialList = res.response['materialList'];
+              this.materialList = res.response['mtypeList'];
+
             }
           }
           this.spinner.hide();

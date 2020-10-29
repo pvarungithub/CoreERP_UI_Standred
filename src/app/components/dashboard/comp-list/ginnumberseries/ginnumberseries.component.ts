@@ -39,7 +39,7 @@ export class GoodsIssueNoteNumberSeriesComponent implements OnInit {
       tointerval: [null],
       currentNumber: [null],
       prefix: [null],
-     
+
     });
 
 
@@ -51,29 +51,19 @@ export class GoodsIssueNoteNumberSeriesComponent implements OnInit {
 
   }
 
-  ngOnInit()
-  {
-  }
-  onChangeEvent() {
-    this.validationcode();
-  }
-  onChangeEvents() {
-    this.validationcode();
+  ngOnInit() {
   }
 
   validationcode() {
-    let i = 0;
-    let j = 0;
-    i = parseInt(this.modelFormData.get('fromInterval').value);
-    j = parseInt(this.modelFormData.get('tointerval').value);
-    if (i <= j) {
+    if (!this.commonService.checkNullOrUndefined(this.modelFormData.get('fromInterval').value) &&
+      !this.commonService.checkNullOrUndefined(this.modelFormData.get('tointerval').value) && this.modelFormData.get('fromInterval').value != ''
+      && this.modelFormData.get('tointerval').value != '') {
+      if (parseInt(this.modelFormData.get('tointerval').value) <= parseInt(this.modelFormData.get('fromInterval').value)) {
+        this.alertService.openSnackBar("Enter correct Value", Static.Close, SnackBar.error);
+      }
     }
-    else {
-      this.alertService.openSnackBar("Enter correct Value", Static.Close, SnackBar.error);
-    }
-
   }
-  
+
   get formControls() { return this.modelFormData.controls; }
 
   save() {

@@ -38,7 +38,7 @@
         </mat-form-field>
 
         <mat-slide-toggle formControlName="nonNumaric" (change)="approveOrReject($event.checked)">
-          {{(modelFormData.get('nonNumaric').value != null) ? 'Accept' : 'Reject'}}
+          {{(modelFormData.get('nonNumaric').value != null) ? 'Numeric' : 'NonNumeric'}}
         </mat-slide-toggle>
 
       </div>

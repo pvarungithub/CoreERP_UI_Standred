@@ -40,7 +40,7 @@ export class MaterialNumberRangeComponent implements OnInit {
       currentNumber: [null],
       nonNumaric: [null],
       prefix: [null],
-      
+
     });
 
 

@@ -87,6 +87,7 @@ export class MaterialMasterComponent implements OnInit, OnDestroy {
   PCGroupsList: any;
   UomList: any;
   materialnum: any;
+  hsnsacList: any;
 
   constructor(private commonService: CommonService,
     private apiService: ApiService,
@@ -130,6 +131,10 @@ export class MaterialMasterComponent implements OnInit, OnDestroy {
       schedule: [null],
       chapter: [null],
       netWeightUOM: [null],
+      openingPrice: [null],
+      openingValue: [null],
+      closingPrice: [null],
+      closingValue: [null],
       goodsServiceDescription: null
     });
 
@@ -149,6 +154,7 @@ export class MaterialMasterComponent implements OnInit, OnDestroy {
     this.getpurchasingGroupList();
     this.getdivisionList();
     this.getuomTypeData();
+    this.gethsnsacList();
   }
   getmaterialNumberData() {
     //this.gettingbpgroupname();
@@ -178,7 +184,7 @@ export class MaterialMasterComponent implements OnInit, OnDestroy {
           const res = response.body;
           if (!this.commonService.checkNullOrUndefined(res) && res.status === StatusCodes.pass) {
             if (!this.commonService.checkNullOrUndefined(res.response)) {
-              this.UomList = res.response['UomList'];
+              this.UomList = res.response['UOMList'];
             }
           }
           this.spinner.hide();
@@ -297,6 +303,21 @@ export class MaterialMasterComponent implements OnInit, OnDestroy {
           this.spinner.hide();
         });
   }
+  gethsnsacList() {
+    const gethsnsacList = String.Join('/', this.apiConfigService.gethsnsacList);
+    this.apiService.apiGetRequest(gethsnsacList)
+      .subscribe(
+        response => {
+          const res = response.body;
+          if (!this.commonService.checkNullOrUndefined(res) && res.status === StatusCodes.pass) {
+            if (!this.commonService.checkNullOrUndefined(res.response)) {
+              this.hsnsacList = res.response['HSNSACList'];
+            }
+          }
+          this.spinner.hide();
+        });
+  }
+
 
   get formControls() { return this.modelFormData.controls; }
 

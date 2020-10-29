@@ -117,10 +117,17 @@
               <input matInput placeholder="{{'materialsmaster.netWeight' | translate }}" formControlName="netWeight"
                 maxlength="12" appFocusOnEnter tabIndex="13">
             </mat-form-field>
-            <mat-form-field class="form-element">
-              <input matInput placeholder="{{'materialsmaster.netWeightUOM' | translate }}"
-                formControlName="netWeightUOM" maxlength="12" appFocusOnEnter tabIndex="14">
+
+            <mat-form-field>
+              <mat-label>{{'materialsmaster.netWeightUOM' | translate }}</mat-label>
+              <mat-select formControlName="netWeightUOM" appFocusOnEnter tabIndex="14">
+                <mat-option>None</mat-option>
+                <mat-option *ngFor="let uom of UomList" [value]="uom.id">
+                  {{uom.text}}
+                </mat-option>
+              </mat-select>
             </mat-form-field>
+
           </div>
           <mat-divider></mat-divider>
         </mat-card-content>
@@ -210,6 +217,23 @@
               <input matInput placeholder="{{'materialsmaster.transferPrice' | translate }}"
                 formControlName="transferPrice" maxlength="50" appFocusOnEnter tabIndex="25">
             </mat-form-field>
+
+            <mat-form-field class="form-element">
+              <input matInput placeholder="{{'materialsmaster.openingPrice' | translate }}"
+                formControlName="openingPrice" maxlength="50" appFocusOnEnter tabIndex="26">
+            </mat-form-field>
+            <mat-form-field class="form-element">
+              <input matInput placeholder="{{'materialsmaster.openingValue' | translate }}"
+                formControlName="openingValue" maxlength="50" appFocusOnEnter tabIndex="26">
+            </mat-form-field>
+            <mat-form-field class="form-element">
+              <input matInput placeholder="{{'materialsmaster.closingPrice' | translate }}"
+                formControlName="closingPrice" maxlength="50" appFocusOnEnter tabIndex="26">
+            </mat-form-field>
+            <mat-form-field class="form-element">
+              <input matInput placeholder="{{'materialsmaster.closingValue' | translate }}"
+                formControlName="closingValue" maxlength="50" appFocusOnEnter tabIndex="26">
+            </mat-form-field>
           </div>
         </mat-card-content>
 
@@ -218,10 +242,18 @@
 
         <mat-card-content class="pt-5 p-2 m-0">
           <div class="d--flex">
-            <mat-form-field class="form-element">
-              <input matInput placeholder="{{'materialsmaster.hsnsac' | translate }}" formControlName="hsnsac"
-                maxlength="50" appFocusOnEnter tabIndex="26">
+
+            <mat-form-field>
+              <mat-label>{{'materialsmaster.hsnsac' | translate }}</mat-label>
+              <mat-select formControlName="hsnsac" appFocusOnEnter tabIndex="26">
+                <mat-option>None</mat-option>
+                <mat-option *ngFor="let hsn of hsnsacList" [value]="hsn.id">
+                  {{hsn.text}}
+                </mat-option>
+              </mat-select>
             </mat-form-field>
+
+
 
             <mat-form-field>
               <mat-label>{{'materialsmaster.classification' | translate }}</mat-label>
