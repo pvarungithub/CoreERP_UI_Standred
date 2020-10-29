@@ -115,10 +115,7 @@ export class RoutingFileComponent implements OnInit {
         subOperation: {
           value: null, type: 'text', width: 150
         },
-        //costCenter: {
-        //  value: null, type: 'dropdown', list: this.costCenterList, id: 'code', text: 'costCenterName',
-        //  disabled: false, displayMul: true
-        //},
+
         workCenter: {
           value: null, type: 'dropdown', list: this.wcList, id: 'id', text: 'text',
           disabled: false, displayMul: true
@@ -360,6 +357,7 @@ export class RoutingFileComponent implements OnInit {
           if (this.routeEdit != '') {
             this.getreceiptpaymentDetail(this.routeEdit);
           }
+          this.dynTablePropsRouting = this.tablePropsRoutingFunc();
           this.dynTablePropsActivity = this.tablePropsActivityFunc();
           this.dynTablePropsMaterialAss = this.tablePropsMaterialAssFunc();
           this.dynTablePropsToolsEquipment = this.tablePropsToolsEquipmentFunc();

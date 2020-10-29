@@ -34,15 +34,8 @@
           </mat-select>
         </mat-form-field>
 
-        <mat-form-field>
-          <mat-label>{{'primarycostelement.generalLedger' | translate }}</mat-label>
-          <mat-select formControlName="generalLedger" appFocusOnEnter tabIndex="4">
-            <mat-option>None</mat-option>
-            <mat-option *ngFor="let gl of glList" [value]="gl.id">
-              {{gl.id}}- {{gl.text}}
-            </mat-option>
-          </mat-select>
-        </mat-form-field>
+
+
 
         <mat-form-field class="form-element">
           <input matInput placeholder="{{'primarycostelement.description' | translate }}" formControlName="description"
@@ -82,8 +75,9 @@
         <mat-slide-toggle formControlName="qty" (change)="approveOrReject($event.checked)">
           {{(modelFormData.get('qty').value != null) ? 'Quantity' : 'Reject'}}
         </mat-slide-toggle>
+
       </div>
-      <mat-divider></mat-divider>
+
     </form>
 
   </mat-card-content>

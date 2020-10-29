@@ -96,28 +96,28 @@ export class WorkCenterCreationComponent implements OnInit {
           value: null, type: 'text', width: 150
         },
         capacity: {
-          value: null, type: 'text', width: 150
+          value: null, type: 'number', width: 150
         },
         workingHours: {
-          value: null, type: 'text', width: 150
+          value: null, type: 'number', width: 150
         },
         breakTime: {
-          value: null, type: 'text', width: 150
+          value: null, type: 'number', width: 150
         },
         netHours: {
-          value: null, type: 'text', width: 150
+          value: null, type: 'number', width: 150
         },
         shifts: {
-          value: null, type: 'text', width: 150
+          value: null, type: 'number', width: 150
         },
         totalCapacity: {
-          value: null, type: 'text', width: 150
+          value: null, type: 'number', width: 150
         },
         weekDays: {
-          value: null, type: 'text', width: 150
+          value: null, type: 'number', width: 150
         },
         hoursPerWeek: {
-          value: null, type: 'text', width: 150
+          value: null, type: 'number', width: 150
         },
         delete: {
           type: 'delete',

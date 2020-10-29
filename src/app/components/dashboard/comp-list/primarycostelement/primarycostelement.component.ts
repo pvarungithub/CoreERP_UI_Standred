@@ -56,6 +56,8 @@ export class PrimaryCostElementsCreationComponent implements OnInit {
       { value: 'Indirect cost', viewValue: 'Indirect cost' }
     ];
   UomList: any;
+  glAccgrpList: any;
+  glAccountList: any;
   constructor(private commonService: CommonService,
     private addOrEditService: AddOrEditService,
     private formBuilder: FormBuilder,
@@ -91,20 +93,19 @@ export class PrimaryCostElementsCreationComponent implements OnInit {
   ngOnInit() {
     this.getChartofAccountData();
     this.getcompanyData();
-    this.getGlData();
+    //this.getGLAccountsList();
     this.getuomTypeData();
   }
   approveOrReject(event) {
-    //debugger;
     if (event) {
       this.modelFormData.patchValue({
-        qty: "1",
-        reject: null
+        qty: event,
+        //reject: null
       });
     } else {
       this.modelFormData.patchValue({
-        ChkAcceptReject: null,
-        qty: "0"
+        // ChkAcceptReject: null,
+        qty: event
       });
     }
   }
@@ -139,21 +140,6 @@ export class PrimaryCostElementsCreationComponent implements OnInit {
         });
   }
 
-  getGlData() {
-    const getglUrl = String.Join('/', this.apiConfigService.getGLAccountsList);
-    this.apiService.apiGetRequest(getglUrl)
-      .subscribe(
-        response => {
-          const res = response.body;
-          console.log(res);
-          if (!this.commonService.checkNullOrUndefined(res) && res.status === StatusCodes.pass) {
-            if (!this.commonService.checkNullOrUndefined(res.response)) {
-              this.glList = res.response['glList'];
-            }
-          }
-          this.spinner.hide();
-        });
-  }
 
   getuomTypeData() {
     const getuomTypeUrl = String.Join('/', this.apiConfigService.getuomList);
@@ -164,7 +150,7 @@ export class PrimaryCostElementsCreationComponent implements OnInit {
           console.log(res);
           if (!this.commonService.checkNullOrUndefined(res) && res.status === StatusCodes.pass) {
             if (!this.commonService.checkNullOrUndefined(res.response)) {
-              this.UomList = res.response['UomList'];
+              this.UomList = res.response['UOMList'];
             }
           }
           this.spinner.hide();
@@ -176,6 +162,9 @@ export class PrimaryCostElementsCreationComponent implements OnInit {
     if (this.modelFormData.invalid) {
       return;
     }
+    this.modelFormData.patchValue({
+      qty: this.modelFormData.get('qty').value ? '1' : '0'
+    });
     //this.modelFormData.controls['primaryCostCode'].enable();
     this.formData.item = this.modelFormData.value;
     this.addOrEditService[this.formData.action](this.formData, (res) => {
