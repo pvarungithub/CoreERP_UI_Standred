@@ -49,8 +49,8 @@
           <mat-label>{{'ginassignment.materilaType' | translate }}</mat-label>
           <mat-select formControlName="materilaType" appFocusOnEnter tabIndex="4">
             <mat-option>None</mat-option>
-            <mat-option *ngFor="let mtype of matypeList" [value]="mtype.id">
-              {{mtype.text}}
+            <mat-option *ngFor="let mtype of matypeList" [value]="mtype.code">
+              {{mtype.description}}
             </mat-option>
           </mat-select>
         </mat-form-field>

@@ -263,7 +263,7 @@ export class WorkCenterCreationComponent implements OnInit {
           console.log(res);
           if (!this.commonService.checkNullOrUndefined(res) && res.status === StatusCodes.pass) {
             if (!this.commonService.checkNullOrUndefined(res.response)) {
-              this.uomList = res.response['UomList'];
+              this.uomList = res.response['UOMList'];
             }
           }
           this.getCostCenterData();

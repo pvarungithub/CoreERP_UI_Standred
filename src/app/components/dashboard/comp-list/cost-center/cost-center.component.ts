@@ -162,7 +162,7 @@ export class CostCenterComponent implements OnInit {
           console.log(res);
           if (!this.commonService.checkNullOrUndefined(res) && res.status === StatusCodes.pass) {
             if (!this.commonService.checkNullOrUndefined(res.response)) {
-              this.UomList = res.response['UomList'];
+              this.UomList = res.response['UOMList'];
             }
           }
           this.getDepartmentData();

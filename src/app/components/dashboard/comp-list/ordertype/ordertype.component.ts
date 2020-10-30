@@ -13,7 +13,7 @@ interface printText {
   value: string;
   viewValue: string;
 }
-interface Natureoforder{
+interface Natureoforder {
   value: string;
   viewValue: string;
 }
@@ -39,6 +39,7 @@ export class OrderTypeComponent implements OnInit {
       { value: 'Sub-assembly', viewValue: 'Sub-assembly' },
       { value: 'Components/parts', viewValue: 'Components/parts' }
     ];
+  costunitList: any;
   constructor(private commonService: CommonService,
     private addOrEditService: AddOrEditService,
     private formBuilder: FormBuilder,
@@ -55,9 +56,10 @@ export class OrderTypeComponent implements OnInit {
       printText: [null],
       natureofOrder: [null],
       numberSeriesFrom: [null],
+      costUnit: [null],
       numberSeriesTo: [null]
-      
-   });
+
+    });
 
 
     this.formData = { ...data };
@@ -69,9 +71,23 @@ export class OrderTypeComponent implements OnInit {
   }
 
   ngOnInit() {
+    this.getCostUnitList();
   }
-  
- 
+  getCostUnitList() {
+    const voucherClassList = String.Join('/', this.apiConfigService.getCostUnitListList);
+    this.apiService.apiGetRequest(voucherClassList)
+      .subscribe(
+        response => {
+          const res = response.body;
+          if (!this.commonService.checkNullOrUndefined(res) && res.status === StatusCodes.pass) {
+            if (!this.commonService.checkNullOrUndefined(res.response)) {
+              this.costunitList = res.response['costunitList'];
+            }
+          }
+          this.spinner.hide();
+        });
+  }
+
   get formControls() { return this.modelFormData.controls; }
 
   save() {

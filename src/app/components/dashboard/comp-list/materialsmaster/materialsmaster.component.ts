@@ -102,7 +102,7 @@ export class MaterialMasterComponent implements OnInit, OnDestroy {
       company: [null],
       plant: [null],
       materialType: [null],
-      materialCode: [null, [Validators.required, Validators.minLength(1), Validators.maxLength(5)]],
+      materialCode: [null, [Validators.required, Validators.minLength(1), Validators.maxLength(7)]],
       description: [null],
       materialGroup: [null],
       size: [null],
@@ -141,6 +141,7 @@ export class MaterialMasterComponent implements OnInit, OnDestroy {
     this.formData = { ...this.addOrEditService.editData };
     if (!this.commonService.checkNullOrUndefined(this.formData.item)) {
       this.modelFormData.patchValue(this.formData.item);
+      this.modelFormData.controls['materialCode'].disable();
     }
   }
 
@@ -155,6 +156,35 @@ export class MaterialMasterComponent implements OnInit, OnDestroy {
     this.getdivisionList();
     this.getuomTypeData();
     this.gethsnsacList();
+    this.modelFormData.controls['openingValue'].disable();
+    this.modelFormData.controls['closingValue'].disable();
+  }
+
+  calculation() {
+    let total = 0;
+    if (!this.commonService.checkNullOrUndefined(this.modelFormData.get('openingQty').value) &&
+      !this.commonService.checkNullOrUndefined(this.modelFormData.get('openingPrice').value) &&
+      this.modelFormData.get('openingQty').value != ''
+      && this.modelFormData.get('openingPrice').value != '') {
+      if (total = (parseInt(this.modelFormData.get('openingQty').value) * parseInt(this.modelFormData.get('openingPrice').value))) {
+        this.modelFormData.patchValue({
+          openingValue: total
+        });
+      }
+    }
+  }
+  closingqtycalculation() {
+    let total = 0;
+    if (!this.commonService.checkNullOrUndefined(this.modelFormData.get('closingQty').value) &&
+      !this.commonService.checkNullOrUndefined(this.modelFormData.get('closingPrice').value) &&
+      this.modelFormData.get('closingQty').value != ''
+      && this.modelFormData.get('closingPrice').value != '') {
+      if (total = (parseInt(this.modelFormData.get('closingQty').value) * parseInt(this.modelFormData.get('closingPrice').value))) {
+        this.modelFormData.patchValue({
+          closingValue: total
+        });
+      }
+    }
   }
   getmaterialNumberData() {
     //this.gettingbpgroupname();
@@ -331,7 +361,7 @@ export class MaterialMasterComponent implements OnInit, OnDestroy {
       this.router.navigate(['/dashboard/master/materialsmaster']);
     });
     if (this.formData.action == 'Edit') {
-      this.modelFormData.controls[''].disable();
+      this.modelFormData.controls['materialCode'].disable();
     }
   }
 

@@ -29,11 +29,11 @@
           </mat-select>
         </mat-form-field>
 
-        <mat-form-field class="form-element"
-          [ngClass]="{ 'ng--valid': formControls.batchNumber.valid, 'ng--invalid': !formControls.batchNumber.valid  }">
+        <mat-form-field class="form-element" [ngClass]="{ 'ng--valid': formControls.batchNumber.valid && formControls.batchNumber.status != 'DISABLED',
+          'ng--invalid': !formControls.batchNumber.valid && formControls.batchNumber.status != 'DISABLED'  }">
           <input matInput placeholder="{{'batchmaster.batchNumber' | translate }}" formControlName="batchNumber"
             maxlength="50" appFocusOnEnter tabIndex="3">
-          <mat-hint *ngIf="!formControls.batchNumber.valid"
+          <mat-hint *ngIf="!formControls.batchNumber.valid && formControls.batchNumber.status != 'DISABLED'"
             [ngClass]="{ 'ng--invalid': !formControls.batchNumber.valid  }">Batch Number is required</mat-hint>
         </mat-form-field>
 
@@ -89,9 +89,14 @@
           </mat-select>
         </mat-form-field>
 
+
+
         <mat-form-field class="form-element">
-          <input matInput placeholder="{{'batchmaster.plantStart' | translate }}" formControlName="plantStart"
-            maxlength="50" appFocusOnEnter tabIndex="11">
+          <input matInput [matDatepicker]="plantStart" [nonEditable]="plantStart"
+            placeholder="{{'batchmaster.plantStart' | translate }}" formControlName="plantStart" appFocusOnEnter
+            tabIndex="11">
+          <mat-datepicker-toggle matSuffix [for]="plantStart"></mat-datepicker-toggle>
+          <mat-datepicker #plantStart></mat-datepicker>
         </mat-form-field>
 
         <mat-form-field class="form-element">

@@ -43,7 +43,7 @@ export class BatchMasterComponent implements OnInit {
     this.modelFormData = this.formBuilder.group({
       company: [null],
       plant: [null],
-      batchNumber: [null, [Validators.required, Validators.minLength(1), Validators.maxLength(4)]],
+      batchNumber: [null, [Validators.required, Validators.minLength(1), Validators.maxLength(7)]],
       dob: [new Date()],
       year: [null],
       createdBy: [null],
@@ -71,9 +71,7 @@ export class BatchMasterComponent implements OnInit {
 
   ngOnInit() {
     this.getcompanyData();
-    // this.getplantData();
-    // this.getuomTypeData();
-    // this.getemployeeData();
+
   }
 
   getcompanyData() {
@@ -127,7 +125,7 @@ export class BatchMasterComponent implements OnInit {
           console.log(res);
           if (!this.commonService.checkNullOrUndefined(res) && res.status === StatusCodes.pass) {
             if (!this.commonService.checkNullOrUndefined(res.response)) {
-              this.UomList = res.response['UomList'];
+              this.UomList = res.response['UOMList'];
             }
           }
           this.spinner.hide();
@@ -137,10 +135,7 @@ export class BatchMasterComponent implements OnInit {
   get formControls() { return this.modelFormData.controls; }
 
   save() {
-    //debugger;
-    //if (this.modelFormData.invalid) {
-    //  return;
-    //}
+
     this.modelFormData.controls['batchNumber'].enable();
     this.formData.item = this.modelFormData.value;
     this.addOrEditService[this.formData.action](this.formData, (res) => {

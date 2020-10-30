@@ -54,6 +54,15 @@
             maxlength="7" appFocusOnEnter tabIndex="6">
         </mat-form-field>
 
+        <mat-form-field>
+          <mat-label>{{'ordertype.costUnit' | translate }}</mat-label>
+          <mat-select formControlName="costUnit" appFocusOnEnter tabIndex="6">
+            <mat-option>None</mat-option>
+            <mat-option *ngFor="let culist of costunitList" [value]="culist.objectNumber">
+              {{culist.description}}
+            </mat-option>
+          </mat-select>
+        </mat-form-field>
 
       </div>
       <mat-divider></mat-divider>

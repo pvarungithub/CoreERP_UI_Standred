@@ -1580,6 +1580,8 @@
     "printText": "Print Text",
     "natureofOrder": "Nature of Order",
     "numberSeriesFrom": "Number Series From",
+    "costUnitName": "Cost Unit",
+    "costUnit": "Cost Unit",
     "numberSeriesTo": "Number Series To"
   },
   "process": {
@@ -1661,7 +1663,6 @@
     "underWbs": "Under Wbs"
   },
   "bom": {
-    "id": "ID",
     "title": "BOM",
     "company": "Company",
     "plant": "Plant",

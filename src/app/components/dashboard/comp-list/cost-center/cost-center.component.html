@@ -131,7 +131,7 @@
             appFocusOnEnter tabIndex="16">
         </mat-form-field>
         <mat-slide-toggle formControlName="quantity" (change)="approveOrReject($event.checked)">
-          {{(modelFormData.get('quantity').value != null) ? 'Accept' : 'Reject'}}
+          {{(modelFormData.get('quantity').value != null) ? 'Record Quantity' : 'Reject'}}
         </mat-slide-toggle>
         <mat-divider></mat-divider>
 

@@ -20,8 +20,8 @@ export class StandardRateComponent implements OnInit {
 
   modelFormData: FormGroup;
   formData: any;
-    UomList: any;
- 
+  UomList: any;
+
   constructor(private commonService: CommonService,
     private addOrEditService: AddOrEditService,
     private formBuilder: FormBuilder,
@@ -36,8 +36,8 @@ export class StandardRateComponent implements OnInit {
       code: [null, [Validators.required, Validators.minLength(1), Validators.maxLength(4)]],
       noofShifts: [null],
       uom: [null],
-      
-   });
+
+    });
 
 
     this.formData = { ...data };
@@ -60,13 +60,13 @@ export class StandardRateComponent implements OnInit {
           console.log(res);
           if (!this.commonService.checkNullOrUndefined(res) && res.status === StatusCodes.pass) {
             if (!this.commonService.checkNullOrUndefined(res.response)) {
-              this.UomList = res.response['UomList'];
+              this.UomList = res.response['UOMList'];
             }
           }
           this.spinner.hide();
         });
   }
- 
+
   get formControls() { return this.modelFormData.controls; }
 
   save() {

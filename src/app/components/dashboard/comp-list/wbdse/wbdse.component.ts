@@ -26,7 +26,7 @@ export class WorkBreakDownStructureComponent implements OnInit {
   deptList: any;
   objectum: any;
   costunitList: any;
-    wbsList: any;
+  wbsList: any;
 
   constructor(private commonService: CommonService,
     private apiService: ApiService,
@@ -105,7 +105,7 @@ export class WorkBreakDownStructureComponent implements OnInit {
           console.log(res);
           if (!this.commonService.checkNullOrUndefined(res) && res.status === StatusCodes.pass) {
             if (!this.commonService.checkNullOrUndefined(res.response)) {
-              this.UomList = res.response['UomList'];
+              this.UomList = res.response['UOMList'];
             }
           }
           this.getwdseData();

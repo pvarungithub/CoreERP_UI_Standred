@@ -96,11 +96,9 @@ export class MaterialrequisitionComponents implements OnInit {
   tablePropsFunc() {
     return {
       tableData: {
-        //id: {
-        //  value: 0, type: 'autoInc', width: 10, disabled: true
-        //},
+
         materialCode: {
-          value: null, type: 'dropdown', list: this.mmasterList, id: 'id', text: 'text', displayMul: false, width: 100
+          value: null, type: 'dropdown', list: this.mmasterList, id: 'code', text: 'description', displayMul: false, width: 100
         },
         description: {
           value: null, type: 'text', width: 75, maxLength: 15
@@ -250,23 +248,25 @@ export class MaterialrequisitionComponents implements OnInit {
               this.profitCenterList = res.response['profitCenterList'];
             }
           }
-          this.getmaterialList();
+          this.getMaterialTypeData();
         });
   }
-  getmaterialList() {
-    const getmaterialList = String.Join('/', this.apiConfigService.getmaterialdata);
-    this.apiService.apiGetRequest(getmaterialList)
+  getMaterialTypeData() {
+    const getMaterialTypeUrl = String.Join('/', this.apiConfigService.getMaterialtypeList);
+    this.apiService.apiGetRequest(getMaterialTypeUrl)
       .subscribe(
         response => {
           const res = response.body;
+
           if (!this.commonService.checkNullOrUndefined(res) && res.status === StatusCodes.pass) {
             if (!this.commonService.checkNullOrUndefined(res.response)) {
-              this.mmasterList = res.response['mmasterList'];
+              this.mmasterList = res.response['matypeList'];
             }
           }
           this.getWbselementList();
         });
   }
+
   getWbselementList() {
     const getwbselementUrl = String.Join('/', this.apiConfigService.getwbselement);
     this.apiService.apiGetRequest(getwbselementUrl)

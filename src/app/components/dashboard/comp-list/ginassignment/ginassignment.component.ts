@@ -20,12 +20,12 @@ export class GoodsIssueNoteAssignmentComponent implements OnInit {
   modelFormData: FormGroup;
   formData: any;
   companiesList: any;
-  plantsList: any; 
-    porangeList: any;
-    porderList: any;
-    lotList: any;
+  plantsList: any;
+  porangeList: any;
+  porderList: any;
+  lotList: any;
   issuenoList: any;
-    matypeList: any;
+  matypeList: any;
   constructor(private commonService: CommonService,
     private addOrEditService: AddOrEditService,
     private formBuilder: FormBuilder,
@@ -42,7 +42,7 @@ export class GoodsIssueNoteAssignmentComponent implements OnInit {
       plant: [null],
       materilaType: [null],
       currentNumber: [null]
-         });
+    });
 
 
     this.formData = { ...data };
@@ -105,14 +105,14 @@ export class GoodsIssueNoteAssignmentComponent implements OnInit {
   }
 
   getmaterialTypeData() {
-    const getmaterialTypeUrl = String.Join('/', this.apiConfigService.getMaterialList);
+    const getmaterialTypeUrl = String.Join('/', this.apiConfigService.getMaterialtypeList);
     this.apiService.apiGetRequest(getmaterialTypeUrl)
       .subscribe(
         response => {
           const res = response.body;
           if (!this.commonService.checkNullOrUndefined(res) && res.status === StatusCodes.pass) {
             if (!this.commonService.checkNullOrUndefined(res.response)) {
-              this.matypeList = res.response['materialList'];
+              this.matypeList = res.response['matypeList'];
             }
           }
           this.spinner.hide();

@@ -40,13 +40,15 @@
               </mat-select>
             </mat-form-field>
 
-            <mat-form-field class="form-element"
-              [ngClass]="{ 'ng--valid': formControls.materialCode.valid, 'ng--invalid': !formControls.materialCode.valid  }">
+            <mat-form-field class="form-element" [ngClass]="{ 'ng--valid': formControls.materialCode.valid && formControls.materialCode.status != 'DISABLED',
+            'ng--invalid': !formControls.materialCode.valid && formControls.materialCode.status != 'DISABLED'  }">
               <input matInput placeholder="{{'materialsmaster.materialCode' | translate }}"
-                formControlName="materialCode" maxlength="4" appFocusOnEnter tabIndex="4">
-              <mat-hint *ngIf="!formControls.materialCode.valid"
-                [ngClass]="{ 'ng--invalid': !formControls.materialCode.valid  }"> Code is required</mat-hint>
+                formControlName="materialCode" maxlength="7" appFocusOnEnter tabIndex="3">
+              <mat-hint *ngIf="!formControls.materialCode.valid && formControls.materialCode.status != 'DISABLED'"
+                [ngClass]="{ 'ng--invalid': !formControls.materialCode.valid  }">Material Code is required</mat-hint>
             </mat-form-field>
+
+
 
 
             <mat-form-field class="form-element">
@@ -104,10 +106,17 @@
               </mat-select>
             </mat-form-field>
 
-            <mat-form-field class="form-element">
-              <input matInput placeholder="{{'materialsmaster.grossWeight' | translate }}" formControlName="grossWeight"
-                maxlength="12" appFocusOnEnter tabIndex="11">
+            <mat-form-field>
+              <mat-label>{{'materialsmaster.grossWeight' | translate }}</mat-label>
+              <mat-select formControlName="grossWeight" appFocusOnEnter tabIndex="12">
+                <mat-option>None</mat-option>
+                <mat-option *ngFor="let uom of UomList" [value]="uom.id">
+                  {{uom.text}}
+                </mat-option>
+              </mat-select>
             </mat-form-field>
+
+
 
             <mat-form-field class="form-element">
               <input matInput placeholder="{{'materialsmaster.ouom' | translate }}" formControlName="ouom"
@@ -206,12 +215,12 @@
 
             <mat-form-field class="form-element">
               <input matInput placeholder="{{'materialsmaster.openingQty' | translate }}" formControlName="openingQty"
-                maxlength="50" appFocusOnEnter tabIndex="23">
+                maxlength="50" (change)="calculation()" appFocusOnEnter tabIndex="23">
             </mat-form-field>
 
             <mat-form-field class="form-element">
               <input matInput placeholder="{{'materialsmaster.closingQty' | translate }}" formControlName="closingQty"
-                maxlength="50" appFocusOnEnter tabIndex="24">
+                maxlength="50" (change)="closingqtycalculation()" appFocusOnEnter tabIndex="24">
             </mat-form-field>
             <mat-form-field class="form-element">
               <input matInput placeholder="{{'materialsmaster.transferPrice' | translate }}"
@@ -220,7 +229,7 @@
 
             <mat-form-field class="form-element">
               <input matInput placeholder="{{'materialsmaster.openingPrice' | translate }}"
-                formControlName="openingPrice" maxlength="50" appFocusOnEnter tabIndex="26">
+                formControlName="openingPrice" (change)="calculation()" maxlength="50" appFocusOnEnter tabIndex="26">
             </mat-form-field>
             <mat-form-field class="form-element">
               <input matInput placeholder="{{'materialsmaster.openingValue' | translate }}"
@@ -228,7 +237,8 @@
             </mat-form-field>
             <mat-form-field class="form-element">
               <input matInput placeholder="{{'materialsmaster.closingPrice' | translate }}"
-                formControlName="closingPrice" maxlength="50" appFocusOnEnter tabIndex="26">
+                formControlName="closingPrice" (change)="closingqtycalculation()" maxlength="50" appFocusOnEnter
+                tabIndex="26">
             </mat-form-field>
             <mat-form-field class="form-element">
               <input matInput placeholder="{{'materialsmaster.closingValue' | translate }}"

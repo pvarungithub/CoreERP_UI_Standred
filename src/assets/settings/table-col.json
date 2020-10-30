@@ -1200,7 +1200,6 @@
     "title": "Material Master",
     "companyName": "Company Name",
     "plantName": "Plant Name",
-    "materialType": "Material Type",
     "materialName": "Material Type",
     "materialCode": "Material Code",
     "description": "Description",
@@ -1332,7 +1331,8 @@
     "printText": "Print Text",
     "natureofOrder": "Nature of Order",
     "numberSeriesFrom": "Number Series From",
-    "numberSeriesTo": "Number Series To"
+    "numberSeriesTo": "Number Series To",
+    "costUnitName": "Cost Unit"
   },
   "process": {
     "title": "Process",
@@ -1403,7 +1403,6 @@
     "underWbs": "Under Wbs"
   },
   "bom": {
-    "id": "ID",
     "title": "BOM",
     "company": "Company",
     "plant": "Plant",

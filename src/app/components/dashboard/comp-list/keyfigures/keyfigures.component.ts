@@ -24,7 +24,7 @@ export class CostingKeyFiguresComponent implements OnInit {
 
   modelFormData: FormGroup;
   formData: any;
-    UomList: any;
+  UomList: any;
   constructor(private commonService: CommonService,
     private addOrEditService: AddOrEditService,
     private formBuilder: FormBuilder,
@@ -39,7 +39,7 @@ export class CostingKeyFiguresComponent implements OnInit {
       code: [null, [Validators.required, Validators.minLength(1), Validators.maxLength(4)]],
       description: [null, [Validators.required, Validators.minLength(1), Validators.maxLength(30)]],
       uom: [null]
-   });
+    });
 
 
     this.formData = { ...data };
@@ -53,7 +53,7 @@ export class CostingKeyFiguresComponent implements OnInit {
   ngOnInit() {
     this.getuomTypeData();
   }
-  
+
   getuomTypeData() {
     const getuomTypeUrl = String.Join('/', this.apiConfigService.getuomList);
     this.apiService.apiGetRequest(getuomTypeUrl)
@@ -63,7 +63,7 @@ export class CostingKeyFiguresComponent implements OnInit {
           console.log(res);
           if (!this.commonService.checkNullOrUndefined(res) && res.status === StatusCodes.pass) {
             if (!this.commonService.checkNullOrUndefined(res.response)) {
-              this.UomList = res.response['UomList'];
+              this.UomList = res.response['UOMList'];
             }
           }
           this.spinner.hide();

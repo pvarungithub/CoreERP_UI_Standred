@@ -147,9 +147,7 @@ export class BillOfMaterialComponent implements OnInit {
   tablePropsFunc() {
     return {
       tableData: {
-        id: {
-          value: 0, type: 'autoInc', width: 10, disabled: true
-        },
+
 
         bomLevel: {
           value: null, type: 'dropdown', list: this.level, id: 'id', text: 'text', displayMul: false, width: 100
@@ -305,9 +303,10 @@ export class BillOfMaterialComponent implements OnInit {
         response => {
           this.spinner.hide();
           const res = response.body;
+
           if (!this.commonService.checkNullOrUndefined(res) && res.status === StatusCodes.pass) {
             if (!this.commonService.checkNullOrUndefined(res.response)) {
-              this.UomList = res.response['UomList'];
+              this.UomList = res.response['UOMList'];
             }
           }
           this.dynTableProps = this.tablePropsFunc();
@@ -320,8 +319,7 @@ export class BillOfMaterialComponent implements OnInit {
 
 
   voucherTypeSelect() {
-    //debugger;
-    //alert(this.formData.get('voucherType').value);
+
     const record = this.voucherTypeList.find(res => res.voucherTypeId == this.formData.get('voucherType').value)
     this.formData.patchValue({
       voucherClass: !this.commonService.checkNullOrUndefined(record) ? record.voucherClass : null
