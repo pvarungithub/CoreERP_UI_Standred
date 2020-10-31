@@ -130,7 +130,7 @@ export class MaterialMasterComponent implements OnInit, OnDestroy {
       taxable: [null],
       schedule: [null],
       chapter: [null],
-      netWeightUOM: [null],
+      netWeightUom: [null],
       openingPrice: [null],
       openingValue: [null],
       closingPrice: [null],
@@ -156,8 +156,8 @@ export class MaterialMasterComponent implements OnInit, OnDestroy {
     this.getdivisionList();
     this.getuomTypeData();
     this.gethsnsacList();
-    this.modelFormData.controls['openingValue'].disable();
-    this.modelFormData.controls['closingValue'].disable();
+    //this.modelFormData.controls['openingValue'].disable();
+    //this.modelFormData.controls['closingValue'].disable();
   }
 
   calculation() {
