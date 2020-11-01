@@ -16,6 +16,8 @@ export class ApiConfigService {
    getComponentInfo = `${this.environment.runtimeConfig.serverUrl}Settings/GetComponentInfo`;
 
    // Common
+   getprimeryList = `${this.environment.runtimeConfig.serverUrl}PrimaryCostElementsCreation/GetPrimaryCostElementsCreationList`;
+   getprcList = `${this.environment.runtimeConfig.serverUrl}Common/GetPrimaryCostElementList`;
    getMaterialListforcostunits = `${this.environment.runtimeConfig.serverUrl}Common/GetMaterialListForCostunits`;
    gethsnsacList = `${this.environment.runtimeConfig.serverUrl}Common/GetHSNSACList`;
    getGoodsreceiptDataList = `${this.environment.runtimeConfig.serverUrl}Common/GetGoodsReceiptList`;
@@ -274,5 +276,8 @@ export class ApiConfigService {
    /*******************************Invoice Verification  ****************************************************** */
    addinvoice = `${this.environment.runtimeConfig.serverUrl}Transactions/AddInvoiceverificationDetail`;
    getinvoiceDetail = `${this.environment.runtimeConfig.serverUrl}Transactions/GetInvoiceverificationDetail`;
+
+   /*******************************PrimeryCost****************************************************** */
+   addpccost = `${this.environment.runtimeConfig.serverUrl}PrimaryCostElementsCreation/UpdatePcost`;
 
 }

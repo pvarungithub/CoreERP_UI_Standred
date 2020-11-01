@@ -1,0 +1,14 @@
+<app-dynamic-table [tableObJect]="dynTableProps" (emitColumnChanges)="emitColumnChanges($event);"
+    (emitTableData)="emitTableData($event)" [dynamicTableUpdate]="sendDynTableData"></app-dynamic-table>
+
+
+<mat-card-content class="d-flex justify-content-end pb-1">
+
+    <button mat-raised-button type="submit" class="button-color-bule mr-3 text-white" (click)="save()">
+        {{ 'COMMON.SAVE' | translate }}
+    </button>
+    <button mat-raised-button class="button-color-red text-white mr-3" (click)="reset();">
+        {{ 'COMMON.RESET' | translate }}
+    </button>
+
+</mat-card-content>

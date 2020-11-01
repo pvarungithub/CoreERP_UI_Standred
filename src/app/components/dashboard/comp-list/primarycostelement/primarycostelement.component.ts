@@ -93,7 +93,6 @@ export class PrimaryCostElementsCreationComponent implements OnInit {
   ngOnInit() {
     this.getChartofAccountData();
     this.getcompanyData();
-    //this.getGLAccountsList();
     this.getuomTypeData();
   }
   approveOrReject(event) {

@@ -51,7 +51,7 @@ export class SecondaryCostElementsCreationComponent implements OnInit {
     @Optional() @Inject(MAT_DIALOG_DATA) public data: any) {
 
     this.modelFormData = this.formBuilder.group({
-      secondaryCostCode: [null, [Validators.required, Validators.minLength(1), Validators.maxLength(4)]],
+      secondaryCostCode: [null, [Validators.required, Validators.minLength(1), Validators.maxLength(10)]],
       company: [null, [Validators.required, Validators.minLength(1), Validators.maxLength(30)]],
       chartofAccount: [null],
       description: [null],

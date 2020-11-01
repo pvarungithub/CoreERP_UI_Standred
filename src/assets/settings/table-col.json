@@ -1237,6 +1237,7 @@
     "goodsServiceDescription": "Goods Service Description"
   },
   "primarycostelement": {
+    "id": "ID",
     "title": "Primary Cost Element",
     "company": "Company",
     "chartofAccount": "Chart Account Name",

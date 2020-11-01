@@ -10,7 +10,8 @@
       <div class="d--flex">
 
         <mat-form-field
-          [ngClass]="{ 'ng--valid': formControls.mrnseries.valid, 'ng--invalid': !formControls.mrnseries.valid  }">
+          [ngClass]="{ 'ng--valid': formControls.mrnseries.valid
+          && formControls.mrnseries.status != 'DISABLED','ng--invalid': !formControls.mrnseries.valid && formControls.mrnseries.status != 'DISABLED'  }">
           <mat-label>{{'mrnassignment.mrnseries' | translate }}</mat-label>
           <mat-select formControlName="mrnseries" appFocusOnEnter tabIndex="1">
             <mat-option>None</mat-option>
@@ -18,7 +19,8 @@
               {{mseries.description}}
             </mat-option>
           </mat-select>
-          <mat-hint *ngIf="!formControls.mrnseries.valid" [ngClass]="{ 'ng--invalid': !formControls.mrnseries.valid  }">
+          <mat-hint *ngIf="!formControls.mrnseries.valid && formControls.mrnseries.status != 'DISABLED'"
+            [ngClass]="{ 'ng--invalid': !formControls.mrnseries.valid  }">
             MRN Series is required</mat-hint>
         </mat-form-field>
 
@@ -49,8 +51,8 @@
           <mat-label>{{'mrnassignment.materialType' | translate }}</mat-label>
           <mat-select formControlName="materialType" appFocusOnEnter tabIndex="4">
             <mat-option>None</mat-option>
-            <mat-option *ngFor="let mtype of matypeList" [value]="mtype.id">
-              {{mtype.text}}
+            <mat-option *ngFor="let mtype of matypeList" [value]="mtype.code">
+              {{mtype.description}}
             </mat-option>
           </mat-select>
         </mat-form-field>

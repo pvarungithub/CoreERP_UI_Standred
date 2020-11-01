@@ -46,7 +46,9 @@ import {
   DashboardComponent, LoginComponent, SidebarComponent, NotFoundComponent
 } from './components/index';
 
-import { RolesprevilagesComponent, TransListComponent } from './components/dashboard/index';
+import { RolesprevilagesComponent, TransListComponent, PrimaryComponent } from './components/dashboard/index';
+
+import { PrimaryCostElementComponent } from './components/dashboard/primary/index';
 
 import { CompTabsComponent } from './components/dashboard/comp-list/comp-tabs/index';
 
@@ -128,7 +130,7 @@ export function HttpLoaderFactory(httpClient: HttpClient) {
     BusienessPartnerAccountComponent, AssignGLaccounttoSubGroupComponent, MainAssetMasterComponent, SubAssetsComponent,
     DynamicTableComponent, AutocompleteComponent, CashbankComponent, JournalComponent, MaterialRequisitionNoteAssignmentComponent, GoodsissueComponent, MemoinvoiceComponent, ReceiptspaymentsComponent, MaterialrequisitionComponents, BillOfMaterialComponent, MaxlengthDirective, PurchasesaleassetComponent,
     SaleassetComponent, RoutingFileComponent, SourceOfSupplyComponent, QuotationSupplierComponent, QuotationAnalysisComponent,
-    PurchasingComponent, PurchaseOrderComponent, ReceiptOfGoodsComponent, InspectioncheckComponent, NonEditableDatepicker
+    PurchasingComponent, PurchaseOrderComponent, ReceiptOfGoodsComponent, InspectioncheckComponent, NonEditableDatepicker, PrimaryComponent, PrimaryCostElementComponent
     //LeaveopeningbalanceComponent,
     //selfserviceComponent,
 

@@ -103,7 +103,7 @@ export class MaterialRequisitionNoteAssignmentComponent implements OnInit {
   }
 
   getmaterialTypeData() {
-    const getmaterialTypeUrl = String.Join('/', this.apiConfigService.getMaterialList);
+    const getmaterialTypeUrl = String.Join('/', this.apiConfigService.getMaterialtypeList);
     this.apiService.apiGetRequest(getmaterialTypeUrl)
       .subscribe(
         response => {
@@ -111,7 +111,7 @@ export class MaterialRequisitionNoteAssignmentComponent implements OnInit {
           console.log(res);
           if (!this.commonService.checkNullOrUndefined(res) && res.status === StatusCodes.pass) {
             if (!this.commonService.checkNullOrUndefined(res.response)) {
-              this.matypeList = res.response['materialList'];
+              this.matypeList = res.response['matypeList'];
             }
           }
           this.spinner.hide();

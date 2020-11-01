@@ -156,8 +156,7 @@ export class MaterialMasterComponent implements OnInit, OnDestroy {
     this.getdivisionList();
     this.getuomTypeData();
     this.gethsnsacList();
-    //this.modelFormData.controls['openingValue'].disable();
-    //this.modelFormData.controls['closingValue'].disable();
+
   }
 
   calculation() {
@@ -212,6 +211,7 @@ export class MaterialMasterComponent implements OnInit, OnDestroy {
       .subscribe(
         response => {
           const res = response.body;
+
           if (!this.commonService.checkNullOrUndefined(res) && res.status === StatusCodes.pass) {
             if (!this.commonService.checkNullOrUndefined(res.response)) {
               this.UomList = res.response['UOMList'];
