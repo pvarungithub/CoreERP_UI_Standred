@@ -10,7 +10,8 @@
       <div class="d--flex">
 
         <mat-form-field
-          [ngClass]="{ 'ng--valid': formControls.numberRange.valid, 'ng--invalid': !formControls.numberRange.valid  }">
+          [ngClass]="{ 'ng--valid': formControls.numberRange.valid&& formControls.numberRange.status != 'DISABLED',
+           'ng--invalid': !formControls.numberRange.valid && formControls.numberRange.status != 'DISABLED' }">
           <mat-label>{{'requisitionnumberassignment.numberRange' | translate }}</mat-label>
           <mat-select formControlName="numberRange" appFocusOnEnter tabIndex="1">
             <mat-option>None</mat-option>
@@ -18,7 +19,7 @@
               {{norange.numberRange}}
             </mat-option>
           </mat-select>
-          <mat-hint *ngIf="!formControls.numberRange.valid"
+          <mat-hint *ngIf="!formControls.numberRange.valid && formControls.numberRange.status != 'DISABLED'"
             [ngClass]="{ 'ng--invalid': !formControls.numberRange.valid  }"> Number Range is required</mat-hint>
         </mat-form-field>
 

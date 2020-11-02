@@ -43,7 +43,7 @@ export class DownTimeReasonComponent implements OnInit {
     @Optional() @Inject(MAT_DIALOG_DATA) public data: any) {
 
     this.modelFormData = this.formBuilder.group({
-      reasonCode: [null, [Validators.required, Validators.minLength(1), Validators.maxLength(4)]],
+      reasonCode: [null, [Validators.required, Validators.minLength(1), Validators.maxLength(5)]],
       description: [null, [Validators.required, Validators.minLength(1), Validators.maxLength(30)]],
       type: [null],
    });

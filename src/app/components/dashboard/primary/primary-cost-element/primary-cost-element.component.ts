@@ -47,12 +47,14 @@ export class PrimaryCostElementComponent implements OnInit {
       { value: 'Distribution cost', viewValue: 'Distribution cost' },
       { value: 'Selling cost', viewValue: 'Selling cost' },
       { value: 'Marketing cost', viewValue: 'Marketing cost' },
-      { value: 'Non cost', viewValue: 'Non cost' }
+      { value: 'Non cost', viewValue: 'Non cost' },
+      { value: 'Revenue', viewValue: 'Revenue' }
     ];
   element: Element[] =
     [
       { value: 'Direct cost', viewValue: 'Direct cost' },
-      { value: 'Indirect cost', viewValue: 'Indirect cost' }
+      { value: 'Indirect cost', viewValue: 'Indirect cost' },
+      { value: 'Revenue', viewValue: 'Revenue' }
     ];
   PRCList: any;
   coaList: any;
@@ -76,7 +78,7 @@ export class PrimaryCostElementComponent implements OnInit {
     return {
       tableData: {
         id: {
-          value: 0, type: 'autoInc', width: 10, disabled: true
+          value: 0, type: 'autoInc', width: 2, disabled: true,
         },
         company: {
           value: null, type: 'dropdown', list: this.companyList, id: 'id', text: 'text', displayMul: false, width: 100
@@ -85,10 +87,10 @@ export class PrimaryCostElementComponent implements OnInit {
           value: null, type: 'dropdown', list: this.coaList, id: 'code', text: 'desctiption', displayMul: false, width: 100
         },
         glAccount: {
-          value: null, type: 'text', width: 100, maxLength: 10
+          value: null, type: 'text', width: 100, maxLength: 10,disabled:true
         },
         glAccountName: {
-          value: null, type: 'text', width: 100, maxLength: 10
+          value: null, type: 'text', width: 100, maxLength: 10,disabled:true
           // value: null, type: 'dropdown', list: this.PRCList, id: 'id', text: 'text', displayMul: false, width: 100
         },
         usage: {
@@ -243,7 +245,7 @@ export class PrimaryCostElementComponent implements OnInit {
           if (!this.commonService.checkNullOrUndefined(res.response)) {
             this.alertService.openSnackBar('Primerycost created Successfully..', Static.Close, SnackBar.success);
           }
-          this.reset();
+          //this.reset();
           this.spinner.hide();
         }
       });

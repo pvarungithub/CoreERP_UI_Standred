@@ -10,7 +10,8 @@
       <div class="d--flex">
 
         <mat-form-field
-          [ngClass]="{ 'ng--valid': formControls.objectType.valid, 'ng--invalid': !formControls.objectType.valid  }">
+          [ngClass]="{ 'ng--valid': formControls.objectType.valid && formControls.objectType.status != 'DISABLED',
+          'ng--invalid': !formControls.objectType.valid && formControls.objectType.status != 'DISABLED' }">
           <mat-label>{{'assignnumberseries.objectType' | translate }}</mat-label>
           <mat-select formControlName="objectType" appFocusOnEnter tabIndex="1">
             <mat-option>None</mat-option>
@@ -18,7 +19,7 @@
               {{cot.text}}
             </mat-option>
           </mat-select>
-          <mat-hint *ngIf="!formControls.objectType.valid"
+          <mat-hint *ngIf="!formControls.objectType.valid && formControls.objectType.status != 'DISABLED'"
             [ngClass]="{ 'ng--invalid': !formControls.objectType.valid  }"> Object Type is required</mat-hint>
         </mat-form-field>
 

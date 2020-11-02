@@ -2,12 +2,14 @@ import { Component, Inject, Optional, OnInit } from '@angular/core';
 import { MatDialogRef, MAT_DIALOG_DATA } from '@angular/material/dialog';
 import { CommonService } from '../../../../services/common.service';
 import { FormBuilder, FormGroup, Validators } from '@angular/forms';
-import { StatusCodes } from '../../../../enums/common/common';
 import { NgxSpinnerService } from 'ngx-spinner';
 import { ApiConfigService } from '../../../../services/api-config.service';
 import { ApiService } from '../../../../services/api.service';
 import { String } from 'typescript-string-operations';
+import { Static } from '../../../../enums/common/static';
+import { AlertService } from '../../../../services/alert.service';
 import { AddOrEditService } from '../add-or-edit.service';
+import { StatusCodes, SnackBar } from '../../../../enums/common/common';
 
 @Component({
   selector: 'app-purchaseordernumberrange',
@@ -27,6 +29,7 @@ export class PurchaseOrderNumberRangeComponent implements OnInit {
     private spinner: NgxSpinnerService,
     private apiConfigService: ApiConfigService,
     private apiService: ApiService,
+    private alertService: AlertService,
     // @Optional() is used to prevent error if no data is passed
     @Optional() @Inject(MAT_DIALOG_DATA) public data: any) {
 
@@ -50,7 +53,15 @@ export class PurchaseOrderNumberRangeComponent implements OnInit {
   ngOnInit() {
   }
 
-
+  validationcode() {
+    if (!this.commonService.checkNullOrUndefined(this.modelFormData.get('fromInterval').value) &&
+      !this.commonService.checkNullOrUndefined(this.modelFormData.get('toInterval').value) && this.modelFormData.get('fromInterval').value != ''
+      && this.modelFormData.get('toInterval').value != '') {
+      if (parseInt(this.modelFormData.get('toInterval').value) <= parseInt(this.modelFormData.get('fromInterval').value)) {
+        this.alertService.openSnackBar("Enter correct Value", Static.Close, SnackBar.error);
+      }
+    }
+  }
   get formControls() { return this.modelFormData.controls; }
 
   save() {

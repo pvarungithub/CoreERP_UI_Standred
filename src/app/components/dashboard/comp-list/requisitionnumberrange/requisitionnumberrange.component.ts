@@ -16,8 +16,8 @@ import { StatusCodes, SnackBar } from '../../../../enums/common/common';
   styleUrls: ['./requisitionnumberrange.component.scss']
 })
 
-export class RequisitionNumberRangeComponent implements OnInit {
 
+export class RequisitionNumberRangeComponent implements OnInit {
   modelFormData: FormGroup;
   formData: any;
   glList: any;
@@ -51,24 +51,15 @@ export class RequisitionNumberRangeComponent implements OnInit {
 
   ngOnInit() {
   }
-  onChangeEvent() {
-    this.validationcode();
-  }
-  onChangeEvents() {
-    this.validationcode();
-  }
-
+ 
   validationcode() {
-    let i = 0;
-    let j = 0;
-    i = parseInt(this.modelFormData.get('fromInterval').value);
-    j = parseInt(this.modelFormData.get('toInterval').value);
-    if (i <= j) {
+    if (!this.commonService.checkNullOrUndefined(this.modelFormData.get('fromInterval').value) &&
+      !this.commonService.checkNullOrUndefined(this.modelFormData.get('toInterval').value) && this.modelFormData.get('fromInterval').value != ''
+      && this.modelFormData.get('toInterval').value != '') {
+      if (parseInt(this.modelFormData.get('toInterval').value) <= parseInt(this.modelFormData.get('fromInterval').value)) {
+        this.alertService.openSnackBar("Enter correct Value", Static.Close, SnackBar.error);
+      }
     }
-    else {
-      this.alertService.openSnackBar("Enter correct Value", Static.Close, SnackBar.error);
-    }
-
   }
 
   get formControls() { return this.modelFormData.controls; }

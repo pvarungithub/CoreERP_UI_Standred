@@ -10,7 +10,8 @@
       <div class="d--flex">
 
         <mat-form-field
-          [ngClass]="{ 'ng--valid': formControls.lotSeries.valid, 'ng--invalid': !formControls.lotSeries.valid  }">
+          [ngClass]="{ 'ng--valid': formControls.lotSeries.valid && formControls.lotSeries.status != 'DISABLED', 
+          'ng--invalid': !formControls.lotSeries.valid && formControls.lotSeries.status != 'DISABLED'}">
           <mat-label>{{'lotseriesassignment.lotSeries' | translate }}</mat-label>
           <mat-select formControlName="lotSeries" appFocusOnEnter tabIndex="1">
             <mat-option>None</mat-option>
@@ -18,7 +19,7 @@
               {{lot.description}}
             </mat-option>
           </mat-select>
-          <mat-hint *ngIf="!formControls.lotSeries.valid" [ngClass]="{ 'ng--invalid': !formControls.lotSeries.valid  }">
+          <mat-hint *ngIf="!formControls.lotSeries.valid  && formControls.lotSeries.status != 'DISABLED'" [ngClass]="{ 'ng--invalid': !formControls.lotSeries.valid  }">
             Lot Series is required</mat-hint>
         </mat-form-field>
 

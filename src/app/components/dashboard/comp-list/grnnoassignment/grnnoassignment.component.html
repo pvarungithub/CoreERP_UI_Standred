@@ -10,7 +10,8 @@
       <div class="d--flex">
 
         <mat-form-field
-          [ngClass]="{ 'ng--valid': formControls.grnseries.valid, 'ng--invalid': !formControls.grnseries.valid  }">
+          [ngClass]="{ 'ng--valid': formControls.grnseries.valid && formControls.grnseries.status != 'DISABLED',
+           'ng--invalid': !formControls.grnseries.valid && formControls.grnseries.status != 'DISABLED'  }">
           <mat-label>{{'grnnoassignment.grnseries' | translate }}</mat-label>
           <mat-select formControlName="grnseries" appFocusOnEnter tabIndex="1">
             <mat-option>None</mat-option>
@@ -18,7 +19,7 @@
               {{grn.description}}
             </mat-option>
           </mat-select>
-          <mat-hint *ngIf="!formControls.grnseries.valid" [ngClass]="{ 'ng--invalid': !formControls.grnseries.valid  }">
+          <mat-hint *ngIf="!formControls.grnseries.valid && formControls.grnseries.status != 'DISABLED'" [ngClass]="{ 'ng--invalid': !formControls.grnseries.valid  }">
             GRN Series is required</mat-hint>
         </mat-form-field>
 

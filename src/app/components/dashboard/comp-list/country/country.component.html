@@ -9,10 +9,11 @@
       <div class="d--flex">
 
         <mat-form-field class="form-element"
-          [ngClass]="{ 'ng--valid': formControls.countryCode.valid, 'ng--invalid': !formControls.countryCode.valid  }">
+          [ngClass]="{ 'ng--valid': formControls.countryCode.valid&& formControls.countryCode.status != 'DISABLED', 
+           'ng--invalid': !formControls.countryCode.valid && formControls.countryCode.status != 'DISABLED' }">
           <input matInput placeholder="{{'country.countryCode' | translate }}" formControlName="countryCode"
             appFocusOnEnter tabIndex="1" maxlength="6">
-          <mat-hint *ngIf="!formControls.countryCode.valid"
+          <mat-hint *ngIf="!formControls.countryCode.valid && formControls.countryCode.status != 'DISABLED'"
             [ngClass]="{ 'ng--invalid': !formControls.countryCode.valid  }">Country Code is required</mat-hint>
         </mat-form-field>
 

@@ -8,10 +8,11 @@
 
       <div class="d--flex">
         <mat-form-field class="form-element"
-          [ngClass]="{ 'ng--valid': formControls.stateCode.valid, 'ng--invalid': !formControls.stateCode.valid  }">
+          [ngClass]="{ 'ng--valid': formControls.stateCode.valid&& formControls.stateCode.status != 'DISABLED', 
+           'ng--invalid': !formControls.stateCode.valid && formControls.stateCode.status != 'DISABLED' }">
           <input matInput placeholder="{{'state.stateCode' | translate }}" formControlName="stateCode" appFocusOnEnter
             tabIndex="1" maxlength="5">
-          <mat-hint *ngIf="!formControls.stateCode.valid" [ngClass]="{ 'ng--invalid': !formControls.stateCode.valid  }">
+          <mat-hint *ngIf="!formControls.stateCode.valid && formControls.stateCode.status != 'DISABLED'" [ngClass]="{ 'ng--invalid': !formControls.stateCode.valid  }">
             State Code is required</mat-hint>
         </mat-form-field>
 

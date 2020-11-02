@@ -10,7 +10,8 @@
       <div class="d--flex">
 
         <mat-form-field
-          [ngClass]="{ 'ng--valid': formControls.ginseries.valid, 'ng--invalid': !formControls.ginseries.valid  }">
+          [ngClass]="{ 'ng--valid': formControls.ginseries.valid && formControls.ginseries.status != 'DISABLED',
+           'ng--invalid': !formControls.ginseries.valid && formControls.ginseries.status != 'DISABLED' }">
           <mat-label>{{'ginassignment.ginseries' | translate }}</mat-label>
           <mat-select formControlName="ginseries" appFocusOnEnter tabIndex="1">
             <mat-option>None</mat-option>
@@ -18,7 +19,7 @@
               {{issueno.description}}
             </mat-option>
           </mat-select>
-          <mat-hint *ngIf="!formControls.ginseries.valid" [ngClass]="{ 'ng--invalid': !formControls.ginseries.valid  }">
+          <mat-hint *ngIf="!formControls.ginseries.valid && formControls.ginseries.status != 'DISABLED'" [ngClass]="{ 'ng--invalid': !formControls.ginseries.valid  }">
             GIN Series is required</mat-hint>
         </mat-form-field>
 

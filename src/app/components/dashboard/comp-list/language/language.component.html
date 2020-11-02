@@ -7,10 +7,11 @@
     <form [formGroup]="modelFormData" autocomplete="off">
 
       <div class="d--flex">
-        <mat-form-field class="form-element" [ngClass]="{ 'ng--valid': formControls.languageCode.valid, 'ng--invalid': !formControls.languageCode.valid  }">
+        <mat-form-field class="form-element" [ngClass]="{ 'ng--valid': formControls.languageCode.valid&& formControls.languageCode.status != 'DISABLED', 
+         'ng--invalid': !formControls.languageCode.valid && formControls.languageCode.status != 'DISABLED' }">
           <input matInput placeholder="{{'language.languageCode' | translate }}" formControlName="languageCode"
             appFocusOnEnter tabIndex="1" maxlength="5" >
-            <mat-hint *ngIf="!formControls.languageCode.valid" [ngClass]="{ 'ng--invalid': !formControls.languageCode.valid  }">code is required</mat-hint>
+            <mat-hint *ngIf="!formControls.languageCode.valid && formControls.languageCode.status != 'DISABLED'" [ngClass]="{ 'ng--invalid': !formControls.languageCode.valid  }">code is required</mat-hint>
         </mat-form-field>
 
         <mat-form-field class="form-element" [ngClass]="{ 'ng--valid': formControls.languageName.valid }">

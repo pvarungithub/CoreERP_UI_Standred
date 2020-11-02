@@ -10,7 +10,8 @@
       <div class="d--flex">
 
         <mat-form-field
-          [ngClass]="{ 'ng--valid': formControls.plant.valid, 'ng--invalid': !formControls.plant.valid  }">
+          [ngClass]="{ 'ng--valid': formControls.plant.valid &&formControls.plant.status != 'DISABLED',
+           'ng--invalid': !formControls.plant.valid &&formControls.plant.status != 'DISABLED'}">
           <mat-label>{{'purchaserequisitionnumberrange.plant' | translate }}</mat-label>
           <mat-select formControlName="plant" appFocusOnEnter tabIndex="1">
             <mat-option>None</mat-option>
@@ -18,7 +19,7 @@
               {{plant.text}}
             </mat-option>
           </mat-select>
-          <mat-hint *ngIf="!formControls.plant.valid" [ngClass]="{ 'ng--invalid': !formControls.plant.valid  }"> Plant
+          <mat-hint *ngIf="!formControls.plant.valid && formControls.plant.status != 'DISABLED'" [ngClass]="{ 'ng--invalid': !formControls.plant.valid  }"> Plant
             is required</mat-hint>
         </mat-form-field>
 

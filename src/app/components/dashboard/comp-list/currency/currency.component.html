@@ -9,10 +9,11 @@
       <div class="d--flex">
 
         <mat-form-field class="form-element"
-          [ngClass]="{ 'ng--valid': formControls.currencySymbol.valid, 'ng--invalid': !formControls.currencySymbol.valid  }">
+          [ngClass]="{ 'ng--valid': formControls.currencySymbol.valid&& formControls.currencySymbol.status != 'DISABLED', 
+           'ng--invalid': !formControls.currencySymbol.valid && formControls.currencySymbol.status != 'DISABLED' }">
           <input matInput placeholder="{{'currency.currencySymbol' | translate }}" formControlName="currencySymbol"
             appFocusOnEnter tabIndex="1" maxlength="5">
-          <mat-hint *ngIf="!formControls.currencySymbol.valid"
+          <mat-hint *ngIf="!formControls.currencySymbol.valid&& formControls.currencySymbol.status != 'DISABLED'"
             [ngClass]="{ 'ng--invalid': !formControls.currencySymbol.valid  }">code is required</mat-hint>
         </mat-form-field>
 
