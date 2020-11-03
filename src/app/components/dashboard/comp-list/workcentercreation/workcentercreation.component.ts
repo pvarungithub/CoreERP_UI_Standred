@@ -130,12 +130,12 @@ export class WorkCenterCreationComponent implements OnInit {
     }
   }
 
-  emitTableActivityData(data) {
-    this.activityTableData = data;
+ emitColumnCapacityData(data) {
+    this.activityTableData = data.data;
   }
 
-  emitTableCapacityData(data) {
-    this.capacityTableData = data;
+  emitColumnActivityData(data) {
+    this.capacityTableData = data.data;
   }
 
   formDataGroup() {
@@ -320,16 +320,20 @@ export class WorkCenterCreationComponent implements OnInit {
     this.sendActivityDynTableData = { type: 'reset', data: [] };
   }
 
-  save() {
+ save() {    
+    this.activityTableData = this.commonService.formatTableData(this.activityTableData);
+    this.capacityTableData = this.commonService.formatTableData(this.capacityTableData);
     this.saveWRC();
-
   }
+
   saveWRC() {
     const addCashBank = String.Join('/', this.apiConfigService.addWCr);
     const requestObj = { mainasstHdr: this.modelFormData.value, mainactvtyDetail: this.activityTableData, mainassetcapacityDetail: this.capacityTableData };
     this.apiService.apiPostRequest(addCashBank, requestObj).subscribe(
       response => {
         const res = response.body;
+  this.activityTableData = [];
+        this.capacityTableData = [];
         if (!this.commonService.checkNullOrUndefined(res) && res.status === StatusCodes.pass) {
           if (!this.commonService.checkNullOrUndefined(res.response)) {
             this.alertService.openSnackBar('Work Center created Successfully..', Static.Close, SnackBar.success);

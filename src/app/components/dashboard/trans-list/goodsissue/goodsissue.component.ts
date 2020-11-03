@@ -351,6 +351,7 @@ export class GoodsissueComponent implements OnInit {
   }
 
   emitColumnChanges(data) {
+this.tableData = data.data;
   }
 
   dataChange(row) {
@@ -378,19 +379,17 @@ export class GoodsissueComponent implements OnInit {
       })
     }
     //
-    this.sendDynTableData = { type: 'add', data: newData, removeEmptyRow: 0 };
+   this.sendDynTableData = { type: 'add', data: newData };
   }
 
-  emitTableData(data) {
-    this.tableData = data;
-  }
-
+  
 
   back() {
     this.router.navigate(['dashboard/transaction/goodsissue']);
   }
 
   save() {
+ this.tableData = this.commonService.formatTableData(this.tableData, 0);
     if (this.tableData.length == 0) {
       return;
     }
@@ -413,6 +412,7 @@ export class GoodsissueComponent implements OnInit {
     this.apiService.apiPostRequest(addJournal, requestObj).subscribe(
       response => {
         const res = response.body;
+ this.tableData = [];
         if (!this.commonService.checkNullOrUndefined(res) && res.status === StatusCodes.pass) {
           if (!this.commonService.checkNullOrUndefined(res.response)) {
             this.alertService.openSnackBar('GoodsIssue created Successfully..', Static.Close, SnackBar.success);

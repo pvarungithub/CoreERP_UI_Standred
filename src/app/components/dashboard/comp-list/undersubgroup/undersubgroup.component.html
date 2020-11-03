@@ -45,10 +45,11 @@
         </mat-form-field>
 
         <mat-form-field class="form-element"
-          [ngClass]="{ 'ng--valid': formControls.accountGroupId.valid, 'ng--invalid': !formControls.accountGroupId.valid  }">
+          [ngClass]="{ 'ng--valid': formControls.accountGroupId.valid &&formControls.accountGroupId.status != 'DISABLED',
+           'ng--invalid': !formControls.accountGroupId.valid &&formControls.accountGroupId.status != 'DISABLED'  }">
           <input matInput placeholder="{{'glsubgroups.accountGroupId' | translate }}" disabled
             formControlName="accountGroupId" appFocusOnEnter tabIndex="5">
-          <mat-hint *ngIf="!formControls.accountGroupId.valid"
+          <mat-hint *ngIf="!formControls.accountGroupId.valid  &&formControls.accountGroupId.status != 'DISABLED'"
             [ngClass]="{ 'ng--invalid': !formControls.accountGroupId.valid  }"> Code is required</mat-hint>
         </mat-form-field>
 

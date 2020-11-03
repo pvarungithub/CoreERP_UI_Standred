@@ -16,7 +16,6 @@ export class DynamicTableComponent implements OnInit {
 
 
   @Output() emitColumnChanges = new EventEmitter();
-  @Output() emitTableData = new EventEmitter();
 
   @Input() set tableObJect(res) {
     if (!this.commonService.checkNullOrUndefined(res)) {
@@ -41,7 +40,6 @@ export class DynamicTableComponent implements OnInit {
       } else if (res.type == 'add') {
         if (res.data.length) {
           this.dataSource = new MatTableDataSource(JSON.parse(JSON.stringify(res.data)));
-          this.removeEmptyRow = !this.commonService.checkNullOrUndefined(res.removeEmptyRow) ? res.removeEmptyRow : 1;
           (this.isDropdown) ? this.setFocus() : this.setCurrentFocus();
         } else {
           this.dataSource = new MatTableDataSource();
@@ -63,7 +61,6 @@ export class DynamicTableComponent implements OnInit {
   index: any;
   data: any;
   isDropdown = false;
-  removeEmptyRow = 1;
 
   constructor(
     activatedRoute: ActivatedRoute,
@@ -105,7 +102,6 @@ export class DynamicTableComponent implements OnInit {
         return index !== i;
       });
       this.dataSource = new MatTableDataSource(this.dataSource.data);
-      this.emitTableData.emit(this.formatTableData());
     }
   }
 
@@ -143,7 +139,6 @@ export class DynamicTableComponent implements OnInit {
       }
       this.dataSource = new MatTableDataSource(this.dataSource.data);
       this.emitColumnChanges.emit({ column: col, index: indx, data: this.dataSource.data });
-      this.emitTableData.emit(this.formatTableData());
     }
   }
 
@@ -156,31 +151,6 @@ export class DynamicTableComponent implements OnInit {
       }
     }
     return false;
-  }
-
-  formatTableData() {
-    const array = [];
-    for (let t = 0; t < this.dataSource.data.length; t++) {
-      const object = {};
-      this.keys.forEach(res => {
-        (res.col != 'delete') ? object[res.col] = this.dataSource.data[t][res.col].value : null;
-        if (this.runtimeConfigService.tableColumnsData[this.routeParam][res.col] == 'checkAll') {
-          object['check'] = (this.runtimeConfigService.tableColumnsData[this.routeParam][res.col] == 'checkAll') ? this.dataSource.data[t][res.col].value : true
-        }
-      })
-      if ((this.dataSource.data.length - this.removeEmptyRow) != t) {
-        if (object.hasOwnProperty('check')) {
-          if (object['check']) {
-            delete object['check'];
-            delete object['checkAll'];
-            array.push(object);
-          }
-        } else {
-          array.push(object);
-        }
-      }
-    }
-    return array;
   }
 
 

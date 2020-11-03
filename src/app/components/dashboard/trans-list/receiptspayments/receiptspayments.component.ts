@@ -206,7 +206,7 @@ export class ReceiptspaymentsComponent implements OnInit {
       })
     }
     //
-    this.sendDynTableData = { type: 'add', data: newData, removeEmptyRow: 0 };
+   this.sendDynTableData = { type: 'add', data: newData };
   }
 
   getreceiptpaymentDetail(val) {
@@ -496,6 +496,7 @@ export class ReceiptspaymentsComponent implements OnInit {
   }
 
   emitColumnChanges(data) {
+  this.tableData = data.data;
     this.spinner.show();
     if (data.column == 'adjustmentAmount') {
       this.loopTableData(data);
@@ -510,6 +511,7 @@ export class ReceiptspaymentsComponent implements OnInit {
        {
         data.data[data.index].discount.value = 0;
         this.sendDynTableData = { type: 'add', data: data.data };
+ this.tableData = data.data;
       }
     }
 
@@ -535,6 +537,7 @@ export class ReceiptspaymentsComponent implements OnInit {
     if (flag) {
       this.spinner.show();
       this.sendDynTableData == { type: 'add', data: dublicateRow };
+ this.tableData = dublicateRow;
     }
   }
 
@@ -554,16 +557,13 @@ export class ReceiptspaymentsComponent implements OnInit {
             if (!this.commonService.checkNullOrUndefined(res.response)) {
               row.data[row.index].discount.value = res.response['discount']
               this.sendDynTableData = { type: 'add', data: row.data };
+ this.tableData = row.data;
             }
           }
         });
   }
 
-  emitTableData(data) {
-    this.tableData = data;
-    console.log(this.tableData)
-  }
-
+ 
   back() {
     this.router.navigate(['dashboard/transaction/receiptspayments'])
   }
@@ -585,6 +585,7 @@ export class ReceiptspaymentsComponent implements OnInit {
   }
 
   save() {
+ this.tableData = this.commonService.formatTableData(this.tableData, 0);
     if (this.tableData.length == 0) {
       return;
     }
@@ -596,6 +597,7 @@ export class ReceiptspaymentsComponent implements OnInit {
     this.apiService.apiGetRequest(addCashBank).subscribe(
       response => {
         const res = response.body;
+ this.tableData = [];
         if (!this.commonService.checkNullOrUndefined(res) && res.status === StatusCodes.pass) {
           if (!this.commonService.checkNullOrUndefined(res.response)) {
             this.alertService.openSnackBar(res.response, Static.Close, SnackBar.success);

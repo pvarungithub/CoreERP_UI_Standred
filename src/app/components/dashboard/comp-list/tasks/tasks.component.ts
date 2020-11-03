@@ -93,8 +93,8 @@ export class TasksComponent implements OnInit {
     }
   }
 
-  emitTableRoutingData(data) {
-    this.routingTableData = data;
+  emitColumnRoutingData(data) {
+    this.routingTableData = data.data;
   }
 
 
@@ -195,6 +195,7 @@ export class TasksComponent implements OnInit {
   }
 
   save() {
+ this.routingTableData = this.commonService.formatTableData(this.routingTableData);
     this.savetask();
 
   }
@@ -208,6 +209,7 @@ export class TasksComponent implements OnInit {
     this.apiService.apiPostRequest(addrouting, requestObj).subscribe(
       response => {
         const res = response.body;
+this.routingTableData = [];
         if (!this.commonService.checkNullOrUndefined(res) && res.status === StatusCodes.pass) {
           if (!this.commonService.checkNullOrUndefined(res.response)) {
             this.alertService.openSnackBar('Task created Successfully..', Static.Close, SnackBar.success);

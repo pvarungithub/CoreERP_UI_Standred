@@ -213,11 +213,8 @@ export class SourceOfSupplyComponent implements OnInit {
   }
 
 
-  // emitColumnChanges(data) {
-  // }
-
-  emitTableData(data) {
-    this.tableData = data;
+   emitColumnChanges(data) {
+    this.tableData = data.data;
   }
 
 
@@ -226,6 +223,7 @@ export class SourceOfSupplyComponent implements OnInit {
   }
 
   save() {
+this.tableData = this.commonService.formatTableData(this.tableData);
     if (this.tableData.length == 0 && this.formData.invalid) {
       return;
     }
@@ -239,6 +237,7 @@ export class SourceOfSupplyComponent implements OnInit {
     this.apiService.apiPostRequest(addssapply, requestObj).subscribe(
       response => {
         const res = response.body;
+  this.tableData = [];
         if (!this.commonService.checkNullOrUndefined(res) && res.status === StatusCodes.pass) {
           if (!this.commonService.checkNullOrUndefined(res.response)) {
             this.alertService.openSnackBar('Source Supply created Successfully..', Static.Close, SnackBar.success);

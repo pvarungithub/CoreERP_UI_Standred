@@ -189,19 +189,19 @@ export class RoutingFileComponent implements OnInit {
     }
   }
 
-  emitTableRoutingData(data) {
+ emitColumnRoutingData(data) {
     this.routingTableData = data;
   }
 
-  emitTableActivityData(data) {
+  emitColumnActivityData(data) {
     this.activityTableData = data;
   }
 
-  emitTableMaterialAssData(data) {
+  emitColumnMaterialAssData(data) {
     this.materialAssTableData = data;
   }
 
-  emitTableToolsEquipmentData(data) {
+  emitColumnToolsEquipmentData(data) {
     this.equipmentTableData = data;
   }
 
@@ -379,6 +379,11 @@ export class RoutingFileComponent implements OnInit {
   }
 
   save() {
+  this.routingTableData = this.commonService.formatTableData(this.routingTableData);
+ 
+    this.activityTableData = this.commonService.formatTableData(this.activityTableData);
+    this.materialAssTableData = this.commonService.formatTableData(this.materialAssTableData);
+    this.equipmentTableData = this.commonService.formatTableData(this.equipmentTableData);
     this.saverouting();
 
   }
@@ -392,6 +397,10 @@ export class RoutingFileComponent implements OnInit {
     this.apiService.apiPostRequest(addrouting, requestObj).subscribe(
       response => {
         const res = response.body;
+ this.routingTableData = [];
+        this.activityTableData = [];
+        this.materialAssTableData = [];
+        this.equipmentTableData = [];
         if (!this.commonService.checkNullOrUndefined(res) && res.status === StatusCodes.pass) {
           if (!this.commonService.checkNullOrUndefined(res.response)) {
             this.alertService.openSnackBar('Routing File created Successfully..', Static.Close, SnackBar.success);

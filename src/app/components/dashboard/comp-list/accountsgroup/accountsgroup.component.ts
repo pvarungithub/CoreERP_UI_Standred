@@ -3,6 +3,10 @@ import { MatDialogRef, MAT_DIALOG_DATA } from '@angular/material/dialog';
 import { CommonService } from '../../../../services/common.service';
 import { FormBuilder, FormGroup, Validators } from '@angular/forms';
 import { AddOrEditService } from '../add-or-edit.service';
+import { Static } from '../../../../enums/common/static';
+import { AlertService } from '../../../../services/alert.service';
+import { StatusCodes, SnackBar } from '../../../../enums/common/common';
+import { ApiService } from '../../../../services/api.service';
 
 interface groupType {
   value: string;
@@ -29,6 +33,8 @@ export class AccountsGroupComponent  implements OnInit {
   constructor(private commonService: CommonService,
     private formBuilder: FormBuilder,
     private addOrEditService: AddOrEditService,
+    private alertService: AlertService,
+    private apiService: ApiService,
     public dialogRef: MatDialogRef<AccountsGroupComponent>,
     // @Optional() is used to prevent error if no data is passed
     @Optional() @Inject(MAT_DIALOG_DATA) public data: any ) {
@@ -51,6 +57,16 @@ export class AccountsGroupComponent  implements OnInit {
 
   }
 
+  validationcode() {
+    if (!this.commonService.checkNullOrUndefined(this.modelFormData.get('numberRangeFrom').value) &&
+      !this.commonService.checkNullOrUndefined(this.modelFormData.get('numberRangeTo').value) && 
+      this.modelFormData.get('numberRangeFrom').value != ''
+      && this.modelFormData.get('numberRangeTo').value != '') {
+      if (parseInt(this.modelFormData.get('numberRangeTo').value) <= parseInt(this.modelFormData.get('numberRangeFrom').value)) {
+        this.alertService.openSnackBar("Enter correct Value", Static.Close, SnackBar.error);
+      }
+    }
+  }
   get formControls() { return this.modelFormData.controls; }
 
   save() {

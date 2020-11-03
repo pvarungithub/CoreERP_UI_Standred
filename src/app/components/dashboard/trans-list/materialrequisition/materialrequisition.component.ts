@@ -344,23 +344,22 @@ export class MaterialrequisitionComponents implements OnInit {
   }
 
   emitColumnChanges(data) {
-    this.dataChange(data);
+ this.tableData = data.data;
+    //this.dataChange(data);
   }
 
   dataChange(row) {
     this.sendDynTableData = { type: 'add', data: row.data };
   }
 
-  emitTableData(data) {
-    this.tableData = data;
-  }
-
+ 
 
   back() {
     this.router.navigate(['dashboard/transaction/materialrequisition']);
   }
 
   save() {
+ this.tableData = this.commonService.formatTableData(this.tableData);
     if (this.tableData.length == 0) {
       return;
     }
@@ -382,6 +381,7 @@ export class MaterialrequisitionComponents implements OnInit {
     this.apiService.apiPostRequest(addJournal, requestObj).subscribe(
       response => {
         const res = response.body;
+  this.tableData = [];
         if (!this.commonService.checkNullOrUndefined(res) && res.status === StatusCodes.pass) {
           if (!this.commonService.checkNullOrUndefined(res.response)) {
             this.alertService.openSnackBar('Material Req created Successfully..', Static.Close, SnackBar.success);

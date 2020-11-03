@@ -132,6 +132,11 @@ export class SubAssetsComponent implements OnInit {
     });
 
     this.formData = { ...this.addOrEditService.editData };
+    if (!this.commonService.checkNullOrUndefined(this.formData.item))
+     {
+      this.modelFormData.patchValue(this.formData.item);
+      this.modelFormData.controls['subAssetNumber'].disable();
+    }
 
   }
 

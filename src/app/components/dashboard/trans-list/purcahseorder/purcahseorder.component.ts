@@ -452,12 +452,11 @@ export class PurchaseOrderComponent implements OnInit {
   }
 
   emitColumnChanges(data) {
+ this.tableData = data.data;
     // this.calculateAmount(data);
   }
 
-  emitTableData(data) {
-    this.tableData = data;
-  }
+ 
 
 
   back() {
@@ -465,6 +464,7 @@ export class PurchaseOrderComponent implements OnInit {
   }
 
   save() {
+ this.tableData = this.commonService.formatTableData(this.tableData);
     if (this.tableData.length == 0 && this.formData.invalid) {
       return;
     }
@@ -479,6 +479,7 @@ export class PurchaseOrderComponent implements OnInit {
       response => {
         // this.saveimage();
         const res = response.body;
+ this.tableData = [];
         if (!this.commonService.checkNullOrUndefined(res) && res.status === StatusCodes.pass) {
           if (!this.commonService.checkNullOrUndefined(res.response)) {
             this.alertService.openSnackBar('Purchase Order created Successfully..', Static.Close, SnackBar.success);

@@ -269,19 +269,17 @@ export class QuotationSupplierComponent implements OnInit {
   }
 
   emitColumnChanges(data) {
+  this.tableData = data.data;
     // this.calculateAmount(data);
   }
 
-  emitTableData(data) {
-    this.tableData = data;
-  }
-
-
+ 
   back() {
     this.router.navigate(['dashboard/transaction/supplierquotation'])
   }
 
   save() {
+this.tableData = this.commonService.formatTableData(this.tableData);
     if (this.tableData.length == 0 && this.formData.invalid) {
       return;
     }
@@ -294,6 +292,7 @@ export class QuotationSupplierComponent implements OnInit {
     this.apiService.apiPostRequest(addsq, requestObj).subscribe(
       response => {
         const res = response.body;
+  this.tableData = [];
         if (!this.commonService.checkNullOrUndefined(res) && res.status === StatusCodes.pass) {
           if (!this.commonService.checkNullOrUndefined(res.response)) {
             this.alertService.openSnackBar('Quotation Supplier created Successfully..', Static.Close, SnackBar.success);

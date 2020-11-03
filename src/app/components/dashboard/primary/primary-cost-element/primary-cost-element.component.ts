@@ -213,7 +213,7 @@ export class PrimaryCostElementComponent implements OnInit {
                 newData[index].qty.value = res.qty;
                 newData[index].id.value = res.id;
               })
-              this.sendDynTableData = { type: 'add', data: newData, removeEmptyRow: 0 };
+             this.sendDynTableData = { type: 'add', data: newData };
             }
           }
           this.spinner.hide();
@@ -221,14 +221,14 @@ export class PrimaryCostElementComponent implements OnInit {
   }
 
   emitColumnChanges(data) {
+ this.tableData = data.data;
     console.log(data);
   }
 
-  emitTableData(data) {
-    this.tableData = data;
-  }
+
 
   save() {
+ this.tableData = this.commonService.formatTableData(this.tableData, 0);
     if (this.tableData.length == 0) {
       return;
     }
@@ -241,6 +241,7 @@ export class PrimaryCostElementComponent implements OnInit {
     this.apiService.apiPostRequest(addpcost, requestObj).subscribe(
       response => {
         const res = response.body;
+         this.tableData = [];
         if (!this.commonService.checkNullOrUndefined(res) && res.status === StatusCodes.pass) {
           if (!this.commonService.checkNullOrUndefined(res.response)) {
             this.alertService.openSnackBar('Primerycost created Successfully..', Static.Close, SnackBar.success);

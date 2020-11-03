@@ -468,6 +468,7 @@ export class JournalComponent implements OnInit {
   }
 
   emitColumnChanges(data) {
+   this.tableData = data.data;
     this.dataChange(data);
   }
 
@@ -484,6 +485,7 @@ export class JournalComponent implements OnInit {
         })
       }
       this.sendDynTableData = { type: 'add', data: row.data };
+ this.tableData = row.data;
     }
     if (row.column == 'taxCode' || row.column == 'amount') {
       const code = row.data[row.index]['taxCode'].list.find(res => res.taxRateCode == row.data[row.index]['taxCode'].value);
@@ -493,14 +495,12 @@ export class JournalComponent implements OnInit {
         row.data[row.index].cgstamount.value = (row.data[row.index].amount.value * code.sgst) / 100;
         row.data[row.index].cgstamount.value = (row.data[row.index].amount.value * code.cgst) / 100;
         this.sendDynTableData = { type: 'add', data: row.data };
+ this.tableData = row.data;
       }
     }
   }
 
-  emitTableData(data) {
-    this.tableData = data;
-  }
-
+ 
   checkCreditDebit() {
     this.debitValue = 0;
     this.creditValue = 0;
@@ -528,6 +528,7 @@ export class JournalComponent implements OnInit {
   }
 
   save() {
+this.tableData = this.commonService.formatTableData(this.tableData);
     if (this.tableData.length == 0) {
       return;
     }
@@ -551,6 +552,7 @@ export class JournalComponent implements OnInit {
     this.apiService.apiPostRequest(addJournal, requestObj).subscribe(
       response => {
         const res = response.body;
+ this.tableData = [];
         if (!this.commonService.checkNullOrUndefined(res) && res.status === StatusCodes.pass) {
           if (!this.commonService.checkNullOrUndefined(res.response)) {
             this.alertService.openSnackBar('Journal created Successfully..', Static.Close, SnackBar.success);

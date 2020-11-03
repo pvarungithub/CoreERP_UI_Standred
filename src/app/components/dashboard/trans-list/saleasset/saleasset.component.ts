@@ -452,6 +452,7 @@ export class SaleassetComponent implements OnInit {
   }
 
   emitColumnChanges(data) {
+this.tableData = data.data;
     this.assigndata(data);
   }
 
@@ -461,19 +462,18 @@ export class SaleassetComponent implements OnInit {
       if (!this.commonService.checkNullOrUndefined(code)) {
         row.data[row.index].rate.value = code.rate;
         this.sendDynTableData = { type: 'add', data: row.data };
+this.tableData = row.data;
       }
     }
   }
 
-  emitTableData(data) {
-    this.tableData = data;
-  }
-
+ 
   back() {
     this.router.navigate(['dashboard/transaction/saleasset'])
   }
 
   save() {
+this.tableData = this.commonService.formatTableData(this.tableData);
     if (this.tableData.length == 0) {
       return;
     }
@@ -485,6 +485,7 @@ export class SaleassetComponent implements OnInit {
     this.apiService.apiGetRequest(addPSIMAsset).subscribe(
       response => {
         const res = response.body;
+ this.tableData = [];
         if (!this.commonService.checkNullOrUndefined(res) && res.status === StatusCodes.pass) {
           if (!this.commonService.checkNullOrUndefined(res.response)) {
             this.alertService.openSnackBar(res.response, Static.Close, SnackBar.success);

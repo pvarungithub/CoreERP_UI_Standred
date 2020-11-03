@@ -3,7 +3,10 @@ import { MatDialogRef, MAT_DIALOG_DATA } from '@angular/material/dialog';
 import { CommonService } from '../../../../services/common.service';
 import { FormBuilder, FormGroup, Validators } from '@angular/forms';
 import { AddOrEditService } from '../add-or-edit.service';
-
+import { Static } from '../../../../enums/common/static';
+import { AlertService } from '../../../../services/alert.service';
+import { StatusCodes, SnackBar } from '../../../../enums/common/common';
+import { ApiService } from '../../../../services/api.service';
 @Component({
   selector: 'app-assetnumberrange',
   templateUrl: './assetnumberrange.component.html',
@@ -20,6 +23,8 @@ export class AssetNumberRangeComponent implements OnInit {
     private addOrEditService: AddOrEditService,
     private formBuilder: FormBuilder,
     public dialogRef: MatDialogRef<AssetNumberRangeComponent>,
+    private apiService: ApiService,
+    private alertService: AlertService,
     // @Optional() is used to prevent error if no data is passed
     @Optional() @Inject(MAT_DIALOG_DATA) public data: any) {
 
@@ -42,6 +47,16 @@ export class AssetNumberRangeComponent implements OnInit {
 
   ngOnInit() {  } 
 
+  validationcode() {
+    if (!this.commonService.checkNullOrUndefined(this.modelFormData.get('fromRange').value) &&
+      !this.commonService.checkNullOrUndefined(this.modelFormData.get('toRange').value) && 
+      this.modelFormData.get('fromRange').value != ''
+      && this.modelFormData.get('toRange').value != '') {
+      if (parseInt(this.modelFormData.get('toRange').value) <= parseInt(this.modelFormData.get('fromRange').value)) {
+        this.alertService.openSnackBar("Enter correct Value", Static.Close, SnackBar.error);
+      }
+    }
+  }
   get formControls() { return this.modelFormData.controls; }
 
   save() {

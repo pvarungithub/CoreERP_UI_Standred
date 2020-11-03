@@ -81,12 +81,10 @@
             </div>
         </form>
 
-        <div>
-            <!-- //(emitColumnChanges)="emitColumnChanges($event);" -->
-            <app-dynamic-table [tableObJect]="dynTableProps" 
-                (emitTableData)="emitTableData($event)" [dynamicTableUpdate]="sendDynTableData"></app-dynamic-table>
+         <div>
+            <app-dynamic-table [tableObJect]="dynTableProps" (emitColumnChanges)="emitColumnChanges($event)"
+                 [dynamicTableUpdate]="sendDynTableData"></app-dynamic-table>
         </div>
-
 
     </mat-card-content>
 

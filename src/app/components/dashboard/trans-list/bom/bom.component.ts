@@ -329,6 +329,7 @@ export class BillOfMaterialComponent implements OnInit {
 
 
   emitColumnChanges(data) {
+    this.tableData = data.data;
     if (data.column == 'adjustmentAmount') {
       //this.loopTableData(data);
       this.checkAjectAmount(true)
@@ -340,12 +341,6 @@ export class BillOfMaterialComponent implements OnInit {
   }
 
 
-
-  emitTableData(data) {
-    this.tableData = data;
-    console.log(this.tableData)
-  }
-
   back() {
     this.router.navigate(['dashboard/transaction/bom'])
   }
@@ -356,6 +351,7 @@ export class BillOfMaterialComponent implements OnInit {
   }
 
   save() {
+    this.tableData = this.commonService.formatTableData(this.tableData);
     if (this.tableData.length == 0) {
       return;
     }
@@ -391,6 +387,7 @@ export class BillOfMaterialComponent implements OnInit {
     this.apiService.apiPostRequest(addbom, requestObj).subscribe(
       response => {
         const res = response.body;
+        this.tableData = [];
         if (!this.commonService.checkNullOrUndefined(res) && res.status === StatusCodes.pass) {
           if (!this.commonService.checkNullOrUndefined(res.response)) {
             this.alertService.openSnackBar('BOM created Successfully..', Static.Close, SnackBar.success);

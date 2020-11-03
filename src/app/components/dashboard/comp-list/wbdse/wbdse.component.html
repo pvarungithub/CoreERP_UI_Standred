@@ -19,11 +19,10 @@
         </mat-form-field>
 
         <mat-form-field class="form-element"
-          [ngClass]="{ 'ng--valid': formControls.wbscode.valid && formControls.wbscode.status != 'DISABLED',
-           'ng--invalid': !formControls.wbscode.valid && formControls.wbscode.status != 'DISABLED'  }">
+          [ngClass]="{ 'ng--valid': formControls.wbscode.valid, 'ng--invalid': !formControls.wbscode.valid  }">
           <input matInput placeholder=" {{'wbdse.wbscode' | translate }}" formControlName="wbscode" maxlength="50"
             appFocusOnEnter tabIndex="2">
-          <mat-hint *ngIf="!formControls.wbscode.valid && formControls.wbscode.status != 'DISABLED'" [ngClass]="{ 'ng--invalid': !formControls.wbscode.valid  }">Code
+          <mat-hint *ngIf="!formControls.wbscode.valid" [ngClass]="{ 'ng--invalid': !formControls.wbscode.valid  }">Code
             is required</mat-hint>
         </mat-form-field>
 

@@ -27,7 +27,7 @@ export class ReceiptOfGoodsComponent implements OnInit {
   routeEdit = '';
 
   tableData = [];
-  editData = [];
+
 
   dynTableProps: any;
   sendDynTableData: any;
@@ -173,9 +173,9 @@ export class ReceiptOfGoodsComponent implements OnInit {
   }
 
   grndatechange() {
-    if (this.editData.length) {
-      this.editData.map(resp => resp.lotDate.value === this.formData.get('grndate').value)
-      this.sendDynTableData = { type: 'add', data: this.editData, removeEmptyRow: 0 };
+    if (this.tableData.length) {
+      this.tableData.map(resp => resp.lotDate.value === this.formData.get('grndate').value)
+      this.sendDynTableData = { type: 'add', data: this.tableData };
     }
   }
 
@@ -202,8 +202,9 @@ export class ReceiptOfGoodsComponent implements OnInit {
       })
     }
     //
-    this.editData = newData;
-    this.sendDynTableData = { type: 'add', data: newData, removeEmptyRow: 0 };
+  this.tableData = newData;
+    this.sendDynTableData = { type: 'add', data: newData };
+
   }
 
   getpurchaseOrderTypeData() {
@@ -420,8 +421,8 @@ export class ReceiptOfGoodsComponent implements OnInit {
 
               row.data[row.index].lotNo.value = res.response['lotNum']
               //row.data[row.index].lotDate.value =JSON.stringify(this.grnDate);
-              this.sendDynTableData = { type: 'add', data: row.data, removeEmptyRow: 0 };
-              this.editData = row.data;
+              this.sendDynTableData = { type: 'add', data: row.data};
+              this.tableData = row.data;
             }
           }
           //this.spinner.hide();
@@ -430,28 +431,24 @@ export class ReceiptOfGoodsComponent implements OnInit {
   }
 
   emitColumnChanges(data) {
+ this.tableData = data.data;
     if (data.column == 'checkAll') {
       if (data.data[data.index].checkAll.value) {
         this.getLotNumData(data);
       }
 
     }
-    this.editData = data.data;
+   
   }
 
-  emitTableData(data) {
-
-    this.tableData = data;
-
-  }
-
+  
 
   back() {
     this.router.navigate(['dashboard/transaction/goodsreceipts'])
   }
 
   save() {
-    debugger;
+    this.tableData = this.commonService.formatTableData(this.tableData, 0);
     if (this.tableData.length == 0 && this.formData.invalid) {
       return;
     }
@@ -464,6 +461,7 @@ export class ReceiptOfGoodsComponent implements OnInit {
     this.apiService.apiPostRequest(addgoodsreceipt, requestObj).subscribe(
       response => {
         const res = response.body;
+this.tableData = [];
         if (!this.commonService.checkNullOrUndefined(res) && res.status === StatusCodes.pass) {
           if (!this.commonService.checkNullOrUndefined(res.response)) {
             this.alertService.openSnackBar('Goods Receipt created Successfully..', Static.Close, SnackBar.success);

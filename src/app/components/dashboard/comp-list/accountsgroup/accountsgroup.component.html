@@ -7,10 +7,11 @@
     <form [formGroup]="modelFormData" autocomplete="off">
       <div class="d--flex">
         <mat-form-field class="form-element"
-          [ngClass]="{ 'ng--valid': formControls.groupCode.valid, 'ng--invalid': !formControls.groupCode.valid  }">
+          [ngClass]="{ 'ng--valid': formControls.groupCode.valid &&formControls.groupCode.status != 'DISABLED',
+           'ng--invalid': !formControls.groupCode.valid  &&formControls.groupCode.status != 'DISABLED' }">
           <input matInput placeholder="{{'accountgroup.groupCode' | translate }}" disabled formControlName="groupCode"
             appFocusOnEnter tabIndex="1">
-          <mat-hint *ngIf="!formControls.groupCode.valid" [ngClass]="{ 'ng--invalid': !formControls.groupCode.valid  }">
+          <mat-hint *ngIf="!formControls.groupCode.valid  &&formControls.groupCode.status != 'DISABLED'" [ngClass]="{ 'ng--invalid': !formControls.groupCode.valid  }">
             Group Code is required</mat-hint>
         </mat-form-field>
 
@@ -24,10 +25,11 @@
 
         <mat-form-field class="form-element">
           <input matInput placeholder="{{'accountgroup.numberRangeFrom' | translate }}"
-            formControlName="numberRangeFrom" appFocusOnEnter tabIndex="3">
+            formControlName="numberRangeFrom" (change)="validationcode()"  appFocusOnEnter tabIndex="3">
         </mat-form-field>
         <mat-form-field class="form-element">
-          <input matInput placeholder="{{'accountgroup.numberRangeTo' | translate }}" formControlName="numberRangeTo"
+          <input matInput placeholder="{{'accountgroup.numberRangeTo' | translate }}"
+           (change)="validationcode()"  formControlName="numberRangeTo"
             appFocusOnEnter tabIndex="4">
         </mat-form-field>
         <mat-form-field>

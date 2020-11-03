@@ -163,11 +163,11 @@ export class InvoiceverificationComponent implements OnInit {
     }
   }
 
-  emitTableActivityData(data) {
+  emitColumnActivityData(data) {
     this.activityTableData = data;
   }
 
-  emitTableCapacityData(data) {
+  emitColumnCapacityData(data) {
     this.capacityTableData = data;
   }
 
@@ -390,6 +390,8 @@ export class InvoiceverificationComponent implements OnInit {
   }
 
   save() {
+ this.activityTableData = this.commonService.formatTableData(this.activityTableData);
+    this.capacityTableData = this.commonService.formatTableData(this.capacityTableData);
     this.saveinvoice();
 
   }
@@ -399,6 +401,9 @@ export class InvoiceverificationComponent implements OnInit {
     this.apiService.apiPostRequest(addinvoice, requestObj).subscribe(
       response => {
         const res = response.body;
+this.activityTableData = [];
+ 
+        this.capacityTableData = [];
         if (!this.commonService.checkNullOrUndefined(res) && res.status === StatusCodes.pass) {
           if (!this.commonService.checkNullOrUndefined(res.response)) {
             this.alertService.openSnackBar('Invoice Verification created Successfully..', Static.Close, SnackBar.success);

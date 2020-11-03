@@ -305,19 +305,18 @@ export class PurchasingComponent implements OnInit {
   }
 
   emitColumnChanges(data) {
+ this.tableData = data.data;
     // this.calculateAmount(data);
   }
 
-  emitTableData(data) {
-    this.tableData = data;
-  }
-
+ 
 
   back() {
     this.router.navigate(['dashboard/transaction/purcahserequisition'])
   }
 
   save() {
+ this.tableData = this.commonService.formatTableData(this.tableData);
     if (this.tableData.length == 0 && this.formData.invalid) {
       return;
     }
@@ -330,6 +329,7 @@ export class PurchasingComponent implements OnInit {
     this.apiService.apiPostRequest(addprreq, requestObj).subscribe(
       response => {
         const res = response.body;
+ this.tableData = [];
         if (!this.commonService.checkNullOrUndefined(res) && res.status === StatusCodes.pass) {
           if (!this.commonService.checkNullOrUndefined(res.response)) {
             this.alertService.openSnackBar('Purchase Requisition created Successfully..', Static.Close, SnackBar.success);

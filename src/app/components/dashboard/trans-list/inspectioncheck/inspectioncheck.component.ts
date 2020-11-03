@@ -333,20 +333,16 @@ export class InspectioncheckComponent implements OnInit {
       })
     }
     //
-    this.sendDynTableData = { type: 'add', data: newData, removeEmptyRow: 0 };
+      this.sendDynTableData = { type: 'add', data: newData };
   }
   emitColumnChanges(data) 
   {
-    if (data.column == 'checkAll')
-    {
-      this.sendDynTableData = { type: 'add', data: data.data, removeEmptyRow: 0 };
-    }
+   this.tableData = data.data;
+    // if (data.column == 'checkAll') {
+    //   this.sendDynTableData = { type: 'add', data: data.data };
+    // }
   }
 
-  emitTableData(data)
- {
-    this.tableData = data;
-  }
 
 
   back() {
@@ -354,6 +350,7 @@ export class InspectioncheckComponent implements OnInit {
   }
 
   save() {
+ this.tableData = this.commonService.formatTableData(this.tableData, 0);
     if (this.tableData.length == 0 && this.formData.invalid) {
       return;
     }
@@ -366,6 +363,7 @@ export class InspectioncheckComponent implements OnInit {
     this.apiService.apiPostRequest(addsq, requestObj).subscribe(
       response => {
         const res = response.body;
+  this.tableData = [];
         if (!this.commonService.checkNullOrUndefined(res) && res.status === StatusCodes.pass) {
           if (!this.commonService.checkNullOrUndefined(res.response)) {
             this.alertService.openSnackBar('Inspection Check created Successfully..', Static.Close, SnackBar.success);

@@ -33,6 +33,34 @@ export class CommonService {
     });
   }
 
+  formatTableData(data, flag = 1) {
+    const array = [];
+    for (let t = 0; t < data.length; t++) {
+      const object = {};
+      for (let prop in data[t]) {
+        prop != 'delete' ? object[prop] = data[t][prop].value : null
+        if (prop == 'checkAll') {
+          object['check'] = (prop == 'checkAll') ? data[t][prop].value : true
+        }
+        if(data[t][prop].type == 'checkbox') {
+          object[prop] = object[prop] ? 1 : 0
+        }
+      }
+      if ((data.length - flag) != t) {
+        if (object.hasOwnProperty('check')) {
+          if (object['check']) {
+            delete object['check'];
+            delete object['checkAll'];
+            array.push(object);
+          }
+        } else {
+          array.push(object);
+        }
+      }
+    }
+    return array;
+  }
+
   getLangConfig(): any {
     this.http.get('../../assets/app-lang-config.json').subscribe(
       data => {

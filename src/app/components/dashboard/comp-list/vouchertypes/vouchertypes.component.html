@@ -10,10 +10,11 @@
 
       <div class="d--flex">
         <mat-form-field class="form-element"
-          [ngClass]="{ 'ng--valid': formControls.voucherTypeId.valid, 'ng--invalid': !formControls.voucherTypeId.valid  }">
+          [ngClass]="{ 'ng--valid': formControls.voucherTypeId.valid &&formControls.voucherTypeId.status != 'DISABLED',
+           'ng--invalid': !formControls.voucherTypeId.valid &&formControls.voucherTypeId.status != 'DISABLED'  }">
           <input matInput placeholder="{{'vouchertype.voucherTypeId' | translate }}" formControlName="voucherTypeId"
             maxlength="4" appFocusOnEnter tabIndex="1">
-          <mat-hint *ngIf="!formControls.voucherTypeId.valid"
+          <mat-hint *ngIf="!formControls.voucherTypeId.valid &&formControls.voucherTypeId.status != 'DISABLED'"
             [ngClass]="{ 'ng--invalid': !formControls.voucherTypeId.valid  }">Voucher Type Key is required</mat-hint>
         </mat-form-field>
 

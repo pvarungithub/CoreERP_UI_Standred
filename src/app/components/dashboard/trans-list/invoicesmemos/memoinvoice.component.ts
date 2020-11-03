@@ -530,6 +530,9 @@ export class MemoinvoiceComponent implements OnInit {
   }
 
   emitColumnChanges(data) {
+   this.tableData = this.commonService.formatTableData(this.tableData);
+    this.checkCreditDebit();
+    this.tableData = data.data;
     this.calculateAmount(data)
   }
 
@@ -550,6 +553,7 @@ export class MemoinvoiceComponent implements OnInit {
         });
       }
     }
+  this.tableData = [];
   }
 
   calculateAmount(row) {
@@ -561,20 +565,18 @@ export class MemoinvoiceComponent implements OnInit {
         row.data[row.index].cgstamount.value = (row.data[row.index].amount.value * code.sgst) / 100;
         row.data[row.index].cgstamount.value = (row.data[row.index].amount.value * code.cgst) / 100;
         this.sendDynTableData = { type: 'add', data: row.data };
+this.tableData = row.data;
       }
     }
   }
 
-  emitTableData(data) {
-    this.tableData = data;
-    this.checkCreditDebit();
-  }
-
+ 
   back() {
     this.router.navigate(['dashboard/transaction/invoicesmemos'])
   }
 
   save() {
+ this.tableData = this.commonService.formatTableData(this.tableData);
     if (this.tableData.length == 0) {
       return;
     }
@@ -589,6 +591,7 @@ export class MemoinvoiceComponent implements OnInit {
     this.apiService.apiGetRequest(addInvoiceMemo).subscribe(
       response => {
         const res = response.body;
+  this.tableData = [];
         if (!this.commonService.checkNullOrUndefined(res) && res.status === StatusCodes.pass) {
           if (!this.commonService.checkNullOrUndefined(res.response)) {
             this.alertService.openSnackBar(res.response, Static.Close, SnackBar.success);
