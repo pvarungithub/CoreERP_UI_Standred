@@ -173,9 +173,13 @@
       </mat-tab>
 
       <mat-tab label="Transaction Data">
-        <app-dynamic-table [tableObJect]="dynTableProps" (emitTableData)="emitTableData($event)"
+        <app-dynamic-table [tableObJect]="dynTableProps" 
           (emitColumnChanges)="emitColumnChanges($event);" [dynamicTableUpdate]="sendDynTableData"></app-dynamic-table>
       </mat-tab>
+      <!-- <mat-tab label="Transaction Data">
+        <app-dynamic-table [tableObJect]="dynTableProps" (emitTableData)="emitTableData($event)"
+          (emitColumnChanges)="emitColumnChanges($event);" [dynamicTableUpdate]="sendDynTableData"></app-dynamic-table>
+      </mat-tab> -->
     </form>
   </mat-tab-group>
 

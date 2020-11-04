@@ -164,11 +164,11 @@ export class InvoiceverificationComponent implements OnInit {
   }
 
   emitColumnActivityData(data) {
-    this.activityTableData = data;
+    this.activityTableData = data.data;
   }
 
   emitColumnCapacityData(data) {
-    this.capacityTableData = data;
+    this.capacityTableData = data.data;
   }
 
   formDataGroup() {
@@ -367,8 +367,6 @@ export class InvoiceverificationComponent implements OnInit {
           const res = response.body;
           if (!this.commonService.checkNullOrUndefined(res) && res.status === StatusCodes.pass) {
             if (!this.commonService.checkNullOrUndefined(res.response)) {
-              //console.log(res.response['ivcmasters']);
-              //console.log(res.response['iecDetail']);
               this.modelFormData.setValue(res.response['ivcmasters']);
               this.sendActivityDynTableData = { type: 'edit', data: res.response['ivcDetail'] };
               this.sendCapacityDynTableData = { type: 'edit', data: res.response['iecDetail'] };
@@ -377,7 +375,9 @@ export class InvoiceverificationComponent implements OnInit {
         });
   }
 
-
+  back() {
+    this.router.navigate(['dashboard/master/invoiceverification'])
+  }
 
 
   reset() {
@@ -401,8 +401,7 @@ export class InvoiceverificationComponent implements OnInit {
     this.apiService.apiPostRequest(addinvoice, requestObj).subscribe(
       response => {
         const res = response.body;
-this.activityTableData = [];
- 
+        this.activityTableData = [];
         this.capacityTableData = [];
         if (!this.commonService.checkNullOrUndefined(res) && res.status === StatusCodes.pass) {
           if (!this.commonService.checkNullOrUndefined(res.response)) {

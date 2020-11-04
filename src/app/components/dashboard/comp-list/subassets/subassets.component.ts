@@ -379,9 +379,8 @@ export class SubAssetsComponent implements OnInit {
         });
   }
   emitColumnChanges(data) {
-    this.assigndata(data);
+    this.tableData = data.data;
   }
-
   assigndata(row) {
     if (row.column == 'depreciationCode') {
       const code = row.data[row.index]['depreciationCode'].list.find(res => res.code == row.data[row.index]['depreciationCode'].value);
@@ -395,10 +394,12 @@ export class SubAssetsComponent implements OnInit {
 
   get formControls() { return this.modelFormData.controls; }
 
-  emitTableData(data) {
-    this.tableData = data;
-  }
+  // emitTableData(data) {
+  //   this.tableData = data;
+  // }
+
   save() {
+    this.tableData = this.commonService.formatTableData(this.tableData);
     this.saveSubassets();
   }
 
@@ -418,6 +419,7 @@ export class SubAssetsComponent implements OnInit {
     this.apiService.apiPostRequest(addCashBank, requestObj).subscribe(
       response => {
         const res = response.body;
+        this.tableData = [];
         if (!this.commonService.checkNullOrUndefined(res) && res.status === StatusCodes.pass) {
           if (!this.commonService.checkNullOrUndefined(res.response)) {
             this.alertService.openSnackBar('SubAssets created Successfully..', Static.Close, SnackBar.success);

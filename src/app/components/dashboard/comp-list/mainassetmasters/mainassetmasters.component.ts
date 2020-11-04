@@ -420,6 +420,7 @@ export class MainAssetMasterComponent implements OnInit {
   }
 
   emitColumnChanges(data) {
+    this.tableData = data.data;
     this.assigndata(data);
   }
 
@@ -429,6 +430,7 @@ export class MainAssetMasterComponent implements OnInit {
       if (!this.commonService.checkNullOrUndefined(code)) {
         row.data[row.index].rate.value = code.rate;
         this.sendDynTableData = { type: 'add', data: row.data };
+        this.tableData = row.data;
       }
     }
   }
@@ -437,11 +439,10 @@ export class MainAssetMasterComponent implements OnInit {
 
   get formControls() { return this.modelFormData.controls; }
 
-  emitTableData(data) {
-    this.tableData = data;
-  }
+  
 
   save() {
+    this.tableData = this.commonService.formatTableData(this.tableData)
     this.saveMainassets();
 
   }
@@ -456,6 +457,7 @@ export class MainAssetMasterComponent implements OnInit {
     this.apiService.apiPostRequest(addCashBank, requestObj).subscribe(
       response => {
         const res = response.body;
+        this.tableData = [];
         if (!this.commonService.checkNullOrUndefined(res) && res.status === StatusCodes.pass) {
           if (!this.commonService.checkNullOrUndefined(res.response)) {
             this.alertService.openSnackBar('MainAssets created Successfully..', Static.Close, SnackBar.success);

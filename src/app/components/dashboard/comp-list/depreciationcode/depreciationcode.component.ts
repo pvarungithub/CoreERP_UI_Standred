@@ -142,13 +142,12 @@ export class DepreciationcodeComponent implements OnInit {
 
   get formControls() { return this.modelFormData.controls; }
 
-  emitTableData(data) {
-    this.tableData = data;
-
+  emitColumnChanges(data) {
+    this.tableData = data.data;
   }
 
   save() {
-
+    this.tableData = this.commonService.formatTableData(this.tableData);
     this.savedepreciationcode();
   }
 
@@ -167,6 +166,7 @@ export class DepreciationcodeComponent implements OnInit {
     this.apiService.apiPostRequest(addCashBank, requestObj).subscribe(
       response => {
         const res = response.body;
+        this.tableData = [];
         if (!this.commonService.checkNullOrUndefined(res) && res.status === StatusCodes.pass) {
           if (!this.commonService.checkNullOrUndefined(res.response)) {
             this.alertService.openSnackBar('Depreciationcode created Successfully..', Static.Close, SnackBar.success);

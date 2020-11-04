@@ -297,6 +297,7 @@ export class PurchasingComponent implements OnInit {
           if (!this.commonService.checkNullOrUndefined(res) && res.status === StatusCodes.pass) {
             if (!this.commonService.checkNullOrUndefined(res.response)) {
               this.formData.setValue(res.response['preqmasters']);
+            
               this.sendDynTableData = { type: 'edit', data: res.response['preqDetail'] };
               this.formData.disable();
             }
@@ -305,8 +306,7 @@ export class PurchasingComponent implements OnInit {
   }
 
   emitColumnChanges(data) {
- this.tableData = data.data;
-    // this.calculateAmount(data);
+    this.tableData = data.data;
   }
 
  
@@ -329,7 +329,7 @@ export class PurchasingComponent implements OnInit {
     this.apiService.apiPostRequest(addprreq, requestObj).subscribe(
       response => {
         const res = response.body;
- this.tableData = [];
+         this.tableData = [];
         if (!this.commonService.checkNullOrUndefined(res) && res.status === StatusCodes.pass) {
           if (!this.commonService.checkNullOrUndefined(res.response)) {
             this.alertService.openSnackBar('Purchase Requisition created Successfully..', Static.Close, SnackBar.success);

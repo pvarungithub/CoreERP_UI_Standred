@@ -159,27 +159,24 @@ export class AssetBegningAcqusitionComponent implements OnInit {
           const res = response.body;
           if (!this.commonService.checkNullOrUndefined(res) && res.status === StatusCodes.pass) {
             if (!this.commonService.checkNullOrUndefined(res.response)) {
-              //console.log(res.response['AqsnMasters']);
               console.log((res.response['AqsnMasters']));
-              //console.log((res.response['AqsnDetail']));
               this.modelFormData.setValue(res.response['AqsnMasters']);
-              this.sendDynTableData = { type: 'editValue', data: res.response['AqsnDetail'] };
+              this.sendDynTableData = { type: 'edit', data: res.response['AqsnDetail'] };
             }
           }
         });
   }
-  assigndata
+
   emitColumnChanges(data) {
-    this.assigndata(data);
+    this.tableData = data.data;
   }
 
   get formControls() { return this.modelFormData.controls; }
 
-  emitTableData(data) {
-    this.tableData = data;
-  }
+
 
   save() {
+    this.tableData = this.commonService.formatTableData(this.tableData);
     this.saveBeingAcquisition();
 
   }
@@ -194,6 +191,7 @@ export class AssetBegningAcqusitionComponent implements OnInit {
     this.apiService.apiPostRequest(addCashBank, requestObj).subscribe(
       response => {
         const res = response.body;
+        this.tableData = [];
         if (!this.commonService.checkNullOrUndefined(res) && res.status === StatusCodes.pass) {
           if (!this.commonService.checkNullOrUndefined(res.response)) {
             this.alertService.openSnackBar('BeingAcquisition created Successfully..', Static.Close, SnackBar.success);

@@ -615,6 +615,7 @@ this.tableData = row.data;
     this.apiService.apiPostRequest(addInvoiceMemo, requestObj).subscribe(
       response => {
         const res = response.body;
+        this.tableData = [];
         if (!this.commonService.checkNullOrUndefined(res) && res.status === StatusCodes.pass) {
           if (!this.commonService.checkNullOrUndefined(res.response)) {
             this.alertService.openSnackBar('Invoice / Memo created Successfully..', Static.Close, SnackBar.success);
