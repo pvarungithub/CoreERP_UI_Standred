@@ -54,10 +54,11 @@ export class PurchaseOrderComponent implements OnInit {
   qnoList: any;
   ptypeList: any;
   ptermsList: any;
-
+  filesend: any;
   // user details
   loginUser: any;
   bpaList: any;
+  imgShow: any;
 
   constructor(
     private commonService: CommonService,
@@ -443,7 +444,6 @@ export class PurchaseOrderComponent implements OnInit {
           if (!this.commonService.checkNullOrUndefined(res) && res.status === StatusCodes.pass) {
             if (!this.commonService.checkNullOrUndefined(res.response)) {
               this.formData.setValue(res.response['pomasters']);
-
               this.sendDynTableData = { type: 'edit', data: res.response['poDetail'] };
               this.formData.disable();
             }
@@ -451,12 +451,11 @@ export class PurchaseOrderComponent implements OnInit {
         });
   }
 
-  emitColumnChanges(data) {
- this.tableData = data.data;
-    // this.calculateAmount(data);
-  }
 
- 
+
+  emitColumnChanges(data) {
+    this.tableData = data.data;
+  }
 
 
   back() {
@@ -464,7 +463,7 @@ export class PurchaseOrderComponent implements OnInit {
   }
 
   save() {
- this.tableData = this.commonService.formatTableData(this.tableData);
+    this.tableData = this.commonService.formatTableData(this.tableData);
     if (this.tableData.length == 0 && this.formData.invalid) {
       return;
     }
@@ -472,30 +471,50 @@ export class PurchaseOrderComponent implements OnInit {
   }
 
   savepurcahseorder() {
-
     const addprorder = String.Join('/', this.apiConfigService.addpurchaseorder);
     const requestObj = { poHdr: this.formData.value, poDtl: this.tableData };
     this.apiService.apiPostRequest(addprorder, requestObj).subscribe(
       response => {
-        // this.saveimage();
         const res = response.body;
- this.tableData = [];
+        this.tableData = [];
+        this.saveimage();
         if (!this.commonService.checkNullOrUndefined(res) && res.status === StatusCodes.pass) {
           if (!this.commonService.checkNullOrUndefined(res.response)) {
             this.alertService.openSnackBar('Purchase Order created Successfully..', Static.Close, SnackBar.success);
-            //this.spinner.hide();
-
           }
           this.reset();
           this.spinner.hide();
         }
       });
   }
-  saveimage() {
+  downloadImg() {
+    const url = String.Join('/', this.apiConfigService.getFile, this.formData.get('filePath').value);
+    this.apiService.apiGetRequest(url)
+      .subscribe(
+        response => {
+          const res = response.body;
+          this.imgShow = res.response;
+          this.commonService.downloadFile(res.response)
+          this.spinner.hide();
+        });
+  }
 
-    const requestObj = this.formData.get('filePath').value;
+  downloadDocFile(data) {
+    const DocFileName = data.DocFile;
+    var DocFile = DocFileName.slice(0, -5);
+  }
+  uploadFile(event) {
+    const file = (event.target as HTMLInputElement).files[0];
+    this.filesend = file;
+    this.formData.patchValue({
+      filePath: file.name
+    });
+  }
+  saveimage() {
+    var formData: any = new FormData();
+    formData.append("avatar", this.filesend);
     const getLoginUrl = String.Join('/', this.apiConfigService.saveimage);
-    this.apiService.apiPostRequest(getLoginUrl, requestObj)
+    this.apiService.apiPostRequest(getLoginUrl, formData)
       .subscribe(
         response => {
           const res = response.body;

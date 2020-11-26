@@ -256,7 +256,7 @@ export class ApiConfigService {
    getquotationanalysisMaster = `${this.environment.runtimeConfig.serverUrl}Transactions/GetQuotationAnalysis`;
    returnquotationanalysis = `${this.environment.runtimeConfig.serverUrl}Transactions/ReturnQuotationAnalysis`;
    /*******************************Purchase Order ****************************************************** */
-   saveimage = `${this.environment.runtimeConfig.serverUrl}Transactions/SaveIssueImage`;
+   saveimage = `${this.environment.runtimeConfig.serverUrl}Transactions/UploadFile`;
    addpurchaseorder = `${this.environment.runtimeConfig.serverUrl}Transactions/AddPurchaseOrder`;
    getpurchaseorderDetail = `${this.environment.runtimeConfig.serverUrl}Transactions/GetPurchaseOrderDetail`;
    getpurchaseorderMaster = `${this.environment.runtimeConfig.serverUrl}Transactions/GetPurchaseOrder`;
@@ -279,5 +279,6 @@ export class ApiConfigService {
 
    /*******************************PrimeryCost****************************************************** */
    addpccost = `${this.environment.runtimeConfig.serverUrl}PrimaryCostElementsCreation/UpdatePcost`;
+   getFile = `${this.environment.runtimeConfig.serverUrl}Transactions/GetFile`;
 
 }

@@ -61,7 +61,7 @@ export class AlternateControlAccountComponent implements OnInit {
           const res = response.body;
           if (!this.commonService.checkNullOrUndefined(res) && res.status === StatusCodes.pass) {
             if (!this.commonService.checkNullOrUndefined(res.response)) {
-              this.glList = res.response['glList'].filter(res => res.controlAccount == 'Vendor' || res.controlAccount == 'Customer');
+              this.glList = res.response['glList'].filter(res => res.controlaccount == 'Vendor' || res.controlaccount == 'Customer');
             }
           }
           this.spinner.hide();

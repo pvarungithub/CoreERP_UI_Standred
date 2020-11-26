@@ -6,6 +6,9 @@ import { TranslateService } from '@ngx-translate/core';
 import { HttpClient, HttpErrorResponse } from '@angular/common/http';
 import { NgxSpinnerService } from 'ngx-spinner';
 
+declare var require: any
+const FileSaver = require('file-saver');
+
 @Injectable({
   providedIn: 'root'
 })
@@ -33,6 +36,40 @@ export class CommonService {
     });
   }
 
+  downloadFile(data) {
+    const arrayBuffer = this.base64ToArrayBuffer(data.fileContents);
+    this.createAndDownloadBlobFile(arrayBuffer, data.fileDownloadName.split('.').slice(0, -1).join('.'), data.fileDownloadName.split('.').pop());
+    // FileSaver.saveAs(data, 'sdfsd');
+
+  }
+
+  createAndDownloadBlobFile(body, filename, extension = 'pdf') {
+    const blob = new Blob([body]);
+    const fileName = `${filename}.${extension}`;
+    if (navigator.msSaveBlob) {
+      // IE 10+
+      navigator.msSaveBlob(blob, fileName);
+    } else {
+      const link = document.createElement('a');
+      // Browsers that support HTML5 download attribute
+      if (link.download !== undefined) {
+        const url = URL.createObjectURL(blob);
+        link.setAttribute('href', url);
+        link.setAttribute('download', fileName);
+        link.style.visibility = 'hidden';
+        document.body.appendChild(link);
+        link.click();
+        document.body.removeChild(link);
+      }
+    }
+  }
+
+  base64ToArrayBuffer(base64: string) {
+    const binaryString = window.atob(base64); // Comment this if not using base64
+    const bytes = new Uint8Array(binaryString.length);
+    return bytes.map((byte, i) => binaryString.charCodeAt(i));
+  }
+
   formatTableData(data, flag = 1) {
     const array = [];
     for (let t = 0; t < data.length; t++) {
@@ -42,7 +79,7 @@ export class CommonService {
         if (prop == 'checkAll') {
           object['check'] = (prop == 'checkAll') ? data[t][prop].value : true
         }
-        if(data[t][prop].type == 'checkbox') {
+        if (data[t][prop].type == 'checkbox') {
           object[prop] = object[prop] ? 1 : 0
         }
       }

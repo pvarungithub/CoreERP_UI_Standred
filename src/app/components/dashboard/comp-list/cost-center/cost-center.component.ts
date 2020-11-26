@@ -74,8 +74,8 @@ export class CostCenterComponent implements OnInit {
     @Optional() @Inject(MAT_DIALOG_DATA) public data: any) {
 
     this.modelFormData = this.formBuilder.group({
-      objectType: [null, [Validators.required, Validators.minLength(2), Validators.maxLength(4)]],
-      code: [null, [Validators.required, Validators.minLength(2), Validators.maxLength(50)]],
+      objectType: [null, [Validators.required, Validators.minLength(2), Validators.maxLength(5)]],
+      code: [null, [Validators.required, Validators.minLength(2), Validators.maxLength(6)]],
       costCenterName: [null],
       functions: [null],
       type: [null],
