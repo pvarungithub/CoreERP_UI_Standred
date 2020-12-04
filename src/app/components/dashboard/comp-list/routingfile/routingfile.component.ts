@@ -189,20 +189,20 @@ export class RoutingFileComponent implements OnInit {
     }
   }
 
- emitColumnRoutingData(data) {
-    this.routingTableData = data;
+  emitColumnRoutingData(data) {
+    this.routingTableData = data.data;
   }
 
   emitColumnActivityData(data) {
-    this.activityTableData = data;
+    this.activityTableData = data.data;
   }
 
   emitColumnMaterialAssData(data) {
-    this.materialAssTableData = data;
+    this.materialAssTableData = data.data;
   }
 
   emitColumnToolsEquipmentData(data) {
-    this.equipmentTableData = data;
+    this.equipmentTableData = data.data;
   }
 
 
@@ -379,28 +379,26 @@ export class RoutingFileComponent implements OnInit {
   }
 
   save() {
-  this.routingTableData = this.commonService.formatTableData(this.routingTableData);
- 
-    this.activityTableData = this.commonService.formatTableData(this.activityTableData);
-    this.materialAssTableData = this.commonService.formatTableData(this.materialAssTableData);
-    this.equipmentTableData = this.commonService.formatTableData(this.equipmentTableData);
-    this.saverouting();
-
+    const routingTableData = this.commonService.formatTableData(this.routingTableData);
+    const activityTableData = this.commonService.formatTableData(this.activityTableData);
+    const materialAssTableData = this.commonService.formatTableData(this.materialAssTableData);
+    const equipmentTableData = this.commonService.formatTableData(this.equipmentTableData);
+    const obj = {
+      routingDetail: routingTableData, activityDetail: activityTableData,
+      materialDetail: materialAssTableData, equipmentDetail: equipmentTableData
+    }
+    this.saverouting(obj);
   }
 
-  saverouting() {
+  saverouting(obj) {
     const addrouting = String.Join('/', this.apiConfigService.addrouting);
     const requestObj = {
-      routeHdr: this.modelFormData.value, routingDetail: this.routingTableData,
-      activityDetail: this.activityTableData, materialDetail: this.materialAssTableData, equipmentDetail: this.equipmentTableData,
+      routeHdr: this.modelFormData.value, routingDetail: obj.routingDetail,
+      activityDetail: obj.activityDetail, materialDetail: obj.materialDetail, equipmentDetail: obj.equipmentDetail,
     };
     this.apiService.apiPostRequest(addrouting, requestObj).subscribe(
       response => {
         const res = response.body;
- this.routingTableData = [];
-        this.activityTableData = [];
-        this.materialAssTableData = [];
-        this.equipmentTableData = [];
         if (!this.commonService.checkNullOrUndefined(res) && res.status === StatusCodes.pass) {
           if (!this.commonService.checkNullOrUndefined(res.response)) {
             this.alertService.openSnackBar('Routing File created Successfully..', Static.Close, SnackBar.success);
