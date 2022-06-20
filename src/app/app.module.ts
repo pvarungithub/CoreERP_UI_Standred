@@ -38,7 +38,7 @@ import {
 import {
   CashbankComponent, JournalComponent, GoodsissueComponent, MemoinvoiceComponent, SourceOfSupplyComponent, InspectioncheckComponent,
   QuotationAnalysisComponent, QuotationSupplierComponent, PurchasingComponent, PurchaseOrderComponent, ReceiptOfGoodsComponent,
-  ReceiptspaymentsComponent, BillOfMaterialComponent, MaterialrequisitionComponents, PurchasesaleassetComponent, SaleassetComponent
+  ReceiptspaymentsComponent, BillOfMaterialComponent, MaterialrequisitionComponents, PurchasesaleassetComponent, SaleassetComponent,SampleRequisitionFormComponent
 } from './components/dashboard/trans-list/index';
 
 import { NavbarComponent, TableComponent, DeleteItemComponent, SearchFilterTableComponent, TransTableComponent, DynamicTableComponent, AutocompleteComponent } from './reuse-components/index';
@@ -60,7 +60,8 @@ import { TranslateHttpLoader } from '@ngx-translate/http-loader';
 
 import { FocusOnEnterDirective } from './directives/focus-on-enter.directive';
 
-import { BsDropdownModule, TypeaheadModule } from 'ngx-bootstrap';
+import { BsDropdownModule } from 'ngx-bootstrap/dropdown';
+import { TypeaheadModule } from 'ngx-bootstrap/typeahead';
 import { NgxDaterangepickerMd } from 'ngx-daterangepicker-material';
 
 import { TokenInterceptor } from './token-interceptor';
@@ -128,7 +129,7 @@ export function HttpLoaderFactory(httpClient: HttpClient) {
     GoodsIssueNoteNumberSeriesComponent, BinsCreationComponent, PurchaseRequisitionNumberRangeComponent, MaterialNumberRangeComponent, MaterialNumberAsssignmentComponent,
     PurchaseOrderAssignmentComponent, QuotationAssignmentComponent, BusienessTransactionTypeComponent, AssetBegningAccumulatedDepreciationComponent, AssetBegningAcqusitionComponent,
     BusienessPartnerAccountComponent, AssignGLaccounttoSubGroupComponent, MainAssetMasterComponent, SubAssetsComponent,
-    DynamicTableComponent, AutocompleteComponent, CashbankComponent, JournalComponent, MaterialRequisitionNoteAssignmentComponent, GoodsissueComponent, MemoinvoiceComponent, ReceiptspaymentsComponent, MaterialrequisitionComponents, BillOfMaterialComponent, MaxlengthDirective, PurchasesaleassetComponent,
+    DynamicTableComponent, AutocompleteComponent, CashbankComponent,SampleRequisitionFormComponent, JournalComponent, MaterialRequisitionNoteAssignmentComponent, GoodsissueComponent, MemoinvoiceComponent, ReceiptspaymentsComponent, MaterialrequisitionComponents, BillOfMaterialComponent, MaxlengthDirective, PurchasesaleassetComponent,
     SaleassetComponent, RoutingFileComponent, SourceOfSupplyComponent, QuotationSupplierComponent, QuotationAnalysisComponent,
     PurchasingComponent, PurchaseOrderComponent, ReceiptOfGoodsComponent, InspectioncheckComponent, NonEditableDatepicker, PrimaryComponent, PrimaryCostElementComponent
     //LeaveopeningbalanceComponent,

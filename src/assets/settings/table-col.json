@@ -1784,5 +1784,9 @@
     "branch": "Branch",
     "text": "Text",
     "delete": "Delete"
+  },
+  "samplerequisitionform":{
+    "title":"Sample Requisition Form",
+    "organization":"Organization"
   }
 }

@@ -17,6 +17,7 @@ import { QuotationAnalysisComponent } from './quotationanalysis/quotationanalysi
 import { PurchaseOrderComponent } from './purcahseorder/purcahseorder.component'
 import { ReceiptOfGoodsComponent } from './goodsreceipts/receipt-of-goods.component'
 import { InspectioncheckComponent } from './inspectioncheck/inspectioncheck.component'
+import { SampleRequisitionFormComponent } from './samplerequisitionform/samplerequisitionform.component'
 @Injectable({
   providedIn: 'root'
 })
@@ -155,6 +156,14 @@ export class TransListService {
         this.dynamicComp.tableUrl = this.apiConfigService.getinspectioncheck;
         this.dynamicComp.list = 'icdetails';
         this.dynamicComp.editKey = 'inspectionCheckNo';
+        return this.dynamicComp;
+        break;
+      }
+      case 'samplerequisitionform': {
+        this.dynamicComp.component = SampleRequisitionFormComponent;
+        this.dynamicComp.tableUrl = this.apiConfigService.getCashBankMaster;
+        this.dynamicComp.list = 'CashBankMasters';
+        this.dynamicComp.editKey = 'voucherNumber';
         return this.dynamicComp;
         break;
       }

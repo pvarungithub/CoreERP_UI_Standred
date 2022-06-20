@@ -2044,5 +2044,27 @@
     "profitCenter": "ProfitCenter",
     "text": "Text",
     "delete": "Delete"
+  },
+  "samplerequisitionform":{
+    "title":"Sample Requisition Form",
+    "organization":"Organization",
+    "customercontact":"Customer Contact Details",
+    "solubility":"Solubility",
+    "submittedfor":"Submitted For",
+    "objective":"Objective",
+    "nature":"Nature",
+    "physicalappearence":"Physical Appearence",
+    "stabilitydetail":"Stability Details",
+    "targetqty":"Target Qty",
+    "storagecondition":"Storage Condition",
+    "specification":"Specification",
+    "safetyinformation":"Safety Information",
+    "receivedDate":"Receieved Date",
+    "internalcode":"Internal Code",
+    "lnbrefno":"LNB Ref.No",
+    "reportrefno":"Report Ref No",
+    "analysedby":"Analysed By",
+    "analyseddate":"Analysed Date",
+    "remarks":"Remarks"
   }
 }

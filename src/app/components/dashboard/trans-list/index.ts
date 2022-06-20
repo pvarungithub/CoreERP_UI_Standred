@@ -14,3 +14,4 @@ export { QuotationAnalysisComponent } from './quotationanalysis/quotationanalysi
 export { PurchaseOrderComponent } from './purcahseorder/purcahseorder.component'
 export { ReceiptOfGoodsComponent } from './goodsreceipts/receipt-of-goods.component'
 export { InspectioncheckComponent } from './inspectioncheck/inspectioncheck.component'
+export { SampleRequisitionFormComponent } from './samplerequisitionform/samplerequisitionform.component'
