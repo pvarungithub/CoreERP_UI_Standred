@@ -11,35 +11,22 @@ import { Static } from '../../../../enums/common/static';
 import { AlertService } from '../../../../services/alert.service';
 import { DateAdapter, MAT_DATE_FORMATS } from '@angular/material/core';
 import { AppDateAdapter, APP_DATE_FORMATS } from '../../../../directives/format-datepicker';
-import { MatTableDataSource, MatTableModule } from '@angular/material/table';
-
-export interface Weight {
-  Id : number,	
-  GrossWeight:number,	
-  TareWeight:number,	
-  NetWeight:number
-}
+import { AuthService } from 'src/app/services/auth.service';
 
 @Component({
-  selector: 'app-samplerequisitionform',
-  templateUrl: './samplerequisitionform.component.html',
-  styleUrls: ['./samplerequisitionform.component.scss'],
+  selector: 'app-sampleservice',
+  templateUrl: './sampleservice.component.html',
+  styleUrls: ['./sampleservice.component.scss'],
   providers: [
     { provide: DateAdapter, useClass: AppDateAdapter },
     { provide: MAT_DATE_FORMATS, useValue: APP_DATE_FORMATS }
   ]
 })
 
-export class SampleRequisitionFormComponent implements OnInit {
-WeightData : Weight[] = [{
-  "Id": 1,
-    "GrossWeight": 100,
-    "TareWeight": 200,
-    "NetWeight": 300,
-}];
-displayedColumns: string[] = ['Id', 'GrossWeight', 'TareWeight', 'NetWeight'];
+export class SampleServiceComponent implements OnInit {
   formData: FormGroup;
   routeEdit = '';
+
   tableData = [];
   dynTableProps: any;
   sendDynTableData: any;
@@ -76,7 +63,8 @@ displayedColumns: string[] = ['Id', 'GrossWeight', 'TareWeight', 'NetWeight'];
     private spinner: NgxSpinnerService,
     public commonService: CommonService,
     public route: ActivatedRoute,
-    private router: Router
+    private router: Router,
+    private auth : AuthService
   ) {
     if (!this.commonService.checkNullOrUndefined(this.route.snapshot.params.value)) {
       this.routeEdit = this.route.snapshot.params.value;
@@ -87,7 +75,18 @@ displayedColumns: string[] = ['Id', 'GrossWeight', 'TareWeight', 'NetWeight'];
     this.formDataGroup();
     this.getCompanyList();
     this.formData.controls['voucherNumber'].disable();
+    this.usage=this.auth.usage();
   }
+
+  usage:any=[];
+  usagetype:any=[];
+
+  onSelect(usage){
+    this.usagetype=this.auth.type().filter(e=> e.id == usage.value);
+    console.log(this.usagetype);
+  }
+
+  
 
   formDataGroup() {
     this.formData = this.formBuilder.group({
@@ -201,6 +200,10 @@ displayedColumns: string[] = ['Id', 'GrossWeight', 'TareWeight', 'NetWeight'];
         accountingIndicator: [null, [Validators.required]]
       }
     };
+  }
+
+  onusageChange(usage){
+
   }
 
   getSampleRequisitionDetail(val) {

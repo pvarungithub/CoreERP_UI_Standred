@@ -20,4 +20,38 @@ export class AuthService {
     localStorage.removeItem('user');
   }
 
+  usage(){
+    return[
+      {
+        id:1,
+        name:"Internal"
+      },
+      {
+        id:2,
+        name:"External"
+      }
+    ]
+  }
+
+  type(){
+    return[
+      {
+        id:1,
+        name:"Test 1"
+      },
+      {
+        id:1,
+        name:"Test 2"
+      },
+      {
+        id:2,
+        name:"Test 3"
+      },
+      {
+        id:2,
+        name:"Test 4"
+      }
+    ]
+  }
+
 }

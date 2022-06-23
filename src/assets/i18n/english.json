@@ -2066,5 +2066,10 @@
     "analysedby":"Analysed By",
     "analyseddate":"Analysed Date",
     "remarks":"Remarks"
+  },
+  "sampleservice":{
+    "title":"Sample Service",
+    "usage":"Usage",
+    "type":"Type"
   }
 }

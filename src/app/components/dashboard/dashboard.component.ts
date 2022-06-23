@@ -4,7 +4,7 @@ import { ApiService } from '../../services/api.service';
 import { CommonService } from '../../services/common.service';
 import { ApiConfigService } from '../../services/api-config.service';
 import { NgxSpinnerService } from 'ngx-spinner';
-import { ActivatedRoute } from '@angular/router';
+import { ActivatedRoute,Router } from '@angular/router';
 
 @Component({
   selector: 'app-dashboard',
@@ -21,6 +21,7 @@ export class DashboardComponent implements OnInit, AfterViewInit, OnDestroy {
     private commonService: CommonService,
     private apiConfigService: ApiConfigService,
     private spinner: NgxSpinnerService,
+    private router: Router,
     route: ActivatedRoute
   ) {
     this.commonService.routeParam = route.snapshot.routeConfig.path;
@@ -52,5 +53,12 @@ export class DashboardComponent implements OnInit, AfterViewInit, OnDestroy {
     this.commonService.routeParam = null;
   }
 
+  btnSample(): void {
+    this.router.navigateByUrl('dashboard/transaction/samplerequisitionform');
+ }
+
+ btnService(): void{
+  this.router.navigateByUrl('dashboard/transaction/sampleservice');
+ }
  
 }
