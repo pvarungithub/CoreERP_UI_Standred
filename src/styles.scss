@@ -40,6 +40,9 @@ button:focus {
   }
 }
 
+.mat-form-field {
+  width: 100%;
+}
 
 .ng--valid {
   & .mat-form-field-label {
@@ -68,7 +71,6 @@ button:focus {
 mat-hint {
   color: $color-error !important;
 }
-
 
 
 .cursor--pointer {
@@ -156,6 +158,11 @@ mat-form-field {
   }
 }
 
+mat-option  {
+  & > mat-pseudo-checkbox {
+   display: none !important;
+  }
+}
 
 .cdk-overlay-pane-select-search.cdk-overlay-pane-select-search-with-offset {
   margin: 50px 0px 0px 30px !important;
@@ -167,10 +174,9 @@ mat-form-field {
     flex: 0 0 24%;
   }
   & mat-card-title {
-    min-height: 35px;
-    height: 35px;
+    min-height: 50px;
+    height: 50px;
     z-index: 1000;
-    font-size: 20px;    
   }
   & mat-card-content {
     max-height: 400px;
@@ -201,4 +207,17 @@ table {
   & input:focus {
     background: #f6ff0091;
   }
+}
+
+
+/* Chrome, Safari, Edge, Opera */
+input::-webkit-outer-spin-button,
+input::-webkit-inner-spin-button {
+  -webkit-appearance: none;
+  margin: 0;
+}
+
+/* Firefox */
+input[type=number] {
+  -moz-appearance: textfield;
 }
