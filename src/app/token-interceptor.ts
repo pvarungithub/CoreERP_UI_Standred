@@ -12,10 +12,12 @@ export class TokenInterceptor implements HttpInterceptor{
     constructor(private router: Router, private commonService: CommonService ) { }
 
     intercept(request: HttpRequest<any>, next: HttpHandler): Observable<HttpEvent<any>> {
-        if (!this.commonService.checkNullOrUndefined(localStorage.getItem('Token'))) {
+        const token = localStorage.getItem('Token') 
+        const newToken = token ? JSON.parse(token) : null;
+        if (!this.commonService.checkNullOrUndefined(newToken)) {
             request = request.clone({
                 setHeaders: {
-                    Authorization: 'Bearer ' + JSON.parse(localStorage.getItem('Token'))
+                    Authorization: 'Bearer ' + newToken
                 }
             });
         }
@@ -25,7 +27,7 @@ export class TokenInterceptor implements HttpInterceptor{
                 this.authLogout();
             }
 
-            const error = err.error.message || err.statusText;
+            const error = err?.error?.message || err?.statusText;
             return throwError(error);
         }))
     }

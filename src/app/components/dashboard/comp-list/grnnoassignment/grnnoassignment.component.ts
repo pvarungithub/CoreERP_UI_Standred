@@ -62,7 +62,7 @@ export class GoodsReceiptNoteAssignmentComponent implements OnInit {
     this.apiService.apiGetRequest(getGRNSeriesUrl)
       .subscribe(
         response => {
-          const res = response.body;
+          const res = response;
           if (!this.commonService.checkNullOrUndefined(res) && res.status === StatusCodes.pass) {
             if (!this.commonService.checkNullOrUndefined(res.response)) {
               this.grnoList = res.response['grnoList'];
@@ -77,7 +77,7 @@ export class GoodsReceiptNoteAssignmentComponent implements OnInit {
     this.apiService.apiGetRequest(getompanyUrl)
       .subscribe(
         response => {
-          const res = response.body;
+          const res = response;
           if (!this.commonService.checkNullOrUndefined(res) && res.status === StatusCodes.pass) {
             if (!this.commonService.checkNullOrUndefined(res.response)) {
               this.companiesList = res.response['companiesList'];
@@ -92,7 +92,7 @@ export class GoodsReceiptNoteAssignmentComponent implements OnInit {
     this.apiService.apiGetRequest(getPlantTypeUrl)
       .subscribe(
         response => {
-          const res = response.body;
+          const res = response;
           if (!this.commonService.checkNullOrUndefined(res) && res.status === StatusCodes.pass) {
             if (!this.commonService.checkNullOrUndefined(res.response)) {
               this.plantsList = res.response['plantsList'];
@@ -107,7 +107,7 @@ export class GoodsReceiptNoteAssignmentComponent implements OnInit {
     this.apiService.apiGetRequest(getMaterialTypeUrl)
       .subscribe(
         response => {
-          const res = response.body;
+          const res = response;
           if (!this.commonService.checkNullOrUndefined(res) && res.status === StatusCodes.pass) {
             if (!this.commonService.checkNullOrUndefined(res.response)) {
               this.matypeList = res.response['matypeList'];

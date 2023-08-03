@@ -14,10 +14,10 @@ import { AppDateAdapter, APP_DATE_FORMATS } from '../../../../directives/format-
 import { MatTableDataSource, MatTableModule } from '@angular/material/table';
 
 export interface Weight {
-  Id : number,	
-  GrossWeight:number,	
-  TareWeight:number,	
-  NetWeight:number
+  Id: number,
+  GrossWeight: number,
+  TareWeight: number,
+  NetWeight: number
 }
 
 @Component({
@@ -31,13 +31,13 @@ export interface Weight {
 })
 
 export class SampleRequisitionFormComponent implements OnInit {
-WeightData : Weight[] = [{
-  "Id": 1,
+  WeightData: Weight[] = [{
+    "Id": 1,
     "GrossWeight": 100,
     "TareWeight": 200,
     "NetWeight": 300,
-}];
-displayedColumns: string[] = ['Id', 'GrossWeight', 'TareWeight', 'NetWeight'];
+  }];
+  displayedColumns: string[] = ['Id', 'GrossWeight', 'TareWeight', 'NetWeight'];
   formData: FormGroup;
   routeEdit = '';
   tableData = [];
@@ -208,7 +208,7 @@ displayedColumns: string[] = ['Id', 'GrossWeight', 'TareWeight', 'NetWeight'];
     this.apiService.apiGetRequest(cashDetUrl)
       .subscribe(
         response => {
-          const res = response.body;
+          const res = response;
           if (!this.commonService.checkNullOrUndefined(res) && res.status === StatusCodes.pass) {
             if (!this.commonService.checkNullOrUndefined(res.response)) {
               this.formData.setValue(res.response['CashBankMasters']);
@@ -224,7 +224,7 @@ displayedColumns: string[] = ['Id', 'GrossWeight', 'TareWeight', 'NetWeight'];
     this.apiService.apiGetRequest(companyUrl)
       .subscribe(
         response => {
-          const res = response.body;
+          const res = response;
           if (!this.commonService.checkNullOrUndefined(res) && res.status === StatusCodes.pass) {
             if (!this.commonService.checkNullOrUndefined(res.response)) {
               this.companyList = res.response['companiesList'];
@@ -239,7 +239,7 @@ displayedColumns: string[] = ['Id', 'GrossWeight', 'TareWeight', 'NetWeight'];
     this.apiService.apiGetRequest(branchUrl)
       .subscribe(
         response => {
-          const res = response.body;
+          const res = response;
           if (!this.commonService.checkNullOrUndefined(res) && res.status === StatusCodes.pass) {
             if (!this.commonService.checkNullOrUndefined(res.response)) {
               this.branchList = res.response['branchsList'];
@@ -254,7 +254,7 @@ displayedColumns: string[] = ['Id', 'GrossWeight', 'TareWeight', 'NetWeight'];
     this.apiService.apiGetRequest(voucherClassList)
       .subscribe(
         response => {
-          const res = response.body;
+          const res = response;
           if (!this.commonService.checkNullOrUndefined(res) && res.status === StatusCodes.pass) {
             if (!this.commonService.checkNullOrUndefined(res.response)) {
               this.voucherClassList = res.response['vcList'];
@@ -269,7 +269,7 @@ displayedColumns: string[] = ['Id', 'GrossWeight', 'TareWeight', 'NetWeight'];
     this.apiService.apiGetRequest(voucherTypes)
       .subscribe(
         response => {
-          const res = response.body;
+          const res = response;
           if (!this.commonService.checkNullOrUndefined(res) && res.status === StatusCodes.pass) {
             if (!this.commonService.checkNullOrUndefined(res.response)) {
               this.voucherTypeList = res.response['vouchertypeList'];
@@ -284,7 +284,7 @@ displayedColumns: string[] = ['Id', 'GrossWeight', 'TareWeight', 'NetWeight'];
     this.apiService.apiGetRequest(glAccUrl)
       .subscribe(
         response => {
-          const res = response.body;
+          const res = response;
           if (!this.commonService.checkNullOrUndefined(res) && res.status === StatusCodes.pass) {
             if (!this.commonService.checkNullOrUndefined(res.response)) {
               this.accountFilterList = res.response['glList'];
@@ -311,7 +311,7 @@ displayedColumns: string[] = ['Id', 'GrossWeight', 'TareWeight', 'NetWeight'];
     this.apiService.apiGetRequest(taxCodeUrl)
       .subscribe(
         response => {
-          const res = response.body;
+          const res = response;
           if (!this.commonService.checkNullOrUndefined(res) && res.status === StatusCodes.pass) {
             if (!this.commonService.checkNullOrUndefined(res.response)) {
               this.functionaldeptList = res.response['fdeptList'];
@@ -326,7 +326,7 @@ displayedColumns: string[] = ['Id', 'GrossWeight', 'TareWeight', 'NetWeight'];
     this.apiService.apiGetRequest(taxCodeUrl)
       .subscribe(
         response => {
-          const res = response.body;
+          const res = response;
           if (!this.commonService.checkNullOrUndefined(res) && res.status === StatusCodes.pass) {
             if (!this.commonService.checkNullOrUndefined(res.response)) {
               this.taxCodeList = res.response['TaxratesList'];
@@ -341,7 +341,7 @@ displayedColumns: string[] = ['Id', 'GrossWeight', 'TareWeight', 'NetWeight'];
     this.apiService.apiGetRequest(profCentUrl)
       .subscribe(
         response => {
-          const res = response.body;
+          const res = response;
           if (!this.commonService.checkNullOrUndefined(res) && res.status === StatusCodes.pass) {
             if (!this.commonService.checkNullOrUndefined(res.response)) {
               this.profitCenterList = res.response['profitCenterList'];
@@ -356,7 +356,7 @@ displayedColumns: string[] = ['Id', 'GrossWeight', 'TareWeight', 'NetWeight'];
     this.apiService.apiGetRequest(segUrl)
       .subscribe(
         response => {
-          const res = response.body;
+          const res = response;
           if (!this.commonService.checkNullOrUndefined(res) && res.status === StatusCodes.pass) {
             if (!this.commonService.checkNullOrUndefined(res.response)) {
               this.btList = res.response['bpttList'];
@@ -371,7 +371,7 @@ displayedColumns: string[] = ['Id', 'GrossWeight', 'TareWeight', 'NetWeight'];
     this.apiService.apiGetRequest(segUrl)
       .subscribe(
         response => {
-          const res = response.body;
+          const res = response;
           if (!this.commonService.checkNullOrUndefined(res) && res.status === StatusCodes.pass) {
             if (!this.commonService.checkNullOrUndefined(res.response)) {
               this.segmentList = res.response['segmentList'];
@@ -386,7 +386,7 @@ displayedColumns: string[] = ['Id', 'GrossWeight', 'TareWeight', 'NetWeight'];
     this.apiService.apiGetRequest(segUrl)
       .subscribe(
         response => {
-          const res = response.body;
+          const res = response;
           if (!this.commonService.checkNullOrUndefined(res) && res.status === StatusCodes.pass) {
             if (!this.commonService.checkNullOrUndefined(res.response)) {
               this.hsnsacList = res.response['hsnsacList'];
@@ -400,7 +400,7 @@ displayedColumns: string[] = ['Id', 'GrossWeight', 'TareWeight', 'NetWeight'];
     this.apiService.apiGetRequest(segUrl)
       .subscribe(
         response => {
-          const res = response.body;
+          const res = response;
           if (!this.commonService.checkNullOrUndefined(res) && res.status === StatusCodes.pass) {
             if (!this.commonService.checkNullOrUndefined(res.response)) {
               this.wbsList = res.response['wbsList'];
@@ -414,7 +414,7 @@ displayedColumns: string[] = ['Id', 'GrossWeight', 'TareWeight', 'NetWeight'];
     this.apiService.apiGetRequest(fcUrl)
       .subscribe(
         response => {
-          const res = response.body;
+          const res = response;
           if (!this.commonService.checkNullOrUndefined(res) && res.status === StatusCodes.pass) {
             if (!this.commonService.checkNullOrUndefined(res.response)) {
               this.fcList = res.response['fcList'];
@@ -428,7 +428,7 @@ displayedColumns: string[] = ['Id', 'GrossWeight', 'TareWeight', 'NetWeight'];
     this.apiService.apiGetRequest(cmntUrl)
       .subscribe(
         response => {
-          const res = response.body;
+          const res = response;
           if (!this.commonService.checkNullOrUndefined(res) && res.status === StatusCodes.pass) {
             if (!this.commonService.checkNullOrUndefined(res.response)) {
               this.citemList = res.response['citemList'];
@@ -442,7 +442,7 @@ displayedColumns: string[] = ['Id', 'GrossWeight', 'TareWeight', 'NetWeight'];
     this.apiService.apiGetRequest(onoUrl)
       .subscribe(
         response => {
-          const res = response.body;
+          const res = response;
           if (!this.commonService.checkNullOrUndefined(res) && res.status === StatusCodes.pass) {
             if (!this.commonService.checkNullOrUndefined(res.response)) {
               this.ordertypeList = res.response['ordertypeList'];
@@ -459,7 +459,7 @@ displayedColumns: string[] = ['Id', 'GrossWeight', 'TareWeight', 'NetWeight'];
       .subscribe(
         response => {
           this.spinner.hide();
-          const res = response.body;
+          const res = response;
           if (!this.commonService.checkNullOrUndefined(res) && res.status === StatusCodes.pass) {
             if (!this.commonService.checkNullOrUndefined(res.response)) {
               this.costCenterList = res.response['costcenterList'];
@@ -489,7 +489,7 @@ displayedColumns: string[] = ['Id', 'GrossWeight', 'TareWeight', 'NetWeight'];
         .subscribe(
           response => {
             this.spinner.hide();
-            const res = response.body;
+            const res = response;
             if (!this.commonService.checkNullOrUndefined(res) && res.status === StatusCodes.pass) {
               if (!this.commonService.checkNullOrUndefined(res.response)) {
                 this.formData.patchValue({
@@ -537,7 +537,7 @@ displayedColumns: string[] = ['Id', 'GrossWeight', 'TareWeight', 'NetWeight'];
     const addCashBank = String.Join('/', this.apiConfigService.returnCashBank, this.routeEdit);
     this.apiService.apiGetRequest(addCashBank).subscribe(
       response => {
-        const res = response.body;
+        const res = response;
         if (!this.commonService.checkNullOrUndefined(res) && res.status === StatusCodes.pass) {
           if (!this.commonService.checkNullOrUndefined(res.response)) {
             this.alertService.openSnackBar(res.response, Static.Close, SnackBar.success);
@@ -559,7 +559,7 @@ displayedColumns: string[] = ['Id', 'GrossWeight', 'TareWeight', 'NetWeight'];
     const requestObj = { cashbankHdr: this.formData.value, cashbankDtl: this.tableData };
     this.apiService.apiPostRequest(addCashBank, requestObj).subscribe(
       response => {
-        const res = response.body;
+        const res = response;
         this.tableData = [];
         if (!this.commonService.checkNullOrUndefined(res) && res.status === StatusCodes.pass) {
           if (!this.commonService.checkNullOrUndefined(res.response)) {

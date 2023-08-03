@@ -78,7 +78,7 @@ export class OrderTypeComponent implements OnInit {
     this.apiService.apiGetRequest(voucherClassList)
       .subscribe(
         response => {
-          const res = response.body;
+          const res = response;
           if (!this.commonService.checkNullOrUndefined(res) && res.status === StatusCodes.pass) {
             if (!this.commonService.checkNullOrUndefined(res.response)) {
               this.costunitList = res.response['costunitList'];

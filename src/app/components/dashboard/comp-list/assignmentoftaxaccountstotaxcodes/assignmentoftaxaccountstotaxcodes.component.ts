@@ -65,11 +65,11 @@ export class AssignmentoftaxaccountstotaxcodesComponent implements OnInit {
   }
 
   getGLAccountData() {
-    const getGLAccountUrl = String.Join('/', this.apiConfigService.getGLAccountListbyCatetory,'TAX');
+    const getGLAccountUrl = String.Join('/', this.apiConfigService.getGLAccountListbyCatetory, 'TAX');
     this.apiService.apiGetRequest(getGLAccountUrl)
       .subscribe(
         response => {
-          const res = response.body;
+          const res = response;
           if (!this.commonService.checkNullOrUndefined(res) && res.status === StatusCodes.pass) {
             if (!this.commonService.checkNullOrUndefined(res.response)) {
               this.glList = res.response['glList'];
@@ -85,7 +85,7 @@ export class AssignmentoftaxaccountstotaxcodesComponent implements OnInit {
     this.apiService.apiGetRequest(gettaxtransactinlist)
       .subscribe(
         response => {
-          const res = response.body;
+          const res = response;
           if (!this.commonService.checkNullOrUndefined(res) && res.status === StatusCodes.pass) {
             if (!this.commonService.checkNullOrUndefined(res.response)) {
               this.TaxTypeList = res.response['TaxratesList'];
@@ -100,7 +100,7 @@ export class AssignmentoftaxaccountstotaxcodesComponent implements OnInit {
     this.apiService.apiGetRequest(getcompanyList)
       .subscribe(
         response => {
-          const res = response.body;
+          const res = response;
           if (!this.commonService.checkNullOrUndefined(res) && res.status === StatusCodes.pass) {
             if (!this.commonService.checkNullOrUndefined(res.response)) {
               this.compList = res.response['companiesList'];
@@ -115,7 +115,7 @@ export class AssignmentoftaxaccountstotaxcodesComponent implements OnInit {
     this.apiService.apiGetRequest(getbranchList)
       .subscribe(
         response => {
-          const res = response.body;
+          const res = response;
           if (!this.commonService.checkNullOrUndefined(res) && res.status === StatusCodes.pass) {
             if (!this.commonService.checkNullOrUndefined(res.response)) {
               this.branchList = res.response['branchsList'];
@@ -130,7 +130,7 @@ export class AssignmentoftaxaccountstotaxcodesComponent implements OnInit {
     this.apiService.apiGetRequest(getplantsList)
       .subscribe(
         response => {
-          const res = response.body;
+          const res = response;
           if (!this.commonService.checkNullOrUndefined(res) && res.status === StatusCodes.pass) {
             if (!this.commonService.checkNullOrUndefined(res.response)) {
               this.plantList = res.response['plantsList'];
@@ -145,7 +145,7 @@ export class AssignmentoftaxaccountstotaxcodesComponent implements OnInit {
     this.apiService.apiGetRequest(getchartofAccountUrl)
       .subscribe(
         response => {
-          const res = response.body;
+          const res = response;
           if (!this.commonService.checkNullOrUndefined(res) && res.status === StatusCodes.pass) {
             if (!this.commonService.checkNullOrUndefined(res.response)) {
               this.coaList = res.response['coaList'];

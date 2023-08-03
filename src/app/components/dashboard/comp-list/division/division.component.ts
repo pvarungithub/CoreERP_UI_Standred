@@ -64,7 +64,7 @@ export class DivisionComponent implements OnInit {
     this.apiService.apiGetRequest(getEmployeeList)
       .subscribe(
         response => {
-          const res = response.body;
+          const res = response;
           if (!this.commonService.checkNullOrUndefined(res) && res.status === StatusCodes.pass) {
             if (!this.commonService.checkNullOrUndefined(res.response)) {
               this.employeesList = res.response['emplist'];

@@ -56,7 +56,7 @@ export class CompListComponent implements OnInit, OnDestroy {
     this.apiService.apiGetRequest(getUrl)
       .subscribe(
         response => {
-          const res = response.body;
+          const res = response;
           if (!this.commonService.checkNullOrUndefined(res) && res.status === StatusCodes.pass) {
             if (!this.commonService.checkNullOrUndefined(res.response)) {
               this.tableUrl = res.response;
@@ -74,7 +74,7 @@ export class CompListComponent implements OnInit, OnDestroy {
     this.apiService.apiGetRequest(getUrl)
       .subscribe(
         response => {
-          const res = response.body;
+          const res = response;
           if (!this.commonService.checkNullOrUndefined(res) && res.status === StatusCodes.pass) {
             if (!this.commonService.checkNullOrUndefined(res.response)) {
               this.tableData = res.response[this.tableUrl.listName];
@@ -94,9 +94,9 @@ export class CompListComponent implements OnInit, OnDestroy {
 
       if (this.tableUrl.tabScreen == 'True') {
         this.addOrEditService.editData = value;
-        if(value.action == 'Add') {
-          this.router.navigate([this.activatedRoute.snapshot['_routerState'].url, value.action ]);
-        } else if(value.action == 'Edit') {
+        if (value.action == 'Add') {
+          this.router.navigate([this.activatedRoute.snapshot['_routerState'].url, value.action]);
+        } else if (value.action == 'Edit') {
           this.router.navigate([this.activatedRoute.snapshot['_routerState'].url, value.action, { value: value.item[this.tableUrl.primaryKey] }]);
         }
       } else {
@@ -135,7 +135,7 @@ export class CompListComponent implements OnInit, OnDestroy {
         this.apiService.apiDeleteRequest(deleteParamUrl, result.item)
           .subscribe(
             response => {
-              const res = response.body;
+              const res = response;
               if (!this.commonService.checkNullOrUndefined(res) && res.status === StatusCodes.pass) {
                 if (!this.commonService.checkNullOrUndefined(res.response)) {
                   this.tableComponent.defaultValues();

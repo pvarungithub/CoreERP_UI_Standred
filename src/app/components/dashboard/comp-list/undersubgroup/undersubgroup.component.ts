@@ -22,7 +22,7 @@ export class UndersubGroupComponent implements OnInit {
   glAccgrpList: any;
   getAccSubGrpList: any;
   glAccNameList: any;
-  
+
   constructor(private commonService: CommonService,
     private formBuilder: FormBuilder,
     private addOrEditService: AddOrEditService,
@@ -34,15 +34,15 @@ export class UndersubGroupComponent implements OnInit {
     @Optional() @Inject(MAT_DIALOG_DATA) public data: any) {
 
     this.modelFormData = this.formBuilder.group({
-      accountGroupId: [null,[Validators.required]],
+      accountGroupId: [null, [Validators.required]],
       accountGroupName: [null, [Validators.required]],
       nature: [null, [Validators.required]],
       narration: [null],
       affectGrossProfit: [null],
       groupUnder: [null],
       Undersubaccount: [null],
-      isDefault:[false],
-      structureKey:[null],
+      isDefault: [false],
+      structureKey: [null],
     });
 
     this.formData = { ...data };
@@ -66,7 +66,7 @@ export class UndersubGroupComponent implements OnInit {
     this.apiService.apiGetRequest(getglAccgrpList)
       .subscribe(
         response => {
-          const res = response.body;
+          const res = response;
           if (!this.commonService.checkNullOrUndefined(res) && res.status === StatusCodes.pass) {
             if (!this.commonService.checkNullOrUndefined(res.response)) {
               this.glAccgrpList = res.response['GLAccGroupList'];
@@ -81,7 +81,7 @@ export class UndersubGroupComponent implements OnInit {
     this.apiService.apiGetRequest(getAccountNamelist)
       .subscribe(
         response => {
-          const res = response.body;
+          const res = response;
           if (!this.commonService.checkNullOrUndefined(res) && res.status === StatusCodes.pass) {
             if (!this.commonService.checkNullOrUndefined(res.response)) {
               this.glAccNameList = res.response['GetAccountNamelist'];
@@ -96,7 +96,7 @@ export class UndersubGroupComponent implements OnInit {
     this.apiService.apiGetRequest(getGLUnderGroupList)
       .subscribe(
         response => {
-          const res = response.body;
+          const res = response;
           if (!this.commonService.checkNullOrUndefined(res) && res.status === StatusCodes.pass) {
             if (!this.commonService.checkNullOrUndefined(res.response)) {
               this.getAccSubGrpList = res.response['GetAccountSubGrouplist'];
@@ -112,7 +112,7 @@ export class UndersubGroupComponent implements OnInit {
     this.apiService.apiGetRequest(getAccountSubGrouplist)
       .subscribe(
         response => {
-          const res = response.body;
+          const res = response;
           if (!this.commonService.checkNullOrUndefined(res) && res.status === StatusCodes.pass) {
             if (!this.commonService.checkNullOrUndefined(res.response)) {
               this.glAccNameList = res.response['GLAccSubGroupList'];

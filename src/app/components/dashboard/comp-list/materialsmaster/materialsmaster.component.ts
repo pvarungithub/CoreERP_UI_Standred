@@ -192,7 +192,7 @@ export class MaterialMasterComponent implements OnInit, OnDestroy {
     this.apiService.apiGetRequest(getmateriallist)
       .subscribe(
         response => {
-          const res = response.body;
+          const res = response;
           if (!this.commonService.checkNullOrUndefined(res) && res.status === StatusCodes.pass) {
             if (!this.commonService.checkNullOrUndefined(res.response)) {
 
@@ -210,7 +210,7 @@ export class MaterialMasterComponent implements OnInit, OnDestroy {
     this.apiService.apiGetRequest(getuomTypeUrl)
       .subscribe(
         response => {
-          const res = response.body;
+          const res = response;
 
           if (!this.commonService.checkNullOrUndefined(res) && res.status === StatusCodes.pass) {
             if (!this.commonService.checkNullOrUndefined(res.response)) {
@@ -225,7 +225,7 @@ export class MaterialMasterComponent implements OnInit, OnDestroy {
     this.apiService.apiGetRequest(getCompanyUrl)
       .subscribe(
         response => {
-          const res = response.body;
+          const res = response;
           if (!this.commonService.checkNullOrUndefined(res) && res.status === StatusCodes.pass) {
             if (!this.commonService.checkNullOrUndefined(res.response)) {
               this.companyList = res.response['companiesList'];
@@ -239,7 +239,7 @@ export class MaterialMasterComponent implements OnInit, OnDestroy {
     this.apiService.apiGetRequest(getPlantTypeUrl)
       .subscribe(
         response => {
-          const res = response.body;
+          const res = response;
           if (!this.commonService.checkNullOrUndefined(res) && res.status === StatusCodes.pass) {
             if (!this.commonService.checkNullOrUndefined(res.response)) {
               this.plantsList = res.response['plantsList'];
@@ -253,7 +253,7 @@ export class MaterialMasterComponent implements OnInit, OnDestroy {
     this.apiService.apiGetRequest(getMaterialTypeUrl)
       .subscribe(
         response => {
-          const res = response.body;
+          const res = response;
           if (!this.commonService.checkNullOrUndefined(res) && res.status === StatusCodes.pass) {
             if (!this.commonService.checkNullOrUndefined(res.response)) {
               this.matypeList = res.response['matypeList'];
@@ -267,7 +267,7 @@ export class MaterialMasterComponent implements OnInit, OnDestroy {
     this.apiService.apiGetRequest(getMaterialGroupUrl)
       .subscribe(
         response => {
-          const res = response.body;
+          const res = response;
           if (!this.commonService.checkNullOrUndefined(res) && res.status === StatusCodes.pass) {
             if (!this.commonService.checkNullOrUndefined(res.response)) {
               this.magroupList = res.response['magroupList'];
@@ -281,7 +281,7 @@ export class MaterialMasterComponent implements OnInit, OnDestroy {
     this.apiService.apiGetRequest(gettsizeGroupsUrl)
       .subscribe(
         response => {
-          const res = response.body;
+          const res = response;
           if (!this.commonService.checkNullOrUndefined(res) && res.status === StatusCodes.pass) {
             if (!this.commonService.checkNullOrUndefined(res.response)) {
               this.msizeList = res.response['msizeList'];
@@ -295,7 +295,7 @@ export class MaterialMasterComponent implements OnInit, OnDestroy {
     this.apiService.apiGetRequest(getmpList)
       .subscribe(
         response => {
-          const res = response.body;
+          const res = response;
           if (!this.commonService.checkNullOrUndefined(res) && res.status === StatusCodes.pass) {
             if (!this.commonService.checkNullOrUndefined(res.response)) {
               this.mpatternList = res.response['mpatternList'];
@@ -309,7 +309,7 @@ export class MaterialMasterComponent implements OnInit, OnDestroy {
     this.apiService.apiGetRequest(getpurchasingGroupList)
       .subscribe(
         response => {
-          const res = response.body;
+          const res = response;
           if (!this.commonService.checkNullOrUndefined(res) && res.status === StatusCodes.pass) {
             if (!this.commonService.checkNullOrUndefined(res.response)) {
               this.PCGroupsList = res.response['PCGroupsList'];
@@ -324,7 +324,7 @@ export class MaterialMasterComponent implements OnInit, OnDestroy {
     this.apiService.apiGetRequest(getdivisionList)
       .subscribe(
         response => {
-          const res = response.body;
+          const res = response;
           if (!this.commonService.checkNullOrUndefined(res) && res.status === StatusCodes.pass) {
             if (!this.commonService.checkNullOrUndefined(res.response)) {
               this.divisionsList = res.response['divisionsList'];
@@ -338,7 +338,7 @@ export class MaterialMasterComponent implements OnInit, OnDestroy {
     this.apiService.apiGetRequest(gethsnsacList)
       .subscribe(
         response => {
-          const res = response.body;
+          const res = response;
           if (!this.commonService.checkNullOrUndefined(res) && res.status === StatusCodes.pass) {
             if (!this.commonService.checkNullOrUndefined(res.response)) {
               this.hsnsacList = res.response['HSNSACList'];

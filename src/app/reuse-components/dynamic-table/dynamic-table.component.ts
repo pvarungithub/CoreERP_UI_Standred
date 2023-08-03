@@ -205,6 +205,7 @@ export class DynamicTableComponent implements OnInit {
     if (!this.commonService.checkNullOrUndefined(this.tableData)) {
       return this.columnDefinitions.map(cd => cd.def);
     }
+    return null;
   }
 
   setCurrentFocus() {

@@ -87,10 +87,10 @@ export class PrimaryCostElementComponent implements OnInit {
           value: null, type: 'dropdown', list: this.coaList, id: 'code', text: 'desctiption', displayMul: false, width: 100
         },
         glAccount: {
-          value: null, type: 'text', width: 100, maxLength: 10,disabled:true
+          value: null, type: 'text', width: 100, maxLength: 10, disabled: true
         },
         glAccountName: {
-          value: null, type: 'text', width: 100, maxLength: 10,disabled:true
+          value: null, type: 'text', width: 100, maxLength: 10, disabled: true
           // value: null, type: 'dropdown', list: this.PRCList, id: 'id', text: 'text', displayMul: false, width: 100
         },
         usage: {
@@ -121,7 +121,7 @@ export class PrimaryCostElementComponent implements OnInit {
     this.apiService.apiGetRequest(getcompanyList)
       .subscribe(
         response => {
-          const res = response.body;
+          const res = response;
           if (!this.commonService.checkNullOrUndefined(res) && res.status === StatusCodes.pass) {
             if (!this.commonService.checkNullOrUndefined(res.response)) {
               this.companyList = res.response['companiesList'];
@@ -136,7 +136,7 @@ export class PrimaryCostElementComponent implements OnInit {
     this.apiService.apiGetRequest(getchartaccUrl)
       .subscribe(
         response => {
-          const res = response.body;
+          const res = response;
           if (!this.commonService.checkNullOrUndefined(res) && res.status === StatusCodes.pass) {
             if (!this.commonService.checkNullOrUndefined(res.response)) {
               this.coaList = res.response['coaList'];
@@ -152,7 +152,7 @@ export class PrimaryCostElementComponent implements OnInit {
     this.apiService.apiGetRequest(getuomTypeUrl)
       .subscribe(
         response => {
-          const res = response.body;
+          const res = response;
           if (!this.commonService.checkNullOrUndefined(res) && res.status === StatusCodes.pass) {
             if (!this.commonService.checkNullOrUndefined(res.response)) {
               this.UomList = res.response['UOMList'];
@@ -166,7 +166,7 @@ export class PrimaryCostElementComponent implements OnInit {
     this.apiService.apiGetRequest(getglUrl)
       .subscribe(
         response => {
-          const res = response.body;
+          const res = response;
           if (!this.commonService.checkNullOrUndefined(res) && res.status === StatusCodes.pass) {
             if (!this.commonService.checkNullOrUndefined(res.response)) {
               this.PRCList = res.response['PRCList'];
@@ -180,7 +180,7 @@ export class PrimaryCostElementComponent implements OnInit {
     this.apiService.apiGetRequest(getAccountNamelist)
       .subscribe(
         response => {
-          const res = response.body;
+          const res = response;
           if (!this.commonService.checkNullOrUndefined(res) && res.status === StatusCodes.pass) {
             if (!this.commonService.checkNullOrUndefined(res.response)) {
               this.glAccNameList = res.response['GetAccountNamelist'];
@@ -198,7 +198,7 @@ export class PrimaryCostElementComponent implements OnInit {
     this.apiService.apiGetRequest(pcUrl)
       .subscribe(
         response => {
-          const resp = response.body;
+          const resp = response;
           if (!this.commonService.checkNullOrUndefined(resp) && resp.status === StatusCodes.pass) {
             if (!this.commonService.checkNullOrUndefined(resp.response) && resp.response['pcostList'].length) {
               resp.response['pcostList'].forEach((res, index) => {
@@ -213,7 +213,7 @@ export class PrimaryCostElementComponent implements OnInit {
                 newData[index].qty.value = res.qty;
                 newData[index].id.value = res.id;
               })
-             this.sendDynTableData = { type: 'add', data: newData };
+              this.sendDynTableData = { type: 'add', data: newData };
             }
           }
           this.spinner.hide();
@@ -221,14 +221,14 @@ export class PrimaryCostElementComponent implements OnInit {
   }
 
   emitColumnChanges(data) {
- this.tableData = data.data;
+    this.tableData = data.data;
     console.log(data);
   }
 
 
 
   save() {
- this.tableData = this.commonService.formatTableData(this.tableData, 0);
+    this.tableData = this.commonService.formatTableData(this.tableData, 0);
     if (this.tableData.length == 0) {
       return;
     }
@@ -240,8 +240,8 @@ export class PrimaryCostElementComponent implements OnInit {
     const requestObj = { grDtl: this.tableData };
     this.apiService.apiPostRequest(addpcost, requestObj).subscribe(
       response => {
-        const res = response.body;
-         this.tableData = [];
+        const res = response;
+        this.tableData = [];
         if (!this.commonService.checkNullOrUndefined(res) && res.status === StatusCodes.pass) {
           if (!this.commonService.checkNullOrUndefined(res.response)) {
             this.alertService.openSnackBar('Primerycost created Successfully..', Static.Close, SnackBar.success);

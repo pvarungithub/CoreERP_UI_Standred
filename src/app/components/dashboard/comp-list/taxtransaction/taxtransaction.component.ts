@@ -36,8 +36,8 @@ export class TaxTransactionComponent implements OnInit {
     this.modelFormData = this.formBuilder.group({
       code: [null, [Validators.required, Validators.minLength(1), Validators.maxLength(5)]],
       description: [null, [Validators.required, Validators.minLength(1), Validators.maxLength(50)]],
-      taxType:[null],
-      
+      taxType: [null],
+
     });
 
     this.formData = { ...data };
@@ -58,7 +58,7 @@ export class TaxTransactionComponent implements OnInit {
     this.apiService.apiGetRequest(getTypeList)
       .subscribe(
         response => {
-          const res = response.body;
+          const res = response;
           if (!this.commonService.checkNullOrUndefined(res) && res.status === StatusCodes.pass) {
             if (!this.commonService.checkNullOrUndefined(res.response)) {
               this.taxTypelist = res.response['TaxtypesList'];

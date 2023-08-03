@@ -64,7 +64,7 @@ export class SampleServiceComponent implements OnInit {
     public commonService: CommonService,
     public route: ActivatedRoute,
     private router: Router,
-    private auth : AuthService
+    private auth: AuthService
   ) {
     if (!this.commonService.checkNullOrUndefined(this.route.snapshot.params.value)) {
       this.routeEdit = this.route.snapshot.params.value;
@@ -75,18 +75,18 @@ export class SampleServiceComponent implements OnInit {
     this.formDataGroup();
     this.getCompanyList();
     this.formData.controls['voucherNumber'].disable();
-    this.usage=this.auth.usage();
+    this.usage = this.auth.usage();
   }
 
-  usage:any=[];
-  usagetype:any=[];
+  usage: any = [];
+  usagetype: any = [];
 
-  onSelect(usage){
-    this.usagetype=this.auth.type().filter(e=> e.id == usage.value);
+  onSelect(usage) {
+    this.usagetype = this.auth.type().filter(e => e.id == usage.value);
     console.log(this.usagetype);
   }
 
-  
+
 
   formDataGroup() {
     this.formData = this.formBuilder.group({
@@ -202,7 +202,7 @@ export class SampleServiceComponent implements OnInit {
     };
   }
 
-  onusageChange(usage){
+  onusageChange(usage) {
 
   }
 
@@ -211,7 +211,7 @@ export class SampleServiceComponent implements OnInit {
     this.apiService.apiGetRequest(cashDetUrl)
       .subscribe(
         response => {
-          const res = response.body;
+          const res = response;
           if (!this.commonService.checkNullOrUndefined(res) && res.status === StatusCodes.pass) {
             if (!this.commonService.checkNullOrUndefined(res.response)) {
               this.formData.setValue(res.response['CashBankMasters']);
@@ -227,7 +227,7 @@ export class SampleServiceComponent implements OnInit {
     this.apiService.apiGetRequest(companyUrl)
       .subscribe(
         response => {
-          const res = response.body;
+          const res = response;
           if (!this.commonService.checkNullOrUndefined(res) && res.status === StatusCodes.pass) {
             if (!this.commonService.checkNullOrUndefined(res.response)) {
               this.companyList = res.response['companiesList'];
@@ -242,7 +242,7 @@ export class SampleServiceComponent implements OnInit {
     this.apiService.apiGetRequest(branchUrl)
       .subscribe(
         response => {
-          const res = response.body;
+          const res = response;
           if (!this.commonService.checkNullOrUndefined(res) && res.status === StatusCodes.pass) {
             if (!this.commonService.checkNullOrUndefined(res.response)) {
               this.branchList = res.response['branchsList'];
@@ -257,7 +257,7 @@ export class SampleServiceComponent implements OnInit {
     this.apiService.apiGetRequest(voucherClassList)
       .subscribe(
         response => {
-          const res = response.body;
+          const res = response;
           if (!this.commonService.checkNullOrUndefined(res) && res.status === StatusCodes.pass) {
             if (!this.commonService.checkNullOrUndefined(res.response)) {
               this.voucherClassList = res.response['vcList'];
@@ -272,7 +272,7 @@ export class SampleServiceComponent implements OnInit {
     this.apiService.apiGetRequest(voucherTypes)
       .subscribe(
         response => {
-          const res = response.body;
+          const res = response;
           if (!this.commonService.checkNullOrUndefined(res) && res.status === StatusCodes.pass) {
             if (!this.commonService.checkNullOrUndefined(res.response)) {
               this.voucherTypeList = res.response['vouchertypeList'];
@@ -287,7 +287,7 @@ export class SampleServiceComponent implements OnInit {
     this.apiService.apiGetRequest(glAccUrl)
       .subscribe(
         response => {
-          const res = response.body;
+          const res = response;
           if (!this.commonService.checkNullOrUndefined(res) && res.status === StatusCodes.pass) {
             if (!this.commonService.checkNullOrUndefined(res.response)) {
               this.accountFilterList = res.response['glList'];
@@ -314,7 +314,7 @@ export class SampleServiceComponent implements OnInit {
     this.apiService.apiGetRequest(taxCodeUrl)
       .subscribe(
         response => {
-          const res = response.body;
+          const res = response;
           if (!this.commonService.checkNullOrUndefined(res) && res.status === StatusCodes.pass) {
             if (!this.commonService.checkNullOrUndefined(res.response)) {
               this.functionaldeptList = res.response['fdeptList'];
@@ -329,7 +329,7 @@ export class SampleServiceComponent implements OnInit {
     this.apiService.apiGetRequest(taxCodeUrl)
       .subscribe(
         response => {
-          const res = response.body;
+          const res = response;
           if (!this.commonService.checkNullOrUndefined(res) && res.status === StatusCodes.pass) {
             if (!this.commonService.checkNullOrUndefined(res.response)) {
               this.taxCodeList = res.response['TaxratesList'];
@@ -344,7 +344,7 @@ export class SampleServiceComponent implements OnInit {
     this.apiService.apiGetRequest(profCentUrl)
       .subscribe(
         response => {
-          const res = response.body;
+          const res = response;
           if (!this.commonService.checkNullOrUndefined(res) && res.status === StatusCodes.pass) {
             if (!this.commonService.checkNullOrUndefined(res.response)) {
               this.profitCenterList = res.response['profitCenterList'];
@@ -359,7 +359,7 @@ export class SampleServiceComponent implements OnInit {
     this.apiService.apiGetRequest(segUrl)
       .subscribe(
         response => {
-          const res = response.body;
+          const res = response;
           if (!this.commonService.checkNullOrUndefined(res) && res.status === StatusCodes.pass) {
             if (!this.commonService.checkNullOrUndefined(res.response)) {
               this.btList = res.response['bpttList'];
@@ -374,7 +374,7 @@ export class SampleServiceComponent implements OnInit {
     this.apiService.apiGetRequest(segUrl)
       .subscribe(
         response => {
-          const res = response.body;
+          const res = response;
           if (!this.commonService.checkNullOrUndefined(res) && res.status === StatusCodes.pass) {
             if (!this.commonService.checkNullOrUndefined(res.response)) {
               this.segmentList = res.response['segmentList'];
@@ -389,7 +389,7 @@ export class SampleServiceComponent implements OnInit {
     this.apiService.apiGetRequest(segUrl)
       .subscribe(
         response => {
-          const res = response.body;
+          const res = response;
           if (!this.commonService.checkNullOrUndefined(res) && res.status === StatusCodes.pass) {
             if (!this.commonService.checkNullOrUndefined(res.response)) {
               this.hsnsacList = res.response['hsnsacList'];
@@ -403,7 +403,7 @@ export class SampleServiceComponent implements OnInit {
     this.apiService.apiGetRequest(segUrl)
       .subscribe(
         response => {
-          const res = response.body;
+          const res = response;
           if (!this.commonService.checkNullOrUndefined(res) && res.status === StatusCodes.pass) {
             if (!this.commonService.checkNullOrUndefined(res.response)) {
               this.wbsList = res.response['wbsList'];
@@ -417,7 +417,7 @@ export class SampleServiceComponent implements OnInit {
     this.apiService.apiGetRequest(fcUrl)
       .subscribe(
         response => {
-          const res = response.body;
+          const res = response;
           if (!this.commonService.checkNullOrUndefined(res) && res.status === StatusCodes.pass) {
             if (!this.commonService.checkNullOrUndefined(res.response)) {
               this.fcList = res.response['fcList'];
@@ -431,7 +431,7 @@ export class SampleServiceComponent implements OnInit {
     this.apiService.apiGetRequest(cmntUrl)
       .subscribe(
         response => {
-          const res = response.body;
+          const res = response;
           if (!this.commonService.checkNullOrUndefined(res) && res.status === StatusCodes.pass) {
             if (!this.commonService.checkNullOrUndefined(res.response)) {
               this.citemList = res.response['citemList'];
@@ -445,7 +445,7 @@ export class SampleServiceComponent implements OnInit {
     this.apiService.apiGetRequest(onoUrl)
       .subscribe(
         response => {
-          const res = response.body;
+          const res = response;
           if (!this.commonService.checkNullOrUndefined(res) && res.status === StatusCodes.pass) {
             if (!this.commonService.checkNullOrUndefined(res.response)) {
               this.ordertypeList = res.response['ordertypeList'];
@@ -462,7 +462,7 @@ export class SampleServiceComponent implements OnInit {
       .subscribe(
         response => {
           this.spinner.hide();
-          const res = response.body;
+          const res = response;
           if (!this.commonService.checkNullOrUndefined(res) && res.status === StatusCodes.pass) {
             if (!this.commonService.checkNullOrUndefined(res.response)) {
               this.costCenterList = res.response['costcenterList'];
@@ -492,7 +492,7 @@ export class SampleServiceComponent implements OnInit {
         .subscribe(
           response => {
             this.spinner.hide();
-            const res = response.body;
+            const res = response;
             if (!this.commonService.checkNullOrUndefined(res) && res.status === StatusCodes.pass) {
               if (!this.commonService.checkNullOrUndefined(res.response)) {
                 this.formData.patchValue({
@@ -540,7 +540,7 @@ export class SampleServiceComponent implements OnInit {
     const addCashBank = String.Join('/', this.apiConfigService.returnCashBank, this.routeEdit);
     this.apiService.apiGetRequest(addCashBank).subscribe(
       response => {
-        const res = response.body;
+        const res = response;
         if (!this.commonService.checkNullOrUndefined(res) && res.status === StatusCodes.pass) {
           if (!this.commonService.checkNullOrUndefined(res.response)) {
             this.alertService.openSnackBar(res.response, Static.Close, SnackBar.success);
@@ -562,7 +562,7 @@ export class SampleServiceComponent implements OnInit {
     const requestObj = { cashbankHdr: this.formData.value, cashbankDtl: this.tableData };
     this.apiService.apiPostRequest(addCashBank, requestObj).subscribe(
       response => {
-        const res = response.body;
+        const res = response;
         this.tableData = [];
         if (!this.commonService.checkNullOrUndefined(res) && res.status === StatusCodes.pass) {
           if (!this.commonService.checkNullOrUndefined(res.response)) {

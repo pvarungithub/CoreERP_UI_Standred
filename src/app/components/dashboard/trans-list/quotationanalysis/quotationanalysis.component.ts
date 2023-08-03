@@ -123,7 +123,7 @@ export class QuotationAnalysisComponent implements OnInit {
     this.apiService.apiGetRequest(companyUrl)
       .subscribe(
         response => {
-          const res = response.body;
+          const res = response;
           if (!this.commonService.checkNullOrUndefined(res) && res.status === StatusCodes.pass) {
             if (!this.commonService.checkNullOrUndefined(res.response)) {
               this.companyList = res.response['companiesList'];
@@ -137,7 +137,7 @@ export class QuotationAnalysisComponent implements OnInit {
     this.apiService.apiGetRequest(getsuppliercodeList)
       .subscribe(
         response => {
-          const res = response.body;
+          const res = response;
           console.log(res);
           if (!this.commonService.checkNullOrUndefined(res) && res.status === StatusCodes.pass) {
             if (!this.commonService.checkNullOrUndefined(res.response)) {
@@ -156,7 +156,7 @@ export class QuotationAnalysisComponent implements OnInit {
     this.apiService.apiGetRequest(getplantList)
       .subscribe(
         response => {
-          const res = response.body;
+          const res = response;
           if (!this.commonService.checkNullOrUndefined(res) && res.status === StatusCodes.pass) {
             if (!this.commonService.checkNullOrUndefined(res.response)) {
               this.plantList = res.response['plantList'];
@@ -173,7 +173,7 @@ export class QuotationAnalysisComponent implements OnInit {
     this.apiService.apiGetRequest(branchUrl)
       .subscribe(
         response => {
-          const res = response.body;
+          const res = response;
           if (!this.commonService.checkNullOrUndefined(res) && res.status === StatusCodes.pass) {
             if (!this.commonService.checkNullOrUndefined(res.response)) {
               this.branchList = res.response['branchsList'];
@@ -188,7 +188,7 @@ export class QuotationAnalysisComponent implements OnInit {
     this.apiService.apiGetRequest(getpcUrl)
       .subscribe(
         response => {
-          const res = response.body;
+          const res = response;
           if (!this.commonService.checkNullOrUndefined(res) && res.status === StatusCodes.pass) {
             if (!this.commonService.checkNullOrUndefined(res.response)) {
               this.profitCenterList = res.response['profitCenterList'];
@@ -204,7 +204,7 @@ export class QuotationAnalysisComponent implements OnInit {
     this.apiService.apiGetRequest(getmaterialUrl)
       .subscribe(
         response => {
-          const res = response.body;
+          const res = response;
           if (!this.commonService.checkNullOrUndefined(res) && res.status === StatusCodes.pass) {
             if (!this.commonService.checkNullOrUndefined(res.response)) {
               this.materialList = res.response['materialList'];
@@ -220,7 +220,7 @@ export class QuotationAnalysisComponent implements OnInit {
       .subscribe(
         response => {
           this.spinner.hide();
-          const res = response.body;
+          const res = response;
           if (!this.commonService.checkNullOrUndefined(res) && res.status === StatusCodes.pass) {
             if (!this.commonService.checkNullOrUndefined(res.response)) {
               this.wbsList = res.response['wbsList'];
@@ -239,7 +239,7 @@ export class QuotationAnalysisComponent implements OnInit {
       .subscribe(
         response => {
           this.spinner.hide();
-          const res = response.body;
+          const res = response;
           if (!this.commonService.checkNullOrUndefined(res) && res.status === StatusCodes.pass) {
             if (!this.commonService.checkNullOrUndefined(res.response)) {
               this.formData.setValue(res.response['qamasters']);
@@ -251,18 +251,18 @@ export class QuotationAnalysisComponent implements OnInit {
   }
 
   emitColumnChanges(data) {
- this.tableData = data.data;
+    this.tableData = data.data;
     // this.calculateAmount(data);
   }
 
- 
+
 
   back() {
     this.router.navigate(['dashboard/transaction/quotationanalysis'])
   }
 
   save() {
- this.tableData = this.commonService.formatTableData(this.tableData);
+    this.tableData = this.commonService.formatTableData(this.tableData);
     if (this.tableData.length == 0 && this.formData.invalid) {
       return;
     }
@@ -274,8 +274,8 @@ export class QuotationAnalysisComponent implements OnInit {
     const requestObj = { qaHdr: this.formData.value, qaDtl: this.tableData };
     this.apiService.apiPostRequest(addprreq, requestObj).subscribe(
       response => {
-        const res = response.body;
-this.tableData = [];
+        const res = response;
+        this.tableData = [];
         if (!this.commonService.checkNullOrUndefined(res) && res.status === StatusCodes.pass) {
           if (!this.commonService.checkNullOrUndefined(res.response)) {
             this.alertService.openSnackBar('Quotation Analysis created Successfully..', Static.Close, SnackBar.success);
@@ -291,7 +291,7 @@ this.tableData = [];
     const addCashBank = String.Join('/', this.apiConfigService.returnquotationanalysis, this.routeEdit);
     this.apiService.apiGetRequest(addCashBank).subscribe(
       response => {
-        const res = response.body;
+        const res = response;
         if (!this.commonService.checkNullOrUndefined(res) && res.status === StatusCodes.pass) {
           if (!this.commonService.checkNullOrUndefined(res.response)) {
             this.alertService.openSnackBar(res.response, Static.Close, SnackBar.success);

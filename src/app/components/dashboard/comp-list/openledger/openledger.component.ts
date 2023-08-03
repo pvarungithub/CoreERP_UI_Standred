@@ -93,7 +93,7 @@ export class OpenLedgerComponent implements OnInit {
     this.apiService.apiGetRequest(getLedgerList)
       .subscribe(
         response => {
-          const res = response.body;
+          const res = response;
           if (!this.commonService.checkNullOrUndefined(res) && res.status === StatusCodes.pass) {
             if (!this.commonService.checkNullOrUndefined(res.response)) {
               this.ledgerList = res.response['ledgerList'];

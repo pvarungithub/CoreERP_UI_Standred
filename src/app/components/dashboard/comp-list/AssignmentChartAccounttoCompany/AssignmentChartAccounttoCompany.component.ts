@@ -56,7 +56,7 @@ export class AssignmentChartAccounttoCompanyComponent implements OnInit {
     this.apiService.apiGetRequest(getCompanyUrl)
       .subscribe(
         response => {
-          const res = response.body;
+          const res = response;
           if (!this.commonService.checkNullOrUndefined(res) && res.status === StatusCodes.pass) {
             if (!this.commonService.checkNullOrUndefined(res.response)) {
               this.companyList = res.response['companiesList'];
@@ -71,7 +71,7 @@ export class AssignmentChartAccounttoCompanyComponent implements OnInit {
     this.apiService.apiGetRequest(getchartofAccountUrl)
       .subscribe(
         response => {
-          const res = response.body;
+          const res = response;
           if (!this.commonService.checkNullOrUndefined(res) && res.status === StatusCodes.pass) {
             if (!this.commonService.checkNullOrUndefined(res.response)) {
               this.operationCoaList = res.response['coaList'].filter(res => res.type == 'Operational');

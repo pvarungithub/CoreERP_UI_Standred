@@ -202,7 +202,7 @@ export class InvoiceverificationComponent implements OnInit {
     this.apiService.apiGetRequest(companyUrl)
       .subscribe(
         response => {
-          const res = response.body;
+          const res = response;
           if (!this.commonService.checkNullOrUndefined(res) && res.status === StatusCodes.pass) {
             if (!this.commonService.checkNullOrUndefined(res.response)) {
               this.companyList = res.response['companiesList'];
@@ -219,7 +219,7 @@ export class InvoiceverificationComponent implements OnInit {
     this.apiService.apiGetRequest(getsuppliercodeList)
       .subscribe(
         response => {
-          const res = response.body;
+          const res = response;
           if (!this.commonService.checkNullOrUndefined(res) && res.status === StatusCodes.pass) {
             if (!this.commonService.checkNullOrUndefined(res.response)) {
               this.bpaList = res.response['bpaList'];
@@ -235,7 +235,7 @@ export class InvoiceverificationComponent implements OnInit {
     this.apiService.apiGetRequest(getdptcnUrl)
       .subscribe(
         response => {
-          const res = response.body;
+          const res = response;
           if (!this.commonService.checkNullOrUndefined(res) && res.status === StatusCodes.pass) {
             if (!this.commonService.checkNullOrUndefined(res.response)) {
               this.glList = res.response['glList'];
@@ -249,7 +249,7 @@ export class InvoiceverificationComponent implements OnInit {
     this.apiService.apiGetRequest(getplantsList)
       .subscribe(
         response => {
-          const res = response.body;
+          const res = response;
           if (!this.commonService.checkNullOrUndefined(res) && res.status === StatusCodes.pass) {
             if (!this.commonService.checkNullOrUndefined(res.response)) {
               this.plantList = res.response['plantsList'];
@@ -264,7 +264,7 @@ export class InvoiceverificationComponent implements OnInit {
     this.apiService.apiGetRequest(branchUrl)
       .subscribe(
         response => {
-          const res = response.body;
+          const res = response;
           if (!this.commonService.checkNullOrUndefined(res) && res.status === StatusCodes.pass) {
             if (!this.commonService.checkNullOrUndefined(res.response)) {
               this.branchList = res.response['branchsList'];
@@ -279,7 +279,7 @@ export class InvoiceverificationComponent implements OnInit {
     this.apiService.apiGetRequest(getcostunittypeUrl)
       .subscribe(
         response => {
-          const res = response.body;
+          const res = response;
           if (!this.commonService.checkNullOrUndefined(res) && res.status === StatusCodes.pass) {
             if (!this.commonService.checkNullOrUndefined(res.response)) {
               this.costunitList = res.response['costunitList'];
@@ -293,7 +293,7 @@ export class InvoiceverificationComponent implements OnInit {
     this.apiService.apiGetRequest(getpcUrl)
       .subscribe(
         response => {
-          const res = response.body;
+          const res = response;
           if (!this.commonService.checkNullOrUndefined(res) && res.status === StatusCodes.pass) {
             if (!this.commonService.checkNullOrUndefined(res.response)) {
               this.profitCenterList = res.response['profitCenterList'];
@@ -308,7 +308,7 @@ export class InvoiceverificationComponent implements OnInit {
       .subscribe(
         response => {
           this.spinner.hide();
-          const res = response.body;
+          const res = response;
           if (!this.commonService.checkNullOrUndefined(res) && res.status === StatusCodes.pass) {
             if (!this.commonService.checkNullOrUndefined(res.response)) {
               this.materialList = res.response['materialList'];
@@ -324,7 +324,7 @@ export class InvoiceverificationComponent implements OnInit {
     this.apiService.apiGetRequest(getsegmentList)
       .subscribe(
         response => {
-          const res = response.body;
+          const res = response;
           if (!this.commonService.checkNullOrUndefined(res) && res.status === StatusCodes.pass) {
             if (!this.commonService.checkNullOrUndefined(res.response)) {
               this.segmentList = res.response['segmentList'];
@@ -341,7 +341,7 @@ export class InvoiceverificationComponent implements OnInit {
     this.apiService.apiGetRequest(poUrl)
       .subscribe(
         response => {
-          const res = response.body;
+          const res = response;
           console.log(res);
           if (!this.commonService.checkNullOrUndefined(res) && res.status === StatusCodes.pass) {
             if (!this.commonService.checkNullOrUndefined(res.response)) {
@@ -364,7 +364,7 @@ export class InvoiceverificationComponent implements OnInit {
       .subscribe(
         response => {
           this.spinner.hide();
-          const res = response.body;
+          const res = response;
           if (!this.commonService.checkNullOrUndefined(res) && res.status === StatusCodes.pass) {
             if (!this.commonService.checkNullOrUndefined(res.response)) {
               this.modelFormData.setValue(res.response['ivcmasters']);
@@ -390,7 +390,7 @@ export class InvoiceverificationComponent implements OnInit {
   }
 
   save() {
- this.activityTableData = this.commonService.formatTableData(this.activityTableData);
+    this.activityTableData = this.commonService.formatTableData(this.activityTableData);
     this.capacityTableData = this.commonService.formatTableData(this.capacityTableData);
     this.saveinvoice();
 
@@ -400,7 +400,7 @@ export class InvoiceverificationComponent implements OnInit {
     const requestObj = { ivcHdr: this.modelFormData.value, ivcDtl: this.activityTableData, ioeDtl: this.capacityTableData };
     this.apiService.apiPostRequest(addinvoice, requestObj).subscribe(
       response => {
-        const res = response.body;
+        const res = response;
         this.activityTableData = [];
         this.capacityTableData = [];
         if (!this.commonService.checkNullOrUndefined(res) && res.status === StatusCodes.pass) {

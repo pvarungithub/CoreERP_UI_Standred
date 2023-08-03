@@ -9,6 +9,12 @@ import { NgxSpinnerService } from 'ngx-spinner';
 declare var require: any
 const FileSaver = require('file-saver');
 
+declare global {
+  interface Navigator {
+    msSaveBlob?: (blob: any, defaultName?: string) => boolean
+  }
+}
+
 @Injectable({
   providedIn: 'root'
 })

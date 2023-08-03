@@ -150,7 +150,7 @@ export class MaterialrequisitionComponents implements OnInit {
       .subscribe(
         response => {
           this.spinner.hide();
-          const res = response.body;
+          const res = response;
           if (!this.commonService.checkNullOrUndefined(res) && res.status === StatusCodes.pass) {
             if (!this.commonService.checkNullOrUndefined(res.response)) {
               this.formData.setValue(res.response['mreqmasters']);
@@ -167,7 +167,7 @@ export class MaterialrequisitionComponents implements OnInit {
     this.apiService.apiGetRequest(companyUrl)
       .subscribe(
         response => {
-          const res = response.body;
+          const res = response;
           if (!this.commonService.checkNullOrUndefined(res) && res.status === StatusCodes.pass) {
             if (!this.commonService.checkNullOrUndefined(res.response)) {
               this.companyList = res.response['companiesList'];
@@ -181,7 +181,7 @@ export class MaterialrequisitionComponents implements OnInit {
     this.apiService.apiGetRequest(getsecondelementUrl)
       .subscribe(
         response => {
-          const res = response.body;
+          const res = response;
           if (!this.commonService.checkNullOrUndefined(res) && res.status === StatusCodes.pass) {
             if (!this.commonService.checkNullOrUndefined(res.response)) {
               this.costunitList = res.response['costunitList'];
@@ -196,7 +196,7 @@ export class MaterialrequisitionComponents implements OnInit {
     this.apiService.apiGetRequest(getbranchList)
       .subscribe(
         response => {
-          const res = response.body;
+          const res = response;
 
           if (!this.commonService.checkNullOrUndefined(res) && res.status === StatusCodes.pass) {
             if (!this.commonService.checkNullOrUndefined(res.response)) {
@@ -212,7 +212,7 @@ export class MaterialrequisitionComponents implements OnInit {
     this.apiService.apiGetRequest(getdepteUrl)
       .subscribe(
         response => {
-          const res = response.body;
+          const res = response;
           if (!this.commonService.checkNullOrUndefined(res) && res.status === StatusCodes.pass) {
             if (!this.commonService.checkNullOrUndefined(res.response)) {
               this.fdeptList = res.response['fdeptList'];
@@ -227,7 +227,7 @@ export class MaterialrequisitionComponents implements OnInit {
     this.apiService.apiGetRequest(getplantUrl)
       .subscribe(
         response => {
-          const res = response.body;
+          const res = response;
           if (!this.commonService.checkNullOrUndefined(res) && res.status === StatusCodes.pass) {
             if (!this.commonService.checkNullOrUndefined(res.response)) {
               this.plantList = res.response['plantsList'];
@@ -242,7 +242,7 @@ export class MaterialrequisitionComponents implements OnInit {
     this.apiService.apiGetRequest(getprofircenterData)
       .subscribe(
         response => {
-          const res = response.body;
+          const res = response;
           if (!this.commonService.checkNullOrUndefined(res) && res.status === StatusCodes.pass) {
             if (!this.commonService.checkNullOrUndefined(res.response)) {
               this.profitCenterList = res.response['profitCenterList'];
@@ -256,7 +256,7 @@ export class MaterialrequisitionComponents implements OnInit {
     this.apiService.apiGetRequest(getMaterialTypeUrl)
       .subscribe(
         response => {
-          const res = response.body;
+          const res = response;
 
           if (!this.commonService.checkNullOrUndefined(res) && res.status === StatusCodes.pass) {
             if (!this.commonService.checkNullOrUndefined(res.response)) {
@@ -272,7 +272,7 @@ export class MaterialrequisitionComponents implements OnInit {
     this.apiService.apiGetRequest(getwbselementUrl)
       .subscribe(
         response => {
-          const res = response.body;
+          const res = response;
           if (!this.commonService.checkNullOrUndefined(res) && res.status === StatusCodes.pass) {
             if (!this.commonService.checkNullOrUndefined(res.response)) {
               this.wbsElementList = res.response['wbsList'];
@@ -286,7 +286,7 @@ export class MaterialrequisitionComponents implements OnInit {
     this.apiService.apiGetRequest(getOrderTypeUrl)
       .subscribe(
         response => {
-          const res = response.body;
+          const res = response;
           if (!this.commonService.checkNullOrUndefined(res) && res.status === StatusCodes.pass) {
             if (!this.commonService.checkNullOrUndefined(res.response)) {
               this.ordertypeList = res.response['ordertypeList'];
@@ -301,7 +301,7 @@ export class MaterialrequisitionComponents implements OnInit {
     this.apiService.apiGetRequest(getlocationUrl)
       .subscribe(
         response => {
-          const res = response.body;
+          const res = response;
           if (!this.commonService.checkNullOrUndefined(res) && res.status === StatusCodes.pass) {
             if (!this.commonService.checkNullOrUndefined(res.response)) {
               this.locationList = res.response['locationList'];
@@ -315,7 +315,7 @@ export class MaterialrequisitionComponents implements OnInit {
     this.apiService.apiGetRequest(taxCodeUrl)
       .subscribe(
         response => {
-          const res = response.body;
+          const res = response;
           if (!this.commonService.checkNullOrUndefined(res) && res.status === StatusCodes.pass) {
             if (!this.commonService.checkNullOrUndefined(res.response)) {
               this.functionaldeptList = res.response['fdeptList'];
@@ -330,7 +330,7 @@ export class MaterialrequisitionComponents implements OnInit {
       .subscribe(
         response => {
           this.spinner.hide();
-          const res = response.body;
+          const res = response;
           if (!this.commonService.checkNullOrUndefined(res) && res.status === StatusCodes.pass) {
             if (!this.commonService.checkNullOrUndefined(res.response)) {
               this.costCenterList = res.response['costcenterList'];
@@ -344,7 +344,7 @@ export class MaterialrequisitionComponents implements OnInit {
   }
 
   emitColumnChanges(data) {
- this.tableData = data.data;
+    this.tableData = data.data;
     //this.dataChange(data);
   }
 
@@ -352,14 +352,14 @@ export class MaterialrequisitionComponents implements OnInit {
     this.sendDynTableData = { type: 'add', data: row.data };
   }
 
- 
+
 
   back() {
     this.router.navigate(['dashboard/transaction/materialrequisition']);
   }
 
   save() {
- this.tableData = this.commonService.formatTableData(this.tableData);
+    this.tableData = this.commonService.formatTableData(this.tableData);
     if (this.tableData.length == 0) {
       return;
     }
@@ -380,8 +380,8 @@ export class MaterialrequisitionComponents implements OnInit {
     const requestObj = { mreqHdr: this.formData.value, mreqDtl: this.tableData };
     this.apiService.apiPostRequest(addJournal, requestObj).subscribe(
       response => {
-        const res = response.body;
-  this.tableData = [];
+        const res = response;
+        this.tableData = [];
         if (!this.commonService.checkNullOrUndefined(res) && res.status === StatusCodes.pass) {
           if (!this.commonService.checkNullOrUndefined(res.response)) {
             this.alertService.openSnackBar('Material Req created Successfully..', Static.Close, SnackBar.success);

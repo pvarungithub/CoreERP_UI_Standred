@@ -19,10 +19,10 @@ export class RequisitionAssignmentComponent implements OnInit {
 
   modelFormData: FormGroup;
   formData: any;
-    reqnorangeList: any;
-    companiesList: any;
-    plantsList: any;
-    deptList: any;
+  reqnorangeList: any;
+  companiesList: any;
+  plantsList: any;
+  deptList: any;
   constructor(private commonService: CommonService,
     private addOrEditService: AddOrEditService,
     private formBuilder: FormBuilder,
@@ -61,7 +61,7 @@ export class RequisitionAssignmentComponent implements OnInit {
     this.apiService.apiGetRequest(getNumberRangeUrl)
       .subscribe(
         response => {
-          const res = response.body;
+          const res = response;
           if (!this.commonService.checkNullOrUndefined(res) && res.status === StatusCodes.pass) {
             if (!this.commonService.checkNullOrUndefined(res.response)) {
               this.reqnorangeList = res.response['reqnorangeList'];
@@ -76,7 +76,7 @@ export class RequisitionAssignmentComponent implements OnInit {
     this.apiService.apiGetRequest(getompanyUrl)
       .subscribe(
         response => {
-          const res = response.body;
+          const res = response;
           if (!this.commonService.checkNullOrUndefined(res) && res.status === StatusCodes.pass) {
             if (!this.commonService.checkNullOrUndefined(res.response)) {
               this.companiesList = res.response['companiesList'];
@@ -91,7 +91,7 @@ export class RequisitionAssignmentComponent implements OnInit {
     this.apiService.apiGetRequest(getPlantTypeUrl)
       .subscribe(
         response => {
-          const res = response.body;
+          const res = response;
           if (!this.commonService.checkNullOrUndefined(res) && res.status === StatusCodes.pass) {
             if (!this.commonService.checkNullOrUndefined(res.response)) {
               this.plantsList = res.response['plantsList'];
@@ -106,7 +106,7 @@ export class RequisitionAssignmentComponent implements OnInit {
     this.apiService.apiGetRequest(getdepartmentTypeUrl)
       .subscribe(
         response => {
-          const res = response.body;
+          const res = response;
           if (!this.commonService.checkNullOrUndefined(res) && res.status === StatusCodes.pass) {
             if (!this.commonService.checkNullOrUndefined(res.response)) {
               this.deptList = res.response['deptList'];

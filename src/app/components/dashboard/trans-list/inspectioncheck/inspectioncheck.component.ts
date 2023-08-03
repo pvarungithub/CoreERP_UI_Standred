@@ -79,31 +79,31 @@ export class InspectioncheckComponent implements OnInit {
           value: false, type: 'checkbox'
         },
         materialCode: {
-          value: null, type: 'number', width: 100, maxLength: 50,disabled: true
+          value: null, type: 'number', width: 100, maxLength: 50, disabled: true
           //value: null, type: 'dropdown', list: this.materialList, id: 'id', text: 'text', displayMul: true, width: 100
         },
         description: {
-          value: null, type: 'text', width: 100, maxLength: 50,disabled: true
+          value: null, type: 'text', width: 100, maxLength: 50, disabled: true
         },
         receivedQty: {
-          value: null, type: 'number', width: 100, maxLength: 50,disabled: true
+          value: null, type: 'number', width: 100, maxLength: 50, disabled: true
         },
         rejectedQty: {
-          value: null, type: 'number', width: 100, maxLength: 50,disabled: true,fieldEnable: true
+          value: null, type: 'number', width: 100, maxLength: 50, disabled: true, fieldEnable: true
         },
         location: {
-          value: null, type: 'text', width: 100, maxLength: 50,disabled: true
+          value: null, type: 'text', width: 100, maxLength: 50, disabled: true
           //value: null, type: 'dropdown', list: this.locationList, id: 'locationId', text: 'description', displayMul: false, width: 100
         },
-        
+
         movementTo: {
-          value: null, type: 'text', width: 100, maxLength: 50,disabled: true
+          value: null, type: 'text', width: 100, maxLength: 50, disabled: true
         },
         rejectReason: {
-          value: null, type: 'text', width: 100, maxLength: 50,disabled: true,fieldEnable: true
+          value: null, type: 'text', width: 100, maxLength: 50, disabled: true, fieldEnable: true
         },
         text: {
-          value: null, type: 'text', width: 100, maxLength: 50,disabled: true
+          value: null, type: 'text', width: 100, maxLength: 50, disabled: true
         },
         lotNo: {
           value: null, type: 'number', width: 100, maxLength: 50, disabled: true
@@ -143,7 +143,7 @@ export class InspectioncheckComponent implements OnInit {
     this.apiService.apiGetRequest(companyUrl)
       .subscribe(
         response => {
-          const res = response.body;
+          const res = response;
           if (!this.commonService.checkNullOrUndefined(res) && res.status === StatusCodes.pass) {
             if (!this.commonService.checkNullOrUndefined(res.response)) {
               this.companyList = res.response['companiesList'];
@@ -157,7 +157,7 @@ export class InspectioncheckComponent implements OnInit {
     this.apiService.apiGetRequest(getlocationUrl)
       .subscribe(
         response => {
-          const res = response.body;
+          const res = response;
           if (!this.commonService.checkNullOrUndefined(res) && res.status === StatusCodes.pass) {
             if (!this.commonService.checkNullOrUndefined(res.response)) {
               this.locationList = res.response['locationList'];
@@ -171,7 +171,7 @@ export class InspectioncheckComponent implements OnInit {
     this.apiService.apiGetRequest(getmaterialUrl)
       .subscribe(
         response => {
-          const res = response.body;
+          const res = response;
           if (!this.commonService.checkNullOrUndefined(res) && res.status === StatusCodes.pass) {
             if (!this.commonService.checkNullOrUndefined(res.response)) {
               this.materialList = res.response['materialList'];
@@ -185,13 +185,13 @@ export class InspectioncheckComponent implements OnInit {
     this.apiService.apiGetRequest(poUrl)
       .subscribe(
         response => {
-          const res = response.body;
+          const res = response;
           if (!this.commonService.checkNullOrUndefined(res) && res.status === StatusCodes.pass) {
             if (!this.commonService.checkNullOrUndefined(res.response)) {
               this.inspectionnoList = res.response['inspectionnoList'];
             }
           }
-         this.getplantList();
+          this.getplantList();
         });
   }
 
@@ -200,7 +200,7 @@ export class InspectioncheckComponent implements OnInit {
     this.apiService.apiGetRequest(getplantList)
       .subscribe(
         response => {
-          const res = response.body;
+          const res = response;
           if (!this.commonService.checkNullOrUndefined(res) && res.status === StatusCodes.pass) {
             if (!this.commonService.checkNullOrUndefined(res.response)) {
               this.plantList = res.response['plantList'];
@@ -217,7 +217,7 @@ export class InspectioncheckComponent implements OnInit {
     this.apiService.apiGetRequest(branchUrl)
       .subscribe(
         response => {
-          const res = response.body;
+          const res = response;
           if (!this.commonService.checkNullOrUndefined(res) && res.status === StatusCodes.pass) {
             if (!this.commonService.checkNullOrUndefined(res.response)) {
               this.branchList = res.response['branchsList'];
@@ -233,7 +233,7 @@ export class InspectioncheckComponent implements OnInit {
     this.apiService.apiGetRequest(getpcUrl)
       .subscribe(
         response => {
-          const res = response.body;
+          const res = response;
           if (!this.commonService.checkNullOrUndefined(res) && res.status === StatusCodes.pass) {
             if (!this.commonService.checkNullOrUndefined(res.response)) {
               this.profitCenterList = res.response['profitCenterList'];
@@ -247,7 +247,7 @@ export class InspectioncheckComponent implements OnInit {
     this.apiService.apiGetRequest(getgrUrl)
       .subscribe(
         response => {
-          const res = response.body;
+          const res = response;
           if (!this.commonService.checkNullOrUndefined(res) && res.status === StatusCodes.pass) {
             if (!this.commonService.checkNullOrUndefined(res.response)) {
               this.grList = res.response['grList'];
@@ -261,7 +261,7 @@ export class InspectioncheckComponent implements OnInit {
     this.apiService.apiGetRequest(getinspectioncheckListUrl)
       .subscribe(
         response => {
-          const res = response.body;
+          const res = response;
           if (!this.commonService.checkNullOrUndefined(res) && res.status === StatusCodes.pass) {
             if (!this.commonService.checkNullOrUndefined(res.response)) {
               this.inspectiondetailsList = res.response['inspectiondetailsList'];
@@ -276,7 +276,7 @@ export class InspectioncheckComponent implements OnInit {
       .subscribe(
         response => {
           this.spinner.hide();
-          const res = response.body;
+          const res = response;
           if (!this.commonService.checkNullOrUndefined(res) && res.status === StatusCodes.pass) {
             if (!this.commonService.checkNullOrUndefined(res.response)) {
               this.wbsList = res.response['wbsList'];
@@ -295,7 +295,7 @@ export class InspectioncheckComponent implements OnInit {
       .subscribe(
         response => {
           this.spinner.hide();
-          const res = response.body;
+          const res = response;
           if (!this.commonService.checkNullOrUndefined(res) && res.status === StatusCodes.pass) {
             if (!this.commonService.checkNullOrUndefined(res.response)) {
               this.formData.setValue(res.response['icmasters']);
@@ -312,9 +312,9 @@ export class InspectioncheckComponent implements OnInit {
     let newData = [];
 
     if (!this.commonService.checkNullOrUndefined(this.formData.get('inspectionCheckNo').value)) {
-  var  data1 = this.grList.find(resp => resp.inspectionNoteNo == this.formData.get('inspectionCheckNo').value);
+      var data1 = this.grList.find(resp => resp.inspectionNoteNo == this.formData.get('inspectionCheckNo').value);
 
-      data = this.inspectiondetailsList.filter(resp => resp.purchaseOrderNo ==data1.purchaseOrderNo);
+      data = this.inspectiondetailsList.filter(resp => resp.purchaseOrderNo == data1.purchaseOrderNo);
     }
     if (data.length) {
       console.log(data, this.tablePropsFunc());
@@ -329,15 +329,14 @@ export class InspectioncheckComponent implements OnInit {
         newData[index].rejectedQty.value = null;
         newData[index].text.value = null;
         newData[index].lotNo.value = res.lotNo;
-       newData[index].lotDate.value = new Date();
+        newData[index].lotDate.value = new Date();
       })
     }
     //
-      this.sendDynTableData = { type: 'add', data: newData };
+    this.sendDynTableData = { type: 'add', data: newData };
   }
-  emitColumnChanges(data) 
-  {
-   this.tableData = data.data;
+  emitColumnChanges(data) {
+    this.tableData = data.data;
     // if (data.column == 'checkAll') {
     //   this.sendDynTableData = { type: 'add', data: data.data };
     // }
@@ -350,7 +349,7 @@ export class InspectioncheckComponent implements OnInit {
   }
 
   save() {
- this.tableData = this.commonService.formatTableData(this.tableData, 0);
+    this.tableData = this.commonService.formatTableData(this.tableData, 0);
     if (this.tableData.length == 0 && this.formData.invalid) {
       return;
     }
@@ -362,8 +361,8 @@ export class InspectioncheckComponent implements OnInit {
     const requestObj = { icHdr: this.formData.value, icDtl: this.tableData };
     this.apiService.apiPostRequest(addsq, requestObj).subscribe(
       response => {
-        const res = response.body;
-  this.tableData = [];
+        const res = response;
+        this.tableData = [];
         if (!this.commonService.checkNullOrUndefined(res) && res.status === StatusCodes.pass) {
           if (!this.commonService.checkNullOrUndefined(res.response)) {
             this.alertService.openSnackBar('Inspection Check created Successfully..', Static.Close, SnackBar.success);
@@ -378,7 +377,7 @@ export class InspectioncheckComponent implements OnInit {
     const addCashBank = String.Join('/', this.apiConfigService.returnsupplierqs, this.routeEdit);
     this.apiService.apiGetRequest(addCashBank).subscribe(
       response => {
-        const res = response.body;
+        const res = response;
         if (!this.commonService.checkNullOrUndefined(res) && res.status === StatusCodes.pass) {
           if (!this.commonService.checkNullOrUndefined(res.response)) {
             this.alertService.openSnackBar(res.response, Static.Close, SnackBar.success);

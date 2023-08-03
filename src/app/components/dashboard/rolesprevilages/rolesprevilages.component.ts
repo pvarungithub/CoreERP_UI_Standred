@@ -56,7 +56,7 @@ export class RolesprevilagesComponent implements OnInit, OnDestroy {
     const getRolesUrl = this.apiConfigService.getRoles;
     this.apiService.apiGetRequest(getRolesUrl).subscribe(
       response => {
-        const res = response.body;
+        const res = response;
         if (!this.commonService.checkNullOrUndefined(res) && res.status === StatusCodes.pass) {
           if (!this.commonService.checkNullOrUndefined(res.response)) {
             this.roleArray = res.response['Roles'];
@@ -78,7 +78,7 @@ export class RolesprevilagesComponent implements OnInit, OnDestroy {
     const getRolesUrl = this.apiConfigService.getParentMenus;
     this.apiService.apiGetRequest(getRolesUrl).subscribe(
       response => {
-        const res = response.body;
+        const res = response;
         if (!this.commonService.checkNullOrUndefined(res) && res.status === StatusCodes.pass) {
           if (!this.commonService.checkNullOrUndefined(res.response)) {
             this.parentMenu = res.response['ParentMenus'];
@@ -93,11 +93,11 @@ export class RolesprevilagesComponent implements OnInit, OnDestroy {
       this.formData.get('parentMenu').value);
     this.apiService.apiGetRequest(getRolesUrl).subscribe(
       response => {
-        const res = response.body;
+        const res = response;
         if (!this.commonService.checkNullOrUndefined(res) && res.status === StatusCodes.pass) {
           if (!this.commonService.checkNullOrUndefined(res.response)) {
-            this.actualData = res.response.map(x => ({...x}));
-            this.dataSource = new MatTableDataSource(res.response.map(x => ({...x})));
+            this.actualData = res.response.map(x => ({ ...x }));
+            this.dataSource = new MatTableDataSource(res.response.map(x => ({ ...x })));
             this.dataSource.paginator = this.paginator;
           }
         }
@@ -125,11 +125,11 @@ export class RolesprevilagesComponent implements OnInit, OnDestroy {
         }
       }
     }
-    
+
     const getAccessUrl = String.Join('/', this.apiConfigService.giveAccess, this.formData.get('role').value);
     this.apiService.apiPostRequest(getAccessUrl, filterData).subscribe(
       response => {
-        const res = response.body;
+        const res = response;
         if (!this.commonService.checkNullOrUndefined(res) && res.status === StatusCodes.pass) {
           if (!this.commonService.checkNullOrUndefined(res.response)) {
             this.alertService.openSnackBar(Static.LoginSussfull, Static.Close, SnackBar.success);
@@ -149,7 +149,7 @@ export class RolesprevilagesComponent implements OnInit, OnDestroy {
 
   ngOnDestroy(): void {
     this.commonService.routeParam = null;
-}
+  }
 
 }
 

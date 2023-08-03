@@ -79,7 +79,7 @@ export class BatchMasterComponent implements OnInit {
     this.apiService.apiGetRequest(getompanyUrl)
       .subscribe(
         response => {
-          const res = response.body;
+          const res = response;
           if (!this.commonService.checkNullOrUndefined(res) && res.status === StatusCodes.pass) {
             if (!this.commonService.checkNullOrUndefined(res.response)) {
               this.companiesList = res.response['companiesList'];
@@ -93,7 +93,7 @@ export class BatchMasterComponent implements OnInit {
     this.apiService.apiGetRequest(getplantUrl)
       .subscribe(
         response => {
-          const res = response.body;
+          const res = response;
           if (!this.commonService.checkNullOrUndefined(res) && res.status === StatusCodes.pass) {
             if (!this.commonService.checkNullOrUndefined(res.response)) {
               this.plantList = res.response['plantsList'];
@@ -107,7 +107,7 @@ export class BatchMasterComponent implements OnInit {
     this.apiService.apiGetRequest(getemployeeUrl)
       .subscribe(
         response => {
-          const res = response.body;
+          const res = response;
           if (!this.commonService.checkNullOrUndefined(res) && res.status === StatusCodes.pass) {
             if (!this.commonService.checkNullOrUndefined(res.response)) {
               this.empList = res.response['emplist'];
@@ -121,7 +121,7 @@ export class BatchMasterComponent implements OnInit {
     this.apiService.apiGetRequest(getuomTypeUrl)
       .subscribe(
         response => {
-          const res = response.body;
+          const res = response;
           console.log(res);
           if (!this.commonService.checkNullOrUndefined(res) && res.status === StatusCodes.pass) {
             if (!this.commonService.checkNullOrUndefined(res.response)) {

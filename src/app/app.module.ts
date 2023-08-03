@@ -69,6 +69,7 @@ import { HTTP_INTERCEPTORS } from '@angular/common/http';
 import { from } from 'rxjs';
 import { MaxlengthDirective } from './directives/maxlength.directive';
 import { NonEditableDatepicker } from './directives/format-datepicker';
+import { BrowserAnimationsModule } from '@angular/platform-browser/animations';
 
 //import { AccountKeyComponent } from './components/dashboard/comp-list/assetblock/accountkey/accountkey.component';
 // AoT requires an exported function for factories
@@ -129,7 +130,7 @@ export function HttpLoaderFactory(httpClient: HttpClient) {
     GoodsIssueNoteNumberSeriesComponent, BinsCreationComponent, PurchaseRequisitionNumberRangeComponent, MaterialNumberRangeComponent, MaterialNumberAsssignmentComponent,
     PurchaseOrderAssignmentComponent, QuotationAssignmentComponent, BusienessTransactionTypeComponent, AssetBegningAccumulatedDepreciationComponent, AssetBegningAcqusitionComponent,
     BusienessPartnerAccountComponent, AssignGLaccounttoSubGroupComponent, MainAssetMasterComponent, SubAssetsComponent,
-    DynamicTableComponent, AutocompleteComponent, CashbankComponent,SampleRequisitionFormComponent, SampleServiceComponent, JournalComponent, MaterialRequisitionNoteAssignmentComponent, GoodsissueComponent, MemoinvoiceComponent, ReceiptspaymentsComponent, MaterialrequisitionComponents, BillOfMaterialComponent, MaxlengthDirective, PurchasesaleassetComponent,
+    DynamicTableComponent, AutocompleteComponent, CashbankComponent, SampleRequisitionFormComponent, SampleServiceComponent, JournalComponent, MaterialRequisitionNoteAssignmentComponent, GoodsissueComponent, MemoinvoiceComponent, ReceiptspaymentsComponent, MaterialrequisitionComponents, BillOfMaterialComponent, MaxlengthDirective, PurchasesaleassetComponent,
     SaleassetComponent, RoutingFileComponent, SourceOfSupplyComponent, QuotationSupplierComponent, QuotationAnalysisComponent,
     PurchasingComponent, PurchaseOrderComponent, ReceiptOfGoodsComponent, InspectioncheckComponent, NonEditableDatepicker, PrimaryComponent, PrimaryCostElementComponent
     //LeaveopeningbalanceComponent,
@@ -149,6 +150,7 @@ export function HttpLoaderFactory(httpClient: HttpClient) {
         deps: [HttpClient]
       }
     }),
+    BrowserAnimationsModule,
   ],
   providers: [
     RuntimeConfigService,

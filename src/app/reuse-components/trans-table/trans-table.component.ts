@@ -102,7 +102,7 @@ export class TransTableComponent implements OnInit {
     this.apiService.apiPostRequest(getInvoiceListUrl, this.headerForm.value).subscribe(
       response => {
         this.spinner.hide();
-        const res = response.body;
+        const res = response;
         if (!this.commonService.checkNullOrUndefined(res) && res.status === StatusCodes.pass) {
           if (!this.commonService.checkNullOrUndefined(res.response[this.transListService.getDynComponents(this.routeParam).list]) && res.response[this.transListService.getDynComponents(this.routeParam).list].length) {
             this.tableData = res.response[this.transListService.getDynComponents(this.routeParam).list];
@@ -127,7 +127,7 @@ export class TransTableComponent implements OnInit {
   tableDataFunc() {
     this.highlightedRows = [];
     this.dataSource = new MatTableDataSource();
-    
+
     if (!this.commonService.checkNullOrUndefined(this.tableData)) {
       if (this.tableData.length) {
         this.dataSource = new MatTableDataSource(this.tableData);
@@ -169,7 +169,7 @@ export class TransTableComponent implements OnInit {
           }
         }
       }
-      
+
     }
 
 
@@ -183,6 +183,7 @@ export class TransTableComponent implements OnInit {
     if (!this.commonService.checkNullOrUndefined(this.tableData)) {
       return this.columnDefinitions.filter(cd => cd.hide).map(cd => cd.def);
     }
+    return null;
   }
 
   selectRow(row, index) {

@@ -66,7 +66,7 @@ export class AssignGLaccounttoSubGroupComponent implements OnInit {
     this.apiService.apiGetRequest(geStructurekeynUrl)
       .subscribe(
         response => {
-          const res = response.body;
+          const res = response;
           if (!this.commonService.checkNullOrUndefined(res) && res.status === StatusCodes.pass) {
             if (!this.commonService.checkNullOrUndefined(res.response)) {
               this.structkeyList = res.response['structkeyList'];
@@ -82,7 +82,7 @@ export class AssignGLaccounttoSubGroupComponent implements OnInit {
       this.apiService.apiGetRequest(getAccountNamelist)
         .subscribe(
           response => {
-            const res = response.body;
+            const res = response;
             if (!this.commonService.checkNullOrUndefined(res) && res.status === StatusCodes.pass) {
               if (!this.commonService.checkNullOrUndefined(res.response)) {
                 this.subaccList = res.response['GetAccountNamelist'];
@@ -100,7 +100,7 @@ export class AssignGLaccounttoSubGroupComponent implements OnInit {
     this.apiService.apiGetRequest(getdptcnUrl)
       .subscribe(
         response => {
-          const res = response.body;
+          const res = response;
           if (!this.commonService.checkNullOrUndefined(res) && res.status === StatusCodes.pass) {
             if (!this.commonService.checkNullOrUndefined(res.response)) {
               this.glList = this.filterGlList(res.response['glList']);
@@ -130,7 +130,7 @@ export class AssignGLaccounttoSubGroupComponent implements OnInit {
     this.apiService.apiGetRequest(getglAccgrpList)
       .subscribe(
         response => {
-          const res = response.body;
+          const res = response;
           if (!this.commonService.checkNullOrUndefined(res) && res.status === StatusCodes.pass) {
             if (!this.commonService.checkNullOrUndefined(res.response)) {
               this.glAccgrpList = res.response['GLAccGroupList'];

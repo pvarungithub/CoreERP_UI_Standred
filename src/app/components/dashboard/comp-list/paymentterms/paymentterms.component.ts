@@ -115,7 +115,7 @@ export class PaymentTermsComponent implements OnInit {
       .subscribe(
         response => {
           this.spinner.hide();
-          const res = response.body;
+          const res = response;
           if (!this.commonService.checkNullOrUndefined(res) && res.status === StatusCodes.pass) {
             if (!this.commonService.checkNullOrUndefined(res.response)) {
               console.log(res.response['PaymentTermDetail']);
@@ -159,7 +159,7 @@ export class PaymentTermsComponent implements OnInit {
     const requestObj = { paymentstrmsHdr: this.modelFormData.value, paymentstrmsDetail: this.tableData };
     this.apiService.apiPostRequest(addCashBank, requestObj).subscribe(
       response => {
-        const res = response.body;
+        const res = response;
         if (!this.commonService.checkNullOrUndefined(res) && res.status === StatusCodes.pass) {
           if (!this.commonService.checkNullOrUndefined(res.response)) {
             this.alertService.openSnackBar('paymentterms created Successfully..', Static.Close, SnackBar.success);

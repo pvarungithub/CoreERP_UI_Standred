@@ -69,12 +69,11 @@ export class LoginComponent implements OnInit {
     const getLoginUrl = String.Join('/', this.apiConfigService.loginUrl);
     this.apiService.apiPostRequest(getLoginUrl, requestObj)
       .subscribe(
-        response => {
-          const res = response.body;
-          if (!this.commonService.checkNullOrUndefined(res) && res.status === StatusCodes.pass) {
-            if (!this.commonService.checkNullOrUndefined(res.response)) {
-              this.getBranchesForUser(res.response['User']);
-              localStorage.setItem('Token', JSON.stringify(res.response['Token']));
+        (response: any) => {
+          if (!this.commonService.checkNullOrUndefined(response) && response.status === StatusCodes.pass) {
+            if (!this.commonService.checkNullOrUndefined(response.response)) {
+              this.getBranchesForUser(response.response['User']);
+              localStorage.setItem('Token', JSON.stringify(response.response['Token']));
             }
           }
           this.spinner.hide();
@@ -85,7 +84,7 @@ export class LoginComponent implements OnInit {
     const getBranchesForUserUrl = String.Join('/', this.apiConfigService.getBranchesForUser, obj.seqId);
     this.apiService.apiGetRequest(getBranchesForUserUrl).subscribe(
       response => {
-        const res = response.body;
+        const res = response;
         if (!this.commonService.checkNullOrUndefined(res) && res.status === StatusCodes.pass) {
           if (!this.commonService.checkNullOrUndefined(res.response)) {
             if (!this.commonService.checkNullOrUndefined(res.response['Branches'])) {

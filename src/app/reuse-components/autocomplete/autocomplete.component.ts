@@ -75,10 +75,10 @@ export class AutocompleteComponent implements OnInit {
     if (!this.commonService.checkNullOrUndefined(value) && value.length) {
       // const url = String.Join('/', this.dataConfig.url, value.trim());
       const url = String.Join('/', this.dataConfig.url);
-    return this.apiService.apiGetRequest(url)
-      .pipe(map(r => r.json()))
-      .subscribe(response => {          
-        const res = response.body;
+      return this.apiService.apiGetRequest(url)
+        .pipe(map(r => r.json()))
+        .subscribe(response => {
+          const res = response;
           this.spinner.hide();
           if (!this.commonService.checkNullOrUndefined(res) && res.status === StatusCodes.pass) {
             return res.response[this.dataConfig.list];

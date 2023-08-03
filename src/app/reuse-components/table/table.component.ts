@@ -247,6 +247,7 @@ export class TableComponent implements OnInit, OnChanges, AfterViewInit, OnDestr
     if (!this.commonService.checkNullOrUndefined(this.tableData)) {
       return this.columnDefinitions.filter(cd => cd.hide).map(cd => cd.def);
     }
+    return null;
   }
 
   ngOnDestroy() {

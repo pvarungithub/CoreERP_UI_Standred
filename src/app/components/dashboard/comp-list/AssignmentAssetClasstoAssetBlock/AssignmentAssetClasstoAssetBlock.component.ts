@@ -54,7 +54,7 @@ export class AseetClassToAssetBlockComponent implements OnInit {
     this.apiService.apiGetRequest(getassetist)
       .subscribe(
         response => {
-          const res = response.body;
+          const res = response;
           if (!this.commonService.checkNullOrUndefined(res) && res.status === StatusCodes.pass) {
             if (!this.commonService.checkNullOrUndefined(res.response)) {
               this.assetList = res.response['assetList'];
@@ -69,7 +69,7 @@ export class AseetClassToAssetBlockComponent implements OnInit {
     this.apiService.apiGetRequest(getassetblocksList)
       .subscribe(
         response => {
-          const res = response.body;
+          const res = response;
           if (!this.commonService.checkNullOrUndefined(res) && res.status === StatusCodes.pass) {
             if (!this.commonService.checkNullOrUndefined(res.response)) {
               this.assetblockList = res.response['assetblockList'];

@@ -30,7 +30,7 @@ export class AddOrEditService {
     this.apiService.apiPostRequest(addCompanyUrl, result.item)
       .subscribe(
         response => {
-          const res = response.body;
+          const res = response;
           if (!this.commonService.checkNullOrUndefined(res) && res.status === StatusCodes.pass) {
             if (!this.commonService.checkNullOrUndefined(res.response)) {
               this.alertService.openSnackBar('Record Added...', 'close', SnackBar.success);
@@ -46,7 +46,7 @@ export class AddOrEditService {
     this.apiService.apiUpdateRequest(updateCompanyUrl, result.item)
       .subscribe(
         response => {
-          const res = response.body;
+          const res = response;
           this.spinner.hide();
           if (!this.commonService.checkNullOrUndefined(res) && res.status === StatusCodes.pass) {
             if (!this.commonService.checkNullOrUndefined(res.response)) {

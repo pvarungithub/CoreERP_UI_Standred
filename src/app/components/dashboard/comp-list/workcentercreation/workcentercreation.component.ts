@@ -130,7 +130,7 @@ export class WorkCenterCreationComponent implements OnInit {
     }
   }
 
- emitColumnCapacityData(data) {
+  emitColumnCapacityData(data) {
     this.activityTableData = data.data;
   }
 
@@ -178,7 +178,7 @@ export class WorkCenterCreationComponent implements OnInit {
     this.apiService.apiGetRequest(companyUrl)
       .subscribe(
         response => {
-          const res = response.body;
+          const res = response;
           if (!this.commonService.checkNullOrUndefined(res) && res.status === StatusCodes.pass) {
             if (!this.commonService.checkNullOrUndefined(res.response)) {
               this.companyList = res.response['companiesList'];
@@ -196,7 +196,7 @@ export class WorkCenterCreationComponent implements OnInit {
     this.apiService.apiGetRequest(getplantsList)
       .subscribe(
         response => {
-          const res = response.body;
+          const res = response;
           if (!this.commonService.checkNullOrUndefined(res) && res.status === StatusCodes.pass) {
             if (!this.commonService.checkNullOrUndefined(res.response)) {
               this.plantList = res.response['plantsList'];
@@ -214,7 +214,7 @@ export class WorkCenterCreationComponent implements OnInit {
     this.apiService.apiGetRequest(getlocationsList)
       .subscribe(
         response => {
-          const res = response.body;
+          const res = response;
           if (!this.commonService.checkNullOrUndefined(res) && res.status === StatusCodes.pass) {
             if (!this.commonService.checkNullOrUndefined(res.response)) {
               this.locList = res.response['locationList'];
@@ -229,7 +229,7 @@ export class WorkCenterCreationComponent implements OnInit {
     this.apiService.apiGetRequest(getemployeeUrl)
       .subscribe(
         response => {
-          const res = response.body;
+          const res = response;
           if (!this.commonService.checkNullOrUndefined(res) && res.status === StatusCodes.pass) {
             if (!this.commonService.checkNullOrUndefined(res.response)) {
               this.empList = res.response['emplist'];
@@ -243,7 +243,7 @@ export class WorkCenterCreationComponent implements OnInit {
     this.apiService.apiGetRequest(getformulaUrl)
       .subscribe(
         response => {
-          const res = response.body;
+          const res = response;
           console.log(res);
           if (!this.commonService.checkNullOrUndefined(res) && res.status === StatusCodes.pass) {
             if (!this.commonService.checkNullOrUndefined(res.response)) {
@@ -259,7 +259,7 @@ export class WorkCenterCreationComponent implements OnInit {
     this.apiService.apiGetRequest(getuomTypeUrl)
       .subscribe(
         response => {
-          const res = response.body;
+          const res = response;
           console.log(res);
           if (!this.commonService.checkNullOrUndefined(res) && res.status === StatusCodes.pass) {
             if (!this.commonService.checkNullOrUndefined(res.response)) {
@@ -275,7 +275,7 @@ export class WorkCenterCreationComponent implements OnInit {
     this.apiService.apiGetRequest(getccUrl)
       .subscribe(
         response => {
-          const res = response.body;
+          const res = response;
           console.log(res);
           if (!this.commonService.checkNullOrUndefined(res) && res.status === StatusCodes.pass) {
             if (!this.commonService.checkNullOrUndefined(res.response)) {
@@ -320,7 +320,7 @@ export class WorkCenterCreationComponent implements OnInit {
     this.sendActivityDynTableData = { type: 'reset', data: [] };
   }
 
- save() {    
+  save() {
     this.activityTableData = this.commonService.formatTableData(this.activityTableData);
     this.capacityTableData = this.commonService.formatTableData(this.capacityTableData);
     this.saveWRC();
@@ -331,8 +331,8 @@ export class WorkCenterCreationComponent implements OnInit {
     const requestObj = { mainasstHdr: this.modelFormData.value, mainactvtyDetail: this.activityTableData, mainassetcapacityDetail: this.capacityTableData };
     this.apiService.apiPostRequest(addCashBank, requestObj).subscribe(
       response => {
-        const res = response.body;
-  this.activityTableData = [];
+        const res = response;
+        this.activityTableData = [];
         this.capacityTableData = [];
         if (!this.commonService.checkNullOrUndefined(res) && res.status === StatusCodes.pass) {
           if (!this.commonService.checkNullOrUndefined(res.response)) {

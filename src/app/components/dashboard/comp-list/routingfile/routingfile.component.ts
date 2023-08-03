@@ -232,7 +232,7 @@ export class RoutingFileComponent implements OnInit {
     this.apiService.apiGetRequest(companyUrl)
       .subscribe(
         response => {
-          const res = response.body;
+          const res = response;
           if (!this.commonService.checkNullOrUndefined(res) && res.status === StatusCodes.pass) {
             if (!this.commonService.checkNullOrUndefined(res.response)) {
               this.companyList = res.response['companiesList'];
@@ -247,7 +247,7 @@ export class RoutingFileComponent implements OnInit {
     this.apiService.apiGetRequest(getplantsList)
       .subscribe(
         response => {
-          const res = response.body;
+          const res = response;
           if (!this.commonService.checkNullOrUndefined(res) && res.status === StatusCodes.pass) {
             if (!this.commonService.checkNullOrUndefined(res.response)) {
               this.plantList = res.response['plantsList'];
@@ -262,7 +262,7 @@ export class RoutingFileComponent implements OnInit {
     this.apiService.apiGetRequest(getorderelementUrl)
       .subscribe(
         response => {
-          const res = response.body;
+          const res = response;
           if (!this.commonService.checkNullOrUndefined(res) && res.status === StatusCodes.pass) {
             if (!this.commonService.checkNullOrUndefined(res.response)) {
               this.ordertypeList = res.response['ordertypeList'];
@@ -276,7 +276,7 @@ export class RoutingFileComponent implements OnInit {
     this.apiService.apiGetRequest(getsecondelementUrl)
       .subscribe(
         response => {
-          const res = response.body;
+          const res = response;
           if (!this.commonService.checkNullOrUndefined(res) && res.status === StatusCodes.pass) {
             if (!this.commonService.checkNullOrUndefined(res.response)) {
               this.costunitList = res.response['costunitList'];
@@ -290,7 +290,7 @@ export class RoutingFileComponent implements OnInit {
     this.apiService.apiGetRequest(getmaterialUrl)
       .subscribe(
         response => {
-          const res = response.body;
+          const res = response;
 
           if (!this.commonService.checkNullOrUndefined(res) && res.status === StatusCodes.pass) {
             if (!this.commonService.checkNullOrUndefined(res.response)) {
@@ -305,7 +305,7 @@ export class RoutingFileComponent implements OnInit {
     this.apiService.apiGetRequest(getuomTypeUrl)
       .subscribe(
         response => {
-          const res = response.body;
+          const res = response;
           if (!this.commonService.checkNullOrUndefined(res) && res.status === StatusCodes.pass) {
             if (!this.commonService.checkNullOrUndefined(res.response)) {
               this.uomList = res.response['UOMList'];
@@ -319,7 +319,7 @@ export class RoutingFileComponent implements OnInit {
     this.apiService.apiGetRequest(getWCListurl)
       .subscribe(
         response => {
-          const res = response.body;
+          const res = response;
           console.log(res);
           if (!this.commonService.checkNullOrUndefined(res) && res.status === StatusCodes.pass) {
             if (!this.commonService.checkNullOrUndefined(res.response)) {
@@ -334,7 +334,7 @@ export class RoutingFileComponent implements OnInit {
     this.apiService.apiGetRequest(getformulaUrl)
       .subscribe(
         response => {
-          const res = response.body;
+          const res = response;
           if (!this.commonService.checkNullOrUndefined(res) && res.status === StatusCodes.pass) {
             if (!this.commonService.checkNullOrUndefined(res.response)) {
               this.formulaList = res.response['formulaList'];
@@ -348,7 +348,7 @@ export class RoutingFileComponent implements OnInit {
     this.apiService.apiGetRequest(getccUrl)
       .subscribe(
         response => {
-          const res = response.body;
+          const res = response;
           if (!this.commonService.checkNullOrUndefined(res) && res.status === StatusCodes.pass) {
             if (!this.commonService.checkNullOrUndefined(res.response)) {
               this.costCenterList = res.response['costcenterList'];
@@ -398,7 +398,7 @@ export class RoutingFileComponent implements OnInit {
     };
     this.apiService.apiPostRequest(addrouting, requestObj).subscribe(
       response => {
-        const res = response.body;
+        const res = response;
         if (!this.commonService.checkNullOrUndefined(res) && res.status === StatusCodes.pass) {
           if (!this.commonService.checkNullOrUndefined(res.response)) {
             this.alertService.openSnackBar('Routing File created Successfully..', Static.Close, SnackBar.success);
@@ -417,7 +417,7 @@ export class RoutingFileComponent implements OnInit {
       .subscribe(
         response => {
           this.spinner.hide();
-          const res = response.body;
+          const res = response;
           console.log(res.response['routebasicDetail']);
           if (!this.commonService.checkNullOrUndefined(res) && res.status === StatusCodes.pass) {
             if (!this.commonService.checkNullOrUndefined(res.response)) {

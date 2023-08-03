@@ -187,7 +187,7 @@ export class PurchaseOrderComponent implements OnInit {
     this.apiService.apiGetRequest(companyUrl)
       .subscribe(
         response => {
-          const res = response.body;
+          const res = response;
           if (!this.commonService.checkNullOrUndefined(res) && res.status === StatusCodes.pass) {
             if (!this.commonService.checkNullOrUndefined(res.response)) {
               this.companyList = res.response['companiesList'];
@@ -201,7 +201,7 @@ export class PurchaseOrderComponent implements OnInit {
     this.apiService.apiGetRequest(getpmList)
       .subscribe(
         response => {
-          const res = response.body;
+          const res = response;
           if (!this.commonService.checkNullOrUndefined(res) && res.status === StatusCodes.pass) {
             if (!this.commonService.checkNullOrUndefined(res.response)) {
               this.ptermsList = res.response['ptermsList'];
@@ -215,7 +215,7 @@ export class PurchaseOrderComponent implements OnInit {
     this.apiService.apiGetRequest(getsuppliercodeList)
       .subscribe(
         response => {
-          const res = response.body;
+          const res = response;
           if (!this.commonService.checkNullOrUndefined(res) && res.status === StatusCodes.pass) {
             if (!this.commonService.checkNullOrUndefined(res.response)) {
               this.bpaList = res.response['bpaList'];
@@ -231,7 +231,7 @@ export class PurchaseOrderComponent implements OnInit {
     this.apiService.apiGetRequest(getplantList)
       .subscribe(
         response => {
-          const res = response.body;
+          const res = response;
           if (!this.commonService.checkNullOrUndefined(res) && res.status === StatusCodes.pass) {
             if (!this.commonService.checkNullOrUndefined(res.response)) {
               this.plantList = res.response['plantList'];
@@ -245,7 +245,7 @@ export class PurchaseOrderComponent implements OnInit {
     this.apiService.apiGetRequest(getquotationnoUrl)
       .subscribe(
         response => {
-          const res = response.body;
+          const res = response;
           if (!this.commonService.checkNullOrUndefined(res) && res.status === StatusCodes.pass) {
             if (!this.commonService.checkNullOrUndefined(res.response)) {
               this.qnoList = res.response['qnoList'];
@@ -259,7 +259,7 @@ export class PurchaseOrderComponent implements OnInit {
     this.apiService.apiGetRequest(getpurchaseordertypeUrl)
       .subscribe(
         response => {
-          const res = response.body;
+          const res = response;
           if (!this.commonService.checkNullOrUndefined(res) && res.status === StatusCodes.pass) {
             if (!this.commonService.checkNullOrUndefined(res.response)) {
               this.porderList = res.response['porderList'];
@@ -273,7 +273,7 @@ export class PurchaseOrderComponent implements OnInit {
     this.apiService.apiGetRequest(fcUrl)
       .subscribe(
         response => {
-          const res = response.body;
+          const res = response;
           if (!this.commonService.checkNullOrUndefined(res) && res.status === StatusCodes.pass) {
             if (!this.commonService.checkNullOrUndefined(res.response)) {
               this.fcList = res.response['fcList'];
@@ -287,7 +287,7 @@ export class PurchaseOrderComponent implements OnInit {
     this.apiService.apiGetRequest(cmntUrl)
       .subscribe(
         response => {
-          const res = response.body;
+          const res = response;
           if (!this.commonService.checkNullOrUndefined(res) && res.status === StatusCodes.pass) {
             if (!this.commonService.checkNullOrUndefined(res.response)) {
               this.citemList = res.response['citemList'];
@@ -301,7 +301,7 @@ export class PurchaseOrderComponent implements OnInit {
     this.apiService.apiGetRequest(getlocationsList)
       .subscribe(
         response => {
-          const res = response.body;
+          const res = response;
           if (!this.commonService.checkNullOrUndefined(res) && res.status === StatusCodes.pass) {
             if (!this.commonService.checkNullOrUndefined(res.response)) {
               this.locList = res.response['locationList'];
@@ -315,7 +315,7 @@ export class PurchaseOrderComponent implements OnInit {
     this.apiService.apiGetRequest(taxCodeUrl)
       .subscribe(
         response => {
-          const res = response.body;
+          const res = response;
 
           if (!this.commonService.checkNullOrUndefined(res) && res.status === StatusCodes.pass) {
             if (!this.commonService.checkNullOrUndefined(res.response)) {
@@ -330,7 +330,7 @@ export class PurchaseOrderComponent implements OnInit {
     this.apiService.apiGetRequest(branchUrl)
       .subscribe(
         response => {
-          const res = response.body;
+          const res = response;
           if (!this.commonService.checkNullOrUndefined(res) && res.status === StatusCodes.pass) {
             if (!this.commonService.checkNullOrUndefined(res.response)) {
               this.branchList = res.response['branchsList'];
@@ -345,7 +345,7 @@ export class PurchaseOrderComponent implements OnInit {
     this.apiService.apiGetRequest(getccUrl)
       .subscribe(
         response => {
-          const res = response.body;
+          const res = response;
           if (!this.commonService.checkNullOrUndefined(res) && res.status === StatusCodes.pass) {
             if (!this.commonService.checkNullOrUndefined(res.response)) {
               this.costcenterList = res.response['costcenterList'];
@@ -360,7 +360,7 @@ export class PurchaseOrderComponent implements OnInit {
     this.apiService.apiGetRequest(getpcUrl)
       .subscribe(
         response => {
-          const res = response.body;
+          const res = response;
           if (!this.commonService.checkNullOrUndefined(res) && res.status === StatusCodes.pass) {
             if (!this.commonService.checkNullOrUndefined(res.response)) {
               this.profitCenterList = res.response['profitCenterList'];
@@ -375,7 +375,7 @@ export class PurchaseOrderComponent implements OnInit {
     this.apiService.apiGetRequest(getEmployeeList)
       .subscribe(
         response => {
-          const res = response.body;
+          const res = response;
           if (!this.commonService.checkNullOrUndefined(res) && res.status === StatusCodes.pass) {
             if (!this.commonService.checkNullOrUndefined(res.response)) {
               this.employeesList = res.response['roleList'];
@@ -390,7 +390,7 @@ export class PurchaseOrderComponent implements OnInit {
     this.apiService.apiGetRequest(getpcUrl)
       .subscribe(
         response => {
-          const res = response.body;
+          const res = response;
           if (!this.commonService.checkNullOrUndefined(res) && res.status === StatusCodes.pass) {
             if (!this.commonService.checkNullOrUndefined(res.response)) {
               this.pcgroupList = res.response['pcgroupList'];
@@ -405,7 +405,7 @@ export class PurchaseOrderComponent implements OnInit {
     this.apiService.apiGetRequest(getmaterialUrl)
       .subscribe(
         response => {
-          const res = response.body;
+          const res = response;
           if (!this.commonService.checkNullOrUndefined(res) && res.status === StatusCodes.pass) {
             if (!this.commonService.checkNullOrUndefined(res.response)) {
               this.materialList = res.response['materialList'];
@@ -421,7 +421,7 @@ export class PurchaseOrderComponent implements OnInit {
       .subscribe(
         response => {
           this.spinner.hide();
-          const res = response.body;
+          const res = response;
           if (!this.commonService.checkNullOrUndefined(res) && res.status === StatusCodes.pass) {
             if (!this.commonService.checkNullOrUndefined(res.response)) {
               this.wbsList = res.response['wbsList'];
@@ -440,7 +440,7 @@ export class PurchaseOrderComponent implements OnInit {
       .subscribe(
         response => {
           this.spinner.hide();
-          const res = response.body;
+          const res = response;
           if (!this.commonService.checkNullOrUndefined(res) && res.status === StatusCodes.pass) {
             if (!this.commonService.checkNullOrUndefined(res.response)) {
               this.formData.setValue(res.response['pomasters']);
@@ -475,7 +475,7 @@ export class PurchaseOrderComponent implements OnInit {
     const requestObj = { poHdr: this.formData.value, poDtl: this.tableData };
     this.apiService.apiPostRequest(addprorder, requestObj).subscribe(
       response => {
-        const res = response.body;
+        const res = response;
         this.tableData = [];
         this.saveimage();
         if (!this.commonService.checkNullOrUndefined(res) && res.status === StatusCodes.pass) {
@@ -492,7 +492,7 @@ export class PurchaseOrderComponent implements OnInit {
     this.apiService.apiGetRequest(url)
       .subscribe(
         response => {
-          const res = response.body;
+          const res = response;
           this.imgShow = res.response;
           this.commonService.downloadFile(res.response)
           this.spinner.hide();
@@ -517,7 +517,7 @@ export class PurchaseOrderComponent implements OnInit {
     this.apiService.apiPostRequest(getLoginUrl, formData)
       .subscribe(
         response => {
-          const res = response.body;
+          const res = response;
           if (!this.commonService.checkNullOrUndefined(res) && res.status === StatusCodes.pass) {
             if (!this.commonService.checkNullOrUndefined(res.response)) {
               this.alertService.openSnackBar('Image Saved Successfully..', Static.Close, SnackBar.success);
@@ -530,7 +530,7 @@ export class PurchaseOrderComponent implements OnInit {
     const addpo = String.Join('/', this.apiConfigService.returnpurchaseorder, this.routeEdit);
     this.apiService.apiGetRequest(addpo).subscribe(
       response => {
-        const res = response.body;
+        const res = response;
         if (!this.commonService.checkNullOrUndefined(res) && res.status === StatusCodes.pass) {
           if (!this.commonService.checkNullOrUndefined(res.response)) {
             this.alertService.openSnackBar(res.response, Static.Close, SnackBar.success);

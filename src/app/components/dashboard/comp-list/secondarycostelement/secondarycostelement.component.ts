@@ -83,7 +83,7 @@ export class SecondaryCostElementsCreationComponent implements OnInit {
     this.apiService.apiGetRequest(getchartaccUrl)
       .subscribe(
         response => {
-          const res = response.body;
+          const res = response;
           console.log(res);
           if (!this.commonService.checkNullOrUndefined(res) && res.status === StatusCodes.pass) {
             if (!this.commonService.checkNullOrUndefined(res.response)) {
@@ -99,7 +99,7 @@ export class SecondaryCostElementsCreationComponent implements OnInit {
     this.apiService.apiGetRequest(getompanyUrl)
       .subscribe(
         response => {
-          const res = response.body;
+          const res = response;
           if (!this.commonService.checkNullOrUndefined(res) && res.status === StatusCodes.pass) {
             if (!this.commonService.checkNullOrUndefined(res.response)) {
               this.companiesList = res.response['companiesList'];
@@ -114,7 +114,7 @@ export class SecondaryCostElementsCreationComponent implements OnInit {
     this.apiService.apiGetRequest(getuomTypeUrl)
       .subscribe(
         response => {
-          const res = response.body;
+          const res = response;
           console.log(res);
           if (!this.commonService.checkNullOrUndefined(res) && res.status === StatusCodes.pass) {
             if (!this.commonService.checkNullOrUndefined(res.response)) {

@@ -111,7 +111,7 @@ export class CostCenterComponent implements OnInit {
     this.apiService.apiGetRequest(getobjectlist)
       .subscribe(
         response => {
-          const res = response.body;
+          const res = response;
           if (!this.commonService.checkNullOrUndefined(res) && res.status === StatusCodes.pass) {
             if (!this.commonService.checkNullOrUndefined(res.response)) {
 
@@ -129,7 +129,7 @@ export class CostCenterComponent implements OnInit {
     this.apiService.apiGetRequest(getcostofobjecttypeUrl)
       .subscribe(
         response => {
-          const res = response.body;
+          const res = response;
           if (!this.commonService.checkNullOrUndefined(res) && res.status === StatusCodes.pass) {
             if (!this.commonService.checkNullOrUndefined(res.response)) {
               //this.cotList = res.response['cotList'];
@@ -144,7 +144,7 @@ export class CostCenterComponent implements OnInit {
     this.apiService.apiGetRequest(getEmployeeList)
       .subscribe(
         response => {
-          const res = response.body;
+          const res = response;
           if (!this.commonService.checkNullOrUndefined(res) && res.status === StatusCodes.pass) {
             if (!this.commonService.checkNullOrUndefined(res.response)) {
               this.employeesList = res.response['emplist'];
@@ -158,7 +158,7 @@ export class CostCenterComponent implements OnInit {
     this.apiService.apiGetRequest(getuomTypeUrl)
       .subscribe(
         response => {
-          const res = response.body;
+          const res = response;
           console.log(res);
           if (!this.commonService.checkNullOrUndefined(res) && res.status === StatusCodes.pass) {
             if (!this.commonService.checkNullOrUndefined(res.response)) {
@@ -173,7 +173,7 @@ export class CostCenterComponent implements OnInit {
     this.apiService.apiGetRequest(getdepteUrl)
       .subscribe(
         response => {
-          const res = response.body;
+          const res = response;
           if (!this.commonService.checkNullOrUndefined(res) && res.status === StatusCodes.pass) {
             if (!this.commonService.checkNullOrUndefined(res.response)) {
               this.fdeptList = res.response['fdeptList'];
@@ -188,7 +188,7 @@ export class CostCenterComponent implements OnInit {
     this.apiService.apiGetRequest(getdepteUrl)
       .subscribe(
         response => {
-          const res = response.body;
+          const res = response;
           if (!this.commonService.checkNullOrUndefined(res) && res.status === StatusCodes.pass) {
             if (!this.commonService.checkNullOrUndefined(res.response)) {
               this.StatesList = res.response['StatesList'];
