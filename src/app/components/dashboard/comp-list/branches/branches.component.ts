@@ -81,7 +81,7 @@ export class BranchesComponent implements OnInit {
     this.apiService.apiGetRequest(getCompanyUrl)
       .subscribe(
         response => {
-          const res = response.body;
+          const res = response;
           if (!this.commonService.checkNullOrUndefined(res) && res.status === StatusCodes.pass) {
             if (!this.commonService.checkNullOrUndefined(res.response)) {
               this.companyList = res.response['companiesList'];
@@ -96,7 +96,7 @@ export class BranchesComponent implements OnInit {
     this.apiService.apiGetRequest(getlanguageList)
       .subscribe(
         response => {
-          const res = response.body;
+          const res = response;
           if (!this.commonService.checkNullOrUndefined(res) && res.status === StatusCodes.pass) {
             if (!this.commonService.checkNullOrUndefined(res.response)) {
               this.languageList = res.response['LanguageList'];
@@ -111,7 +111,7 @@ export class BranchesComponent implements OnInit {
     this.apiService.apiGetRequest(getRegionsList)
       .subscribe(
         response => {
-          const res = response.body;
+          const res = response;
           if (!this.commonService.checkNullOrUndefined(res) && res.status === StatusCodes.pass) {
             if (!this.commonService.checkNullOrUndefined(res.response)) {
               this.regionsList = res.response['RegionList'];
@@ -126,7 +126,7 @@ export class BranchesComponent implements OnInit {
     this.apiService.apiGetRequest(getCountrysList)
       .subscribe(
         response => {
-          const res = response.body;
+          const res = response;
           if (!this.commonService.checkNullOrUndefined(res) && res.status === StatusCodes.pass) {
             if (!this.commonService.checkNullOrUndefined(res.response)) {
               this.countrysList = res.response['CountryList'];
@@ -141,7 +141,7 @@ export class BranchesComponent implements OnInit {
     this.apiService.apiGetRequest(getstateList)
       .subscribe(
         response => {
-          const res = response.body;
+          const res = response;
           if (!this.commonService.checkNullOrUndefined(res) && res.status === StatusCodes.pass) {
             if (!this.commonService.checkNullOrUndefined(res.response)) {
               this.stateList = res.response['StatesList'];
@@ -156,7 +156,7 @@ export class BranchesComponent implements OnInit {
     this.apiService.apiGetRequest(getcurrencyList)
       .subscribe(
         response => {
-          const res = response.body;
+          const res = response;
           if (!this.commonService.checkNullOrUndefined(res) && res.status === StatusCodes.pass) {
             if (!this.commonService.checkNullOrUndefined(res.response)) {
               this.currencyList = res.response['CurrencyList'];
@@ -171,7 +171,7 @@ export class BranchesComponent implements OnInit {
     this.apiService.apiGetRequest(getEmployeeList)
       .subscribe(
         response => {
-          const res = response.body;
+          const res = response;
           if (!this.commonService.checkNullOrUndefined(res) && res.status === StatusCodes.pass) {
             if (!this.commonService.checkNullOrUndefined(res.response)) {
               this.employeesList = res.response['emplist'];

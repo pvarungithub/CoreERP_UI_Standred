@@ -11,10 +11,12 @@ export class ApiConfigService {
 
    // login Url
    loginUrl = `${this.environment.runtimeConfig.serverUrl}Auth/login`;
+  //loginUrl = 'http://localhost:5000/api/Auth/login';
    logoutUrl = `${this.environment.runtimeConfig.serverUrl}Auth/logout`;
    getBranchesForUser = `${this.environment.runtimeConfig.serverUrl}Auth/GetBranchesForUser`;
+   //getBranchesForUser = 'http://localhost:5000/api/Auth/GetBranchesForUser';
    getComponentInfo = `${this.environment.runtimeConfig.serverUrl}Settings/GetComponentInfo`;
-
+   
    // Common
    getprimeryList = `${this.environment.runtimeConfig.serverUrl}PrimaryCostElementsCreation/GetPrimaryCostElementsCreationList`;
    getprcList = `${this.environment.runtimeConfig.serverUrl}Common/GetPrimaryCostElementList`;
@@ -161,12 +163,18 @@ export class ApiConfigService {
    getacquisitionlist = `${this.environment.runtimeConfig.serverUrl}AssetBegningAcqusition/GetAssetBegningAcqusitionList`;
 
    /**************************** Settings ********************************************************* */
-   getRoles = `${this.environment.runtimeConfig.serverUrl}Auth/getRoles`;
+    getRoles = `${this.environment.runtimeConfig.serverUrl}Auth/getRoles`;
+   //getRoles = 'http://localhost:5000/api/Auth/getRoles';
    getParentMenus = `${this.environment.runtimeConfig.serverUrl}Auth/getParentMenu`;
-   getMenuList = `${this.environment.runtimeConfig.serverUrl}Auth/getMenuList`;
+   //getParentMenus = 'http://localhost:5000/api/Auth/getParentMenu';
+    getMenuList = `${this.environment.runtimeConfig.serverUrl}Auth/getMenuList`;
+   //getMenuList = 'http://localhost:5000/api/Auth/getMenuList';
    giveAccess = `${this.environment.runtimeConfig.serverUrl}Auth/GiveAccess`;
+   //giveAccess = 'http://localhost:5000/api/Auth/GiveAccess';
    getMenuUrl = `${this.environment.runtimeConfig.serverUrl}Auth/getMenu`;
-   getrolelist = `${this.environment.runtimeConfig.serverUrl}UserCreation/GetRoleList`;
+   //getMenuUrl = 'http://localhost:5000/api/Auth/getMenu';
+    getrolelist = `${this.environment.runtimeConfig.serverUrl}UserCreation/GetRoleList`;
+   //getrolelist = 'http://localhost:5000/api/UserCreation/GetRoleList';
 
 
 

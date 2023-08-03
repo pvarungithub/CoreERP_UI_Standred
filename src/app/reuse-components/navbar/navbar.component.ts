@@ -35,7 +35,7 @@ export class NavbarComponent implements OnInit {
     private spinner: NgxSpinnerService,
     private alertService: AlertService,
 
-  ) {  }
+  ) { }
 
   ngOnInit() {
   }
@@ -44,12 +44,12 @@ export class NavbarComponent implements OnInit {
     const logoutUrl = String.Join('/', this.apiConfigService.logoutUrl, this.loginUser.seqId);
     this.apiService.apiGetRequest(logoutUrl).subscribe(
       response => {
-        const res = response.body;
+        const res = response;
         this.spinner.hide();
         if (!this.commonService.checkNullOrUndefined(res.response)) {
-        this.alertService.openSnackBar(res.response, Static.Close, SnackBar.success);
-        this.authService.logout();
-        this.router.navigateByUrl('/login');
+          this.alertService.openSnackBar(res.response, Static.Close, SnackBar.success);
+          this.authService.logout();
+          this.router.navigateByUrl('/login');
         }
       });
   }
@@ -59,10 +59,10 @@ export class NavbarComponent implements OnInit {
   }
 
   openCloseMemu() {
-    if(this.openMenu) {
+    if (this.openMenu) {
       this.commonService.toggleSidebar();
       this.openMenu = false;
-    } else { 
+    } else {
       this.commonService.toggleSidebar();
       this.openMenu = true;
     }

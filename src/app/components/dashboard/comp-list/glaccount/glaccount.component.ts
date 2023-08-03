@@ -137,7 +137,7 @@ export class GLAccountComponent implements OnInit {
     this.apiService.apiGetRequest(getAccountSubGrouplist)
       .subscribe(
         response => {
-          const res = response.body;
+          const res = response;
           if (!this.commonService.checkNullOrUndefined(res) && res.status === StatusCodes.pass) {
             if (!this.commonService.checkNullOrUndefined(res.response)) {
             }
@@ -151,7 +151,7 @@ export class GLAccountComponent implements OnInit {
     this.apiService.apiGetRequest(getchartofAccountUrl)
       .subscribe(
         response => {
-          const res = response.body;
+          const res = response;
           if (!this.commonService.checkNullOrUndefined(res) && res.status === StatusCodes.pass) {
             if (!this.commonService.checkNullOrUndefined(res.response)) {
               this.coaList = res.response['coaList'];
@@ -166,7 +166,7 @@ export class GLAccountComponent implements OnInit {
     this.apiService.apiGetRequest(getglAccgrpList)
       .subscribe(
         response => {
-          const res = response.body;
+          const res = response;
           if (!this.commonService.checkNullOrUndefined(res) && res.status === StatusCodes.pass) {
             if (!this.commonService.checkNullOrUndefined(res.response)) {
               this.glAccgrpList = res.response['GLAccGroupList'];
@@ -181,7 +181,7 @@ export class GLAccountComponent implements OnInit {
     this.apiService.apiGetRequest(getCompanyUrl)
       .subscribe(
         response => {
-          const res = response.body;
+          const res = response;
           if (!this.commonService.checkNullOrUndefined(res) && res.status === StatusCodes.pass) {
             if (!this.commonService.checkNullOrUndefined(res.response)) {
               this.companyList = res.response['companiesList'];
@@ -196,7 +196,7 @@ export class GLAccountComponent implements OnInit {
     this.apiService.apiGetRequest(getbankUrl)
       .subscribe(
         response => {
-          const res = response.body;
+          const res = response;
           if (!this.commonService.checkNullOrUndefined(res) && res.status === StatusCodes.pass) {
             if (!this.commonService.checkNullOrUndefined(res.response)) {
               this.bankList = res.response['bankList'];
@@ -211,7 +211,7 @@ export class GLAccountComponent implements OnInit {
     this.apiService.apiGetRequest(getcurrencyList)
       .subscribe(
         response => {
-          const res = response.body;
+          const res = response;
           if (!this.commonService.checkNullOrUndefined(res) && res.status === StatusCodes.pass) {
             if (!this.commonService.checkNullOrUndefined(res.response)) {
               this.currencyList = res.response['CurrencyList'];

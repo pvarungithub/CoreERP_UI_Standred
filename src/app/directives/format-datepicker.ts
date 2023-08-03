@@ -4,7 +4,7 @@ import { formatDate } from '@angular/common';
 
 @Injectable()
 export class AppDateAdapter extends NativeDateAdapter {
-  format(date: Date, displayFormat: Object): string {
+  override format(date: Date, displayFormat: Object): string {
     if (displayFormat === 'input') {
       return formatDate(date, 'dd-MM-yyyy', this.locale);;
     } else {

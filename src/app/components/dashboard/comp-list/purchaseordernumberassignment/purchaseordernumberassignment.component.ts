@@ -21,9 +21,9 @@ export class PurchaseOrderAssignmentComponent implements OnInit {
   formData: any;
   qtnnorangeList: any;
   companiesList: any;
-  plantsList: any; 
-    porangeList: any;
-    porderList: any;
+  plantsList: any;
+  porangeList: any;
+  porderList: any;
   constructor(private commonService: CommonService,
     private addOrEditService: AddOrEditService,
     private formBuilder: FormBuilder,
@@ -40,7 +40,7 @@ export class PurchaseOrderAssignmentComponent implements OnInit {
       plant: [null],
       purchaseOrderType: [null],
       currentNumber: [null]
-      
+
     });
 
 
@@ -63,7 +63,7 @@ export class PurchaseOrderAssignmentComponent implements OnInit {
     this.apiService.apiGetRequest(getNumberRangeUrl)
       .subscribe(
         response => {
-          const res = response.body;
+          const res = response;
           if (!this.commonService.checkNullOrUndefined(res) && res.status === StatusCodes.pass) {
             if (!this.commonService.checkNullOrUndefined(res.response)) {
               this.porangeList = res.response['porangeList'];
@@ -78,7 +78,7 @@ export class PurchaseOrderAssignmentComponent implements OnInit {
     this.apiService.apiGetRequest(getompanyUrl)
       .subscribe(
         response => {
-          const res = response.body;
+          const res = response;
           if (!this.commonService.checkNullOrUndefined(res) && res.status === StatusCodes.pass) {
             if (!this.commonService.checkNullOrUndefined(res.response)) {
               this.companiesList = res.response['companiesList'];
@@ -93,7 +93,7 @@ export class PurchaseOrderAssignmentComponent implements OnInit {
     this.apiService.apiGetRequest(getPlantTypeUrl)
       .subscribe(
         response => {
-          const res = response.body;
+          const res = response;
           if (!this.commonService.checkNullOrUndefined(res) && res.status === StatusCodes.pass) {
             if (!this.commonService.checkNullOrUndefined(res.response)) {
               this.plantsList = res.response['plantsList'];
@@ -108,7 +108,7 @@ export class PurchaseOrderAssignmentComponent implements OnInit {
     this.apiService.apiGetRequest(getpurchaseOrderTypeUrl)
       .subscribe(
         response => {
-          const res = response.body;
+          const res = response;
           if (!this.commonService.checkNullOrUndefined(res) && res.status === StatusCodes.pass) {
             if (!this.commonService.checkNullOrUndefined(res.response)) {
               this.porderList = res.response['porderList'];

@@ -74,7 +74,7 @@ export class BinsCreationComponent implements OnInit {
     this.apiService.apiGetRequest(getMaterielUrl)
       .subscribe(
         response => {
-          const res = response.body;
+          const res = response;
           if (!this.commonService.checkNullOrUndefined(res) && res.status === StatusCodes.pass) {
             if (!this.commonService.checkNullOrUndefined(res.response)) {
               this.mmasterList = res.response['mmasterList'];
@@ -89,7 +89,7 @@ export class BinsCreationComponent implements OnInit {
     this.apiService.apiGetRequest(getstorageUrl)
       .subscribe(
         response => {
-          const res = response.body;
+          const res = response;
           if (!this.commonService.checkNullOrUndefined(res) && res.status === StatusCodes.pass) {
             if (!this.commonService.checkNullOrUndefined(res.response)) {
               this.stlocList = res.response['stlocList'];
@@ -104,7 +104,7 @@ export class BinsCreationComponent implements OnInit {
     this.apiService.apiGetRequest(getPlantTypeUrl)
       .subscribe(
         response => {
-          const res = response.body;
+          const res = response;
           if (!this.commonService.checkNullOrUndefined(res) && res.status === StatusCodes.pass) {
             if (!this.commonService.checkNullOrUndefined(res.response)) {
               this.plantsList = res.response['plantsList'];
@@ -118,7 +118,7 @@ export class BinsCreationComponent implements OnInit {
     this.apiService.apiGetRequest(getEmployeeUrl)
       .subscribe(
         response => {
-          const res = response.body;
+          const res = response;
 
           if (!this.commonService.checkNullOrUndefined(res) && res.status === StatusCodes.pass) {
             if (!this.commonService.checkNullOrUndefined(res.response)) {
@@ -134,7 +134,7 @@ export class BinsCreationComponent implements OnInit {
     this.apiService.apiGetRequest(getuomTypeUrl)
       .subscribe(
         response => {
-          const res = response.body;
+          const res = response;
           console.log(res);
           if (!this.commonService.checkNullOrUndefined(res) && res.status === StatusCodes.pass) {
             if (!this.commonService.checkNullOrUndefined(res.response)) {

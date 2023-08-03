@@ -35,7 +35,7 @@ export class GLSubAccountComponent implements OnInit {
       glsubCode: [null, [Validators.required, Validators.minLength(1), Validators.maxLength(4)]],
       glsubName: [null, [Validators.required, Validators.minLength(1), Validators.maxLength(30)]],
       glaccount: [null]
-     
+
     });
 
 
@@ -55,7 +55,7 @@ export class GLSubAccountComponent implements OnInit {
     this.apiService.apiGetRequest(getGLAccountUrl)
       .subscribe(
         response => {
-          const res = response.body;
+          const res = response;
           if (!this.commonService.checkNullOrUndefined(res) && res.status === StatusCodes.pass) {
             if (!this.commonService.checkNullOrUndefined(res.response)) {
               this.glList = res.response['glList'];

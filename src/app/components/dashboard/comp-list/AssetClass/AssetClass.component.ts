@@ -79,7 +79,7 @@ export class AssetClassComponent implements OnInit {
     this.apiService.apiGetRequest(getnumrangeUrl)
       .subscribe(
         response => {
-          const res = response.body;
+          const res = response;
           if (!this.commonService.checkNullOrUndefined(res) && res.status === StatusCodes.pass) {
             if (!this.commonService.checkNullOrUndefined(res.response)) {
               this.nrrList = res.response['nrrList'];

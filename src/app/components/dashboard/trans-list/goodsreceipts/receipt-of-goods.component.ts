@@ -202,7 +202,7 @@ export class ReceiptOfGoodsComponent implements OnInit {
       })
     }
     //
-  this.tableData = newData;
+    this.tableData = newData;
     this.sendDynTableData = { type: 'add', data: newData };
 
   }
@@ -212,7 +212,7 @@ export class ReceiptOfGoodsComponent implements OnInit {
     this.apiService.apiGetRequest(getpurchaseOrderTypeUrl)
       .subscribe(
         response => {
-          const res = response.body;
+          const res = response;
           if (!this.commonService.checkNullOrUndefined(res) && res.status === StatusCodes.pass) {
             if (!this.commonService.checkNullOrUndefined(res.response)) {
               this.porderList = res.response['porderList'];
@@ -227,7 +227,7 @@ export class ReceiptOfGoodsComponent implements OnInit {
     this.apiService.apiGetRequest(companyUrl)
       .subscribe(
         response => {
-          const res = response.body;
+          const res = response;
           if (!this.commonService.checkNullOrUndefined(res) && res.status === StatusCodes.pass) {
             if (!this.commonService.checkNullOrUndefined(res.response)) {
               this.companyList = res.response['companiesList'];
@@ -241,7 +241,7 @@ export class ReceiptOfGoodsComponent implements OnInit {
     this.apiService.apiGetRequest(getpodetailsListUrl)
       .subscribe(
         response => {
-          const res = response.body;
+          const res = response;
           console.log(res);
           if (!this.commonService.checkNullOrUndefined(res) && res.status === StatusCodes.pass) {
             if (!this.commonService.checkNullOrUndefined(res.response)) {
@@ -256,7 +256,7 @@ export class ReceiptOfGoodsComponent implements OnInit {
     this.apiService.apiGetRequest(poUrl)
       .subscribe(
         response => {
-          const res = response.body;
+          const res = response;
           if (!this.commonService.checkNullOrUndefined(res) && res.status === StatusCodes.pass) {
             if (!this.commonService.checkNullOrUndefined(res.response)) {
               this.purchaseordernoList = res.response['purchaseordernoList'];
@@ -270,7 +270,7 @@ export class ReceiptOfGoodsComponent implements OnInit {
     this.apiService.apiGetRequest(getsuppliercodeList)
       .subscribe(
         response => {
-          const res = response.body;
+          const res = response;
           console.log(res);
           if (!this.commonService.checkNullOrUndefined(res) && res.status === StatusCodes.pass) {
             if (!this.commonService.checkNullOrUndefined(res.response)) {
@@ -288,7 +288,7 @@ export class ReceiptOfGoodsComponent implements OnInit {
     this.apiService.apiGetRequest(getplantList)
       .subscribe(
         response => {
-          const res = response.body;
+          const res = response;
           if (!this.commonService.checkNullOrUndefined(res) && res.status === StatusCodes.pass) {
             if (!this.commonService.checkNullOrUndefined(res.response)) {
               this.plantList = res.response['plantList'];
@@ -303,7 +303,7 @@ export class ReceiptOfGoodsComponent implements OnInit {
     this.apiService.apiGetRequest(branchUrl)
       .subscribe(
         response => {
-          const res = response.body;
+          const res = response;
           if (!this.commonService.checkNullOrUndefined(res) && res.status === StatusCodes.pass) {
             if (!this.commonService.checkNullOrUndefined(res.response)) {
               this.branchList = res.response['branchsList'];
@@ -318,7 +318,7 @@ export class ReceiptOfGoodsComponent implements OnInit {
     this.apiService.apiGetRequest(getpcUrl)
       .subscribe(
         response => {
-          const res = response.body;
+          const res = response;
           if (!this.commonService.checkNullOrUndefined(res) && res.status === StatusCodes.pass) {
             if (!this.commonService.checkNullOrUndefined(res.response)) {
               this.profitCenterList = res.response['profitCenterList'];
@@ -333,7 +333,7 @@ export class ReceiptOfGoodsComponent implements OnInit {
     this.apiService.apiGetRequest(getEmployeeList)
       .subscribe(
         response => {
-          const res = response.body;
+          const res = response;
           if (!this.commonService.checkNullOrUndefined(res) && res.status === StatusCodes.pass) {
             if (!this.commonService.checkNullOrUndefined(res.response)) {
               this.employeesList = res.response['emplist'];
@@ -349,7 +349,7 @@ export class ReceiptOfGoodsComponent implements OnInit {
     this.apiService.apiGetRequest(MomentTypeList)
       .subscribe(
         response => {
-          const res = response.body;
+          const res = response;
           if (!this.commonService.checkNullOrUndefined(res) && res.status === StatusCodes.pass) {
             if (!this.commonService.checkNullOrUndefined(res.response)) {
               this.movementList = res.response['movementList'];
@@ -364,7 +364,7 @@ export class ReceiptOfGoodsComponent implements OnInit {
     this.apiService.apiGetRequest(getstorageUrl)
       .subscribe(
         response => {
-          const res = response.body;
+          const res = response;
           if (!this.commonService.checkNullOrUndefined(res) && res.status === StatusCodes.pass) {
             if (!this.commonService.checkNullOrUndefined(res.response)) {
               this.stlocList = res.response['stlocList'];
@@ -380,7 +380,7 @@ export class ReceiptOfGoodsComponent implements OnInit {
       .subscribe(
         response => {
           this.spinner.hide();
-          const res = response.body;
+          const res = response;
           if (!this.commonService.checkNullOrUndefined(res) && res.status === StatusCodes.pass) {
             if (!this.commonService.checkNullOrUndefined(res.response)) {
               this.materialList = res.response['materialList'];
@@ -399,7 +399,7 @@ export class ReceiptOfGoodsComponent implements OnInit {
       .subscribe(
         response => {
           this.spinner.hide();
-          const res = response.body;
+          const res = response;
           if (!this.commonService.checkNullOrUndefined(res) && res.status === StatusCodes.pass) {
             if (!this.commonService.checkNullOrUndefined(res.response)) {
               this.formData.setValue(res.response['grmasters']);
@@ -415,13 +415,13 @@ export class ReceiptOfGoodsComponent implements OnInit {
     this.apiService.apiGetRequest(getlotnos)
       .subscribe(
         response => {
-          const res = response.body;
+          const res = response;
           if (!this.commonService.checkNullOrUndefined(res) && res.status === StatusCodes.pass) {
             if (!this.commonService.checkNullOrUndefined(res.response)) {
 
               row.data[row.index].lotNo.value = res.response['lotNum']
               //row.data[row.index].lotDate.value =JSON.stringify(this.grnDate);
-              this.sendDynTableData = { type: 'add', data: row.data};
+              this.sendDynTableData = { type: 'add', data: row.data };
               this.tableData = row.data;
             }
           }
@@ -431,17 +431,17 @@ export class ReceiptOfGoodsComponent implements OnInit {
   }
 
   emitColumnChanges(data) {
- this.tableData = data.data;
+    this.tableData = data.data;
     if (data.column == 'checkAll') {
       if (data.data[data.index].checkAll.value) {
         this.getLotNumData(data);
       }
 
     }
-   
+
   }
 
-  
+
 
   back() {
     this.router.navigate(['dashboard/transaction/goodsreceipts'])
@@ -460,8 +460,8 @@ export class ReceiptOfGoodsComponent implements OnInit {
     const requestObj = { grHdr: this.formData.value, grDtl: this.tableData };
     this.apiService.apiPostRequest(addgoodsreceipt, requestObj).subscribe(
       response => {
-        const res = response.body;
-this.tableData = [];
+        const res = response;
+        this.tableData = [];
         if (!this.commonService.checkNullOrUndefined(res) && res.status === StatusCodes.pass) {
           if (!this.commonService.checkNullOrUndefined(res.response)) {
             this.alertService.openSnackBar('Goods Receipt created Successfully..', Static.Close, SnackBar.success);
@@ -476,7 +476,7 @@ this.tableData = [];
     const addCashBank = String.Join('/', this.apiConfigService.returngoodsreceipt, this.routeEdit);
     this.apiService.apiGetRequest(addCashBank).subscribe(
       response => {
-        const res = response.body;
+        const res = response;
         if (!this.commonService.checkNullOrUndefined(res) && res.status === StatusCodes.pass) {
           if (!this.commonService.checkNullOrUndefined(res.response)) {
             this.alertService.openSnackBar(res.response, Static.Close, SnackBar.success);

@@ -52,7 +52,7 @@ export class MaintenceAreaComponent implements OnInit {
     this.apiService.apiGetRequest(getplantList)
       .subscribe(
         response => {
-          const res = response.body;
+          const res = response;
           if (!this.commonService.checkNullOrUndefined(res) && res.status === StatusCodes.pass) {
             if (!this.commonService.checkNullOrUndefined(res.response)) {
               this.plantList = res.response['plantsList'];

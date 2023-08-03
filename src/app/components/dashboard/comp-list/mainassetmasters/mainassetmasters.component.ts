@@ -173,7 +173,7 @@ export class MainAssetMasterComponent implements OnInit {
     this.apiService.apiGetRequest(getbranchList)
       .subscribe(
         response => {
-          const res = response.body;
+          const res = response;
           if (!this.commonService.checkNullOrUndefined(res) && res.status === StatusCodes.pass) {
             if (!this.commonService.checkNullOrUndefined(res.response)) {
               this.branchesList = res.response['branchesList'];
@@ -188,7 +188,7 @@ export class MainAssetMasterComponent implements OnInit {
       .subscribe(
         response => {
           this.spinner.hide();
-          const res = response.body;
+          const res = response;
           if (!this.commonService.checkNullOrUndefined(res) && res.status === StatusCodes.pass) {
             if (!this.commonService.checkNullOrUndefined(res.response)) {
               console.log(res.response['MainassetMasters']);
@@ -206,7 +206,7 @@ export class MainAssetMasterComponent implements OnInit {
     this.apiService.apiGetRequest(getAccountSubGrouplist)
       .subscribe(
         response => {
-          const res = response.body;
+          const res = response;
           if (!this.commonService.checkNullOrUndefined(res) && res.status === StatusCodes.pass) {
             if (!this.commonService.checkNullOrUndefined(res.response)) {
             }
@@ -222,7 +222,7 @@ export class MainAssetMasterComponent implements OnInit {
     this.apiService.apiGetRequest(getAccountSubGrouplist)
       .subscribe(
         response => {
-          const res = response.body;
+          const res = response;
           if (!this.commonService.checkNullOrUndefined(res) && res.status === StatusCodes.pass) {
             if (!this.commonService.checkNullOrUndefined(res.response)) {
               this.assetNum = res.response['astnum'];
@@ -242,7 +242,7 @@ export class MainAssetMasterComponent implements OnInit {
     this.apiService.apiGetRequest(getAccountSubGrouplist)
       .subscribe(
         response => {
-          const res = response.body;
+          const res = response;
           if (!this.commonService.checkNullOrUndefined(res) && res.status === StatusCodes.pass) {
             if (!this.commonService.checkNullOrUndefined(res.response)) {
               this.modelFormData.patchValue(res.response['assetname']);
@@ -258,7 +258,7 @@ export class MainAssetMasterComponent implements OnInit {
     this.apiService.apiGetRequest(getCompanyUrl)
       .subscribe(
         response => {
-          const res = response.body;
+          const res = response;
           if (!this.commonService.checkNullOrUndefined(res) && res.status === StatusCodes.pass) {
             if (!this.commonService.checkNullOrUndefined(res.response)) {
               this.companyList = res.response['companiesList'];
@@ -272,7 +272,7 @@ export class MainAssetMasterComponent implements OnInit {
     this.apiService.apiGetRequest(getassetyUrl)
       .subscribe(
         response => {
-          const res = response.body;
+          const res = response;
           if (!this.commonService.checkNullOrUndefined(res) && res.status === StatusCodes.pass) {
             if (!this.commonService.checkNullOrUndefined(res.response)) {
               this.assetList = res.response['assetList'];
@@ -287,7 +287,7 @@ export class MainAssetMasterComponent implements OnInit {
     this.apiService.apiGetRequest(getCompanyUrl)
       .subscribe(
         response => {
-          const res = response.body;
+          const res = response;
           if (!this.commonService.checkNullOrUndefined(res) && res.status === StatusCodes.pass) {
             if (!this.commonService.checkNullOrUndefined(res.response)) {
               this.assetList = res.response['assetList'];
@@ -302,7 +302,7 @@ export class MainAssetMasterComponent implements OnInit {
     this.apiService.apiGetRequest(getdepreciationCodeUrl)
       .subscribe(
         response => {
-          const res = response.body;
+          const res = response;
           //console.log(res);
           if (!this.commonService.checkNullOrUndefined(res) && res.status === StatusCodes.pass) {
             if (!this.commonService.checkNullOrUndefined(res.response)) {
@@ -320,7 +320,7 @@ export class MainAssetMasterComponent implements OnInit {
     this.apiService.apiGetRequest(getdepreciationAreaUrl)
       .subscribe(
         response => {
-          const res = response.body;
+          const res = response;
           if (!this.commonService.checkNullOrUndefined(res) && res.status === StatusCodes.pass) {
             if (!this.commonService.checkNullOrUndefined(res.response)) {
               this.dpareaList = res.response['dpareaList'];
@@ -338,7 +338,7 @@ export class MainAssetMasterComponent implements OnInit {
     this.apiService.apiGetRequest(getackeyList)
       .subscribe(
         response => {
-          const res = response.body;
+          const res = response;
           if (!this.commonService.checkNullOrUndefined(res) && res.status === StatusCodes.pass) {
             if (!this.commonService.checkNullOrUndefined(res.response)) {
               this.acckeyList = res.response['acckeyList'];
@@ -353,7 +353,7 @@ export class MainAssetMasterComponent implements OnInit {
     this.apiService.apiGetRequest(getprofitCentersList)
       .subscribe(
         response => {
-          const res = response.body;
+          const res = response;
           if (!this.commonService.checkNullOrUndefined(res) && res.status === StatusCodes.pass) {
             if (!this.commonService.checkNullOrUndefined(res.response)) {
               this.profitCenterList = res.response['profitCenterList'];
@@ -367,7 +367,7 @@ export class MainAssetMasterComponent implements OnInit {
     this.apiService.apiGetRequest(getsegmentList)
       .subscribe(
         response => {
-          const res = response.body;
+          const res = response;
           if (!this.commonService.checkNullOrUndefined(res) && res.status === StatusCodes.pass) {
             if (!this.commonService.checkNullOrUndefined(res.response)) {
               this.segmentList = res.response['segmentList'];
@@ -381,7 +381,7 @@ export class MainAssetMasterComponent implements OnInit {
     this.apiService.apiGetRequest(getdivisionList)
       .subscribe(
         response => {
-          const res = response.body;
+          const res = response;
           if (!this.commonService.checkNullOrUndefined(res) && res.status === StatusCodes.pass) {
             if (!this.commonService.checkNullOrUndefined(res.response)) {
               this.divisionsList = res.response['divisionsList'];
@@ -395,7 +395,7 @@ export class MainAssetMasterComponent implements OnInit {
     this.apiService.apiGetRequest(getplantList)
       .subscribe(
         response => {
-          const res = response.body;
+          const res = response;
           if (!this.commonService.checkNullOrUndefined(res) && res.status === StatusCodes.pass) {
             if (!this.commonService.checkNullOrUndefined(res.response)) {
               this.plantList = res.response['plantList'];
@@ -409,7 +409,7 @@ export class MainAssetMasterComponent implements OnInit {
     this.apiService.apiGetRequest(getlocList)
       .subscribe(
         response => {
-          const res = response.body;
+          const res = response;
           if (!this.commonService.checkNullOrUndefined(res) && res.status === StatusCodes.pass) {
             if (!this.commonService.checkNullOrUndefined(res.response)) {
               this.locationList = res.response['locationList'];
@@ -439,7 +439,7 @@ export class MainAssetMasterComponent implements OnInit {
 
   get formControls() { return this.modelFormData.controls; }
 
-  
+
 
   save() {
     this.tableData = this.commonService.formatTableData(this.tableData)
@@ -456,7 +456,7 @@ export class MainAssetMasterComponent implements OnInit {
     const requestObj = { mainasstHdr: this.modelFormData.value, mainassetDetail: this.tableData };
     this.apiService.apiPostRequest(addCashBank, requestObj).subscribe(
       response => {
-        const res = response.body;
+        const res = response;
         this.tableData = [];
         if (!this.commonService.checkNullOrUndefined(res) && res.status === StatusCodes.pass) {
           if (!this.commonService.checkNullOrUndefined(res.response)) {

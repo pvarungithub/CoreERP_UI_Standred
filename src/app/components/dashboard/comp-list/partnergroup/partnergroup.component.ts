@@ -65,7 +65,7 @@ export class BusienessPartnerGroupsComponent implements OnInit {
     this.apiService.apiGetRequest(getPTList)
       .subscribe(
         response => {
-          const res = response.body;
+          const res = response;
           if (!this.commonService.checkNullOrUndefined(res) && res.status === StatusCodes.pass) {
             if (!this.commonService.checkNullOrUndefined(res.response)) {
               this.ptypeList = res.response['ptypeList'];

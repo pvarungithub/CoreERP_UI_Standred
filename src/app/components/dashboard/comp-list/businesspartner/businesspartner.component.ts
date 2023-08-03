@@ -35,7 +35,7 @@ export class BusienessPartnerAccountComponent implements OnInit, OnDestroy {
   tdsratesList: any;
   glList: any;
   controlAccountList: any;
-  bpgLists:any;
+  bpgLists: any;
   bpaNum: any;
   bpname: any;
 
@@ -119,10 +119,10 @@ export class BusienessPartnerAccountComponent implements OnInit, OnDestroy {
 
   onbpChange() {
     this.controlAccountList = [];
-    this.bpgLists=[];
+    this.bpgLists = [];
     let data = this.ptypeList.find(res => res.code == this.modelFormData.get('bptype').value);
     this.controlAccountList = this.glList.filter(res => res.controlAccount == data.description);
-    this.bpgLists=this.bpgList.filter(res => res.bptype == data.code);
+    this.bpgLists = this.bpgList.filter(res => res.bptype == data.code);
 
   }
 
@@ -132,7 +132,7 @@ export class BusienessPartnerAccountComponent implements OnInit, OnDestroy {
     this.apiService.apiGetRequest(getAccountSubGrouplist)
       .subscribe(
         response => {
-          const res = response.body;
+          const res = response;
           if (!this.commonService.checkNullOrUndefined(res) && res.status === StatusCodes.pass) {
             if (!this.commonService.checkNullOrUndefined(res.response)) {
             }
@@ -148,7 +148,7 @@ export class BusienessPartnerAccountComponent implements OnInit, OnDestroy {
     this.apiService.apiGetRequest(getAccountSubGrouplist)
       .subscribe(
         response => {
-          const res = response.body;
+          const res = response;
           if (!this.commonService.checkNullOrUndefined(res) && res.status === StatusCodes.pass) {
             if (!this.commonService.checkNullOrUndefined(res.response)) {
               this.bpname = res.response['bpname'];
@@ -168,7 +168,7 @@ export class BusienessPartnerAccountComponent implements OnInit, OnDestroy {
     this.apiService.apiGetRequest(getAccountSubGrouplist)
       .subscribe(
         response => {
-          const res = response.body;
+          const res = response;
           if (!this.commonService.checkNullOrUndefined(res) && res.status === StatusCodes.pass) {
             if (!this.commonService.checkNullOrUndefined(res.response)) {
 
@@ -187,7 +187,7 @@ export class BusienessPartnerAccountComponent implements OnInit, OnDestroy {
     this.apiService.apiGetRequest(getGLAccountUrl)
       .subscribe(
         response => {
-          const res = response.body;
+          const res = response;
           if (!this.commonService.checkNullOrUndefined(res) && res.status === StatusCodes.pass) {
             if (!this.commonService.checkNullOrUndefined(res.response)) {
               this.glList = res.response['glList'];
@@ -202,7 +202,7 @@ export class BusienessPartnerAccountComponent implements OnInit, OnDestroy {
     this.apiService.apiGetRequest(getCompanyUrl)
       .subscribe(
         response => {
-          const res = response.body;
+          const res = response;
           if (!this.commonService.checkNullOrUndefined(res) && res.status === StatusCodes.pass) {
             if (!this.commonService.checkNullOrUndefined(res.response)) {
               this.companyList = res.response['companiesList'];
@@ -217,7 +217,7 @@ export class BusienessPartnerAccountComponent implements OnInit, OnDestroy {
     this.apiService.apiGetRequest(getTDSUrl)
       .subscribe(
         response => {
-          const res = response.body;
+          const res = response;
           if (!this.commonService.checkNullOrUndefined(res) && res.status === StatusCodes.pass) {
             if (!this.commonService.checkNullOrUndefined(res.response)) {
               this.tdsList = res.response['tdsList'];
@@ -232,7 +232,7 @@ export class BusienessPartnerAccountComponent implements OnInit, OnDestroy {
     this.apiService.apiGetRequest(getTDSRateUrl)
       .subscribe(
         response => {
-          const res = response.body;
+          const res = response;
           if (!this.commonService.checkNullOrUndefined(res) && res.status === StatusCodes.pass) {
             if (!this.commonService.checkNullOrUndefined(res.response)) {
               this.tdsratesList = res.response['tdsratesList'];
@@ -247,7 +247,7 @@ export class BusienessPartnerAccountComponent implements OnInit, OnDestroy {
     this.apiService.apiGetRequest(gettPartnerGroupsUrl)
       .subscribe(
         response => {
-          const res = response.body;
+          const res = response;
           if (!this.commonService.checkNullOrUndefined(res) && res.status === StatusCodes.pass) {
             if (!this.commonService.checkNullOrUndefined(res.response)) {
               this.bpgList = res.response['bpgList'];
@@ -262,7 +262,7 @@ export class BusienessPartnerAccountComponent implements OnInit, OnDestroy {
     this.apiService.apiGetRequest(getpmList)
       .subscribe(
         response => {
-          const res = response.body;
+          const res = response;
           if (!this.commonService.checkNullOrUndefined(res) && res.status === StatusCodes.pass) {
             if (!this.commonService.checkNullOrUndefined(res.response)) {
               this.ptermsList = res.response['ptermsList'];
@@ -277,7 +277,7 @@ export class BusienessPartnerAccountComponent implements OnInit, OnDestroy {
     this.apiService.apiGetRequest(getRegionsList)
       .subscribe(
         response => {
-          const res = response.body;
+          const res = response;
           if (!this.commonService.checkNullOrUndefined(res) && res.status === StatusCodes.pass) {
             if (!this.commonService.checkNullOrUndefined(res.response)) {
               this.regionsList = res.response['RegionList'];
@@ -292,7 +292,7 @@ export class BusienessPartnerAccountComponent implements OnInit, OnDestroy {
     this.apiService.apiGetRequest(getCountrysList)
       .subscribe(
         response => {
-          const res = response.body;
+          const res = response;
           if (!this.commonService.checkNullOrUndefined(res) && res.status === StatusCodes.pass) {
             if (!this.commonService.checkNullOrUndefined(res.response)) {
               this.countrysList = res.response['CountryList'];
@@ -307,7 +307,7 @@ export class BusienessPartnerAccountComponent implements OnInit, OnDestroy {
     this.apiService.apiGetRequest(getstateList)
       .subscribe(
         response => {
-          const res = response.body;
+          const res = response;
           if (!this.commonService.checkNullOrUndefined(res) && res.status === StatusCodes.pass) {
             if (!this.commonService.checkNullOrUndefined(res.response)) {
               this.stateList = res.response['StatesList'];
@@ -322,7 +322,7 @@ export class BusienessPartnerAccountComponent implements OnInit, OnDestroy {
     this.apiService.apiGetRequest(getcurrencyList)
       .subscribe(
         response => {
-          const res = response.body;
+          const res = response;
           if (!this.commonService.checkNullOrUndefined(res) && res.status === StatusCodes.pass) {
             if (!this.commonService.checkNullOrUndefined(res.response)) {
               this.ptypeList = res.response['ptypeList'];
@@ -337,7 +337,7 @@ export class BusienessPartnerAccountComponent implements OnInit, OnDestroy {
     this.apiService.apiGetRequest(getEmployeeList)
       .subscribe(
         response => {
-          const res = response.body;
+          const res = response;
           if (!this.commonService.checkNullOrUndefined(res) && res.status === StatusCodes.pass) {
             if (!this.commonService.checkNullOrUndefined(res.response)) {
               this.employeesList = res.response['employeesList'];

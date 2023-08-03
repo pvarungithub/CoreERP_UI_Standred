@@ -185,7 +185,7 @@ export class JournalComponent implements OnInit {
       .subscribe(
         response => {
           this.spinner.hide();
-          const res = response.body;
+          const res = response;
           if (!this.commonService.checkNullOrUndefined(res) && res.status === StatusCodes.pass) {
             if (!this.commonService.checkNullOrUndefined(res.response)) {
               this.formData.setValue(res.response['jvMasters']);
@@ -201,7 +201,7 @@ export class JournalComponent implements OnInit {
     this.apiService.apiGetRequest(companyUrl)
       .subscribe(
         response => {
-          const res = response.body;
+          const res = response;
           if (!this.commonService.checkNullOrUndefined(res) && res.status === StatusCodes.pass) {
             if (!this.commonService.checkNullOrUndefined(res.response)) {
               this.companyList = res.response['companiesList'];
@@ -216,7 +216,7 @@ export class JournalComponent implements OnInit {
     this.apiService.apiGetRequest(branchUrl)
       .subscribe(
         response => {
-          const res = response.body;
+          const res = response;
           if (!this.commonService.checkNullOrUndefined(res) && res.status === StatusCodes.pass) {
             if (!this.commonService.checkNullOrUndefined(res.response)) {
               this.branchList = res.response['branchsList'];
@@ -231,7 +231,7 @@ export class JournalComponent implements OnInit {
     this.apiService.apiGetRequest(voucherClassList)
       .subscribe(
         response => {
-          const res = response.body;
+          const res = response;
           if (!this.commonService.checkNullOrUndefined(res) && res.status === StatusCodes.pass) {
             if (!this.commonService.checkNullOrUndefined(res.response)) {
               this.voucherClassList = res.response['vcList'];
@@ -246,7 +246,7 @@ export class JournalComponent implements OnInit {
     this.apiService.apiGetRequest(voucherTypes)
       .subscribe(
         response => {
-          const res = response.body;
+          const res = response;
           if (!this.commonService.checkNullOrUndefined(res) && res.status === StatusCodes.pass) {
             if (!this.commonService.checkNullOrUndefined(res.response)) {
               this.voucherTypeList = res.response['vouchertypeList'].filter(resp => resp.voucherClass == '003');
@@ -261,7 +261,7 @@ export class JournalComponent implements OnInit {
     this.apiService.apiGetRequest(glAccUrl)
       .subscribe(
         response => {
-          const res = response.body;
+          const res = response;
           if (!this.commonService.checkNullOrUndefined(res) && res.status === StatusCodes.pass) {
             if (!this.commonService.checkNullOrUndefined(res.response)) {
               this.glAccountList = res.response['glList'].filter(resp => resp.taxCategory != 'Cash' || resp.taxCategory != 'Bank' || resp.taxCategory != 'Control Account');
@@ -276,7 +276,7 @@ export class JournalComponent implements OnInit {
     this.apiService.apiGetRequest(taxCodeUrl)
       .subscribe(
         response => {
-          const res = response.body;
+          const res = response;
           if (!this.commonService.checkNullOrUndefined(res) && res.status === StatusCodes.pass) {
             if (!this.commonService.checkNullOrUndefined(res.response)) {
               this.functionaldeptList = res.response['fdeptList'];
@@ -290,7 +290,7 @@ export class JournalComponent implements OnInit {
     this.apiService.apiGetRequest(taxCodeUrl)
       .subscribe(
         response => {
-          const res = response.body;
+          const res = response;
           if (!this.commonService.checkNullOrUndefined(res) && res.status === StatusCodes.pass) {
             if (!this.commonService.checkNullOrUndefined(res.response)) {
               this.taxCodeList = res.response['TaxratesList'];
@@ -305,7 +305,7 @@ export class JournalComponent implements OnInit {
     this.apiService.apiGetRequest(profCentUrl)
       .subscribe(
         response => {
-          const res = response.body;
+          const res = response;
           if (!this.commonService.checkNullOrUndefined(res) && res.status === StatusCodes.pass) {
             if (!this.commonService.checkNullOrUndefined(res.response)) {
               this.profitCenterList = res.response['profitCenterList'];
@@ -320,7 +320,7 @@ export class JournalComponent implements OnInit {
     this.apiService.apiGetRequest(segUrl)
       .subscribe(
         response => {
-          const res = response.body;
+          const res = response;
           if (!this.commonService.checkNullOrUndefined(res) && res.status === StatusCodes.pass) {
             if (!this.commonService.checkNullOrUndefined(res.response)) {
               this.btList = res.response['bpttList'];
@@ -335,7 +335,7 @@ export class JournalComponent implements OnInit {
     this.apiService.apiGetRequest(segUrl)
       .subscribe(
         response => {
-          const res = response.body;
+          const res = response;
           if (!this.commonService.checkNullOrUndefined(res) && res.status === StatusCodes.pass) {
             if (!this.commonService.checkNullOrUndefined(res.response)) {
               this.segmentList = res.response['segmentList'];
@@ -350,7 +350,7 @@ export class JournalComponent implements OnInit {
     this.apiService.apiGetRequest(segUrl)
       .subscribe(
         response => {
-          const res = response.body;
+          const res = response;
           if (!this.commonService.checkNullOrUndefined(res) && res.status === StatusCodes.pass) {
             if (!this.commonService.checkNullOrUndefined(res.response)) {
               this.hsnsacList = res.response['hsnsacList'];
@@ -367,7 +367,7 @@ export class JournalComponent implements OnInit {
     this.apiService.apiGetRequest(segUrl)
       .subscribe(
         response => {
-          const res = response.body;
+          const res = response;
           if (!this.commonService.checkNullOrUndefined(res) && res.status === StatusCodes.pass) {
             if (!this.commonService.checkNullOrUndefined(res.response)) {
               this.wbsList = res.response['wbsList'];
@@ -381,7 +381,7 @@ export class JournalComponent implements OnInit {
     this.apiService.apiGetRequest(fcUrl)
       .subscribe(
         response => {
-          const res = response.body;
+          const res = response;
           if (!this.commonService.checkNullOrUndefined(res) && res.status === StatusCodes.pass) {
             if (!this.commonService.checkNullOrUndefined(res.response)) {
               this.fcList = res.response['fcList'];
@@ -395,7 +395,7 @@ export class JournalComponent implements OnInit {
     this.apiService.apiGetRequest(cmntUrl)
       .subscribe(
         response => {
-          const res = response.body;
+          const res = response;
           if (!this.commonService.checkNullOrUndefined(res) && res.status === StatusCodes.pass) {
             if (!this.commonService.checkNullOrUndefined(res.response)) {
               this.citemList = res.response['citemList'];
@@ -409,7 +409,7 @@ export class JournalComponent implements OnInit {
     this.apiService.apiGetRequest(onoUrl)
       .subscribe(
         response => {
-          const res = response.body;
+          const res = response;
           if (!this.commonService.checkNullOrUndefined(res) && res.status === StatusCodes.pass) {
             if (!this.commonService.checkNullOrUndefined(res.response)) {
               this.ordertypeList = res.response['ordertypeList'];
@@ -425,7 +425,7 @@ export class JournalComponent implements OnInit {
       .subscribe(
         response => {
           this.spinner.hide();
-          const res = response.body;
+          const res = response;
           if (!this.commonService.checkNullOrUndefined(res) && res.status === StatusCodes.pass) {
             if (!this.commonService.checkNullOrUndefined(res.response)) {
               this.costCenterList = res.response['costcenterList'];
@@ -455,7 +455,7 @@ export class JournalComponent implements OnInit {
         .subscribe(
           response => {
             this.spinner.hide();
-            const res = response.body;
+            const res = response;
             if (!this.commonService.checkNullOrUndefined(res) && res.status === StatusCodes.pass) {
               if (!this.commonService.checkNullOrUndefined(res.response)) {
                 this.formData.patchValue({
@@ -468,7 +468,7 @@ export class JournalComponent implements OnInit {
   }
 
   emitColumnChanges(data) {
-   this.tableData = data.data;
+    this.tableData = data.data;
     this.dataChange(data);
   }
 
@@ -485,7 +485,7 @@ export class JournalComponent implements OnInit {
         })
       }
       this.sendDynTableData = { type: 'add', data: row.data };
- this.tableData = row.data;
+      this.tableData = row.data;
     }
     if (row.column == 'taxCode' || row.column == 'amount') {
       const code = row.data[row.index]['taxCode'].list.find(res => res.taxRateCode == row.data[row.index]['taxCode'].value);
@@ -495,12 +495,12 @@ export class JournalComponent implements OnInit {
         row.data[row.index].cgstamount.value = (row.data[row.index].amount.value * code.sgst) / 100;
         row.data[row.index].cgstamount.value = (row.data[row.index].amount.value * code.cgst) / 100;
         this.sendDynTableData = { type: 'add', data: row.data };
- this.tableData = row.data;
+        this.tableData = row.data;
       }
     }
   }
 
- 
+
   checkCreditDebit() {
     this.debitValue = 0;
     this.creditValue = 0;
@@ -528,7 +528,7 @@ export class JournalComponent implements OnInit {
   }
 
   save() {
-this.tableData = this.commonService.formatTableData(this.tableData);
+    this.tableData = this.commonService.formatTableData(this.tableData);
     if (this.tableData.length == 0) {
       return;
     }
@@ -551,8 +551,8 @@ this.tableData = this.commonService.formatTableData(this.tableData);
     const requestObj = { journalHdr: this.formData.value, journalDtl: this.tableData };
     this.apiService.apiPostRequest(addJournal, requestObj).subscribe(
       response => {
-        const res = response.body;
- this.tableData = [];
+        const res = response;
+        this.tableData = [];
         if (!this.commonService.checkNullOrUndefined(res) && res.status === StatusCodes.pass) {
           if (!this.commonService.checkNullOrUndefined(res.response)) {
             this.alertService.openSnackBar('Journal created Successfully..', Static.Close, SnackBar.success);

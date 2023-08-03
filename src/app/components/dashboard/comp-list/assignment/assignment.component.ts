@@ -55,7 +55,7 @@ export class AssignmentComponent implements OnInit {
     this.apiService.apiGetRequest(getbpList)
       .subscribe(
         response => {
-          const res = response.body;
+          const res = response;
           if (!this.commonService.checkNullOrUndefined(res) && res.status === StatusCodes.pass) {
             if (!this.commonService.checkNullOrUndefined(res.response)) {
               this.bpgList = res.response['bpgList'];
@@ -70,7 +70,7 @@ export class AssignmentComponent implements OnInit {
     this.apiService.apiGetRequest(getnrList)
       .subscribe(
         response => {
-          const res = response.body;
+          const res = response;
           if (!this.commonService.checkNullOrUndefined(res) && res.status === StatusCodes.pass) {
             if (!this.commonService.checkNullOrUndefined(res.response)) {
               this.nrrList = res.response['nrrList'];

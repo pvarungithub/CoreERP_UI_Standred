@@ -20,9 +20,9 @@ export class PurchasingpersonComponent implements OnInit {
   modelFormData: FormGroup;
   formData: any;
   glList: any;
-    emplist: any;
-    purchaseTypeList: any;
-    pcgroupList: any;
+  emplist: any;
+  purchaseTypeList: any;
+  pcgroupList: any;
   constructor(private commonService: CommonService,
     private addOrEditService: AddOrEditService,
     private formBuilder: FormBuilder,
@@ -38,7 +38,7 @@ export class PurchasingpersonComponent implements OnInit {
       description: [null, [Validators.required, Validators.minLength(1), Validators.maxLength(50)]],
       purchaseGroup: [null],
       purchaseTypes: [null]
-     
+
     });
 
     this.formData = { ...data };
@@ -66,7 +66,7 @@ export class PurchasingpersonComponent implements OnInit {
     this.apiService.apiGetRequest(getEmployeeUrl)
       .subscribe(
         response => {
-          const res = response.body;
+          const res = response;
           if (!this.commonService.checkNullOrUndefined(res) && res.status === StatusCodes.pass) {
             if (!this.commonService.checkNullOrUndefined(res.response)) {
               this.emplist = res.response['emplist'];
@@ -81,7 +81,7 @@ export class PurchasingpersonComponent implements OnInit {
     this.apiService.apiGetRequest(getPurchaseGroupUrl)
       .subscribe(
         response => {
-          const res = response.body
+          const res = response
           console.log(res);
           if (!this.commonService.checkNullOrUndefined(res) && res.status === StatusCodes.pass) {
             if (!this.commonService.checkNullOrUndefined(res.response)) {
@@ -97,7 +97,7 @@ export class PurchasingpersonComponent implements OnInit {
     this.apiService.apiGetRequest(getPurchaseTypeUrl)
       .subscribe(
         response => {
-          const res = response.body;
+          const res = response;
           if (!this.commonService.checkNullOrUndefined(res) && res.status === StatusCodes.pass) {
             if (!this.commonService.checkNullOrUndefined(res.response)) {
               this.purchaseTypeList = res.response['purchaseTypeList'];

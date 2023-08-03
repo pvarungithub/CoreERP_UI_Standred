@@ -145,7 +145,7 @@ export class GoodsissueComponent implements OnInit {
       .subscribe(
         response => {
           this.spinner.hide();
-          const res = response.body;
+          const res = response;
           if (!this.commonService.checkNullOrUndefined(res) && res.status === StatusCodes.pass) {
             if (!this.commonService.checkNullOrUndefined(res.response)) {
               this.formData.setValue(res.response['goodsissueasters']);
@@ -162,7 +162,7 @@ export class GoodsissueComponent implements OnInit {
     this.apiService.apiGetRequest(companyUrl)
       .subscribe(
         response => {
-          const res = response.body;
+          const res = response;
           if (!this.commonService.checkNullOrUndefined(res) && res.status === StatusCodes.pass) {
             if (!this.commonService.checkNullOrUndefined(res.response)) {
               this.companyList = res.response['companiesList'];
@@ -177,7 +177,7 @@ export class GoodsissueComponent implements OnInit {
     this.apiService.apiGetRequest(getEmployeeList)
       .subscribe(
         response => {
-          const res = response.body;
+          const res = response;
           if (!this.commonService.checkNullOrUndefined(res) && res.status === StatusCodes.pass) {
             if (!this.commonService.checkNullOrUndefined(res.response)) {
               this.employeesList = res.response['emplist'];
@@ -192,7 +192,7 @@ export class GoodsissueComponent implements OnInit {
     this.apiService.apiGetRequest(getdepteUrl)
       .subscribe(
         response => {
-          const res = response.body;
+          const res = response;
           if (!this.commonService.checkNullOrUndefined(res) && res.status === StatusCodes.pass) {
             if (!this.commonService.checkNullOrUndefined(res.response)) {
               this.fdeptList = res.response['fdeptList'];
@@ -207,7 +207,7 @@ export class GoodsissueComponent implements OnInit {
     this.apiService.apiGetRequest(getplantUrl)
       .subscribe(
         response => {
-          const res = response.body;
+          const res = response;
           if (!this.commonService.checkNullOrUndefined(res) && res.status === StatusCodes.pass) {
             if (!this.commonService.checkNullOrUndefined(res.response)) {
               this.plantList = res.response['plantsList'];
@@ -222,7 +222,7 @@ export class GoodsissueComponent implements OnInit {
     this.apiService.apiGetRequest(MomentTypeList)
       .subscribe(
         response => {
-          const res = response.body;
+          const res = response;
           if (!this.commonService.checkNullOrUndefined(res) && res.status === StatusCodes.pass) {
             if (!this.commonService.checkNullOrUndefined(res.response)) {
               this.movementList = res.response['movementList'];
@@ -236,7 +236,7 @@ export class GoodsissueComponent implements OnInit {
     this.apiService.apiGetRequest(getwbselementUrl)
       .subscribe(
         response => {
-          const res = response.body;
+          const res = response;
           if (!this.commonService.checkNullOrUndefined(res) && res.status === StatusCodes.pass) {
             if (!this.commonService.checkNullOrUndefined(res.response)) {
               this.wbsElementList = res.response['wbsList'];
@@ -250,7 +250,7 @@ export class GoodsissueComponent implements OnInit {
     this.apiService.apiGetRequest(getOrderTypeUrl)
       .subscribe(
         response => {
-          const res = response.body;
+          const res = response;
           if (!this.commonService.checkNullOrUndefined(res) && res.status === StatusCodes.pass) {
             if (!this.commonService.checkNullOrUndefined(res.response)) {
               this.ordertypeList = res.response['ordertypeList'];
@@ -264,7 +264,7 @@ export class GoodsissueComponent implements OnInit {
     this.apiService.apiGetRequest(getmaterialList)
       .subscribe(
         response => {
-          const res = response.body;
+          const res = response;
           if (!this.commonService.checkNullOrUndefined(res) && res.status === StatusCodes.pass) {
             if (!this.commonService.checkNullOrUndefined(res.response)) {
               this.mmasterList = res.response['mmasterList'];
@@ -278,7 +278,7 @@ export class GoodsissueComponent implements OnInit {
     this.apiService.apiGetRequest(getreqListUrl)
       .subscribe(
         response => {
-          const res = response.body;
+          const res = response;
           if (!this.commonService.checkNullOrUndefined(res) && res.status === StatusCodes.pass) {
             if (!this.commonService.checkNullOrUndefined(res.response)) {
               this.mreqList = res.response['mreqList'];
@@ -293,7 +293,7 @@ export class GoodsissueComponent implements OnInit {
     this.apiService.apiGetRequest(getreqdetailsListUrl)
       .subscribe(
         response => {
-          const res = response.body;
+          const res = response;
           if (!this.commonService.checkNullOrUndefined(res) && res.status === StatusCodes.pass) {
             if (!this.commonService.checkNullOrUndefined(res.response)) {
               this.mreqdetailsList = res.response['mreqdetailsList'];
@@ -308,7 +308,7 @@ export class GoodsissueComponent implements OnInit {
     this.apiService.apiGetRequest(getlocationUrl)
       .subscribe(
         response => {
-          const res = response.body;
+          const res = response;
           if (!this.commonService.checkNullOrUndefined(res) && res.status === StatusCodes.pass) {
             if (!this.commonService.checkNullOrUndefined(res.response)) {
               this.locationList = res.response['locationList'];
@@ -322,7 +322,7 @@ export class GoodsissueComponent implements OnInit {
     this.apiService.apiGetRequest(taxCodeUrl)
       .subscribe(
         response => {
-          const res = response.body;
+          const res = response;
           if (!this.commonService.checkNullOrUndefined(res) && res.status === StatusCodes.pass) {
             if (!this.commonService.checkNullOrUndefined(res.response)) {
               this.functionaldeptList = res.response['fdeptList'];
@@ -337,7 +337,7 @@ export class GoodsissueComponent implements OnInit {
       .subscribe(
         response => {
           this.spinner.hide();
-          const res = response.body;
+          const res = response;
           if (!this.commonService.checkNullOrUndefined(res) && res.status === StatusCodes.pass) {
             if (!this.commonService.checkNullOrUndefined(res.response)) {
               this.costCenterList = res.response['costcenterList'];
@@ -351,7 +351,7 @@ export class GoodsissueComponent implements OnInit {
   }
 
   emitColumnChanges(data) {
-this.tableData = data.data;
+    this.tableData = data.data;
   }
 
   dataChange(row) {
@@ -379,17 +379,17 @@ this.tableData = data.data;
       })
     }
     //
-   this.sendDynTableData = { type: 'add', data: newData };
+    this.sendDynTableData = { type: 'add', data: newData };
   }
 
-  
+
 
   back() {
     this.router.navigate(['dashboard/transaction/goodsissue']);
   }
 
   save() {
- this.tableData = this.commonService.formatTableData(this.tableData, 0);
+    this.tableData = this.commonService.formatTableData(this.tableData, 0);
     if (this.tableData.length == 0) {
       return;
     }
@@ -411,8 +411,8 @@ this.tableData = data.data;
     const requestObj = { gibHdr: this.formData.value, gibDtl: this.tableData };
     this.apiService.apiPostRequest(addJournal, requestObj).subscribe(
       response => {
-        const res = response.body;
- this.tableData = [];
+        const res = response;
+        this.tableData = [];
         if (!this.commonService.checkNullOrUndefined(res) && res.status === StatusCodes.pass) {
           if (!this.commonService.checkNullOrUndefined(res.response)) {
             this.alertService.openSnackBar('GoodsIssue created Successfully..', Static.Close, SnackBar.success);

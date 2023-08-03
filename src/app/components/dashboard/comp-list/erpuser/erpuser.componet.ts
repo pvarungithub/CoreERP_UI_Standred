@@ -56,7 +56,7 @@ export class ErpUsersComponent implements OnInit {
     const getRolesListsUrl = String.Join('/', this.apiConfigService.getrolelist);
     this.apiService.apiGetRequest(getRolesListsUrl).subscribe(
       response => {
-        const res = response.body;
+        const res = response;
         console.log(res);
         if (!this.commonService.checkNullOrUndefined(res) && res.status === StatusCodes.pass) {
           if (!this.commonService.checkNullOrUndefined(res.response)) {
@@ -75,7 +75,7 @@ export class ErpUsersComponent implements OnInit {
     this.apiService.apiGetRequest(getCompanyUrl)
       .subscribe(
         response => {
-          const res = response.body;
+          const res = response;
           console.log(res);
           if (!this.commonService.checkNullOrUndefined(res) && res.status === StatusCodes.pass) {
             if (!this.commonService.checkNullOrUndefined(res.response)) {

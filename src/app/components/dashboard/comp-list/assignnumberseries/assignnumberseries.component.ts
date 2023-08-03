@@ -26,8 +26,8 @@ export class AssignmentOfNumberSeriesToObjectTypesComponent implements OnInit {
   formData: any;
   csList: any;
   UomList: any;
-    cnsList: any;
-    cotList: any;
+  cnsList: any;
+  cotList: any;
   constructor(private commonService: CommonService,
     private addOrEditService: AddOrEditService,
     private formBuilder: FormBuilder,
@@ -41,8 +41,8 @@ export class AssignmentOfNumberSeriesToObjectTypesComponent implements OnInit {
     this.modelFormData = this.formBuilder.group({
       objectType: [null, [Validators.required, Validators.minLength(1), Validators.maxLength(4)]],
       numberSeries: [null, [Validators.required, Validators.minLength(1), Validators.maxLength(30)]]
-     
-   });
+
+    });
 
 
     this.formData = { ...data };
@@ -57,13 +57,13 @@ export class AssignmentOfNumberSeriesToObjectTypesComponent implements OnInit {
     this.getcostofobjecttypeData();
     this.getcostnumberseriesData();
   }
-  
+
   getcostofobjecttypeData() {
     const getcostofobjecttypeUrl = String.Join('/', this.apiConfigService.getcostofobjectList);
     this.apiService.apiGetRequest(getcostofobjecttypeUrl)
       .subscribe(
         response => {
-          const res = response.body;
+          const res = response;
           if (!this.commonService.checkNullOrUndefined(res) && res.status === StatusCodes.pass) {
             if (!this.commonService.checkNullOrUndefined(res.response)) {
               this.cotList = res.response['cotList'];
@@ -78,7 +78,7 @@ export class AssignmentOfNumberSeriesToObjectTypesComponent implements OnInit {
     this.apiService.apiGetRequest(getcostnumberseriesUrl)
       .subscribe(
         response => {
-          const res = response.body;
+          const res = response;
           console.log(res);
           if (!this.commonService.checkNullOrUndefined(res) && res.status === StatusCodes.pass) {
             if (!this.commonService.checkNullOrUndefined(res.response)) {

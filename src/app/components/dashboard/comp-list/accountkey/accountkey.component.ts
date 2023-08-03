@@ -68,7 +68,7 @@ export class AccountKeyComponent implements OnInit {
     this.apiService.apiGetRequest(getGLAccountUrl)
       .subscribe(
         response => {
-          const res = response.body;
+          const res = response;
           if (!this.commonService.checkNullOrUndefined(res) && res.status === StatusCodes.pass) {
             if (!this.commonService.checkNullOrUndefined(res.response)) {
               this.glList = res.response['glList'].filter(res => res.controlaccount == 'Asset');
@@ -84,7 +84,7 @@ export class AccountKeyComponent implements OnInit {
     this.apiService.apiGetRequest(getCompanyUrl)
       .subscribe(
         response => {
-          const res = response.body;
+          const res = response;
           if (!this.commonService.checkNullOrUndefined(res) && res.status === StatusCodes.pass) {
             if (!this.commonService.checkNullOrUndefined(res.response)) {
               this.companyList = res.response['companiesList'];
@@ -99,7 +99,7 @@ export class AccountKeyComponent implements OnInit {
     this.apiService.apiGetRequest(getchartofAccountUrl)
       .subscribe(
         response => {
-          const res = response.body;
+          const res = response;
           if (!this.commonService.checkNullOrUndefined(res) && res.status === StatusCodes.pass) {
             if (!this.commonService.checkNullOrUndefined(res.response)) {
               this.coaList = res.response['coaList'];
@@ -114,7 +114,7 @@ export class AccountKeyComponent implements OnInit {
     this.apiService.apiGetRequest(getnumrangeUrl)
       .subscribe(
         response => {
-          const res = response.body;
+          const res = response;
           if (!this.commonService.checkNullOrUndefined(res) && res.status === StatusCodes.pass) {
             if (!this.commonService.checkNullOrUndefined(res.response)) {
               this.nrrList = res.response['nrrList'];

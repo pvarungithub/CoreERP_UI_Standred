@@ -30,8 +30,8 @@ export class AssetBegningAccumulatedDepreciationComponent implements OnInit {
   formData: any;
   taxcodeList: any;
   taxaccList: any;
-  tdsList:any;
-  nrrList:any;
+  tdsList: any;
+  nrrList: any;
   companyList: any;
   saList: any;
   dpareaList: any;
@@ -58,15 +58,15 @@ export class AssetBegningAccumulatedDepreciationComponent implements OnInit {
     this.formData = { ...data };
     if (!this.commonService.checkNullOrUndefined(this.formData.item)) {
       this.modelFormData.patchValue(this.formData.item);
-     // this.modelFormData.controls['mainAssetNo'].disable();
+      // this.modelFormData.controls['mainAssetNo'].disable();
     }
 
   }
 
   ngOnInit() {
-    this. getmainassetclassTableData();
+    this.getmainassetclassTableData();
     this.getSubassetList();
-    this. getdepreciationAreaList() ;
+    this.getdepreciationAreaList();
 
   }
   getSubassetList() {
@@ -74,7 +74,7 @@ export class AssetBegningAccumulatedDepreciationComponent implements OnInit {
     this.apiService.apiGetRequest(getplantList)
       .subscribe(
         response => {
-          const res = response.body;
+          const res = response;
           if (!this.commonService.checkNullOrUndefined(res) && res.status === StatusCodes.pass) {
             if (!this.commonService.checkNullOrUndefined(res.response)) {
               this.saList = res.response['saList'];
@@ -88,7 +88,7 @@ export class AssetBegningAccumulatedDepreciationComponent implements OnInit {
     this.apiService.apiGetRequest(getlocList)
       .subscribe(
         response => {
-          const res = response.body;
+          const res = response;
           if (!this.commonService.checkNullOrUndefined(res) && res.status === StatusCodes.pass) {
             if (!this.commonService.checkNullOrUndefined(res.response)) {
               this.dpareaList = res.response['dpareaList'];
@@ -102,18 +102,18 @@ export class AssetBegningAccumulatedDepreciationComponent implements OnInit {
     this.apiService.apiGetRequest(getCompanyUrl)
       .subscribe(
         response => {
-        const res = response.body;
-        if (!this.commonService.checkNullOrUndefined(res) && res.status === StatusCodes.pass) {
-          if (!this.commonService.checkNullOrUndefined(res.response)) {
-            this.mamList = res.response['mamList'];
+          const res = response;
+          if (!this.commonService.checkNullOrUndefined(res) && res.status === StatusCodes.pass) {
+            if (!this.commonService.checkNullOrUndefined(res.response)) {
+              this.mamList = res.response['mamList'];
+            }
           }
-        }
           this.spinner.hide();
-      });
+        });
   }
 
 
- 
+
 
   get formControls() { return this.modelFormData.controls; }
 
@@ -121,7 +121,7 @@ export class AssetBegningAccumulatedDepreciationComponent implements OnInit {
     if (this.modelFormData.invalid) {
       return;
     }
-   // this.modelFormData.controls['mainAssetNo'].enable();
+    // this.modelFormData.controls['mainAssetNo'].enable();
     this.formData.item = this.modelFormData.value;
     this.addOrEditService[this.formData.action](this.formData, (res) => {
       this.dialogRef.close(this.formData);

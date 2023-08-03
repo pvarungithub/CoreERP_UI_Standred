@@ -1,8 +1,8 @@
 import { Injectable } from '@angular/core';
-import { Observable, of  } from 'rxjs';
+import { Observable, of } from 'rxjs';
 
 import { tap, map, catchError } from 'rxjs/operators';
-import { HttpClient, HttpHeaders, HttpErrorResponse} from '@angular/common/http';
+import { HttpClient, HttpHeaders, HttpErrorResponse } from '@angular/common/http';
 import { StatusCodes } from '../enums/common/common';
 import { AlertService } from './alert.service';
 import { SnackBar } from '../enums/common/common';
@@ -21,22 +21,22 @@ export class ApiService {
     private alertService: AlertService,
     private spinner: NgxSpinnerService,
 
-    ) {
-      this.options = { headers: new HttpHeaders({ 'Content-Type': 'application/json' }) };
-    }
+  ) {
+    this.options = { headers: new HttpHeaders({ 'Content-Type': 'application/json' }) };
+  }
 
 
   // get API requests
-  public apiGetRequest(url: any,obj?: any): Observable<any> {
+  public apiGetRequest(url: any, obj?: any): Observable<any> {
     setTimeout(() => this.spinner.show());
-    return this.http.get(url, { headers: this.options, observe: 'response', params:obj })
+    return this.http.get(url, this.options)
       .pipe((tap<any>(res => {
-        if (!this.commonService.checkNullOrUndefined(res) && res.body.status === StatusCodes.fail) {
-          this.alertService.openSnackBar(res.body.response, Static.Close, SnackBar.error);
+        if (!this.commonService.checkNullOrUndefined(res) && res.status === StatusCodes.fail) {
+          this.alertService.openSnackBar(res.response, Static.Close, SnackBar.error);
           setTimeout(() => this.spinner.hide());
           return;
         }
-        return res.body;
+        return res;
       })),
         catchError(this.handleError('apiGetRequest')));
   }
@@ -44,14 +44,14 @@ export class ApiService {
   // Post API request
   public apiPostRequest(url: any, obj?: any): Observable<any> {
     this.spinner.show();
-    return this.http.post(url, obj, { headers: this.options, observe: 'response' })
+    return this.http.post(url, obj, this.options)
       .pipe((tap<any>(res => {
-        if (!this.commonService.checkNullOrUndefined(res.body) && res.body.status === StatusCodes.fail) {
-          this.alertService.openSnackBar(res.body.response, Static.Close, SnackBar.error);
+        if (!this.commonService.checkNullOrUndefined(res) && res.status === StatusCodes.fail) {
+          this.alertService.openSnackBar(res.response, Static.Close, SnackBar.error);
           this.spinner.hide();
           return;
         }
-        return res.body;
+        return res;
       })),
         catchError(this.handleError('apiPostRequest')));
   }
@@ -59,10 +59,10 @@ export class ApiService {
   // Delete API request
   public apiDeleteRequest(url: any, obj?: any): Observable<any> {
     this.spinner.show();
-    return this.http.delete(url, { headers: this.options, observe: 'response' })
+    return this.http.delete(url, this.options)
       .pipe((tap<any>(res => {
-        if (!this.commonService.checkNullOrUndefined(res) && res.body.status === StatusCodes.fail) {
-          this.alertService.openSnackBar(res.body.response, Static.Close, SnackBar.error);
+        if (!this.commonService.checkNullOrUndefined(res) && res.status === StatusCodes.fail) {
+          this.alertService.openSnackBar(res.response, Static.Close, SnackBar.error);
           this.spinner.hide();
           return;
         }
@@ -74,10 +74,10 @@ export class ApiService {
   // Update API request
   public apiUpdateRequest(url: any, obj?: any): Observable<any> {
     this.spinner.show();
-    return this.http.put(url, obj , { headers: this.options, observe: 'response' })
+    return this.http.put(url, obj, this.options)
       .pipe((tap<any>(res => {
-        if (!this.commonService.checkNullOrUndefined(res) && res.body.status === StatusCodes.fail) {
-          this.alertService.openSnackBar(res.body.response, Static.Close, SnackBar.error);
+        if (!this.commonService.checkNullOrUndefined(res) && res.status === StatusCodes.fail) {
+          this.alertService.openSnackBar(res.response, Static.Close, SnackBar.error);
           this.spinner.hide();
           return;
         }
@@ -86,8 +86,8 @@ export class ApiService {
         catchError(this.handleError('apiPostRequest')));
   }
 
-   // API error handling
-   private handleError(operation: string) {
+  // API error handling
+  private handleError(operation: string) {
     return (err: HttpErrorResponse) => {
       this.spinner.hide();
       const errMsg = `error in ${operation}()  status: ${err.status}, ${err.statusText || ''}, ${err} `;

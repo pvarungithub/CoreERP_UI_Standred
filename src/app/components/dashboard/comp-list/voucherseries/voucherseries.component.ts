@@ -74,7 +74,7 @@ export class VoucherSeriesComponents implements OnInit {
     this.apiService.apiGetRequest(getcompanyList)
       .subscribe(
         response => {
-          const res = response.body;
+          const res = response;
           if (!this.commonService.checkNullOrUndefined(res) && res.status === StatusCodes.pass) {
             if (!this.commonService.checkNullOrUndefined(res.response)) {
               this.compList = res.response['companiesList'];
@@ -89,7 +89,7 @@ export class VoucherSeriesComponents implements OnInit {
     this.apiService.apiGetRequest(getbranchList)
       .subscribe(
         response => {
-          const res = response.body;
+          const res = response;
           if (!this.commonService.checkNullOrUndefined(res) && res.status === StatusCodes.pass) {
             if (!this.commonService.checkNullOrUndefined(res.response)) {
               this.branchList = res.response['branchsList'];
@@ -104,7 +104,7 @@ export class VoucherSeriesComponents implements OnInit {
     this.apiService.apiGetRequest(getplantsList)
       .subscribe(
         response => {
-          const res = response.body;
+          const res = response;
           if (!this.commonService.checkNullOrUndefined(res) && res.status === StatusCodes.pass) {
             if (!this.commonService.checkNullOrUndefined(res.response)) {
               this.plantList = res.response['plantsList'];

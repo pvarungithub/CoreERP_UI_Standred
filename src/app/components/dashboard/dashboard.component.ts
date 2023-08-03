@@ -40,7 +40,7 @@ export class DashboardComponent implements OnInit, AfterViewInit, OnDestroy {
       .subscribe(
         menu => {
           this.spinner.hide();
-          this.navItems = menu.body["response"];
+          this.navItems = menu["response"];
           this.spinner.hide();
         });
   }

@@ -56,7 +56,7 @@ export class StateComponent implements OnInit {
     this.apiService.apiGetRequest(getlanguageList)
       .subscribe(
         response => {
-          const res = response.body;
+          const res = response;
           if (!this.commonService.checkNullOrUndefined(res) && res.status === StatusCodes.pass) {
             if (!this.commonService.checkNullOrUndefined(res.response)) {
               this.languageList = res.response['LanguageList'];
@@ -71,7 +71,7 @@ export class StateComponent implements OnInit {
     this.apiService.apiGetRequest(getCountrysList)
       .subscribe(
         response => {
-          const res = response.body;
+          const res = response;
           if (!this.commonService.checkNullOrUndefined(res) && res.status === StatusCodes.pass) {
             if (!this.commonService.checkNullOrUndefined(res.response)) {
               this.countrysList = res.response['CountryList'];

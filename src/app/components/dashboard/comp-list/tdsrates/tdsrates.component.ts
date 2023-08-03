@@ -23,14 +23,14 @@ export class TdsRatesComponent implements OnInit {
 
   modelFormData: FormGroup;
   formData: any;
-  tdsList:any;
-  incmList:any;
-  
+  tdsList: any;
+  incmList: any;
+
   status: Status[] =
-  [
-    { value: 'Resident', viewValue: 'Resident' },
-    { value: 'Non Resident', viewValue: 'Non Resident' }
-  ];
+    [
+      { value: 'Resident', viewValue: 'Resident' },
+      { value: 'Non Resident', viewValue: 'Non Resident' }
+    ];
   constructor(private commonService: CommonService,
     private formBuilder: FormBuilder,
     private addOrEditService: AddOrEditService,
@@ -48,8 +48,8 @@ export class TdsRatesComponent implements OnInit {
       incomeType: [null],
       status: [null],
       effectiveFrom: [null],
-      baseAmount:[null],
-      tdsRate:[null]
+      baseAmount: [null],
+      tdsRate: [null]
     });
 
     this.formData = { ...data };
@@ -69,7 +69,7 @@ export class TdsRatesComponent implements OnInit {
     this.apiService.apiGetRequest(getTDSList)
       .subscribe(
         response => {
-          const res = response.body;
+          const res = response;
           if (!this.commonService.checkNullOrUndefined(res) && res.status === StatusCodes.pass) {
             if (!this.commonService.checkNullOrUndefined(res.response)) {
               this.tdsList = res.response['tdsList'];
@@ -83,7 +83,7 @@ export class TdsRatesComponent implements OnInit {
     this.apiService.apiGetRequest(getIncomeList)
       .subscribe(
         response => {
-          const res = response.body;
+          const res = response;
           if (!this.commonService.checkNullOrUndefined(res) && res.status === StatusCodes.pass) {
             if (!this.commonService.checkNullOrUndefined(res.response)) {
               this.incmList = res.response['incmList'];

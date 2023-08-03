@@ -132,8 +132,7 @@ export class SubAssetsComponent implements OnInit {
     });
 
     this.formData = { ...this.addOrEditService.editData };
-    if (!this.commonService.checkNullOrUndefined(this.formData.item))
-     {
+    if (!this.commonService.checkNullOrUndefined(this.formData.item)) {
       this.modelFormData.patchValue(this.formData.item);
       this.modelFormData.controls['subAssetNumber'].disable();
     }
@@ -161,7 +160,7 @@ export class SubAssetsComponent implements OnInit {
       .subscribe(
         response => {
           this.spinner.hide();
-          const res = response.body;
+          const res = response;
           if (!this.commonService.checkNullOrUndefined(res) && res.status === StatusCodes.pass) {
             if (!this.commonService.checkNullOrUndefined(res.response)) {
               console.log(res.response['SubassetMasters']);
@@ -177,7 +176,7 @@ export class SubAssetsComponent implements OnInit {
     this.apiService.apiGetRequest(getCompanyUrl)
       .subscribe(
         response => {
-          const res = response.body;
+          const res = response;
           if (!this.commonService.checkNullOrUndefined(res) && res.status === StatusCodes.pass) {
             if (!this.commonService.checkNullOrUndefined(res.response)) {
               this.mamList = res.response['mamList'];
@@ -192,7 +191,7 @@ export class SubAssetsComponent implements OnInit {
     this.apiService.apiGetRequest(getdepreciationCodeUrl)
       .subscribe(
         response => {
-          const res = response.body;
+          const res = response;
           if (!this.commonService.checkNullOrUndefined(res) && res.status === StatusCodes.pass) {
             if (!this.commonService.checkNullOrUndefined(res.response)) {
               this.dpList = res.response['dpList'];
@@ -206,7 +205,7 @@ export class SubAssetsComponent implements OnInit {
     this.apiService.apiGetRequest(getdepreciationAreaUrl)
       .subscribe(
         response => {
-          const res = response.body;
+          const res = response;
           if (!this.commonService.checkNullOrUndefined(res) && res.status === StatusCodes.pass) {
             if (!this.commonService.checkNullOrUndefined(res.response)) {
               this.dpareaList = res.response['dpareaList'];
@@ -226,7 +225,7 @@ export class SubAssetsComponent implements OnInit {
     this.apiService.apiGetRequest(getdepreciationAreaUrl)
       .subscribe(
         response => {
-          const res = response.body;
+          const res = response;
           if (!this.commonService.checkNullOrUndefined(res) && res.status === StatusCodes.pass) {
             if (!this.commonService.checkNullOrUndefined(res.response)) {
               this.mamList = res.response['mamList'];
@@ -240,7 +239,7 @@ export class SubAssetsComponent implements OnInit {
     this.apiService.apiGetRequest(getdepreciationAreaUrl)
       .subscribe(
         response => {
-          const res = response.body;
+          const res = response;
           if (!this.commonService.checkNullOrUndefined(res) && res.status === StatusCodes.pass) {
             if (!this.commonService.checkNullOrUndefined(res.response)) {
               this.saList = res.response['saList'];
@@ -253,7 +252,7 @@ export class SubAssetsComponent implements OnInit {
     const getInvoiceDeatilListUrl = String.Join('/', this.apiConfigService.GetListsforMainAsset, this.modelFormData.get('mainAssetNo').value);
     this.apiService.apiGetRequest(getInvoiceDeatilListUrl).subscribe(
       response => {
-        const res = response.body;
+        const res = response;
         if (!this.commonService.checkNullOrUndefined(res) && res.status === StatusCodes.pass) {
           if (!this.commonService.checkNullOrUndefined(res.response)) {
             if (!this.commonService.checkNullOrUndefined(res.response)) {
@@ -271,7 +270,7 @@ export class SubAssetsComponent implements OnInit {
     this.apiService.apiGetRequest(getCompanyUrl)
       .subscribe(
         response => {
-          const res = response.body;
+          const res = response;
           if (!this.commonService.checkNullOrUndefined(res) && res.status === StatusCodes.pass) {
             if (!this.commonService.checkNullOrUndefined(res.response)) {
               this.assetList = res.response['assetList'];
@@ -285,7 +284,7 @@ export class SubAssetsComponent implements OnInit {
     this.apiService.apiGetRequest(getackeyList)
       .subscribe(
         response => {
-          const res = response.body;
+          const res = response;
           if (!this.commonService.checkNullOrUndefined(res) && res.status === StatusCodes.pass) {
             if (!this.commonService.checkNullOrUndefined(res.response)) {
               this.acckeyList = res.response['acckeyList'];
@@ -299,7 +298,7 @@ export class SubAssetsComponent implements OnInit {
     this.apiService.apiGetRequest(getbranchList)
       .subscribe(
         response => {
-          const res = response.body;
+          const res = response;
           if (!this.commonService.checkNullOrUndefined(res) && res.status === StatusCodes.pass) {
             if (!this.commonService.checkNullOrUndefined(res.response)) {
               this.branchesList = res.response['branchesList'];
@@ -313,7 +312,7 @@ export class SubAssetsComponent implements OnInit {
     this.apiService.apiGetRequest(getprofitCentersList)
       .subscribe(
         response => {
-          const res = response.body;
+          const res = response;
           if (!this.commonService.checkNullOrUndefined(res) && res.status === StatusCodes.pass) {
             if (!this.commonService.checkNullOrUndefined(res.response)) {
               this.profitCenterList = res.response['profitCenterList'];
@@ -327,7 +326,7 @@ export class SubAssetsComponent implements OnInit {
     this.apiService.apiGetRequest(getsegmentList)
       .subscribe(
         response => {
-          const res = response.body;
+          const res = response;
           if (!this.commonService.checkNullOrUndefined(res) && res.status === StatusCodes.pass) {
             if (!this.commonService.checkNullOrUndefined(res.response)) {
               this.segmentList = res.response['segmentList'];
@@ -341,7 +340,7 @@ export class SubAssetsComponent implements OnInit {
     this.apiService.apiGetRequest(getdivisionList)
       .subscribe(
         response => {
-          const res = response.body;
+          const res = response;
           if (!this.commonService.checkNullOrUndefined(res) && res.status === StatusCodes.pass) {
             if (!this.commonService.checkNullOrUndefined(res.response)) {
               this.divisionsList = res.response['divisionsList'];
@@ -355,7 +354,7 @@ export class SubAssetsComponent implements OnInit {
     this.apiService.apiGetRequest(getplantList)
       .subscribe(
         response => {
-          const res = response.body;
+          const res = response;
           if (!this.commonService.checkNullOrUndefined(res) && res.status === StatusCodes.pass) {
             if (!this.commonService.checkNullOrUndefined(res.response)) {
               this.plantList = res.response['plantList'];
@@ -369,7 +368,7 @@ export class SubAssetsComponent implements OnInit {
     this.apiService.apiGetRequest(getlocList)
       .subscribe(
         response => {
-          const res = response.body;
+          const res = response;
           if (!this.commonService.checkNullOrUndefined(res) && res.status === StatusCodes.pass) {
             if (!this.commonService.checkNullOrUndefined(res.response)) {
               this.locationList = res.response['locationList'];
@@ -418,7 +417,7 @@ export class SubAssetsComponent implements OnInit {
     const requestObj = { subasstHdr: this.modelFormData.value, subassetDetail: this.tableData };
     this.apiService.apiPostRequest(addCashBank, requestObj).subscribe(
       response => {
-        const res = response.body;
+        const res = response;
         this.tableData = [];
         if (!this.commonService.checkNullOrUndefined(res) && res.status === StatusCodes.pass) {
           if (!this.commonService.checkNullOrUndefined(res.response)) {

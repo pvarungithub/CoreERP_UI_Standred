@@ -26,15 +26,15 @@ export class DepreciationareasComponent implements OnInit {
   formData: any;
   taxcodeList: any;
   taxaccList: any;
-  tdsList:any;
-  incmList:any;      
-  
+  tdsList: any;
+  incmList: any;
+
   DepreciationTypes: DepreciationType[] =
-  [
-    { value: 'Ordinary', viewValue: 'Ordinary' },
-    { value: 'Other', viewValue: 'Other' },
-    { value: 'Additional', viewValue: 'Additional' }
-  ];
+    [
+      { value: 'Ordinary', viewValue: 'Ordinary' },
+      { value: 'Other', viewValue: 'Other' },
+      { value: 'Additional', viewValue: 'Additional' }
+    ];
   companyList: any;
   constructor(private commonService: CommonService,
     private addOrEditService: AddOrEditService,
@@ -68,7 +68,7 @@ export class DepreciationareasComponent implements OnInit {
     this.apiService.apiGetRequest(getCompanyUrl)
       .subscribe(
         response => {
-          const res = response.body;
+          const res = response;
           if (!this.commonService.checkNullOrUndefined(res) && res.status === StatusCodes.pass) {
             if (!this.commonService.checkNullOrUndefined(res.response)) {
               this.companyList = res.response['companiesList'];
