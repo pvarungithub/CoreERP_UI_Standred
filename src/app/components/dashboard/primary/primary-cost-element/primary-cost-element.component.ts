@@ -198,7 +198,7 @@ export class PrimaryCostElementComponent implements OnInit {
     this.apiService.apiGetRequest(pcUrl)
       .subscribe(
         response => {
-          const resp = response;
+          const resp = response.body;
           if (!this.commonService.checkNullOrUndefined(resp) && resp.status === StatusCodes.pass) {
             if (!this.commonService.checkNullOrUndefined(resp.response) && resp.response['pcostList'].length) {
               resp.response['pcostList'].forEach((res, index) => {

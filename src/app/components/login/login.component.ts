@@ -69,11 +69,12 @@ export class LoginComponent implements OnInit {
     const getLoginUrl = String.Join('/', this.apiConfigService.loginUrl);
     this.apiService.apiPostRequest(getLoginUrl, requestObj)
       .subscribe(
-        (response: any) => {
-          if (!this.commonService.checkNullOrUndefined(response) && response.status === StatusCodes.pass) {
-            if (!this.commonService.checkNullOrUndefined(response.response)) {
-              this.getBranchesForUser(response.response['User']);
-              localStorage.setItem('Token', JSON.stringify(response.response['Token']));
+        response => {
+          const res = response;
+          if (!this.commonService.checkNullOrUndefined(res) && res.status === StatusCodes.pass) {
+            if (!this.commonService.checkNullOrUndefined(res.response)) {
+              this.getBranchesForUser(res.response['User']);
+              localStorage.setItem('Token', JSON.stringify(res.response['Token']));
             }
           }
           this.spinner.hide();

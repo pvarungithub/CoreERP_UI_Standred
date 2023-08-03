@@ -40,8 +40,8 @@ export class AuthGuard implements CanActivate, Resolve<any> {
     if (next.url.length > 1) {
       const getMenuUrl = String.Join('/', this.apiConfigService.getUserPermissions, obj.role, next.url[1].path);
       return this.http.get(getMenuUrl, { headers: this.options, observe: 'response' })
-        .pipe((map((resp: any) => {
-          const res = resp;
+        .pipe((map(resp => {
+          const res = resp.body;
           this.commomService.userPermission = res['response']['Permissions'];
           if (!this.commomService.checkNullOrUndefined(res) && res['status'] === StatusCodes.pass) {
             if (this.authService.isLoggedIn()) {
@@ -49,6 +49,8 @@ export class AuthGuard implements CanActivate, Resolve<any> {
                 if (!this.addOrEditService.editData && next.url.length > 1) {
                   const route = String.Join('/', 'dashboard', next.url[0].path, next.url[1].path);
                   this.router.navigate([route]);
+                } else {
+                  return false;
                 }
               }
               return true;
@@ -58,7 +60,7 @@ export class AuthGuard implements CanActivate, Resolve<any> {
           } else if (!this.commomService.checkNullOrUndefined(res) && res['status'] === StatusCodes.fail) {
             this.router.navigate(['/login']);
             return false;
-          } else {
+          } else { 
             return false;
           }
         })));
@@ -72,7 +74,7 @@ export class AuthGuard implements CanActivate, Resolve<any> {
 
     return true
     this.http.get(configUrl, { headers: this.options, observe: 'response' })
-      .pipe((map(res => console.log(res['response']['FieldsConfiguration']))));
+      .pipe((map(res => console.log(res.body['response']['FieldsConfiguration']))));
 
   }
 
