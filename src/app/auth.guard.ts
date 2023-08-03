@@ -39,9 +39,9 @@ export class AuthGuard implements CanActivate, Resolve<any> {
     let obj = JSON.parse(localStorage.getItem("user"));
     if (next.url.length > 1) {
       const getMenuUrl = String.Join('/', this.apiConfigService.getUserPermissions, obj.role, next.url[1].path);
-      return this.http.get(getMenuUrl, { headers: this.options, observe: 'response' })
+      return this.http.get(getMenuUrl, this.options)
         .pipe((map(resp => {
-          const res = resp.body;
+          const res = resp;
           this.commomService.userPermission = res['response']['Permissions'];
           if (!this.commomService.checkNullOrUndefined(res) && res['status'] === StatusCodes.pass) {
             if (this.authService.isLoggedIn()) {
@@ -73,8 +73,8 @@ export class AuthGuard implements CanActivate, Resolve<any> {
     const configUrl = String.Join('/', this.apiConfigService.getFieldsConfig, obj.role, route.url[1].path);
 
     return true
-    this.http.get(configUrl, { headers: this.options, observe: 'response' })
-      .pipe((map(res => console.log(res.body['response']['FieldsConfiguration']))));
+    this.http.get(configUrl, this.options)
+      .pipe((map(res => console.log(res['response']['FieldsConfiguration']))));
 
   }
 
