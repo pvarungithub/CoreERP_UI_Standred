@@ -6,7 +6,7 @@
 
         <mat-form-field>
           <mat-label>{{ 'rolePrevilages.role' | translate }}</mat-label>
-          <mat-select formControlName="role"  (selectionChange)="onRuleChange($event)" appFocusOnEnter tabIndex="1">
+          <mat-select formControlName="role" (selectionChange)="onRuleChange($event)" appFocusOnEnter tabIndex="1">
             <mat-option *ngFor="let role of roleArray" [value]="role.id">
               {{ role.text }}
             </mat-option>
@@ -49,7 +49,7 @@
 
         <ng-container matColumnDef="canAdd">
           <th mat-header-cell *matHeaderCellDef>
-            <mat-checkbox [hidden]="!dataSource"  (change)="checkboxCheck($event, 'canAdd')">
+            <mat-checkbox [hidden]="!dataSource" (change)="checkboxCheck($event, 'canAdd')">
             </mat-checkbox>
             <span class="m-1"> {{ "rolePrevilages.add" | translate }} </span>
           </th>
@@ -61,7 +61,7 @@
 
         <ng-container matColumnDef="canEdit">
           <th mat-header-cell *matHeaderCellDef>
-            <mat-checkbox [hidden]="!dataSource"  (change)="checkboxCheck($event, 'canEdit')">
+            <mat-checkbox [hidden]="!dataSource" (change)="checkboxCheck($event, 'canEdit')">
             </mat-checkbox>
             <span class="m-1"> {{ "rolePrevilages.edit" | translate }} </span>
           </th>
@@ -73,7 +73,7 @@
 
         <ng-container matColumnDef="canDelete">
           <th mat-header-cell *matHeaderCellDef>
-            <mat-checkbox [hidden]="!dataSource"  (change)="checkboxCheck($event, 'canDelete')">
+            <mat-checkbox [hidden]="!dataSource" (change)="checkboxCheck($event, 'canDelete')">
             </mat-checkbox>
             <span class="m-1"> {{ "rolePrevilages.delete" | translate }} </span>
           </th>
@@ -87,7 +87,7 @@
         <tr mat-row *matRowDef="let row; columns: displayedColumns"></tr>
       </table>
     </div>
-    <div *ngIf="!dataSource"  class="d-flex justify-content-center align-items-center no_data_height">
+    <div *ngIf="!dataSource" class="d-flex justify-content-center align-items-center no_data_height">
       <img class="text-bottom" width="500" height="300" src="assets/images/Data_not_found.png">
     </div>
 
@@ -95,7 +95,7 @@
 
 
     <div class="form-element p-2 d-flex justify-content-end border">
-      <button mat-raised-button class="button-color-red text-white mr-1" (click)="reset()">
+      <button mat-raised-button class="button-color-red text-white mx-1" (click)="reset()">
 
         {{ 'COMMON.RESET' | translate }}
       </button>

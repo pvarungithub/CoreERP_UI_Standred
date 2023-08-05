@@ -7,7 +7,7 @@
       </button>
       <div class="d-flex align-items-center">
         <img [routerLink]="['/dashboard']" src="../../assets/images/CoreERP_icon.png" alt="hi" height="25" />
-        <span [routerLink]="['/dashboard']" class="pl-2">CoreERP</span>
+        <span [routerLink]="['/dashboard']" class="px-2">CoreERP</span>
       </div>
     </div>
 
@@ -16,15 +16,15 @@
     </div>
 
     <div class="d-flex">
-      <div class="d-flex" *ngIf="showExpandButtons">
-        <span class="align-items-center d-flex pl-3">
+      <div class="d-flex mx-4" *ngIf="showExpandButtons">
+        <span class="align-items-center d-flex">
           <mat-icon>account_circle</mat-icon>
         </span>
-        <small class="pl-2" *ngIf="loginUser != null"> {{loginUser.userName}} </small>
+        <small class="mx-1 my-2" *ngIf="loginUser != null"> {{loginUser.userName}} </small>
       </div>
 
-      <button class="ml-2" mat-button (click)="logout()" *ngIf="showExpandButtons">
-        Logout
+      <button class="my-2" mat-button (click)="logout()" *ngIf="showExpandButtons">
+        <b>Logout</b>
       </button>
     </div>
 

@@ -3,15 +3,15 @@
     <span> {{'accountgroup.title' | translate }} </span>
     <mat-icon class="p-2 cursor--pointer" (click)="cancel()">close</mat-icon>
   </mat-card-title>
-  <mat-card-content class="pt-5 p-2 m-0 overflow-auto">
+  <mat-card-content class="py-5 p-2 m-0 overflow-auto">
     <form [formGroup]="modelFormData" autocomplete="off">
       <div class="d--flex">
-        <mat-form-field class="form-element"
-          [ngClass]="{ 'ng--valid': formControls.groupCode.valid &&formControls.groupCode.status != 'DISABLED',
+        <mat-form-field class="form-element" [ngClass]="{ 'ng--valid': formControls.groupCode.valid &&formControls.groupCode.status != 'DISABLED',
            'ng--invalid': !formControls.groupCode.valid  &&formControls.groupCode.status != 'DISABLED' }">
           <input matInput placeholder="{{'accountgroup.groupCode' | translate }}" disabled formControlName="groupCode"
             appFocusOnEnter tabIndex="1">
-          <mat-hint *ngIf="!formControls.groupCode.valid  &&formControls.groupCode.status != 'DISABLED'" [ngClass]="{ 'ng--invalid': !formControls.groupCode.valid  }">
+          <mat-hint *ngIf="!formControls.groupCode.valid  &&formControls.groupCode.status != 'DISABLED'"
+            [ngClass]="{ 'ng--invalid': !formControls.groupCode.valid  }">
             Group Code is required</mat-hint>
         </mat-form-field>
 
@@ -25,12 +25,11 @@
 
         <mat-form-field class="form-element">
           <input matInput placeholder="{{'accountgroup.numberRangeFrom' | translate }}"
-            formControlName="numberRangeFrom" (change)="validationcode()"  appFocusOnEnter tabIndex="3">
+            formControlName="numberRangeFrom" (change)="validationcode()" appFocusOnEnter tabIndex="3">
         </mat-form-field>
         <mat-form-field class="form-element">
-          <input matInput placeholder="{{'accountgroup.numberRangeTo' | translate }}"
-           (change)="validationcode()"  formControlName="numberRangeTo"
-            appFocusOnEnter tabIndex="4">
+          <input matInput placeholder="{{'accountgroup.numberRangeTo' | translate }}" (change)="validationcode()"
+            formControlName="numberRangeTo" appFocusOnEnter tabIndex="4">
         </mat-form-field>
         <mat-form-field>
           <mat-label [translate]="'accountgroup.groupType'"></mat-label>
@@ -46,10 +45,10 @@
     </form>
   </mat-card-content>
   <div class="form-element p-2 d-flex justify-content-end">
-    <button mat-raised-button class="button-color-red text-white mr-1" (click)="cancel()" appFocusOnEnter tabIndex="6">
+    <button mat-raised-button class="button-color-red text-white mx-1" (click)="cancel()" appFocusOnEnter tabIndex="6">
       {{ 'COMMON.CANCEL' | translate }}
     </button>
-    <button mat-raised-button type="submit" class="button-color-bule text-white ml-1" (click)="save()" appFocusOnEnter
+    <button mat-raised-button type="submit" class="button-color-bule text-white mx-1" (click)="save()" appFocusOnEnter
       tabIndex="7">
       {{ 'COMMON.SAVE' | translate }}
     </button>

@@ -9,12 +9,12 @@
                 <mat-form-field class="form-element">
                     <mat-label [translate]="'inspectioncheck.inspectionCheckNo'"></mat-label>
                     <mat-select formControlName="inspectionCheckNo" (selectionChange)="inspectionCheckNoselect()">
-                      <mat-option>None</mat-option>
-                      <mat-option *ngFor="let icNo of inspectionnoList" [value]="icNo.id">
-                        {{icNo.text}}
-                      </mat-option>
+                        <mat-option>None</mat-option>
+                        <mat-option *ngFor="let icNo of inspectionnoList" [value]="icNo.id">
+                            {{icNo.text}}
+                        </mat-option>
                     </mat-select>
-                  </mat-form-field>
+                </mat-form-field>
 
                 <!-- <mat-form-field>
                     <input matInput type="number" placeholder="{{'inspectioncheck.inspectionCheckNo' | translate }}"
@@ -76,20 +76,20 @@
 
     </mat-card-content>
 
-    <mat-card-content class="d-flex justify-content-end pb-1">
+    <mat-card-content class="d-flex justify-content-end py-1">
 
-        <button [hidden]="routeEdit != ''" mat-raised-button type="submit" class="button-color-bule mr-3 text-white"
+        <button [hidden]="routeEdit != ''" mat-raised-button type="submit" class="button-color-bule mx-3 text-white"
             (click)="save()">
             {{ 'COMMON.SAVE' | translate }}
         </button>
-        <button mat-raised-button class="button-color-red text-white mr-3" (click)="back();">
+        <button mat-raised-button class="button-color-red text-white mx-3" (click)="back();">
             {{ 'COMMON.BACK' | translate }}
         </button>
-        <button [hidden]="routeEdit != ''" mat-raised-button class="button-color-red text-white mr-3"
+        <button [hidden]="routeEdit != ''" mat-raised-button class="button-color-red text-white mx-3"
             (click)="reset();">
             {{ 'COMMON.RESET' | translate }}
         </button>
-        <button [hidden]="routeEdit == ''" mat-raised-button class="button-color-red text-white mr-3"
+        <button [hidden]="routeEdit == ''" mat-raised-button class="button-color-red text-white mx-3"
             (click)="return();">
             {{ 'COMMON.RETURN' | translate }}
         </button>

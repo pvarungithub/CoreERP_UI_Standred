@@ -47,7 +47,7 @@ import { MatTooltipModule } from '@angular/material/tooltip';
     FormsModule,
     ReactiveFormsModule,
     HttpClientModule,
-    NgxSpinnerModule,
+    NgxSpinnerModule.forRoot({ type: 'ball-scale-multiple' }),
     NgxMatSelectSearchModule,
     MatAutocompleteModule,
     MatButtonModule,

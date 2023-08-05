@@ -4,13 +4,12 @@
     <mat-icon class="p-2 cursor--pointer" (click)="cancel()">close</mat-icon>
   </mat-card-title>
 
-  <mat-card-content class="pt-5 p-2 m-0 overflow-auto">
+  <mat-card-content class="py-5 p-2 m-0 overflow-auto">
     <form [formGroup]="modelFormData" autocomplete="off">
 
       <div class="d--flex">
 
-        <mat-form-field
-          [ngClass]="{ 'ng--valid': formControls.plant.valid &&formControls.plant.status != 'DISABLED',
+        <mat-form-field [ngClass]="{ 'ng--valid': formControls.plant.valid &&formControls.plant.status != 'DISABLED',
            'ng--invalid': !formControls.plant.valid &&formControls.plant.status != 'DISABLED'}">
           <mat-label>{{'purchaserequisitionnumberrange.plant' | translate }}</mat-label>
           <mat-select formControlName="plant" appFocusOnEnter tabIndex="1">
@@ -19,7 +18,8 @@
               {{plant.text}}
             </mat-option>
           </mat-select>
-          <mat-hint *ngIf="!formControls.plant.valid && formControls.plant.status != 'DISABLED'" [ngClass]="{ 'ng--invalid': !formControls.plant.valid  }"> Plant
+          <mat-hint *ngIf="!formControls.plant.valid && formControls.plant.status != 'DISABLED'"
+            [ngClass]="{ 'ng--invalid': !formControls.plant.valid  }"> Plant
             is required</mat-hint>
         </mat-form-field>
 
@@ -61,11 +61,11 @@
 
   </mat-card-content>
   <div class="form-element p-2 d-flex justify-content-end">
-    <button mat-raised-button class="button-color-red text-white mr-1" (click)="cancel()">
+    <button mat-raised-button class="button-color-red text-white mx-1" (click)="cancel()">
 
       {{ 'COMMON.CANCEL' | translate }}
     </button>
-    <button mat-raised-button type="submit" class="button-color-bule text-white ml-1" (click)="save()">
+    <button mat-raised-button type="submit" class="button-color-bule text-white mx-1" (click)="save()">
 
       {{ 'COMMON.SAVE' | translate }}
     </button>

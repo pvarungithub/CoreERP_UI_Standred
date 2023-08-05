@@ -6,13 +6,13 @@
 
             <div class="d--flex p-1 mat-form-field-height">
                 <mat-form-field class="form-element">
-                    <input matInput placeholder="{{'samplerequisitionform.organization' | translate }}" formControlName="organization"
-                        appFocusOnEnter tabIndex="1">
+                    <input matInput placeholder="{{'samplerequisitionform.organization' | translate }}"
+                        formControlName="organization" appFocusOnEnter tabIndex="1">
                 </mat-form-field>
 
                 <mat-form-field class="form-element">
-                    <input matInput placeholder="{{'samplerequisitionform.customercontact' | translate }}" formControlName="customercontact"
-                        appFocusOnEnter tabIndex="2">
+                    <input matInput placeholder="{{'samplerequisitionform.customercontact' | translate }}"
+                        formControlName="customercontact" appFocusOnEnter tabIndex="2">
                 </mat-form-field>
 
                 <mat-form-field class="form-element">
@@ -31,7 +31,8 @@
                     <mat-label>{{ 'samplerequisitionform.submittedfor' | translate }}</mat-label>
                     <mat-select formControlName="submittedfor">
                         <mat-option>None</mat-option>
-                        <mat-option value="ChiralAnalyticalMethodDevelopment">Chiral Analytical Method Development</mat-option>
+                        <mat-option value="ChiralAnalyticalMethodDevelopment">Chiral Analytical Method Development
+                        </mat-option>
                         <mat-option value="ChiralPreparativeSeparation">ChiralPreparative Separation</mat-option>
                         <mat-option value="Impurityisolation">Impurity isolation</mat-option>
                         <mat-option value="AchiralPurification">Achiral Purification</mat-option>
@@ -54,37 +55,37 @@
         </form>
 
         <!--Table-->
- <table class="table table-striped w-auto" style="float: left">
-    <!--Table head-->
-    <thead>
-      <tr>
-        <th>Id</th>
-        <th>Gross Weight</th>
-        <th>Tare Weight</th>
-        <th>Net Weight</th>
-      </tr>
-    </thead>
-    <!--Table head-->
-  
-    <!--Table body-->
-    <tbody>
-      <tr class="table-info">
-        <th scope="row">1</th>
-        <td><input></td>
-        <td><input></td>
-        <td><input></td>
-      </tr>
-    </tbody>
-    <!--Table body-->
-    
-  </table> 
-  <!--Table-->
+        <table class="table table-striped w-auto" style="float: left">
+            <!--Table head-->
+            <thead>
+                <tr>
+                    <th>Id</th>
+                    <th>Gross Weight</th>
+                    <th>Tare Weight</th>
+                    <th>Net Weight</th>
+                </tr>
+            </thead>
+            <!--Table head-->
+
+            <!--Table body-->
+            <tbody>
+                <tr class="table-info">
+                    <th scope="row">1</th>
+                    <td><input></td>
+                    <td><input></td>
+                    <td><input></td>
+                </tr>
+            </tbody>
+            <!--Table body-->
+
+        </table>
+        <!--Table-->
 
         <!-- <div>
             <app-dynamic-table [tableObJect]="dynTableProps" (emitColumnChanges)="emitColumnChanges($event);"
             [dynamicTableUpdate]="sendDynTableData"></app-dynamic-table>
         </div> -->
-        <div class="mt-2"><strong>DCTI Purpose Only</strong></div>
+        <div class="my-2"><strong>DCTI Purpose Only</strong></div>
         <div class="d--flex p-1 mat-form-field-height">
             <mat-form-field class="form-element">
                 <input matInput [matDatepicker]="picker1" [nonEditable]="picker1"
@@ -94,36 +95,36 @@
                 <mat-datepicker #picker1></mat-datepicker>
             </mat-form-field>
 
-                    <mat-form-field class="form-element">
-                        <input matInput placeholder="{{'samplerequisitionform.internalcode' | translate }}" formControlName="internalcode"
-                            appFocusOnEnter tabIndex="9">
-                    </mat-form-field>
+            <mat-form-field class="form-element">
+                <input matInput placeholder="{{'samplerequisitionform.internalcode' | translate }}"
+                    formControlName="internalcode" appFocusOnEnter tabIndex="9">
+            </mat-form-field>
 
-                    <mat-form-field class="form-element">
-                        <input matInput placeholder="{{'samplerequisitionform.lnbrefno' | translate }}" formControlName="lnbrefno"
-                            appFocusOnEnter tabIndex="10">
-                    </mat-form-field>
+            <mat-form-field class="form-element">
+                <input matInput placeholder="{{'samplerequisitionform.lnbrefno' | translate }}"
+                    formControlName="lnbrefno" appFocusOnEnter tabIndex="10">
+            </mat-form-field>
 
-                    <mat-form-field class="form-element">
-                        <input matInput placeholder="{{'samplerequisitionform.reportrefno' | translate }}" formControlName="reportrefno"
-                            appFocusOnEnter tabIndex="11">
-                    </mat-form-field>
+            <mat-form-field class="form-element">
+                <input matInput placeholder="{{'samplerequisitionform.reportrefno' | translate }}"
+                    formControlName="reportrefno" appFocusOnEnter tabIndex="11">
+            </mat-form-field>
 
-                    <mat-form-field class="form-element">
-                        <input matInput placeholder="{{'samplerequisitionform.analysedby' | translate }}" formControlName="analysedby"
-                            appFocusOnEnter tabIndex="12">
-                    </mat-form-field>
+            <mat-form-field class="form-element">
+                <input matInput placeholder="{{'samplerequisitionform.analysedby' | translate }}"
+                    formControlName="analysedby" appFocusOnEnter tabIndex="12">
+            </mat-form-field>
 
-                    <mat-form-field class="form-element">
-                        <input matInput placeholder="{{'samplerequisitionform.analyseddate' | translate }}" formControlName="analyseddate"
-                            appFocusOnEnter tabIndex="13">
-                    </mat-form-field>
+            <mat-form-field class="form-element">
+                <input matInput placeholder="{{'samplerequisitionform.analyseddate' | translate }}"
+                    formControlName="analyseddate" appFocusOnEnter tabIndex="13">
+            </mat-form-field>
 
-                    <mat-form-field class="form-element">
-                        <input matInput placeholder="{{'samplerequisitionform.remarks' | translate }}" formControlName="remarks"
-                            appFocusOnEnter tabIndex="14">
-                    </mat-form-field>
-                </div>
+            <mat-form-field class="form-element">
+                <input matInput placeholder="{{'samplerequisitionform.remarks' | translate }}" formControlName="remarks"
+                    appFocusOnEnter tabIndex="14">
+            </mat-form-field>
+        </div>
 
         <div><strong>Sample Information</strong></div>
         <div class="d--flex p-1 mat-form-field-height">
@@ -136,62 +137,62 @@
                     <mat-option value="neutral">Neutral</mat-option>
                     <mat-option value="amphoteric">Amphoteric</mat-option>
                 </mat-select>
-                </mat-form-field>
+            </mat-form-field>
 
-                <mat-form-field class="form-element">
-                    <mat-label>{{ 'samplerequisitionform.physicalappearence' | translate }}</mat-label>
-                    <mat-select formControlName="physicalappearence">
-                        <mat-option>None</mat-option>
-                        <mat-option value="solid">Solid</mat-option>
-                        <mat-option value="semi-solid">Semi-Solid</mat-option>
-                        <mat-option value="liquid">Liquid</mat-option>
-                    </mat-select>
-                    </mat-form-field>
+            <mat-form-field class="form-element">
+                <mat-label>{{ 'samplerequisitionform.physicalappearence' | translate }}</mat-label>
+                <mat-select formControlName="physicalappearence">
+                    <mat-option>None</mat-option>
+                    <mat-option value="solid">Solid</mat-option>
+                    <mat-option value="semi-solid">Semi-Solid</mat-option>
+                    <mat-option value="liquid">Liquid</mat-option>
+                </mat-select>
+            </mat-form-field>
 
-                    <mat-form-field class="form-element">
-                        <input matInput placeholder="{{'samplerequisitionform.stabilitydetail' | translate }}" formControlName="stabilitydetail"
-                            appFocusOnEnter tabIndex="3">
-                    </mat-form-field>
+            <mat-form-field class="form-element">
+                <input matInput placeholder="{{'samplerequisitionform.stabilitydetail' | translate }}"
+                    formControlName="stabilitydetail" appFocusOnEnter tabIndex="3">
+            </mat-form-field>
 
-                    <mat-form-field class="form-element">
-                        <input matInput placeholder="{{'samplerequisitionform.targetqty' | translate }}" formControlName="targetqty"
-                            appFocusOnEnter tabIndex="4">
-                    </mat-form-field>
+            <mat-form-field class="form-element">
+                <input matInput placeholder="{{'samplerequisitionform.targetqty' | translate }}"
+                    formControlName="targetqty" appFocusOnEnter tabIndex="4">
+            </mat-form-field>
 
-                    <mat-form-field class="form-element">
-                        <input matInput placeholder="{{'samplerequisitionform.storagecondition' | translate }}" formControlName="storagecondition"
-                            appFocusOnEnter tabIndex="5">
-                    </mat-form-field>
+            <mat-form-field class="form-element">
+                <input matInput placeholder="{{'samplerequisitionform.storagecondition' | translate }}"
+                    formControlName="storagecondition" appFocusOnEnter tabIndex="5">
+            </mat-form-field>
 
-                    <mat-form-field class="form-element">
-                        <input matInput placeholder="{{'samplerequisitionform.specification' | translate }}" formControlName="specification"
-                            appFocusOnEnter tabIndex="6">
-                    </mat-form-field>
+            <mat-form-field class="form-element">
+                <input matInput placeholder="{{'samplerequisitionform.specification' | translate }}"
+                    formControlName="specification" appFocusOnEnter tabIndex="6">
+            </mat-form-field>
 
-                    <mat-form-field class="form-element">
-                        <input matInput placeholder="{{'samplerequisitionform.safetyinformation' | translate }}" formControlName="safetyinformation"
-                            appFocusOnEnter tabIndex="7">
-                    </mat-form-field>
-                </div>
+            <mat-form-field class="form-element">
+                <input matInput placeholder="{{'samplerequisitionform.safetyinformation' | translate }}"
+                    formControlName="safetyinformation" appFocusOnEnter tabIndex="7">
+            </mat-form-field>
+        </div>
 
-                
-                
+
+
     </mat-card-content>
 
-    <mat-card-content class="d-flex justify-content-end pb-1">
+    <mat-card-content class="d-flex justify-content-end py-1">
 
-        <button [hidden]="routeEdit != ''" mat-raised-button type="submit" class="button-color-bule mr-3 text-white"
+        <button [hidden]="routeEdit != ''" mat-raised-button type="submit" class="button-color-bule mx-3 text-white"
             (click)="save()">
             {{ 'COMMON.SAVE' | translate }}
         </button>
-        <button mat-raised-button class="button-color-red text-white mr-3" (click)="back();">
+        <button mat-raised-button class="button-color-red text-white mx-3" (click)="back();">
             {{ 'COMMON.BACK' | translate }}
         </button>
-        <button [hidden]="routeEdit != ''" mat-raised-button class="button-color-red text-white mr-3"
+        <button [hidden]="routeEdit != ''" mat-raised-button class="button-color-red text-white mx-3"
             (click)="reset();">
             {{ 'COMMON.RESET' | translate }}
         </button>
-        <button [hidden]="routeEdit == ''" mat-raised-button class="button-color-red text-white mr-3"
+        <button [hidden]="routeEdit == ''" mat-raised-button class="button-color-red text-white mx-3"
             (click)="return();">
             {{ 'COMMON.RETURN' | translate }}
         </button>

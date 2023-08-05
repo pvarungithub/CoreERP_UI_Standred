@@ -5,7 +5,7 @@
     <form [formGroup]="modelFormData" autocomplete="off">
 
       <mat-tab label="{{'tasks.title1' | translate }}">
-        <mat-card-content class="pt-5 p-2 m-0">
+        <mat-card-content class="py-5 p-2 m-0">
           <div class="d--flex">
             <mat-form-field>
               <mat-label [translate]="'tasks.wbselement'"></mat-label>
@@ -104,9 +104,9 @@
 
       <mat-tab label="{{'routingfile.title2' | translate }}">
 
-        <mat-card-content class="pt-3">
+        <mat-card-content class="py-3">
 
-         <app-dynamic-table [tableObJect]="dynTablePropsRouting" (emitColumnChanges)="emitColumnRoutingData($event)"
+          <app-dynamic-table [tableObJect]="dynTablePropsRouting" (emitColumnChanges)="emitColumnRoutingData($event)"
             [dynamicTableUpdate]="sendRoutingDynTableData">
           </app-dynamic-table>
 
@@ -123,10 +123,10 @@
   </mat-tab-group>
 
   <div class="form-element p-2 d-flex justify-content-end">
-    <button mat-raised-button class="button-color-red text-white mr-1" (click)="reset()" appFocusOnEnter tabIndex="21">
+    <button mat-raised-button class="button-color-red text-white mx-1" (click)="reset()" appFocusOnEnter tabIndex="21">
       {{ 'COMMON.RESET' | translate }}
     </button>
-    <button mat-raised-button type="submit" class="button-color-bule text-white ml-1" (click)="save()" appFocusOnEnter
+    <button mat-raised-button type="submit" class="button-color-bule text-white mx-1" (click)="save()" appFocusOnEnter
       tabIndex="22">
       {{ 'COMMON.SAVE' | translate }}
     </button>

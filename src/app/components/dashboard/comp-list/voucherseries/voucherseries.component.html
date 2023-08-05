@@ -5,7 +5,7 @@
     <mat-icon class="p-2 cursor--pointer" (click)="cancel()">close</mat-icon>
   </mat-card-title>
 
-  <mat-card-content class="pt-5 p-2 m-0 overflow-auto">
+  <mat-card-content class="py-5 p-2 m-0 overflow-auto">
     <form [formGroup]="modelFormData" autocomplete="off">
       <div class="d--flex">
 
@@ -21,13 +21,13 @@
 
         <mat-form-field class="form-element">
           <input matInput placeholder="{{'voucherseries.fromInterval' | translate }}" formControlName="fromInterval"
-          (change)="validationcode()" appFocusOnEnter tabIndex="2">
-           
+            (change)="validationcode()" appFocusOnEnter tabIndex="2">
+
         </mat-form-field>
 
         <mat-form-field class="form-element">
-          <input matInput placeholder="{{'voucherseries.toInterval' | translate }}"  (change)="validationcode()"  formControlName="toInterval"
-            appFocusOnEnter tabIndex="3">
+          <input matInput placeholder="{{'voucherseries.toInterval' | translate }}" (change)="validationcode()"
+            formControlName="toInterval" appFocusOnEnter tabIndex="3">
         </mat-form-field>
 
         <mat-form-field>
@@ -75,10 +75,10 @@
 
   </mat-card-content>
   <div class="form-element p-2 d-flex justify-content-end">
-    <button mat-raised-button class="button-color-red text-white mr-1" (click)="cancel()" appFocusOnEnter tabIndex="10">
+    <button mat-raised-button class="button-color-red text-white mx-1" (click)="cancel()" appFocusOnEnter tabIndex="10">
       {{ 'COMMON.CANCEL' | translate }}
     </button>
-    <button mat-raised-button type="submit" class="button-color-bule text-white ml-1" (click)="save()" appFocusOnEnter
+    <button mat-raised-button type="submit" class="button-color-bule text-white mx-1" (click)="save()" appFocusOnEnter
       tabIndex="11">
       {{ 'COMMON.SAVE' | translate }}
     </button>

@@ -7,7 +7,7 @@
 
       <mat-tab label="{{'mainassetmaster.title' | translate }}">
 
-        <mat-card-content class="pt-5 p-2 m-0">
+        <mat-card-content class="py-5 p-2 m-0">
 
           <div class="d--flex">
 
@@ -162,17 +162,17 @@
 
       </mat-tab>
       <mat-tab label="Depreciation Data">
-        <app-dynamic-table [tableObJect]="dynTableProps" 
-          (emitColumnChanges)="emitColumnChanges($event);" [dynamicTableUpdate]="sendDynTableData"></app-dynamic-table>
+        <app-dynamic-table [tableObJect]="dynTableProps" (emitColumnChanges)="emitColumnChanges($event);"
+          [dynamicTableUpdate]="sendDynTableData"></app-dynamic-table>
       </mat-tab>
     </form>
 
   </mat-tab-group>
   <div class="form-element p-2 d-flex justify-content-end">
-    <button mat-raised-button class="button-color-red text-white mr-1" (click)="cancel()" appFocusOnEnter tabIndex="21">
+    <button mat-raised-button class="button-color-red text-white mx-1" (click)="cancel()" appFocusOnEnter tabIndex="21">
       {{ 'COMMON.CANCEL' | translate }}
     </button>
-    <button mat-raised-button type="submit" class="button-color-bule text-white ml-1" (click)="save()" appFocusOnEnter
+    <button mat-raised-button type="submit" class="button-color-bule text-white mx-1" (click)="save()" appFocusOnEnter
       tabIndex="22">
       {{ 'COMMON.SAVE' | translate }}
     </button>
