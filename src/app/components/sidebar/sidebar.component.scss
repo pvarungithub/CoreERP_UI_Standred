@@ -8,9 +8,10 @@
     background-color: lightblue !important;
 }
 
-::ng-deep .mat-list-item-content{
+::ng-deep .mat-mdc-list-item-unscoped-content {
     justify-content: space-between;
-    width: 100%;
+    display: flex;
+    
 }
 
 .font-style {

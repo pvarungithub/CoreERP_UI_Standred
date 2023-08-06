@@ -58,14 +58,17 @@
 }
 
 :host ::ng-deep .filter {
-  & .mat-form-field-wrapper {
-      padding-bottom: 0em !important;
+  width: 500px;
+  .mat-mdc-form-field-subscript-wrapper {
+    display: none;
   }
-  & .mat-form-field-underline {
-    bottom: 0.1em;
+  & .mat-mdc-text-field-wrapper {
+      background: none !important;
+      padding: 0px !important;
   }
-  & .mat-form-field-infix {
-    border: none;
+  & .mat-mdc-form-field-infix {
+    min-height: 30px !important;
+    padding: 5px !important;
   }
 }
 

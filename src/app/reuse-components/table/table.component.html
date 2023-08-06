@@ -28,38 +28,38 @@
       </div>
       <div class="btn-group align-items-center" dropdown #dropdown="bs-dropdown" [autoClose]="false">
 
-        <mat-form-field class="px-2 filter" [floatLabel]="'never'">
+        <mat-form-field class="filter" [floatLabel]="'never'">
           <input matInput type="text" (keyup)="doFilter($event.target.value)" placeholder="Filter" />
         </mat-form-field>
         <div class="">
           <button dropdownToggle mat-raised-button class="dropdown-toggle mx-2" (click)="filterData()">
             Columns
           </button>
-        </div>
-
-        <div id="dropdown-triggers-manual" *dropdownMenu class="dropdown-menu" role="menu"
-          aria-labelledby="button-triggers-manual">
-          <div class="dropdown--width d-flex">
-            <mat-select class="p-2" [formControl]="tableMultiCtrl" placeholder="Search columns" [multiple]="true"
-              #multiSelect>
-              <ngx-mat-select-search (toggleAll)="toggleSelectAll($event)" [formControl]="tableMultiFilterCtrl">
-              </ngx-mat-select-search>
-              <mat-option *ngFor="let bank of filteredTableMulti | async; let i = index" [value]="bank">
-                <mat-checkbox [checked]="bank.hide" (change)="checkboxCheck(i)">
-                  {{ ( routeParam + '.' + bank.label) | translate }}
-                </mat-checkbox>
-              </mat-option>
-            </mat-select>
-            <div class="p-2 d-flex">
-              <button mat-raised-button class="button-color-bule text-white mx-1"
-                (click)="saveChanges(); dropdown.hide();"> Save
-              </button>
-              <button mat-raised-button class="mx-1 button-color-red text-white"
-                (click)="cancleChanges(); dropdown.hide()"> Close </button>
-
+          <div id="dropdown-triggers-manual" *dropdownMenu class="dropdown-menu" role="menu"
+            aria-labelledby="button-triggers-manual">
+            <div class="dropdown--width d-flex">
+              <mat-select class="p-2" [formControl]="tableMultiCtrl" placeholder="Search columns" [multiple]="true"
+                #multiSelect>
+                <ngx-mat-select-search (toggleAll)="toggleSelectAll($event)" [formControl]="tableMultiFilterCtrl">
+                </ngx-mat-select-search>
+                <mat-option *ngFor="let bank of filteredTableMulti | async; let i = index" [value]="bank">
+                  <mat-checkbox [checked]="bank.hide" (change)="checkboxCheck(i)">
+                    {{ ( routeParam + '.' + bank.label) | translate }}
+                  </mat-checkbox>
+                </mat-option>
+              </mat-select>
+              <div class="p-2 d-flex">
+                <button mat-raised-button class="button-color-bule text-white mx-1"
+                  (click)="saveChanges(); dropdown.hide();"> Save
+                </button>
+                <button mat-raised-button class="mx-1 button-color-red text-white"
+                  (click)="cancleChanges(); dropdown.hide()"> Close </button>
+  
+              </div>
             </div>
           </div>
         </div>
+
       </div>
 
     </div>
