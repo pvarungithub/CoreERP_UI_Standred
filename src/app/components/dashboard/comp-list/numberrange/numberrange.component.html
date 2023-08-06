@@ -12,9 +12,9 @@
            'ng--invalid': !formControls.code.valid  &&formControls.code.status != 'DISABLED' }">
           <input matInput placeholder="{{'numberrange.code' | translate }}" formControlName="code" maxlength="4"
             appFocusOnEnter tabIndex="1">
-          <mat-hint *ngIf="!formControls.code.valid  &&formControls.code.status != 'DISABLED'"
+          <mat-error *ngIf="!formControls.code.valid  &&formControls.code.status != 'DISABLED'"
             [ngClass]="{ 'ng--invalid': !formControls.code.valid  }"> Code
-            isrequired</mat-hint>
+            isrequired</mat-error>
 
         </mat-form-field>
 

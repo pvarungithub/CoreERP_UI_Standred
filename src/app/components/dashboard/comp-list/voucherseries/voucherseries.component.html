@@ -14,9 +14,9 @@
            'ng--invalid': !formControls.voucherSeriesKey.valid && formControls.voucherSeriesKey.status != 'DISABLED' }">
           <input matInput placeholder="{{'voucherseries.voucherSeriesKey' | translate }}"
             formControlName="voucherSeriesKey" appFocusOnEnter tabIndex="1">
-          <mat-hint *ngIf="!formControls.voucherSeriesKey.valid && formControls.voucherSeriesKey.status != 'DISABLED'"
+          <mat-error *ngIf="!formControls.voucherSeriesKey.valid && formControls.voucherSeriesKey.status != 'DISABLED'"
             [ngClass]="{ 'ng--invalid': !formControls.voucherSeriesKey.valid  }">voucher Series Key is required
-          </mat-hint>
+          </mat-error>
         </mat-form-field>
 
         <mat-form-field class="form-element">

@@ -18,17 +18,17 @@
               {{emp.id}} - {{emp.text}}
             </mat-option>
           </mat-select>
-          <mat-hint *ngIf="!formControls.purchasePerson.valid && formControls.purchasePerson.status != 'DISABLED'"
+          <mat-error *ngIf="!formControls.purchasePerson.valid && formControls.purchasePerson.status != 'DISABLED'"
             [ngClass]="{ 'ng--invalid': !formControls.purchasePerson.valid  }">Purchase Person Code is required
-          </mat-hint>
+          </mat-error>
         </mat-form-field>
 
         <mat-form-field class="form-element"
           [ngClass]="{ 'ng--valid': formControls.description.valid, 'ng--invalid': !formControls.description.valid  }">
           <input matInput placeholder="{{'purchasingperson.description' | translate }}" formControlName="description"
             maxlength="30" appFocusOnEnter tabIndex="2">
-          <mat-hint *ngIf="!formControls.description.valid"
-            [ngClass]="{ 'ng--invalid': !formControls.description.valid  }">Purchase Person Name is required</mat-hint>
+          <mat-error *ngIf="!formControls.description.valid"
+            [ngClass]="{ 'ng--invalid': !formControls.description.valid  }">Purchase Person Name is required</mat-error>
         </mat-form-field>
 
         <mat-form-field>

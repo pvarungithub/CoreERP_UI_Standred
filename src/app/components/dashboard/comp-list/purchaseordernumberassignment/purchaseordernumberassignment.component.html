@@ -18,8 +18,8 @@
               {{norange.numberRange}}
             </mat-option>
           </mat-select>
-          <mat-hint *ngIf="!formControls.numberRange.valid && formControls.numberRange.status != 'DISABLED'"
-            [ngClass]="{ 'ng--invalid': !formControls.numberRange.valid  }"> Number Range is required</mat-hint>
+          <mat-error *ngIf="!formControls.numberRange.valid && formControls.numberRange.status != 'DISABLED'"
+            [ngClass]="{ 'ng--invalid': !formControls.numberRange.valid  }"> Number Range is required</mat-error>
         </mat-form-field>
 
         <mat-form-field
@@ -31,8 +31,8 @@
               {{company.text}}
             </mat-option>
           </mat-select>
-          <mat-hint *ngIf="!formControls.companyCode.valid"
-            [ngClass]="{ 'ng--invalid': !formControls.companyCode.valid  }"> Company is required</mat-hint>
+          <mat-error *ngIf="!formControls.companyCode.valid"
+            [ngClass]="{ 'ng--invalid': !formControls.companyCode.valid  }"> Company is required</mat-error>
         </mat-form-field>
 
         <mat-form-field>

@@ -16,9 +16,9 @@
               {{ledger.description}}
             </mat-option>
           </mat-select>
-          <mat-hint *ngIf="!formControls.ledgerKey.valid && formControls.ledgerKey.status != 'DISABLED'"
+          <mat-error *ngIf="!formControls.ledgerKey.valid && formControls.ledgerKey.status != 'DISABLED'"
             [ngClass]="{ 'ng--invalid': !formControls.ledgerKey.valid  }">
-            Code is required</mat-hint>
+            Code is required</mat-error>
         </mat-form-field>
 
         <mat-form-field>

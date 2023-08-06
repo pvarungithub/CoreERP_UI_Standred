@@ -18,16 +18,16 @@
               {{cot.text}}
             </mat-option>
           </mat-select>
-          <mat-hint *ngIf="!formControls.objectType.valid"
-            [ngClass]="{ 'ng--invalid': !formControls.objectType.valid  }"> Object Type is required</mat-hint>
+          <mat-error *ngIf="!formControls.objectType.valid"
+            [ngClass]="{ 'ng--invalid': !formControls.objectType.valid  }"> Object Type is required</mat-error>
         </mat-form-field>
 
         <mat-form-field class="form-element" [ngClass]="{ 'ng--valid': formControls.objectNumber.valid && formControls.objectNumber.status != 'DISABLED',
            'ng--invalid': !formControls.objectNumber.valid && formControls.objectNumber.status != 'DISABLED'  }">
           <input matInput placeholder="{{'costunits.objectNumber' | translate }}" formControlName="objectNumber"
             appFocusOnEnter tabIndex="2">
-          <mat-hint *ngIf="!formControls.objectNumber.valid && formControls.objectNumber.status != 'DISABLED'"
-            [ngClass]="{ 'ng--invalid': !formControls.objectNumber.valid  }"> Object Number is required</mat-hint>
+          <mat-error *ngIf="!formControls.objectNumber.valid && formControls.objectNumber.status != 'DISABLED'"
+            [ngClass]="{ 'ng--invalid': !formControls.objectNumber.valid  }"> Object Number is required</mat-error>
         </mat-form-field>
 
         <mat-form-field class="form-element">

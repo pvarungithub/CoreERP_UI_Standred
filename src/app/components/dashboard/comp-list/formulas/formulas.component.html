@@ -13,8 +13,8 @@
            'ng--invalid': !formControls.formulaKey.valid && formControls.formulaKey.status != 'DISABLED' }">
           <input matInput placeholder="{{'formulas.formulaKey' | translate }}" formControlName="formulaKey"
             maxlength="5" appFocusOnEnter tabIndex="1">
-          <mat-hint *ngIf="!formControls.formulaKey.valid && formControls.formulaKey.status != 'DISABLED'"
-            [ngClass]="{ 'ng--invalid': !formControls.formulaKey.valid  }">Formula Key is required</mat-hint>
+          <mat-error *ngIf="!formControls.formulaKey.valid && formControls.formulaKey.status != 'DISABLED'"
+            [ngClass]="{ 'ng--invalid': !formControls.formulaKey.valid  }">Formula Key is required</mat-error>
 
         </mat-form-field>
 
@@ -27,8 +27,8 @@
           [ngClass]="{ 'ng--valid': formControls.description.valid, 'ng--invalid': !formControls.description.valid  }">
           <input matInput placeholder="{{'formulas.description' | translate }}" formControlName="description"
             maxlength="50" appFocusOnEnter tabIndex="2">
-          <mat-hint *ngIf="!formControls.description.valid"
-            [ngClass]="{ 'ng--invalid': !formControls.description.valid  }">Description is required</mat-hint>
+          <mat-error *ngIf="!formControls.description.valid"
+            [ngClass]="{ 'ng--invalid': !formControls.description.valid  }">Description is required</mat-error>
         </mat-form-field>
 
         <mat-form-field>

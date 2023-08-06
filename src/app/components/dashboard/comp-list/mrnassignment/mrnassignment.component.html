@@ -19,9 +19,9 @@
               {{mseries.description}}
             </mat-option>
           </mat-select>
-          <mat-hint *ngIf="!formControls.mrnseries.valid && formControls.mrnseries.status != 'DISABLED'"
+          <mat-error *ngIf="!formControls.mrnseries.valid && formControls.mrnseries.status != 'DISABLED'"
             [ngClass]="{ 'ng--invalid': !formControls.mrnseries.valid  }">
-            MRN Series is required</mat-hint>
+            MRN Series is required</mat-error>
         </mat-form-field>
 
         <mat-form-field
@@ -33,8 +33,8 @@
               {{company.text}}
             </mat-option>
           </mat-select>
-          <mat-hint *ngIf="!formControls.company.valid" [ngClass]="{ 'ng--invalid': !formControls.company.valid  }">
-            Company is required</mat-hint>
+          <mat-error *ngIf="!formControls.company.valid" [ngClass]="{ 'ng--invalid': !formControls.company.valid  }">
+            Company is required</mat-error>
         </mat-form-field>
 
         <mat-form-field>

@@ -18,9 +18,9 @@
               {{plant.text}}
             </mat-option>
           </mat-select>
-          <mat-hint *ngIf="!formControls.plant.valid && formControls.plant.status != 'DISABLED'"
+          <mat-error *ngIf="!formControls.plant.valid && formControls.plant.status != 'DISABLED'"
             [ngClass]="{ 'ng--invalid': !formControls.plant.valid  }"> Plant
-            is required</mat-hint>
+            is required</mat-error>
         </mat-form-field>
 
         <mat-form-field>

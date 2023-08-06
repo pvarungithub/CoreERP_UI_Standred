@@ -20,8 +20,8 @@
               {{accgrp.groupName}}
             </mat-option>
           </mat-select>
-          <mat-hint *ngIf="!formControls.nature.valid" [ngClass]="{ 'ng--invalid': !formControls.nature.valid  }"> GL
-            Account is required</mat-hint>
+          <mat-error *ngIf="!formControls.nature.valid" [ngClass]="{ 'ng--invalid': !formControls.nature.valid  }"> GL
+            Account is required</mat-error>
         </mat-form-field>
 
         <mat-form-field>
@@ -48,16 +48,16 @@
            'ng--invalid': !formControls.accountGroupId.valid &&formControls.accountGroupId.status != 'DISABLED'  }">
           <input matInput placeholder="{{'glsubgroups.accountGroupId' | translate }}" disabled
             formControlName="accountGroupId" appFocusOnEnter tabIndex="5">
-          <mat-hint *ngIf="!formControls.accountGroupId.valid  &&formControls.accountGroupId.status != 'DISABLED'"
-            [ngClass]="{ 'ng--invalid': !formControls.accountGroupId.valid  }"> Code is required</mat-hint>
+          <mat-error *ngIf="!formControls.accountGroupId.valid  &&formControls.accountGroupId.status != 'DISABLED'"
+            [ngClass]="{ 'ng--invalid': !formControls.accountGroupId.valid  }"> Code is required</mat-error>
         </mat-form-field>
 
         <mat-form-field class="form-element"
           [ngClass]="{ 'ng--valid': formControls.accountGroupName.valid, 'ng--invalid': !formControls.accountGroupName.valid  }">
           <input matInput placeholder="{{'glsubgroups.accountGroupName' | translate }}" disabled
             formControlName="accountGroupName" appFocusOnEnter tabIndex="6">
-          <mat-hint *ngIf="!formControls.accountGroupName.valid"
-            [ngClass]="{ 'ng--invalid': !formControls.accountGroupName.valid  }"> Name is required</mat-hint>
+          <mat-error *ngIf="!formControls.accountGroupName.valid"
+            [ngClass]="{ 'ng--invalid': !formControls.accountGroupName.valid  }"> Name is required</mat-error>
         </mat-form-field>
 
         <mat-form-field class="form-element">

@@ -28,8 +28,8 @@
               {{company.text}}
             </mat-option>
           </mat-select>
-          <mat-hint *ngIf="!formControls.company.valid" [ngClass]="{ 'ng--invalid': !formControls.company.valid  }">
-            Company is required</mat-hint>
+          <mat-error *ngIf="!formControls.company.valid" [ngClass]="{ 'ng--invalid': !formControls.company.valid  }">
+            Company is required</mat-error>
 
         </mat-form-field>
 
@@ -38,8 +38,9 @@
            'ng--invalid': !formControls.secondaryCostCode.valid && formControls.secondaryCostCode.status != 'DISABLED' }">
           <input matInput placeholder="{{'secondarycostelement.secondaryCostCode' | translate }}"
             formControlName="secondaryCostCode" maxlength="10" appFocusOnEnter tabIndex="1">
-          <mat-hint *ngIf="!formControls.secondaryCostCode.valid && formControls.secondaryCostCode.status != 'DISABLED'"
-            [ngClass]="{ 'ng--invalid': !formControls.secondaryCostCode.valid  }"> Cost Code is required</mat-hint>
+          <mat-error
+            *ngIf="!formControls.secondaryCostCode.valid && formControls.secondaryCostCode.status != 'DISABLED'"
+            [ngClass]="{ 'ng--invalid': !formControls.secondaryCostCode.valid  }"> Cost Code is required</mat-error>
         </mat-form-field>
 
         <mat-form-field class="form-element">

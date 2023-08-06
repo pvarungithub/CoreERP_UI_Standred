@@ -18,9 +18,9 @@
               {{issueno.description}}
             </mat-option>
           </mat-select>
-          <mat-hint *ngIf="!formControls.ginseries.valid && formControls.ginseries.status != 'DISABLED'"
+          <mat-error *ngIf="!formControls.ginseries.valid && formControls.ginseries.status != 'DISABLED'"
             [ngClass]="{ 'ng--invalid': !formControls.ginseries.valid  }">
-            GIN Series is required</mat-hint>
+            GIN Series is required</mat-error>
         </mat-form-field>
 
         <mat-form-field
@@ -32,8 +32,8 @@
               {{company.text}}
             </mat-option>
           </mat-select>
-          <mat-hint *ngIf="!formControls.company.valid" [ngClass]="{ 'ng--invalid': !formControls.company.valid  }">
-            Company is required</mat-hint>
+          <mat-error *ngIf="!formControls.company.valid" [ngClass]="{ 'ng--invalid': !formControls.company.valid  }">
+            Company is required</mat-error>
         </mat-form-field>
 
         <mat-form-field>

@@ -18,9 +18,9 @@
               {{grn.description}}
             </mat-option>
           </mat-select>
-          <mat-hint *ngIf="!formControls.grnseries.valid && formControls.grnseries.status != 'DISABLED'"
+          <mat-error *ngIf="!formControls.grnseries.valid && formControls.grnseries.status != 'DISABLED'"
             [ngClass]="{ 'ng--invalid': !formControls.grnseries.valid  }">
-            GRN Series is required</mat-hint>
+            GRN Series is required</mat-error>
         </mat-form-field>
 
         <mat-form-field
@@ -32,8 +32,8 @@
               {{company.text}}
             </mat-option>
           </mat-select>
-          <mat-hint *ngIf="!formControls.company.valid" [ngClass]="{ 'ng--invalid': !formControls.company.valid  }">
-            Company is required</mat-hint>
+          <mat-error *ngIf="!formControls.company.valid" [ngClass]="{ 'ng--invalid': !formControls.company.valid  }">
+            Company is required</mat-error>
         </mat-form-field>
 
         <mat-form-field>

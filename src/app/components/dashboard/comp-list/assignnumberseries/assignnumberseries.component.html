@@ -18,8 +18,8 @@
               {{cot.text}}
             </mat-option>
           </mat-select>
-          <mat-hint *ngIf="!formControls.objectType.valid && formControls.objectType.status != 'DISABLED'"
-            [ngClass]="{ 'ng--invalid': !formControls.objectType.valid  }"> Object Type is required</mat-hint>
+          <mat-error *ngIf="!formControls.objectType.valid && formControls.objectType.status != 'DISABLED'"
+            [ngClass]="{ 'ng--invalid': !formControls.objectType.valid  }"> Object Type is required</mat-error>
         </mat-form-field>
 
         <mat-form-field
@@ -31,8 +31,8 @@
               {{cs.text}}
             </mat-option>
           </mat-select>
-          <mat-hint *ngIf="!formControls.numberSeries.valid"
-            [ngClass]="{ 'ng--invalid': !formControls.numberSeries.valid  }"> Number Series is required</mat-hint>
+          <mat-error *ngIf="!formControls.numberSeries.valid"
+            [ngClass]="{ 'ng--invalid': !formControls.numberSeries.valid  }"> Number Series is required</mat-error>
         </mat-form-field>
 
 
