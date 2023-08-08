@@ -60,7 +60,12 @@
     "houseNO": "House No",
     "panno": "PAN",
     "gstno": "GST",
-    "tanno": "TAN"
+    "tanno": "TAN",
+    "webSite": "Web Site",
+    "mailingName": "Mailing Name",
+    "phone": "Phone",
+    "financialYearFrom": "Financial Year From",
+    "booksBeginingFrom": "Books Begining From"
   },
   "segment": {
     "title": "Segment",

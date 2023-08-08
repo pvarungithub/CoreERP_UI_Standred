@@ -2,37 +2,37 @@
 
   <mat-card-title class="boader--color d-flex justify-content-between position-absolute w-100">
     <span> {{'company.title' | translate }} </span>
-    <mat-icon class="p-2  cursor--pointer" (click)="cancel()">close</mat-icon>
+    <mat-icon class="my-2 cursor--pointer" (click)="cancel()">close</mat-icon>
   </mat-card-title>
 
-  <mat-card-content class="py-5 p-2 m-0 overflow-auto">
+  <mat-card-content class="pt-5 p-2 m-0 overflow-auto">
     <form [formGroup]="modelFormData" autocomplete="off">
 
       <div class="d--flex">
         <mat-form-field class="form-element" [ngClass]="{ 'ng--valid': formControls.companyCode.valid&& formControls.companyCode.status != 'DISABLED', 
            'ng--invalid': !formControls.companyCode.valid&& formControls.companyCode.status != 'DISABLED' }">
-          <input matInput placeholder="{{'company.companyCode' | translate }}" disabled formControlName="companyCode"
-            maxlength="5" appFocusOnEnter tabIndex="1">
+          <mat-label [translate]="'company.companyCode'"></mat-label>
+          <input matInput disabled formControlName="companyCode" maxlength="5" appFocusOnEnter tabIndex="1">
           <mat-error *ngIf="!formControls.companyCode.valid&& formControls.companyCode.status != 'DISABLED'"
             [ngClass]="{ 'ng--invalid': !formControls.companyCode.valid  }">Company Code is required</mat-error>
         </mat-form-field>
 
         <mat-form-field class="form-element"
           [ngClass]="{ 'ng--valid': formControls.companyName.valid, 'ng--invalid': !formControls.companyName.valid  }">
-          <input matInput placeholder="{{'company.companyName' | translate }}" formControlName="companyName"
-            maxlength="50" appFocusOnEnter tabIndex="2">
+          <mat-label [translate]="'company.companyName'"></mat-label>
+          <input matInput formControlName="companyName" maxlength="50" appFocusOnEnter tabIndex="2">
           <mat-error *ngIf="!formControls.companyName.valid"
             [ngClass]="{ 'ng--invalid': !formControls.companyName.valid  }">Company Name is required</mat-error>
         </mat-form-field>
 
         <mat-form-field class="form-element">
-          <input matInput placeholder="{{'company.shortName' | translate }}" formControlName="shortName" maxlength="50"
-            appFocusOnEnter tabIndex="3">
+          <mat-label [translate]="'company.shortName'"></mat-label>
+          <input matInput formControlName="shortName" maxlength="50" appFocusOnEnter tabIndex="3">
         </mat-form-field>
 
         <mat-form-field class="form-element">
-          <input matInput placeholder="{{'company.city' | translate }}" formControlName="city" maxlength="50"
-            appFocusOnEnter tabIndex="4">
+          <mat-label [translate]="'company.city'"></mat-label>
+          <input matInput formControlName="city" maxlength="50" appFocusOnEnter tabIndex="4">
         </mat-form-field>
 
         <mat-form-field>
@@ -86,58 +86,88 @@
         </mat-form-field>
 
         <mat-form-field class="form-element">
-          <input matInput placeholder="{{'company.address' | translate }}" formControlName="address" maxlength="50"
-            appFocusOnEnter tabIndex="10">
+          <mat-label [translate]="'company.address'"></mat-label>
+          <input matInput formControlName="address" maxlength="50" appFocusOnEnter tabIndex="10">
         </mat-form-field>
 
         <mat-form-field class="form-element">
-          <input matInput placeholder="{{'company.address1' | translate }}" formControlName="address1" maxlength="50"
-            appFocusOnEnter tabIndex="11">
+          <mat-label [translate]="'company.address1'"></mat-label>
+          <input matInput formControlName="address1" maxlength="50" appFocusOnEnter tabIndex="11">
         </mat-form-field>
 
         <mat-form-field class="form-element">
-          <input matInput placeholder="{{'company.street' | translate }}" formControlName="street" maxlength="50"
-            appFocusOnEnter tabIndex="12">
+          <mat-label [translate]="'company.street'"></mat-label>
+          <input matInput formControlName="street" maxlength="50" appFocusOnEnter tabIndex="12">
         </mat-form-field>
 
         <mat-form-field class="form-element">
-          <input matInput placeholder="{{'company.location' | translate }}" formControlName="location" maxlength="50"
-            appFocusOnEnter tabIndex="13">
+          <mat-label [translate]="'company.location'"></mat-label>
+          <mat-select formControlName="location" appFocusOnEnter tabIndex="13">
+            <mat-option>None</mat-option>
+            <mat-option *ngFor="let loc of locList" [value]="loc.id">
+              {{loc.text}}
+            </mat-option>
+          </mat-select>
         </mat-form-field>
 
         <mat-form-field class="form-element">
-          <input matInput placeholder="{{'company.pin' | translate }}" formControlName="pin" maxlength="6"
-            appFocusOnEnter tabIndex="14">
+          <mat-label [translate]="'company.pin'"></mat-label>
+          <input matInput formControlName="pin" maxlength="6" appFocusOnEnter tabIndex="14">
         </mat-form-field>
 
         <mat-form-field class="form-element">
-          <input matInput placeholder="{{'company.telephone' | translate }}" formControlName="telephone" maxlength="12"
-            appFocusOnEnter tabIndex="15">
+          <mat-label [translate]="'company.telephone'"></mat-label>
+          <input matInput formControlName="telephone" maxlength="12" appFocusOnEnter tabIndex="15">
         </mat-form-field>
 
         <mat-form-field class="form-element">
-          <input matInput placeholder="{{'company.mobile' | translate }}" formControlName="mobile" maxlength="12"
-            appFocusOnEnter tabIndex="16">
+          <mat-label [translate]="'company.mobile'"></mat-label>
+          <input matInput formControlName="mobile" maxlength="12" appFocusOnEnter tabIndex="16">
         </mat-form-field>
 
         <mat-form-field class="form-element">
-          <input matInput placeholder="{{'company.email' | translate }}" formControlName="email" maxlength="50"
-            appFocusOnEnter tabIndex="17">
+          <mat-label [translate]="'company.email'"></mat-label>
+          <input matInput formControlName="email" maxlength="50" appFocusOnEnter tabIndex="17">
         </mat-form-field>
 
         <mat-form-field class="form-element">
-          <input matInput placeholder="{{'company.panno' | translate }}" formControlName="panno" maxlength="50"
-            appFocusOnEnter tabIndex="18">
+          <mat-label [translate]="'company.panno'"></mat-label>
+          <input matInput formControlName="panno" maxlength="50" appFocusOnEnter tabIndex="18">
         </mat-form-field>
 
         <mat-form-field class="form-element">
-          <input matInput placeholder="{{'company.gstno' | translate }}" formControlName="gstno" maxlength="50"
-            appFocusOnEnter tabIndex="19">
+          <mat-label [translate]="'company.gstno'"></mat-label>
+          <input matInput formControlName="gstno" maxlength="50" appFocusOnEnter tabIndex="19">
         </mat-form-field>
 
         <mat-form-field class="form-element">
-          <input matInput placeholder="{{'company.tanno' | translate }}" formControlName="tanno" maxlength="50"
-            appFocusOnEnter tabIndex="20">
+          <mat-label [translate]="'company.tanno'"></mat-label>
+          <input matInput formControlName="tanno" maxlength="50" appFocusOnEnter tabIndex="20">
+        </mat-form-field>
+
+        <mat-form-field class="form-element">
+          <mat-label [translate]="'company.webSite'"></mat-label>
+          <input matInput formControlName="webSite" maxlength="50" appFocusOnEnter tabIndex="20">
+        </mat-form-field>
+
+        <mat-form-field class="form-element">
+          <mat-label [translate]="'company.mailingName'"></mat-label>
+          <input matInput formControlName="mailingName" maxlength="50" appFocusOnEnter tabIndex="20">
+        </mat-form-field>
+
+        <mat-form-field class="form-element">
+          <mat-label [translate]="'company.phone'"></mat-label>
+          <input matInput formControlName="phone" maxlength="50" appFocusOnEnter tabIndex="20">
+        </mat-form-field>
+
+        <mat-form-field class="form-element">
+          <mat-label [translate]="'company.financialYearFrom'"></mat-label>
+          <input matInput formControlName="financialYearFrom" maxlength="50" appFocusOnEnter tabIndex="20">
+        </mat-form-field>
+
+        <mat-form-field class="form-element">
+          <mat-label [translate]="'company.booksBeginingFrom'"></mat-label>
+          <input matInput formControlName="booksBeginingFrom" maxlength="50" appFocusOnEnter tabIndex="20">
         </mat-form-field>
 
       </div>

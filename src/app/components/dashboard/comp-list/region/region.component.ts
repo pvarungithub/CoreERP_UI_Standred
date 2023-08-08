@@ -31,7 +31,7 @@ export class RegionComponent implements OnInit {
     this.modelFormData = this.formBuilder.group({
       regionCode: [null, [Validators.required, Validators.minLength(1), Validators.maxLength(4)]],
       regionName: [null, [Validators.required, Validators.minLength(2), Validators.maxLength(40)]],
-      country: [null]
+      country: [null, Validators.required]
     });
 
     this.formData = { ...data };

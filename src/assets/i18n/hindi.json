@@ -346,7 +346,12 @@
     "active": "सक्रिय",
     "addDate": "दिनांक जोड़ें",
     "branches": "शाखाओं",
-    "costCenters": "लागत केंद्र"
+    "costCenters": "लागत केंद्र",
+    "webSite": "वेबसाइट",
+    "mailingName": "डाक का नाम",
+    "phone": "फ़ोन",
+    "financialYearFrom": "वित्तीय वर्ष से",
+    "booksBeginingFrom": "से शुरू होने वाली किताबें"
   },
   "employee": {
     "title": "कर्मचारी",

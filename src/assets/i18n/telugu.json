@@ -347,7 +347,12 @@
     "active": "క్రియాశీలమైన",
     "addDate": "తేదీని జోడించండి",
     "branches": "శాఖలు",
-    "costCenters": "వ్యయ కేంద్రాలు"
+    "costCenters": "వ్యయ కేంద్రాలు",
+    "webSite": "వెబ్ సైట్",
+    "mailingName": "మెయిలింగ్ పేరు",
+    "phone": "ఫోన్",
+    "financialYearFrom": "ఆర్థిక సంవత్సరం నుండి",
+    "booksBeginingFrom": "నుండి ప్రారంభమయ్యే పుస్తకాలు"
   },
   "employee": {
     "title": "ఉద్యోగి",

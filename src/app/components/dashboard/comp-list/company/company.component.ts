@@ -23,6 +23,7 @@ export class CompanyComponent implements OnInit {
   regionsList: any;
   countrysList: any;
   languageList: any;
+  locList: any;
 
   constructor(private commonService: CommonService,
     private apiService: ApiService,
@@ -55,7 +56,13 @@ export class CompanyComponent implements OnInit {
       houseNo: [null],
       panno: [null],
       gstno: [null],
-      tanno: [null]
+      tanno: [null],
+
+      webSite: [null],
+      mailingName: [null],
+      phone: [null],
+      financialYearFrom: [null],
+      booksBeginingFrom: [null],
     });
 
     this.formData = { ...data };
@@ -71,6 +78,7 @@ export class CompanyComponent implements OnInit {
     this.getregionsList();
     this.getcountrysList();
     this.getcurrencyList();
+    this.getlocationsList();
   }
 
   clearDropdown(contrl) {
@@ -151,6 +159,20 @@ export class CompanyComponent implements OnInit {
             }
           }
           this.spinner.hide();
+        });
+  }
+
+  getlocationsList() {
+    const getlocationsList = String.Join('/', this.apiConfigService.getlocationsList);
+    this.apiService.apiGetRequest(getlocationsList)
+      .subscribe(
+        response => {
+          const res = response;
+          if (!this.commonService.checkNullOrUndefined(res) && res.status === StatusCodes.pass) {
+            if (!this.commonService.checkNullOrUndefined(res.response)) {
+              this.locList = res.response['locationList'];
+            }
+          }
         });
   }
 
