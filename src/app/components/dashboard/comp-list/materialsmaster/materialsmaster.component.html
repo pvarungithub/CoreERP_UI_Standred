@@ -42,9 +42,10 @@
 
             <mat-form-field class="form-element" [ngClass]="{ 'ng--valid': formControls.materialCode.valid && formControls.materialCode.status != 'DISABLED',
             'ng--invalid': !formControls.materialCode.valid && formControls.materialCode.status != 'DISABLED'  }">
-              <input matInput placeholder="{{'materialsmaster.materialCode' | translate }}"
+                <mat-label [translate]="'materialsmaster.materialCode'"> </mat-label>
+              <input matInput
                 formControlName="materialCode" maxlength="7" appFocusOnEnter tabIndex="3">
-              <mat-error *ngIf="!formControls.materialCode.valid && formControls.materialCode.status != 'DISABLED'"
+              <mat-error *ngIf="isSubmitted && !formControls.materialCode.valid && formControls.materialCode.status != 'DISABLED'"
                 [ngClass]="{ 'ng--invalid': !formControls.materialCode.valid  }">Material Code is required</mat-error>
             </mat-form-field>
 

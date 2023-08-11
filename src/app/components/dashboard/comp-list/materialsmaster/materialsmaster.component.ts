@@ -8,6 +8,7 @@ import { ApiConfigService } from '../../../../services/api-config.service';
 import { StatusCodes } from '../../../../enums/common/common';
 import { AddOrEditService } from '../add-or-edit.service';
 import { Router, ActivatedRoute } from '@angular/router';
+import { MatDialogRef } from '@angular/material/dialog';
 
 interface Valuation {
   value: string;
@@ -51,6 +52,7 @@ export class MaterialMasterComponent implements OnInit, OnDestroy {
   bpaNum: any;
   bpname: any;
   divisionsList: any;
+  isSubmitted: boolean;
   valuation: Valuation[] =
     [
       { value: 'LIFO', viewValue: 'LIFO' },
@@ -93,6 +95,7 @@ export class MaterialMasterComponent implements OnInit, OnDestroy {
     private apiService: ApiService,
     private addOrEditService: AddOrEditService,
     private apiConfigService: ApiConfigService,
+    public dialogRef: MatDialogRef<MaterialMasterComponent>,
     private spinner: NgxSpinnerService,
     private formBuilder: FormBuilder,
     private router: Router,
@@ -353,12 +356,13 @@ export class MaterialMasterComponent implements OnInit, OnDestroy {
 
   save() {
     if (this.modelFormData.invalid) {
+      this.isSubmitted = true;
       return;
     }
     this.modelFormData.controls['materialCode'].enable();
     this.formData.item = this.modelFormData.value;
     this.addOrEditService[this.formData.action](this.formData, (res) => {
-      this.router.navigate(['/dashboard/master/materialsmaster']);
+      this.dialogRef.close(this.formData);
     });
     if (this.formData.action == 'Edit') {
       this.modelFormData.controls['materialCode'].disable();
@@ -366,7 +370,7 @@ export class MaterialMasterComponent implements OnInit, OnDestroy {
   }
 
   cancel() {
-    this.router.navigate(['/dashboard/master/materialsmaster']);
+    this.dialogRef.close();
   }
 
   ngOnDestroy() {
