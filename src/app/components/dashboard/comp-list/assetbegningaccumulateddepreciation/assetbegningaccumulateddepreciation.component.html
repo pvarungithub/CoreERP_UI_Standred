@@ -39,7 +39,8 @@
         </mat-form-field>
 
         <mat-form-field class="form-element">
-          <input matInput placeholder="{{'assetbegningaccumulateddepreciation.accumulatedDepreciation' | translate }}"
+          <mat-label [translate]="'assetbegningaccumulateddepreciation.accumulatedDepreciation'"></mat-label>
+          <input matInput
             formControlName="accumulatedDepreciation" maxlength="50" appFocusOnEnter tabIndex="4">
         </mat-form-field>
 

@@ -55,6 +55,9 @@ export class TdsRatesComponent implements OnInit {
     this.formData = { ...data };
     if (!this.commonService.checkNullOrUndefined(this.formData.item)) {
       this.modelFormData.patchValue(this.formData.item);
+      this.modelFormData.patchValue({
+        effectiveFrom: this.formData.item.effectiveFrom ? new Date(this.formData.item.effectiveFrom) : ''
+      });
       this.modelFormData.controls['code'].disable();
     }
 

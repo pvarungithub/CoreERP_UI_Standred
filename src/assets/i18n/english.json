@@ -1318,10 +1318,11 @@
     "company": "Company",
     "plant": "Plant",
     "materilaType": "Material Type",
-    "ginseriesName": "GINSeries Name",
-    "companyName": "CompanyName",
-    "plantName": "PlantName",
-    "materialName": "MaterialName"
+    "ginseriesName": "GIN Series Name",
+    "companyName": "Company Name",
+    "plantName": "Plant Name",
+    "materialName": "Material Name",
+    "currentNumber": "Current Number"
   },
   "ginnumberseries": {
     "title": "Goods Issue Note Number Series",

@@ -1108,10 +1108,11 @@
   },
   "ginassignment": {
     "title": "Goods Issue Note Assignment",
-    "ginseriesName": "GINSeries Name",
-    "companyName": "CompanyName",
+    "ginseriesName": "GIN Series Name",
+    "companyName": "Company Name",
     "plantName": "PlantName",
-    "materialName": "MaterialName"
+    "materialName": "Material Name",
+    "currentNumber": "Current Number"
   },
   "ginnumberseries": {
     "title": "Goods Issue Note Number Series",

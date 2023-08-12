@@ -31,15 +31,16 @@
             </mat-form-field>
 
             <mat-form-field>
-              <input matInput [matDatepicker]="picker4" [nonEditable]="picker4"
-                placeholder="{{'assetbegningacqusition.acquisitionDate' | translate }}"
+              <mat-label [translate]="'assetbegningacqusition.acquisitionDate'"></mat-label>
+              <input matInput [matDatepicker]="picker4" [nonEditable]="picker4" 
                 formControlName="acquisitionDate" appFocusOnEnter tabIndex="3">
               <mat-datepicker-toggle matSuffix [for]="picker4"></mat-datepicker-toggle>
               <mat-datepicker #picker4></mat-datepicker>
             </mat-form-field>
 
             <mat-form-field class="form-element">
-              <input matInput placeholder="{{'assetbegningacqusition.acquisitionCost' | translate }}"
+              <mat-label [translate]="'assetbegningacqusition.acquisitionCost'"></mat-label>
+              <input matInput
                 formControlName="acquisitionCost" maxlength="7" appFocusOnEnter tabIndex="4">
             </mat-form-field>
 

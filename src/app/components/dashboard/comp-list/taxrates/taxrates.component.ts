@@ -53,7 +53,6 @@ export class TaxRatesComponents implements OnInit {
 
     // @Optional() is used to prevent error if no data is passed
     @Optional() @Inject(MAT_DIALOG_DATA) public data: any) {
-
     this.modelFormData = this.formBuilder.group({
       taxRateCode: [null, [Validators.required, Validators.minLength(1), Validators.maxLength(5)]],
       description: [null, [Validators.required, Validators.minLength(1), Validators.maxLength(50)]],
@@ -71,6 +70,9 @@ export class TaxRatesComponents implements OnInit {
     this.formData = { ...data };
     if (!this.commonService.checkNullOrUndefined(this.formData.item)) {
       this.modelFormData.patchValue(this.formData.item);
+      this.modelFormData.patchValue({
+        effectiveFrom: this.formData.item.effectiveFrom ? new Date(this.formData.item.effectiveFrom) : ''
+      });
       this.modelFormData.controls['taxRateCode'].disable();
     }
   }

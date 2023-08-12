@@ -12,7 +12,8 @@
 
         <mat-form-field class="form-element" [ngClass]="{ 'ng--valid': formControls.activityCode.valid && formControls.activityCode.status != 'DISABLED',
           'ng--invalid': !formControls.activityCode.valid && formControls.activityCode.status != 'DISABLED'  }">
-          <input matInput placeholder="{{'activities.activityCode' | translate }}" formControlName="activityCode"
+          <mat-label [translate]="'activities.activityCode'"></mat-label>
+          <input matInput formControlName="activityCode"
             maxlength="5" appFocusOnEnter tabIndex="1">
           <mat-error *ngIf="!formControls.activityCode.valid  && formControls.activityCode.status != 'DISABLED'"
             [ngClass]="{ 'ng--invalid': !formControls.activityCode.valid  }"> Activity Code is required</mat-error>
@@ -20,7 +21,8 @@
 
         <mat-form-field class="form-element"
           [ngClass]="{ 'ng--valid': formControls.description.valid, 'ng--invalid': !formControls.description.valid  }">
-          <input matInput placeholder="{{'activities.description' | translate }}" formControlName="description"
+          <mat-label [translate]="'activities.description'"></mat-label>
+          <input matInput formControlName="description"
             maxlength="50" appFocusOnEnter tabIndex="2">
           <mat-error *ngIf="!formControls.description.valid"
             [ngClass]="{ 'ng--invalid': !formControls.description.valid  }"> Description is required</mat-error>

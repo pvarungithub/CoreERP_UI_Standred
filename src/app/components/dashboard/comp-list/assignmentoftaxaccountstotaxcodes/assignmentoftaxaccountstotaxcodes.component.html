@@ -50,8 +50,8 @@
         </mat-form-field>
 
         <mat-form-field>
-          <mat-label>Tax Rate</mat-label>
-          <mat-select placeholder="{{'assignmentoftaxaccountstotaxcodes.code' | translate }}" formControlName="code"
+          <mat-label [translate]="'assignmentoftaxaccountstotaxcodes.code'"></mat-label>
+          <mat-select formControlName="code"
             appFocusOnEnter tabIndex="1">
             <mat-option>None</mat-option>
             <mat-option *ngFor="let taxtrnsn of TaxTypeList" [value]="taxtrnsn.id">
@@ -61,7 +61,7 @@
         </mat-form-field>
 
         <mat-form-field>
-          <mat-label>{{'assignmentoftaxaccountstotaxcodes.sgstgl' | translate }}</mat-label>
+          <mat-label [translate]="'assignmentoftaxaccountstotaxcodes.sgstgl'"></mat-label>
           <mat-select formControlName="sgstgl" appFocusOnEnter tabIndex="1">
             <mat-option>None</mat-option>
             <mat-option *ngFor="let gl of glList" [value]="gl.id">
@@ -71,7 +71,7 @@
         </mat-form-field>
 
         <mat-form-field>
-          <mat-label>{{'assignmentoftaxaccountstotaxcodes.cgstgl' | translate }}</mat-label>
+          <mat-label [translate]="'assignmentoftaxaccountstotaxcodes.igstgl'"></mat-label>
           <mat-select formControlName="cgstgl" appFocusOnEnter tabIndex="1">
             <mat-option>None</mat-option>
             <mat-option *ngFor="let gl of glList" [value]="gl.id">
@@ -81,7 +81,7 @@
         </mat-form-field>
 
         <mat-form-field>
-          <mat-label>{{'assignmentoftaxaccountstotaxcodes.igstgl' | translate }}</mat-label>
+          <mat-label [translate]="'assignmentoftaxaccountstotaxcodes.igstgl'"></mat-label>
           <mat-select formControlName="igstgl" appFocusOnEnter tabIndex="1">
             <mat-option>None</mat-option>
             <mat-option *ngFor="let gl of glList" [value]="gl.id">
@@ -91,7 +91,7 @@
         </mat-form-field>
 
         <mat-form-field>
-          <mat-label>{{'assignmentoftaxaccountstotaxcodes.ugstgl' | translate }}</mat-label>
+          <mat-label [translate]="'assignmentoftaxaccountstotaxcodes.ugstgl'"></mat-label>
           <mat-select formControlName="ugstgl" appFocusOnEnter tabIndex="1">
             <mat-option>None</mat-option>
             <mat-option *ngFor="let gl of glList" [value]="gl.id">
@@ -101,7 +101,7 @@
         </mat-form-field>
 
         <mat-form-field>
-          <mat-label>{{'assignmentoftaxaccountstotaxcodes.compositeAccount' | translate }}</mat-label>
+          <mat-label [translate]="'assignmentoftaxaccountstotaxcodes.compositeAccount'"></mat-label>
           <mat-select formControlName="compositeAccount" appFocusOnEnter tabIndex="1">
             <mat-option>None</mat-option>
             <mat-option *ngFor="let gl of glList" [value]="gl.id">

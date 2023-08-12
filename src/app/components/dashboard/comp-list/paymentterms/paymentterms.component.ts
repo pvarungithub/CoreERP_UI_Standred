@@ -11,6 +11,7 @@ import { AlertService } from '../../../../services/alert.service';
 import { ActivatedRoute, Router } from '@angular/router';
 import { Static } from '../../../../enums/common/static';
 import { SnackBar } from '../../../../enums/common/common';
+import { MatDialogRef } from '@angular/material/dialog';
 
 interface Term {
   value: string;
@@ -86,6 +87,7 @@ export class PaymentTermsComponent implements OnInit {
     private formBuilder: FormBuilder,
     private alertService: AlertService,
     private router: Router,
+    public dialogRef: MatDialogRef<PaymentTermsComponent>,
     private activatedRoute: ActivatedRoute,
     public route: ActivatedRoute,
     private commonService: CommonService
@@ -141,12 +143,11 @@ export class PaymentTermsComponent implements OnInit {
   }
 
   save() {
-
     this.savepaymentterms();
   }
 
   cancel() {
-    this.router.navigate(['/dashboard/master/paymentterms']);
+    this.dialogRef.close();
   }
   reset() {
     this.tableData = [];
@@ -166,7 +167,7 @@ export class PaymentTermsComponent implements OnInit {
           }
           this.reset();
           this.spinner.hide();
-
+          this.dialogRef.close(this.formData);
         }
       });
   }
