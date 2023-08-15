@@ -90,7 +90,7 @@ export class FundCenterComponent implements OnInit {
         });
   }
   getCostCenterData() {
-    const getccUrl = String.Join('/', this.apiConfigService.GetCostCenterList);
+    const getccUrl = String.Join('/', this.apiConfigService.getCostCenters);
     this.apiService.apiGetRequest(getccUrl)
       .subscribe(
         response => {
@@ -98,14 +98,14 @@ export class FundCenterComponent implements OnInit {
           console.log(res);
           if (!this.commonService.checkNullOrUndefined(res) && res.status === StatusCodes.pass) {
             if (!this.commonService.checkNullOrUndefined(res.response)) {
-              this.costcenterList = res.response['costcenterList'];
+              this.costcenterList = res.response['TaxcodesList'];
             }
           }
           this.getProfitcenterData();
         });
   }
   getProfitcenterData() {
-    const getpcUrl = String.Join('/', this.apiConfigService.getProfitCenterList);
+    const getpcUrl = String.Join('/', this.apiConfigService.getProfitCenters);
     this.apiService.apiGetRequest(getpcUrl)
       .subscribe(
         response => {

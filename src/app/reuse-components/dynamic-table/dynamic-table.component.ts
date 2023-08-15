@@ -1,6 +1,6 @@
 import { Component, OnInit, ViewChild, Output, EventEmitter, Input, OnDestroy, ChangeDetectorRef, AfterContentChecked } from '@angular/core';
 import { MatTableDataSource, MatTable } from '@angular/material/table';
-import { ActivatedRoute } from '@angular/router';
+import { ActivatedRoute, Router } from '@angular/router';
 import { TranslateService } from '@ngx-translate/core';
 import { FormBuilder, FormGroup, FormControl } from '@angular/forms';
 import { AddOrEditService } from '../../components/dashboard/comp-list/add-or-edit.service';
@@ -63,7 +63,8 @@ export class DynamicTableComponent implements OnInit {
   isDropdown = false;
 
   constructor(
-    activatedRoute: ActivatedRoute,
+    private activatedRoute: ActivatedRoute,
+    private router: Router,
     private translate: TranslateService,
     private formBuilder: FormBuilder,
     public runtimeConfigService: RuntimeConfigService,
@@ -189,6 +190,9 @@ export class DynamicTableComponent implements OnInit {
       });
       this.columnDefinitions = [];
 
+      if (!this.routeParam) {
+        this.routeParam = this.router.url.split('/').pop();
+      }
       // tslint:disable-next-line:forin
       for (let key in this.runtimeConfigService.tableColumnsData[this.routeParam]) {
         for (let c = 0; c < col.length; c++) {

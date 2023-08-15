@@ -21,7 +21,7 @@
           (change)="formControlValid(column, element, $event.checked, dataSource.filteredData.indexOf(element)); setFocus(column, dataSource.filteredData.indexOf(element), $event.value);">
         </mat-checkbox>
 
-        <mat-form-field *ngSwitchCase="'toggle'" floatLabel="activity" appearance="none"
+        <mat-form-field *ngSwitchCase="'toggle'" floatLabel="activity" class="remove-boader-bottom"
           [ngStyle]="{'width': element[column].width + 'px'}">
           <mat-slide-toggle id="{{column}}{{dataSource.filteredData.indexOf(element)}}"
             [disabled]="element[column].disabled" [(ngModel)]="element[column].value"

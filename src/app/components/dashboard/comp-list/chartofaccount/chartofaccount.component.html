@@ -10,7 +10,8 @@
       <div class="d--flex">
         <mat-form-field class="form-element" [ngClass]="{ 'ng--valid': formControls.code.valid &&formControls.code.status != 'DISABLED',
            'ng--invalid': !formControls.code.valid &&formControls.code.status != 'DISABLED' }">
-          <input matInput placeholder="{{'accountchart.code' | translate }}" formControlName="code" maxlength="4"
+          <mat-label [translate]="'accountchart.code'"></mat-label>
+          <input matInput formControlName="code" maxlength="4"
             appFocusOnEnter tabIndex="1">
           <mat-error *ngIf="!formControls.code.valid &&formControls.code.status != 'DISABLED'"
             [ngClass]="{ 'ng--invalid': !formControls.code.valid  }">Code is
@@ -19,7 +20,8 @@
 
         <mat-form-field class="form-element"
           [ngClass]="{ 'ng--valid': formControls.desctiption.valid, 'ng--invalid': !formControls.desctiption.valid  }">
-          <input matInput placeholder="{{'accountchart.desctiption' | translate }}" formControlName="desctiption"
+          <mat-label [translate]="'accountchart.desctiption'"></mat-label>
+          <input matInput formControlName="desctiption"
             maxlength="30" appFocusOnEnter tabIndex="2">
           <mat-error *ngIf="!formControls.desctiption.valid"
             [ngClass]="{ 'ng--invalid': !formControls.desctiption.valid  }">Name is required</mat-error>

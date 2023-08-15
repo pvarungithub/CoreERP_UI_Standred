@@ -9,7 +9,8 @@
       <div class="d--flex">
         <mat-form-field class="form-element" [ngClass]="{ 'ng--valid': formControls.numberObject.valid && formControls.numberObject.status != 'DISABLED',
            'ng--invalid': !formControls.numberObject.valid && formControls.numberObject.status != 'DISABLED'}">
-          <input matInput placeholder="{{'costobjectnumberseries.numberObject' | translate }}"
+          <mat-label [translate]="'costobjectnumberseries.numberObject'"></mat-label>
+          <input matInput
             formControlName="numberObject" maxlength="4" appFocusOnEnter tabIndex="1">
           <mat-error *ngIf="!formControls.numberObject.valid && formControls.numberObject.status != 'DISABLED'"
             [ngClass]="{ 'ng--invalid': !formControls.numberObject.valid  }">Number Object is required</mat-error>
@@ -17,19 +18,22 @@
 
         <mat-form-field class="form-element"
           [ngClass]="{ 'ng--valid': formControls.fromInterval.valid, 'ng--invalid': !formControls.fromInterval.valid  }">
-          <input matInput placeholder="{{'costobjectnumberseries.fromInterval' | translate }}"
+          <mat-label [translate]="'costobjectnumberseries.fromInterval'"></mat-label>
+          <input matInput
             formControlName="fromInterval" maxlength="30" (change)="validationcode()" appFocusOnEnter tabIndex="2">
           <mat-error *ngIf="!formControls.fromInterval.valid"
             [ngClass]="{ 'ng--invalid': !formControls.fromInterval.valid  }">From Interval is required</mat-error>
         </mat-form-field>
 
         <mat-form-field class="form-element">
-          <input matInput placeholder="{{'costobjectnumberseries.toInterval' | translate }}"
+          <mat-label [translate]="'costobjectnumberseries.toInterval'"></mat-label>
+          <input matInput 
             formControlName="toInterval" maxlength="30" (change)="validationcode()" appFocusOnEnter tabIndex="3">
         </mat-form-field>
 
         <mat-form-field class="form-element">
-          <input matInput placeholder="{{'costobjectnumberseries.prefix' | translate }}" formControlName="prefix"
+          <mat-label [translate]="'costobjectnumberseries.prefix'"></mat-label>
+          <input matInput formControlName="prefix"
             maxlength="30" appFocusOnEnter tabIndex="4">
         </mat-form-field>
 

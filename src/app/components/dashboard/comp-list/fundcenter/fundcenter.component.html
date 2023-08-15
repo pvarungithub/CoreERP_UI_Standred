@@ -50,7 +50,7 @@
           <mat-select formControlName="costCenter" appFocusOnEnter tabIndex="5">
             <mat-option>None</mat-option>
             <mat-option *ngFor="let cost of costcenterList" [value]="cost.code">
-              {{cost.costCenterName}}
+              {{cost.name}}
             </mat-option>
           </mat-select>
         </mat-form-field>
@@ -59,7 +59,7 @@
           <mat-select formControlName="profitCenter" appFocusOnEnter tabIndex="6">
             <mat-option>None</mat-option>
             <mat-option *ngFor="let pft of profitCenterList" [value]="pft.code">
-              {{pft.description}}
+              {{pft.name}}
             </mat-option>
           </mat-select>
         </mat-form-field>

@@ -86,7 +86,9 @@ export class ApiConfigService {
    getGLAccountListbyCatetory = `${this.environment.runtimeConfig.serverUrl}Common/GLAccountListbyCatetory`;
    getGLAccountsList = `${this.environment.runtimeConfig.serverUrl}Common/GetGLAccountsList`;
    getProfitCentersList = `${this.environment.runtimeConfig.serverUrl}Common/GetProfitCentersList`;
+   getProfitCenters = `${this.environment.runtimeConfig.serverUrl}ProfitCenter/GetProfitCenters`;
    getCostCentersList = `${this.environment.runtimeConfig.serverUrl}Common/GetCostCentersList`;
+   getCostCenters = `${this.environment.runtimeConfig.serverUrl}CostCenter/GetCostCenters`;
    getTaxRatesList = `${this.environment.runtimeConfig.serverUrl}TaxRates/GetTaxRatesList`;
    getBPList = `${this.environment.runtimeConfig.serverUrl}Common/GetBPList`;
    getpurchaseinvoiceList = `${this.environment.runtimeConfig.serverUrl}Common/GetPurchaseInvoiceList`;
