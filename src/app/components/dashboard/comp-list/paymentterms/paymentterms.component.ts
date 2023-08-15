@@ -1,4 +1,4 @@
-import { Component, OnInit } from '@angular/core';
+import { Component, OnInit, Optional } from '@angular/core';
 import { ApiService } from '../../../../services/api.service';
 import { String } from 'typescript-string-operations';
 import { CommonService } from '../../../../services/common.service';
@@ -87,7 +87,6 @@ export class PaymentTermsComponent implements OnInit {
     private formBuilder: FormBuilder,
     private alertService: AlertService,
     private router: Router,
-    public dialogRef: MatDialogRef<PaymentTermsComponent>,
     private activatedRoute: ActivatedRoute,
     public route: ActivatedRoute,
     private commonService: CommonService
@@ -147,7 +146,7 @@ export class PaymentTermsComponent implements OnInit {
   }
 
   cancel() {
-    this.dialogRef.close();
+    this.router.navigate(['/dashboard/master/paymentterms']);
   }
   reset() {
     this.tableData = [];
@@ -167,7 +166,6 @@ export class PaymentTermsComponent implements OnInit {
           }
           this.reset();
           this.spinner.hide();
-          this.dialogRef.close(this.formData);
         }
       });
   }

@@ -49,18 +49,12 @@ export class AuthGuard implements CanActivate, Resolve<any> {
                 if (!this.addOrEditService.editData && next.url.length > 1) {
                   const route = String.Join('/', 'dashboard', next.url[0].path, next.url[1].path);
                   this.router.navigate([route]);
-                } else {
-                  return false;
                 }
               }
               return true;
-            } else {
-              return false;
             }
           } else if (!this.commomService.checkNullOrUndefined(res) && res['status'] === StatusCodes.fail) {
             this.router.navigate(['/login']);
-            return false;
-          } else { 
             return false;
           }
         })));
