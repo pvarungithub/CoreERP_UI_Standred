@@ -102,8 +102,8 @@ export class GLAccountComponent implements OnInit {
     if (!this.commonService.checkNullOrUndefined(this.formData.item)) {
       this.modelFormData.patchValue(this.formData.item);
       this.modelFormData.controls['accountNumber'].disable();
+      this.onCategoryChange();
     }
-    this.onCategoryChange();
   }
 
   ngOnInit() {
@@ -115,6 +115,7 @@ export class GLAccountComponent implements OnInit {
   }
 
   onCategoryChange() {
+    debugger
     this.modelFormData.controls['bankKey'].disable();
     this.modelFormData.controls['controlAccount'].disable();
     this.modelFormData.patchValue({

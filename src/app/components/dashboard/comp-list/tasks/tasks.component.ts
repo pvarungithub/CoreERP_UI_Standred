@@ -241,4 +241,8 @@ export class TasksComponent implements OnInit {
         });
   }
 
+  back() {
+    this.router.navigate(['dashboard/master/tasks'])
+  }
+
 }

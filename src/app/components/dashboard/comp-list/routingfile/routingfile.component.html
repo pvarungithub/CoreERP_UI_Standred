@@ -1,3 +1,9 @@
+<div class="form-element p-2 d-flex justify-content-end">
+  <button mat-raised-button class="button-color-bule text-white mx-1" (click)="back()" appFocusOnEnter tabIndex="23">
+    {{ 'COMMON.BACK' | translate }}
+  </button>
+</div>
+
 <div class="bg-white">
 
   <mat-tab-group>
@@ -78,16 +84,19 @@
             </mat-form-field>
 
             <mat-form-field class="form-element">
+              <mat-label [translate]="'routingfile.routingKey'"></mat-label>
               <input matInput placeholder="{{'routingfile.routingKey' | translate }}" formControlName="routingKey"
                 appFocusOnEnter tabIndex="4">
             </mat-form-field>
 
             <mat-form-field class="form-element">
+              <mat-label [translate]="'routingfile.description'"></mat-label>
               <input matInput placeholder="{{'routingfile.description' | translate }}" formControlName="description"
                 appFocusOnEnter tabIndex="4">
             </mat-form-field>
 
             <mat-form-field class="form-element">
+              <mat-label [translate]="'routingfile.creationDate'"></mat-label>
               <input matInput [matDatepicker]="picker1" [nonEditable]="picker1"
                 placeholder="{{'routingfile.creationDate' | translate }}" formControlName="creationDate" appFocusOnEnter
                 tabIndex="3">
@@ -96,6 +105,7 @@
             </mat-form-field>
 
             <mat-form-field class="form-element">
+              <mat-label [translate]="'routingfile.version'"></mat-label>
               <input matInput placeholder="{{'routingfile.version' | translate }}" formControlName="version"
                 appFocusOnEnter tabIndex="4">
             </mat-form-field>

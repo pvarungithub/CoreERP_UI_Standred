@@ -10,8 +10,8 @@
 
         <mat-form-field class="form-element" [ngClass]="{ 'ng--valid': formControls.bankCode.valid&&formControls.bankCode.status != 'DISABLED',
            'ng--invalid': !formControls.bankCode.valid &&formControls.bankCode.status != 'DISABLED' }">
-          <mat-label ></mat-label>
-          <input matInput placeholder="{{'bankmaster.bankCode' | translate }}" formControlName="bankCode" maxlength="5"
+          <mat-label [translate]="'bankmaster.bankCode'"></mat-label>
+          <input matInput formControlName="bankCode" maxlength="5"
             appFocusOnEnter tabIndex="1">
           <mat-error *ngIf="!formControls.bankCode.valid&&formControls.bankCode.status != 'DISABLED'"
             [ngClass]="{ 'ng--invalid': !formControls.bankCode.valid  }">

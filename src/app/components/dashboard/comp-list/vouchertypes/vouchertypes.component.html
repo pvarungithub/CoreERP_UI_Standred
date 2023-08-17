@@ -11,6 +11,7 @@
       <div class="d--flex">
         <mat-form-field class="form-element" [ngClass]="{ 'ng--valid': formControls.voucherTypeId.valid &&formControls.voucherTypeId.status != 'DISABLED',
            'ng--invalid': !formControls.voucherTypeId.valid &&formControls.voucherTypeId.status != 'DISABLED'  }">
+          <mat-label [translate]="'vouchertype.voucherTypeId'"></mat-label>
           <input matInput placeholder="{{'vouchertype.voucherTypeId' | translate }}" formControlName="voucherTypeId"
             maxlength="4" appFocusOnEnter tabIndex="1">
           <mat-error *ngIf="!formControls.voucherTypeId.valid &&formControls.voucherTypeId.status != 'DISABLED'"
@@ -19,6 +20,7 @@
 
         <mat-form-field class="form-element"
           [ngClass]="{ 'ng--valid': formControls.voucherTypeName.valid, 'ng--invalid': !formControls.voucherTypeName.valid  }">
+          <mat-label [translate]="'vouchertype.voucherTypeName'"></mat-label>
           <input matInput placeholder="{{'vouchertype.voucherTypeName' | translate }}" formControlName="voucherTypeName"
             maxlength="40" appFocusOnEnter tabIndex="2">
           <mat-error *ngIf="!formControls.voucherTypeName.valid"
@@ -47,6 +49,7 @@
         </mat-form-field>
 
         <mat-form-field class="form-element">
+          <mat-label [translate]="'vouchertype.printText'"></mat-label>
           <input matInput placeholder="{{'vouchertype.printText' | translate }}" formControlName="printText"
             maxlength="40" appFocusOnEnter tabIndex="4">
         </mat-form-field>

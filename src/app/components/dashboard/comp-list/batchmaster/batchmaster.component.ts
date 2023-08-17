@@ -64,6 +64,13 @@ export class BatchMasterComponent implements OnInit {
     this.formData = { ...data };
     if (!this.commonService.checkNullOrUndefined(this.formData.item)) {
       this.modelFormData.patchValue(this.formData.item);
+      this.modelFormData.patchValue({
+        dob: this.formData.item.dob ? new Date(this.formData.item.dob) : '',
+        createdDate: this.formData.item.createdDate ? new Date(this.formData.item.createdDate) : '',
+        plantEndDate: this.formData.item.plantEndDate ? new Date(this.formData.item.plantEndDate) : '',
+        actualStartDate: this.formData.item.actualStartDate ? new Date(this.formData.item.actualStartDate) : '',
+        actualEndDate: this.formData.item.actualEndDate ? new Date(this.formData.item.actualEndDate) : '',
+      });
       this.modelFormData.controls['batchNumber'].disable();
     }
 
@@ -135,7 +142,7 @@ export class BatchMasterComponent implements OnInit {
   get formControls() { return this.modelFormData.controls; }
 
   save() {
-
+    debugger
     this.modelFormData.controls['batchNumber'].enable();
     this.formData.item = this.modelFormData.value;
     this.addOrEditService[this.formData.action](this.formData, (res) => {

@@ -1,4 +1,11 @@
+<div class="form-element p-2 d-flex justify-content-end">
+  <button mat-raised-button class="button-color-bule text-white mx-1" (click)="back()" appFocusOnEnter tabIndex="22">
+    {{ 'COMMON.BACK' | translate }}
+  </button>
+</div>
+
 <div class="bg-white">
+
 
   <mat-tab-group>
 
@@ -18,11 +25,13 @@
             </mat-form-field>
 
             <mat-form-field class="form-element">
+              <mat-label [translate]="'tasks.taskNumber'"></mat-label>
               <input matInput placeholder="{{'tasks.taskNumber' | translate }}" formControlName="taskNumber"
                 appFocusOnEnter tabIndex="4">
             </mat-form-field>
 
             <mat-form-field class="form-element">
+              <mat-label [translate]="'tasks.description'"></mat-label>
               <input matInput placeholder="{{'tasks.description' | translate }}" formControlName="description"
                 appFocusOnEnter tabIndex="4">
             </mat-form-field>
@@ -50,6 +59,7 @@
             </mat-form-field>
 
             <mat-form-field class="form-element">
+              <mat-label [translate]="'tasks.wbselement'"></mat-label>
               <input matInput placeholder="{{'tasks.timeNeeded' | translate }}" formControlName="timeNeeded"
                 appFocusOnEnter tabIndex="4">
             </mat-form-field>
@@ -57,26 +67,31 @@
 
 
             <mat-form-field class="form-element">
+              <mat-label [translate]="'tasks.wbselement'"></mat-label>
               <input matInput placeholder="{{'tasks.earlyStart' | translate }}" formControlName="earlyStart"
                 appFocusOnEnter tabIndex="4">
             </mat-form-field>
 
             <mat-form-field class="form-element">
+              <mat-label [translate]="'tasks.wbselement'"></mat-label>
               <input matInput placeholder="{{'tasks.earlyFinish' | translate }}" formControlName="earlyFinish"
                 appFocusOnEnter tabIndex="4">
             </mat-form-field>
 
             <mat-form-field class="form-element">
+              <mat-label [translate]="'tasks.wbselement'"></mat-label>
               <input matInput placeholder="{{'tasks.lateFinish' | translate }}" formControlName="lateFinish"
                 appFocusOnEnter tabIndex="4">
             </mat-form-field>
 
             <mat-form-field class="form-element">
+              <mat-label [translate]="'tasks.wbselement'"></mat-label>
               <input matInput placeholder="{{'tasks.forwardTotal' | translate }}" formControlName="forwardTotal"
                 appFocusOnEnter tabIndex="4">
             </mat-form-field>
 
             <mat-form-field class="form-element">
+              <mat-label [translate]="'tasks.wbselement'"></mat-label>
               <input matInput placeholder="{{'tasks.backwardTotal' | translate }}" formControlName="backwardTotal"
                 appFocusOnEnter tabIndex="4">
             </mat-form-field>
@@ -92,6 +107,7 @@
             </mat-form-field>
 
             <mat-form-field class="form-element">
+              <mat-label [translate]="'tasks.wbselement'"></mat-label>
               <input matInput placeholder="{{'tasks.risk' | translate }}" formControlName="risk" appFocusOnEnter
                 tabIndex="4">
             </mat-form-field>

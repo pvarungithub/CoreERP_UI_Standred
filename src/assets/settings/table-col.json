@@ -527,6 +527,7 @@
     "delete": "delete"
   },
   "designation": {
+    "title": "Designation",
     "designationId": "DesignationId",
     "designationName": "DesignationName",
     "leaveDays": "LeaveDays",

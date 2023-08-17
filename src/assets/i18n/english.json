@@ -630,6 +630,7 @@
     "depreciationName": "Depreciation Key"
   },
   "designation": {
+    "title": "Designation",
     "designationId": "DesignationId",
     "designationName": "DesignationName",
     "leaveDays": "LeaveDays",

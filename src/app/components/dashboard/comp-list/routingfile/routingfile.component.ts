@@ -432,4 +432,8 @@ export class RoutingFileComponent implements OnInit {
         });
   }
 
+  back() {
+    this.router.navigate(['dashboard/master/routingfile']);
+  }
+
 }
