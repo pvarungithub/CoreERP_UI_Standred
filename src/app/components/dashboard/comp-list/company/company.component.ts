@@ -50,7 +50,7 @@ export class CompanyComponent implements OnInit {
       location: [null],
       street: [null],
       pin: [null],
-      telephone: [null],
+      phone: [null],
       mobile: [null],
       email: [null],
       houseNo: [null],
@@ -60,7 +60,6 @@ export class CompanyComponent implements OnInit {
 
       webSite: [null],
       mailingName: [null],
-      phone: [null],
       financialYearFrom: [null],
       booksBeginingFrom: [null],
     });

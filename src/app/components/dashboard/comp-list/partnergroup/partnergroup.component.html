@@ -10,6 +10,7 @@
       <div class="d--flex">
         <mat-form-field class="form-element" [ngClass]="{ 'ng--valid': formControls.bpgroup.valid &&formControls.bpgroup.status != 'DISABLED',
            'ng--invalid': !formControls.bpgroup.valid &&formControls.bpgroup.status != 'DISABLED'}">
+          <mat-label [translate]="'partnergroup.bpgroup'"></mat-label>
           <input matInput placeholder="{{'partnergroup.bpgroup' | translate }}" formControlName="bpgroup" maxlength="5"
             appFocusOnEnter tabIndex="1">
           <mat-error *ngIf="!formControls.bpgroup.valid  &&formControls.bpgroup.status != 'DISABLED'"
@@ -19,6 +20,7 @@
 
         <mat-form-field class="form-element"
           [ngClass]="{ 'ng--valid': formControls.description.valid, 'ng--invalid': !formControls.description.valid  }">
+          <mat-label [translate]="'partnergroup.description'"></mat-label>
           <input matInput placeholder="{{'partnergroup.description' | translate }}" formControlName="description"
             maxlength="50" appFocusOnEnter tabIndex="2">
           <mat-error *ngIf="!formControls.description.valid"
@@ -36,6 +38,7 @@
         </mat-form-field>
 
         <mat-form-field class="form-element">
+          <mat-label [translate]="'partnergroup.ext1'"></mat-label>
           <input matInput placeholder="{{'partnergroup.ext1' | translate }}" formControlName="ext1" maxlength="7"
             appFocusOnEnter tabIndex="4">
         </mat-form-field>

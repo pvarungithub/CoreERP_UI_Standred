@@ -25,6 +25,7 @@
 
         <mat-form-field class="form-element"
           [ngClass]="{ 'ng--valid': formControls.description.valid, 'ng--invalid': !formControls.description.valid  }">
+          <mat-label [translate]="'purchasingperson.description'"></mat-label>
           <input matInput placeholder="{{'purchasingperson.description' | translate }}" formControlName="description"
             maxlength="30" appFocusOnEnter tabIndex="2">
           <mat-error *ngIf="!formControls.description.valid"

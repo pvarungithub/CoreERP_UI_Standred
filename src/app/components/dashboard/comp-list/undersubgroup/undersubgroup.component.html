@@ -46,6 +46,7 @@
 
         <mat-form-field class="form-element" [ngClass]="{ 'ng--valid': formControls.accountGroupId.valid &&formControls.accountGroupId.status != 'DISABLED',
            'ng--invalid': !formControls.accountGroupId.valid &&formControls.accountGroupId.status != 'DISABLED'  }">
+          <mat-label [translate]="'glsubgroups.accountGroupId'"></mat-label>
           <input matInput placeholder="{{'glsubgroups.accountGroupId' | translate }}" disabled
             formControlName="accountGroupId" appFocusOnEnter tabIndex="5">
           <mat-error *ngIf="!formControls.accountGroupId.valid  &&formControls.accountGroupId.status != 'DISABLED'"
@@ -54,6 +55,7 @@
 
         <mat-form-field class="form-element"
           [ngClass]="{ 'ng--valid': formControls.accountGroupName.valid, 'ng--invalid': !formControls.accountGroupName.valid  }">
+          <mat-label [translate]="'glsubgroups.accountGroupName'"></mat-label>
           <input matInput placeholder="{{'glsubgroups.accountGroupName' | translate }}" disabled
             formControlName="accountGroupName" appFocusOnEnter tabIndex="6">
           <mat-error *ngIf="!formControls.accountGroupName.valid"
@@ -61,6 +63,7 @@
         </mat-form-field>
 
         <mat-form-field class="form-element">
+          <mat-label [translate]="'glsubgroups.narration'"></mat-label>
           <input matInput placeholder="{{'glsubgroups.narration' | translate }}" formControlName="narration"
             appFocusOnEnter tabIndex="7">
         </mat-form-field>
