@@ -1,9 +1,3 @@
-<div class="form-element p-2 d-flex justify-content-end">
-  <button mat-raised-button class="button-color-bule text-white mx-1" (click)="back()" appFocusOnEnter tabIndex="22">
-    {{ 'COMMON.BACK' | translate }}
-  </button>
-</div>
-
 <div class="bg-white">
 
 
@@ -141,6 +135,9 @@
   <div class="form-element p-2 d-flex justify-content-end">
     <button mat-raised-button class="button-color-red text-white mx-1" (click)="reset()" appFocusOnEnter tabIndex="21">
       {{ 'COMMON.RESET' | translate }}
+    </button>
+    <button mat-raised-button class="button-color-bule text-white mx-1" (click)="back()" appFocusOnEnter tabIndex="23">
+      {{ 'COMMON.BACK' | translate }}
     </button>
     <button mat-raised-button type="submit" class="button-color-bule text-white mx-1" (click)="save()" appFocusOnEnter
       tabIndex="22">
