@@ -99,6 +99,7 @@ export class TasksComponent implements OnInit {
 
 
   formDataGroup() {
+    debugger
     this.modelFormData = this.formBuilder.group({
       wbselement: [null],
       taskNumber: [null],
@@ -234,7 +235,7 @@ export class TasksComponent implements OnInit {
             if (!this.commonService.checkNullOrUndefined(res.response)) {
               this.sendRoutingDynTableData = { type: 'edit', data: res.response['taskMastersDetail'] };
 
-              this.modelFormData.disable();
+              // this.modelFormData.disable();
 
             }
           }
