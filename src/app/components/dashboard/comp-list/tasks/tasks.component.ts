@@ -121,6 +121,9 @@ export class TasksComponent implements OnInit {
     if (!this.commonService.checkNullOrUndefined(this.formData.item)) {
       this.modelFormData.patchValue(this.formData.item);
     }
+    if (this.routeEdit) {
+      this.modelFormData.controls['taskNumber'].disable();
+    }
   }
 
   getEmployeeList() {
@@ -198,16 +201,40 @@ export class TasksComponent implements OnInit {
   save() {
     this.routingTableData = this.commonService.formatTableData(this.routingTableData);
     this.savetask();
-
+    if (this.routeEdit) {
+      this.updatetask();
+    } else {
+      this.savetask();
+    }
   }
 
   savetask() {
     const addrouting = String.Join('/', this.apiConfigService.addtask);
     const requestObj = {
       taskHdr: this.modelFormData.value, taskDetail: this.routingTableData,
-
     };
     this.apiService.apiPostRequest(addrouting, requestObj).subscribe(
+      response => {
+        const res = response;
+        this.routingTableData = [];
+        if (!this.commonService.checkNullOrUndefined(res) && res.status === StatusCodes.pass) {
+          if (!this.commonService.checkNullOrUndefined(res.response)) {
+            this.alertService.openSnackBar('Task created Successfully..', Static.Close, SnackBar.success);
+          }
+          this.reset();
+          this.spinner.hide();
+        }
+      });
+  }
+
+  updatetask() {
+    const obj = this.modelFormData.value;
+    obj['taskNumber'] = this.modelFormData.controls.taskNumber.value;
+    const addrouting = String.Join('/', this.apiConfigService.updateTasks);
+    const requestObj = {
+      taskHdr: obj, taskDetail: this.routingTableData,
+    };
+    this.apiService.apiUpdateRequest(addrouting, requestObj).subscribe(
       response => {
         const res = response;
         this.routingTableData = [];
