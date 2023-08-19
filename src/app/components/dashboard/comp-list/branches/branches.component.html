@@ -10,7 +10,7 @@
 
         <mat-form-field class="form-element" [ngClass]="{ 'ng--valid': formControls.branchCode.valid&& formControls.branchCode.status != 'DISABLED', 
            'ng--invalid': !formControls.branchCode.valid && formControls.branchCode.status != 'DISABLED' }">
-          <mat-label [translate]="'binscreation.branchCode'"></mat-label>
+          <mat-label [translate]="'branches.branchCode'"></mat-label>
           <input matInput formControlName="branchCode"
             maxlength="5" appFocusOnEnter tabIndex="1">
           <mat-error *ngIf="!formControls.branchCode.valid && formControls.branchCode.status != 'DISABLED'"
@@ -19,7 +19,7 @@
 
         <mat-form-field class="form-element"
           [ngClass]="{ 'ng--valid': formControls.branchName.valid, 'ng--invalid': !formControls.branchName.valid  }">
-          <mat-label [translate]="'binscreation.branchName'"></mat-label>
+          <mat-label [translate]="'branches.branchName'"></mat-label>
           <input matInput formControlName="branchName"
             maxlength="50" appFocusOnEnter tabIndex="2">
           <mat-error *ngIf="!formControls.branchName.valid"
@@ -37,7 +37,7 @@
         </mat-form-field>
 
         <mat-form-field class="form-element">
-          <mat-label [translate]="'binscreation.city'"></mat-label>
+          <mat-label [translate]="'branches.city'"></mat-label>
           <input matInput formControlName="city" maxlength="50"
             appFocusOnEnter tabIndex="4">
         </mat-form-field>
@@ -92,32 +92,32 @@
         </mat-form-field>
 
         <mat-form-field class="form-element">
-          <mat-label [translate]="'binscreation.location'"></mat-label>
+          <mat-label [translate]="'branches.location'"></mat-label>
           <input matInput formControlName="location" maxlength="50"
             appFocusOnEnter tabIndex="10">
         </mat-form-field>
 
         <mat-form-field class="form-element">
-          <mat-label [translate]="'binscreation.address'"></mat-label>
+          <mat-label [translate]="'branches.address'"></mat-label>
           <input matInput formControlName="address" maxlength="50"
             appFocusOnEnter tabIndex="11">
         </mat-form-field>
 
         <mat-form-field class="form-element">
-          <mat-label [translate]="'binscreation.address2'"></mat-label>
+          <mat-label [translate]="'branches.address2'"></mat-label>
           <input matInput formControlName="address2" maxlength="50"
             appFocusOnEnter tabIndex="12">
         </mat-form-field>
 
         <mat-form-field class="form-element">
-          <mat-label [translate]="'binscreation.pincode'"></mat-label>
+          <mat-label [translate]="'branches.pincode'"></mat-label>
           <input matInput formControlName="pincode" maxlength="6"
             appFocusOnEnter tabIndex="13">
         </mat-form-field>
 
         <mat-form-field
           [ngClass]="{ 'ng--valid': formControls.phone.valid, 'ng--invalid': !formControls.phone.valid  }">
-          <mat-label [translate]="'binscreation.phone'"></mat-label>
+          <mat-label [translate]="'branches.phone'"></mat-label>
           <input matInput formControlName="phone" maxlength="10"
             appFocusOnEnter tabIndex="14">
           <mat-error *ngIf="!formControls.phone.valid" [ngClass]="{ 'ng--invalid': !formControls.phone.valid  }">Phone
@@ -126,31 +126,31 @@
         </mat-form-field>
 
         <mat-form-field class="form-element">
-          <mat-label [translate]="'binscreation.mobile'"></mat-label>
+          <mat-label [translate]="'branches.mobile'"></mat-label>
           <input matInput formControlName="mobile" maxlength="10"
             appFocusOnEnter tabIndex="15">
         </mat-form-field>
 
         <mat-form-field class="form-element">
-          <mat-label [translate]="'binscreation.email'"></mat-label>
+          <mat-label [translate]="'branches.email'"></mat-label>
           <input matInput formControlName="email" maxlength="50"
             appFocusOnEnter tabIndex="16">
         </mat-form-field>
 
         <mat-form-field class="form-element">
-          <mat-label [translate]="'binscreation.panno'"></mat-label>
+          <mat-label [translate]="'branches.panno'"></mat-label>
           <input matInput formControlName="panno" maxlength="12"
             appFocusOnEnter tabIndex="17">
         </mat-form-field>
 
         <mat-form-field class="form-element">
-          <mat-label [translate]="'binscreation.gstno'"></mat-label>
+          <mat-label [translate]="'branches.gstno'"></mat-label>
           <input matInput formControlName="gstno" maxlength="12"
             appFocusOnEnter tabIndex="18">
         </mat-form-field>
 
         <mat-form-field class="form-element">
-          <mat-label [translate]="'binscreation.tanno'"></mat-label>
+          <mat-label [translate]="'branches.tanno'"></mat-label>
           <input matInput formControlName="tanno" maxlength="12"
             appFocusOnEnter tabIndex="19">
         </mat-form-field>
