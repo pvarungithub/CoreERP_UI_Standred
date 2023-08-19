@@ -200,7 +200,6 @@ export class TasksComponent implements OnInit {
 
   save() {
     this.routingTableData = this.commonService.formatTableData(this.routingTableData);
-    this.savetask();
     if (this.routeEdit) {
       this.updatetask();
     } else {
