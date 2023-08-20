@@ -28,7 +28,8 @@
         </mat-form-field>
 
         <mat-form-field class="form-element">
-          <input matInput placeholder="{{'wbdse.description' | translate }}" formControlName="description"
+          <mat-label [translate]="'wbdse.description'"></mat-label>
+          <input matInput formControlName="description"
             maxlength="50" appFocusOnEnter tabIndex="3">
         </mat-form-field>
 
@@ -43,39 +44,44 @@
         </mat-form-field>
 
         <mat-form-field class="form-element">
-          <input matInput placeholder="{{'wbdse.deliverables' | translate }}" formControlName="deliverables"
+          <mat-label [translate]="'wbdse.deliverables'"></mat-label>
+          <input matInput formControlName="deliverables"
             maxlength="50" appFocusOnEnter tabIndex="4">
         </mat-form-field>
         <mat-form-field class="form-element">
-          <input matInput placeholder="{{'wbdse.risk' | translate }}" formControlName="risk" maxlength="50"
+          <mat-label [translate]="'wbdse.risk'"></mat-label>
+          <input matInput formControlName="risk" maxlength="50"
             appFocusOnEnter tabIndex="5">
         </mat-form-field>
         <mat-form-field class="form-element">
-          <input matInput placeholder="{{'wbdse.mileStones' | translate }}" formControlName="mileStones" maxlength="50"
+          <mat-label [translate]="'wbdse.mileStones'"></mat-label>
+          <input matInput  formControlName="mileStones" maxlength="50"
             appFocusOnEnter tabIndex="6">
         </mat-form-field>
         <mat-form-field class="form-element">
-          <input matInput placeholder="{{'wbdse.additionalInformation' | translate }}"
-            formControlName="additionalInformation" maxlength="50" appFocusOnEnter tabIndex="7">
+          <mat-label [translate]="'wbdse.additionalInformation'"></mat-label>
+          <input matInput formControlName="additionalInformation" maxlength="50" appFocusOnEnter tabIndex="7">
         </mat-form-field>
         <mat-form-field class="form-element">
-          <input matInput placeholder="{{'wbdse.approvals' | translate }}" formControlName="approvals" maxlength="50"
+          <mat-label [translate]="'wbdse.approvals'"></mat-label>
+          <input matInput formControlName="approvals" maxlength="50"
             appFocusOnEnter tabIndex="8">
         </mat-form-field>
 
         <mat-form-field class="form-element">
-          <input matInput [matDatepicker]="picker1" [nonEditable]="picker1"
-            placeholder="{{'wbdse.startDate' | translate }}" formControlName="startDate" appFocusOnEnter tabIndex="9">
+          <mat-label [translate]="'wbdse.startDate'"></mat-label>
+          <input matInput [matDatepicker]="picker1" [nonEditable]="picker1" formControlName="startDate" appFocusOnEnter tabIndex="9">
           <mat-datepicker-toggle matSuffix [for]="picker1"></mat-datepicker-toggle>
           <mat-datepicker #picker1></mat-datepicker>
         </mat-form-field>
         <mat-form-field class="form-element">
-          <input matInput placeholder="{{'wbdse.duration' | translate }}" formControlName="duration" maxlength="50"
+          <mat-label [translate]="'wbdse.duration'"></mat-label>
+          <input matInput formControlName="duration" maxlength="50"
             appFocusOnEnter tabIndex="10">
         </mat-form-field>
         <mat-form-field class="form-element">
-          <input matInput [matDatepicker]="picker2" [nonEditable]="picker2"
-            placeholder="{{'wbdse.endDate' | translate }}" formControlName="endDate" appFocusOnEnter tabIndex="11">
+          <mat-label [translate]="'wbdse.endDate'"></mat-label>
+          <input matInput [matDatepicker]="picker2" [nonEditable]="picker2" formControlName="endDate" appFocusOnEnter tabIndex="11">
           <mat-datepicker-toggle matSuffix [for]="picker2"></mat-datepicker-toggle>
           <mat-datepicker #picker2></mat-datepicker>
         </mat-form-field>

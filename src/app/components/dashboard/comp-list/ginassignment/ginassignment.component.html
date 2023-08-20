@@ -57,7 +57,8 @@
         </mat-form-field>
 
         <mat-form-field>
-          <input matInput placeholder="{{'ginassignment.currentNumber' | translate }}" formControlName="currentNumber"
+          <mat-label [translate]="'ginassignment.currentNumber'"></mat-label>
+          <input matInput formControlName="currentNumber"
             appFocusOnEnter tabIndex="5">
         </mat-form-field>
 

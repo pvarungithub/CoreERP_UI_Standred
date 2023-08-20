@@ -21,7 +21,8 @@
 
             <mat-form-field class="form-element" [ngClass]="{ 'ng--valid': formControls.subAssetNumber.valid && formControls.subAssetNumber.status != 'DISABLED',
                'ng--invalid': !formControls.subAssetNumber.valid && formControls.subAssetNumber.status != 'DISABLED'}">
-              <input matInput placeholder="{{'subassets.subAssetNumber' | translate }}" formControlName="subAssetNumber"
+              <mat-label [translate]="'subassets.subAssetNumber'"></mat-label>
+              <input matInput formControlName="subAssetNumber"
                 maxlength="7" appFocusOnEnter tabIndex="2">
               <mat-error *ngIf="!formControls.subAssetNumber.valid && formControls.subAssetNumber.status != 'DISABLED'"
                 [ngClass]="{ 'ng--invalid': !formControls.subAssetNumber.valid  }"> SubAsset Number is required
@@ -30,7 +31,8 @@
 
             <mat-form-field class="form-element"
               [ngClass]="{ 'ng--valid': formControls.description.valid, 'ng--invalid': !formControls.description.valid  }">
-              <input matInput placeholder="{{'subassets.description' | translate }}" formControlName="description"
+              <mat-label [translate]="'subassets.description'"></mat-label>
+              <input matInput formControlName="description"
                 maxlength="50" appFocusOnEnter tabIndex="3">
               <mat-error *ngIf="!formControls.description.valid"
                 [ngClass]="{ 'ng--invalid': !formControls.description.valid  }"> Name is required</mat-error>
@@ -46,17 +48,20 @@
             </mat-form-field>
 
             <mat-form-field class="form-element">
-              <input matInput placeholder="{{'subassets.materialNo' | translate }}" formControlName="materialNo"
+              <mat-label [translate]="'subassets.materialNo'"></mat-label>
+              <input matInput formControlName="materialNo"
                 maxlength="50" appFocusOnEnter tabIndex="5">
             </mat-form-field>
 
             <mat-form-field class="form-element">
-              <input matInput placeholder="{{'subassets.quantity' | translate }}" formControlName="quantity"
+              <mat-label [translate]="'subassets.quantity'"></mat-label>
+              <input matInput formControlName="quantity"
                 maxlength="50" appFocusOnEnter tabIndex="6">
             </mat-form-field>
 
             <mat-form-field class="form-element">
-              <input matInput placeholder="{{'subassets.serialNumber' | translate }}" formControlName="serialNumber"
+              <mat-label [translate]="'subassets.serialNumber'"></mat-label>
+              <input matInput formControlName="serialNumber"
                 maxlength="50" appFocusOnEnter tabIndex="7">
             </mat-form-field>
 
@@ -115,29 +120,34 @@
             </mat-form-field>
 
             <mat-form-field class="form-element">
-              <input matInput placeholder="{{'subassets.room' | translate }}" formControlName="room" maxlength="50"
+              <mat-label [translate]="'subassets.room'"></mat-label>
+              <input matInput formControlName="room" maxlength="50"
                 appFocusOnEnter tabIndex="14">
             </mat-form-field>
 
             <mat-form-field class="form-element">
-              <input matInput placeholder="{{'subassets.supplier' | translate }}" formControlName="supplier"
+              <mat-label [translate]="'subassets.supplier'"></mat-label>
+              <input matInput formControlName="supplier"
                 maxlength="50" appFocusOnEnter tabIndex="15">
             </mat-form-field>
 
             <mat-form-field>
-              <input matInput [matDatepicker]="picker3" placeholder="{{'subassets.acquisitionDate' | translate }}"
+              <mat-label [translate]="'subassets.acquisitionDate'"></mat-label>
+              <input matInput [matDatepicker]="picker3" 
                 formControlName="acquisitionDate" appFocusOnEnter tabIndex="16">
               <mat-datepicker-toggle matSuffix [for]="picker3"></mat-datepicker-toggle>
               <mat-datepicker #picker3></mat-datepicker>
             </mat-form-field>
 
             <mat-form-field class="form-element">
-              <input matInput placeholder="{{'subassets.usefulLifeInYears' | translate }}"
+              <mat-label [translate]="'subassets.usefulLifeInYears'"></mat-label>
+              <input matInput 
                 formControlName="usefulLifeInYears" maxlength="5" appFocusOnEnter tabIndex="17">
             </mat-form-field>
 
             <mat-form-field class="form-element">
-              <input matInput placeholder="{{'subassets.usefullLifeInDays' | translate }}"
+              <mat-label [translate]="'subassets.usefullLifeInDays'"></mat-label>
+              <input matInput 
                 formControlName="usefullLifeInDays" maxlength="6" appFocusOnEnter tabIndex="18">
             </mat-form-field>
 
@@ -160,7 +170,8 @@
             </mat-form-field>
 
             <mat-form-field>
-              <input matInput [matDatepicker]="picker4" placeholder="{{'subassets.depreciationStartDate' | translate }}"
+              <mat-label [translate]="'subassets.depreciationStartDate'"></mat-label>
+              <input matInput [matDatepicker]="picker4" 
                 formControlName="depreciationStartDate" appFocusOnEnter tabIndex="21">
               <mat-datepicker-toggle matSuffix [for]="picker4"></mat-datepicker-toggle>
               <mat-datepicker #picker4></mat-datepicker>

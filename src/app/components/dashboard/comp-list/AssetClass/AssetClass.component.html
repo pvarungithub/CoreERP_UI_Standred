@@ -59,13 +59,13 @@
 
         <mat-form-field class="form-element" [ngClass]="{ 'ng--valid': formControls.description.valid }">
           <mat-label [translate]="'AssetClass.assetLowValue'"></mat-label>
-          <input matInput placeholder="{{'AssetClass.assetLowValue' | translate }}" formControlName="assetLowValue"
+          <input matInput formControlName="assetLowValue"
             maxlength="30" appFocusOnEnter tabIndex="5">
         </mat-form-field>
 
         <mat-form-field class="form-element">
           <mat-label [translate]="'AssetClass.lastNumberRange'"></mat-label>
-          <input matInput placeholder="{{'AssetClass.lastNumberRange' | translate }}" formControlName="lastNumberRange"
+          <input matInput formControlName="lastNumberRange"
             maxlength="30" appFocusOnEnter tabIndex="6">
         </mat-form-field>
 

@@ -58,21 +58,21 @@
                 </mat-form-field>
 
                 <mat-form-field class="form-element">
-                    <input matInput placeholder="{{'purchasesaleasset.voucherNumber' | translate }}"
-                        formControlName="voucherNumber" appFocusOnEnter tabIndex="2">
+                    <mat-label [translate]="'purchasesaleasset.voucherNumber'"></mat-label>
+                    <input matInput formControlName="voucherNumber" appFocusOnEnter tabIndex="2">
                 </mat-form-field>
 
                 <mat-form-field class="form-element">
-                    <input matInput [matDatepicker]="picker1" [nonEditable]="picker1"
-                        placeholder="{{'purchasesaleasset.voucherDate' | translate }}" formControlName="voucherDate"
+                    <mat-label [translate]="'purchasesaleasset.voucherDate'"></mat-label>
+                    <input matInput [matDatepicker]="picker1" [nonEditable]="picker1" formControlName="voucherDate"
                         appFocusOnEnter tabIndex="3">
                     <mat-datepicker-toggle matSuffix [for]="picker1"></mat-datepicker-toggle>
                     <mat-datepicker #picker1></mat-datepicker>
                 </mat-form-field>
 
                 <mat-form-field class="form-element">
-                    <input matInput [matDatepicker]="picker2" [nonEditable]="picker2"
-                        placeholder="{{'purchasesaleasset.postingDate' | translate }}" formControlName="postingDate"
+                    <mat-label [translate]="'purchasesaleasset.postingDate'"></mat-label>
+                    <input matInput [matDatepicker]="picker2" [nonEditable]="picker2" formControlName="postingDate"
                         appFocusOnEnter tabIndex="3">
                     <mat-datepicker-toggle matSuffix [for]="picker2"></mat-datepicker-toggle>
                     <mat-datepicker #picker2></mat-datepicker>
@@ -99,39 +99,41 @@
                 </mat-form-field>
 
                 <mat-form-field class="form-element">
-                    <input matInput placeholder="{{'purchasesaleasset.referenceNumber' | translate }}"
-                        formControlName="referenceNumber" appFocusOnEnter tabIndex="2">
+                    <mat-label [translate]="'purchasesaleasset.referenceNumber'"></mat-label>
+                    <input matInput formControlName="referenceNumber" appFocusOnEnter tabIndex="2">
                 </mat-form-field>
 
                 <mat-form-field class="form-element">
-                    <input matInput [matDatepicker]="picker4" [nonEditable]="picker4"
-                        placeholder="{{'purchasesaleasset.referenceDate' | translate }}" formControlName="referenceDate"
+                    <mat-label [translate]="'purchasesaleasset.referenceDate'"></mat-label>
+                    <input matInput [matDatepicker]="picker4" [nonEditable]="picker4" formControlName="referenceDate"
                         appFocusOnEnter tabIndex="4">
                     <mat-datepicker-toggle matSuffix [for]="picker4"></mat-datepicker-toggle>
                     <mat-datepicker #picker4></mat-datepicker>
                 </mat-form-field>
 
                 <mat-form-field class="form-element">
-                    <input matInput placeholder="{{'purchasesaleasset.partyInvoiceNo' | translate }}"
-                        formControlName="partyInvoiceNo" appFocusOnEnter tabIndex="2">
+                    <mat-label [translate]="'purchasesaleasset.partyInvoiceNo'"></mat-label>
+                    <input matInput formControlName="partyInvoiceNo" appFocusOnEnter tabIndex="2">
                 </mat-form-field>
 
                 <mat-form-field class="form-element">
+                    <mat-label [translate]="'purchasesaleasset.partyInvoiceDate'"></mat-label>
                     <input matInput [matDatepicker]="partyInvoiceDatepicker4" [nonEditable]="partyInvoiceDatepicker4"
-                        placeholder="{{'purchasesaleasset.partyInvoiceDate' | translate }}"
-                        formControlName="partyInvoiceDate" appFocusOnEnter tabIndex="4">
+                       formControlName="partyInvoiceDate" appFocusOnEnter tabIndex="4">
                     <mat-datepicker-toggle matSuffix [for]="partyInvoiceDatepicker4"></mat-datepicker-toggle>
                     <mat-datepicker #partyInvoiceDatepicker4></mat-datepicker>
                 </mat-form-field>
 
                 <mat-form-field class="form-element">
-                    <input matInput placeholder="{{'purchasesaleasset.grnno' | translate }}" formControlName="grnno"
+                    <mat-label [translate]="'purchasesaleasset.grnno'"></mat-label>
+                    <input matInput formControlName="grnno"
                         appFocusOnEnter tabIndex="2">
                 </mat-form-field>
 
                 <mat-form-field class="form-element">
+                    <mat-label [translate]="'purchasesaleasset.grndate'"></mat-label>
                     <input matInput [matDatepicker]="gRNDatepicker4" [nonEditable]="gRNDatepicker4"
-                        placeholder="{{'purchasesaleasset.grndate' | translate }}" formControlName="grndate"
+                         formControlName="grndate"
                         appFocusOnEnter tabIndex="4">
                     <mat-datepicker-toggle matSuffix [for]="gRNDatepicker4"></mat-datepicker-toggle>
                     <mat-datepicker #gRNDatepicker4></mat-datepicker>
@@ -149,8 +151,8 @@
 
 
                 <mat-form-field class="form-element">
-                    <input matInput placeholder="{{'purchasesaleasset.narration' | translate }}"
-                        formControlName="narration" appFocusOnEnter tabIndex="2">
+                    <mat-label [translate]="'purchasesaleasset.narration'"></mat-label>
+                    <input matInput formControlName="narration" appFocusOnEnter tabIndex="2">
                 </mat-form-field>
             </div>
         </form>

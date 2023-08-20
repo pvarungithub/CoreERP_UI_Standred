@@ -40,20 +40,23 @@
         </mat-form-field>
 
         <mat-form-field class="form-element">
-          <input matInput placeholder="{{'process.material' | translate }}" formControlName="material" maxlength="50"
+          <mat-label [translate]="'process.material'"></mat-label>
+          <input matInput formControlName="material" maxlength="50"
             appFocusOnEnter tabIndex="4" readonly=true>
         </mat-form-field>
 
         <mat-form-field class="form-element" [ngClass]="{ 'ng--valid': formControls.processKey.valid && formControls.processKey.status != 'DISABLED',
            'ng--invalid': !formControls.processKey.valid  && formControls.processKey.status != 'DISABLED' }">
-          <input matInput placeholder="{{'process.processKey' | translate }}" formControlName="processKey" maxlength="5"
+          <mat-label [translate]="'process.processKey'"></mat-label>
+          <input matInput formControlName="processKey" maxlength="5"
             appFocusOnEnter tabIndex="5">
           <mat-error *ngIf="!formControls.processKey.valid  && formControls.processKey.status != 'DISABLED'"
             [ngClass]="{ 'ng--invalid': !formControls.processKey.valid  }">Process Key is required</mat-error>
         </mat-form-field>
 
         <mat-form-field class="form-element">
-          <input matInput placeholder="{{'process.nextProcess' | translate }}" formControlName="nextProcess"
+          <mat-label [translate]="'process.nextProcess'"></mat-label>
+          <input matInput formControlName="nextProcess"
             maxlength="50" appFocusOnEnter tabIndex="7">
         </mat-form-field>
 
@@ -78,12 +81,14 @@
         </mat-form-field>
 
         <mat-form-field class="form-element">
-          <input matInput placeholder="{{'process.normalLossIn' | translate }}" formControlName="normalLossIn"
+          <mat-label [translate]="'process.normalLossIn'"></mat-label>
+          <input matInput formControlName="normalLossIn"
             maxlength="7" appFocusOnEnter tabIndex="10">
         </mat-form-field>
 
         <mat-form-field class="form-element">
-          <input matInput placeholder="{{'process.abnormalLossIn' | translate }}" formControlName="abnormalLossIn"
+          <mat-label [translate]="'process.abnormalLossIn'"></mat-label>
+          <input matInput formControlName="abnormalLossIn"
             maxlength="7" appFocusOnEnter tabIndex="11">
         </mat-form-field>
 

@@ -10,7 +10,7 @@
         <mat-form-field class="form-element" [ngClass]="{ 'ng--valid': formControls.taxRateCode.valid &&formControls.taxRateCode.status != 'DISABLED',
            'ng--invalid': !formControls.taxRateCode.valid &&formControls.taxRateCode.status != 'DISABLED'}">
           <mat-label [translate]="'taxrates.taxRateCode'"></mat-label>
-          <input matInput placeholder="{{'taxrates.taxRateCode' | translate }}" formControlName="taxRateCode"
+          <input matInput  formControlName="taxRateCode"
             maxlength="5" appFocusOnEnter tabIndex="1">
           <mat-error *ngIf="!formControls.taxRateCode.valid  &&formControls.taxRateCode.status != 'DISABLED'"
             [ngClass]="{ 'ng--invalid': !formControls.taxRateCode.valid  }">Code is required</mat-error>
@@ -19,7 +19,7 @@
         <mat-form-field class="form-element"
           [ngClass]="{ 'ng--valid': formControls.description.valid, 'ng--invalid': !formControls.description.valid  }">
           <mat-label [translate]="'taxrates.description'"></mat-label>
-          <input matInput placeholder="{{'taxrates.description' | translate }}" formControlName="description"
+          <input matInput  formControlName="description"
             maxlength="50" appFocusOnEnter tabIndex="2">
           <mat-error *ngIf="!formControls.description.valid"
             [ngClass]="{ 'ng--invalid': !formControls.description.valid  }">Name is required</mat-error>
@@ -37,7 +37,7 @@
 
         <mat-form-field>
           <mat-label>Tax Transaction</mat-label>
-          <mat-select placeholder="{{'taxrates.taxTransaction' | translate }}" formControlName="taxTransaction"
+          <mat-select   formControlName="taxTransaction"
             appFocusOnEnter tabIndex="4">
             <mat-option>None</mat-option>
             <mat-option *ngFor="let taxtrnsn of Taxtransaction" [value]="taxtrnsn.id">
@@ -58,38 +58,37 @@
 
         <mat-form-field class="form-element">
           <mat-label [translate]="'taxrates.sgst'"></mat-label>
-          <input matInput placeholder="{{'taxrates.sgst' | translate }}" formControlName="sgst" maxlength="3"
+          <input matInput formControlName="sgst" maxlength="3"
             appFocusOnEnter tabIndex="6">
         </mat-form-field>
 
         <mat-form-field class="form-element">
           <mat-label [translate]="'taxrates.cgst'"></mat-label>
-          <input matInput placeholder="{{'taxrates.cgst' | translate }}" formControlName="cgst" maxlength="3"
+          <input matInput formControlName="cgst" maxlength="3"
             appFocusOnEnter tabIndex="7">
         </mat-form-field>
 
         <mat-form-field class="form-element">
           <mat-label [translate]="'taxrates.igst'"></mat-label>
-          <input matInput placeholder="{{'taxrates.igst' | translate }}" formControlName="igst" maxlength="3"
+          <input matInput formControlName="igst" maxlength="3"
             appFocusOnEnter tabIndex="8">
         </mat-form-field>
 
         <mat-form-field class="form-element">
           <mat-label [translate]="'taxrates.ugst'"></mat-label>
-          <input matInput placeholder="{{'taxrates.ugst' | translate }}" formControlName="ugst" maxlength="3"
+          <input matInput  formControlName="ugst" maxlength="3"
             appFocusOnEnter tabIndex="9">
         </mat-form-field>
 
         <mat-form-field class="form-element">
           <mat-label [translate]="'taxrates.compositeCess'"></mat-label>
-          <input matInput placeholder="{{'taxrates.compositeCess' | translate }}" formControlName="compositeCess"
+          <input matInput  formControlName="compositeCess"
             maxlength="3" appFocusOnEnter tabIndex="10">
         </mat-form-field>
 
         <mat-form-field class="form-element">
           <mat-label [translate]="'taxrates.effectiveFrom'"></mat-label>
-          <input matInput [matDatepicker]="picker1" [nonEditable]="picker1"
-            placeholder="{{'taxrates.effectiveFrom' | translate }}" formControlName="effectiveFrom" appFocusOnEnter
+          <input matInput [matDatepicker]="picker1" [nonEditable]="picker1" formControlName="effectiveFrom" appFocusOnEnter
             tabIndex="3">
           <mat-datepicker-toggle matSuffix [for]="picker1"></mat-datepicker-toggle>
           <mat-datepicker #picker1></mat-datepicker>

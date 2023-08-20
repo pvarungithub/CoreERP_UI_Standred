@@ -11,7 +11,8 @@
 
         <mat-form-field class="form-element" [ngClass]="{ 'ng--valid': formControls.groupKey.valid && formControls.groupKey.status != 'DISABLED',
            'ng--invalid': !formControls.groupKey.valid && formControls.groupKey.status != 'DISABLED' }">
-          <input matInput placeholder="{{'materialgroups.groupKey' | translate }}" formControlName="groupKey"
+          <mat-label [translate]="'materialgroups.groupKey'"></mat-label>
+          <input matInput formControlName="groupKey"
             maxlength="4" appFocusOnEnter tabIndex="1">
           <mat-error *ngIf="!formControls.groupKey.valid && formControls.groupKey.status != 'DISABLED'"
             [ngClass]="{ 'ng--invalid': !formControls.groupKey.valid  }">
@@ -20,7 +21,8 @@
 
         <mat-form-field class="form-element"
           [ngClass]="{ 'ng--valid': formControls.description.valid, 'ng--invalid': !formControls.description.valid  }">
-          <input matInput placeholder="{{'materialgroups.description' | translate }}" formControlName="description"
+          <mat-label [translate]="'materialgroups.description'"></mat-label>
+          <input matInput formControlName="description"
             maxlength="30" appFocusOnEnter tabIndex="2">
           <mat-error *ngIf="!formControls.description.valid"
             [ngClass]="{ 'ng--invalid': !formControls.description.valid  }"> Description is required</mat-error>

@@ -37,12 +37,14 @@
         </mat-form-field>
 
         <mat-form-field class="form-element">
-          <input matInput placeholder="{{'bom.bomnumber' | translate }}" formControlName="bomnumber" appFocusOnEnter
+          <mat-label [translate]="'bom.bomnumber'"></mat-label>
+          <input matInput formControlName="bomnumber" appFocusOnEnter
             tabIndex="4">
         </mat-form-field>
 
         <mat-form-field class="form-element">
-          <input matInput placeholder="{{'bom.description' | translate }}" formControlName="description" appFocusOnEnter
+          <mat-label [translate]="'bom.description'"></mat-label>
+          <input matInput formControlName="description" appFocusOnEnter
             tabIndex="5">
         </mat-form-field>
 
@@ -57,7 +59,8 @@
         </mat-form-field>
 
         <mat-form-field class="form-element">
-          <input matInput placeholder="{{'bom.material' | translate }}" formControlName="material" appFocusOnEnter
+          <mat-label [translate]="'bom.material'"></mat-label>
+          <input matInput formControlName="material" appFocusOnEnter
             tabIndex="7">
         </mat-form-field>
 

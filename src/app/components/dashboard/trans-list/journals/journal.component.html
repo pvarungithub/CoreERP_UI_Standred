@@ -38,21 +38,21 @@
                 </mat-form-field>
 
                 <mat-form-field class="form-element">
-                    <input matInput placeholder="{{'journals.voucherNumber' | translate }}"
-                        formControlName="voucherNumber" appFocusOnEnter tabIndex="2">
+                    <mat-label [translate]="'journals.voucherNumber'"></mat-label>
+                    <input matInput formControlName="voucherNumber" appFocusOnEnter tabIndex="2">
                 </mat-form-field>
 
                 <mat-form-field class="form-element">
-                    <input matInput [matDatepicker]="picker1" [nonEditable]="picker1"
-                        placeholder="{{'journals.voucherDate' | translate }}" formControlName="voucherDate"
+                    <mat-label [translate]="'journals.voucherDate'"></mat-label>
+                    <input matInput [matDatepicker]="picker1" [nonEditable]="picker1" formControlName="voucherDate"
                         appFocusOnEnter tabIndex="3">
                     <mat-datepicker-toggle matSuffix [for]="picker1"></mat-datepicker-toggle>
                     <mat-datepicker #picker1></mat-datepicker>
                 </mat-form-field>
 
                 <mat-form-field class="form-element">
-                    <input matInput [matDatepicker]="picker2" [nonEditable]="picker2"
-                        placeholder="{{'journals.postingDate' | translate }}" formControlName="postingDate"
+                    <mat-label [translate]="'journals.postingDate'"></mat-label>
+                    <input matInput [matDatepicker]="picker2" [nonEditable]="picker2" formControlName="postingDate"
                         appFocusOnEnter tabIndex="3">
                     <mat-datepicker-toggle matSuffix [for]="picker2"></mat-datepicker-toggle>
                     <mat-datepicker #picker2></mat-datepicker>
@@ -61,13 +61,14 @@
 
 
                 <mat-form-field class="form-element">
-                    <input matInput placeholder="{{'journals.referenceNo' | translate }}" formControlName="referenceNo"
+                    <mat-label [translate]="'journals.referenceNo'"></mat-label>
+                    <input matInput  formControlName="referenceNo"
                         appFocusOnEnter tabIndex="2">
                 </mat-form-field>
 
                 <mat-form-field class="form-element">
-                    <input matInput [matDatepicker]="picker4" [nonEditable]="picker4"
-                        placeholder="{{'journals.referenceDate' | translate }}" formControlName="referenceDate"
+                    <mat-label [translate]="'journals.referenceDate'"></mat-label>
+                    <input matInput [matDatepicker]="picker4" [nonEditable]="picker4" formControlName="referenceDate"
                         appFocusOnEnter tabIndex="4">
                     <mat-datepicker-toggle matSuffix [for]="picker4"></mat-datepicker-toggle>
                     <mat-datepicker #picker4></mat-datepicker>
@@ -76,7 +77,8 @@
 
 
                 <mat-form-field class="form-element">
-                    <input matInput placeholder="{{'journals.narration' | translate }}" formControlName="narration"
+                    <mat-label [translate]="'journals.narration'"></mat-label>
+                    <input matInput  formControlName="narration"
                         appFocusOnEnter tabIndex="2">
                 </mat-form-field>
             </div>

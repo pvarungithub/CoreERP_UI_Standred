@@ -11,7 +11,8 @@
 
         <mat-form-field class="form-element" [ngClass]="{ 'ng--valid': formControls.seriesKey.valid && formControls.seriesKey.status != 'DISABLED', 
           'ng--invalid': !formControls.seriesKey.valid && formControls.seriesKey.status != 'DISABLED'}">
-          <input matInput placeholder="{{'lotseries.seriesKey' | translate }}" formControlName="seriesKey" maxlength="4"
+          <mat-label [translate]="'lotseries.seriesKey'"></mat-label>
+          <input matInput formControlName="seriesKey" maxlength="4"
             appFocusOnEnter tabIndex="1">
           <mat-error *ngIf="!formControls.seriesKey.valid && formControls.seriesKey.status != 'DISABLED'"
             [ngClass]="{ 'ng--invalid': !formControls.seriesKey.valid  }">
@@ -20,28 +21,33 @@
 
         <mat-form-field class="form-element"
           [ngClass]="{ 'ng--valid': formControls.description.valid, 'ng--invalid': !formControls.description.valid  }">
-          <input matInput placeholder="{{'lotseries.description' | translate }}" formControlName="description"
+          <mat-label [translate]="'lotseries.description'"></mat-label>
+          <input matInput formControlName="description"
             maxlength="30" appFocusOnEnter tabIndex="2">
           <mat-error *ngIf="!formControls.description.valid"
             [ngClass]="{ 'ng--invalid': !formControls.description.valid  }"> Description is required</mat-error>
         </mat-form-field>
 
         <mat-form-field class="form-element">
-          <input matInput placeholder="{{'lotseries.fromInterval' | translate }}" formControlName="fromInterval"
+          <mat-label [translate]="'lotseries.fromInterval'"></mat-label>
+          <input matInput formControlName="fromInterval"
             (change)="validationcode()" maxlength="30" appFocusOnEnter tabIndex="3">
         </mat-form-field>
         <mat-form-field class="form-element">
-          <input matInput placeholder="{{'lotseries.toInterval' | translate }}" formControlName="toInterval"
+          <mat-label [translate]="'lotseries.toInterval'"></mat-label>
+          <input matInput formControlName="toInterval"
             (change)="validationcode()" maxlength="30" appFocusOnEnter tabIndex="4">
         </mat-form-field>
 
         <mat-form-field class="form-element">
-          <input matInput placeholder="{{'lotseries.currentLot' | translate }}" formControlName="currentLot"
+          <mat-label [translate]="'lotseries.currentLot'"></mat-label>
+          <input matInput formControlName="currentLot"
             maxlength="30" appFocusOnEnter tabIndex="5">
         </mat-form-field>
 
         <mat-form-field class="form-element">
-          <input matInput placeholder="{{'lotseries.prefix' | translate }}" formControlName="prefix" maxlength="30"
+          <mat-label [translate]="'lotseries.prefix'"></mat-label>
+          <input matInput formControlName="prefix" maxlength="30"
             appFocusOnEnter tabIndex="6">
         </mat-form-field>
 

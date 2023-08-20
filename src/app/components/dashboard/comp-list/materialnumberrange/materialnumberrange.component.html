@@ -11,7 +11,8 @@
 
         <mat-form-field class="form-element" [ngClass]="{ 'ng--valid': formControls.code.valid&& formControls.code.status != 'DISABLED',
            'ng--invalid': !formControls.code.valid&& formControls.code.status != 'DISABLED'  }">
-          <input matInput placeholder="{{'materialnumberrange.code' | translate }}" formControlName="code" maxlength="4"
+          <mat-label [translate]="'materialnumberrange.code'"></mat-label>
+          <input matInput formControlName="code" maxlength="4"
             appFocusOnEnter tabIndex="1">
           <mat-error *ngIf="!formControls.code.valid && formControls.code.status != 'DISABLED'"
             [ngClass]="{ 'ng--invalid': !formControls.code.valid  }"> Code is
@@ -19,22 +20,26 @@
         </mat-form-field>
 
         <mat-form-field class="form-element">
-          <input matInput placeholder="{{'materialnumberrange.fromInterval' | translate }}"
+          <mat-label [translate]="'materialnumberrange.fromInterval'"></mat-label>
+          <input matInput
             formControlName="fromInterval" maxlength="30" (change)="validationcode()" appFocusOnEnter tabIndex="3">
         </mat-form-field>
         <mat-form-field class="form-element">
-          <input matInput placeholder="{{'materialnumberrange.toInterval' | translate }}" formControlName="toInterval"
+          <mat-label [translate]="'materialnumberrange.toInterval'"></mat-label>
+          <input matInput formControlName="toInterval"
             maxlength="30" (change)="validationcode()" appFocusOnEnter tabIndex="4">
         </mat-form-field>
 
         <mat-form-field class="form-element">
-          <input matInput placeholder="{{'materialnumberrange.currentNumber' | translate }}"
+          <mat-label [translate]="'materialnumberrange.currentNumber'"></mat-label>
+          <input matInput
             formControlName="currentNumber" maxlength="30" appFocusOnEnter tabIndex="5">
         </mat-form-field>
 
 
         <mat-form-field class="form-element">
-          <input matInput placeholder="{{'materialnumberrange.prefix' | translate }}" formControlName="prefix"
+          <mat-label [translate]="'materialnumberrange.prefix'"></mat-label>
+          <input matInput formControlName="prefix"
             maxlength="30" appFocusOnEnter tabIndex="7">
         </mat-form-field>
 

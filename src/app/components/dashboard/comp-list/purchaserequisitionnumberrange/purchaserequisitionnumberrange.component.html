@@ -34,24 +34,29 @@
         </mat-form-field>
 
         <mat-form-field class="form-element">
-          <input matInput placeholder="{{'purchaserequisitionnumberrange.code' | translate }}" formControlName="code"
+          <mat-label [translate]="'purchaserequisitionnumberrange.code'"></mat-label>
+          <input matInput formControlName="code"
             maxlength="30" appFocusOnEnter tabIndex="3">
         </mat-form-field>
         <mat-form-field class="form-element">
-          <input matInput placeholder="{{'purchaserequisitionnumberrange.fromInterval' | translate }}"
+          <mat-label [translate]="'purchaserequisitionnumberrange.fromInterval'"></mat-label>
+          <input matInput
             formControlName="fromInterval" maxlength="30" appFocusOnEnter tabIndex="4">
         </mat-form-field>
         <mat-form-field class="form-element">
-          <input matInput placeholder="{{'purchaserequisitionnumberrange.toInterval' | translate }}"
+          <mat-label [translate]="'purchaserequisitionnumberrange.toInterval'"></mat-label>
+          <input matInput
             formControlName="toInterval" maxlength="30" appFocusOnEnter tabIndex="5">
         </mat-form-field>
 
         <mat-form-field class="form-element">
-          <input matInput placeholder="{{'purchaserequisitionnumberrange.currentNumber' | translate }}"
+          <mat-label [translate]="'purchaserequisitionnumberrange.currentNumber'"></mat-label>
+          <input matInput
             formControlName="currentNumber" maxlength="30" appFocusOnEnter tabIndex="6">
         </mat-form-field>
         <mat-form-field class="form-element">
-          <input matInput placeholder="{{'purchaserequisitionnumberrange.prefix' | translate }}"
+          <mat-label [translate]="'purchaserequisitionnumberrange.prefix'"></mat-label>
+          <input matInput
             formControlName="prefix" maxlength="30" appFocusOnEnter tabIndex="7">
         </mat-form-field>
 

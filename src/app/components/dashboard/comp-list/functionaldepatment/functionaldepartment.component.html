@@ -10,7 +10,7 @@
         <mat-form-field class="form-element" [ngClass]="{ 'ng--valid': formControls.code.valid && formControls.code.status != 'DISABLED',
            'ng--invalid': !formControls.code.valid && formControls.code.status != 'DISABLED' }">
           <mat-label [translate]="'functionaldepatment.code'"></mat-label>
-          <input matInput placeholder="{{'functionaldepatment.code' | translate }}" formControlName="code" maxlength="5"
+          <input matInput formControlName="code" maxlength="5"
             appFocusOnEnter tabIndex="1">
           <mat-error *ngIf="!formControls.code.valid  && formControls.code.status != 'DISABLED'"
             [ngClass]="{ 'ng--invalid': !formControls.code.valid  }">Functional
@@ -20,7 +20,7 @@
         <mat-form-field class="form-element"
           [ngClass]="{ 'ng--valid': formControls.description.valid, 'ng--invalid': !formControls.description.valid  }">
           <mat-label [translate]="'functionaldepatment.description'"></mat-label>
-          <input matInput placeholder="{{'functionaldepatment.description' | translate }}" formControlName="description"
+          <input matInput formControlName="description"
             maxlength="50" appFocusOnEnter tabIndex="2">
           <mat-error *ngIf="!formControls.description.valid"
             [ngClass]="{ 'ng--invalid': !formControls.description.valid  }">Functional Department Name is required

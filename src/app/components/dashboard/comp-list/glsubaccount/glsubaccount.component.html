@@ -21,7 +21,8 @@
 
         <mat-form-field class="form-element" [ngClass]="{ 'ng--valid': formControls.glsubCode.valid&&formControls.glsubCode.status != 'DISABLED',
            'ng--invalid': !formControls.glsubCode.valid &&formControls.glsubCode.status != 'DISABLED' }">
-          <input matInput placeholder="{{'glsubaccount.glsubCode' | translate }}" formControlName="glsubCode"
+          <mat-label [translate]="'glsubaccount.glsubCode'"></mat-label>
+          <input matInput formControlName="glsubCode"
             maxlength="4" appFocusOnEnter tabIndex="1">
           <mat-error *ngIf="!formControls.glsubCode.valid &&formControls.glsubCode.status != 'DISABLED'"
             [ngClass]="{ 'ng--invalid': !formControls.glsubCode.valid  }">
@@ -30,7 +31,8 @@
 
         <mat-form-field class="form-element"
           [ngClass]="{ 'ng--valid': formControls.glsubName.valid, 'ng--invalid': !formControls.glsubName.valid  }">
-          <input matInput placeholder="{{'glsubaccount.glsubName' | translate }}" formControlName="glsubName"
+          <mat-label [translate]="'glsubaccount.glsubName'"></mat-label>
+          <input matInput formControlName="glsubName"
             maxlength="30" appFocusOnEnter tabIndex="2">
           <mat-error *ngIf="!formControls.glsubName.valid"
             [ngClass]="{ 'ng--invalid': !formControls.glsubName.valid  }">

@@ -11,7 +11,8 @@
 
         <mat-form-field class="form-element" [ngClass]="{ 'ng--valid': formControls.ginseries.valid&& formControls.ginseries.status != 'DISABLED',
           'ng--invalid': !formControls.ginseries.valid && formControls.ginseries.status != 'DISABLED'}">
-          <input matInput placeholder="{{'ginnumberseries.ginseries' | translate }}" formControlName="ginseries"
+          <mat-label [translate]="'ginnumberseries.ginseries'"></mat-label>
+          <input matInput formControlName="ginseries"
             maxlength="4" appFocusOnEnter tabIndex="1">
           <mat-error *ngIf="!formControls.ginseries.valid && formControls.ginseries.status != 'DISABLED'"
             [ngClass]="{ 'ng--invalid': !formControls.ginseries.valid  }">
@@ -20,28 +21,33 @@
 
         <mat-form-field class="form-element"
           [ngClass]="{ 'ng--valid': formControls.description.valid, 'ng--invalid': !formControls.description.valid  }">
-          <input matInput placeholder="{{'ginnumberseries.description' | translate }}" formControlName="description"
+          <mat-label [translate]="'ginnumberseries.description'"></mat-label>
+          <input matInput formControlName="description"
             maxlength="30" appFocusOnEnter tabIndex="2">
           <mat-error *ngIf="!formControls.description.valid"
             [ngClass]="{ 'ng--invalid': !formControls.description.valid  }"> Description is required</mat-error>
         </mat-form-field>
 
         <mat-form-field class="form-element">
-          <input matInput placeholder="{{'ginnumberseries.fromInterval' | translate }}" formControlName="fromInterval"
+          <mat-label [translate]="'ginnumberseries.fromInterval'"></mat-label>
+          <input matInput formControlName="fromInterval"
             (change)="validationcode()" maxlength="30" appFocusOnEnter tabIndex="3">
         </mat-form-field>
         <mat-form-field class="form-element">
-          <input matInput placeholder="{{'ginnumberseries.tointerval' | translate }}" formControlName="tointerval"
+          <mat-label [translate]="'ginnumberseries.tointerval'"></mat-label>
+          <input matInput formControlName="tointerval"
             maxlength="30" (change)="validationcode()" appFocusOnEnter tabIndex="4">
         </mat-form-field>
 
         <mat-form-field class="form-element">
-          <input matInput placeholder="{{'ginnumberseries.currentNumber' | translate }}" formControlName="currentNumber"
+          <mat-label [translate]="'ginnumberseries.currentNumber'"></mat-label>
+          <input matInput formControlName="currentNumber"
             maxlength="30" appFocusOnEnter tabIndex="5">
         </mat-form-field>
 
         <mat-form-field class="form-element">
-          <input matInput placeholder="{{'ginnumberseries.prefix' | translate }}" formControlName="prefix"
+          <mat-label [translate]="'ginnumberseries.prefix'"></mat-label>
+          <input matInput  formControlName="prefix"
             maxlength="30" appFocusOnEnter tabIndex="6">
         </mat-form-field>
 

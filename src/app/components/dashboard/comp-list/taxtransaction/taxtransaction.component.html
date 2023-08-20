@@ -10,7 +10,7 @@
         <mat-form-field class="form-element" [ngClass]="{ 'ng--valid': formControls.code.valid &&formControls.code.status != 'DISABLED',
            'ng--invalid': !formControls.code.valid  &&formControls.code.status != 'DISABLED'}">
           <mat-label [translate]="'taxtransactions.code'"></mat-label>
-          <input matInput placeholder="{{'taxtransactions.code' | translate }}" formControlName="code" maxlength="4"
+          <input matInput formControlName="code" maxlength="4"
             appFocusOnEnter tabIndex="1">
           <mat-error *ngIf="!formControls.code.valid  &&formControls.code.status != 'DISABLED'"
             [ngClass]="{ 'ng--invalid': !formControls.code.valid  }">Code is
@@ -20,7 +20,7 @@
         <mat-form-field class="form-element"
           [ngClass]="{ 'ng--valid': formControls.description.valid, 'ng--invalid': !formControls.description.valid  }">
           <mat-label [translate]="'taxtransactions.description'"></mat-label>
-          <input matInput placeholder="{{'taxtransactions.description' | translate }}" formControlName="description"
+          <input matInput formControlName="description"
             maxlength="30" appFocusOnEnter tabIndex="2">
           <mat-error *ngIf="!formControls.description.valid"
             [ngClass]="{ 'ng--invalid': !formControls.description.valid  }">Name is required</mat-error>
@@ -28,7 +28,7 @@
 
         <mat-form-field>
           <mat-label>{{'taxtransactions.taxType' | translate }}</mat-label>
-          <mat-select placeholder="{{'taxtransactions.taxType' | translate }}" formControlName="taxType" appFocusOnEnter
+          <mat-select formControlName="taxType" appFocusOnEnter
             tabIndex="4">
             <mat-option>None</mat-option>
             <mat-option *ngFor="let taxtrnsn of taxTypelist" [value]="taxtrnsn.taxKey">

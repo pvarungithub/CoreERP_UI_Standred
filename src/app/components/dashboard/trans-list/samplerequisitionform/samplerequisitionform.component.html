@@ -6,12 +6,14 @@
 
             <div class="d--flex p-1 mat-form-field-height">
                 <mat-form-field class="form-element">
-                    <input matInput placeholder="{{'samplerequisitionform.organization' | translate }}"
+                    <mat-label [translate]="'samplerequisitionform.organization'"></mat-label>
+                    <input matInput 
                         formControlName="organization" appFocusOnEnter tabIndex="1">
                 </mat-form-field>
 
                 <mat-form-field class="form-element">
-                    <input matInput placeholder="{{'samplerequisitionform.customercontact' | translate }}"
+                    <mat-label [translate]="'samplerequisitionform.customercontact'"></mat-label>
+                    <input matInput 
                         formControlName="customercontact" appFocusOnEnter tabIndex="2">
                 </mat-form-field>
 
@@ -88,40 +90,41 @@
         <div class="my-2"><strong>DCTI Purpose Only</strong></div>
         <div class="d--flex p-1 mat-form-field-height">
             <mat-form-field class="form-element">
-                <input matInput [matDatepicker]="picker1" [nonEditable]="picker1"
-                    placeholder="{{'samplerequisitionform.receivedDate' | translate }}" formControlName="receivedDate"
+                <mat-label [translate]="'samplerequisitionform.receivedDate'"></mat-label>
+                <input matInput [matDatepicker]="picker1" [nonEditable]="picker1" formControlName="receivedDate"
                     appFocusOnEnter tabIndex="8">
                 <mat-datepicker-toggle matSuffix [for]="picker1"></mat-datepicker-toggle>
                 <mat-datepicker #picker1></mat-datepicker>
             </mat-form-field>
 
             <mat-form-field class="form-element">
-                <input matInput placeholder="{{'samplerequisitionform.internalcode' | translate }}"
-                    formControlName="internalcode" appFocusOnEnter tabIndex="9">
+                <mat-label [translate]="'samplerequisitionform.internalcode'"></mat-label>
+                <input matInput formControlName="internalcode" appFocusOnEnter tabIndex="9">
             </mat-form-field>
 
             <mat-form-field class="form-element">
-                <input matInput placeholder="{{'samplerequisitionform.lnbrefno' | translate }}"
-                    formControlName="lnbrefno" appFocusOnEnter tabIndex="10">
+                <mat-label [translate]="'samplerequisitionform.lnbrefno'"></mat-label>
+                <input matInput   formControlName="lnbrefno" appFocusOnEnter tabIndex="10">
             </mat-form-field>
 
             <mat-form-field class="form-element">
-                <input matInput placeholder="{{'samplerequisitionform.reportrefno' | translate }}"
-                    formControlName="reportrefno" appFocusOnEnter tabIndex="11">
+                <mat-label [translate]="'samplerequisitionform.reportrefno'"></mat-label>
+                <input matInput  formControlName="reportrefno" appFocusOnEnter tabIndex="11">
             </mat-form-field>
 
             <mat-form-field class="form-element">
-                <input matInput placeholder="{{'samplerequisitionform.analysedby' | translate }}"
-                    formControlName="analysedby" appFocusOnEnter tabIndex="12">
+                <mat-label [translate]="'samplerequisitionform.analysedby'"></mat-label>
+                <input matInput formControlName="analysedby" appFocusOnEnter tabIndex="12">
             </mat-form-field>
 
             <mat-form-field class="form-element">
-                <input matInput placeholder="{{'samplerequisitionform.analyseddate' | translate }}"
-                    formControlName="analyseddate" appFocusOnEnter tabIndex="13">
+                <mat-label [translate]="'samplerequisitionform.analyseddate'"></mat-label>
+                <input matInput formControlName="analyseddate" appFocusOnEnter tabIndex="13">
             </mat-form-field>
 
             <mat-form-field class="form-element">
-                <input matInput placeholder="{{'samplerequisitionform.remarks' | translate }}" formControlName="remarks"
+                <mat-label [translate]="'samplerequisitionform.remarks'"></mat-label>
+                <input matInput formControlName="remarks"
                     appFocusOnEnter tabIndex="14">
             </mat-form-field>
         </div>
@@ -150,28 +153,28 @@
             </mat-form-field>
 
             <mat-form-field class="form-element">
-                <input matInput placeholder="{{'samplerequisitionform.stabilitydetail' | translate }}"
-                    formControlName="stabilitydetail" appFocusOnEnter tabIndex="3">
+                <mat-label [translate]="'samplerequisitionform.stabilitydetail'"></mat-label>
+                <input matInput  formControlName="stabilitydetail" appFocusOnEnter tabIndex="3">
             </mat-form-field>
 
             <mat-form-field class="form-element">
-                <input matInput placeholder="{{'samplerequisitionform.targetqty' | translate }}"
-                    formControlName="targetqty" appFocusOnEnter tabIndex="4">
+                <mat-label [translate]="'samplerequisitionform.targetqty'"></mat-label>
+                <input matInput  formControlName="targetqty" appFocusOnEnter tabIndex="4">
             </mat-form-field>
 
             <mat-form-field class="form-element">
-                <input matInput placeholder="{{'samplerequisitionform.storagecondition' | translate }}"
-                    formControlName="storagecondition" appFocusOnEnter tabIndex="5">
+                <mat-label [translate]="'samplerequisitionform.storagecondition'"></mat-label>
+                <input matInput formControlName="storagecondition" appFocusOnEnter tabIndex="5">
             </mat-form-field>
 
             <mat-form-field class="form-element">
-                <input matInput placeholder="{{'samplerequisitionform.specification' | translate }}"
-                    formControlName="specification" appFocusOnEnter tabIndex="6">
+                <mat-label [translate]="'samplerequisitionform.specification'"></mat-label>
+                <input matInput formControlName="specification" appFocusOnEnter tabIndex="6">
             </mat-form-field>
 
             <mat-form-field class="form-element">
-                <input matInput placeholder="{{'samplerequisitionform.safetyinformation' | translate }}"
-                    formControlName="safetyinformation" appFocusOnEnter tabIndex="7">
+                <mat-label [translate]="'samplerequisitionform.safetyinformation'"></mat-label>
+                <input matInput formControlName="safetyinformation" appFocusOnEnter tabIndex="7">
             </mat-form-field>
         </div>
 

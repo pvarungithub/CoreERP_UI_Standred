@@ -58,18 +58,18 @@
         </mat-form-field>
 
         <mat-form-field class="form-element">
-          <input matInput placeholder="{{'materialrequisition.bomorderNumber' | translate }}"
-            formControlName="bomorderNumber" appFocusOnEnter tabIndex="7">
+          <mat-label [translate]="'materialrequisition.bomorderNumber'"></mat-label>
+          <input matInput formControlName="bomorderNumber" appFocusOnEnter tabIndex="7">
         </mat-form-field>
 
         <mat-form-field class="form-element">
-          <input matInput placeholder="{{'materialrequisition.requisitionNmber' | translate }}"
-            formControlName="requisitionNmber" appFocusOnEnter tabIndex="7">
+          <mat-label [translate]="'materialrequisition.requisitionNmber'"></mat-label>
+          <input matInput formControlName="requisitionNmber" appFocusOnEnter tabIndex="7">
         </mat-form-field>
 
         <mat-form-field class="form-element">
-          <input matInput [matDatepicker]="picker1" [nonEditable]="picker1"
-            placeholder="{{'materialrequisition.requisitionDate' | translate }}" formControlName="requisitionDate"
+          <mat-label [translate]="'materialrequisition.requisitionDate'"></mat-label>
+          <input matInput [matDatepicker]="picker1" [nonEditable]="picker1"  formControlName="requisitionDate"
             appFocusOnEnter tabIndex="3">
           <mat-datepicker-toggle matSuffix [for]="picker1"></mat-datepicker-toggle>
           <mat-datepicker #picker1></mat-datepicker>

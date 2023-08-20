@@ -8,7 +8,8 @@
         </div>
         <div>
           <mat-form-field>
-            <input matInput placeholder="{{ 'COMMON.SEARCH' | translate }}" formControlName="searchCriteria" />
+            <mat-label [translate]="'COMMON.SEARCH'"></mat-label>
+            <input matInput formControlName="searchCriteria" />
           </mat-form-field>
         </div>
         <div class="p-2 mx-3">

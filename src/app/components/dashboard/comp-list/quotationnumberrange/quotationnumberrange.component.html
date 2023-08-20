@@ -9,7 +9,8 @@
       <div class="d--flex">
         <mat-form-field class="form-element" [ngClass]="{ 'ng--valid': formControls.numberRange.valid && formControls.numberRange.status != 'DISABLED',
            'ng--invalid': !formControls.numberRange.valid && formControls.numberRange.status != 'DISABLED' }">
-          <input matInput placeholder="{{'quotationnumberrange.numberRange' | translate }}"
+          <mat-label [translate]="'quotationnumberrange.numberRange'"></mat-label>
+          <input matInput 
             formControlName="numberRange" maxlength="4" appFocusOnEnter tabIndex="1">
           <mat-error *ngIf="!formControls.numberRange.valid&& formControls.numberRange.status != 'DISABLED'"
             [ngClass]="{ 'ng--invalid': !formControls.numberRange.valid  }"> Number Range is required</mat-error>
@@ -17,22 +18,26 @@
 
         <mat-form-field class="form-element"
           [ngClass]="{ 'ng--valid': formControls.fromInterval.valid, 'ng--invalid': !formControls.fromInterval.valid  }">
-          <input matInput placeholder="{{'quotationnumberrange.fromInterval' | translate }}"
+          <mat-label [translate]="'quotationnumberrange.fromInterval'"></mat-label>
+          <input matInput 
             formControlName="fromInterval" maxlength="30" (change)="validationcode()" appFocusOnEnter tabIndex="2">
           <mat-error *ngIf="!formControls.fromInterval.valid"
             [ngClass]="{ 'ng--invalid': !formControls.fromInterval.valid  }"> From Interval is required</mat-error>
         </mat-form-field>
 
         <mat-form-field class="form-element">
-          <input matInput placeholder="{{'quotationnumberrange.toInterval' | translate }}" formControlName="toInterval"
+          <mat-label [translate]="'quotationnumberrange.toInterval'"></mat-label>
+          <input matInput  formControlName="toInterval"
             maxlength="30" (change)="validationcode()" appFocusOnEnter tabIndex="3">
         </mat-form-field>
         <mat-form-field class="form-element">
-          <input matInput placeholder="{{'quotationnumberrange.currentNumber' | translate }}"
+          <mat-label [translate]="'quotationnumberrange.currentNumber'"></mat-label>
+          <input matInput 
             formControlName="currentNumber" maxlength="30" appFocusOnEnter tabIndex="4">
         </mat-form-field>
         <mat-form-field class="form-element">
-          <input matInput placeholder="{{'quotationnumberrange.prefix' | translate }}" formControlName="prefix"
+          <mat-label [translate]="'quotationnumberrange.prefix'"></mat-label>
+          <input matInput  formControlName="prefix"
             maxlength="30" appFocusOnEnter tabIndex="5">
         </mat-form-field>
       </div>

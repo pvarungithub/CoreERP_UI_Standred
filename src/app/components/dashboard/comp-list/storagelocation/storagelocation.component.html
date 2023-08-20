@@ -10,7 +10,7 @@
         <mat-form-field class="form-element" [ngClass]="{ 'ng--valid': formControls.code.valid &&formControls.code.status != 'DISABLED',
           'ng--invalid': !formControls.code.valid && formControls.code.status != 'DISABLED' }">
           <mat-label [translate]="'storagelocation.code'"></mat-label>
-          <input matInput placeholder="{{'storagelocation.code' | translate }}" formControlName="code" maxlength="5"
+          <input matInput  formControlName="code" maxlength="5"
             appFocusOnEnter tabIndex="1">
           <mat-error *ngIf="!formControls.code.valid && formControls.code.status != 'DISABLED'"
             [ngClass]="{ 'ng--invalid': !formControls.code.valid  }"> Code is
@@ -20,7 +20,7 @@
         <mat-form-field class="form-element"
           [ngClass]="{ 'ng--valid': formControls.name.valid, 'ng--invalid': !formControls.name.valid  }">
           <mat-label [translate]="'storagelocation.name'"></mat-label>
-          <input matInput placeholder="{{'storagelocation.name' | translate }}" formControlName="name" maxlength="50"
+          <input matInput  formControlName="name" maxlength="50"
             appFocusOnEnter tabIndex="2">
           <mat-error *ngIf="!formControls.name.valid" [ngClass]="{ 'ng--invalid': !formControls.name.valid  }">Name is
             required</mat-error>

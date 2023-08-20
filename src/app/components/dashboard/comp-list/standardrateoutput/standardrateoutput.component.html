@@ -11,7 +11,8 @@
 
         <mat-form-field class="form-element" [ngClass]="{ 'ng--valid': formControls.code.valid && formControls.code.status != 'DISABLED',
            'ng--invalid': !formControls.code.valid&& formControls.code.status != 'DISABLED'  }">
-          <input matInput placeholder="{{'standardrateoutput.code' | translate }}" formControlName="code" maxlength="5"
+          <mat-label [translate]="'standardrateoutput.code'"></mat-label>
+          <input matInput  formControlName="code" maxlength="5"
             appFocusOnEnter tabIndex="1">
           <mat-error *ngIf="!formControls.code.valid && formControls.code.status != 'DISABLED'"
             [ngClass]="{ 'ng--invalid': !formControls.code.valid  }">Code is required</mat-error>
@@ -19,7 +20,8 @@
         </mat-form-field>
 
         <mat-form-field class="form-element">
-          <input matInput placeholder="{{'standardrateoutput.noofShifts' | translate }}" formControlName="noofShifts"
+          <mat-label [translate]="'standardrateoutput.noofShifts'"></mat-label>
+          <input matInput  formControlName="noofShifts"
             type="number" maxlength="7" appFocusOnEnter tabIndex="2">
 
         </mat-form-field>

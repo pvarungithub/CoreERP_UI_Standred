@@ -13,8 +13,7 @@
           [ngClass]="{ 'ng--valid': formControls.voucherSeriesKey.valid &&formControls.voucherSeriesKey.status != 'DISABLED',
            'ng--invalid': !formControls.voucherSeriesKey.valid && formControls.voucherSeriesKey.status != 'DISABLED' }">
            <mat-label [translate]="'voucherclass.voucherSeriesKey'"></mat-label>
-          <input matInput placeholder="{{'voucherseries.voucherSeriesKey' | translate }}"
-            formControlName="voucherSeriesKey" appFocusOnEnter tabIndex="1">
+          <input matInput  formControlName="voucherSeriesKey" appFocusOnEnter tabIndex="1">
           <mat-error *ngIf="!formControls.voucherSeriesKey.valid && formControls.voucherSeriesKey.status != 'DISABLED'"
             [ngClass]="{ 'ng--invalid': !formControls.voucherSeriesKey.valid  }">voucher Series Key is required
           </mat-error>
@@ -22,14 +21,14 @@
 
         <mat-form-field class="form-element">
           <mat-label [translate]="'voucherclass.fromInterval'"></mat-label>
-          <input matInput placeholder="{{'voucherseries.fromInterval' | translate }}" formControlName="fromInterval"
+          <input matInput  formControlName="fromInterval"
             (change)="validationcode()" appFocusOnEnter tabIndex="2">
 
         </mat-form-field>
 
         <mat-form-field class="form-element">
           <mat-label [translate]="'voucherclass.toInterval'"></mat-label>
-          <input matInput placeholder="{{'voucherseries.toInterval' | translate }}" (change)="validationcode()"
+          <input matInput  (change)="validationcode()"
             formControlName="toInterval" appFocusOnEnter tabIndex="3">
         </mat-form-field>
 
@@ -65,13 +64,13 @@
 
         <mat-form-field class="form-element">
           <mat-label [translate]="'voucherclass.suffix'"></mat-label>
-          <input matInput placeholder="{{'voucherseries.suffix' | translate }}" formControlName="suffix" appFocusOnEnter
+          <input matInput  formControlName="suffix" appFocusOnEnter
             tabIndex="7">
         </mat-form-field>
 
         <mat-form-field class="form-element">
           <mat-label [translate]="'voucherclass.prefix'"></mat-label>
-          <input matInput placeholder="{{'voucherseries.prefix' | translate }}" formControlName="prefix" appFocusOnEnter
+          <input matInput formControlName="prefix" appFocusOnEnter
             tabIndex="8">
         </mat-form-field>
       </div>

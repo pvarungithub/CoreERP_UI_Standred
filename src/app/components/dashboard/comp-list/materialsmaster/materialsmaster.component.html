@@ -53,7 +53,8 @@
 
 
             <mat-form-field class="form-element">
-              <input matInput placeholder="{{'materialsmaster.description' | translate }}" formControlName="description"
+              <mat-label [translate]="'materialsmaster.description'"></mat-label>
+              <input matInput formControlName="description"
                 maxlength="50" appFocusOnEnter tabIndex="5">
             </mat-form-field>
 
@@ -110,12 +111,14 @@
 
 
             <mat-form-field class="form-element">
-              <input matInput placeholder="{{'materialsmaster.grossWeight' | translate }}" formControlName="grossWeight"
+              <mat-label [translate]="'materialsmaster.grossWeight'"></mat-label>
+              <input matInput formControlName="grossWeight"
                 maxlength="12" appFocusOnEnter tabIndex="11">
             </mat-form-field>
 
             <!-- <mat-form-field class="form-element">
-              <input matInput placeholder="{{'materialsmaster.ouom' | translate }}" formControlName="ouom"
+              <mat-label [translate]="'materialsmaster.ouom'"></mat-label>
+              <input matInput formControlName="ouom"
                 maxlength="12" appFocusOnEnter tabIndex="12">
             </mat-form-field> -->
 
@@ -130,7 +133,8 @@
             </mat-form-field>
 
             <mat-form-field class="form-element">
-              <input matInput placeholder="{{'materialsmaster.netWeight' | translate }}" formControlName="netWeight"
+              <mat-label [translate]="'materialsmaster.netWeight'"></mat-label>
+              <input matInput formControlName="netWeight"
                 maxlength="12" appFocusOnEnter tabIndex="13">
             </mat-form-field>
 
@@ -166,8 +170,8 @@
             </mat-form-field>
 
             <mat-form-field class="form-element">
-              <input matInput placeholder="{{'materialsmaster.purchaseOrderText' | translate }}"
-                formControlName="purchaseOrderText" maxlength="50" appFocusOnEnter tabIndex="15">
+              <mat-label [translate]="'materialsmaster.purchaseOrderText'"></mat-label>
+              <input matInput formControlName="purchaseOrderText" maxlength="50" appFocusOnEnter tabIndex="15">
             </mat-form-field>
 
           </div>
@@ -178,28 +182,31 @@
         <mat-card-content class="py-5 p-2 m-0">
           <div class="d--flex">
             <mat-form-field class="form-element">
-              <input matInput placeholder="{{'materialsmaster.minLevel' | translate }}" formControlName="minLevel"
+              <mat-label [translate]="'materialsmaster.minLevel'"></mat-label>
+              <input matInput formControlName="minLevel"
                 maxlength="12" appFocusOnEnter tabIndex="16">
             </mat-form-field>
             <mat-form-field class="form-element">
-              <input matInput placeholder="{{'materialsmaster.maxLevel' | translate }}" formControlName="maxLevel"
+              <mat-label [translate]="'materialsmaster.maxLevel'"></mat-label>
+              <input matInput formControlName="maxLevel"
                 maxlength="12" appFocusOnEnter tabIndex="17">
             </mat-form-field>
             <mat-form-field class="form-element">
-              <input matInput placeholder="{{'materialsmaster.reOrderLevel' | translate }}"
-                formControlName="reOrderLevel" maxlength="12" appFocusOnEnter tabIndex="18">
+              <mat-label [translate]="'materialsmaster.reOrderLevel'"></mat-label>
+              <input matInput formControlName="reOrderLevel" maxlength="12" appFocusOnEnter tabIndex="18">
             </mat-form-field>
             <mat-form-field class="form-element">
-              <input matInput placeholder="{{'materialsmaster.dangerLevel' | translate }}" formControlName="dangerLevel"
+              <mat-label [translate]="'materialsmaster.dangerLevel'"></mat-label>
+              <input matInput formControlName="dangerLevel"
                 maxlength="12" appFocusOnEnter tabIndex="19">
             </mat-form-field>
             <mat-form-field class="form-element">
-              <input matInput placeholder="{{'materialsmaster.economicOrderQty' | translate }}"
-                formControlName="economicOrderQty" maxlength="12" appFocusOnEnter tabIndex="20">
+              <mat-label [translate]="'materialsmaster.economicOrderQty'"></mat-label>
+              <input matInput formControlName="economicOrderQty" maxlength="12" appFocusOnEnter tabIndex="20">
             </mat-form-field>
             <mat-form-field class="form-element">
-              <input matInput placeholder="{{'materialsmaster.reorderPoint' | translate }}"
-                formControlName="reorderPoint" maxlength="12" appFocusOnEnter tabIndex="21">
+              <mat-label [translate]="'materialsmaster.reorderPoint'"></mat-label>
+              <input matInput formControlName="reorderPoint" maxlength="12" appFocusOnEnter tabIndex="21">
             </mat-form-field>
 
           </div>
@@ -221,35 +228,37 @@
             </mat-form-field>
 
             <mat-form-field class="form-element">
-              <input matInput placeholder="{{'materialsmaster.openingQty' | translate }}" formControlName="openingQty"
+              <mat-label [translate]="'materialsmaster.openingQty'"></mat-label>
+              <input matInput formControlName="openingQty"
                 maxlength="50" (change)="calculation()" appFocusOnEnter tabIndex="23">
             </mat-form-field>
 
             <mat-form-field class="form-element">
-              <input matInput placeholder="{{'materialsmaster.closingQty' | translate }}" formControlName="closingQty"
+              <mat-label [translate]="'materialsmaster.closingQty'"></mat-label>
+              <input matInput formControlName="closingQty"
                 maxlength="50" (change)="closingqtycalculation()" appFocusOnEnter tabIndex="24">
             </mat-form-field>
             <mat-form-field class="form-element">
-              <input matInput placeholder="{{'materialsmaster.transferPrice' | translate }}"
-                formControlName="transferPrice" maxlength="50" appFocusOnEnter tabIndex="25">
+              <mat-label [translate]="'materialsmaster.transferPrice'"></mat-label>
+              <input matInput formControlName="transferPrice" maxlength="50" appFocusOnEnter tabIndex="25">
             </mat-form-field>
 
             <mat-form-field class="form-element">
-              <input matInput placeholder="{{'materialsmaster.openingPrice' | translate }}"
-                formControlName="openingPrice" (change)="calculation()" maxlength="50" appFocusOnEnter tabIndex="26">
+              <mat-label [translate]="'materialsmaster.openingPrice'"></mat-label>
+              <input matInput formControlName="openingPrice" (change)="calculation()" maxlength="50" appFocusOnEnter tabIndex="26">
             </mat-form-field>
             <mat-form-field class="form-element">
-              <input matInput placeholder="{{'materialsmaster.openingValue' | translate }}"
-                formControlName="openingValue" readonly="readonly" maxlength="50" appFocusOnEnter tabIndex="26">
+              <mat-label [translate]="'materialsmaster.openingValue'"></mat-label>
+              <input matInput formControlName="openingValue" readonly="readonly" maxlength="50" appFocusOnEnter tabIndex="26">
             </mat-form-field>
             <mat-form-field class="form-element">
-              <input matInput placeholder="{{'materialsmaster.closingPrice' | translate }}"
-                formControlName="closingPrice" (change)="closingqtycalculation()" maxlength="50" appFocusOnEnter
+              <mat-label [translate]="'materialsmaster.closingPrice'"></mat-label>
+              <input matInput formControlName="closingPrice" (change)="closingqtycalculation()" maxlength="50" appFocusOnEnter
                 tabIndex="26">
             </mat-form-field>
             <mat-form-field class="form-element">
-              <input matInput placeholder="{{'materialsmaster.closingValue' | translate }}"
-                formControlName="closingValue" readonly="readonly" maxlength="50" appFocusOnEnter tabIndex="26">
+              <mat-label [translate]="'materialsmaster.closingValue'"></mat-label>
+              <input matInput formControlName="closingValue" readonly="readonly" maxlength="50" appFocusOnEnter tabIndex="26">
             </mat-form-field>
           </div>
         </mat-card-content>
@@ -303,13 +312,14 @@
             </mat-form-field>
 
             <mat-form-field class="form-element">
-              <input matInput placeholder="{{'materialsmaster.chapter' | translate }}" formControlName="chapter"
+              <mat-label [translate]="'materialsmaster.chapter'"></mat-label>
+              <input matInput formControlName="chapter"
                 maxlength="20" appFocusOnEnter tabIndex="30">
             </mat-form-field>
 
             <mat-form-field class="form-element">
-              <input matInput placeholder="{{'materialsmaster.goodsServiceDescription' | translate }}"
-                formControlName="goodsServiceDescription" maxlength="20" appFocusOnEnter tabIndex="31">
+              <mat-label [translate]="'materialsmaster.goodsServiceDescription'"></mat-label>
+              <input matInput formControlName="goodsServiceDescription" maxlength="20" appFocusOnEnter tabIndex="31">
             </mat-form-field>
 
           </div>

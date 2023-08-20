@@ -12,7 +12,7 @@
         <mat-form-field class="form-element" [ngClass]="{ 'ng--valid': formControls.voucherKey.valid && formControls.voucherKey.status != 'DISABLED',
            'ng--invalid': !formControls.voucherKey.valid && formControls.voucherKey.status != 'DISABLED'}">
           <mat-label [translate]="'voucherclass.voucherKey'"></mat-label>
-          <input matInput placeholder="{{'voucherclass.voucherKey' | translate }}" formControlName="voucherKey"
+          <input matInput  formControlName="voucherKey"
             maxlength="4" appFocusOnEnter tabIndex="1">
           <mat-error *ngIf="!formControls.voucherKey.valid && formControls.voucherKey.status != 'DISABLED'"
             [ngClass]="{ 'ng--invalid': !formControls.voucherKey.valid  }">Voucher Key is required</mat-error>
@@ -21,7 +21,7 @@
         <mat-form-field class="form-element"
           [ngClass]="{ 'ng--valid': formControls.description.valid, 'ng--invalid': !formControls.description.valid  }">
           <mat-label [translate]="'voucherclass.description'"></mat-label>
-          <input matInput placeholder="{{'voucherclass.description' | translate }}" formControlName="description"
+          <input matInput formControlName="description"
             maxlength="30" appFocusOnEnter tabIndex="2">
           <mat-error *ngIf="!formControls.description.valid"
             [ngClass]="{ 'ng--invalid': !formControls.description.valid  }">Name is required</mat-error>

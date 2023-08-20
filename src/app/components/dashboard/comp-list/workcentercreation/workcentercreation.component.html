@@ -40,12 +40,13 @@
             </mat-form-field>
 
             <mat-form-field class="form-element">
-              <input matInput placeholder="{{'workcentercreation.workcenterCode' | translate }}"
-                formControlName="workcenterCode" appFocusOnEnter tabIndex="4">
+              <mat-label [translate]="'workcentercreation.workcenterCode'"></mat-label>
+              <input matInput formControlName="workcenterCode" appFocusOnEnter tabIndex="4">
             </mat-form-field>
 
             <mat-form-field class="form-element">
-              <input matInput placeholder="{{'workcentercreation.name' | translate }}" formControlName="name"
+              <mat-label [translate]="'workcentercreation.name'"></mat-label>
+              <input matInput formControlName="name"
                 appFocusOnEnter tabIndex="5">
             </mat-form-field>
 
@@ -181,27 +182,32 @@
 
           <div class="d--flex">
             <mat-form-field class="form-element">
-              <input matInput placeholder="{{'workcentercreation.moveTime' | translate }}" formControlName="moveTime"
+              <mat-label [translate]="'workcentercreation.moveTime'"></mat-label>
+              <input matInput formControlName="moveTime"
                 appFocusOnEnter tabIndex="27" (change)="calculateTime1()">
             </mat-form-field>
             <mat-form-field class="form-element">
-              <input matInput placeholder="{{'workcentercreation.waitTime' | translate }}" formControlName="waitTime"
+              <mat-label [translate]="'workcentercreation.waitTime'"></mat-label>
+              <input matInput formControlName="waitTime"
                 appFocusOnEnter tabIndex="28" (change)="calculateTime2()">
             </mat-form-field>
             <mat-form-field class="form-element">
-              <input matInput placeholder="{{'workcentercreation.queueTime' | translate }}" formControlName="queueTime"
+              <mat-label [translate]="'workcentercreation.queueTime'"></mat-label>
+              <input matInput  formControlName="queueTime"
                 appFocusOnEnter tabIndex="29" (change)="calculateTime3()">
             </mat-form-field>
             <mat-form-field class="form-element">
-              <input matInput placeholder="{{'workcentercreation.setupTime' | translate }}" formControlName="setupTime"
+              <mat-label [translate]="'workcentercreation.setupTime'"></mat-label>
+              <input matInput formControlName="setupTime"
                 appFocusOnEnter tabIndex="30" (change)="calculateTime4()">
             </mat-form-field>
             <mat-form-field class="form-element">
-              <input matInput placeholder="{{'workcentercreation.runTimeforEachUnit' | translate }}"
-                formControlName="runTimeforEachUnit" appFocusOnEnter tabIndex="31">
+              <mat-label [translate]="'workcentercreation.runTimeforEachUnit'"></mat-label>
+              <input matInput  formControlName="runTimeforEachUnit" appFocusOnEnter tabIndex="31">
             </mat-form-field>
             <mat-form-field class="form-element">
-              <input matInput placeholder="{{'workcentercreation.leadTime' | translate }}" formControlName="leadTime"
+              <mat-label [translate]="'workcentercreation.leadTime'"></mat-label>
+              <input matInput formControlName="leadTime"
                 appFocusOnEnter tabIndex="32" disabled="disabled">
             </mat-form-field>
 
