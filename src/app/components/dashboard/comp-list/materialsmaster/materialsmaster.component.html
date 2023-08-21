@@ -72,8 +72,8 @@
               <mat-label>{{'materialsmaster.size' | translate }}</mat-label>
               <mat-select formControlName="size" appFocusOnEnter tabIndex="7">
                 <mat-option>None</mat-option>
-                <mat-option *ngFor="let size of msizeList" [value]="size.sizekey">
-                  {{size.description}}
+                <mat-option *ngFor="let size of msizeList" [value]="size.unitId">
+                  {{size.unitName}}
                 </mat-option>
               </mat-select>
             </mat-form-field>

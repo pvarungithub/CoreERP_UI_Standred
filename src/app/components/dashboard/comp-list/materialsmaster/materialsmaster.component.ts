@@ -1,4 +1,4 @@
-import { Component, OnInit, OnDestroy } from '@angular/core';
+import { Component, OnInit, OnDestroy, Optional, Inject } from '@angular/core';
 import { String } from 'typescript-string-operations';
 import { ApiService } from '../../../../services/api.service';
 import { CommonService } from '../../../../services/common.service';
@@ -8,7 +8,7 @@ import { ApiConfigService } from '../../../../services/api-config.service';
 import { StatusCodes } from '../../../../enums/common/common';
 import { AddOrEditService } from '../add-or-edit.service';
 import { Router, ActivatedRoute } from '@angular/router';
-import { MatDialogRef } from '@angular/material/dialog';
+import { MatDialogRef, MAT_DIALOG_DATA } from '@angular/material/dialog';
 
 interface Valuation {
   value: string;
@@ -99,6 +99,7 @@ export class MaterialMasterComponent implements OnInit, OnDestroy {
     private spinner: NgxSpinnerService,
     private formBuilder: FormBuilder,
     private router: Router,
+    @Optional() @Inject(MAT_DIALOG_DATA) public data: any
   ) {
 
     this.modelFormData = this.formBuilder.group({
@@ -141,9 +142,14 @@ export class MaterialMasterComponent implements OnInit, OnDestroy {
       goodsServiceDescription: null
     });
 
-    this.formData = { ...this.addOrEditService.editData };
+    this.formData = { ...data };
     if (!this.commonService.checkNullOrUndefined(this.formData.item)) {
       this.modelFormData.patchValue(this.formData.item);
+      this.modelFormData.patchValue({
+        uom: this.formData.item.uom ? +this.formData.item.uom : null,
+        ouom: this.formData.item.ouom ? +this.formData.item.ouom : null,
+        netWeightUom: this.formData.item.netWeightUom ? +this.formData.item.netWeightUom : null,
+      })
       this.modelFormData.controls['materialCode'].disable();
     }
   }
