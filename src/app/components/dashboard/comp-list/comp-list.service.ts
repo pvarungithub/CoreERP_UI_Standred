@@ -119,6 +119,7 @@ import { TasksComponent } from './tasks/tasks.component';
 import { RoutingFileComponent } from './routingfile/routingfile.component';
 import { WorkCenterCreationComponent } from './workcentercreation/workcentercreation.component';
 import { InvoiceverificationComponent } from './invoiceverification/invoiceverification.component';
+import { EmployeeComponent } from './employee/employee.component';
 @Injectable({
   providedIn: 'root'
 })
@@ -611,6 +612,10 @@ export class CompListService {
         break;
       case 'invoiceverification':
         this.dynamicComp.component = InvoiceverificationComponent;
+        return this.dynamicComp.component;
+        break;
+      case 'employee':
+        this.dynamicComp.component = EmployeeComponent;
         return this.dynamicComp.component;
         break;
       default:

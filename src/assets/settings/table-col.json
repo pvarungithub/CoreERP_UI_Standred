@@ -378,7 +378,9 @@
     "nature": "Group",
     "underAccountName": "Under Account",
     "Undersubaccount": "Under Sub Account",
-    "narration": "Narration"
+    "narration": "Narration",
+    "note": "Note",
+    "structureType": "Structure Type"
   },
   "assetnumberrange": {
     "title": "Asset NumberRange",
@@ -1795,5 +1797,42 @@
   "samplerequisitionform":{
     "title":"Sample Requisition Form",
     "organization":"Organization"
+  },
+  "employee": {
+    "title":"Employee",
+    "branchCode": "Branch Code",
+    "branchName": "Branch Name",
+    "employeeCode": "Employee Code",
+    "employeeName": "Employee Name",    
+    "designation": "Designation",
+    "bankAccountNumber":"BankAccountNumber",
+    "gender":"Gender",
+    "aadharNumber":"AadharNumber",
+    "designationId":"Emp Dgs ID",
+    "dob":"Date",
+    "maritalStatus":"MaritalStatus",
+    "qualification":"qualification",
+    "address":"Address",
+    "phoneNumber":"PhoneNumber",
+    "mobileNumber":"MobileNumber",
+    "email":"Email",
+    "joiningDate":"Date",
+    "terminationDate":"Date",
+    "narration":"Comments",
+    "bloodGroup":"BloodGroup",
+    "passportNo":"PassportNo",
+    "passportExpiryDate":"Date",
+    "labourCardNumber":"LabourCardNumber",
+    "labourCardExpiryDate":"Date",
+    "salaryType":"SalaryType",
+    "bankName":"BankName",
+    "bankbranchCode":"BankbranchCode",
+    "bankbranchName":"BankbranchName",
+    "panNumber":"PanNumber",
+    "pfNumber":"PfNumber",
+    "esiNumber":"EsiNumber",
+    "defaultPackageId":"DefaultPackageId",
+    "recomendedBy":"Recomended BY",
+    "approvedBy":"Approved BY"
   }
 }

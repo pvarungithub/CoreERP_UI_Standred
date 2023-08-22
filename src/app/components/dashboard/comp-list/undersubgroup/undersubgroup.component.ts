@@ -23,6 +23,8 @@ export class UndersubGroupComponent implements OnInit {
   getAccSubGrpList: any;
   glAccNameList: any;
 
+  structkeyList: any;
+
   constructor(private commonService: CommonService,
     private formBuilder: FormBuilder,
     private addOrEditService: AddOrEditService,
@@ -42,6 +44,8 @@ export class UndersubGroupComponent implements OnInit {
       groupUnder: [null],
       Undersubaccount: [null],
       isDefault: [false],
+      note: [null],
+      structureType: [null],
       structureKey: [null],
     });
 
@@ -54,6 +58,7 @@ export class UndersubGroupComponent implements OnInit {
       this.modelFormData.controls['accountGroupId'].disable();
       this.getGLUnderGroupList();
       this.getAccountNamelist();
+      this.geStructurekeyData();
     }
   }
 
@@ -77,6 +82,10 @@ export class UndersubGroupComponent implements OnInit {
   }
 
   getAccountNamelist() {
+    this.glAccNameList = [];
+    this.modelFormData.patchValue({
+      groupUnder: ''
+    })
     const getAccountNamelist = String.Join('/', this.apiConfigService.getAccountNamelist, this.modelFormData.get('nature').value);
     this.apiService.apiGetRequest(getAccountNamelist)
       .subscribe(
@@ -121,6 +130,21 @@ export class UndersubGroupComponent implements OnInit {
           this.spinner.hide();
         });
   }
+
+  geStructurekeyData() {
+    const geStructurekeynUrl = String.Join('/', this.apiConfigService.getStructurekeyList);
+    this.apiService.apiGetRequest(geStructurekeynUrl)
+      .subscribe(
+        response => {
+          const res = response;
+          if (!this.commonService.checkNullOrUndefined(res) && res.status === StatusCodes.pass) {
+            if (!this.commonService.checkNullOrUndefined(res.response)) {
+              this.structkeyList = res.response['structkeyList'];
+            }
+          }
+        });
+  }
+
 
   get formControls() { return this.modelFormData.controls; }
 

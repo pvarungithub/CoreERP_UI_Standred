@@ -8,34 +8,40 @@
     <form [formGroup]="modelFormData" autocomplete="off">
       <div class="d--flex">
 
-        <mat-form-field>
+        <mat-form-field [ngClass]="{ 'ng--valid': formControls.chartAccount.valid }">
           <mat-label [translate]="'glaccount.chartAccount'"></mat-label>
           <mat-select formControlName="chartAccount" appFocusOnEnter tabIndex="1">
-            <mat-option>None</mat-option>
             <mat-option *ngFor="let coa of coaList" [value]="coa.code">
               {{coa.desctiption}}
             </mat-option>
           </mat-select>
+          <mat-error *ngIf="formControls.chartAccount.errors" class="help-block">
+            <div *ngIf="formControls.chartAccount.errors.required">Chart Account is required </div>
+          </mat-error>
         </mat-form-field>
 
-        <mat-form-field>
+        <mat-form-field [ngClass]="{ 'ng--valid': formControls.company.valid }">
           <mat-label [translate]="'glaccount.company'"></mat-label>
           <mat-select formControlName="company" appFocusOnEnter tabIndex="2">
-            <mat-option>None</mat-option>
             <mat-option *ngFor="let comp of companyList" [value]="comp.id">
               {{comp.text}}
             </mat-option>
           </mat-select>
+          <mat-error *ngIf="formControls.company.errors" class="help-block">
+            <div *ngIf="formControls.company.errors.required">Company is required </div>
+          </mat-error>
         </mat-form-field>
 
-        <mat-form-field>
+        <mat-form-field [ngClass]="{ 'ng--valid': formControls.accGroup.valid }">
           <mat-label>{{'glsubgroups.nature' | translate }}</mat-label>
-          <mat-select formControlName="accGroup">
-            <mat-option>None</mat-option>
+          <mat-select formControlName="accGroup" (change)="enableAccount()">
             <mat-option *ngFor="let accgrp of glAccgrpList" [value]="accgrp.groupCode">
               {{accgrp.groupCode}} - {{accgrp.groupName}}
             </mat-option>
           </mat-select>
+          <mat-error *ngIf="formControls.accGroup.errors" class="help-block">
+            <div *ngIf="formControls.accGroup.errors.required">Account Group is required </div>
+          </mat-error>
         </mat-form-field>
 
         <mat-form-field class="form-element" [ngClass]="{ 'ng--valid': formControls.accountNumber.valid }">

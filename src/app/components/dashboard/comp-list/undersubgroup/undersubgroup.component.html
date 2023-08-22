@@ -6,10 +6,25 @@
   <mat-card-content class="pt-5 p-2 m-0 overflow-auto">
     <form [formGroup]="modelFormData" autocomplete="off">
       <div class="d--flex">
+
+        <mat-form-field class="form-element">
+          <mat-label [translate]="'glsubgroups.structureType'"></mat-label>
+          <mat-select formControlName="structureType" appFocusOnEnter tabIndex="1">
+            <mat-option>None</mat-option>
+            <mat-option value="Balance Sheet"> Balance Sheet </mat-option>
+            <mat-option value="Profit & Loss Account"> Profit & Loss Account </mat-option>
+            <mat-option value="Cash Flow"> Cash Flow </mat-option>
+          </mat-select>
+        </mat-form-field>
+
         <mat-form-field class="form-element">
           <mat-label [translate]="'glsubgroups.structureKey'"></mat-label>
-          <input matInput formControlName="structureKey"
-            appFocusOnEnter tabIndex="1">
+          <mat-select formControlName="structureKey" appFocusOnEnter tabIndex="1">
+            <mat-option>None</mat-option>
+            <mat-option *ngFor="let stkey of structkeyList" [value]="stkey">
+              {{stkey}}
+            </mat-option>
+          </mat-select>
         </mat-form-field>
 
         <mat-form-field class="form-element"
@@ -48,8 +63,7 @@
         <mat-form-field class="form-element" [ngClass]="{ 'ng--valid': formControls.accountGroupId.valid &&formControls.accountGroupId.status != 'DISABLED',
            'ng--invalid': !formControls.accountGroupId.valid &&formControls.accountGroupId.status != 'DISABLED'  }">
           <mat-label [translate]="'glsubgroups.accountGroupId'"></mat-label>
-          <input matInput  disabled
-            formControlName="accountGroupId" appFocusOnEnter tabIndex="5">
+          <input matInput disabled formControlName="accountGroupId" appFocusOnEnter tabIndex="5">
           <mat-error *ngIf="!formControls.accountGroupId.valid  &&formControls.accountGroupId.status != 'DISABLED'"
             [ngClass]="{ 'ng--invalid': !formControls.accountGroupId.valid  }"> Code is required</mat-error>
         </mat-form-field>
@@ -57,16 +71,19 @@
         <mat-form-field class="form-element"
           [ngClass]="{ 'ng--valid': formControls.accountGroupName.valid, 'ng--invalid': !formControls.accountGroupName.valid  }">
           <mat-label [translate]="'glsubgroups.accountGroupName'"></mat-label>
-          <input matInput disabled
-            formControlName="accountGroupName" appFocusOnEnter tabIndex="6">
+          <input matInput disabled formControlName="accountGroupName" appFocusOnEnter tabIndex="6">
           <mat-error *ngIf="!formControls.accountGroupName.valid"
             [ngClass]="{ 'ng--invalid': !formControls.accountGroupName.valid  }"> Name is required</mat-error>
         </mat-form-field>
 
         <mat-form-field class="form-element">
           <mat-label [translate]="'glsubgroups.narration'"></mat-label>
-          <input matInput formControlName="narration"
-            appFocusOnEnter tabIndex="7">
+          <input matInput formControlName="narration" appFocusOnEnter tabIndex="7">
+        </mat-form-field>
+
+        <mat-form-field class="form-element">
+          <mat-label [translate]="'glsubgroups.note'"></mat-label>
+          <input matInput formControlName="note" appFocusOnEnter tabIndex="7">
         </mat-form-field>
 
         <mat-slide-toggle class="form-element" formControlName="isDefault" style="margin-top: 25px;margin-left: 5px;"

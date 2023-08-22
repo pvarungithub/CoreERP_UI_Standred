@@ -79,9 +79,9 @@ export class GLAccountComponent implements OnInit {
 
     this.modelFormData = this.formBuilder.group({
       accountNumber: [null, [Validators.required, Validators.minLength(1), Validators.maxLength(10)]],
-      company: [null],
-      chartAccount: [null],
-      accGroup: [null],
+      company: [null, Validators.required],
+      chartAccount: [null, Validators.required],
+      accGroup: [null, Validators.required],
       glaccountName: [null],
       consolidatedAccount: [null],
       currency: [null],
@@ -97,11 +97,10 @@ export class GLAccountComponent implements OnInit {
       Undersubaccount: [null],
       groupUnder: [null]
     });
-
+    this.modelFormData.controls.accountNumber.disable();
     this.formData = { ...data };
     if (!this.commonService.checkNullOrUndefined(this.formData.item)) {
       this.modelFormData.patchValue(this.formData.item);
-      this.modelFormData.controls['accountNumber'].disable();
       this.onCategoryChange();
     }
   }
@@ -112,6 +111,10 @@ export class GLAccountComponent implements OnInit {
     this.getchartofAccountData();
     this.getglAccgrpList();
     this.getBankData();
+  }
+
+  enableAccount() {
+    this.modelFormData.controls.accountNumber.enable();
   }
 
   onCategoryChange() {
@@ -133,6 +136,7 @@ export class GLAccountComponent implements OnInit {
   }
 
   onChange(event: any) {
+    debugger
     const getAccountSubGrouplist = String.Join('/', this.apiConfigService.getaccountNumber,
       this.modelFormData.get('accGroup').value, this.modelFormData.get('accountNumber').value);
     this.apiService.apiGetRequest(getAccountSubGrouplist)
