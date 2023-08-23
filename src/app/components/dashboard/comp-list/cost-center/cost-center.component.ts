@@ -76,7 +76,7 @@ export class CostCenterComponent implements OnInit {
     this.modelFormData = this.formBuilder.group({
       objectType: [null, [Validators.required, Validators.minLength(2), Validators.maxLength(5)]],
       code: [null, [Validators.required, Validators.minLength(2), Validators.maxLength(6)]],
-      costCenterName: [null],
+      name: [null],
       functions: [null],
       type: [null],
       quantity: [null],
@@ -98,6 +98,7 @@ export class CostCenterComponent implements OnInit {
       this.modelFormData.patchValue(this.formData.item);
       this.modelFormData.controls['code'].disable();
     }
+    debugger
 
   }
 

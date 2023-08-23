@@ -33,7 +33,7 @@ export class AssignmentChartAccounttoCompanyComponent implements OnInit {
     @Optional() @Inject(MAT_DIALOG_DATA) public data: any) {
 
     this.modelFormData = this.formBuilder.group({
-      code: [0],
+      code: [null, [Validators.required, Validators.minLength(1), Validators.maxLength(5)]],
       operationCoa: [null],
       groupCoa: [null],
       company: [null]

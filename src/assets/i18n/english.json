@@ -176,7 +176,7 @@
     "title": "Cost Center",
     "objectType": "Object Type",
     "code": "Code",
-    "costCenterName": "CostCenter Name",
+    "name": "Cost Center Name",
     "functions": "Functions",
     "type": "Type",
     "quantity": "Quantity",
@@ -589,6 +589,7 @@
   },
   "AssignmentChartAccounttoCompany": {
     "title": "Assignment ChartAccount to Company",
+    "code": "Code",
     "company": "Company",
     "operationCoa": "Operation COA",
     "groupCoa": "Group COA",
@@ -853,6 +854,7 @@
   },
   "assignglaccount": {
     "title": "Assign GLaccount To SubGroup",
+    "code": "Code",
     "toGl": "Structure Key",
     "glgroup": "GL Group",
     "subAccount": "Sub Account",

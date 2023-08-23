@@ -56,10 +56,10 @@ export class UndersubGroupComponent implements OnInit {
         isDefault: this.formData.item['isDefault'] == 1 ? true : false
       })
       this.modelFormData.controls['accountGroupId'].disable();
-      this.getGLUnderGroupList();
-      this.getAccountNamelist();
-      this.geStructurekeyData();
     }
+    this.getGLUnderGroupList();
+    this.getAccountNamelist();
+    this.geStructurekeyData();
   }
 
   ngOnInit() {
@@ -137,6 +137,7 @@ export class UndersubGroupComponent implements OnInit {
       .subscribe(
         response => {
           const res = response;
+          debugger
           if (!this.commonService.checkNullOrUndefined(res) && res.status === StatusCodes.pass) {
             if (!this.commonService.checkNullOrUndefined(res.response)) {
               this.structkeyList = res.response['structkeyList'];
@@ -149,6 +150,7 @@ export class UndersubGroupComponent implements OnInit {
   get formControls() { return this.modelFormData.controls; }
 
   save() {
+    debugger
     if (this.modelFormData.invalid) {
       return;
     }
@@ -157,7 +159,6 @@ export class UndersubGroupComponent implements OnInit {
       isDefault: this.modelFormData.get('isDefault').value ? 1 : 0
     })
     this.formData.item = this.modelFormData.value;
-    (!this.commonService.checkNullOrUndefined(this.formData.item.Undersubaccount)) ? this.formData.item.groupUnder = this.formData.item.Undersubaccount : null;
     this.addOrEditService[this.formData.action](this.formData, (res) => {
       this.dialogRef.close(this.formData);
     });

@@ -35,7 +35,7 @@ export class AssignGLaccounttoSubGroupComponent implements OnInit {
     @Optional() @Inject(MAT_DIALOG_DATA) public data: any) {
 
     this.modelFormData = this.formBuilder.group({
-      code: [0],
+      code: [null, [Validators.required, Validators.minLength(1), Validators.maxLength(5)]],
       glgroup: [null],
       subAccount: [null],
       fromGl: [null],
@@ -48,6 +48,7 @@ export class AssignGLaccounttoSubGroupComponent implements OnInit {
       this.modelFormData.patchValue({
         fromGl: [this.formData.item['fromGl']]
       });
+      this.modelFormData.controls['code'].disable();
     }
   }
 
@@ -62,6 +63,7 @@ export class AssignGLaccounttoSubGroupComponent implements OnInit {
   }
 
   geStructurekeyData() {
+    debugger
     const geStructurekeynUrl = String.Join('/', this.apiConfigService.getStructurekeyList);
     this.apiService.apiGetRequest(geStructurekeynUrl)
       .subscribe(
@@ -82,6 +84,7 @@ export class AssignGLaccounttoSubGroupComponent implements OnInit {
       this.apiService.apiGetRequest(getAccountNamelist)
         .subscribe(
           response => {
+            this.spinner.hide();
             const res = response;
             if (!this.commonService.checkNullOrUndefined(res) && res.status === StatusCodes.pass) {
               if (!this.commonService.checkNullOrUndefined(res.response)) {
@@ -100,6 +103,7 @@ export class AssignGLaccounttoSubGroupComponent implements OnInit {
     this.apiService.apiGetRequest(getdptcnUrl)
       .subscribe(
         response => {
+          this.spinner.hide();
           const res = response;
           if (!this.commonService.checkNullOrUndefined(res) && res.status === StatusCodes.pass) {
             if (!this.commonService.checkNullOrUndefined(res.response)) {
@@ -113,7 +117,7 @@ export class AssignGLaccounttoSubGroupComponent implements OnInit {
   filterGlList(glArray) {
     let glList = [];
     for (let g = 0; g < glArray.length; g++) {
-      if (!this.formData.tableData.filter(res => res.fromGl == glArray[g]['id']).length) {
+      if (this.formData.tableData && !this.formData.tableData.filter(res => res.fromGl == glArray[g]['id']).length) {
         glList.push(glArray[g]);
       };
       if (!this.commonService.checkNullOrUndefined(this.formData.item)) {
@@ -144,6 +148,7 @@ export class AssignGLaccounttoSubGroupComponent implements OnInit {
   }
 
   onGroupChange() {
+    debugger
     this.fromGlList = [];
     if (this.commonService.checkNullOrUndefined(this.formData.item)) {
       this.modelFormData.patchValue({

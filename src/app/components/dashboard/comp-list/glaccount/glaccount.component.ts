@@ -6,8 +6,10 @@ import { CommonService } from '../../../../services/common.service';
 import { FormBuilder, FormGroup, Validators } from '@angular/forms';
 import { NgxSpinnerService } from 'ngx-spinner';
 import { ApiConfigService } from '../../../../services/api-config.service';
-import { StatusCodes } from '../../../../enums/common/common';
+import { SnackBar, StatusCodes } from '../../../../enums/common/common';
 import { AddOrEditService } from '../add-or-edit.service';
+import { AlertService } from 'src/app/services/alert.service';
+import { Static } from 'src/app/enums/common/static';
 
 interface account {
   value: string;
@@ -73,6 +75,7 @@ export class GLAccountComponent implements OnInit {
     private apiConfigService: ApiConfigService,
     private spinner: NgxSpinnerService,
     private formBuilder: FormBuilder,
+    private alertService: AlertService,
     public dialogRef: MatDialogRef<GLAccountComponent>,
     // @Optional() is used to prevent error if no data is passed
     @Optional() @Inject(MAT_DIALOG_DATA) public data: any) {
@@ -115,6 +118,9 @@ export class GLAccountComponent implements OnInit {
 
   enableAccount() {
     this.modelFormData.controls.accountNumber.enable();
+    this.modelFormData.patchValue({
+      accountNumber: ''
+    })
   }
 
   onCategoryChange() {
@@ -137,6 +143,16 @@ export class GLAccountComponent implements OnInit {
 
   onChange(event: any) {
     debugger
+    const obj = this.glAccgrpList.find((gl: any) => gl.groupCode == this.modelFormData.value.accGroup);
+    if (obj) {
+      if (this.modelFormData.value.accountNumber && (!(+this.modelFormData.value.accountNumber >= obj.numberRangeFrom && +this.modelFormData.value.accountNumber <= obj.numberRangeTo))) {
+        this.modelFormData.patchValue({
+          accountNumber: ''
+        })
+        this.alertService.openSnackBar(`Account Number should be from ${obj.numberRangeFrom} to ${obj.numberRangeTo}`, Static.Close, SnackBar.error);
+        return;
+      }
+    }
     const getAccountSubGrouplist = String.Join('/', this.apiConfigService.getaccountNumber,
       this.modelFormData.get('accGroup').value, this.modelFormData.get('accountNumber').value);
     this.apiService.apiGetRequest(getAccountSubGrouplist)
