@@ -160,6 +160,7 @@ export class ApiConfigService {
    getBusienessTransactionTypeList = `${this.environment.runtimeConfig.serverUrl}BusienessTransactionType/GetBusienessTransactionTypeList`;
    //AssetBegningAcqusition
    registeraqsnList = `${this.environment.runtimeConfig.serverUrl}AssetBegningAcqusition/RegisterAssetBegningAcqusition`;
+   updateAssetBegningAcqusition = `${this.environment.runtimeConfig.serverUrl}AssetBegningAcqusition/UpdateAssetBegningAcqusition`;
    getAqsnDetail = `${this.environment.runtimeConfig.serverUrl}AssetBegningAcqusition/GetAssetBegningAcqusitionDetail`;
    getAcquisitionDetailsList = `${this.environment.runtimeConfig.serverUrl}AssetBegningAcqusition/GetAssetBegningAcqusitionDetailsList`;
    getacquisitionlist = `${this.environment.runtimeConfig.serverUrl}AssetBegningAcqusition/GetAssetBegningAcqusitionList`;

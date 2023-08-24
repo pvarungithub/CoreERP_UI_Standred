@@ -56,8 +56,8 @@ export class AssetBegningAcqusitionComponent implements OnInit {
     this.modelFormData = this.formBuilder.group({
       acquisitionCost: [null],
       acquisitionDate: [null],
-      code: [null],
-      id: ['0'],
+      code: [null, [Validators.required, Validators.minLength(2), Validators.maxLength(6)]],
+      id: [0],
       mainAssetDescription: [null],
       mainAssetNo: [null],
       subAssetDescription: [null],
@@ -67,7 +67,12 @@ export class AssetBegningAcqusitionComponent implements OnInit {
     });
 
     this.formData = { ...this.addOrEditService.editData };
+    if (!this.commonService.checkNullOrUndefined(this.formData.item)) {
+      this.modelFormData.patchValue(this.formData.item);
+      this.modelFormData.controls['code'].disable();
+    }
   }
+
   tablePropsFunc() {
     return {
       tableData: {
@@ -117,9 +122,9 @@ export class AssetBegningAcqusitionComponent implements OnInit {
           if (this.routeEdit != '') {
             this.getAqsnDetail(this.routeEdit);
           }
-          //this.spinner.hide();
         });
   }
+
   getSubassetList() {
     const getplantList = String.Join('/', this.apiConfigService.getSubAssetsList);
     this.apiService.apiGetRequest(getplantList)
@@ -134,6 +139,7 @@ export class AssetBegningAcqusitionComponent implements OnInit {
           this.spinner.hide();
         });
   }
+
   getmainassetclassTableData() {
     const getCompanyUrl = String.Join('/', this.apiConfigService.getMainAssetMasterList);
     this.apiService.apiGetRequest(getCompanyUrl)
@@ -149,7 +155,6 @@ export class AssetBegningAcqusitionComponent implements OnInit {
         });
   }
 
-  ///databind on editmode
   getAqsnDetail(val) {
     const cashDetUrl = String.Join('/', this.apiConfigService.getAqsnDetail, val);
     this.apiService.apiGetRequest(cashDetUrl)
@@ -176,6 +181,12 @@ export class AssetBegningAcqusitionComponent implements OnInit {
 
 
   save() {
+    if (this.modelFormData.invalid) {
+      if (!this.tableData.length) {
+        this.alertService.openSnackBar('Please fill all mandidatory fields', Static.Close, SnackBar.success);
+      }
+      return;
+    }
     this.tableData = this.commonService.formatTableData(this.tableData);
     this.saveBeingAcquisition();
 
@@ -186,7 +197,7 @@ export class AssetBegningAcqusitionComponent implements OnInit {
     this.sendDynTableData = { type: 'reset', data: this.tableData };
   }
   saveBeingAcquisition() {
-    const addCashBank = String.Join('/', this.apiConfigService.registeraqsnList);
+    const addCashBank = String.Join('/', this.modelFormData.value.id ? this.apiConfigService.updateAssetBegningAcqusition : this.apiConfigService.registeraqsnList);
     const requestObj = { mainaqsnHdr: this.modelFormData.value, mainaqsnDetail: this.tableData };
     this.apiService.apiPostRequest(addCashBank, requestObj).subscribe(
       response => {
@@ -195,6 +206,7 @@ export class AssetBegningAcqusitionComponent implements OnInit {
         if (!this.commonService.checkNullOrUndefined(res) && res.status === StatusCodes.pass) {
           if (!this.commonService.checkNullOrUndefined(res.response)) {
             this.alertService.openSnackBar('BeingAcquisition created Successfully..', Static.Close, SnackBar.success);
+            this.router.navigate(['/dashboard/master/assetbegningacqusition']);
           }
           this.reset();
           this.spinner.hide();
