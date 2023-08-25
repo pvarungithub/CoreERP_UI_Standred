@@ -38,13 +38,13 @@ export class EmployeeComponent implements OnInit {
     private addOrEditService: AddOrEditService) {
 
     this.modelFormData = this.formBuilder.group({
-      employeeId: [''],
+      employeeId: [null],
       branchId: [''],
       branchCode: ['', Validators.required],
       branchName: ['', Validators.required],
       designationId: [''],
       employeeName: [''],
-      employeeCode: [0],
+      employeeCode: [null],
       dob: [''],
       maritalStatus: [''],
       gender: [''],
@@ -86,6 +86,7 @@ export class EmployeeComponent implements OnInit {
     if (!this.commonService.checkNullOrUndefined(this.formData.item)) {
       this.modelFormData.patchValue(this.formData.item);
       this.modelFormData.controls['employeeCode'].disable();
+      this.modelFormData.controls['employeeId'].disable();
     }
 
   }
@@ -129,6 +130,7 @@ export class EmployeeComponent implements OnInit {
     }
     this.formData.item = this.modelFormData.value;
     this.modelFormData.controls['employeeCode'].enable();
+    this.modelFormData.controls['employeeId'].enable();
 
     const addCashBank = String.Join('/', this.formData.item.employeeCode ? this.apiConfigService.registerEmployee : this.apiConfigService.updateEmployee);
     this.apiService.apiPostRequest(addCashBank, this.formData.item).subscribe(
