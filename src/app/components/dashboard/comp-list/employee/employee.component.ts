@@ -44,7 +44,7 @@ export class EmployeeComponent implements OnInit {
       branchName: ['', Validators.required],
       designationId: [''],
       employeeName: [''],
-      employeeCode: [''],
+      employeeCode: [0],
       dob: [''],
       maritalStatus: [''],
       gender: [''],
@@ -128,13 +128,16 @@ export class EmployeeComponent implements OnInit {
       return;
     }
     this.formData.item = this.modelFormData.value;
-    const addCashBank = String.Join('/', this.apiConfigService.registeraqsnList);
+    this.modelFormData.controls['employeeCode'].enable();
+
+    const addCashBank = String.Join('/', this.formData.item.employeeCode ? this.apiConfigService.registerEmployee : this.apiConfigService.updateEmployee);
     this.apiService.apiPostRequest(addCashBank, this.formData.item).subscribe(
       response => {
         const res = response;
         if (!this.commonService.checkNullOrUndefined(res) && res.status === StatusCodes.pass) {
           if (!this.commonService.checkNullOrUndefined(res.response)) {
             this.alertService.openSnackBar('Employee created Successfully..', Static.Close, SnackBar.success);
+            this.router.navigate(['/dashboard/master/employee']);
           }
           this.spinner.hide();
         }

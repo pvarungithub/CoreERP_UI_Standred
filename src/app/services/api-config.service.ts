@@ -292,5 +292,8 @@ export class ApiConfigService {
    /*******************************PrimeryCost****************************************************** */
    addpccost = `${this.environment.runtimeConfig.serverUrl}PrimaryCostElementsCreation/UpdatePcost`;
    getFile = `${this.environment.runtimeConfig.serverUrl}Transactions/GetFile`;
+   
+   registerEmployee = `${this.environment.runtimeConfig.serverUrl}Employee/RegisterEmployee`;
+   updateEmployee = `${this.environment.runtimeConfig.serverUrl}Employee/UpdateEmployee`;
 
 }
