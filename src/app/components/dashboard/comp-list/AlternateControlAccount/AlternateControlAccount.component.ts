@@ -33,7 +33,7 @@ export class AlternateControlAccountComponent implements OnInit {
     @Optional() @Inject(MAT_DIALOG_DATA) public data: any) {
 
     this.modelFormData = this.formBuilder.group({
-      code: ['0'],
+      id: [null],
       normalControlAccount: [null],
       alternativeControlAccount: [null],
       chartofAccount: [null],
@@ -43,7 +43,7 @@ export class AlternateControlAccountComponent implements OnInit {
     this.formData = { ...data };
     if (!this.commonService.checkNullOrUndefined(this.formData.item)) {
       this.modelFormData.patchValue(this.formData.item);
-      this.modelFormData.controls['code'].disable();
+      this.modelFormData.controls['id'].disable();
     }
   }
 
@@ -104,13 +104,13 @@ export class AlternateControlAccountComponent implements OnInit {
     if (this.modelFormData.invalid) {
       return;
     }
-    this.modelFormData.controls['code'].enable();
+    this.modelFormData.controls['id'].enable();
     this.formData.item = this.modelFormData.value;
     this.addOrEditService[this.formData.action](this.formData, (res) => {
       this.dialogRef.close(this.formData);
     });
     if (this.formData.action == 'Edit') {
-      this.modelFormData.controls['code'].disable();
+      this.modelFormData.controls['id'].disable();
     }
   }
 

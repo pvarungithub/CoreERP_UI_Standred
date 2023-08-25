@@ -497,7 +497,6 @@
     "description": "Description",
     "numberRange": "Number Range",
     "classType": "ClassType",
-    "lowValueAssetClass": "Low Value Asset Class",
     "assetLowValue": "Asset Low Value",
     "nature": "Nature",
     "lastNumberRange": "LastNumberRange"
@@ -1802,15 +1801,17 @@
   },
   "employee": {
     "title":"Employee",
+    "employeeId": "Employee Id",
     "branchCode": "Branch Code",
     "branchName": "Branch Name",
+    "designationId":"Designation Id",
+    "isActive": "isActive",
     "employeeCode": "Employee Code",
     "employeeName": "Employee Name",    
     "designation": "Designation",
     "bankAccountNumber":"BankAccountNumber",
     "gender":"Gender",
     "aadharNumber":"AadharNumber",
-    "designationId":"Emp Dgs ID",
     "dob":"Date",
     "maritalStatus":"MaritalStatus",
     "qualification":"qualification",
@@ -1835,6 +1836,12 @@
     "esiNumber":"EsiNumber",
     "defaultPackageId":"DefaultPackageId",
     "recomendedBy":"Recomended BY",
-    "approvedBy":"Approved BY"
+    "approvedBy":"Approved BY",
+    "extraDate":"Extra Date",
+    "extra1": "extra1",
+    "extra2": "extra2",
+    "recomendedId": "Recomended Id",
+    "reportedBy": "Reported By"
+
   }
 }

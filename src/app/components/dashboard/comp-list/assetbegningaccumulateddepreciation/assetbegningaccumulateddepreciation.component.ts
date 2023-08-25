@@ -48,6 +48,7 @@ export class AssetBegningAccumulatedDepreciationComponent implements OnInit {
     @Optional() @Inject(MAT_DIALOG_DATA) public data: any) {
 
     this.modelFormData = this.formBuilder.group({
+      id: [null],
       mainAssetNo: [null],
       subAssetNo: [null],
       depreciationArea: [null],
@@ -58,7 +59,7 @@ export class AssetBegningAccumulatedDepreciationComponent implements OnInit {
     this.formData = { ...data };
     if (!this.commonService.checkNullOrUndefined(this.formData.item)) {
       this.modelFormData.patchValue(this.formData.item);
-      // this.modelFormData.controls['mainAssetNo'].disable();
+      this.modelFormData.controls['id'].disable();
     }
 
   }
@@ -121,13 +122,13 @@ export class AssetBegningAccumulatedDepreciationComponent implements OnInit {
     if (this.modelFormData.invalid) {
       return;
     }
-    // this.modelFormData.controls['mainAssetNo'].enable();
+    this.modelFormData.controls['id'].enable();
     this.formData.item = this.modelFormData.value;
     this.addOrEditService[this.formData.action](this.formData, (res) => {
       this.dialogRef.close(this.formData);
     });
     if (this.formData.action == 'Edit') {
-      //this.modelFormData.controls['mainAssetNo'].disable();
+      this.modelFormData.controls['id'].disable();
     }
   }
 

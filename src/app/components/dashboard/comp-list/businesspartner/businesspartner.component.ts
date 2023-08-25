@@ -100,6 +100,10 @@ export class BusienessPartnerAccountComponent implements OnInit, OnDestroy {
     this.formData = { ...this.addOrEditService.editData };
     if (!this.commonService.checkNullOrUndefined(this.formData.item)) {
       this.modelFormData.patchValue(this.formData.item);
+      this.modelFormData.controls['company'].disable();
+      this.modelFormData.controls['bptype'].disable();
+      this.modelFormData.controls['bpgroup'].disable();
+      this.modelFormData.controls['bpnumber'].disable();
     }
   }
 
@@ -111,36 +115,18 @@ export class BusienessPartnerAccountComponent implements OnInit, OnDestroy {
     this.getcountrysList();
     this.getptypeList();
     this.getEmployeesList();
-    this.getPartnerGroupsTableData();
     this.getTDSTableData();
     this.getTDSRateTableData();
-    this.getGLAccountData();
   }
 
   onbpChange() {
     this.controlAccountList = [];
     this.bpgLists = [];
-    let data = this.ptypeList.find(res => res.code == this.modelFormData.get('bptype').value);
+    let data = this.ptypeList.find(res => res.code == this.modelFormData.controls.bptype.value);
     this.controlAccountList = this.glList.filter(res => res.controlAccount == data.description);
     this.bpgLists = this.bpgList.filter(res => res.bptype == data.code);
 
   }
-
-  onChange(event: any) {
-    const getAccountSubGrouplist = String.Join('/', this.apiConfigService.getbpNumbers,
-      this.modelFormData.get('bpgroup').value, this.modelFormData.get('bpnumber').value);
-    this.apiService.apiGetRequest(getAccountSubGrouplist)
-      .subscribe(
-        response => {
-          const res = response;
-          if (!this.commonService.checkNullOrUndefined(res) && res.status === StatusCodes.pass) {
-            if (!this.commonService.checkNullOrUndefined(res.response)) {
-            }
-          }
-          this.spinner.hide();
-        });
-
-  };
 
   gettingbpgroupname() {
     const getAccountSubGrouplist = String.Join('/', this.apiConfigService.getttingbpNames,
@@ -163,6 +149,9 @@ export class BusienessPartnerAccountComponent implements OnInit, OnDestroy {
 
   getBPNumberData() {
     this.gettingbpgroupname();
+    this.modelFormData.patchValue({
+      bpnumber: ''
+    });
     const getAccountSubGrouplist = String.Join('/', this.apiConfigService.getttingbpNumbers,
       this.modelFormData.get('bpgroup').value);
     this.apiService.apiGetRequest(getAccountSubGrouplist)
@@ -193,7 +182,7 @@ export class BusienessPartnerAccountComponent implements OnInit, OnDestroy {
               this.glList = res.response['glList'];
             }
           }
-          this.spinner.hide();
+          this.getPartnerGroupsTableData();
         });
   }
 
@@ -251,6 +240,9 @@ export class BusienessPartnerAccountComponent implements OnInit, OnDestroy {
           if (!this.commonService.checkNullOrUndefined(res) && res.status === StatusCodes.pass) {
             if (!this.commonService.checkNullOrUndefined(res.response)) {
               this.bpgList = res.response['bpgList'];
+              if (!this.commonService.checkNullOrUndefined(this.formData.item)) {
+                this.onbpChange();
+              }
             }
           }
           this.spinner.hide();
@@ -326,9 +318,11 @@ export class BusienessPartnerAccountComponent implements OnInit, OnDestroy {
           if (!this.commonService.checkNullOrUndefined(res) && res.status === StatusCodes.pass) {
             if (!this.commonService.checkNullOrUndefined(res.response)) {
               this.ptypeList = res.response['ptypeList'];
+              
+
             }
           }
-          this.spinner.hide();
+          this.getGLAccountData();
         });
   }
 
@@ -354,12 +348,18 @@ export class BusienessPartnerAccountComponent implements OnInit, OnDestroy {
       return;
     }
     this.modelFormData.controls['bpnumber'].enable();
+    this.modelFormData.controls['company'].enable();
+    this.modelFormData.controls['bptype'].enable();
+    this.modelFormData.controls['bpgroup'].enable();
     this.formData.item = this.modelFormData.value;
     this.addOrEditService[this.formData.action](this.formData, (res) => {
       this.router.navigate(['/dashboard/master/businesspartner']);
     });
     if (this.formData.action == 'Edit') {
-      this.modelFormData.controls[''].disable();
+      this.modelFormData.controls['bpnumber'].disable();
+      this.modelFormData.controls['company'].disable();
+      this.modelFormData.controls['bptype'].disable();
+      this.modelFormData.controls['bpgroup'].disable();
     }
   }
 

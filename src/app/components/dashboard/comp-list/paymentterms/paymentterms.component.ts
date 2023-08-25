@@ -140,8 +140,7 @@ export class PaymentTermsComponent implements OnInit {
   get formControls() { return this.modelFormData.controls; }
 
   emitTableData(data) {
-    this.tableData = data;
-
+    this.tableData = data.data;
   }
 
   save() {
@@ -158,6 +157,8 @@ export class PaymentTermsComponent implements OnInit {
     this.sendDynTableData = { type: 'reset', data: this.tableData };
   }
   savepaymentterms() {
+    debugger
+    this.tableData = this.commonService.formatTableData(this.tableData);
     const addCashBank = String.Join('/', this.apiConfigService.registerpaymenttermsList);
     const requestObj = { paymentstrmsHdr: this.modelFormData.value, paymentstrmsDetail: this.tableData };
     this.apiService.apiPostRequest(addCashBank, requestObj).subscribe(
@@ -166,6 +167,7 @@ export class PaymentTermsComponent implements OnInit {
         if (!this.commonService.checkNullOrUndefined(res) && res.status === StatusCodes.pass) {
           if (!this.commonService.checkNullOrUndefined(res.response)) {
             this.alertService.openSnackBar('paymentterms created Successfully..', Static.Close, SnackBar.success);
+            this.router.navigate(['/dashboard/master/paymentterms']);
           }
           this.reset();
           this.spinner.hide();

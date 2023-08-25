@@ -5,149 +5,178 @@
 
       <div class="d--flex">
 
-        <!-- <mat-form-field class="form-element" 
-          [ngClass]="{ 'ng--valid': formControls.code.valid, 'ng--invalid': !formControls.code.valid  }">
-          <mat-label [translate]="'employee.code'"></mat-label>
-          <input matInput placeholder="Code" formControlName="code" appFocusOnEnter tabIndex="1">
-          <mat-error *ngIf="formControls.code.errors" class="help-block">
-            <div *ngIf="formControls.code.errors.required">Code is required </div>
-          </mat-error>
+        <mat-form-field class="form-element" [ngClass]="{ 'ng--valid': formControls.employeeId.valid&& formControls.employeeId.status != 'DISABLED', 
+                   'ng--invalid': !formControls.employeeId.valid && formControls.employeeId.status != 'DISABLED' }">
+          <mat-label [translate]="'employee.employeeId'"></mat-label>
+          <input matInput formControlName="employeeId" maxlength="5" appFocusOnEnter tabIndex="1">
+          <mat-error *ngIf="!formControls.employeeId.valid && formControls.employeeId.status != 'DISABLED'"
+            [ngClass]="{ 'ng--invalid': !formControls.employeeId.valid  }">Employee is required</mat-error>
         </mat-form-field>
-
-        <mat-form-field class="form-element" 
-          [ngClass]="{ 'ng--valid': formControls.name.valid, 'ng--invalid': !formControls.name.valid  }">
-          <mat-label [translate]="'employee.name'"></mat-label>
-          <input matInput placeholder="Name" formControlName="name" appFocusOnEnter tabIndex="2">
-          <mat-error *ngIf="formControls.name.errors" class="help-block">
-            <div *ngIf="formControls.name.errors.required">Name is required</div>
-          </mat-error>
+        
+        <mat-form-field class="form-element" [ngClass]="{ 'ng--valid': formControls.branchCode.valid&& formControls.branchCode.status != 'DISABLED', 
+                   'ng--invalid': !formControls.branchCode.valid && formControls.branchCode.status != 'DISABLED' }">
+          <mat-label [translate]="'employee.branchCode'"></mat-label>
+          <input matInput formControlName="branchCode" maxlength="5" appFocusOnEnter tabIndex="1">
+          <mat-error *ngIf="!formControls.branchCode.valid && formControls.branchCode.status != 'DISABLED'"
+            [ngClass]="{ 'ng--invalid': !formControls.branchCode.valid  }">Branch Code is required</mat-error>
         </mat-form-field>
-
-        <mat-form-field class="form-element">
-          <mat-label [translate]="'employee.role'"></mat-label>
-          <input matInput placeholder="Phone1" formControlName="phone1" appFocusOnEnter tabIndex="3">
-        </mat-form-field>
-        <mat-form-field class="form-element">
-          <mat-label [translate]="'employee.role'"></mat-label>
-          <input matInput placeholder="Phone2" formControlName="phone2" appFocusOnEnter tabIndex="4">
-        </mat-form-field>
-        <mat-form-field class="form-element">
-          <mat-label [translate]="'employee.role'"></mat-label>
-          <input matInput placeholder="aadhar" formControlName="aadhar" appFocusOnEnter tabIndex="5">
-        </mat-form-field>
-        <mat-form-field class="form-element">
-          <mat-label [translate]="'employee.role'"></mat-label>
-          <input matInput placeholder="AccessCard" formControlName="accessCard" appFocusOnEnter tabIndex="6">
-        </mat-form-field>
-        <mat-form-field class="form-element">
-          <mat-label [translate]="'employee.role'"></mat-label>
-          <input matInput placeholder="Address1" formControlName="address1" appFocusOnEnter tabIndex="7">
-        </mat-form-field>
-        <mat-form-field class="form-element">
-          <mat-label [translate]="'employee.role'"></mat-label>
-          <input matInput placeholder="Address2" formControlName="address2" appFocusOnEnter tabIndex="8">
-        </mat-form-field>
-        <mat-form-field class="form-element">
-          <mat-label [translate]="'employee.role'"></mat-label>
-          <input matInput placeholder="approvedBy" formControlName="approvedBy" appFocusOnEnter tabIndex="7">
-        </mat-form-field>
-        <mat-form-field class="form-element">
-          <mat-label [translate]="'employee.role'"></mat-label>
-          <input matInput placeholder="bolldGroup" formControlName="bolldGroup" appFocusOnEnter tabIndex="8">
-        </mat-form-field>
-
-
-        <mat-form-field>
-          <mat-label [translate]="'employee.role'"></mat-label>
-          <mat-label>Company Code</mat-label>
-          <mat-select formControlName="compCode">
-            <mat-option *ngFor="let comp of companyList" [value]="comp.companyCode">
-              {{comp.companyCode}}
-            </mat-option>
-          </mat-select>
+        
+        <mat-form-field class="form-element"
+          [ngClass]="{ 'ng--valid': formControls.branchName.valid, 'ng--invalid': !formControls.branchName.valid  }">
+          <mat-label [translate]="'employee.branchName'"></mat-label>
+          <input matInput formControlName="branchName" maxlength="50" appFocusOnEnter tabIndex="2">
+          <mat-error *ngIf="!formControls.branchName.valid" [ngClass]="{ 'ng--invalid': !formControls.branchName.valid  }">
+            Branch Name is required</mat-error>
         </mat-form-field>
 
         <mat-form-field class="form-element">
-          <mat-label [translate]="'employee.role'"></mat-label>
-          <input matInput placeholder="dob" formControlName="dob" appFocusOnEnter tabIndex="9">
+          <mat-label [translate]="'employee.designationId'"></mat-label>
+          <input matInput placeholder="designationId" formControlName="designationId" appFocusOnEnter tabIndex="3">
         </mat-form-field>
         <mat-form-field class="form-element">
-          <mat-label [translate]="'employee.role'"></mat-label>
-          <input matInput placeholder="designation" formControlName="designation" appFocusOnEnter tabIndex="10">
+          <mat-label [translate]="'employee.employeeName'"></mat-label>
+          <input matInput placeholder="employeeName" formControlName="employeeName" appFocusOnEnter tabIndex="4">
         </mat-form-field>
         <mat-form-field class="form-element">
-          <mat-label [translate]="'employee.role'"></mat-label>
+          <mat-label [translate]="'employee.employeeCode'"></mat-label>
+          <input matInput placeholder="employeeCode" formControlName="employeeCode" appFocusOnEnter tabIndex="5">
+        </mat-form-field>
+        <mat-form-field class="form-element">
+          <mat-label [translate]="'employee.dob'"></mat-label>
+          <input matInput placeholder="dob" formControlName="dob" appFocusOnEnter tabIndex="6">
+        </mat-form-field>
+        <mat-form-field class="form-element">
+          <mat-label [translate]="'employee.maritalStatus'"></mat-label>
+          <input matInput placeholder="maritalStatus" formControlName="maritalStatus" appFocusOnEnter tabIndex="7">
+        </mat-form-field>
+        <mat-form-field class="form-element">
+          <mat-label [translate]="'employee.gender'"></mat-label>
+          <input matInput placeholder="gender" formControlName="gender" appFocusOnEnter tabIndex="8">
+        </mat-form-field>
+        <mat-form-field class="form-element">
+          <mat-label [translate]="'employee.qualification'"></mat-label>
+          <input matInput placeholder="qualification" formControlName="qualification" appFocusOnEnter tabIndex="7">
+        </mat-form-field>
+        <mat-form-field class="form-element">
+          <mat-label [translate]="'employee.address'"></mat-label>
+          <input matInput placeholder="address" formControlName="address" appFocusOnEnter tabIndex="8">
+        </mat-form-field>
+        <mat-form-field class="form-element">
+          <mat-label [translate]="'employee.phoneNumber'"></mat-label>
+          <input matInput placeholder="phoneNumber" formControlName="phoneNumber" appFocusOnEnter tabIndex="9">
+        </mat-form-field>
+        <mat-form-field class="form-element">
+          <mat-label [translate]="'employee.mobileNumber'"></mat-label>
+          <input matInput placeholder="mobileNumber" formControlName="mobileNumber" appFocusOnEnter tabIndex="10">
+        </mat-form-field>
+        <mat-form-field class="form-element">
+          <mat-label [translate]="'employee.email'"></mat-label>
           <input matInput placeholder="email" formControlName="email" appFocusOnEnter tabIndex="11">
         </mat-form-field>
-
         <mat-form-field class="form-element">
-          <mat-label [translate]="'employee.role'"></mat-label>
-          <input matInput placeholder="Email" formControlName="email" appFocusOnEnter tabIndex="12">
+          <mat-label [translate]="'employee.joiningDate'"></mat-label>
+          <input matInput placeholder="joiningDate" formControlName="joiningDate" appFocusOnEnter tabIndex="12">
         </mat-form-field>
         <mat-form-field class="form-element">
-          <mat-label [translate]="'employee.role'"></mat-label>
-          <input matInput placeholder="joinDate" formControlName="joinDate" appFocusOnEnter tabIndex="13">
+          <mat-label [translate]="'employee.terminationDate'"></mat-label>
+          <input matInput placeholder="terminationDate" formControlName="terminationDate" appFocusOnEnter tabIndex="13">
         </mat-form-field>
         <mat-form-field class="form-element">
-          <mat-label [translate]="'employee.role'"></mat-label>
-          <input matInput placeholder="pan" formControlName="pan" appFocusOnEnter tabIndex="14">
+          <mat-label [translate]="'employee.isActive'"></mat-label>
+          <input matInput placeholder="isActive" formControlName="isActive" appFocusOnEnter tabIndex="14">
         </mat-form-field>
         <mat-form-field class="form-element">
-          <mat-label [translate]="'employee.role'"></mat-label>
-          <input matInput placeholder="recommendedBy" formControlName="recommendedBy" appFocusOnEnter tabIndex="15">
+          <mat-label [translate]="'employee.narration'"></mat-label>
+          <input matInput placeholder="narration" formControlName="narration" appFocusOnEnter tabIndex="15">
         </mat-form-field>
         <mat-form-field class="form-element">
-          <mat-label [translate]="'employee.role'"></mat-label>
-          <input matInput placeholder="relDate" formControlName="relDate" appFocusOnEnter tabIndex="16">
+          <mat-label [translate]="'employee.bloodGroup'"></mat-label>
+          <input matInput placeholder="bloodGroup" formControlName="bloodGroup" appFocusOnEnter tabIndex="16">
         </mat-form-field>
         <mat-form-field class="form-element">
-          <mat-label [translate]="'employee.role'"></mat-label>
-          <input matInput placeholder="role" formControlName="role" appFocusOnEnter tabIndex="17">
+          <mat-label [translate]="'employee.passportNo'"></mat-label>
+          <input matInput placeholder="passportNo" formControlName="passportNo" appFocusOnEnter tabIndex="17">
         </mat-form-field>
         <mat-form-field class="form-element">
-          <mat-label [translate]="'employee.role'"></mat-label>
-          <input matInput placeholder="shift" formControlName="shift" appFocusOnEnter tabIndex="18">
+          <mat-label [translate]="'employee.passportExpiryDate'"></mat-label>
+          <input matInput placeholder="passportExpiryDate" formControlName="passportExpiryDate" appFocusOnEnter tabIndex="18">
         </mat-form-field>
         <mat-form-field class="form-element">
           <mat-label [translate]="'employee.role'"></mat-label>
           <input matInput placeholder="Status" formControlName="status" appFocusOnEnter tabIndex="19">
         </mat-form-field>
         <mat-form-field class="form-element">
-          <mat-label [translate]="'employee.role'"></mat-label>
-          <input matInput placeholder="bankAccNo" formControlName="bankAccNo" appFocusOnEnter tabIndex="22">
+          <mat-label [translate]="'employee.labourCardNumber'"></mat-label>
+          <input matInput placeholder="labourCardNumber" formControlName="labourCardNumber" appFocusOnEnter tabIndex="22">
         </mat-form-field>
         <mat-form-field class="form-element">
-          <mat-label [translate]="'employee.role'"></mat-label>
-          <input matInput placeholder="bankBranch" formControlName="bankBranch" appFocusOnEnter tabIndex="23">
+          <mat-label [translate]="'employee.labourCardExpiryDate'"></mat-label>
+          <input matInput placeholder="labourCardExpiryDate" formControlName="labourCardExpiryDate" appFocusOnEnter tabIndex="23">
         </mat-form-field>
         <mat-form-field class="form-element">
-          <mat-label [translate]="'employee.role'"></mat-label>
-          <input matInput placeholder="bankName" formControlName="bankName" appFocusOnEnter tabIndex="24">
+          <mat-label [translate]="'employee.salaryType'"></mat-label>
+          <input matInput placeholder="salaryType" formControlName="salaryType" appFocusOnEnter tabIndex="24">
         </mat-form-field>
         <mat-form-field class="form-element">
-          <mat-label [translate]="'employee.role'"></mat-label>
-          <input matInput placeholder="esinumber" formControlName="esinumber" appFocusOnEnter tabIndex="25">
+          <mat-label [translate]="'employee.bankName'"></mat-label>
+          <input matInput placeholder="bankName" formControlName="bankName" appFocusOnEnter tabIndex="25">
         </mat-form-field>
         <mat-form-field class="form-element">
-          <mat-label [translate]="'employee.role'"></mat-label>
-          <input matInput placeholder="ifsccode" formControlName="ifsccode" appFocusOnEnter tabIndex="26">
+          <mat-label [translate]="'employee.bankbranchName'"></mat-label>
+          <input matInput placeholder="bankbranchName" formControlName="bankbranchName" appFocusOnEnter tabIndex="26">
         </mat-form-field>
         <mat-form-field class="form-element">
-          <mat-label [translate]="'employee.role'"></mat-label>
-          <input matInput placeholder="pfnumber" formControlName="pfnumber" appFocusOnEnter tabIndex="29">
+          <mat-label [translate]="'employee.bankAccountNumber'"></mat-label>
+          <input matInput placeholder="bankAccountNumber" formControlName="bankAccountNumber" appFocusOnEnter tabIndex="29">
         </mat-form-field>
         <mat-form-field class="form-element">
-          <mat-label [translate]="'employee.role'"></mat-label>
-          <input matInput placeholder="reportingTo" formControlName="reportingTo" appFocusOnEnter tabIndex="29">
+          <mat-label [translate]="'employee.bankbranchCode'"></mat-label>
+          <input matInput placeholder="bankbranchCode" formControlName="bankbranchCode" appFocusOnEnter tabIndex="29">
         </mat-form-field>
         <mat-form-field class="form-element">
-          <mat-label [translate]="'employee.role'"></mat-label>
-          <input matInput placeholder="uannumber" formControlName="uannumber" appFocusOnEnter tabIndex="29">
+          <mat-label [translate]="'employee.panNumber'"></mat-label>
+          <input matInput placeholder="panNumber" formControlName="panNumber" appFocusOnEnter tabIndex="29">
         </mat-form-field>
         <mat-form-field class="form-element">
-          <mat-label [translate]="'employee.role'"></mat-label>
-          <input matInput placeholder="active" formControlName="active" appFocusOnEnter tabIndex="29">
-        </mat-form-field> -->
+          <mat-label [translate]="'employee.esiNumber'"></mat-label>
+          <input matInput placeholder="esiNumber" formControlName="esiNumber" appFocusOnEnter tabIndex="29">
+        </mat-form-field>
+        <mat-form-field class="form-element">
+          <mat-label [translate]="'employee.extraDate'"></mat-label>
+          <input matInput placeholder="extraDate" formControlName="extraDate" appFocusOnEnter tabIndex="29">
+        </mat-form-field>
+        <mat-form-field class="form-element">
+          <mat-label [translate]="'employee.extra1'"></mat-label>
+          <input matInput placeholder="extra1" formControlName="extra1" appFocusOnEnter tabIndex="29">
+        </mat-form-field>
+        <mat-form-field class="form-element">
+          <mat-label [translate]="'employee.extra2'"></mat-label>
+          <input matInput placeholder="extra2" formControlName="extra2" appFocusOnEnter tabIndex="29">
+        </mat-form-field>
+        <mat-form-field class="form-element">
+          <mat-label [translate]="'employee.defaultPackageId'"></mat-label>
+          <input matInput placeholder="defaultPackageId" formControlName="defaultPackageId" appFocusOnEnter tabIndex="29">
+        </mat-form-field>
+        <mat-form-field class="form-element">
+          <mat-label [translate]="'employee.aadharNumber'"></mat-label>
+          <input matInput placeholder="aadharNumber" formControlName="aadharNumber" appFocusOnEnter tabIndex="29">
+        </mat-form-field>
+        <mat-form-field class="form-element">
+          <mat-label [translate]="'employee.recomendedBy'"></mat-label>
+          <input matInput placeholder="recomendedBy" formControlName="recomendedBy" appFocusOnEnter tabIndex="29">
+        </mat-form-field>
+        <mat-form-field class="form-element">
+          <mat-label [translate]="'employee.recomendedId'"></mat-label>
+          <input matInput placeholder="recomendedId" formControlName="recomendedId" appFocusOnEnter tabIndex="29">
+        </mat-form-field>
+        <mat-form-field class="form-element">
+          <mat-label [translate]="'employee.reportedBy'"></mat-label>
+          <input matInput placeholder="reportedBy" formControlName="reportedBy" appFocusOnEnter tabIndex="29">
+        </mat-form-field>
+        <mat-form-field class="form-element">
+          <mat-label [translate]="'employee.approvedBy'"></mat-label>
+          <input matInput placeholder="approvedBy" formControlName="approvedBy" appFocusOnEnter tabIndex="29">
+        </mat-form-field>
 
       </div>
       <mat-divider></mat-divider>

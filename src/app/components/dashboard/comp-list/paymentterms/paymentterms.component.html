@@ -32,7 +32,7 @@
       </mat-tab>
 
       <mat-tab label="PaymentTerms  Details">
-        <app-dynamic-table [tableObJect]="dynTableProps" (emitTableData)="emitTableData($event)"
+        <app-dynamic-table [tableObJect]="dynTableProps" (emitColumnChanges)="emitTableData($event)"
           [dynamicTableUpdate]="sendDynTableData"></app-dynamic-table>
       </mat-tab>
     </form>

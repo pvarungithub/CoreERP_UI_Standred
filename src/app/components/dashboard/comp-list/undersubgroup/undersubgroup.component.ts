@@ -83,9 +83,11 @@ export class UndersubGroupComponent implements OnInit {
 
   getAccountNamelist() {
     this.glAccNameList = [];
-    this.modelFormData.patchValue({
-      groupUnder: ''
-    })
+    if (!this.formData.item) {
+      this.modelFormData.patchValue({
+        groupUnder: ''
+      })
+    }
     const getAccountNamelist = String.Join('/', this.apiConfigService.getAccountNamelist, this.modelFormData.get('nature').value);
     this.apiService.apiGetRequest(getAccountNamelist)
       .subscribe(
