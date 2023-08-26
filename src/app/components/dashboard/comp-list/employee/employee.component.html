@@ -5,12 +5,12 @@
 
       <div class="d--flex">
 
-        <mat-form-field class="form-element" [ngClass]="{ 'ng--valid': formControls.employeeId.valid&& formControls.employeeId.status != 'DISABLED', 
-                   'ng--invalid': !formControls.employeeId.valid && formControls.employeeId.status != 'DISABLED' }">
-          <mat-label [translate]="'employee.employeeId'"></mat-label>
-          <input matInput formControlName="employeeId" maxlength="5" appFocusOnEnter tabIndex="1">
-          <mat-error *ngIf="!formControls.employeeId.valid && formControls.employeeId.status != 'DISABLED'"
-            [ngClass]="{ 'ng--invalid': !formControls.employeeId.valid  }">Employee is required</mat-error>
+        <mat-form-field class="form-element" [ngClass]="{ 'ng--valid': formControls.employeeCode.valid&& formControls.employeeCode.status != 'DISABLED', 
+                   'ng--invalid': !formControls.employeeCode.valid && formControls.employeeCode.status != 'DISABLED' }">
+          <mat-label [translate]="'employee.employeeCode'"></mat-label>
+          <input matInput formControlName="employeeCode" maxlength="5" appFocusOnEnter tabIndex="1">
+          <mat-error *ngIf="!formControls.employeeCode.valid && formControls.employeeCode.status != 'DISABLED'"
+            [ngClass]="{ 'ng--invalid': !formControls.employeeCode.valid  }">Employee is required</mat-error>
         </mat-form-field>
         
         <mat-form-field class="form-element" [ngClass]="{ 'ng--valid': formControls.branchCode.valid&& formControls.branchCode.status != 'DISABLED', 
@@ -43,7 +43,10 @@
         </mat-form-field>
         <mat-form-field class="form-element">
           <mat-label [translate]="'employee.dob'"></mat-label>
-          <input matInput placeholder="dob" formControlName="dob" appFocusOnEnter tabIndex="6">
+          <input matInput [matDatepicker]="picker1" [nonEditable]="picker1" formControlName="dob" appFocusOnEnter
+            tabIndex="3">
+          <mat-datepicker-toggle matSuffix [for]="picker1"></mat-datepicker-toggle>
+          <mat-datepicker #picker1></mat-datepicker>
         </mat-form-field>
         <mat-form-field class="form-element">
           <mat-label [translate]="'employee.maritalStatus'"></mat-label>
@@ -75,11 +78,15 @@
         </mat-form-field>
         <mat-form-field class="form-element">
           <mat-label [translate]="'employee.joiningDate'"></mat-label>
-          <input matInput placeholder="joiningDate" formControlName="joiningDate" appFocusOnEnter tabIndex="12">
+          <input matInput [matDatepicker]="picker2" [nonEditable]="picker2" formControlName="joiningDate" appFocusOnEnter tabIndex="3">
+          <mat-datepicker-toggle matSuffix [for]="picker2"></mat-datepicker-toggle>
+          <mat-datepicker #picker2></mat-datepicker>
         </mat-form-field>
         <mat-form-field class="form-element">
           <mat-label [translate]="'employee.terminationDate'"></mat-label>
-          <input matInput placeholder="terminationDate" formControlName="terminationDate" appFocusOnEnter tabIndex="13">
+          <input matInput [matDatepicker]="picker3" [nonEditable]="picker3" formControlName="terminationDate" appFocusOnEnter tabIndex="3">
+          <mat-datepicker-toggle matSuffix [for]="picker3"></mat-datepicker-toggle>
+          <mat-datepicker #picker3></mat-datepicker>
         </mat-form-field>
         <mat-form-field class="form-element">
           <mat-label [translate]="'employee.isActive'"></mat-label>
@@ -99,7 +106,10 @@
         </mat-form-field>
         <mat-form-field class="form-element">
           <mat-label [translate]="'employee.passportExpiryDate'"></mat-label>
-          <input matInput placeholder="passportExpiryDate" formControlName="passportExpiryDate" appFocusOnEnter tabIndex="18">
+          <input matInput [matDatepicker]="picker4" [nonEditable]="picker4" formControlName="passportExpiryDate" appFocusOnEnter
+            tabIndex="3">
+          <mat-datepicker-toggle matSuffix [for]="picker4"></mat-datepicker-toggle>
+          <mat-datepicker #picker4></mat-datepicker>
         </mat-form-field>
         <mat-form-field class="form-element">
           <mat-label [translate]="'employee.role'"></mat-label>
@@ -111,7 +121,10 @@
         </mat-form-field>
         <mat-form-field class="form-element">
           <mat-label [translate]="'employee.labourCardExpiryDate'"></mat-label>
-          <input matInput placeholder="labourCardExpiryDate" formControlName="labourCardExpiryDate" appFocusOnEnter tabIndex="23">
+          <input matInput [matDatepicker]="picker5" [nonEditable]="picker5" formControlName="labourCardExpiryDate" appFocusOnEnter
+            tabIndex="3">
+          <mat-datepicker-toggle matSuffix [for]="picker5"></mat-datepicker-toggle>
+          <mat-datepicker #picker5></mat-datepicker>
         </mat-form-field>
         <mat-form-field class="form-element">
           <mat-label [translate]="'employee.salaryType'"></mat-label>
@@ -143,7 +156,10 @@
         </mat-form-field>
         <mat-form-field class="form-element">
           <mat-label [translate]="'employee.extraDate'"></mat-label>
-          <input matInput placeholder="extraDate" formControlName="extraDate" appFocusOnEnter tabIndex="29">
+          <input matInput [matDatepicker]="picker6" [nonEditable]="picker6" formControlName="extraDate" appFocusOnEnter
+            tabIndex="3">
+          <mat-datepicker-toggle matSuffix [for]="picker6"></mat-datepicker-toggle>
+          <mat-datepicker #picker6></mat-datepicker>
         </mat-form-field>
         <mat-form-field class="form-element">
           <mat-label [translate]="'employee.extra1'"></mat-label>

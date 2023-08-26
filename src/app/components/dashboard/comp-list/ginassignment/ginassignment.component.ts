@@ -40,6 +40,7 @@ export class GoodsIssueNoteAssignmentComponent implements OnInit {
       ginseries: [null, [Validators.required, Validators.minLength(1), Validators.maxLength(4)]],
       company: [null, [Validators.required, Validators.minLength(1), Validators.maxLength(30)]],
       plant: [null],
+      id: [null],
       materilaType: [null],
       currentNumber: [null]
     });
@@ -48,7 +49,7 @@ export class GoodsIssueNoteAssignmentComponent implements OnInit {
     this.formData = { ...data };
     if (!this.commonService.checkNullOrUndefined(this.formData.item)) {
       this.modelFormData.patchValue(this.formData.item);
-      this.modelFormData.controls['ginseries'].disable();
+      // this.modelFormData.controls['id'].disable();
     }
 
   }
@@ -124,13 +125,13 @@ export class GoodsIssueNoteAssignmentComponent implements OnInit {
     if (this.modelFormData.invalid) {
       return;
     }
-    this.modelFormData.controls['ginseries'].enable();
+    // this.modelFormData.controls['ginseries'].enable();
     this.formData.item = this.modelFormData.value;
     this.addOrEditService[this.formData.action](this.formData, (res) => {
       this.dialogRef.close(this.formData);
     });
     if (this.formData.action == 'Edit') {
-      this.modelFormData.controls['ginseries'].disable();
+      // this.modelFormData.controls['ginseries'].disable();
     }
   }
 

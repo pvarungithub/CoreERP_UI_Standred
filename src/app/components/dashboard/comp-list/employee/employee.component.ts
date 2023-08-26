@@ -38,7 +38,7 @@ export class EmployeeComponent implements OnInit {
     private addOrEditService: AddOrEditService) {
 
     this.modelFormData = this.formBuilder.group({
-      employeeId: [null],
+      employeeId: [0],
       branchId: [''],
       branchCode: ['', Validators.required],
       branchName: ['', Validators.required],
@@ -131,9 +131,27 @@ export class EmployeeComponent implements OnInit {
     this.formData.item = this.modelFormData.value;
     this.modelFormData.controls['employeeCode'].enable();
     this.modelFormData.controls['employeeId'].enable();
+    if (this.modelFormData.value.employeeId) {
+      this.update();
+      return
+    }
+    const addCashBank = String.Join('/', this.apiConfigService.registerEmployee);
+    this.apiService.apiPostRequest(addCashBank, this.modelFormData.value).subscribe(
+      response => {
+        const res = response;
+        if (!this.commonService.checkNullOrUndefined(res) && res.status === StatusCodes.pass) {
+          if (!this.commonService.checkNullOrUndefined(res.response)) {
+            this.alertService.openSnackBar('Employee created Successfully..', Static.Close, SnackBar.success);
+            this.router.navigate(['/dashboard/master/employee']);
+          }
+          this.spinner.hide();
+        }
+      });
+  }
 
-    const addCashBank = String.Join('/', this.formData.item.employeeCode ? this.apiConfigService.registerEmployee : this.apiConfigService.updateEmployee);
-    this.apiService.apiPostRequest(addCashBank, this.formData.item).subscribe(
+  update() {
+    const addCashBank = String.Join('/', this.apiConfigService.updateEmployee);
+    this.apiService.apiUpdateRequest(addCashBank, this.modelFormData.value).subscribe(
       response => {
         const res = response;
         if (!this.commonService.checkNullOrUndefined(res) && res.status === StatusCodes.pass) {

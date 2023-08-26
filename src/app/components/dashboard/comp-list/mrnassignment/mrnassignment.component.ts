@@ -40,6 +40,7 @@ export class MaterialRequisitionNoteAssignmentComponent implements OnInit {
       mrnseries: [null, [Validators.required, Validators.minLength(1), Validators.maxLength(4)]],
       company: [null, [Validators.required, Validators.minLength(1), Validators.maxLength(30)]],
       plant: [null],
+      id: [null],
       materialType: [null],
       currentNumber: [null]
     });
@@ -48,7 +49,7 @@ export class MaterialRequisitionNoteAssignmentComponent implements OnInit {
     this.formData = { ...data };
     if (!this.commonService.checkNullOrUndefined(this.formData.item)) {
       this.modelFormData.patchValue(this.formData.item);
-      this.modelFormData.controls['mrnseries'].disable();
+      // this.modelFormData.controls['mrnseries'].disable();
     }
 
   }
@@ -123,13 +124,13 @@ export class MaterialRequisitionNoteAssignmentComponent implements OnInit {
     if (this.modelFormData.invalid) {
       return;
     }
-    this.modelFormData.controls['mrnseries'].enable();
+    // this.modelFormData.controls['mrnseries'].enable();
     this.formData.item = this.modelFormData.value;
     this.addOrEditService[this.formData.action](this.formData, (res) => {
       this.dialogRef.close(this.formData);
     });
     if (this.formData.action == 'Edit') {
-      this.modelFormData.controls['mrnseries'].disable();
+      // this.modelFormData.controls['mrnseries'].disable();
     }
   }
 

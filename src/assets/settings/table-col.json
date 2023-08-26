@@ -1812,7 +1812,7 @@
     "bankAccountNumber":"BankAccountNumber",
     "gender":"Gender",
     "aadharNumber":"AadharNumber",
-    "dob":"Date",
+    "dob":"Dob",
     "maritalStatus":"MaritalStatus",
     "qualification":"qualification",
     "address":"Address",
