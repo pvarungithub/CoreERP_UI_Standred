@@ -40,7 +40,7 @@ export class GoodsIssueNoteAssignmentComponent implements OnInit {
       ginseries: [null, [Validators.required, Validators.minLength(1), Validators.maxLength(4)]],
       company: [null, [Validators.required, Validators.minLength(1), Validators.maxLength(30)]],
       plant: [null],
-      id: [null],
+      id: 0,
       materilaType: [null],
       currentNumber: [null]
     });

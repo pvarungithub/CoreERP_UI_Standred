@@ -40,7 +40,7 @@ export class MaterialRequisitionNoteAssignmentComponent implements OnInit {
       mrnseries: [null, [Validators.required, Validators.minLength(1), Validators.maxLength(4)]],
       company: [null, [Validators.required, Validators.minLength(1), Validators.maxLength(30)]],
       plant: [null],
-      id: [null],
+      id: 0,
       materialType: [null],
       currentNumber: [null]
     });

@@ -25,6 +25,7 @@ export class MaterialNumberAsssignmentComponent implements OnInit {
   matypeList: any;
   lotList: any;
   mnosList: any;
+  id:any;
   constructor(private commonService: CommonService,
     private addOrEditService: AddOrEditService,
     private formBuilder: FormBuilder,
@@ -40,8 +41,8 @@ export class MaterialNumberAsssignmentComponent implements OnInit {
       companyCode: [null, [Validators.required, Validators.minLength(1), Validators.maxLength(30)]],
       plant: [null],
       materialType: [null],
-      currentNumber: [null]
-
+      currentNumber: [null],
+      id:[null]
     });
 
 
