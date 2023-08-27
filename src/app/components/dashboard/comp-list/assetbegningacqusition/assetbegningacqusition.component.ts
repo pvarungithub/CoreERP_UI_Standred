@@ -57,7 +57,7 @@ export class AssetBegningAcqusitionComponent implements OnInit {
       acquisitionCost: [null],
       acquisitionDate: [null],
       code: [null, [Validators.required, Validators.minLength(2), Validators.maxLength(6)]],
-      id: [null],
+      id: 0,
       mainAssetDescription: [null],
       mainAssetNo: [null],
       subAssetDescription: [null],

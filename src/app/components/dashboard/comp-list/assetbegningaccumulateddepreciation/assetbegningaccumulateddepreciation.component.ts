@@ -48,7 +48,7 @@ export class AssetBegningAccumulatedDepreciationComponent implements OnInit {
     @Optional() @Inject(MAT_DIALOG_DATA) public data: any) {
 
     this.modelFormData = this.formBuilder.group({
-      id: [null],
+      id: 0,
       mainAssetNo: [null],
       subAssetNo: [null],
       depreciationArea: [null],
@@ -128,7 +128,7 @@ export class AssetBegningAccumulatedDepreciationComponent implements OnInit {
       this.dialogRef.close(this.formData);
     });
     if (this.formData.action == 'Edit') {
-      this.modelFormData.controls['id'].disable();
+      this.modelFormData.controls['id'].disable();      
     }
   }
 
