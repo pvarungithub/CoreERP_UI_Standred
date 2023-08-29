@@ -57,7 +57,6 @@ export class AssetBegningAcqusitionComponent implements OnInit {
       acquisitionCost: [null],
       acquisitionDate: [null],
       code: [null, [Validators.required, Validators.minLength(2), Validators.maxLength(6)]],
-      id: 0,
       mainAssetDescription: [null],
       mainAssetNo: [null],
       subAssetDescription: [null],
@@ -165,7 +164,7 @@ export class AssetBegningAcqusitionComponent implements OnInit {
           if (!this.commonService.checkNullOrUndefined(res) && res.status === StatusCodes.pass) {
             if (!this.commonService.checkNullOrUndefined(res.response)) {
               console.log((res.response['AqsnMasters']));
-              this.modelFormData.setValue(res.response['AqsnMasters']);
+              this.modelFormData.patchValue(res.response['AqsnMasters']);
               this.sendDynTableData = { type: 'edit', data: res.response['AqsnDetail'] };
             }
           }
@@ -187,6 +186,7 @@ export class AssetBegningAcqusitionComponent implements OnInit {
       }
       return;
     }
+    this.modelFormData.controls['code'].enable();
     this.tableData = this.commonService.formatTableData(this.tableData);
     this.saveBeingAcquisition();
 
@@ -198,7 +198,7 @@ export class AssetBegningAcqusitionComponent implements OnInit {
   }
   saveBeingAcquisition() {
     const addCashBank = String.Join('/', this.apiConfigService.registeraqsnList);
-    const requestObj = { mainaqsnHdr: this.modelFormData.value, mainaqsnDetail: (this.tableData && this.tableData.length) ? this.tableData : null  };
+    const requestObj = { mainaqsnHdr: this.modelFormData.value, mainaqsnDetail: this.tableData  };
     this.apiService.apiPostRequest(addCashBank, requestObj).subscribe(
       response => {
         const res = response;

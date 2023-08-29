@@ -38,13 +38,12 @@ export class EmployeeComponent implements OnInit {
     private addOrEditService: AddOrEditService) {
 
     this.modelFormData = this.formBuilder.group({
-      employeeId: [0],
       branchId: [''],
+      employeeId: [0],
+      employeeCode: ['', Validators.required],
       branchCode: ['', Validators.required],
-      branchName: ['', Validators.required],
       designationId: [''],
       employeeName: [''],
-      employeeCode: [null],
       dob: [''],
       maritalStatus: [''],
       gender: [''],
@@ -54,31 +53,24 @@ export class EmployeeComponent implements OnInit {
       mobileNumber: [''],
       email: [''],
       joiningDate: [''],
-      terminationDate: [''],
+      releavingDate: [''], //
       isActive: [''],
       narration: [''],
       bloodGroup: [''],
       passportNo: [''],
-      passportExpiryDate: [''],
-      labourCardNumber: [''],
-      labourCardExpiryDate: [''],
-      salaryType: [''],
+      accessCardNumber: [''], //
       bankName: [''],
-      bankbranchName: [''],
       bankAccountNumber: [''],
-      bankbranchCode: [''],
+      employeeType: [''], //
+      iFSCCode: [''], //
       panNumber: [''],
-      pfNumber: [''],
-      esiNumber: [''],
-      extraDate: [''],
-      extra1: [''],
-      extra2: [''],
-      defaultPackageId: [''],
       aadharNumber: [''],
       recomendedBy: [''],
-      recomendedId: [''],
       reportedBy: [''],
       approvedBy: [''],
+
+      pfNumber: [''],
+      esiNumber: [''],
 
     });
 
