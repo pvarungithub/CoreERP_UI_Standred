@@ -25,6 +25,10 @@ export class EmployeeComponent implements OnInit {
   isSubmitted = false;
   formData: any;
   companyList: any;
+  companiesList: any;
+  branchesList: any;
+  bankList: any;
+  employeesList: any;
 
 
   constructor(
@@ -41,7 +45,8 @@ export class EmployeeComponent implements OnInit {
       branchId: [''],
       employeeId: [0],
       employeeCode: ['', Validators.required],
-      branchCode: ['', Validators.required],
+      companyCode: [''],
+      branchCode: [''],
       designationId: [''],
       employeeName: [''],
       dob: [''],
@@ -78,36 +83,78 @@ export class EmployeeComponent implements OnInit {
     if (!this.commonService.checkNullOrUndefined(this.formData.item)) {
       this.modelFormData.patchValue(this.formData.item);
       this.modelFormData.controls['employeeCode'].disable();
-      this.modelFormData.controls['employeeId'].disable();
+      // this.modelFormData.controls['employeeId'].disable();
     }
 
   }
 
   ngOnInit() {
-    this.getTableData();
+    this.getcompanyData();
+    this.getbranchList();
+    this.getEmployeesList();
+    this.getBankData();
   }
 
-  getTableData() {
-    this.spinner.show();
-    const getCompanyUrl = String.Join('/', this.apiConfigService.getCompanysList);
-    this.apiService.apiGetRequest(getCompanyUrl)
+  getcompanyData() {
+    const getompanyUrl = String.Join('/', this.apiConfigService.getCompanyList);
+    this.apiService.apiGetRequest(getompanyUrl)
       .subscribe(
         response => {
-          const res = response.body;
+          this.spinner.hide();
+          const res = response;
           if (!this.commonService.checkNullOrUndefined(res) && res.status === StatusCodes.pass) {
             if (!this.commonService.checkNullOrUndefined(res.response)) {
-              console.log(res);
-              this.companyList = res.response['companiesList'];
+              this.companiesList = res.response['companiesList'];
             }
           }
-          this.spinner.hide();
-        }, error => {
+        });
+  }
 
+  getbranchList() {
+    const getbranchList = String.Join('/', this.apiConfigService.getBranchesList);
+    this.apiService.apiGetRequest(getbranchList)
+      .subscribe(
+        response => {
+          this.spinner.hide();
+          const res = response;
+          if (!this.commonService.checkNullOrUndefined(res) && res.status === StatusCodes.pass) {
+            if (!this.commonService.checkNullOrUndefined(res.response)) {
+              this.branchesList = res.response['branchesList'];
+            }
+          }
         });
   }
 
 
+  getBankData() {
+    const getbankUrl = String.Join('/', this.apiConfigService.getBankMastersList);
+    this.apiService.apiGetRequest(getbankUrl)
+      .subscribe(
+        response => {
+          const res = response;
+          if (!this.commonService.checkNullOrUndefined(res) && res.status === StatusCodes.pass) {
+            if (!this.commonService.checkNullOrUndefined(res.response)) {
+              this.bankList = res.response['bankList'];
+            }
+          }
+          this.spinner.hide();
+        });
+  }
 
+  getEmployeesList() {
+    const getEmployeeList = String.Join('/', this.apiConfigService.getEmployeeList);
+    this.apiService.apiGetRequest(getEmployeeList)
+      .subscribe(
+        response => {
+          const res = response;
+          if (!this.commonService.checkNullOrUndefined(res) && res.status === StatusCodes.pass) {
+            if (!this.commonService.checkNullOrUndefined(res.response)) {
+              this.employeesList = res.response['emplist'];
+            }
+          }
+          this.spinner.hide();
+        });
+  }
 
   showErrorAlert(caption: string, message: string) {
     // this.alertService.openSnackBar(caption, message);
@@ -122,7 +169,7 @@ export class EmployeeComponent implements OnInit {
     }
     this.formData.item = this.modelFormData.value;
     this.modelFormData.controls['employeeCode'].enable();
-    this.modelFormData.controls['employeeId'].enable();
+    // this.modelFormData.controls['employeeId'].enable();
     if (this.modelFormData.value.employeeId) {
       this.update();
       return
