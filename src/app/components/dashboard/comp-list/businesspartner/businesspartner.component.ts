@@ -123,8 +123,10 @@ export class BusienessPartnerAccountComponent implements OnInit, OnDestroy {
     this.controlAccountList = [];
     this.bpgLists = [];
     let data = this.ptypeList.find(res => res.code == this.modelFormData.controls.bptype.value);
-    this.controlAccountList = this.glList.filter(res => res.controlAccount == data.description);
-    this.bpgLists = this.bpgList.filter(res => res.bptype == data.code);
+    if (data) {
+      this.controlAccountList = this.glList.filter(res => res.controlAccount == data.description);
+      this.bpgLists = this.bpgList.filter(res => res.bptype == data.code);
+    }
 
   }
 
@@ -172,7 +174,7 @@ export class BusienessPartnerAccountComponent implements OnInit, OnDestroy {
   }
 
   getGLAccountData() {
-    const getGLAccountUrl = String.Join('/', this.apiConfigService.getGLAccountList);
+    const getGLAccountUrl = String.Join('/', this.apiConfigService.getGLAccountsList);
     this.apiService.apiGetRequest(getGLAccountUrl)
       .subscribe(
         response => {
@@ -318,7 +320,7 @@ export class BusienessPartnerAccountComponent implements OnInit, OnDestroy {
           if (!this.commonService.checkNullOrUndefined(res) && res.status === StatusCodes.pass) {
             if (!this.commonService.checkNullOrUndefined(res.response)) {
               this.ptypeList = res.response['ptypeList'];
-              
+
 
             }
           }
