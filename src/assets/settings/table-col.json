@@ -539,12 +539,12 @@
   },
   "erpuser": {
     "title": "ErpUser",
-    "userName": "userName",
-    "password": "password",
+    "userName": "User Name",
+    "password": "Password",
     "role": "Role",
-    "branchCode": "BranchCode",
-    "companyCode": "CompanyCode",
-    "addDate": "AddDate"
+    "branchCode": "Branch Code",
+    "companyCode": "Company Code",
+    "addDate": "Add Date"
   },
   "businesspartner": {
     "title": "Busieness Partner Master",
