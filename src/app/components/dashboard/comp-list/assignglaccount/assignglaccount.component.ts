@@ -169,6 +169,8 @@ export class AssignGLaccounttoSubGroupComponent implements OnInit {
     if (this.modelFormData.invalid) {
       return;
     }
+    this.modelFormData.controls['code'].enable();
+
     let array = [];
     this.formData.item = { ...this.modelFormData.value };
     this.formData.item.fromGl.forEach((res) => {

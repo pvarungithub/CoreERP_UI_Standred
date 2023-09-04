@@ -72,7 +72,7 @@ export class AccountKeyComponent implements OnInit {
           if (!this.commonService.checkNullOrUndefined(res) && res.status === StatusCodes.pass) {
             if (!this.commonService.checkNullOrUndefined(res.response)) {
               this.glList = res.response['glList'].filter(res => res.controlaccount == 'Asset');
-              this.gl2List = res.response['glList'].filter(res => res.accGroup == '0003' || res.accGroup == '0004');
+              this.gl2List = res.response['glList'].filter(res => res.accGroup == '0003' || res.accGroup == '003' || res.accGroup == '0004' || res.accGroup == '004' || res.accGroup == '03' || res.accGroup == '04');
             }
           }
           this.spinner.hide();
