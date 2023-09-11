@@ -296,4 +296,6 @@ export class ApiConfigService {
    registerEmployee = `${this.environment.runtimeConfig.serverUrl}Employee/RegisterEmployee`;
    updateEmployee = `${this.environment.runtimeConfig.serverUrl}Employee/UpdateEmployee`;
 
+   getDesignationsList = `${this.environment.runtimeConfig.serverUrl}Designation/GetDesignationsList`;
+
 }

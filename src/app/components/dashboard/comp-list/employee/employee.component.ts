@@ -29,6 +29,7 @@ export class EmployeeComponent implements OnInit {
   branchesList: any;
   bankList: any;
   employeesList: any;
+  designationsList: any;
 
 
   constructor(
@@ -93,6 +94,7 @@ export class EmployeeComponent implements OnInit {
     this.getbranchList();
     this.getEmployeesList();
     this.getBankData();
+    this.getDesignationsList();
   }
 
   getcompanyData() {
@@ -150,6 +152,21 @@ export class EmployeeComponent implements OnInit {
           if (!this.commonService.checkNullOrUndefined(res) && res.status === StatusCodes.pass) {
             if (!this.commonService.checkNullOrUndefined(res.response)) {
               this.employeesList = res.response['emplist'];
+            }
+          }
+          this.spinner.hide();
+        });
+  }
+
+  getDesignationsList() {
+    const getDesignationsList = String.Join('/', this.apiConfigService.getDesignationsList);
+    this.apiService.apiGetRequest(getDesignationsList)
+      .subscribe(
+        response => {
+          const res = response;
+          if (!this.commonService.checkNullOrUndefined(res) && res.status === StatusCodes.pass) {
+            if (!this.commonService.checkNullOrUndefined(res.response)) {
+              this.designationsList = res.response['designationsList'];
             }
           }
           this.spinner.hide();
