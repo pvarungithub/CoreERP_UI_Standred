@@ -95,11 +95,9 @@ export class MaterialMasterComponent implements OnInit, OnDestroy {
     private apiService: ApiService,
     private addOrEditService: AddOrEditService,
     private apiConfigService: ApiConfigService,
-    public dialogRef: MatDialogRef<MaterialMasterComponent>,
     private spinner: NgxSpinnerService,
     private formBuilder: FormBuilder,
     private router: Router,
-    @Optional() @Inject(MAT_DIALOG_DATA) public data: any
   ) {
 
     this.modelFormData = this.formBuilder.group({
@@ -142,7 +140,7 @@ export class MaterialMasterComponent implements OnInit, OnDestroy {
       goodsServiceDescription: null
     });
 
-    this.formData = { ...data };
+    this.formData = { ...this.addOrEditService.editData };
     if (!this.commonService.checkNullOrUndefined(this.formData.item)) {
       this.modelFormData.patchValue(this.formData.item);
       this.modelFormData.patchValue({
@@ -368,7 +366,7 @@ export class MaterialMasterComponent implements OnInit, OnDestroy {
     this.modelFormData.controls['materialCode'].enable();
     this.formData.item = this.modelFormData.value;
     this.addOrEditService[this.formData.action](this.formData, (res) => {
-      this.dialogRef.close(this.formData);
+      this.router.navigate(['/dashboard/master/materialsmaster']);
     });
     if (this.formData.action == 'Edit') {
       this.modelFormData.controls['materialCode'].disable();
@@ -376,7 +374,7 @@ export class MaterialMasterComponent implements OnInit, OnDestroy {
   }
 
   cancel() {
-    this.dialogRef.close();
+    this.router.navigate(['/dashboard/master/materialsmaster']);
   }
 
   ngOnDestroy() {

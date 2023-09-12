@@ -91,7 +91,7 @@ export class CompListComponent implements OnInit, OnDestroy {
     if (value.action === 'Delete') {
       this.deleteRecord(value);
     } else {
-
+debugger
       if (this.tableUrl.tabScreen == 'True') {
         this.addOrEditService.editData = value;
         if (value.action == 'Add') {
