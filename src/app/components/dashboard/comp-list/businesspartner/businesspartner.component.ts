@@ -103,8 +103,8 @@ export class BusienessPartnerAccountComponent implements OnInit, OnDestroy {
       this.modelFormData.controls['company'].disable();
       this.modelFormData.controls['bptype'].disable();
       this.modelFormData.controls['bpgroup'].disable();
-      this.modelFormData.controls['bpnumber'].disable();
     }
+    this.modelFormData.controls['bpnumber'].disable();
   }
 
   ngOnInit() {
@@ -124,8 +124,12 @@ export class BusienessPartnerAccountComponent implements OnInit, OnDestroy {
     this.bpgLists = [];
     let data = this.ptypeList.find(res => res.code == this.modelFormData.controls.bptype.value);
     if (data) {
-      this.controlAccountList = this.glList.filter(res => res.controlAccount == data.description);
+      this.controlAccountList = this.glList.filter(res => res.text == data.description);
       this.bpgLists = this.bpgList.filter(res => res.bptype == data.code);
+      this.modelFormData.patchValue({
+        bpgroup: '',
+        bpnumber: ''
+      })
     }
 
   }

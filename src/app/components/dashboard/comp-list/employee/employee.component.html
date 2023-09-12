@@ -72,7 +72,6 @@
         </mat-form-field>
         <mat-form-field class="form-element">
           <mat-label [translate]="'employee.qualification'"></mat-label>
-          <input matInput placeholder="qualification" formControlName="qualification" appFocusOnEnter tabIndex="7">
           <mat-select formControlName="qualification" appFocusOnEnter tabIndex="1">
             <mat-option>None</mat-option>
             <mat-option value="gratuity"> Gratuity</mat-option>
@@ -82,19 +81,19 @@
         </mat-form-field>
         <mat-form-field class="form-element">
           <mat-label [translate]="'employee.address'"></mat-label>
-          <input matInput placeholder="address" formControlName="address" appFocusOnEnter tabIndex="8">
+          <input matInput formControlName="address" appFocusOnEnter tabIndex="8">
         </mat-form-field>
         <mat-form-field class="form-element">
           <mat-label [translate]="'employee.phoneNumber'"></mat-label>
-          <input matInput placeholder="phoneNumber" formControlName="phoneNumber" appFocusOnEnter tabIndex="9">
+          <input matInput formControlName="phoneNumber" appFocusOnEnter tabIndex="9">
         </mat-form-field>
         <mat-form-field class="form-element">
           <mat-label [translate]="'employee.mobileNumber'"></mat-label>
-          <input matInput placeholder="mobileNumber" formControlName="mobileNumber" appFocusOnEnter tabIndex="10">
+          <input matInput formControlName="mobileNumber" appFocusOnEnter tabIndex="10">
         </mat-form-field>
         <mat-form-field class="form-element">
           <mat-label [translate]="'employee.email'"></mat-label>
-          <input matInput placeholder="email" formControlName="email" appFocusOnEnter tabIndex="11">
+          <input matInput formControlName="email" appFocusOnEnter tabIndex="11">
         </mat-form-field>
         <mat-form-field class="form-element">
           <mat-label [translate]="'employee.joiningDate'"></mat-label>
@@ -110,7 +109,7 @@
           <mat-datepicker-toggle matSuffix [for]="picker3"></mat-datepicker-toggle>
           <mat-datepicker #picker3></mat-datepicker>
         </mat-form-field>
-        <mat-slide-toggle class="form-element col-4 d-flex" formControlName="isActive" appFocusOnEnter tabIndex="17"
+        <mat-slide-toggle class="form-element col-3 d-flex" formControlName="isActive" appFocusOnEnter tabIndex="17"
           style="vertical-align: bottom;margin-left: 20px;">
           {{ 'employee.isActive' | translate }}
         </mat-slide-toggle>
@@ -120,7 +119,17 @@
         </mat-form-field>
         <mat-form-field class="form-element">
           <mat-label [translate]="'employee.bloodGroup'"></mat-label>
-          <input matInput placeholder="bloodGroup" formControlName="bloodGroup" appFocusOnEnter tabIndex="16">
+          <mat-select formControlName="bloodGroup" appFocusOnEnter tabIndex="16">
+            <mat-option>None</mat-option>
+            <mat-option value="O+"> O+</mat-option>
+            <mat-option value="O-"> O-</mat-option>
+            <mat-option value="AB+"> AB+</mat-option>
+            <mat-option value="AB-"> AB-</mat-option>
+            <mat-option value="B+"> B+</mat-option>
+            <mat-option value="B-"> B-</mat-option>
+            <mat-option value="A+"> A+</mat-option>
+            <mat-option value="A-"> A-</mat-option>
+          </mat-select>
         </mat-form-field>
         <mat-form-field class="form-element">
           <mat-label [translate]="'employee.passportNo'"></mat-label>
@@ -147,7 +156,16 @@
         </mat-form-field>
         <mat-form-field class="form-element">
           <mat-label [translate]="'employee.employeeType'"></mat-label>
-          <input matInput placeholder="employeeType" formControlName="employeeType" appFocusOnEnter tabIndex="29">
+          <mat-select formControlName="employeeType" appFocusOnEnter tabIndex="1">
+            <mat-option>None</mat-option>
+            <mat-option value="Permanent"> Permanent</mat-option>
+            <mat-option value="Contract"> Contract</mat-option>
+            <mat-option value="Trainee"> Trainee</mat-option>
+            <mat-option value="Part Time"> Part Time</mat-option>
+            <mat-option value="Seasonal workers"> Seasonal workers</mat-option>
+            <mat-option value="Temporary employees"> Temporary employees</mat-option>
+            <mat-option value="Interns"> Interns</mat-option>
+          </mat-select>
         </mat-form-field>
         <mat-form-field class="form-element">
           <mat-label [translate]="'employee.iFSCCode'"></mat-label>
