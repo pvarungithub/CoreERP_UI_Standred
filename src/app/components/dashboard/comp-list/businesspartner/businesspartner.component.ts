@@ -59,7 +59,6 @@ export class BusienessPartnerAccountComponent implements OnInit, OnDestroy {
       name: [null],
       bpnumber: [null],
       bptype: [null],
-      name1: [null],
       search: [null],
       address: [null],
       address1: [null],
@@ -96,7 +95,6 @@ export class BusienessPartnerAccountComponent implements OnInit, OnDestroy {
       bpgroup: [null],
       ext: [null]
     });
-
     this.formData = { ...this.addOrEditService.editData };
     if (!this.commonService.checkNullOrUndefined(this.formData.item)) {
       this.modelFormData.patchValue(this.formData.item);
@@ -119,17 +117,19 @@ export class BusienessPartnerAccountComponent implements OnInit, OnDestroy {
     this.getTDSRateTableData();
   }
 
-  onbpChange() {
+  onbpChange(flag = true) {
     this.controlAccountList = [];
     this.bpgLists = [];
     let data = this.ptypeList.find(res => res.code == this.modelFormData.controls.bptype.value);
     if (data) {
       this.controlAccountList = this.glList.filter(res => res.text == data.description);
       this.bpgLists = this.bpgList.filter(res => res.bptype == data.code);
-      this.modelFormData.patchValue({
-        bpgroup: '',
-        bpnumber: ''
-      })
+      if (flag) {
+        this.modelFormData.patchValue({
+          bpgroup: '',
+          bpnumber: ''
+        })
+      }
     }
 
   }
@@ -247,7 +247,7 @@ export class BusienessPartnerAccountComponent implements OnInit, OnDestroy {
             if (!this.commonService.checkNullOrUndefined(res.response)) {
               this.bpgList = res.response['bpgList'];
               if (!this.commonService.checkNullOrUndefined(this.formData.item)) {
-                this.onbpChange();
+                this.onbpChange(false);
               }
             }
           }
@@ -324,8 +324,6 @@ export class BusienessPartnerAccountComponent implements OnInit, OnDestroy {
           if (!this.commonService.checkNullOrUndefined(res) && res.status === StatusCodes.pass) {
             if (!this.commonService.checkNullOrUndefined(res.response)) {
               this.ptypeList = res.response['ptypeList'];
-
-
             }
           }
           this.getGLAccountData();

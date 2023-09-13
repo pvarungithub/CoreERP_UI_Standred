@@ -406,7 +406,6 @@ export class GoodsissueComponent implements OnInit {
   }
 
   savegoodsissue() {
-    debugger;
     const addJournal = String.Join('/', this.apiConfigService.addGoodsissue);
     const requestObj = { gibHdr: this.formData.value, gibDtl: this.tableData };
     this.apiService.apiPostRequest(addJournal, requestObj).subscribe(

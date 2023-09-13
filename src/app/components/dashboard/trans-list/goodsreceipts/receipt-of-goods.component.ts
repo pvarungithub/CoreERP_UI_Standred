@@ -65,7 +65,6 @@ export class ReceiptOfGoodsComponent implements OnInit {
     this.getpurchaseOrderTypeData();
   }
   approveOrReject(event) {
-    //debugger;
     if (event) {
       this.formData.patchValue({
         qualityCheck: "Accpt",

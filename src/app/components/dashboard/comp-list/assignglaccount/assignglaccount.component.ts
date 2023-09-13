@@ -63,7 +63,6 @@ export class AssignGLaccounttoSubGroupComponent implements OnInit {
   }
 
   geStructurekeyData() {
-    debugger
     const geStructurekeynUrl = String.Join('/', this.apiConfigService.getStructurekeyList);
     this.apiService.apiGetRequest(geStructurekeynUrl)
       .subscribe(
@@ -148,7 +147,6 @@ export class AssignGLaccounttoSubGroupComponent implements OnInit {
   }
 
   onGroupChange() {
-    debugger
     this.fromGlList = [];
     if (this.commonService.checkNullOrUndefined(this.formData.item)) {
       this.modelFormData.patchValue({

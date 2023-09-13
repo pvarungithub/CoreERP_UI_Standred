@@ -55,7 +55,6 @@ export class MaterialNumberRangeComponent implements OnInit {
   ngOnInit() {
   }
   approveOrReject(event) {
-    //debugger;
     if (event) {
       this.modelFormData.patchValue({
         nonNumaric: "A",

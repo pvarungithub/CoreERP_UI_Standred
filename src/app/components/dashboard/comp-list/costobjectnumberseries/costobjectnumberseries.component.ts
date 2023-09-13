@@ -83,7 +83,6 @@ export class CostingObjectNumberSeriesComponent implements OnInit {
   }
 
   approveOrReject(event) {
-    //debugger;
     if (event) {
       this.modelFormData.patchValue({
         nonNumaric: "A",

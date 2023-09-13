@@ -157,7 +157,6 @@ export class PaymentTermsComponent implements OnInit {
     this.sendDynTableData = { type: 'reset', data: this.tableData };
   }
   savepaymentterms() {
-    debugger
     this.tableData = this.commonService.formatTableData(this.tableData);
     const addCashBank = String.Join('/', this.apiConfigService.registerpaymenttermsList);
     const requestObj = { paymentstrmsHdr: this.modelFormData.value, paymentstrmsDetail: this.tableData };

@@ -70,7 +70,6 @@ export class MainAssetMasterComponent implements OnInit {
     this.modelFormData = this.formBuilder.group({
       assetNumber: [null, [Validators.required, Validators.minLength(1), Validators.maxLength(7)]],
       name: [null, [Validators.required, Validators.minLength(1), Validators.maxLength(50)]],
-      name1: [null],
       accountKey: [null],
       materialNo: [null],
       serialNo: [null],

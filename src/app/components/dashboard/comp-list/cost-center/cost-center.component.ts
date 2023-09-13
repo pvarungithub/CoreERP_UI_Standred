@@ -98,8 +98,6 @@ export class CostCenterComponent implements OnInit {
       this.modelFormData.patchValue(this.formData.item);
       this.modelFormData.controls['code'].disable();
     }
-    debugger
-
   }
 
   ngOnInit() {
@@ -200,7 +198,6 @@ export class CostCenterComponent implements OnInit {
   }
 
   approveOrReject(event) {
-    //debugger;
     if (event) {
       this.modelFormData.patchValue({
         quantity: "Accept",

@@ -231,7 +231,6 @@ export class SourceOfSupplyComponent implements OnInit {
   }
 
   saveSourcesupply() {
-    debugger;
     const addssapply = String.Join('/', this.apiConfigService.addsupplierreq);
     const requestObj = { ssHdr: this.formData.value, ssDtl: this.tableData };
     this.apiService.apiPostRequest(addssapply, requestObj).subscribe(

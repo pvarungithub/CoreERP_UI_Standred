@@ -142,7 +142,6 @@ export class BatchMasterComponent implements OnInit {
   get formControls() { return this.modelFormData.controls; }
 
   save() {
-    debugger
     this.modelFormData.controls['batchNumber'].enable();
     this.formData.item = this.modelFormData.value;
     this.addOrEditService[this.formData.action](this.formData, (res) => {

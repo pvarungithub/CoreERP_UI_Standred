@@ -139,7 +139,6 @@ export class UndersubGroupComponent implements OnInit {
       .subscribe(
         response => {
           const res = response;
-          debugger
           if (!this.commonService.checkNullOrUndefined(res) && res.status === StatusCodes.pass) {
             if (!this.commonService.checkNullOrUndefined(res.response)) {
               this.structkeyList = res.response['structkeyList'];
@@ -152,7 +151,6 @@ export class UndersubGroupComponent implements OnInit {
   get formControls() { return this.modelFormData.controls; }
 
   save() {
-    debugger
     if (this.modelFormData.invalid) {
       return;
     }

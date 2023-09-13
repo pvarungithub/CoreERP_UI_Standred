@@ -124,7 +124,6 @@ export class GLAccountComponent implements OnInit {
   }
 
   onCategoryChange() {
-    debugger
     this.modelFormData.controls['bankKey'].disable();
     this.modelFormData.controls['controlAccount'].disable();
     this.modelFormData.patchValue({
@@ -142,7 +141,6 @@ export class GLAccountComponent implements OnInit {
   }
 
   onChange(event: any) {
-    debugger
     const obj = this.glAccgrpList.find((gl: any) => gl.groupCode == this.modelFormData.value.accGroup);
     if (obj) {
       if (this.modelFormData.value.accountNumber && (!(+this.modelFormData.value.accountNumber >= obj.numberRangeFrom && +this.modelFormData.value.accountNumber <= obj.numberRangeTo))) {

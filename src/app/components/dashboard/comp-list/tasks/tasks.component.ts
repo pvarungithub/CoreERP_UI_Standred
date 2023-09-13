@@ -99,7 +99,6 @@ export class TasksComponent implements OnInit {
 
 
   formDataGroup() {
-    debugger
     this.modelFormData = this.formBuilder.group({
       wbselement: [null],
       taskNumber: [null],

@@ -143,7 +143,6 @@ export class WorkBreakDownStructureComponent implements OnInit {
   }
 
   approveOrReject(event) {
-    //debugger;
     if (event) {
       this.modelFormData.patchValue({
         quantity: "Accept",
