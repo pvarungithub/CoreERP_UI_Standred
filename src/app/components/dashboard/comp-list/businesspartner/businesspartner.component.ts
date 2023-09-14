@@ -122,7 +122,7 @@ export class BusienessPartnerAccountComponent implements OnInit, OnDestroy {
     this.bpgLists = [];
     let data = this.ptypeList.find(res => res.code == this.modelFormData.controls.bptype.value);
     if (data) {
-      this.controlAccountList = this.glList.filter(res => res.text == data.description);
+      this.controlAccountList = this.glList.filter(res => res.controlAccount == data.bpcategory);
       this.bpgLists = this.bpgList.filter(res => res.bptype == data.code);
       if (flag) {
         this.modelFormData.patchValue({
@@ -246,6 +246,7 @@ export class BusienessPartnerAccountComponent implements OnInit, OnDestroy {
           if (!this.commonService.checkNullOrUndefined(res) && res.status === StatusCodes.pass) {
             if (!this.commonService.checkNullOrUndefined(res.response)) {
               this.bpgList = res.response['bpgList'];
+              debugger
               if (!this.commonService.checkNullOrUndefined(this.formData.item)) {
                 this.onbpChange(false);
               }

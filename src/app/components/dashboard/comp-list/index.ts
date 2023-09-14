@@ -118,3 +118,15 @@ export { WorkCenterCreationComponent } from './workcentercreation/workcentercrea
 export { TasksComponent } from './tasks/tasks.component';
 export { RoutingFileComponent } from './routingfile/routingfile.component';
 export { InvoiceverificationComponent } from './invoiceverification/invoiceverification.component';
+
+export { LeavetypeComponent } from './leavetype/leavetype.component';
+export { LeaveopeningbalanceComponent } from './leaveopeningbalance/leaveopeningbalance.component';
+export { LeaveRequestComponent } from './leaverequest/leaverequest.component';
+export { ApplyodComponent } from './applyod/applyod.component';
+export { AdvanceComponent } from './advance/advance.component';
+export { ComponentMasterComponent } from './componentmaster/componentmaster.component';
+export { CTCBreakupComponent } from './ctcbreakup/ctcbreakup.component';
+export { VehicleRequisitionsComponent } from './vehiclerequisition/vehiclerequisition.component';
+export { PermissionRequestComponent } from './permissionrequest/permissionrequest.component';
+export { PFMasterComponent } from './pfmaster/pfmaster.component';
+export { PTMasterComponent } from './ptmaster/ptmaster.component';

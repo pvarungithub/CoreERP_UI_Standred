@@ -120,6 +120,17 @@ import { RoutingFileComponent } from './routingfile/routingfile.component';
 import { WorkCenterCreationComponent } from './workcentercreation/workcentercreation.component';
 import { InvoiceverificationComponent } from './invoiceverification/invoiceverification.component';
 import { EmployeeComponent } from './employee/employee.component';
+import { LeavetypeComponent } from './leavetype/leavetype.component';
+import { LeaveopeningbalanceComponent } from './leaveopeningbalance/leaveopeningbalance.component';
+import { LeaveRequestComponent } from './leaverequest/leaverequest.component';
+import { ApplyodComponent } from './applyod/applyod.component';
+import { AdvanceComponent } from './advance/advance.component';
+import { ComponentMasterComponent } from './componentmaster/componentmaster.component';
+import { CTCBreakupComponent } from './ctcbreakup/ctcbreakup.component';
+import { VehicleRequisitionsComponent } from './vehiclerequisition/vehiclerequisition.component';
+import { PermissionRequestComponent } from './permissionrequest/permissionrequest.component';
+import { PFMasterComponent } from './pfmaster/pfmaster.component';
+import { PTMasterComponent } from './ptmaster/ptmaster.component';
 @Injectable({
   providedIn: 'root'
 })
@@ -616,6 +627,50 @@ export class CompListService {
         break;
       case 'employee':
         this.dynamicComp.component = EmployeeComponent;
+        return this.dynamicComp.component;
+        break;
+      case 'leavetype':
+        this.dynamicComp.component = LeavetypeComponent;
+        return this.dynamicComp.component;
+        break;
+      case 'leaveopeningbalance':
+        this.dynamicComp.component = LeaveopeningbalanceComponent;
+        return this.dynamicComp.component;
+        break;
+      case 'Leaverequest':
+        this.dynamicComp.component = LeaveRequestComponent;
+        return this.dynamicComp.component;
+        break;
+      case 'applyod':
+        this.dynamicComp.component = ApplyodComponent;
+        return this.dynamicComp.component;
+        break;
+      case 'advance':
+        this.dynamicComp.component = AdvanceComponent;
+        return this.dynamicComp.component;
+        break;
+      case 'componentmaster':
+        this.dynamicComp.component = ComponentMasterComponent;
+        return this.dynamicComp.component;
+        break;
+      case 'CTCBreakup':
+        this.dynamicComp.component = CTCBreakupComponent;
+        return this.dynamicComp.component;
+        break;
+      case 'vehiclerequisition':
+        this.dynamicComp.component = VehicleRequisitionsComponent;
+        return this.dynamicComp.component;
+        break;
+      case 'permissionrequest':
+        this.dynamicComp.component = PermissionRequestComponent;
+        return this.dynamicComp.component;
+        break;
+      case 'ptmaster':
+        this.dynamicComp.component = PTMasterComponent;
+        return this.dynamicComp.component;
+        break;
+      case 'pfmaster':
+        this.dynamicComp.component = PFMasterComponent;
         return this.dynamicComp.component;
         break;
       default:

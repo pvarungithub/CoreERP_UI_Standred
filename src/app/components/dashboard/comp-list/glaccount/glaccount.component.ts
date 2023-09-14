@@ -104,7 +104,7 @@ export class GLAccountComponent implements OnInit {
     this.formData = { ...data };
     if (!this.commonService.checkNullOrUndefined(this.formData.item)) {
       this.modelFormData.patchValue(this.formData.item);
-      this.onCategoryChange();
+      this.onCategoryChange(false);
     }
   }
 
@@ -123,13 +123,15 @@ export class GLAccountComponent implements OnInit {
     })
   }
 
-  onCategoryChange() {
+  onCategoryChange(flag = true) {
     this.modelFormData.controls['bankKey'].disable();
     this.modelFormData.controls['controlAccount'].disable();
-    this.modelFormData.patchValue({
-      bankKey: null,
-      controlAccount: null
-    })
+    if (flag) {
+      this.modelFormData.patchValue({
+        bankKey: null,
+        controlAccount: null
+      })
+    }
 
     if (this.modelFormData.get('taxCategory').value == 'Bank') {
       this.modelFormData.controls['bankKey'].enable();

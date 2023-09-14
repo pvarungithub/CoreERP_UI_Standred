@@ -196,9 +196,10 @@ export class BillOfMaterialComponent implements OnInit {
           const res = response;
           if (!this.commonService.checkNullOrUndefined(res) && res.status === StatusCodes.pass) {
             if (!this.commonService.checkNullOrUndefined(res.response)) {
-              this.formData.setValue(res.response['bomMasters']);
+              this.formData.patchValue(res.response['bomMasters']);
               this.sendDynTableData = { type: 'edit', data: res.response['bomDetail'] };
               this.formData.disable();
+              this.costunitSelect();
               //this.accountSelect();
               this.onbpChange();
             }

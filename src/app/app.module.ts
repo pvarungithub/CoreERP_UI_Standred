@@ -31,7 +31,9 @@ import {
   CostingKeyFiguresComponent, WorkCenterCreationComponent,
   AssignmentOfNumberSeriesToObjectTypesComponent, CommitmentItemComponent, FundCenterComponent, WorkBreakDownStructureComponent,
   CostingObjectTypesComponent, CostingObjectNumberSeriesComponent, FormulasComponent,
-  StandardRateComponent, DownTimeReasonComponent, TasksComponent, InvoiceverificationComponent, RoutingFileComponent
+  StandardRateComponent, DownTimeReasonComponent, TasksComponent, InvoiceverificationComponent, RoutingFileComponent, VehicleRequisitionsComponent,
+  PTMasterComponent, PFMasterComponent, PermissionRequestComponent, CTCBreakupComponent, ComponentMasterComponent, 
+  AdvanceComponent, ApplyodComponent, LeaveRequestComponent, LeaveopeningbalanceComponent, LeavetypeComponent 
 
 } from './components/dashboard/comp-list/index';
 
@@ -135,7 +137,9 @@ export function HttpLoaderFactory(httpClient: HttpClient) {
     PurchasingComponent, PurchaseOrderComponent, ReceiptOfGoodsComponent, InspectioncheckComponent, NonEditableDatepicker, PrimaryComponent, PrimaryCostElementComponent,
     //LeaveopeningbalanceComponent,
     //selfserviceComponent,
-    EmployeeComponent
+    EmployeeComponent,
+    VehicleRequisitionsComponent, PTMasterComponent, PFMasterComponent, PermissionRequestComponent, CTCBreakupComponent, ComponentMasterComponent,
+    AdvanceComponent, ApplyodComponent, LeaveRequestComponent, LeaveopeningbalanceComponent, LeavetypeComponent 
   ],
   imports: [
     AppRoutingModule,
@@ -179,7 +183,8 @@ export function HttpLoaderFactory(httpClient: HttpClient) {
 
     UndersubGroupComponent, TaxIntegrationComponent,
     DeleteItemComponent,
-    CompanyComponent
+    CompanyComponent, VehicleRequisitionsComponent, PTMasterComponent, PFMasterComponent, PermissionRequestComponent, CTCBreakupComponent, ComponentMasterComponent,
+    AdvanceComponent, ApplyodComponent, LeaveRequestComponent, LeaveopeningbalanceComponent, LeavetypeComponent 
     // LeaveopeningbalanceComponent,
 
     // MemberMasterComponent, VehicleComponent

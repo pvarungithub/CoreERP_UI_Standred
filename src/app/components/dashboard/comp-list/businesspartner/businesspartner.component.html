@@ -174,8 +174,8 @@
               <mat-label [translate]="'businesspartner.controlAccount'"></mat-label>
               <mat-select formControlName="controlAccount" appFocusOnEnter tabIndex="22">
                 <mat-option>None</mat-option>
-                <mat-option *ngFor="let act of controlAccountList" [value]="act.accountNumber">
-                  {{act.accountNumber}} - {{act.glaccountName}}
+                <mat-option *ngFor="let act of controlAccountList" [value]="act.id">
+                  {{act.id}} - {{act.text}}
                 </mat-option>
               </mat-select>
             </mat-form-field>

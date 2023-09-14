@@ -298,4 +298,81 @@ export class ApiConfigService {
 
    getDesignationsList = `${this.environment.runtimeConfig.serverUrl}Designation/GetDesignationsList`;
 
+   //LeaveTypes
+
+   getLeaveTypeatLists = `${this.environment.runtimeConfig.serverUrl}Selfservice/LeaveType/GetLeaveTypeList`;
+   registerLeaveTypes = `${this.environment.runtimeConfig.serverUrl}Selfservice/LeaveType/RegisterLeaveType`;
+   updateLeaveTypes = `${this.environment.runtimeConfig.serverUrl}Selfservice/LeaveType/UpdateLeaveType`;
+   deleteLeaveTypes = `${this.environment.runtimeConfig.serverUrl}Selfservice/LeaveType/DeleteLeaveType`;
+
+   //LeaveRequest
+
+   getnoofdayscount = `${this.environment.runtimeConfig.serverUrl}Selfservice/LeaveRequest/Getnoofdayscount`;
+   getEmpCode = `${this.environment.runtimeConfig.serverUrl}Selfservice/LeaveRequest/GetEmployeeCode`;
+   getEmpName = `${this.environment.runtimeConfig.serverUrl}Selfservice/LeaveRequest/GetEmpName`;
+   updateLeaveRequests = `${this.environment.runtimeConfig.serverUrl}Selfservice/LeaveRequest/UpdateLeaveapplying`;
+   getLeaveTypeatList = `${this.environment.runtimeConfig.serverUrl}Selfservice/LeaveRequest/GetLeavetpesList`;
+   getLeaveRequestList = `${this.environment.runtimeConfig.serverUrl}Selfservice/LeaveRequest/GetLeaveApplDetailsList`;
+   //getLeaveRequestList = `${this.environment.runtimeConfig.serverUrl}Selfservice/LeaveRequest/GetLeaveApplDetailsList`;
+   registerLeaveRequests = `${this.environment.runtimeConfig.serverUrl}Selfservice/LeaveRequest/RegisterLeaveapplying`;
+
+
+   //Applyod
+   applyodRequestList = `${this.environment.runtimeConfig.serverUrl}Selfservice/Applyod/GetApplyodDetailsList`;
+   registerodRequest = `${this.environment.runtimeConfig.serverUrl}Selfservice/Applyod/RegisterApplyOddataDetails`;
+   updateapplyodRequest = `${this.environment.runtimeConfig.serverUrl}Selfservice/Applyod/UpdateApplyod`;
+
+   //Advance
+   applyadvanceRequestList = `${this.environment.runtimeConfig.serverUrl}Selfservice/Advance/GetApplyAdvanceDetailsList`;
+   registeradvanceRequest = `${this.environment.runtimeConfig.serverUrl}Selfservice/Advance/RegisterApplyAdvancedataDetails`;
+   updateapplyadvanceRequest = `${this.environment.runtimeConfig.serverUrl}Selfservice/Advance/UpdateAdvancedataDetails`;
+   getAdvancetypeList = `${this.environment.runtimeConfig.serverUrl}Selfservice/Advance/GetAdvancedataDetailslist`;
+
+   //PermissionRequest
+   permissionRequestList = `${this.environment.runtimeConfig.serverUrl}Selfservice/PermissionRequest/GetPermissionApplDetailsList`;
+   registerpermissionRequest = `${this.environment.runtimeConfig.serverUrl}Selfservice/PermissionRequest/RegisterPermissionapplying`;
+   updatepermissionRequest = `${this.environment.runtimeConfig.serverUrl}Selfservice/PermissionRequest/UpdatePermissionapplying`;
+
+   //PT Master
+   getPTList = `${this.environment.runtimeConfig.serverUrl}payroll/PTMaster/GetPTList`;
+   registerPT = `${this.environment.runtimeConfig.serverUrl}payroll/PTMaster/RegisterPT`;
+   updatePT = `${this.environment.runtimeConfig.serverUrl}payroll/PTMaster/UpdatePT`;
+   deletePT = `${this.environment.runtimeConfig.serverUrl}payroll/PTMaster/DeletePT`;
+
+   // Component Master
+   getComponentsList = `${this.environment.runtimeConfig.serverUrl}payroll/ComponentMaster/GetComponentsList`;
+   registerComponent = `${this.environment.runtimeConfig.serverUrl}payroll/ComponentMaster/RegisterComponent`;
+   getConfigurationList = `${this.environment.runtimeConfig.serverUrl}payroll/ComponentMaster/GetConfigurationList`;
+   updateComponent = `${this.environment.runtimeConfig.serverUrl}payroll/ComponentMaster/UpdateComponent`;
+   deleteComponent = `${this.environment.runtimeConfig.serverUrl}payroll/ComponentMaster/DeleteComponent`;
+
+
+   //PF Master
+   getPfComponentsList = `${this.environment.runtimeConfig.serverUrl}payroll/PFMaster/GetComponentsList`;
+   getPfList = `${this.environment.runtimeConfig.serverUrl}payroll/PFMaster/GetPFList`;
+   registerPF = `${this.environment.runtimeConfig.serverUrl}payroll/PFMaster/RegisterPF`;
+   updatePF = `${this.environment.runtimeConfig.serverUrl}payroll/PFMaster/UpdatePF`;
+   deletePF = `${this.environment.runtimeConfig.serverUrl}payroll/PFMaster/DeletePF`;
+
+   //approvaltype
+   getempList = `${this.environment.runtimeConfig.serverUrl}Selfservice/ApprovalType/GetEmployeesList`;
+   getapprovaltypeList = `${this.environment.runtimeConfig.serverUrl}Selfservice/ApprovalType/GetApprovalTypesList`;
+   registerapprovaltype = `${this.environment.runtimeConfig.serverUrl}Selfservice/ApprovalType/RegisterApprovalType`;
+   updateapprovaltype = `${this.environment.runtimeConfig.serverUrl}Selfservice/ApprovalType/UpdateApprovalType`;
+   deleteapprovaltype = `${this.environment.runtimeConfig.serverUrl}Selfservice/ApprovalType/DeleteApprovalType`;
+
+
+   //CTC Breakup
+   getCTCList = `${this.environment.runtimeConfig.serverUrl}payroll/CTCBreakup/GetCTCList`;
+   getStructureList = `${this.environment.runtimeConfig.serverUrl}payroll/CTCBreakup/GetStructureList`;
+   getctcComponentsList = `${this.environment.runtimeConfig.serverUrl}payroll/ComponentMaster/GetComponentsList`;
+   
+   //Leaveopeningbalance
+
+   getLeaveTypeatListforlop = `${this.environment.runtimeConfig.serverUrl}masters/LeaveBalances/GetLeavetpeList`;
+   getLeaveopeningbalanceList = `${this.environment.runtimeConfig.serverUrl}masters/LeaveBalances/GetLeaveBalancesList`;
+   registerLeaveopeningbalance = `${this.environment.runtimeConfig.serverUrl}masters/LeaveBalances/RegisterLeaveBalancesList`;
+   updateLeaveopeningbalance = `${this.environment.runtimeConfig.serverUrl}masters/LeaveBalances/UpdateLeaveBalancesList`;
+   deleteLeaveopeningbalance = `${this.environment.runtimeConfig.serverUrl}masters/LeaveBalances/DeleteLeaveBalancesList`;
+
 }
