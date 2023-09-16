@@ -138,6 +138,7 @@ import { VehicleApprovalsComponent } from './vehicleapproval/vehicleapproval.com
 import { odApprovalComponent } from './odapproval/odapproval.component';
 import { PermissionApprovalsComponent } from './permissionapproval/permissionapproval.component';
 import { LeaveApprovalComponent } from './leaveapproval/leaveapproval.component';
+import { DesignationComponent } from './designation/designation.component';
 @Injectable({
   providedIn: 'root'
 })
@@ -699,6 +700,9 @@ export class CompListService {
         return this.dynamicComp.component;
       case 'leaveApproval':
         this.dynamicComp.component = LeaveApprovalComponent;
+        return this.dynamicComp.component;
+      case 'designation':
+        this.dynamicComp.component = DesignationComponent;
         return this.dynamicComp.component;
         break;
       default:

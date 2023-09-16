@@ -80,7 +80,7 @@ export class ReceiptOfGoodsComponent implements OnInit {
 
   formDataGroup() {
     this.formData = this.formBuilder.group({
-      purchaseOrderNo: [null],
+      purchaseOrderNo: [null, Validators.required],
       company: [null, [Validators.required]],
       plant: [null],
       branch: [null],

@@ -33,7 +33,7 @@ import {
   CostingObjectTypesComponent, CostingObjectNumberSeriesComponent, FormulasComponent,
   StandardRateComponent, DownTimeReasonComponent, TasksComponent, InvoiceverificationComponent, RoutingFileComponent, VehicleRequisitionsComponent,
   PTMasterComponent, PFMasterComponent, PermissionRequestComponent, CTCBreakupComponent, ComponentMasterComponent, 
-  AdvanceComponent, ApplyodComponent, LeaveRequestComponent, LeaveopeningbalanceComponent, LeavetypeComponent, ApprovalTypeComponent, OpeningBalanceComponent, VehicleApprovalsComponent, advanceApprovalComponent, odApprovalComponent, PermissionApprovalsComponent, LeaveApprovalComponent 
+  AdvanceComponent, ApplyodComponent, LeaveRequestComponent, LeaveopeningbalanceComponent, LeavetypeComponent, ApprovalTypeComponent, OpeningBalanceComponent, VehicleApprovalsComponent, advanceApprovalComponent, odApprovalComponent, PermissionApprovalsComponent, LeaveApprovalComponent, DesignationComponent 
 
 } from './components/dashboard/comp-list/index';
 
@@ -144,7 +144,8 @@ export function HttpLoaderFactory(httpClient: HttpClient) {
     ApprovalTypeComponent, OpeningBalanceComponent, StockExcessComponent, CreateStockExcessComponent,
     StocktransferComponent, CreateStockTransferComponent,
     SaveItemComponent, advanceApprovalComponent, VehicleApprovalsComponent, odApprovalComponent,
-    PermissionApprovalsComponent, LeaveApprovalComponent
+    PermissionApprovalsComponent, LeaveApprovalComponent,
+    DesignationComponent
   ],
   imports: [
     AppRoutingModule,
@@ -196,7 +197,9 @@ export function HttpLoaderFactory(httpClient: HttpClient) {
     ApprovalTypeComponent, OpeningBalanceComponent, StockExcessComponent, CreateStockExcessComponent, 
     StocktransferComponent, CreateStockTransferComponent,
     SaveItemComponent, advanceApprovalComponent, VehicleApprovalsComponent, odApprovalComponent,
-    PermissionApprovalsComponent, LeaveApprovalComponent
+    PermissionApprovalsComponent, LeaveApprovalComponent,
+
+    DesignationComponent
   ]
 })
 export class AppModule { }

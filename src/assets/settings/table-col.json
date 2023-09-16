@@ -1568,7 +1568,7 @@
     "department": "Department",
     "requisitionNmber": "Requisition Number",
     "requisitionDate": "Date",
-    "bomorderNumber": "BOM Order Number",
+    "bomorderNumber": "BOM Number",
     "status": "Status",
     "materialCode": "Material Code",
     "description": "Description",

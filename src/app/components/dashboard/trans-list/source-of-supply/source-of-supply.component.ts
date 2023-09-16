@@ -168,7 +168,7 @@ export class SourceOfSupplyComponent implements OnInit {
           if (!this.commonService.checkNullOrUndefined(res) && res.status === StatusCodes.pass) {
             if (!this.commonService.checkNullOrUndefined(res.response)) {
               this.bpaList = res.response['bpaList'];
-              this.bpaList = res.response['bpaList'].filter(resp => resp.bpTypeName == 'Vendor')
+              this.bpaList = res.response['bpaList'].filter(resp => resp.bpTypeName == 'Domestic vendors')
 
             }
           }

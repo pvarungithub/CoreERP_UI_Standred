@@ -43,7 +43,7 @@
                     <mat-select formControlName="profitCenter" appFocusOnEnter tabIndex="6">
                         <mat-option>None</mat-option>
                         <mat-option *ngFor="let pft of profitCenterList" [value]="pft.code">
-                            {{pft.description}}
+                            {{pft.code}}
                         </mat-option>
                     </mat-select>
                 </mat-form-field>
