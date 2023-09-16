@@ -375,4 +375,81 @@ export class ApiConfigService {
    updateLeaveopeningbalance = `${this.environment.runtimeConfig.serverUrl}masters/LeaveBalances/UpdateLeaveBalancesList`;
    deleteLeaveopeningbalance = `${this.environment.runtimeConfig.serverUrl}masters/LeaveBalances/DeleteLeaveBalancesList`;
 
+   getCashAccBranchesList = `${this.environment.runtimeConfig.serverUrl}gl/AsignmentCashAccBranch/GetBranchesList`;
+   getCompaniesList = `${this.environment.runtimeConfig.serverUrl}gl/VoucherType/GetCompaniesList`;
+
+   // opening balance
+   getOpeningBalanceList = `${this.environment.runtimeConfig.serverUrl}/masters/OpeningBalance/GetOpeningBalanceList`;
+   getObBranchesList = `${this.environment.runtimeConfig.serverUrl}/masters/OpeningBalance/GetBranchesList`;
+   getObVoucherNo = `${this.environment.runtimeConfig.serverUrl}/masters/OpeningBalance/GetVoucherNo`;
+   getPaymentType = `${this.environment.runtimeConfig.serverUrl}/masters/OpeningBalance/GetPaymentType`;
+   registerOpeningBalance = `${this.environment.runtimeConfig.serverUrl}/masters/OpeningBalance/RegisterOpeningBalance`;
+
+   getBPAccountLedgerList = `${this.environment.runtimeConfig.serverUrl}transactions/BankPayment/GetAccountLedgerList`;
+
+   // Stock Excess
+   getStockexcessList = `${this.environment.runtimeConfig.serverUrl}transactions/StockExcess/GetStockexcessList`;
+   getStockExcessBranchesList = `${this.environment.runtimeConfig.serverUrl}transactions/StockExcess/GetBranchesList`;
+   getstockexcessNo = `${this.environment.runtimeConfig.serverUrl}transactions/StockExcess/GetstockexcessNo`;
+   getStockExcessCostCentersList = `${this.environment.runtimeConfig.serverUrl}transactions/StockExcess/GetCostCentersList`;
+   getProductListsforStockexcessList = `${this.environment.runtimeConfig.serverUrl}transactions/StockExcess/GetProductLists`;
+   registerStockexcess = `${this.environment.runtimeConfig.serverUrl}transactions/StockExcess/RegisterStockexcess`;
+   getStockExcessDetailsList = `${this.environment.runtimeConfig.serverUrl}transactions/StockExcess/GetStockExcessDetailsList`;
+
+   // ******************************** sales *********************************
+   getInvoiceList = `${this.environment.runtimeConfig.serverUrl}sales/Billing/GetInvoiceList`;
+   getCashPartyAccountList = `${this.environment.runtimeConfig.serverUrl}sales/Billing/GetCashPartyAccountList`;
+   getCustomerGstNumList = `${this.environment.runtimeConfig.serverUrl}sales/Billing/GetCustomerGstNumList`;
+   getBillingBranchesList = `${this.environment.runtimeConfig.serverUrl}sales/Billing/GetBranchesList`;
+   getCashPartyAccount = `${this.environment.runtimeConfig.serverUrl}sales/Billing/GetCashPartyAccount`;
+   getmemberNames = `${this.environment.runtimeConfig.serverUrl}sales/Billing/GetmemberNames`;
+   getAccountBalance = `${this.environment.runtimeConfig.serverUrl}sales/Billing/GetAccountBalance`;
+   generateBillNo = `${this.environment.runtimeConfig.serverUrl}sales/Billing/GenerateBillNo`;
+   getProductByProductCode = `${this.environment.runtimeConfig.serverUrl}sales/Billing/GetProductByProductCode`;
+   getProductByProductName = `${this.environment.runtimeConfig.serverUrl}sales/Billing/GetProductByProductName`;
+   getBillingDetailsRcd = `${this.environment.runtimeConfig.serverUrl}sales/Billing/GetBillingDetailsRcd`;
+   registerInvoice = `${this.environment.runtimeConfig.serverUrl}sales/Billing/RegisterInvoice`;
+   getStateList = `${this.environment.runtimeConfig.serverUrl}sales/Billing/GeStateList`;
+   getSelectedState = `${this.environment.runtimeConfig.serverUrl}sales/Billing/GeSelectedState`;
+   getVechiels = `${this.environment.runtimeConfig.serverUrl}sales/Billing/GetVechiels`;
+   getInvoiceDeatilList = `${this.environment.runtimeConfig.serverUrl}sales/Billing/GetInvoiceDeatilList`;
+   getPupms = `${this.environment.runtimeConfig.serverUrl}sales/Billing/GetPupms`;
+   generateSalesReturnInvNo = `${this.environment.runtimeConfig.serverUrl}transaction/SalesReturn/GenerateSalesReturnInvNo`;
+   registerInvoiceReturn = `${this.environment.runtimeConfig.serverUrl}transaction/SalesReturn/RegisterInvoiceReturn`;
+   getInvoiceReturnDetail = `${this.environment.runtimeConfig.serverUrl}transaction/SalesReturn/GetInvoiceReturnDetail`;
+   getInvoiceGetInvoiceReturnList = `${this.environment.runtimeConfig.serverUrl}transaction/SalesReturn/GetInvoiceReturnList`;
+   getmemberNamesByCode = `${this.environment.runtimeConfig.serverUrl}sales/Billing/GetmemberNamesByCode`;
+
+   getStockTransferPrintReportData = `${this.environment.runtimeConfig.serverUrl}Reports/StockTransferPrintReport/GetStockTransferPrintReportData`;
+
+   //  stock Transfer
+   generateStockTranfNo = `${this.environment.runtimeConfig.serverUrl}transaction/StockTransfer/GenerateStockTranfNo`;
+   geProductsByName = `${this.environment.runtimeConfig.serverUrl}transaction/StockTransfer/GeProductsByName`;
+   geProductsByCode = `${this.environment.runtimeConfig.serverUrl}transaction/StockTransfer/GeProductsByCode`;
+   getStockTransferDetailsSection = `${this.environment.runtimeConfig.serverUrl}transaction/StockTransfer/GetStockTransferDetailsSection`;
+   getLtrs = `${this.environment.runtimeConfig.serverUrl}transaction/StockTransfer/GetLtrs`;
+   registerStockTransfer = `${this.environment.runtimeConfig.serverUrl}transaction/StockTransfer/RegisterStockTransfer`;
+   getStockTransferList = `${this.environment.runtimeConfig.serverUrl}transaction/StockTransfer/GetStockTransferList`;
+   getStockTransferDetilsaRecords = `${this.environment.runtimeConfig.serverUrl}transaction/StockTransfer/GetStockTransferDetilsaRecords`;
+
+   //AdvanceApproval
+   getAdvanceApplDetailsList = `${this.environment.runtimeConfig.serverUrl}Selfservice/AdvanceApproval/GetAdvanceApprovalApplDetailsList`;
+   RegisterAdvanceApprovalDetails = `${this.environment.runtimeConfig.serverUrl}Selfservice/AdvanceApproval/RegisterAdvanceApprovalDetails`;
+
+   //VehicleApproval
+   getVehicleApplDetailsList = `${this.environment.runtimeConfig.serverUrl}Selfservice/VehicleApproval/GetVehicleApprovalApplDetailsList`;
+   RegisterVehicleApprovalDetails = `${this.environment.runtimeConfig.serverUrl}Selfservice/VehicleApproval/RegisterVehicleApprovalDetails`;
+
+   //OdApproval
+   getOdApplDetailsList = `${this.environment.runtimeConfig.serverUrl}Selfservice/OdApproval/GetOdApprovalApplDetailsList`;
+   RegisterOdApprovalDetails = `${this.environment.runtimeConfig.serverUrl}Selfservice/OdApproval/GetOdApprovalApplDetailsList`;
+
+   //Permission RequestApproval
+   getPermissionrqstApplDetailsList = `${this.environment.runtimeConfig.serverUrl}Selfservice/PermissionApproval/GetPermissionApprovalApplDetailsList`;
+   RegisterPermissionrqstApprovalDetails = `${this.environment.runtimeConfig.serverUrl}Selfservice/PermissionApproval/RegisterPermissionApprovalDetails`;
+
+   // Leave Approval
+   getLeaveApplDetailsList = `${this.environment.runtimeConfig.serverUrl}Selfservice/LeaveApproval/GetLeaveApplDetailsList`;
+   RegisterLeaveApprovalDetails = `${this.environment.runtimeConfig.serverUrl}Selfservice/LeaveApproval/RegisterLeaveApprovalDetails`;
+
 }

@@ -130,3 +130,11 @@ export { VehicleRequisitionsComponent } from './vehiclerequisition/vehiclerequis
 export { PermissionRequestComponent } from './permissionrequest/permissionrequest.component';
 export { PFMasterComponent } from './pfmaster/pfmaster.component';
 export { PTMasterComponent } from './ptmaster/ptmaster.component';
+
+export { ApprovalTypeComponent } from './approvaltype/approvaltype.component';
+export { OpeningBalanceComponent } from './openingBalance/openingBalance.component';
+export { advanceApprovalComponent } from './advanceapproval/advanceapproval.component';
+export { VehicleApprovalsComponent } from './vehicleapproval/vehicleapproval.component';
+export { odApprovalComponent } from './odapproval/odapproval.component';
+export { PermissionApprovalsComponent } from './permissionapproval/permissionapproval.component';
+export { LeaveApprovalComponent } from './leaveapproval/leaveapproval.component';

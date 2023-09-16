@@ -131,6 +131,13 @@ import { VehicleRequisitionsComponent } from './vehiclerequisition/vehiclerequis
 import { PermissionRequestComponent } from './permissionrequest/permissionrequest.component';
 import { PFMasterComponent } from './pfmaster/pfmaster.component';
 import { PTMasterComponent } from './ptmaster/ptmaster.component';
+import { ApprovalTypeComponent } from './approvaltype/approvaltype.component';
+import { OpeningBalanceComponent } from './openingBalance/openingBalance.component';
+import { advanceApprovalComponent } from './advanceapproval/advanceapproval.component';
+import { VehicleApprovalsComponent } from './vehicleapproval/vehicleapproval.component';
+import { odApprovalComponent } from './odapproval/odapproval.component';
+import { PermissionApprovalsComponent } from './permissionapproval/permissionapproval.component';
+import { LeaveApprovalComponent } from './leaveapproval/leaveapproval.component';
 @Injectable({
   providedIn: 'root'
 })
@@ -671,6 +678,27 @@ export class CompListService {
         break;
       case 'pfmaster':
         this.dynamicComp.component = PFMasterComponent;
+        return this.dynamicComp.component;
+      case 'approvaltype':
+        this.dynamicComp.component = ApprovalTypeComponent;
+        return this.dynamicComp.component;
+      case 'openingBalance':
+        this.dynamicComp.component = OpeningBalanceComponent;
+        return this.dynamicComp.component;
+      case 'advanceApproval':
+        this.dynamicComp.component = advanceApprovalComponent;
+        return this.dynamicComp.component;
+      case 'vehicleapproval':
+        this.dynamicComp.component = VehicleApprovalsComponent;
+        return this.dynamicComp.component;
+      case 'odApproval':
+        this.dynamicComp.component = odApprovalComponent;
+        return this.dynamicComp.component;
+      case 'permissionapproval':
+        this.dynamicComp.component = PermissionApprovalsComponent;
+        return this.dynamicComp.component;
+      case 'leaveApproval':
+        this.dynamicComp.component = LeaveApprovalComponent;
         return this.dynamicComp.component;
         break;
       default:

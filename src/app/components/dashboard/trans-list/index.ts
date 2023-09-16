@@ -16,3 +16,9 @@ export { ReceiptOfGoodsComponent } from './goodsreceipts/receipt-of-goods.compon
 export { InspectioncheckComponent } from './inspectioncheck/inspectioncheck.component'
 export { SampleRequisitionFormComponent } from './samplerequisitionform/samplerequisitionform.component'
 export { SampleServiceComponent } from './sampleservice/sampleservice.component'
+
+
+export { StockExcessComponent } from './stockexcess/stockexcess.component';
+export { CreateStockExcessComponent } from './stockexcess/create-stockexcess/create-stockexcess.component';
+export { StocktransferComponent } from './stocktransfer/stocktransfer.component';
+export { CreateStockTransferComponent } from './stocktransfer/create-stock-transfer/create-stock-transfer.component';

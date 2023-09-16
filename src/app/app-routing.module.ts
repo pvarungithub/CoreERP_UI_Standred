@@ -7,6 +7,7 @@ import { RolesprevilagesComponent } from './components/dashboard/rolesprevilages
 import { TransListComponent } from './components/dashboard/trans-list/trans-list.component';
 import { CompTabsComponent } from './components/dashboard/comp-list/comp-tabs/comp-tabs.component';
 import { PrimaryComponent } from './components/dashboard/primary/primary.component';
+import { CreateStockExcessComponent, CreateStockTransferComponent } from './components/dashboard/trans-list';
 const routes: Routes = [
   { path: 'login', component: LoginComponent },
   {
@@ -24,6 +25,12 @@ const routes: Routes = [
       { path: 'transaction/:id/:id1', component: TransListComponent, canActivate: [AuthGuard], resolve: { routeConfig: AuthGuard } },
       { path: 'transaction/:id', component: TransListComponent, canActivate: [AuthGuard], resolve: { routeConfig: AuthGuard } },
 
+
+      { path: 'sales/:id/createStockTransfer', component: CreateStockTransferComponent, data: { title: 'Create Sale' }, canActivate: [AuthGuard] },
+      { path: 'sales/:id/createStockTransfer/:id1', component: CreateStockTransferComponent, data: { title: 'Create Sale' }, canActivate: [AuthGuard] },
+      { path: 'transactions/:id/createStockExcess', component: CreateStockExcessComponent, data: { title: 'Create StockExcess' }, canActivate: [AuthGuard] },
+      { path: 'transactions/:id/createStockExcess/:id1', component: CreateStockExcessComponent, data: { title: 'Create StockExcess' }, canActivate: [AuthGuard] },
+      
       // primary screens
       { path: 'primary/:id', component: PrimaryComponent, canActivate: [AuthGuard], resolve: { routeConfig: AuthGuard } }
     ]

@@ -33,17 +33,17 @@ import {
   CostingObjectTypesComponent, CostingObjectNumberSeriesComponent, FormulasComponent,
   StandardRateComponent, DownTimeReasonComponent, TasksComponent, InvoiceverificationComponent, RoutingFileComponent, VehicleRequisitionsComponent,
   PTMasterComponent, PFMasterComponent, PermissionRequestComponent, CTCBreakupComponent, ComponentMasterComponent, 
-  AdvanceComponent, ApplyodComponent, LeaveRequestComponent, LeaveopeningbalanceComponent, LeavetypeComponent 
+  AdvanceComponent, ApplyodComponent, LeaveRequestComponent, LeaveopeningbalanceComponent, LeavetypeComponent, ApprovalTypeComponent, OpeningBalanceComponent, VehicleApprovalsComponent, advanceApprovalComponent, odApprovalComponent, PermissionApprovalsComponent, LeaveApprovalComponent 
 
 } from './components/dashboard/comp-list/index';
 
 import {
   CashbankComponent, JournalComponent, GoodsissueComponent, MemoinvoiceComponent, SourceOfSupplyComponent, InspectioncheckComponent,
   QuotationAnalysisComponent, QuotationSupplierComponent, PurchasingComponent, PurchaseOrderComponent, ReceiptOfGoodsComponent,
-  ReceiptspaymentsComponent, BillOfMaterialComponent, MaterialrequisitionComponents, PurchasesaleassetComponent, SaleassetComponent,SampleRequisitionFormComponent,SampleServiceComponent
+  ReceiptspaymentsComponent, BillOfMaterialComponent, MaterialrequisitionComponents, PurchasesaleassetComponent, SaleassetComponent,SampleRequisitionFormComponent,SampleServiceComponent, StockExcessComponent, CreateStockExcessComponent, CreateStockTransferComponent, StocktransferComponent
 } from './components/dashboard/trans-list/index';
 
-import { NavbarComponent, TableComponent, DeleteItemComponent, SearchFilterTableComponent, TransTableComponent, DynamicTableComponent, AutocompleteComponent } from './reuse-components/index';
+import { NavbarComponent, TableComponent, DeleteItemComponent, SearchFilterTableComponent, TransTableComponent, DynamicTableComponent, AutocompleteComponent, SaveItemComponent } from './reuse-components/index';
 import {
   DashboardComponent, LoginComponent, SidebarComponent, NotFoundComponent
 } from './components/index';
@@ -139,7 +139,12 @@ export function HttpLoaderFactory(httpClient: HttpClient) {
     //selfserviceComponent,
     EmployeeComponent,
     VehicleRequisitionsComponent, PTMasterComponent, PFMasterComponent, PermissionRequestComponent, CTCBreakupComponent, ComponentMasterComponent,
-    AdvanceComponent, ApplyodComponent, LeaveRequestComponent, LeaveopeningbalanceComponent, LeavetypeComponent 
+    AdvanceComponent, ApplyodComponent, LeaveRequestComponent, LeaveopeningbalanceComponent, LeavetypeComponent,
+    
+    ApprovalTypeComponent, OpeningBalanceComponent, StockExcessComponent, CreateStockExcessComponent,
+    StocktransferComponent, CreateStockTransferComponent,
+    SaveItemComponent, advanceApprovalComponent, VehicleApprovalsComponent, odApprovalComponent,
+    PermissionApprovalsComponent, LeaveApprovalComponent
   ],
   imports: [
     AppRoutingModule,
@@ -184,10 +189,14 @@ export function HttpLoaderFactory(httpClient: HttpClient) {
     UndersubGroupComponent, TaxIntegrationComponent,
     DeleteItemComponent,
     CompanyComponent, VehicleRequisitionsComponent, PTMasterComponent, PFMasterComponent, PermissionRequestComponent, CTCBreakupComponent, ComponentMasterComponent,
-    AdvanceComponent, ApplyodComponent, LeaveRequestComponent, LeaveopeningbalanceComponent, LeavetypeComponent 
+    AdvanceComponent, ApplyodComponent, LeaveRequestComponent, LeaveopeningbalanceComponent, LeavetypeComponent, 
     // LeaveopeningbalanceComponent,
 
     // MemberMasterComponent, VehicleComponent
+    ApprovalTypeComponent, OpeningBalanceComponent, StockExcessComponent, CreateStockExcessComponent, 
+    StocktransferComponent, CreateStockTransferComponent,
+    SaveItemComponent, advanceApprovalComponent, VehicleApprovalsComponent, odApprovalComponent,
+    PermissionApprovalsComponent, LeaveApprovalComponent
   ]
 })
 export class AppModule { }
