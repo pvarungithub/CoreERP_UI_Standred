@@ -3,14 +3,14 @@ import { String } from 'typescript-string-operations';
 import { ApiService } from '../../../../services/api.service';
 import { Router, ActivatedRoute } from '@angular/router';
 import { MatDialog } from '@angular/material/dialog';
-
+import { NgxSpinnerService } from 'ngx-spinner';
 import { AlertService } from '../../../../services/alert.service';
-
+import { ApiConfigService } from '../../../../services/api-config.service';
 import { MatDialogRef, MAT_DIALOG_DATA } from '@angular/material/dialog';
-;
 import { FormBuilder, FormGroup, Validators } from '@angular/forms';
 import { CommonService } from '../../../../services/common.service';
 import { StatusCodes } from '../../../../enums/common/common';
+import { AddOrEditService } from '../add-or-edit.service';
 
 @Component({
   selector: 'app-leavetype',
@@ -22,16 +22,20 @@ export class LeavetypeComponent implements OnInit {
   modelFormData: FormGroup;
   isSubmitted = false;
   formData: any;
-  apiConfigService: any;
-  apiService: any;
+  // apiConfigService: any;
+  // apiService: any;
   companyList: any;
 
 
   constructor(
     private alertService: AlertService,
+    private apiService: ApiService,
+    private addOrEditService: AddOrEditService,
     private formBuilder: FormBuilder,
     public dialogRef: MatDialogRef<LeavetypeComponent>,
     private commonService: CommonService,
+    private spinner: NgxSpinnerService,
+    private apiConfigService: ApiConfigService,
     // @Optional() is used to prevent error if no data is passed
     @Optional() @Inject(MAT_DIALOG_DATA) public data: any) {
 
@@ -64,20 +68,36 @@ export class LeavetypeComponent implements OnInit {
   }
 
   ngOnInit() {
+    this.getCompanyData();
   }
 
 
-
+ 
   get formControls() { return this.modelFormData.controls; }
 
-
+  getCompanyData() {
+    const getCompanyUrl = String.Join('/', this.apiConfigService.getCompanyList);
+    this.apiService.apiGetRequest(getCompanyUrl)
+      .subscribe(
+        response => {
+          const res = response;
+          if (!this.commonService.checkNullOrUndefined(res) && res.status === StatusCodes.pass) {
+            if (!this.commonService.checkNullOrUndefined(res.response)) {
+              this.companyList = res.response['companiesList'];
+            }
+          }
+          this.spinner.hide();
+        });
+  }
   save() {
     if (this.modelFormData.invalid) {
       return;
     }
     this.formData.item = this.modelFormData.value;
-
-    this.dialogRef.close(this.formData);
+    this.addOrEditService[this.formData.action](this.formData, (res) => {
+      this.dialogRef.close(this.formData);
+    });
+    
   }
 
   cancel() {

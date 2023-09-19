@@ -26,17 +26,29 @@
           </mat-error>
         </mat-form-field>
 
-        <mat-form-field>
+        <mat-form-field class="form-element">
+          <mat-label [translate]="'leaveopeningbalance.leaveCode'"></mat-label>
+          <mat-select formControlName="leaveCode" appFocusOnEnter tabIndex="5">
+            <mat-option *ngFor="let comp of companyList" [value]="comp.id">
+              {{comp.text}}
+            </mat-option>
+          </mat-select>
+          <mat-error *ngIf="formControls.leaveCode.errors" class="help-block">
+            <div *ngIf="formControls.leaveCode.errors.required">Leave Type is required</div>
+          </mat-error>
+        </mat-form-field>
+
+        <!-- <mat-form-field>
           <mat-label>Leave Type</mat-label>
-          <mat-select placeholder="{{'leaveopeningbalance.leaveCode' | translate }}" formControlName="leaveCode">
-            <mat-option *ngFor="let ptlist of LeaveTypeatList" [value]="ptlist.leaveCode">
-              {{ptlist.leaveCode}}
+          <mat-select formControlName="leaveCode">
+            <mat-option *ngFor="let ptlist of LeaveTypeatList" [value]="ptlist.id">
+              {{ptlist.text}}
             </mat-option>
           </mat-select>
           <mat-error *ngIf="formControls.leaveCode.errors" class="help-block">
             <div *ngIf="formControls.leaveCode.errors.required">LeaveCode is required</div>
           </mat-error>
-        </mat-form-field>
+        </mat-form-field> -->
 
         <mat-form-field class="form-element" [ngClass]="{ 'ng--valid': formControls.opbal.valid }">
           <input matInput placeholder="{{'leaveopeningbalance.opbal' | translate }}" formControlName="opbal" appFocusOnEnter tabIndex="4">

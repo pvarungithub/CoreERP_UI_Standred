@@ -3,7 +3,7 @@ import { String } from 'typescript-string-operations';
 import { ApiService } from '../../../../services/api.service';
 import { Router, ActivatedRoute } from '@angular/router';
 import { MatDialog } from '@angular/material/dialog';
-
+import { AddOrEditService } from '../add-or-edit.service';
 import { AlertService } from '../../../../services/alert.service';
 import { ApiConfigService } from '../../../../services/api-config.service';
 import { MatDialogRef, MAT_DIALOG_DATA } from '@angular/material/dialog';
@@ -32,6 +32,7 @@ export class LeaveopeningbalanceComponent implements OnInit {
 
   constructor(
     private apiService: ApiService,
+    private addOrEditService: AddOrEditService,
     private alertService: AlertService,
     private formBuilder: FormBuilder,
     private spinner: NgxSpinnerService,
@@ -74,6 +75,7 @@ export class LeaveopeningbalanceComponent implements OnInit {
     //debugger;
 
     this.getTableData();
+    this.getCompanyData();
     this.modelFormData.patchValue
       ({
         //empCode: username
@@ -135,15 +137,15 @@ export class LeaveopeningbalanceComponent implements OnInit {
     const user = JSON.parse(localStorage.getItem('user'));
     let username = user.userName;
     this.spinner.show();
-    const getCompanyUrl = String.Join('/', this.apiConfigService.getLeaveTypeatListforlop, user.companyCode ? user.companyCode : "6");
-    this.apiService.apiGetRequest(getCompanyUrl)
+    const getLeaveTypeUrl = String.Join('/', this.apiConfigService.getLeaveTypeatListforlob, user.companyCode);
+    this.apiService.apiGetRequest(getLeaveTypeUrl)
       .subscribe(
         response => {
           const res = response.body;
           if (!this.commonService.checkNullOrUndefined(res) && res.status === StatusCodes.pass) {
             if (!this.commonService.checkNullOrUndefined(res.response)) {
-              console.log(res);
-              this.LeaveTypeatList = res.response['leavetypesList'];
+              this.LeaveTypeatList = res.response['leaveTypeList'];
+              console.log(this.LeaveTypeatList);
             }
           }
           this.spinner.hide();
@@ -153,7 +155,21 @@ export class LeaveopeningbalanceComponent implements OnInit {
   }
   get formControls() { return this.modelFormData.controls; }
 
-
+  getCompanyData() {
+    const user = JSON.parse(localStorage.getItem('user'));
+    const getCompanyUrl = String.Join('/', this.apiConfigService.getLeaveTypeatListforlob, user.companyCode);
+    this.apiService.apiGetRequest(getCompanyUrl)
+      .subscribe(
+        response => {
+          const res = response;
+          if (!this.commonService.checkNullOrUndefined(res) && res.status === StatusCodes.pass) {
+            if (!this.commonService.checkNullOrUndefined(res.response)) {
+              this.companyList = res.response['leaveTypeList'];
+            }
+          }
+          this.spinner.hide();
+        });
+  }
   save() {
     if (this.modelFormData.invalid) {
       return;
@@ -161,6 +177,9 @@ export class LeaveopeningbalanceComponent implements OnInit {
     this.modelFormData.controls['empCode'].enable();
     this.formData.item = this.modelFormData.value;
     this.dialogRef.close(this.formData);
+    this.addOrEditService[this.formData.action](this.formData, (res) => {
+      this.dialogRef.close(this.formData);
+    });
   }
 
   cancel() {
