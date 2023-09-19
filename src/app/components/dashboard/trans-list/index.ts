@@ -22,3 +22,6 @@ export { StockExcessComponent } from './stockexcess/stockexcess.component';
 export { CreateStockExcessComponent } from './stockexcess/create-stockexcess/create-stockexcess.component';
 export { StocktransferComponent } from './stocktransfer/stocktransfer.component';
 export { CreateStockTransferComponent } from './stocktransfer/create-stock-transfer/create-stock-transfer.component';
+
+export { SalesorderComponent } from './salesorder/salesorder.component';
+export { CreateSalesOrderComponent } from './salesorder/create-sales-order/create-sales-order.component';

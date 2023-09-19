@@ -40,7 +40,7 @@ import {
 import {
   CashbankComponent, JournalComponent, GoodsissueComponent, MemoinvoiceComponent, SourceOfSupplyComponent, InspectioncheckComponent,
   QuotationAnalysisComponent, QuotationSupplierComponent, PurchasingComponent, PurchaseOrderComponent, ReceiptOfGoodsComponent,
-  ReceiptspaymentsComponent, BillOfMaterialComponent, MaterialrequisitionComponents, PurchasesaleassetComponent, SaleassetComponent,SampleRequisitionFormComponent,SampleServiceComponent, StockExcessComponent, CreateStockExcessComponent, CreateStockTransferComponent, StocktransferComponent
+  ReceiptspaymentsComponent, BillOfMaterialComponent, MaterialrequisitionComponents, PurchasesaleassetComponent, SaleassetComponent,SampleRequisitionFormComponent,SampleServiceComponent, StockExcessComponent, CreateStockExcessComponent, CreateStockTransferComponent, StocktransferComponent, CreateSalesOrderComponent, SalesorderComponent
 } from './components/dashboard/trans-list/index';
 
 import { NavbarComponent, TableComponent, DeleteItemComponent, SearchFilterTableComponent, TransTableComponent, DynamicTableComponent, AutocompleteComponent, SaveItemComponent } from './reuse-components/index';
@@ -145,7 +145,9 @@ export function HttpLoaderFactory(httpClient: HttpClient) {
     StocktransferComponent, CreateStockTransferComponent,
     SaveItemComponent, advanceApprovalComponent, VehicleApprovalsComponent, odApprovalComponent,
     PermissionApprovalsComponent, LeaveApprovalComponent,
-    DesignationComponent
+    DesignationComponent,
+    SalesorderComponent,
+    CreateSalesOrderComponent
   ],
   imports: [
     AppRoutingModule,
@@ -199,7 +201,9 @@ export function HttpLoaderFactory(httpClient: HttpClient) {
     SaveItemComponent, advanceApprovalComponent, VehicleApprovalsComponent, odApprovalComponent,
     PermissionApprovalsComponent, LeaveApprovalComponent,
 
-    DesignationComponent
+    DesignationComponent,
+    SalesorderComponent,
+    CreateSalesOrderComponent
   ]
 })
 export class AppModule { }

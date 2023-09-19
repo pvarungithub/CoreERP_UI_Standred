@@ -2428,5 +2428,16 @@
     "fQty": "F/Qty",
     "batchNo": "Batch No",
     "NARRATION": "Narration"
+  },
+  "SALESORDER": {
+    "TITLE": "Sales Order",
+    "NEWORDER": "New Order",
+    "salesOrderNumber": "Sales Order Number",
+    "materialCode": "Material Code",
+    "qty": "Quantity",
+    "rate": "Rate",
+    "discount": "Discount",
+    "total": "Total",
+    "deliveryDate": "Delivery Date"
   }
 }

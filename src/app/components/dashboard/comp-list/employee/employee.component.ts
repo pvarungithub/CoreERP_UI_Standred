@@ -44,8 +44,8 @@ export class EmployeeComponent implements OnInit {
 
     this.modelFormData = this.formBuilder.group({
       branchId: [''],
-      employeeId: [0],
-      employeeCode: ['', Validators.required],
+      // employeeId: [0],
+      employeeCode: [0, Validators.required],
       companyCode: [''],
       branchCode: [''],
       designationId: [''],
@@ -187,7 +187,7 @@ export class EmployeeComponent implements OnInit {
     this.formData.item = this.modelFormData.value;
     this.modelFormData.controls['employeeCode'].enable();
     // this.modelFormData.controls['employeeId'].enable();
-    if (this.modelFormData.value.employeeId) {
+    if (this.modelFormData.value.employeeCode) {
       this.update();
       return
     }
