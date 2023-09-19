@@ -11,6 +11,7 @@ import { FormBuilder, FormGroup, Validators } from '@angular/forms';
 import { CommonService } from '../../../../services/common.service';
 import { StatusCodes } from '../../../../enums/common/common';
 import { AddOrEditService } from '../add-or-edit.service';
+import { DatePipe } from '@angular/common';
 
 @Component({
   selector: 'app-designation',
@@ -33,6 +34,7 @@ export class DesignationComponent implements OnInit {
     public dialogRef: MatDialogRef<DesignationComponent>,
     private commonService: CommonService,
     private addOrEditService: AddOrEditService,
+    private datepipe: DatePipe,
     // @Optional() is used to prevent error if no data is passed
     @Optional() @Inject(MAT_DIALOG_DATA) public data: any) {
 
@@ -47,10 +49,12 @@ export class DesignationComponent implements OnInit {
       extra2: [null]
     });
 
-
     this.formData = { ...data };
     if (!this.commonService.checkNullOrUndefined(this.formData.item)) {
       this.modelFormData.patchValue(this.formData.item);
+      this.modelFormData.patchValue({
+        extraDate: this.formData.item.extraDate ? this.datepipe.transform(this.formData.item.extraDate, 'yyyy-dd-MM') : '',
+      });
       //this.modelFormData.controls['code'].disable();
     }
 
@@ -68,6 +72,7 @@ export class DesignationComponent implements OnInit {
     }
     // this.modelFormData.controls['code'].enable();
     this.formData.item = this.modelFormData.value;
+    this.formData.item.extraDate = this.datepipe.transform(this.formData.item.extraDate, 'yyyy-MM-dd')
     this.addOrEditService[this.formData.action](this.formData, (res) => {
       this.dialogRef.close(this.formData);
     });

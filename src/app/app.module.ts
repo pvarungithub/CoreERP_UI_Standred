@@ -72,6 +72,7 @@ import { from } from 'rxjs';
 import { MaxlengthDirective } from './directives/maxlength.directive';
 import { NonEditableDatepicker } from './directives/format-datepicker';
 import { EmployeeComponent } from './components/dashboard/comp-list/employee/employee.component';
+import { DatePipe } from '@angular/common';
 
 //import { AccountKeyComponent } from './components/dashboard/comp-list/assetblock/accountkey/accountkey.component';
 // AoT requires an exported function for factories
@@ -175,7 +176,8 @@ export function HttpLoaderFactory(httpClient: HttpClient) {
       provide: HTTP_INTERCEPTORS,
       useClass: TokenInterceptor,
       multi: true
-    }
+    },
+    DatePipe
   ],
   bootstrap: [AppComponent],
   schemas: [CUSTOM_ELEMENTS_SCHEMA],
