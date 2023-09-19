@@ -51,7 +51,7 @@ export class DesignationComponent implements OnInit {
 
     this.formData = { ...data };
     if (!this.commonService.checkNullOrUndefined(this.formData.item)) {
-      this.modelFormData.patchValue(this.formData.item);
+      this.modelFormData.patchValue(this.formData.item)
       //this.modelFormData.controls['code'].disable();
     }
 
@@ -73,9 +73,9 @@ export class DesignationComponent implements OnInit {
     this.addOrEditService[this.formData.action](this.formData, (res) => {
       this.dialogRef.close(this.formData);
     });
-  // if (this.formData.action == 'Edit') {
-  //   this.modelFormData.controls['code'].disable();
-  // }
+    // if (this.formData.action == 'Edit') {
+    //   this.modelFormData.controls['code'].disable();
+    // }
   }
 
   cancel() {
