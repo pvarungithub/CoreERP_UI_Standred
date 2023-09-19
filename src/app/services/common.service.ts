@@ -153,7 +153,7 @@ export class CommonService {
     const date = new Date(event),
       mnth = ('0' + (date.getMonth() + 1)).slice(-2),
       day = ('0' + date.getDate()).slice(-2)
-    return `${[day, mnth, date.getFullYear()].join('-')}`;
+    return `${[date.getFullYear(), mnth, day].join('-')}`;
   }
 
 
