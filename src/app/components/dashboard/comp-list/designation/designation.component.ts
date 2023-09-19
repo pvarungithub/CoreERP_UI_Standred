@@ -52,9 +52,6 @@ export class DesignationComponent implements OnInit {
     this.formData = { ...data };
     if (!this.commonService.checkNullOrUndefined(this.formData.item)) {
       this.modelFormData.patchValue(this.formData.item);
-      this.modelFormData.patchValue({
-        extraDate: this.formData.item.extraDate ? this.datepipe.transform(this.formData.item.extraDate, 'yyyy-dd-MM') : '',
-      });
       //this.modelFormData.controls['code'].disable();
     }
 
@@ -72,7 +69,7 @@ export class DesignationComponent implements OnInit {
     }
     // this.modelFormData.controls['code'].enable();
     this.formData.item = this.modelFormData.value;
-    this.formData.item.extraDate = this.datepipe.transform(this.formData.item.extraDate, 'yyyy-MM-dd')
+    this.formData.item.extraDate = this.formData.item.extraDate ? this.datepipe.transform(this.formData.item.extraDate, 'yyyy-MM-dd') : '';
     this.addOrEditService[this.formData.action](this.formData, (res) => {
       this.dialogRef.close(this.formData);
     });
