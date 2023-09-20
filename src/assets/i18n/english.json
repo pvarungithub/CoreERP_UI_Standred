@@ -2429,8 +2429,19 @@
     "batchNo": "Batch No",
     "NARRATION": "Narration"
   },
-  "SALESORDER": {
+  "saleorder": {
     "TITLE": "Sales Order",
+    "saleOrderNo": "Sale Order Number",
+    "customerCode": "Customer Code",
+    "orderDate": "Order Date",
+    "poNumber": "PO Number",
+    "poDate": "PO Date",
+    "dateOfSupply": "Date Of Supply",
+    "placeOfSupply": "Place Of Supply",
+    "documentUrl": "Document Url",
+    "status": "Status",
+    "taxCode": "Tax Code",
+
     "NEWORDER": "New Order",
     "salesOrderNumber": "Sales Order Number",
     "materialCode": "Material Code",

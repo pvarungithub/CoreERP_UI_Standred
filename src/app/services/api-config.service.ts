@@ -91,6 +91,7 @@ export class ApiConfigService {
    getCostCenters = `${this.environment.runtimeConfig.serverUrl}CostCenter/GetCostCenters`;
    getTaxRatesList = `${this.environment.runtimeConfig.serverUrl}TaxRates/GetTaxRatesList`;
    getBPList = `${this.environment.runtimeConfig.serverUrl}Common/GetBPList`;
+   getCustomerList = `${this.environment.runtimeConfig.serverUrl}Common/GetCustomerList`;
    getpurchaseinvoiceList = `${this.environment.runtimeConfig.serverUrl}Common/GetPurchaseInvoiceList`;
    getAssetMasterList = `${this.environment.runtimeConfig.serverUrl}Common/GetMainAssetMasterList`;
    getSubAssetMasterList = `${this.environment.runtimeConfig.serverUrl}Common/GetSubAssetMasterList`;
@@ -453,6 +454,7 @@ export class ApiConfigService {
    getLeaveApplDetailsList = `${this.environment.runtimeConfig.serverUrl}Selfservice/LeaveApproval/GetLeaveApplDetailsList`;
    RegisterLeaveApprovalDetails = `${this.environment.runtimeConfig.serverUrl}Selfservice/LeaveApproval/RegisterLeaveApprovalDetails`;
   
-   getSaleOrder = `${this.environment.runtimeConfig.serverUrl}Selfservice/LeaveApproval/GetSaleOrder`;
+   getSaleOrder = `${this.environment.runtimeConfig.serverUrl}Transactions/GetSaleOrder`;
+   addSaleOrder = `${this.environment.runtimeConfig.serverUrl}Transactions/AddSaleOrder`;
 
 }
