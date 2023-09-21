@@ -2147,17 +2147,19 @@
     "placeOfSupply": "Place Of Supply",
     "documentUrl": "Document Url",
     "status": "Status",
-    "taxCode": "Tax Code",
-
+    
     "NEWORDER": "New Order",
     "salesOrderNumber": "Sales Order Number",
     "materialCode": "Material Code",
+    "taxCode": "Tax Code",
     "qty": "Quantity",
     "rate": "Rate",
     "discount": "Discount",
     "total": "Total",
     "deliveryDate": "Delivery Date",
-        "delete": "Delete"
+        "delete": "Delete",
+        "action": "Action"
+        
 
   }
 }

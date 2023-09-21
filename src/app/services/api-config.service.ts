@@ -455,6 +455,7 @@ export class ApiConfigService {
    RegisterLeaveApprovalDetails = `${this.environment.runtimeConfig.serverUrl}Selfservice/LeaveApproval/RegisterLeaveApprovalDetails`;
   
    getSaleOrder = `${this.environment.runtimeConfig.serverUrl}Transactions/GetSaleOrder`;
+   getSaleOrderDetail = `${this.environment.runtimeConfig.serverUrl}Transactions/GetSaleOrderDetail`;
    addSaleOrder = `${this.environment.runtimeConfig.serverUrl}Transactions/AddSaleOrder`;
 
 }

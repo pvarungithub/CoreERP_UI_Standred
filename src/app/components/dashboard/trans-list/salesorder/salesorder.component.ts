@@ -1,4 +1,4 @@
-import { Component, OnInit } from '@angular/core';
+import { Component, OnInit, ViewChild } from '@angular/core';
 import { FormGroup, FormBuilder, Validators } from '@angular/forms';
 import { ApiConfigService } from '../../../../services/api-config.service';
 import { String } from 'typescript-string-operations';
@@ -11,6 +11,7 @@ import { Static } from '../../../../enums/common/static';
 import { AlertService } from '../../../../services/alert.service';
 import { DateAdapter, MAT_DATE_FORMATS } from '@angular/material/core';
 import { AppDateAdapter, APP_DATE_FORMATS } from '../../../../directives/format-datepicker';
+import { TableComponent } from 'src/app/reuse-components';
 
 @Component({
   selector: 'app-salesorder',
@@ -23,21 +24,27 @@ import { AppDateAdapter, APP_DATE_FORMATS } from '../../../../directives/format-
 })
 export class SalesorderComponent {
 
+  @ViewChild(TableComponent, { static: false }) tableComponent: TableComponent;
+
+
   // form control
   formData: FormGroup;
-  sendDynTableData: any;
+  formData1: FormGroup;
+
+  tableData: any[] = [];
 
   // header props
   customerList = [];
   taxCodeList = [];
+  materialList = [];
 
-  tableData = [];
-  dynTableProps: any;
   routeEdit = '';
-  costunitList: any;
-  materialList: any;
-  UomList: any;
-  ptypeList: any;
+
+  igst = 0;
+  cgst = 0;
+  sgst = 0;
+  totalTax = 0;
+  totalAmount = 0;
 
   constructor(
     private commonService: CommonService,
@@ -60,6 +67,79 @@ export class SalesorderComponent {
   }
 
 
+  formDataGroup() {
+    this.formData = this.formBuilder.group({
+      saleOrderNo: [0],
+      customerCode: [null],
+      orderDate: [null],
+      poNumber: [null],
+      poDate: [null],
+      dateOfSupply: [null],
+      placeOfSupply: [null]
+    });
+    this.formData1 = this.formBuilder.group({
+      materialCode: ['', Validators.required],
+      taxCode: ['', Validators.required],
+      qty: ['', Validators.required],
+      rate: ['', Validators.required],
+      discount: [''],
+      total: [''],
+      action: true,
+      index: 0
+    });
+  }
+
+  resetForm() {
+    this.formData1.reset();
+    this.formData1.patchValue({
+      index: 0,
+      action: true
+    });
+  }
+
+  saveForm() {
+    debugger
+    if (this.formData1.invalid) {
+      return;
+    }
+    let data: any = this.tableData;
+    this.tableData = null;
+    this.tableComponent.defaultValues();
+    if (this.formData1.value.index == 0) {
+      this.formData1.patchValue({
+        index: data ? (data.length + 1) : 1
+      });
+      data = [...data, this.formData1.value];
+    } else {
+      data = data.map((res: any) => res = res.index == this.formData1.value.index ? this.formData1.value : res);
+    }
+    setTimeout(() => {
+      this.tableData = data;
+    });
+    this.resetForm();
+    // this.dataChange();
+  }
+
+  dataChange() {
+    this.tableData.forEach((t: any) => {
+      const obj = this.taxCodeList.find((tax: any) => tax.taxRateCode == t.taxRateCode);
+      this.cgst = this.cgst + ((t.amount * obj.cgst) / 100);
+      this.sgst = this.sgst + (t.amount * obj.sgst) / 100;
+      this.igst = this.igst + (t.amount * obj.igst) / 100;
+    })
+    this.totalTax = this.cgst + this.igst + this.igst;
+    this.totalAmount = this.totalTax + this.igst + this.igst;
+  }
+
+  editOrDeleteEvent(value) {
+    debugger
+    if (value.action === 'Delete') {
+      this.tableComponent.defaultValues();
+      this.tableData = this.tableData.filter((res: any) => res.index != value.item.index);
+    } else {
+      this.formData1.patchValue(value.item);
+    }
+  }
 
   getCustomerList() {
     const costCenUrl = String.Join('/', this.apiConfigService.getCustomerList);
@@ -69,13 +149,15 @@ export class SalesorderComponent {
           const res = response;
           if (!this.commonService.checkNullOrUndefined(res) && res.status === StatusCodes.pass) {
             if (!this.commonService.checkNullOrUndefined(res.response)) {
-              this.customerList = res.response['customerList'];
+              const resp = res.response['bpList'];
+              const data = resp.length && resp.filter((t: any) => t.bptype == 'Customer');
+              this.customerList = data;
             }
           }
           this.getTaxRatesList();
         });
   }
-  
+
   getTaxRatesList() {
     const taxCodeUrl = String.Join('/', this.apiConfigService.getTaxRatesList);
     this.apiService.apiGetRequest(taxCodeUrl)
@@ -85,7 +167,7 @@ export class SalesorderComponent {
           if (!this.commonService.checkNullOrUndefined(res) && res.status === StatusCodes.pass) {
             if (!this.commonService.checkNullOrUndefined(res.response)) {
               const resp = res.response['TaxratesList'];
-              const data = resp.length && resp.filter((t: any) => t.taxType == 'Input');
+              const data = resp.length && resp.filter((t: any) => t.taxType == 'Output');
               this.taxCodeList = data;
             }
           }
@@ -103,66 +185,17 @@ export class SalesorderComponent {
           if (!this.commonService.checkNullOrUndefined(res) && res.status === StatusCodes.pass) {
             if (!this.commonService.checkNullOrUndefined(res.response)) {
               this.materialList = res.response['materialList'];
-              this.dynTableProps = this.tablePropsFunc();
               if (this.routeEdit != '') {
-                this.getQuotationSuppliersDetails(this.routeEdit);
+                this.getSaleOrderDetail();
               }
             }
           }
         });
   }
-  
-  tablePropsFunc() {
-    return {
-      tableData: {
-        materialCode: {
-          value: null, type: 'dropdown', list: this.materialList, id: 'id', text: 'text', displayMul: true, width: 250
-        },
-        taxCode: {
-          value: null, type: 'dropdown', list: this.taxCodeList, id: 'taxRateCode', text: 'description', displayMul: false, width: 250
-        },
-        qty: {
-          value: null, type: 'number', width: 100, maxLength: 50
-        },
-        rate: {
-          value: null, type: 'number', width: 100, maxLength: 50
-        },
-        discount: {
-          value: null, type: 'number', width: 100, maxLength: 50
-        },
-        total: {
-          value: null, type: 'number', width: 100, maxLength: 50
-        },
-        delete: {
-          type: 'delete', width: 10
-        }
-      },
-      formControl: {
-        materialCode: [null, [Validators.required]],
-        taxCode: [null, [Validators.required]],
-        qty: [null, [Validators.required]],
-        rate: [null, [Validators.required]],
-      }
-    };
-  }
-
-  formDataGroup() {
-    this.formData = this.formBuilder.group({
-      saleOrderNo: [0],
-      customerCode: [null],
-      orderDate: [null],
-      poNumber: [null],
-      poDate: [null],
-      dateOfSupply: [null],
-      placeOfSupply: [null],
-      documentUrl: [null],
-      status: [null],
-    });
-  }
 
 
-  getQuotationSuppliersDetails(val) {
-    const qsDetUrl = String.Join('/', this.apiConfigService.getsupplierqsDetail, val);
+  getSaleOrderDetail() {
+    const qsDetUrl = String.Join('/', this.apiConfigService.getSaleOrderDetail, this.routeEdit);
     this.apiService.apiGetRequest(qsDetUrl)
       .subscribe(
         response => {
@@ -170,8 +203,7 @@ export class SalesorderComponent {
           const res = response;
           if (!this.commonService.checkNullOrUndefined(res) && res.status === StatusCodes.pass) {
             if (!this.commonService.checkNullOrUndefined(res.response)) {
-              this.formData.setValue(res.response['qsmasters']);
-              this.sendDynTableData = { type: 'edit', data: res.response['qsDetail'] };
+              this.formData.patchValue(res.response['saleOrderMasters']);
               this.formData.disable();
             }
           }
@@ -180,22 +212,8 @@ export class SalesorderComponent {
 
   emitColumnChanges(data) {
     this.tableData = data.data;
-    this.dataChange(data);
   }
 
-  dataChange(row) {
-    if (row.column == 'taxCode' || row.column == 'amount') {
-      const code = row.data[row.index]['taxCode'].list.find(res => res.taxRateCode == row.data[row.index]['taxCode'].value);
-      if (!this.commonService.checkNullOrUndefined(code)) {
-        row.data[row.index].cgstamount.value = (row.data[row.index].amount.value * code.cgst) / 100;
-        row.data[row.index].igstamount.value = (row.data[row.index].amount.value * code.igst) / 100;
-        row.data[row.index].cgstamount.value = (row.data[row.index].amount.value * code.sgst) / 100;
-        row.data[row.index].cgstamount.value = (row.data[row.index].amount.value * code.cgst) / 100;
-        this.sendDynTableData = { type: 'add', data: row.data };
-        this.tableData = row.data;
-      }
-    }
-  }
 
 
   back() {
@@ -203,8 +221,7 @@ export class SalesorderComponent {
   }
 
   save() {
-    this.tableData = this.commonService.formatTableData(this.tableData);
-    if (this.tableData.length == 0 && this.formData.invalid) {
+    if (this.tableData.length == 0 || this.formData.invalid) {
       return;
     }
     this.addSaleOrder();
@@ -226,11 +243,9 @@ export class SalesorderComponent {
       });
   }
 
-
   reset() {
     this.tableData = [];
     this.formData.reset();
-    this.sendDynTableData = { type: 'reset', data: this.tableData };
   }
 
 }

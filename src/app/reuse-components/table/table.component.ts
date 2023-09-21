@@ -39,7 +39,9 @@ export class TableComponent implements OnInit, OnChanges, AfterViewInit, OnDestr
 
   @Input() tableData: any;
   @Output() addOrUpdateEvent = new EventEmitter();
+  @Output() editOrDeleteEvent = new EventEmitter();
   @Input() addOrUpdateData: any;
+  @Input() showFilters = true;
 
   @ViewChild(MatTable, { static: true }) table: MatTable<any>;
   @ViewChild(MatPaginator, { static: true }) paginator: MatPaginator;
@@ -252,6 +254,10 @@ export class TableComponent implements OnInit, OnChanges, AfterViewInit, OnDestr
 
   ngOnDestroy() {
     this.tableData = [];
+  }
+
+  editOrDelete(action: string, item: any) {
+    this.editOrDeleteEvent.emit({ action: action, item: item });
   }
 
 }

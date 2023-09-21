@@ -8,7 +8,7 @@
     {{ ( routeParam + '.title') | translate }}
   </mat-card-title> -->
   <div class="background-header-boarder">
-    <div class="d-flex justify-content-between align-items-center border">
+    <div class="d-flex justify-content-between align-items-center border" *ngIf="showFilters">
       <div class="">
         <button class="mx-2" mat-raised-button (click)="openDialog('Add')"
           [hidden]="!commonService.userPermission?.canAdd">
@@ -54,7 +54,7 @@
                 </button>
                 <button mat-raised-button class="mx-1 button-color-red text-white"
                   (click)="cancleChanges(); dropdown.hide()"> Close </button>
-  
+
               </div>
             </div>
           </div>
@@ -76,7 +76,13 @@
             <strong> {{ ( routeParam + '.' + column) | translate }} </strong>
           </th>
           <td mat-cell *matCellDef="let element;" (click)="setIndex(element, dataSource.filteredData.indexOf(element))">
-            {{ element[column] }}
+            <span *ngIf="column != 'action'">
+              {{ element[column] }}
+            </span>
+            <span *ngIf="column == 'action'">
+              <mat-icon class="cursor--pointer" (click)="editOrDelete('Edit', element)">edit</mat-icon>
+              <mat-icon class="cursor--pointer" (click)="editOrDelete('Delete', element)">delete</mat-icon>
+            </span>
           </td>
         </ng-container>
         <tr mat-header-row *matHeaderRowDef="getDisplayedColumns()"></tr>

@@ -4,6 +4,7 @@
     "CANCEL": "Cancel",
     "CLOSE": "Close",
     "SAVE": "Save",
+    "ADD": "Add",
     "OK": "Ok",
     "NEW": "New",
     "EDIT": "Edit",
@@ -2449,6 +2450,13 @@
     "rate": "Rate",
     "discount": "Discount",
     "total": "Total",
-    "deliveryDate": "Delivery Date"
+    "deliveryDate": "Delivery Date",
+    "igst": "igst",
+    "cgst": "cgst",
+    "sgst": "sgst",
+    "totalTax": "Total Tax",
+    "totalAmount": "Total Amount",
+            "action": "Action"
+
   }
 }
