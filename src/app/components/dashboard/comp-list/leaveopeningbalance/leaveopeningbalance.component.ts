@@ -84,11 +84,12 @@ export class LeaveopeningbalanceComponent implements OnInit {
   }
 
   getProductByProductCode(value) {
+    debugger
     //alert("hi");
     //debugger;
     if (!this.commonService.checkNullOrUndefined(value) && value != '') {
       const getProductByProductCodeUrl = String.Join('/', this.apiConfigService.getEmpCode);
-      this.apiService.apiPostRequest(getProductByProductCodeUrl, { Code: value }).subscribe(
+      this.apiService.apiPostRequest(getProductByProductCodeUrl, { Code: '4' }).subscribe(
         response => {
           const res = response.body;
           if (!this.commonService.checkNullOrUndefined(res) && res.status === StatusCodes.pass) {

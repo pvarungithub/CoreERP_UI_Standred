@@ -181,7 +181,7 @@ export class TransListService {
         this.dynamicComp.component = SalesorderComponent;
         this.dynamicComp.tableUrl = this.apiConfigService.getSaleOrder;
         this.dynamicComp.list = 'saleOrderMaster';
-        this.dynamicComp.editKey = 'voucherNumber';
+        this.dynamicComp.editKey = 'saleOrderNo';
         return this.dynamicComp;
         break;
       }

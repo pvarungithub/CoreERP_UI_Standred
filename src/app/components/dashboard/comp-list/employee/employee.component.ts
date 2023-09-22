@@ -68,7 +68,7 @@ export class EmployeeComponent implements OnInit {
       bankName: [''],
       bankAccountNumber: [''],
       employeeType: [''], //
-      iFSCCode: [''], //
+      ifscCode: [''], //
       panNumber: [''],
       aadharNumber: [''],
       recomendedBy: [''],
@@ -83,6 +83,9 @@ export class EmployeeComponent implements OnInit {
     this.formData = { ...this.addOrEditService.editData };
     if (!this.commonService.checkNullOrUndefined(this.formData.item)) {
       this.modelFormData.patchValue(this.formData.item);
+      this.modelFormData.patchValue({
+        designationId: this.formData.item.designationId ? +this.formData.item.designationId : 0
+      });
       this.modelFormData.controls['employeeCode'].disable();
       // this.modelFormData.controls['employeeId'].disable();
     }

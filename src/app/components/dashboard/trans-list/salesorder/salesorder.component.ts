@@ -74,8 +74,8 @@ export class SalesorderComponent {
       orderDate: [null],
       poNumber: [null],
       poDate: [null],
-      dateOfSupply: [null],
-      placeOfSupply: [null]
+      dateofSupply: [null],
+      placeofSupply: [null]
     });
     this.formData1 = this.formBuilder.group({
       materialCode: ['', Validators.required],
@@ -203,8 +203,9 @@ export class SalesorderComponent {
           const res = response;
           if (!this.commonService.checkNullOrUndefined(res) && res.status === StatusCodes.pass) {
             if (!this.commonService.checkNullOrUndefined(res.response)) {
-              this.formData.patchValue(res.response['saleOrderMasters']);
-              this.formData.disable();
+              this.formData.patchValue(res.response['SaleOrderMasters']);
+              debugger
+              this.tableData = res.response['SaleOrderDetails'];
             }
           }
         });
