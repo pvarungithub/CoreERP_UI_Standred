@@ -44,6 +44,7 @@ export class SalesorderComponent {
   cgst = 0;
   sgst = 0;
   totalTax = 0;
+  baseAmount = 0;
   totalAmount = 0;
 
   constructor(
@@ -83,6 +84,9 @@ export class SalesorderComponent {
       qty: ['', Validators.required],
       rate: ['', Validators.required],
       discount: [''],
+      sgst: [''],
+      igst: [''],
+      cgst: [''],
       total: [''],
       action: true,
       index: 0
@@ -102,6 +106,8 @@ export class SalesorderComponent {
     if (this.formData1.invalid) {
       return;
     }
+    this.dataChange();
+
     let data: any = this.tableData;
     this.tableData = null;
     this.tableComponent.defaultValues();
@@ -117,18 +123,25 @@ export class SalesorderComponent {
       this.tableData = data;
     });
     this.resetForm();
-    // this.dataChange();
   }
 
   dataChange() {
-    this.tableData.forEach((t: any) => {
-      const obj = this.taxCodeList.find((tax: any) => tax.taxRateCode == t.taxRateCode);
-      this.cgst = this.cgst + ((t.amount * obj.cgst) / 100);
-      this.sgst = this.sgst + (t.amount * obj.sgst) / 100;
-      this.igst = this.igst + (t.amount * obj.igst) / 100;
+    debugger
+    const formObj = this.formData1.value
+    const obj = this.taxCodeList.find((tax: any) => tax.taxRateCode == formObj.taxCode);
+    // this.cgst = this.cgst + ((t.amount * formObj.cgst) / 100);
+    // this.sgst = this.sgst + (t.amount * formObj.sgst) / 100;
+    const igst = obj.igst ? ((+formObj.qty * +formObj.rate) * obj.igst) / 100 : 0;
+    const cgst = obj.cgst ? ((+formObj.qty * +formObj.rate) * obj.cgst) / 100 : 0;
+    const sgst = obj.sgst ? ((+formObj.qty * +formObj.rate) * obj.sgst) / 100 : 0;
+    this.formData1.patchValue({
+      total: (+formObj.qty * +formObj.rate) + (igst + sgst + cgst),
+      igst: igst,
+      cgst: cgst,
+      sgst: sgst,
     })
-    this.totalTax = this.cgst + this.igst + this.igst;
-    this.totalAmount = this.totalTax + this.igst + this.igst;
+    // this.totalTax = this.cgst + this.igst + this.igst;
+    // this.totalAmount = this.totalTax + this.igst + this.igst;
   }
 
   editOrDeleteEvent(value) {

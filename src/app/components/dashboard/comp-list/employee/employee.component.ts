@@ -12,6 +12,7 @@ import { CommonService } from 'src/app/services/common.service';
 import { AddOrEditService } from '../add-or-edit.service';
 import { Static } from 'src/app/enums/common/static';
 import { Router } from '@angular/router';
+import { DatePipe } from '@angular/common';
 
 @Component({
   selector: 'app-employee',
@@ -40,6 +41,7 @@ export class EmployeeComponent implements OnInit {
     private formBuilder: FormBuilder,
     private commonService: CommonService,
     private router: Router,
+    private datepipe: DatePipe,
     private addOrEditService: AddOrEditService) {
 
     this.modelFormData = this.formBuilder.group({
@@ -189,13 +191,18 @@ export class EmployeeComponent implements OnInit {
     }
     this.formData.item = this.modelFormData.value;
     this.modelFormData.controls['employeeCode'].enable();
+
+    this.formData.item.dob = this.modelFormData.get('dob').value ? this.datepipe.transform(this.modelFormData.get('dob').value, 'dd-MM-yyyy') : '';
+    this.formData.item.joiningDate = this.modelFormData.get('dob').value ? this.datepipe.transform(this.modelFormData.get('joiningDate').value, 'dd-MM-yyyy') : '';
+    this.formData.item.releavingDate = this.modelFormData.get('dob').value ? this.datepipe.transform(this.modelFormData.get('releavingDate').value, 'dd-MM-yyyy') : '';
+
     // this.modelFormData.controls['employeeId'].enable();
     if (this.formData.action == "Edit") {
       this.update();
       return
     }
     const addCashBank = String.Join('/', this.apiConfigService.registerEmployee);
-    this.apiService.apiPostRequest(addCashBank, this.modelFormData.value).subscribe(
+    this.apiService.apiPostRequest(addCashBank, this.formData.item).subscribe(
       response => {
         const res = response;
         if (!this.commonService.checkNullOrUndefined(res) && res.status === StatusCodes.pass) {
@@ -210,7 +217,13 @@ export class EmployeeComponent implements OnInit {
 
   update() {
     const addCashBank = String.Join('/', this.apiConfigService.updateEmployee);
-    this.apiService.apiUpdateRequest(addCashBank, this.modelFormData.value).subscribe(
+
+    this.formData.item = this.modelFormData.value;
+    this.formData.item.dob = this.modelFormData.get('dob').value ? this.datepipe.transform(this.modelFormData.get('dob').value, 'yyyy-MM-dd') : '';
+    this.formData.item.joiningDate = this.modelFormData.get('dob').value ? this.datepipe.transform(this.modelFormData.get('joiningDate').value, 'yyyy-MM-dd') : '';
+    this.formData.item.releavingDate = this.modelFormData.get('dob').value ? this.datepipe.transform(this.modelFormData.get('releavingDate').value, 'yyyy-MM-dd') : '';
+
+    this.apiService.apiUpdateRequest(addCashBank, this.formData.item).subscribe(
       response => {
         const res = response;
         if (!this.commonService.checkNullOrUndefined(res) && res.status === StatusCodes.pass) {

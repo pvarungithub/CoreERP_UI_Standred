@@ -2431,7 +2431,7 @@
     "NARRATION": "Narration"
   },
   "saleorder": {
-    "TITLE": "Sales Order",
+    "title": "Sales Order",
     "saleOrderNo": "Sale Order Number",
     "customerCode": "Customer Code",
     "orderDate": "Order Date",
@@ -2456,6 +2456,7 @@
     "sgst": "sgst",
     "totalTax": "Total Tax",
     "totalAmount": "Total Amount",
+    "baseAmount": "Base Amount",
             "action": "Action"
 
   }

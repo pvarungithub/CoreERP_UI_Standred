@@ -2155,7 +2155,11 @@
     "qty": "Quantity",
     "rate": "Rate",
     "discount": "Discount",
+    "sgst": "SGST",
+    "igst": "IGST",
+    "cgst": "CGST",
     "total": "Total",
+
     "deliveryDate": "Delivery Date",
         "delete": "Delete",
         "action": "Action"
