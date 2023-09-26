@@ -40,12 +40,6 @@ export class SalesorderComponent {
 
   routeEdit = '';
 
-  igst = 0;
-  cgst = 0;
-  sgst = 0;
-  totalTax = 0;
-  baseAmount = 0;
-  totalAmount = 0;
 
   constructor(
     private commonService: CommonService,
@@ -76,7 +70,13 @@ export class SalesorderComponent {
       poNumber: [null],
       poDate: [null],
       dateofSupply: [null],
-      placeofSupply: [null]
+      placeofSupply: [null],
+      igst: [0],
+      cgst: [0],
+      sgst: [0],
+      totalTax: [0],
+      baseAmount: [0],
+      totalAmount: [0],
     });
     this.formData1 = this.formBuilder.group({
       materialCode: ['', Validators.required],
@@ -87,7 +87,9 @@ export class SalesorderComponent {
       sgst: [''],
       igst: [''],
       cgst: [''],
+      amount: [''],
       total: [''],
+      deliveryDate: [''],
       action: true,
       index: 0
     });
@@ -121,27 +123,45 @@ export class SalesorderComponent {
     }
     setTimeout(() => {
       this.tableData = data;
+      this.calculate();
     });
     this.resetForm();
   }
 
   dataChange() {
-    debugger
     const formObj = this.formData1.value
     const obj = this.taxCodeList.find((tax: any) => tax.taxRateCode == formObj.taxCode);
-    // this.cgst = this.cgst + ((t.amount * formObj.cgst) / 100);
-    // this.sgst = this.sgst + (t.amount * formObj.sgst) / 100;
     const igst = obj.igst ? ((+formObj.qty * +formObj.rate) * obj.igst) / 100 : 0;
     const cgst = obj.cgst ? ((+formObj.qty * +formObj.rate) * obj.cgst) / 100 : 0;
     const sgst = obj.sgst ? ((+formObj.qty * +formObj.rate) * obj.sgst) / 100 : 0;
     this.formData1.patchValue({
+      amount: (+formObj.qty * +formObj.rate),
       total: (+formObj.qty * +formObj.rate) + (igst + sgst + cgst),
       igst: igst,
       cgst: cgst,
       sgst: sgst,
     })
-    // this.totalTax = this.cgst + this.igst + this.igst;
-    // this.totalAmount = this.totalTax + this.igst + this.igst;
+  }
+
+  calculate() {
+    this.formData.patchValue({
+      igst: 0,
+      cgst: 0,
+      sgst: 0,
+      totalTax: 0,
+      baseAmount: 0,
+      totalAmount: 0,
+    })
+    this.tableData && this.tableData.forEach((t: any) => {
+      this.formData.patchValue({
+        igst: this.formData.value.igst + t.igst,
+        cgst: this.formData.value.cgst + t.cgst,
+        sgst: this.formData.value.sgst + t.sgst,
+        baseAmount: this.formData.value.baseAmount + (t.qty * t.rate),
+        totalTax: this.formData.value.totalTax + (t.igst + t.cgst + t.sgst),
+        totalAmount: this.formData.value.totalAmount + t.total,
+      })
+    })
   }
 
   editOrDeleteEvent(value) {

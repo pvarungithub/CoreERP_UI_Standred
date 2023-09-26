@@ -2457,6 +2457,8 @@
     "totalTax": "Total Tax",
     "totalAmount": "Total Amount",
     "baseAmount": "Base Amount",
+        "amount": "Amount",
+
             "action": "Action"
 
   }

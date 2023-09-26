@@ -2158,6 +2158,7 @@
     "sgst": "SGST",
     "igst": "IGST",
     "cgst": "CGST",
+    "amount": "Amount",
     "total": "Total",
 
     "deliveryDate": "Delivery Date",
