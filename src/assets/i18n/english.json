@@ -2437,7 +2437,7 @@
     "orderDate": "Order Date",
     "poNumber": "PO Number",
     "poDate": "PO Date",
-    "dateOfSupply": "Date Of Supply",
+    "dateofSupply": "Date Of Supply",
     "placeOfSupply": "Place Of Supply",
     "documentUrl": "Document Url",
     "status": "Status",
@@ -2457,9 +2457,8 @@
     "totalTax": "Total Tax",
     "totalAmount": "Total Amount",
     "baseAmount": "Base Amount",
-        "amount": "Amount",
-
-            "action": "Action"
+    "amount": "Amount",
+    "action": "Action"
 
   }
 }

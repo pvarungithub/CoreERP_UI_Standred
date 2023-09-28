@@ -85,8 +85,8 @@ export class StocktransferComponent implements OnInit {
           return;
         } else {
           this.dateForm.patchValue({
-            fromDate:  this.commonService.formatDate(this.dateForm.value.selected.start._d),
-            toDate:  this.commonService.formatDate(this.dateForm.value.selected.end._d)
+            fromDate: this.commonService.formatDate(this.dateForm.value.selected.start.$d),
+            toDate: this.commonService.formatDate(this.dateForm.value.selected.end.$d)
           });
         }
     }
