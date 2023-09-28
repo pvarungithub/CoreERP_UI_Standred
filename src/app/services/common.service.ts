@@ -148,6 +148,9 @@ export class CommonService {
   }
 
   formatDateValue(event) {
+    if (!event) {
+      return '';
+    }
     const time = new Date();
     // tslint:disable-next-line: one-variable-per-declaration
     const date = new Date(event),

@@ -211,10 +211,11 @@ export class PurchaseOrderComponent implements OnInit {
         });
   }
   getsuppliercodeList() {
-    const getsuppliercodeList = String.Join('/', this.apiConfigService.getBusienessPartnersAccList);
+    const getsuppliercodeList = String.Join('/', this.apiConfigService.getBPList);
     this.apiService.apiGetRequest(getsuppliercodeList)
       .subscribe(
         response => {
+          debugger
           const res = response;
           if (!this.commonService.checkNullOrUndefined(res) && res.status === StatusCodes.pass) {
             if (!this.commonService.checkNullOrUndefined(res.response)) {

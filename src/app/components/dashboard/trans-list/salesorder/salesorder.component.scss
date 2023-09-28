@@ -64,10 +64,14 @@
 
 
 
-  .mat-form-field-height {
-    .mat-form-field {
+    .mat-mdc-form-field {
       margin: 5px;
-      flex: 0 0 19%;
-      height: 40px;
+      flex: 0 0 16%;
+    }
+
+  ::ng-deep .table-css {
+    .table {
+      min-height: 4vh !important;
+      max-height: 4vh !important;
     }
   }

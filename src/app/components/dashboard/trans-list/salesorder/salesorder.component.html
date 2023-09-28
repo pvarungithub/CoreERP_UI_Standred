@@ -67,12 +67,14 @@
 
         <div class="p-2 card">
 
-            <form [formGroup]="formData1" autocomplete="off">
+            <h3>
+                Detail Section
+                <hr>
+            </h3>
 
-                <h3>
-                    Detail Section
-                    <hr>
-                </h3>
+            <form [formGroup]="formData1" autocomplete="off" [hidden]="routeEdit != ''">
+
+
 
                 <div class="d--flex p-1 mat-form-field-height">
 
@@ -80,7 +82,7 @@
                         <mat-label>{{ 'saleorder.materialCode' | translate }}</mat-label>
                         <mat-select formControlName="materialCode" tabIndex="10">
                             <mat-option>None</mat-option>
-                            <mat-option *ngFor="let material of materialList" [value]="material.id">
+                            <mat-option *ngFor="let material of materialList" [value]="material.text">
                                 {{material.text}}
                             </mat-option>
                         </mat-select>
@@ -113,8 +115,8 @@
 
                     <mat-form-field class="form-element">
                         <mat-label [translate]="'saleorder.deliveryDate'"></mat-label>
-                        <input matInput [matDatepicker]="picker13" [nonEditable]="picker13" formControlName="deliveryDate"
-                            appFocusOnEnter tabIndex="15">
+                        <input matInput [matDatepicker]="picker13" [nonEditable]="picker13"
+                            formControlName="deliveryDate" appFocusOnEnter tabIndex="15">
                         <mat-datepicker-toggle matSuffix [for]="picker13"></mat-datepicker-toggle>
                         <mat-datepicker #picker13></mat-datepicker>
                     </mat-form-field>
@@ -136,7 +138,7 @@
             </form>
 
             <div>
-                <app-table [tableData]="tableData" [showFilters]="false"
+                <app-table class="table-css" [tableData]="tableData" [showFilters]="false"
                     (editOrDeleteEvent)="editOrDeleteEvent($event)">
                 </app-table>
             </div>
@@ -157,8 +159,8 @@
             <div class="px-1"> <span class="px-1"> <b> {{'saleorder.sgst' | translate }} </b></span> :
                 <b class="text-danger"> {{ formData.value.sgst}} </b>
             </div>
-            <div class="px-1"> <span class="px-1"> <b> {{'saleorder.baseAmount' | translate }} </b></span> :
-                <b class="text-danger"> {{ formData.value.baseAmount}} </b>
+            <div class="px-1"> <span class="px-1"> <b> {{'saleorder.amount' | translate }} </b></span> :
+                <b class="text-danger"> {{ formData.value.amount}} </b>
             </div>
             <div class="px-1"> <span class="px-1"> <b> {{'saleorder.totalTax' | translate }} </b></span> :
                 <b class="text-danger"> {{ formData.value.totalTax}} </b>
@@ -174,10 +176,10 @@
                 (click)="save()">
                 {{ 'COMMON.SAVE' | translate }}
             </button>
-            <button [hidden]="routeEdit == ''" mat-raised-button type="submit" class="button-color-bule mx-3 text-white"
+            <!-- <button [hidden]="routeEdit == ''" mat-raised-button type="submit" class="button-color-bule mx-3 text-white"
                 (click)="save()">
                 {{ 'COMMON.UPDATE' | translate }}
-            </button>
+            </button> -->
             <button mat-raised-button class="button-color-red text-white mx-3" (click)="back();">
                 {{ 'COMMON.BACK' | translate }}
             </button>

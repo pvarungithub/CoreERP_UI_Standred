@@ -74,8 +74,8 @@ export class SalesorderComponent {
       igst: [0],
       cgst: [0],
       sgst: [0],
+      amount: [0],
       totalTax: [0],
-      baseAmount: [0],
       totalAmount: [0],
     });
     this.formData1 = this.formBuilder.group({
@@ -148,8 +148,8 @@ export class SalesorderComponent {
       igst: 0,
       cgst: 0,
       sgst: 0,
+      amount: 0,
       totalTax: 0,
-      baseAmount: 0,
       totalAmount: 0,
     })
     this.tableData && this.tableData.forEach((t: any) => {
@@ -157,10 +157,12 @@ export class SalesorderComponent {
         igst: this.formData.value.igst + t.igst,
         cgst: this.formData.value.cgst + t.cgst,
         sgst: this.formData.value.sgst + t.sgst,
-        baseAmount: this.formData.value.baseAmount + (t.qty * t.rate),
+        amount: this.formData.value.amount + (t.qty * t.rate),
         totalTax: this.formData.value.totalTax + (t.igst + t.cgst + t.sgst),
-        totalAmount: this.formData.value.totalAmount + t.total,
       })
+    })
+    this.formData.patchValue({
+      totalAmount: this.formData.value.amount + this.formData.value.totalTax,
     })
   }
 
@@ -169,6 +171,7 @@ export class SalesorderComponent {
     if (value.action === 'Delete') {
       this.tableComponent.defaultValues();
       this.tableData = this.tableData.filter((res: any) => res.index != value.item.index);
+      this.calculate();
     } else {
       this.formData1.patchValue(value.item);
     }
@@ -237,6 +240,7 @@ export class SalesorderComponent {
           if (!this.commonService.checkNullOrUndefined(res) && res.status === StatusCodes.pass) {
             if (!this.commonService.checkNullOrUndefined(res.response)) {
               this.formData.patchValue(res.response['SaleOrderMasters']);
+              this.formData.disable();
               debugger
               this.tableData = res.response['SaleOrderDetails'];
             }
