@@ -1707,7 +1707,8 @@
     "preparedBy": "Prepared By",
     "recomendedBy": "Recomended By",
     "approvedBy": "Approved By",
-    "delete": "Delete"
+    "delete": "Delete",
+    "action": "Action"
   },
   "goodsreceipts": {
     "checkAll": "Select",

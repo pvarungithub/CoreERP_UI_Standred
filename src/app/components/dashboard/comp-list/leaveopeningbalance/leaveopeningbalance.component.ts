@@ -72,8 +72,6 @@ export class LeaveopeningbalanceComponent implements OnInit {
   }
 
   ngOnInit() {
-    //debugger;
-
     this.getTableData();
     this.getCompanyData();
     this.modelFormData.patchValue
@@ -84,9 +82,6 @@ export class LeaveopeningbalanceComponent implements OnInit {
   }
 
   getProductByProductCode(value) {
-    debugger
-    //alert("hi");
-    //debugger;
     if (!this.commonService.checkNullOrUndefined(value) && value != '') {
       const getProductByProductCodeUrl = String.Join('/', this.apiConfigService.getEmpCode);
       this.apiService.apiPostRequest(getProductByProductCodeUrl, { Code: '4' }).subscribe(
@@ -107,8 +102,6 @@ export class LeaveopeningbalanceComponent implements OnInit {
   }
 
   onSearchChange(code) {
-    // debugger;
-    //alert("hi");
     let genarateVoucherNoUrl;
     if (!this.commonService.checkNullOrUndefined(code)) {
       genarateVoucherNoUrl = String.Join('/', this.apiConfigService.getEmpName, code.value);
@@ -134,7 +127,6 @@ export class LeaveopeningbalanceComponent implements OnInit {
   }
 
   getTableData() {
-    //debugger;
     const user = JSON.parse(localStorage.getItem('user'));
     let username = user.userName;
     this.spinner.show();

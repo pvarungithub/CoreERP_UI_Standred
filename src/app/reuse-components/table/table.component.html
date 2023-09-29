@@ -80,8 +80,8 @@
               {{ element[column] }}
             </span>
             <span *ngIf="column == 'action'">
-              <mat-icon class="cursor--pointer" (click)="editOrDelete('Edit', element)">edit</mat-icon>
-              <mat-icon class="cursor--pointer" (click)="editOrDelete('Delete', element)">delete</mat-icon>
+              <mat-icon class="cursor--pointer" *ngIf="element[column] == 'edit' || element[column] == 'editDelete'" (click)="editOrDelete('Edit', element)">edit</mat-icon>
+              <mat-icon class="cursor--pointer" *ngIf="element[column] == 'delete' || element[column] == 'editDelete'" (click)="editOrDelete('Delete', element)">delete</mat-icon>
             </span>
           </td>
         </ng-container>

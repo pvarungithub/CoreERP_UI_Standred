@@ -14,3 +14,14 @@ mat-form-field {
   text-decoration: underline;
   padding: 26px 0px 0px 8px;
 }
+
+    .mat-mdc-form-field {
+      margin: 5px;
+      flex: 0 0 16%;
+    }
+
+  ::ng-deep .table-css {
+    .table {
+      min-height: 4vh !important;
+    }
+  }

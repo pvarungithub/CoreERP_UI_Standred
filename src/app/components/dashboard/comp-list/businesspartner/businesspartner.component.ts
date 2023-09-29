@@ -246,7 +246,6 @@ export class BusienessPartnerAccountComponent implements OnInit, OnDestroy {
           if (!this.commonService.checkNullOrUndefined(res) && res.status === StatusCodes.pass) {
             if (!this.commonService.checkNullOrUndefined(res.response)) {
               this.bpgList = res.response['bpgList'];
-              debugger
               if (!this.commonService.checkNullOrUndefined(this.formData.item)) {
                 this.onbpChange(false);
               }

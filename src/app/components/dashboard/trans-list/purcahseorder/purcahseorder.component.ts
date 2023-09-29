@@ -1,4 +1,4 @@
-import { Component, OnInit } from '@angular/core';
+import { Component, OnInit, ViewChild } from '@angular/core';
 import { FormGroup, FormBuilder, Validators } from '@angular/forms';
 import { ApiConfigService } from '../../../../services/api-config.service';
 import { String } from 'typescript-string-operations';
@@ -11,6 +11,7 @@ import { Static } from '../../../../enums/common/static';
 import { AlertService } from '../../../../services/alert.service';
 import { DateAdapter, MAT_DATE_FORMATS } from '@angular/material/core';
 import { AppDateAdapter, APP_DATE_FORMATS } from '../../../../directives/format-datepicker';
+import { TableComponent } from 'src/app/reuse-components';
 
 @Component({
   selector: 'app-purcahseorder',
@@ -25,7 +26,11 @@ export class PurchaseOrderComponent implements OnInit {
 
   // form control
   formData: FormGroup;
-  sendDynTableData: any;
+  formData1: FormGroup;
+
+  @ViewChild(TableComponent, { static: false }) tableComponent: TableComponent;
+
+  // sendDynTableData: any;
 
   // header props
   companyList = [];
@@ -80,71 +85,11 @@ export class PurchaseOrderComponent implements OnInit {
     this.formDataGroup();
     this.getCompanyList();
     this.getPurchaseGroupData();
+    setTimeout(() => {
+      this.spinner.hide();
+    }, 3000);
   }
 
-  tablePropsFunc() {
-    return {
-      tableData: {
-        materialCode: {
-          value: null, type: 'dropdown', list: this.materialList, id: 'id', text: 'text', displayMul: true, width: 100
-        },
-        description: {
-          value: null, type: 'text', width: 100, maxLength: 50
-        },
-        qty: {
-          value: null, type: 'number', width: 100, maxLength: 50
-        },
-        rate: {
-          value: null, type: 'number', width: 100, maxLength: 50
-        },
-        discount: {
-          value: null, type: 'number', width: 100, maxLength: 50
-        },
-        tax: {
-          value: null, type: 'number', width: 100, maxLength: 50
-        },
-        profitCenter: {
-          value: null, type: 'dropdown', list: this.profitCenterList, id: 'code', text: 'description', displayMul: true, width: 100
-        },
-        branch: {
-          value: null, type: 'dropdown', list: this.branchList, id: 'id', text: 'text', displayMul: true, width: 100
-        },
-        costCenter: {
-          value: null, type: 'dropdown', list: this.costcenterList, id: 'code', text: 'costCenterName', displayMul: true, width: 100
-        },
-        wbs: {
-          value: null, type: 'dropdown', list: this.wbsList, id: 'id', text: 'text', displayMul: true, width: 100
-        },
-        fundCenter: {
-          value: null, type: 'dropdown', list: this.fcList, id: 'code', text: 'description', displayMul: true, width: 100
-        },
-        commitment: {
-          value: null, type: 'dropdown', list: this.citemList, id: 'code', text: 'description', displayMul: true, width: 100
-        },
-        plant: {
-          value: null, type: 'dropdown', list: this.plantList, id: 'plantCode', text: 'plantname', displayMul: true, width: 100
-        },
-        department: {
-          value: null, type: 'dropdown', list: this.functionaldeptList, id: 'code', text: 'description', displayMul: true, width: 100
-        },
-
-        location: {
-          value: null, type: 'dropdown', list: this.locList, id: 'id', text: 'text', displayMul: true, width: 100
-        },
-        // preparedBy: {
-        //   value: null, type: 'dropdown', list: this.employeesList, id: 'roleId', text: 'role', displayMul: true, width: 100
-        // },
-
-        delete: {
-          type: 'delete', width: 10
-        }
-      },
-
-      formControl: {
-        materialCode: [null, [Validators.required]],
-      }
-    };
-  }
 
   formDataGroup() {
     this.formData = this.formBuilder.group({
@@ -171,6 +116,26 @@ export class PurchaseOrderComponent implements OnInit {
       advance: [null],
       quotationNumber: [null, [Validators.required]],
     });
+    this.formData.controls.gstno.disable();
+
+    this.formData1 = this.formBuilder.group({
+      materialCode: ['', Validators.required],
+      description: [''],
+      qty: ['', Validators.required],
+      rate: ['', Validators.required],
+      discount: [''],
+      tax: [''],
+      profitCenter: [''],
+      costCenter: [''],
+      wbs: [''],
+      fundCenter: [''],
+      commitment: [''],
+      department: [''],
+      location: [''],
+      action: 'edit',
+      index: 0
+    });
+
   }
 
   onFileChange(event) {
@@ -180,6 +145,34 @@ export class PurchaseOrderComponent implements OnInit {
         filePath: file
       });
     }
+  }
+
+  supplierCodeChange() {
+    const obj = this.bpaList.find((b: any) => b.text == this.formData.value.supplierCode);
+    this.formData.patchValue({
+      gstno: obj.gstNo
+    })
+  }
+  quotationNumberChange() {
+    this.getSaleOrderDetail();
+  }
+
+  getSaleOrderDetail() {
+    this.tableComponent.defaultValues();
+    const qsDetUrl = String.Join('/', this.apiConfigService.getSaleOrderDetail, this.formData.value.quotationNumber);
+    this.apiService.apiGetRequest(qsDetUrl)
+      .subscribe(
+        response => {
+          this.spinner.hide();
+          const res = response;
+          if (!this.commonService.checkNullOrUndefined(res) && res.status === StatusCodes.pass) {
+            if (!this.commonService.checkNullOrUndefined(res.response)) {
+              this.formData.patchValue(res.response['SaleOrderMasters']);
+              res.response['SaleOrderDetails'].forEach((s: any) => s.action = 'edit')
+              this.tableData = res.response['SaleOrderDetails'];
+            }
+          }
+        });
   }
 
   getCompanyList() {
@@ -193,63 +186,63 @@ export class PurchaseOrderComponent implements OnInit {
               this.companyList = res.response['companiesList'];
             }
           }
-          this.getPaymenttermsList();
-        });
-  }
-  getPaymenttermsList() {
-    const getpmList = String.Join('/', this.apiConfigService.getPaymentsTermsList);
-    this.apiService.apiGetRequest(getpmList)
-      .subscribe(
-        response => {
-          const res = response;
-          if (!this.commonService.checkNullOrUndefined(res) && res.status === StatusCodes.pass) {
-            if (!this.commonService.checkNullOrUndefined(res.response)) {
-              this.ptermsList = res.response['ptermsList'];
-            }
-          }
           this.getsuppliercodeList();
         });
   }
+  // getPaymenttermsList() {
+  //   const getpmList = String.Join('/', this.apiConfigService.getPaymentsTermsList);
+  //   this.apiService.apiGetRequest(getpmList)
+  //     .subscribe(
+  //       response => {
+  //         const res = response;
+  //         if (!this.commonService.checkNullOrUndefined(res) && res.status === StatusCodes.pass) {
+  //           if (!this.commonService.checkNullOrUndefined(res.response)) {
+  //             this.ptermsList = res.response['ptermsList'];
+  //           }
+  //         }
+  //         this.getsuppliercodeList();
+  //       });
+  // }
   getsuppliercodeList() {
-    const getsuppliercodeList = String.Join('/', this.apiConfigService.getBPList);
+    const getsuppliercodeList = String.Join('/', this.apiConfigService.getCustomerList);
     this.apiService.apiGetRequest(getsuppliercodeList)
       .subscribe(
         response => {
-          debugger
           const res = response;
           if (!this.commonService.checkNullOrUndefined(res) && res.status === StatusCodes.pass) {
             if (!this.commonService.checkNullOrUndefined(res.response)) {
-              this.bpaList = res.response['bpaList'];
-              this.bpaList = res.response['bpaList'].filter(resp => resp.bpTypeName == 'Vendor')
+              const resp = res.response['bpList'];
+              const data = resp.length && resp.filter((t: any) => t.bptype == 'Vendor');
+              this.bpaList = data;
 
             }
           }
-          this.getplantList();
+          this.getSaleOrderList();
         });
   }
-  getplantList() {
-    const getplantList = String.Join('/', this.apiConfigService.getplantList);
-    this.apiService.apiGetRequest(getplantList)
+  // getplantList() {
+  //   const getplantList = String.Join('/', this.apiConfigService.getplantList);
+  //   this.apiService.apiGetRequest(getplantList)
+  //     .subscribe(
+  //       response => {
+  //         const res = response;
+  //         if (!this.commonService.checkNullOrUndefined(res) && res.status === StatusCodes.pass) {
+  //           if (!this.commonService.checkNullOrUndefined(res.response)) {
+  //             this.plantList = res.response['plantList'];
+  //           }
+  //         }
+  //         this.getSaleOrderList();
+  //       });
+  // }
+  getSaleOrderList() {
+    const getSaleOrderUrl = String.Join('/', this.apiConfigService.getSaleOrderList);
+    this.apiService.apiGetRequest(getSaleOrderUrl)
       .subscribe(
         response => {
           const res = response;
           if (!this.commonService.checkNullOrUndefined(res) && res.status === StatusCodes.pass) {
             if (!this.commonService.checkNullOrUndefined(res.response)) {
-              this.plantList = res.response['plantList'];
-            }
-          }
-          this.getquotationnoData();
-        });
-  }
-  getquotationnoData() {
-    const getquotationnoUrl = String.Join('/', this.apiConfigService.getquotationnoList);
-    this.apiService.apiGetRequest(getquotationnoUrl)
-      .subscribe(
-        response => {
-          const res = response;
-          if (!this.commonService.checkNullOrUndefined(res) && res.status === StatusCodes.pass) {
-            if (!this.commonService.checkNullOrUndefined(res.response)) {
-              this.qnoList = res.response['qnoList'];
+              this.qnoList = res.response['BPList'];
             }
           }
           this.getpurchaseordertypetData();
@@ -323,26 +316,26 @@ export class PurchaseOrderComponent implements OnInit {
               this.functionaldeptList = res.response['fdeptList'];
             }
           }
-          this.getBranchList();
-        });
-  }
-  getBranchList() {
-    const branchUrl = String.Join('/', this.apiConfigService.getBranchList);
-    this.apiService.apiGetRequest(branchUrl)
-      .subscribe(
-        response => {
-          const res = response;
-          if (!this.commonService.checkNullOrUndefined(res) && res.status === StatusCodes.pass) {
-            if (!this.commonService.checkNullOrUndefined(res.response)) {
-              this.branchList = res.response['branchsList'];
-            }
-          }
           this.getCostCenterData();
         });
   }
+  // getBranchList() {
+  //   const branchUrl = String.Join('/', this.apiConfigService.getBranchList);
+  //   this.apiService.apiGetRequest(branchUrl)
+  //     .subscribe(
+  //       response => {
+  //         const res = response;
+  //         if (!this.commonService.checkNullOrUndefined(res) && res.status === StatusCodes.pass) {
+  //           if (!this.commonService.checkNullOrUndefined(res.response)) {
+  //             this.branchList = res.response['branchsList'];
+  //           }
+  //         }
+  //         this.getCostCenterData();
+  //       });
+  // }
 
   getCostCenterData() {
-    const getccUrl = String.Join('/', this.apiConfigService.GetCostCenterList);
+    const getccUrl = String.Join('/', this.apiConfigService.getCostCentersList);
     this.apiService.apiGetRequest(getccUrl)
       .subscribe(
         response => {
@@ -357,7 +350,7 @@ export class PurchaseOrderComponent implements OnInit {
   }
 
   getProfitcenterData() {
-    const getpcUrl = String.Join('/', this.apiConfigService.getProfitCenterList);
+    const getpcUrl = String.Join('/', this.apiConfigService.getProfitCentersList);
     this.apiService.apiGetRequest(getpcUrl)
       .subscribe(
         response => {
@@ -428,7 +421,7 @@ export class PurchaseOrderComponent implements OnInit {
               this.wbsList = res.response['wbsList'];
             }
           }
-          this.dynTableProps = this.tablePropsFunc();
+          // this.dynTableProps = this.tablePropsFunc();
           if (this.routeEdit != '') {
             this.getPurchaseorderDetails(this.routeEdit);
           }
@@ -444,19 +437,96 @@ export class PurchaseOrderComponent implements OnInit {
           const res = response;
           if (!this.commonService.checkNullOrUndefined(res) && res.status === StatusCodes.pass) {
             if (!this.commonService.checkNullOrUndefined(res.response)) {
-              this.formData.setValue(res.response['pomasters']);
-              this.sendDynTableData = { type: 'edit', data: res.response['poDetail'] };
+              this.formData.patchValue(res.response['pomasters']);
+              // this.sendDynTableData = { type: 'edit', data: res.response['poDetail'] };
               this.formData.disable();
             }
           }
         });
   }
 
-
-
-  emitColumnChanges(data) {
-    this.tableData = data.data;
+  resetForm() {
+    this.formData1.reset();
+    this.formData1.patchValue({
+      index: 0,
+      action: true
+    });
   }
+
+  saveForm() {
+    if (this.formData1.invalid) {
+      return;
+    }
+    // this.dataChange();
+
+    let data: any = this.tableData;
+    this.tableData = null;
+    this.tableComponent.defaultValues();
+    if (this.formData1.value.index == 0) {
+      this.formData1.patchValue({
+        index: data ? (data.length + 1) : 1
+      });
+      data = [...data, this.formData1.value];
+    } else {
+      data = data.map((res: any) => res = res.index == this.formData1.value.index ? this.formData1.value : res);
+    }
+    setTimeout(() => {
+      this.tableData = data;
+      // this.calculate();
+    });
+    this.resetForm();
+  }
+
+  editOrDeleteEvent(value) {
+    if (value.action === 'Delete') {
+      this.tableComponent.defaultValues();
+      this.tableData = this.tableData.filter((res: any) => res.index != value.item.index);
+      // this.calculate();
+    } else {
+      this.formData1.patchValue(value.item);
+    }
+  }
+
+  // dataChange() {
+  //   const formObj = this.formData1.value
+  //   const obj = this.taxCodeList.find((tax: any) => tax.taxRateCode == formObj.taxCode);
+  //   const igst = obj.igst ? ((+formObj.qty * +formObj.rate) * obj.igst) / 100 : 0;
+  //   const cgst = obj.cgst ? ((+formObj.qty * +formObj.rate) * obj.cgst) / 100 : 0;
+  //   const sgst = obj.sgst ? ((+formObj.qty * +formObj.rate) * obj.sgst) / 100 : 0;
+  //   this.formData1.patchValue({
+  //     amount: (+formObj.qty * +formObj.rate),
+  //     total: (+formObj.qty * +formObj.rate) + (igst + sgst + cgst),
+  //     igst: igst,
+  //     cgst: cgst,
+  //     sgst: sgst,
+  //   })
+  // }
+
+  // calculate() {
+  //   this.formData.patchValue({
+  //     igst: 0,
+  //     cgst: 0,
+  //     sgst: 0,
+  //     amount: 0,
+  //     totalTax: 0,
+  //     totalAmount: 0,
+  //   })
+  //   this.tableData && this.tableData.forEach((t: any) => {
+  //     this.formData.patchValue({
+  //       igst: this.formData.value.igst + t.igst,
+  //       cgst: this.formData.value.cgst + t.cgst,
+  //       sgst: this.formData.value.sgst + t.sgst,
+  //       amount: this.formData.value.amount + (t.qty * t.rate),
+  //       totalTax: this.formData.value.totalTax + (t.igst + t.cgst + t.sgst),
+  //     })
+  //   })
+  //   this.formData.patchValue({
+  //     totalAmount: this.formData.value.amount + this.formData.value.totalTax,
+  //   })
+  // }
+  // emitColumnChanges(data) {
+  //   this.tableData = data.data;
+  // }
 
 
   back() {
@@ -464,7 +534,6 @@ export class PurchaseOrderComponent implements OnInit {
   }
 
   save() {
-    this.tableData = this.commonService.formatTableData(this.tableData);
     if (this.tableData.length == 0 && this.formData.invalid) {
       return;
     }
@@ -543,7 +612,7 @@ export class PurchaseOrderComponent implements OnInit {
   reset() {
     this.tableData = [];
     this.formData.reset();
-    this.sendDynTableData = { type: 'reset', data: this.tableData };
+    // this.sendDynTableData = { type: 'reset', data: this.tableData };
   }
 
 }

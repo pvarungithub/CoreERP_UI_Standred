@@ -51,7 +51,6 @@ export class LeaveApprovalComponent implements OnInit {
   }
 
   approveOrReject(event) {
-    //debugger;
     if (event) {
       this.leaveRequestForm.patchValue({
         ChkAcceptReject: "Accept",
@@ -66,7 +65,6 @@ export class LeaveApprovalComponent implements OnInit {
   }
 
   singleChecked(flag, column, row) {
-    // debugger;
     console.log(flag, row, column)
     let statusFlag = true;
     if (this.leaveApprovalList.length) {
@@ -108,7 +106,6 @@ export class LeaveApprovalComponent implements OnInit {
   }
 
   getLeaveApplDetailsList() {
-    //debugger;
     const user = JSON.parse(localStorage.getItem('user'));
     const getLeaveApplDetailsListUrl = String.Join('/', this.apiConfigService.getLeaveApplDetailsList, user.userName);
     this.apiService.apiGetRequest(getLeaveApplDetailsListUrl)

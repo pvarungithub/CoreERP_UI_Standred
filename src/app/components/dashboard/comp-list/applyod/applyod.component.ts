@@ -133,7 +133,6 @@ export class ApplyodComponent implements OnInit {
 
   //load data
   getLeaveApplDetailsList() {
-    // debugger;
     const user = JSON.parse(localStorage.getItem('user'));
     const getLeaveApplDetailsListUrl = String.Join('/', this.apiConfigService.getLeaveRequestList, user.userName);
     this.apiService.apiGetRequest(getLeaveApplDetailsListUrl)
@@ -154,7 +153,6 @@ export class ApplyodComponent implements OnInit {
 
   ///gettting NoofdaysCount code
   NoofdaysCount() {
-    //debugger;
     var date1 = this.pipe.transform(this.modelFormData.get('fromDate').value, 'dd-MM-yyyy');
     var date2 = this.pipe.transform(this.modelFormData.get('toDate').value, 'dd-MM-yyyy');
 
@@ -185,7 +183,6 @@ export class ApplyodComponent implements OnInit {
 
 
   orgValueChange() {
-    //debugger;
     this.NoofdaysCount();
   }
   leaveToValueChange() {
@@ -214,7 +211,6 @@ export class ApplyodComponent implements OnInit {
   }
 
   getTableData() {
-    //debugger;
     const user = JSON.parse(localStorage.getItem('user'));
     let username = user.userName;
     this.spinner.show();
@@ -237,8 +233,6 @@ export class ApplyodComponent implements OnInit {
 
 
   getProductByProductCode(value) {
-    //debugger;
-
     if (!this.commonService.checkNullOrUndefined(value) && value != '') {
       const getProductByProductCodeUrl = String.Join('/', this.apiConfigService.getEmpCode);
       this.apiService.apiPostRequest(getProductByProductCodeUrl, { Code: value }).subscribe(
@@ -260,7 +254,6 @@ export class ApplyodComponent implements OnInit {
   }
 
   onSearchChange(code) {
-    //debugger;
     let genarateVoucherNoUrl;
     if (!this.commonService.checkNullOrUndefined(code)) {
       genarateVoucherNoUrl = String.Join('/', this.apiConfigService.getEmpName, code.value);
@@ -296,7 +289,6 @@ export class ApplyodComponent implements OnInit {
 
 
   save() {
-    // debugger;
     if (this.modelFormData.invalid) {
       return;
     }

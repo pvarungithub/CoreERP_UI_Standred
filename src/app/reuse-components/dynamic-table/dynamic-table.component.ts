@@ -18,7 +18,6 @@ export class DynamicTableComponent implements OnInit {
   @Output() emitColumnChanges = new EventEmitter();
 
   @Input() set tableObJect(res) {
-    debugger
     if (!this.commonService.checkNullOrUndefined(res)) {
       this.tableData = [res.tableData];
       this.formControl = res.formControl;

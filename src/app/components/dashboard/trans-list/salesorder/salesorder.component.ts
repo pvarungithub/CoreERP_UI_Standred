@@ -90,7 +90,7 @@ export class SalesorderComponent {
       amount: [''],
       total: [''],
       deliveryDate: [''],
-      action: true,
+      action: 'editDelete',
       index: 0
     });
   }
@@ -99,12 +99,11 @@ export class SalesorderComponent {
     this.formData1.reset();
     this.formData1.patchValue({
       index: 0,
-      action: true
+      action: 'editDelete'
     });
   }
 
   saveForm() {
-    debugger
     if (this.formData1.invalid) {
       return;
     }
@@ -167,8 +166,7 @@ export class SalesorderComponent {
   }
 
   editOrDeleteEvent(value) {
-    debugger
-    if (value.action === 'Delete') {
+    if (value.action === 'editDelete') {
       this.tableComponent.defaultValues();
       this.tableData = this.tableData.filter((res: any) => res.index != value.item.index);
       this.calculate();
@@ -241,7 +239,6 @@ export class SalesorderComponent {
             if (!this.commonService.checkNullOrUndefined(res.response)) {
               this.formData.patchValue(res.response['SaleOrderMasters']);
               this.formData.disable();
-              debugger
               this.tableData = res.response['SaleOrderDetails'];
             }
           }

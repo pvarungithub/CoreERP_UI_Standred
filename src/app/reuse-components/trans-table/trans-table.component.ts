@@ -82,7 +82,6 @@ export class TransTableComponent implements OnInit {
   }
 
   search() {
-    debugger
     if (!this.commonService.checkNullOrUndefined(this.headerForm.value.selected)) {
       this.headerForm.patchValue({
         FromDate: this.commonService.formatDate(this.headerForm.value.selected.start.$d),
@@ -157,7 +156,6 @@ export class TransTableComponent implements OnInit {
         col.push(obj);
       });
 
-debugger
       for (let key in this.runtimeConfigService.tableColumnsData[this.routeParam]) {
 
         if (this.runtimeConfigService.tableColumnsData[this.routeParam][key] == 'Date') {

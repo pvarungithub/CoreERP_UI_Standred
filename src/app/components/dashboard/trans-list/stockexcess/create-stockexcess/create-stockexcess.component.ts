@@ -325,7 +325,6 @@ getProductByProductName(value) {
 }
 
   getdata(productCode) {
-    //debugger;
     if (!this.commonService.checkNullOrUndefined(this.branchFormData.get('branchCode').value) && this.branchFormData.get('branchCode').value != '' &&
       !this.commonService.checkNullOrUndefined(productCode.value) && productCode.value != '') {
       const getBillingDetailsRcdUrl = String.Join('/', this.apiConfigService.getProductListsforStockexcessList, productCode.value,

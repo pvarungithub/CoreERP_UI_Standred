@@ -1938,11 +1938,12 @@
   },
   "purchaseorder": {
     "title": "Purchase Order",
-    "quotationNumber": "Quotation Number",
+    "id": "ID",
+    "quotationNumber": "Sale Order Number",
     "company": "Company",
     "purchaseOrderType": "PurchaseOrder Type",
     "purchaseOrderNumber": "PurchaseOrder Number",
-    "quotationDate": "Quotation Date",
+    "quotationDate": "Sale Order Date",
     "supplierCode": "Supplier Code",
     "gstno": "GST No",
     "deliveryDate": "Delivery Date",
@@ -1969,7 +1970,8 @@
     "preparedBy": "Prepared By",
     "recomendedBy": "Recomended By",
     "approvedBy": "Approved By",
-    "delete": "Delete"
+    "delete": "Delete",
+    "action": "Action"
   },
   "goodsreceipts": {
     "checkAll": "Select",
