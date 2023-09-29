@@ -1707,6 +1707,13 @@
     "preparedBy": "Prepared By",
     "recomendedBy": "Recomended By",
     "approvedBy": "Approved By",
+    "sgst": "SGST",
+        "cgst": "CGST",
+        "igst": "IGST",
+        "amount": "Amount",
+        "totalTax":"Total Tax",
+        "totalAmount":"Total Amount",
+        "total": "Total",
     "delete": "Delete",
     "action": "Action"
   },
