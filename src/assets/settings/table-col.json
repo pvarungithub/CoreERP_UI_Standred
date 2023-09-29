@@ -1690,6 +1690,7 @@
     "purchaseOrderDate": "Date",
     "advance": "Advance",
     "materialCode": "Material code",
+                "taxCode": "Tax Code",
     "description": "Description",
     "qty": "QTY",
     "rate": "Rate",

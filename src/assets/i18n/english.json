@@ -1974,6 +1974,8 @@
         "cgst": "CGST",
         "igst": "IGST",
         "amount": "Amount",
+                "taxCode": "Tax Code",
+
         "totalTax":"Total Tax",
         "totalAmount":"Total Amount",
         "total": "Total",
