@@ -121,7 +121,7 @@ export class PurchaseOrderComponent implements OnInit {
       amount: [0],
       totalTax: [0],
       totalAmount: [0],
-      quotationNumber: [null, [Validators.required]],
+      saleOrderNo: [null, [Validators.required]],
     });
     this.formData.controls.gstno.disable();
 
@@ -180,7 +180,7 @@ export class PurchaseOrderComponent implements OnInit {
 
   getSaleOrderDetail() {
     this.tableComponent.defaultValues();
-    const qsDetUrl = String.Join('/', this.apiConfigService.getSaleOrderDetail, this.formData.value.quotationNumber);
+    const qsDetUrl = String.Join('/', this.apiConfigService.getSaleOrderDetail, this.formData.value.saleOrderNo);
     this.apiService.apiGetRequest(qsDetUrl)
       .subscribe(
         response => {
@@ -466,6 +466,8 @@ export class PurchaseOrderComponent implements OnInit {
               this.formData.patchValue(res.response['pomasters']);
               // this.sendDynTableData = { type: 'edit', data: res.response['poDetail'] };
               this.formData.disable();
+              this.tableData = res.response['poDetail'];
+
             }
           }
         });
@@ -576,12 +578,13 @@ export class PurchaseOrderComponent implements OnInit {
       response => {
         const res = response;
         this.tableData = [];
-        this.saveimage();
+        // this.saveimage();
         if (!this.commonService.checkNullOrUndefined(res) && res.status === StatusCodes.pass) {
           if (!this.commonService.checkNullOrUndefined(res.response)) {
             this.alertService.openSnackBar('Purchase Order created Successfully..', Static.Close, SnackBar.success);
+            this.router.navigate(['/dashboard/transaction/purchaseorder'])
           }
-          this.reset();
+          // this.reset();
           this.spinner.hide();
         }
       });

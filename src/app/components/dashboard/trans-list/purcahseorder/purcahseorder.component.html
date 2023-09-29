@@ -54,7 +54,7 @@
 
                 <mat-form-field>
                     <mat-label>{{'purchaseorder.quotationNumber' | translate }}</mat-label>
-                    <mat-select formControlName="quotationNumber" appFocusOnEnter tabIndex="4"
+                    <mat-select formControlName="saleOrderNo" appFocusOnEnter tabIndex="4"
                         (selectionChange)="quotationNumberChange()">
                         <mat-option>None</mat-option>
                         <mat-option *ngFor="let qno of qnoList" [value]="qno.saleOrderNo">
@@ -187,7 +187,7 @@
                     <div class="mb-3">
                     
                         <button mat-raised-button type="submit" class="button-color-bule mx-1 text-white" (click)="saveForm()">
-                            {{ 'COMMON.ADD' | translate }}
+                            {{ 'COMMON.UPDATE' | translate }}
                         </button>
                         <button mat-raised-button class="button-color-red text-white mx-1" (click)="resetForm();">
                             {{ 'COMMON.RESET' | translate }}
