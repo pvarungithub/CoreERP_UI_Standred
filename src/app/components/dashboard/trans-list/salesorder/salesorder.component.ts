@@ -166,7 +166,7 @@ export class SalesorderComponent {
   }
 
   editOrDeleteEvent(value) {
-    if (value.action === 'editDelete') {
+    if (value.action === 'Delete') {
       this.tableComponent.defaultValues();
       this.tableData = this.tableData.filter((res: any) => res.index != value.item.index);
       this.calculate();
@@ -239,6 +239,7 @@ export class SalesorderComponent {
             if (!this.commonService.checkNullOrUndefined(res.response)) {
               this.formData.patchValue(res.response['SaleOrderMasters']);
               this.formData.disable();
+              res.response['SaleOrderDetails'].forEach((s: any, index: number) => { s.action = 'editDelete'; s.index = index + 1; })
               this.tableData = res.response['SaleOrderDetails'];
             }
           }

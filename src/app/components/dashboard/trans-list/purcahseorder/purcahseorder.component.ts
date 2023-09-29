@@ -114,6 +114,12 @@ export class PurchaseOrderComponent implements OnInit {
       editDate: [null],
       filePath: [null],
       advance: [null],
+      igst: [0],
+      cgst: [0],
+      sgst: [0],
+      amount: [0],
+      totalTax: [0],
+      totalAmount: [0],
       quotationNumber: [null, [Validators.required]],
     });
     this.formData.controls.gstno.disable();
@@ -132,7 +138,10 @@ export class PurchaseOrderComponent implements OnInit {
       commitment: [''],
       department: [''],
       location: [''],
-      action: 'edit',
+      igst: 0,
+      cgst: 0,
+      sgst: 0,
+      action: 'editDelete',
       index: 0
     });
 
@@ -168,7 +177,7 @@ export class PurchaseOrderComponent implements OnInit {
           if (!this.commonService.checkNullOrUndefined(res) && res.status === StatusCodes.pass) {
             if (!this.commonService.checkNullOrUndefined(res.response)) {
               this.formData.patchValue(res.response['SaleOrderMasters']);
-              res.response['SaleOrderDetails'].forEach((s: any) => s.action = 'edit')
+              res.response['SaleOrderDetails'].forEach((s: any, index: number) => { s.action = 'editDelete'; s.index = index + 1; })
               this.tableData = res.response['SaleOrderDetails'];
             }
           }
@@ -449,7 +458,7 @@ export class PurchaseOrderComponent implements OnInit {
     this.formData1.reset();
     this.formData1.patchValue({
       index: 0,
-      action: true
+      action: 'editDelete'
     });
   }
 
@@ -457,7 +466,7 @@ export class PurchaseOrderComponent implements OnInit {
     if (this.formData1.invalid) {
       return;
     }
-    // this.dataChange();
+    this.dataChange();
 
     let data: any = this.tableData;
     this.tableData = null;
@@ -472,7 +481,7 @@ export class PurchaseOrderComponent implements OnInit {
     }
     setTimeout(() => {
       this.tableData = data;
-      // this.calculate();
+      this.calculate();
     });
     this.resetForm();
   }
@@ -481,49 +490,50 @@ export class PurchaseOrderComponent implements OnInit {
     if (value.action === 'Delete') {
       this.tableComponent.defaultValues();
       this.tableData = this.tableData.filter((res: any) => res.index != value.item.index);
-      // this.calculate();
+      this.calculate();
     } else {
       this.formData1.patchValue(value.item);
     }
   }
 
-  // dataChange() {
-  //   const formObj = this.formData1.value
-  //   const obj = this.taxCodeList.find((tax: any) => tax.taxRateCode == formObj.taxCode);
-  //   const igst = obj.igst ? ((+formObj.qty * +formObj.rate) * obj.igst) / 100 : 0;
-  //   const cgst = obj.cgst ? ((+formObj.qty * +formObj.rate) * obj.cgst) / 100 : 0;
-  //   const sgst = obj.sgst ? ((+formObj.qty * +formObj.rate) * obj.sgst) / 100 : 0;
-  //   this.formData1.patchValue({
-  //     amount: (+formObj.qty * +formObj.rate),
-  //     total: (+formObj.qty * +formObj.rate) + (igst + sgst + cgst),
-  //     igst: igst,
-  //     cgst: cgst,
-  //     sgst: sgst,
-  //   })
-  // }
+  dataChange() {
+    debugger
+    const formObj = this.formData1.value
+    const obj = this.tableData.find((tax: any) => tax.taxRateCode == formObj.taxCode);
+    const igst = obj.igst ? ((+formObj.qty * +formObj.rate) * obj.igst) / 100 : 0;
+    const cgst = obj.cgst ? ((+formObj.qty * +formObj.rate) * obj.cgst) / 100 : 0;
+    const sgst = obj.sgst ? ((+formObj.qty * +formObj.rate) * obj.sgst) / 100 : 0;
+    this.formData1.patchValue({
+      amount: (+formObj.qty * +formObj.rate),
+      total: (+formObj.qty * +formObj.rate) + (igst + sgst + cgst),
+      igst: igst,
+      cgst: cgst,
+      sgst: sgst,
+    })
+  }
 
-  // calculate() {
-  //   this.formData.patchValue({
-  //     igst: 0,
-  //     cgst: 0,
-  //     sgst: 0,
-  //     amount: 0,
-  //     totalTax: 0,
-  //     totalAmount: 0,
-  //   })
-  //   this.tableData && this.tableData.forEach((t: any) => {
-  //     this.formData.patchValue({
-  //       igst: this.formData.value.igst + t.igst,
-  //       cgst: this.formData.value.cgst + t.cgst,
-  //       sgst: this.formData.value.sgst + t.sgst,
-  //       amount: this.formData.value.amount + (t.qty * t.rate),
-  //       totalTax: this.formData.value.totalTax + (t.igst + t.cgst + t.sgst),
-  //     })
-  //   })
-  //   this.formData.patchValue({
-  //     totalAmount: this.formData.value.amount + this.formData.value.totalTax,
-  //   })
-  // }
+  calculate() {
+    this.formData.patchValue({
+      igst: 0,
+      cgst: 0,
+      sgst: 0,
+      amount: 0,
+      totalTax: 0,
+      totalAmount: 0,
+    })
+    this.tableData && this.tableData.forEach((t: any) => {
+      this.formData.patchValue({
+        igst: this.formData.value.igst + t.igst,
+        cgst: this.formData.value.cgst + t.cgst,
+        sgst: this.formData.value.sgst + t.sgst,
+        amount: this.formData.value.amount + (t.qty * t.rate),
+        totalTax: this.formData.value.totalTax + (t.igst + t.cgst + t.sgst),
+      })
+    })
+    this.formData.patchValue({
+      totalAmount: this.formData.value.amount + this.formData.value.totalTax,
+    })
+  }
   // emitColumnChanges(data) {
   //   this.tableData = data.data;
   // }

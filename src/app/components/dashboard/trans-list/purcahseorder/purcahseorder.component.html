@@ -54,7 +54,8 @@
 
                 <mat-form-field>
                     <mat-label>{{'purchaseorder.quotationNumber' | translate }}</mat-label>
-                    <mat-select formControlName="quotationNumber" appFocusOnEnter tabIndex="4"  (selectionChange)="quotationNumberChange()">
+                    <mat-select formControlName="quotationNumber" appFocusOnEnter tabIndex="4"
+                        (selectionChange)="quotationNumberChange()">
                         <mat-option>None</mat-option>
                         <mat-option *ngFor="let qno of qnoList" [value]="qno.saleOrderNo">
                             {{qno.saleOrderNo}}
@@ -178,110 +179,10 @@
                 <div class="d--flex p-1 mat-form-field-height">
 
                     <mat-form-field class="form-element">
-                        <mat-label>{{ 'purchaseorder.materialCode' | translate }}</mat-label>
-                        <mat-select formControlName="materialCode" tabIndex="10">
-                            <mat-option>None</mat-option>
-                            <mat-option *ngFor="let material of materialList" [value]="material.text">
-                                {{material.text}}
-                            </mat-option>
-                        </mat-select>
-                    </mat-form-field>
-
-                    <mat-form-field class="form-element">
-                        <mat-label [translate]="'purchaseorder.description'"></mat-label>
-                        <input matInput type="text" formControlName="description" appFocusOnEnter tabIndex="12">
-                    </mat-form-field>
-
-                    <mat-form-field class="form-element">
                         <mat-label [translate]="'purchaseorder.qty'"></mat-label>
                         <input matInput type="number" formControlName="qty" appFocusOnEnter tabIndex="12">
                     </mat-form-field>
 
-                    <mat-form-field class="form-element">
-                        <mat-label [translate]="'purchaseorder.rate'"></mat-label>
-                        <input matInput type="number" formControlName="rate" appFocusOnEnter tabIndex="13">
-                    </mat-form-field>
-
-                    <mat-form-field class="form-element">
-                        <mat-label [translate]="'purchaseorder.discount'"></mat-label>
-                        <input matInput type="number" formControlName="discount" appFocusOnEnter tabIndex="14">
-                    </mat-form-field>
-
-                    <mat-form-field class="form-element">
-                        <mat-label [translate]="'purchaseorder.tax'"></mat-label>
-                        <input matInput type="number" formControlName="tax" appFocusOnEnter tabIndex="14">
-                    </mat-form-field>
-
-
-                    <mat-form-field class="form-element">
-                        <mat-label>{{ 'purchaseorder.profitCenter' | translate }}</mat-label>
-                        <mat-select formControlName="profitCenter" tabIndex="10">
-                            <mat-option>None</mat-option>
-                            <mat-option *ngFor="let profit of profitCenterList" [value]="profit.id">
-                                {{profit.text}}
-                            </mat-option>
-                        </mat-select>
-                    </mat-form-field>
-
-                    <mat-form-field class="form-element">
-                        <mat-label>{{ 'purchaseorder.costCenter' | translate }}</mat-label>
-                        <mat-select formControlName="costCenter" tabIndex="10">
-                            <mat-option>None</mat-option>
-                            <mat-option *ngFor="let cost of costcenterList" [value]="cost.id">
-                                {{cost.text}}
-                            </mat-option>
-                        </mat-select>
-                    </mat-form-field>
-
-                    <mat-form-field class="form-element">
-                        <mat-label>{{ 'purchaseorder.wbs' | translate }}</mat-label>
-                        <mat-select formControlName="wbs" tabIndex="10">
-                            <mat-option>None</mat-option>
-                            <mat-option *ngFor="let wbs of wbsList" [value]="wbs.id">
-                                {{wbs.text}}
-                            </mat-option>
-                        </mat-select>
-                    </mat-form-field>
-
-                    <mat-form-field class="form-element">
-                        <mat-label>{{ 'purchaseorder.fundCenter' | translate }}</mat-label>
-                        <mat-select formControlName="fundCenter" tabIndex="10">
-                            <mat-option>None</mat-option>
-                            <mat-option *ngFor="let fundCenter of fcList" [value]="fundCenter.code">
-                                {{fundCenter.description}}
-                            </mat-option>
-                        </mat-select>
-                    </mat-form-field>
-
-                    <mat-form-field class="form-element">
-                        <mat-label>{{ 'purchaseorder.commitment' | translate }}</mat-label>
-                        <mat-select formControlName="commitment" tabIndex="10">
-                            <mat-option>None</mat-option>
-                            <mat-option *ngFor="let commitment of citemList" [value]="commitment.code">
-                                {{commitment.description}}
-                            </mat-option>
-                        </mat-select>
-                    </mat-form-field>
-
-                    <mat-form-field class="form-element">
-                        <mat-label>{{ 'purchaseorder.department' | translate }}</mat-label>
-                        <mat-select formControlName="department" tabIndex="10">
-                            <mat-option>None</mat-option>
-                            <mat-option *ngFor="let department of functionaldeptList" [value]="department.code">
-                                {{department.description}}
-                            </mat-option>
-                        </mat-select>
-                    </mat-form-field>
-
-                    <mat-form-field class="form-element">
-                        <mat-label>{{ 'purchaseorder.location' | translate }}</mat-label>
-                        <mat-select formControlName="location" tabIndex="10">
-                            <mat-option>None</mat-option>
-                            <mat-option *ngFor="let location of locList" [value]="location.id">
-                                {{location.text}}
-                            </mat-option>
-                        </mat-select>
-                    </mat-form-field>
 
                 </div>
 
@@ -310,21 +211,44 @@
 
     <mat-card-content class="d-flex justify-content-end py-1">
 
-        <button [hidden]="routeEdit != ''" mat-raised-button type="submit" class="button-color-bule mx-3 text-white"
-            (click)="save()">
-            {{ 'COMMON.SAVE' | translate }}
-        </button>
-        <button mat-raised-button class="button-color-red text-white mx-3" (click)="back();">
-            {{ 'COMMON.BACK' | translate }}
-        </button>
-        <button [hidden]="routeEdit != ''" mat-raised-button class="button-color-red text-white mx-3"
-            (click)="reset();">
-            {{ 'COMMON.RESET' | translate }}
-        </button>
-        <button [hidden]="routeEdit == ''" mat-raised-button class="button-color-red text-white mx-3"
-            (click)="return();">
-            {{ 'COMMON.RETURN' | translate }}
-        </button>
+        <div class="d-flex">
+            <div class="px-1"> <span class="px-1"> <b>{{ 'saleorder.igst' | translate }} </b></span> :
+                <b class="text-danger">{{ formData.value.igst }} </b>
+            </div>
+            <div class="px-1"> <span class="px-1"> <b> {{'saleorder.cgst' | translate }} </b></span> :
+                <b class="text-danger"> {{ formData.value.cgst}} </b>
+            </div>
+            <div class="px-1"> <span class="px-1"> <b> {{'saleorder.sgst' | translate }} </b></span> :
+                <b class="text-danger"> {{ formData.value.sgst}} </b>
+            </div>
+            <div class="px-1"> <span class="px-1"> <b> {{'saleorder.amount' | translate }} </b></span> :
+                <b class="text-danger"> {{ formData.value.amount}} </b>
+            </div>
+            <div class="px-1"> <span class="px-1"> <b> {{'saleorder.totalTax' | translate }} </b></span> :
+                <b class="text-danger"> {{ formData.value.totalTax}} </b>
+            </div>
+            <div class="px-1"> <span class="px-1"> <b> {{'saleorder.totalAmount' | translate }} </b></span> :
+                <b class="text-danger"> {{ formData.value.totalAmount}} </b>
+            </div>
+        </div>
+
+        <div>
+            <button [hidden]="routeEdit != ''" mat-raised-button type="submit" class="button-color-bule mx-3 text-white"
+                (click)="save()">
+                {{ 'COMMON.SAVE' | translate }}
+            </button>
+            <button mat-raised-button class="button-color-red text-white mx-3" (click)="back();">
+                {{ 'COMMON.BACK' | translate }}
+            </button>
+            <button [hidden]="routeEdit != ''" mat-raised-button class="button-color-red text-white mx-3"
+                (click)="reset();">
+                {{ 'COMMON.RESET' | translate }}
+            </button>
+            <button [hidden]="routeEdit == ''" mat-raised-button class="button-color-red text-white mx-3"
+                (click)="return();">
+                {{ 'COMMON.RETURN' | translate }}
+            </button>
+        </div>
 
     </mat-card-content>
 
