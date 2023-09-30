@@ -12,6 +12,7 @@ import { AlertService } from '../../../../services/alert.service';
 import { DateAdapter, MAT_DATE_FORMATS } from '@angular/material/core';
 import { AppDateAdapter, APP_DATE_FORMATS } from '../../../../directives/format-datepicker';
 import { TableComponent } from 'src/app/reuse-components';
+import { DatePipe } from '@angular/common';
 
 @Component({
   selector: 'app-salesorder',
@@ -49,7 +50,8 @@ export class SalesorderComponent {
     private alertService: AlertService,
     private spinner: NgxSpinnerService,
     public route: ActivatedRoute,
-    private router: Router
+    private router: Router,
+    private datepipe: DatePipe
   ) {
     if (!this.commonService.checkNullOrUndefined(this.route.snapshot.params.value)) {
       this.routeEdit = this.route.snapshot.params.value;
@@ -89,6 +91,7 @@ export class SalesorderComponent {
       cgst: [''],
       amount: [''],
       total: [''],
+      netWeight: [''],
       deliveryDate: [''],
       action: 'editDelete',
       index: 0
@@ -250,6 +253,12 @@ export class SalesorderComponent {
     this.tableData = data.data;
   }
 
+  materialCodeChange() {
+    const obj = this.materialList.find((m: any) => m.text == this.formData1.value.materialCode);
+    this.formData1.patchValue({
+      netWeight: obj.netWeight
+    })
+  }
 
 
   back() {
@@ -265,6 +274,10 @@ export class SalesorderComponent {
 
   addSaleOrder() {
     const addsq = String.Join('/', this.apiConfigService.addSaleOrder);
+    const obj = this.formData.value;
+    obj.orderDate = obj.orderDate ? this.datepipe.transform(obj.orderDate, 'dd-MM-yyyy') : '';
+    obj.poDate = obj.poDate ? this.datepipe.transform(obj.poDate, 'dd-MM-yyyy') : '';
+    obj.dateofSupply = obj.dateofSupply ? this.datepipe.transform(obj.dateofSupply, 'dd-MM-yyyy') : '';
     const requestObj = { qsHdr: this.formData.value, qsDtl: this.tableData };
     this.apiService.apiPostRequest(addsq, requestObj).subscribe(
       response => {
@@ -283,5 +296,7 @@ export class SalesorderComponent {
     this.tableData = [];
     this.formData.reset();
   }
+
+ 
 
 }

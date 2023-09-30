@@ -12,6 +12,7 @@ import { AlertService } from '../../../../services/alert.service';
 import { DateAdapter, MAT_DATE_FORMATS } from '@angular/material/core';
 import { AppDateAdapter, APP_DATE_FORMATS } from '../../../../directives/format-datepicker';
 import { TableComponent } from 'src/app/reuse-components';
+import { DatePipe } from '@angular/common';
 
 @Component({
   selector: 'app-purcahseorder',
@@ -74,7 +75,8 @@ export class PurchaseOrderComponent implements OnInit {
     private alertService: AlertService,
     private spinner: NgxSpinnerService,
     public route: ActivatedRoute,
-    private router: Router
+    private router: Router,
+    private datepipe: DatePipe
   ) {
     this.loginUser = JSON.parse(localStorage.getItem('user'));
     if (!this.commonService.checkNullOrUndefined(this.route.snapshot.params.value)) {
@@ -85,7 +87,7 @@ export class PurchaseOrderComponent implements OnInit {
   ngOnInit() {
     this.formDataGroup();
     this.getCompanyList();
-    this.getTaxRatesList  ();
+    this.getTaxRatesList();
     // this.getPurchaseGroupData();
     setTimeout(() => {
       this.spinner.hide();
@@ -129,11 +131,12 @@ export class PurchaseOrderComponent implements OnInit {
       materialCode: [''],
       taxCode: [''],
       qty: ['', Validators.required],
-      rate: [''],
+      rate: ['', Validators.required],
       discount: [''],
       cgst: 0,
       sgst: 0,
       igst: 0,
+      netWeight: 0,
       amount: [''],
       total: [''],
       action: 'editDelete',
@@ -520,9 +523,9 @@ export class PurchaseOrderComponent implements OnInit {
     debugger
     const formObj = this.formData1.value;
     const obj = this.taxCodeList.find((tax: any) => tax.taxRateCode == formObj.taxCode);
-    const igst = obj.igst ? ((+formObj.qty * +formObj.rate) * obj.igst) / 100 : 0;
-    const cgst = obj.cgst ? ((+formObj.qty * +formObj.rate) * obj.cgst) / 100 : 0;
-    const sgst = obj.sgst ? ((+formObj.qty * +formObj.rate) * obj.sgst) / 100 : 0;
+    const igst = obj.igst ? ((+formObj.qty * +formObj.rate * +formObj.netWeight) * obj.igst) / 100 : 0;
+    const cgst = obj.cgst ? ((+formObj.qty * +formObj.rate * +formObj.netWeight) * obj.cgst) / 100 : 0;
+    const sgst = obj.sgst ? ((+formObj.qty * +formObj.rate * +formObj.netWeight) * obj.sgst) / 100 : 0;
     this.formData1.patchValue({
       amount: (+formObj.qty * +formObj.rate),
       total: (+formObj.qty * +formObj.rate) + (igst + sgst + cgst),
@@ -573,6 +576,10 @@ export class PurchaseOrderComponent implements OnInit {
   savepurcahseorder() {
     const addprorder = String.Join('/', this.apiConfigService.addpurchaseorder);
     this.formData.controls.gstno.enable();
+    const obj = this.formData.value;
+    obj.quotationDate = obj.quotationDate ? this.datepipe.transform(obj.quotationDate, 'dd-MM-yyyy') : '';
+    obj.purchaseOrderDate = obj.purchaseOrderDate ? this.datepipe.transform(obj.purchaseOrderDate, 'dd-MM-yyyy') : '';
+    obj.deliveryDate = obj.deliveryDate ? this.datepipe.transform(obj.deliveryDate, 'dd-MM-yyyy') : ''
     const requestObj = { poHdr: this.formData.value, poDtl: this.tableData };
     this.apiService.apiPostRequest(addprorder, requestObj).subscribe(
       response => {
