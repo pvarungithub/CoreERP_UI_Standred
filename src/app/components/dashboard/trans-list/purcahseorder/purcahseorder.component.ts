@@ -577,9 +577,9 @@ export class PurchaseOrderComponent implements OnInit {
     const addprorder = String.Join('/', this.apiConfigService.addpurchaseorder);
     this.formData.controls.gstno.enable();
     const obj = this.formData.value;
-    obj.quotationDate = obj.quotationDate ? this.datepipe.transform(obj.quotationDate, 'dd-MM-yyyy') : '';
-    obj.purchaseOrderDate = obj.purchaseOrderDate ? this.datepipe.transform(obj.purchaseOrderDate, 'dd-MM-yyyy') : '';
-    obj.deliveryDate = obj.deliveryDate ? this.datepipe.transform(obj.deliveryDate, 'dd-MM-yyyy') : ''
+    obj.quotationDate = obj.quotationDate ? this.datepipe.transform(obj.quotationDate, 'MM-dd-yyyy') : '';
+    obj.purchaseOrderDate = obj.purchaseOrderDate ? this.datepipe.transform(obj.purchaseOrderDate, 'MM-dd-yyyy') : '';
+    obj.deliveryDate = obj.deliveryDate ? this.datepipe.transform(obj.deliveryDate, 'MM-dd-yyyy') : ''
     const requestObj = { poHdr: this.formData.value, poDtl: this.tableData };
     this.apiService.apiPostRequest(addprorder, requestObj).subscribe(
       response => {

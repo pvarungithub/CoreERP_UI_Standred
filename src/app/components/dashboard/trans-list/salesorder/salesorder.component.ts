@@ -275,9 +275,9 @@ export class SalesorderComponent {
   addSaleOrder() {
     const addsq = String.Join('/', this.apiConfigService.addSaleOrder);
     const obj = this.formData.value;
-    obj.orderDate = obj.orderDate ? this.datepipe.transform(obj.orderDate, 'dd-MM-yyyy') : '';
-    obj.poDate = obj.poDate ? this.datepipe.transform(obj.poDate, 'dd-MM-yyyy') : '';
-    obj.dateofSupply = obj.dateofSupply ? this.datepipe.transform(obj.dateofSupply, 'dd-MM-yyyy') : '';
+    obj.orderDate = obj.orderDate ? this.datepipe.transform(obj.orderDate, 'MM-dd-yyyy') : '';
+    obj.poDate = obj.poDate ? this.datepipe.transform(obj.poDate, 'MM-dd-yyyy') : '';
+    obj.dateofSupply = obj.dateofSupply ? this.datepipe.transform(obj.dateofSupply, 'MM-dd-yyyy') : '';
     const requestObj = { qsHdr: this.formData.value, qsDtl: this.tableData };
     this.apiService.apiPostRequest(addsq, requestObj).subscribe(
       response => {
