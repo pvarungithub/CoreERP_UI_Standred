@@ -1,4 +1,4 @@
-import { Component, OnInit } from '@angular/core';
+import { Component, OnInit, ViewChild } from '@angular/core';
 import { FormGroup, FormBuilder, Validators } from '@angular/forms';
 import { ApiConfigService } from '../../../../services/api-config.service';
 import { String } from 'typescript-string-operations';
@@ -11,6 +11,7 @@ import { Static } from '../../../../enums/common/static';
 import { AlertService } from '../../../../services/alert.service';
 import { DateAdapter, MAT_DATE_FORMATS } from '@angular/material/core';
 import { AppDateAdapter, APP_DATE_FORMATS } from '../../../../directives/format-datepicker';
+import { TableComponent } from 'src/app/reuse-components';
 
 @Component({
   selector: 'app-receipt-of-goods',
@@ -24,6 +25,7 @@ import { AppDateAdapter, APP_DATE_FORMATS } from '../../../../directives/format-
 export class ReceiptOfGoodsComponent implements OnInit {
 
   formData: FormGroup;
+  formData1: FormGroup;
   routeEdit = '';
 
   tableData = [];
@@ -45,6 +47,9 @@ export class ReceiptOfGoodsComponent implements OnInit {
   purchaseordernoList: any;
   podetailsList: any;
   bpaList: any;
+
+  @ViewChild(TableComponent, { static: false }) tableComponent: TableComponent;
+
 
   constructor(
     private formBuilder: FormBuilder,
@@ -82,8 +87,8 @@ export class ReceiptOfGoodsComponent implements OnInit {
     this.formData = this.formBuilder.group({
       purchaseOrderNo: [null, Validators.required],
       company: [null, [Validators.required]],
-      plant: [null],
-      branch: [null],
+      // plant: [null],
+      // branch: [null],
       profitCenter: [null],
       supplierCode: [null],
       //supplierName: [null],
@@ -92,23 +97,78 @@ export class ReceiptOfGoodsComponent implements OnInit {
       receivedBy: [null],
       receivedDate: [null],
       receiptDate: [null],
-      supplierGinno: [null],
-      movementType: [null],
-      grnno: [null],
-      grndate: [null],
-      qualityCheck: [null],
-      storageLocation: [null],
+      // supplierGinno: [null],
+      // movementType: [null],
+      // grnno: [null],
+      // grndate: [null],
+      // qualityCheck: [null],
+      // storageLocation: [null],
       inspectionNoteNo: [null, [Validators.required]],
       id: ['0'],
-      rrno: [null],
+      // rrno: [null],
       vehicleNo: [null],
       addWho: [null],
       addDate: [null],
       editWho: [null],
       editDate: [null],
+      totalAmount: [''],
+      lotNo: [''],
+    });
+
+
+    this.formData1 = this.formBuilder.group({
+      rejectQty: ['', Validators.required],
+      receivedQty: ['', Validators.required],
+      materialCode: [''],
+      netWeight: [''],
+      purchaseOrderNumber: [''],
+      description: [''],
+      qty: [''],
+      action: 'editDelete',
+      index: 0
     });
   }
 
+
+  resetForm() {
+    this.formData1.reset();
+    this.formData1.patchValue({
+      index: 0,
+      action: 'editDelete'
+    });
+  }
+
+  saveForm() {
+    debugger
+    if (this.formData1.invalid) {
+      return;
+    }
+
+    let data: any = this.tableData;
+    this.tableData = null;
+    this.tableComponent.defaultValues();
+    if (this.formData1.value.index == 0) {
+      this.formData1.patchValue({
+        index: data ? (data.length + 1) : 1
+      });
+      data = [...data, this.formData1.value];
+    } else {
+      data = data.map((res: any) => res = res.index == this.formData1.value.index ? this.formData1.value : res);
+    }
+    setTimeout(() => {
+      this.tableData = data;
+    });
+    this.resetForm();
+  }
+
+  editOrDeleteEvent(value) {
+    if (value.action === 'Delete') {
+      this.tableComponent.defaultValues();
+      this.tableData = this.tableData.filter((res: any) => res.index != value.item.index);
+    } else {
+      this.formData1.patchValue(value.item);
+    }
+  }
 
   tablePropsFunc() {
     return {
@@ -174,35 +234,44 @@ export class ReceiptOfGoodsComponent implements OnInit {
   grndatechange() {
     if (this.tableData.length) {
       this.tableData.map(resp => resp.lotDate.value === this.formData.get('grndate').value)
-      this.sendDynTableData = { type: 'add', data: this.tableData };
+      // this.sendDynTableData = { type: 'add', data: this.tableData };
     }
   }
 
   ponoselect() {
     let data = [];
-    let newData = [];
+    // let newData = [];
     if (!this.commonService.checkNullOrUndefined(this.formData.get('purchaseOrderNo').value)) {
       data = this.podetailsList.filter(resp => resp.purchaseOrderNumber == this.formData.get('purchaseOrderNo').value);
     }
     if (data.length) {
+      debugger
+      data.forEach((d: any, index: number) => {
+        d.rejectQty = d.rejectQty ? d.rejectQty : '';
+        d.receivedQty = d.receivedQty ? d.receivedQty : '' ;
+        d.description = d.description ? d.description : '' ;
+        d.action = 'editDelete';
+        d.index = index + 1
+        })
       // console.log(data, this.tablePropsFunc());
-      data.forEach((res, index) => {
-        newData.push(this.tablePropsFunc().tableData);
-        //this.getLotNumberData(res.materialCode);
-        newData[index].poqty.value = res.qty;
-        newData[index].materialCode.value = res.materialCode;
-        newData[index].storageLocation.value = res.location;
-        newData[index].description.value = res.description;
-        newData[index].project.value = res.joborProject;
-        newData[index].profitCenter.value = res.profitCenter;
-        newData[index].branch.value = res.branch;
-        newData[index].plant.value = res.plant;
-        newData[index].lotDate.value = new Date();
-      })
+      // data.forEach((res, index) => {
+      //   newData.push(this.tablePropsFunc().tableData);
+      //   //this.getLotNumberData(res.materialCode);
+      //   newData[index].poqty.value = res.qty;
+      //   newData[index].materialCode.value = res.materialCode;
+      //   newData[index].storageLocation.value = res.location;
+      //   newData[index].description.value = res.description;
+      //   newData[index].project.value = res.joborProject;
+      //   newData[index].profitCenter.value = res.profitCenter;
+      //   newData[index].branch.value = res.branch;
+      //   newData[index].plant.value = res.plant;
+      //   newData[index].lotDate.value = new Date();
+      // })
+      this.tableData = data;
     }
     //
-    this.tableData = newData;
-    this.sendDynTableData = { type: 'add', data: newData };
+    debugger
+    // this.sendDynTableData = { type: 'add', data: newData };
 
   }
 
@@ -261,56 +330,56 @@ export class ReceiptOfGoodsComponent implements OnInit {
               this.purchaseordernoList = res.response['purchaseordernoList'];
             }
           }
-          this.getsuppliercodeList();
-        });
-  }
-  getsuppliercodeList() {
-    const getsuppliercodeList = String.Join('/', this.apiConfigService.getBusienessPartnersAccList);
-    this.apiService.apiGetRequest(getsuppliercodeList)
-      .subscribe(
-        response => {
-          const res = response;
-          console.log(res);
-          if (!this.commonService.checkNullOrUndefined(res) && res.status === StatusCodes.pass) {
-            if (!this.commonService.checkNullOrUndefined(res.response)) {
-              this.bpaList = res.response['bpaList'];
-              this.bpaList = res.response['bpaList'].filter(resp => resp.bpTypeName == 'Vendor')
-
-            }
-          }
-          this.getplantList();
-        });
-  }
-
-  getplantList() {
-    const getplantList = String.Join('/', this.apiConfigService.getplantList);
-    this.apiService.apiGetRequest(getplantList)
-      .subscribe(
-        response => {
-          const res = response;
-          if (!this.commonService.checkNullOrUndefined(res) && res.status === StatusCodes.pass) {
-            if (!this.commonService.checkNullOrUndefined(res.response)) {
-              this.plantList = res.response['plantList'];
-            }
-          }
-          this.getBranchList();
-        });
-  }
-
-  getBranchList() {
-    const branchUrl = String.Join('/', this.apiConfigService.getBranchList);
-    this.apiService.apiGetRequest(branchUrl)
-      .subscribe(
-        response => {
-          const res = response;
-          if (!this.commonService.checkNullOrUndefined(res) && res.status === StatusCodes.pass) {
-            if (!this.commonService.checkNullOrUndefined(res.response)) {
-              this.branchList = res.response['branchsList'];
-            }
-          }
           this.getProfitcenterData();
         });
   }
+  // getsuppliercodeList() {
+  //   const getsuppliercodeList = String.Join('/', this.apiConfigService.getBusienessPartnersAccList);
+  //   this.apiService.apiGetRequest(getsuppliercodeList)
+  //     .subscribe(
+  //       response => {
+  //         const res = response;
+  //         console.log(res);
+  //         if (!this.commonService.checkNullOrUndefined(res) && res.status === StatusCodes.pass) {
+  //           if (!this.commonService.checkNullOrUndefined(res.response)) {
+  //             this.bpaList = res.response['bpaList'];
+  //             this.bpaList = res.response['bpaList'].filter(resp => resp.bpTypeName == 'Vendor')
+
+  //           }
+  //         }
+  //         this.getplantList();
+  //       });
+  // }
+
+  // getplantList() {
+  //   const getplantList = String.Join('/', this.apiConfigService.getplantList);
+  //   this.apiService.apiGetRequest(getplantList)
+  //     .subscribe(
+  //       response => {
+  //         const res = response;
+  //         if (!this.commonService.checkNullOrUndefined(res) && res.status === StatusCodes.pass) {
+  //           if (!this.commonService.checkNullOrUndefined(res.response)) {
+  //             this.plantList = res.response['plantList'];
+  //           }
+  //         }
+  //         this.getBranchList();
+  //       });
+  // }
+
+  // getBranchList() {
+  //   const branchUrl = String.Join('/', this.apiConfigService.getBranchList);
+  //   this.apiService.apiGetRequest(branchUrl)
+  //     .subscribe(
+  //       response => {
+  //         const res = response;
+  //         if (!this.commonService.checkNullOrUndefined(res) && res.status === StatusCodes.pass) {
+  //           if (!this.commonService.checkNullOrUndefined(res.response)) {
+  //             this.branchList = res.response['branchsList'];
+  //           }
+  //         }
+  //         this.getProfitcenterData();
+  //       });
+  // }
 
   getProfitcenterData() {
     const getpcUrl = String.Join('/', this.apiConfigService.getProfitCenterList);
@@ -338,40 +407,40 @@ export class ReceiptOfGoodsComponent implements OnInit {
               this.employeesList = res.response['emplist'];
             }
           }
-          this.getMomentTypeList();
-        });
-  }
-
-
-  getMomentTypeList() {
-    const MomentTypeList = String.Join('/', this.apiConfigService.getmomenttypeList);
-    this.apiService.apiGetRequest(MomentTypeList)
-      .subscribe(
-        response => {
-          const res = response;
-          if (!this.commonService.checkNullOrUndefined(res) && res.status === StatusCodes.pass) {
-            if (!this.commonService.checkNullOrUndefined(res.response)) {
-              this.movementList = res.response['movementList'];
-            }
-          }
-          this.getstorageLocationData();
-        });
-  }
-
-  getstorageLocationData() {
-    const getstorageUrl = String.Join('/', this.apiConfigService.getStList);
-    this.apiService.apiGetRequest(getstorageUrl)
-      .subscribe(
-        response => {
-          const res = response;
-          if (!this.commonService.checkNullOrUndefined(res) && res.status === StatusCodes.pass) {
-            if (!this.commonService.checkNullOrUndefined(res.response)) {
-              this.stlocList = res.response['stlocList'];
-            }
-          }
           this.getmaterialData();
         });
   }
+
+
+  // getMomentTypeList() {
+  //   const MomentTypeList = String.Join('/', this.apiConfigService.getmomenttypeList);
+  //   this.apiService.apiGetRequest(MomentTypeList)
+  //     .subscribe(
+  //       response => {
+  //         const res = response;
+  //         if (!this.commonService.checkNullOrUndefined(res) && res.status === StatusCodes.pass) {
+  //           if (!this.commonService.checkNullOrUndefined(res.response)) {
+  //             this.movementList = res.response['movementList'];
+  //           }
+  //         }
+  //         this.getstorageLocationData();
+  //       });
+  // }
+
+  // getstorageLocationData() {
+  //   const getstorageUrl = String.Join('/', this.apiConfigService.getStList);
+  //   this.apiService.apiGetRequest(getstorageUrl)
+  //     .subscribe(
+  //       response => {
+  //         const res = response;
+  //         if (!this.commonService.checkNullOrUndefined(res) && res.status === StatusCodes.pass) {
+  //           if (!this.commonService.checkNullOrUndefined(res.response)) {
+  //             this.stlocList = res.response['stlocList'];
+  //           }
+  //         }
+  //         this.getmaterialData();
+  //       });
+  // }
 
   getmaterialData() {
     const getmaterialUrl = String.Join('/', this.apiConfigService.getMaterialList);
@@ -385,7 +454,7 @@ export class ReceiptOfGoodsComponent implements OnInit {
               this.materialList = res.response['materialList'];
             }
           }
-          this.dynTableProps = this.tablePropsFunc();
+          // this.dynTableProps = this.tablePropsFunc();
           if (this.routeEdit != '') {
             this.getRecepitOfGoodsDetails(this.routeEdit);
           }
@@ -401,8 +470,11 @@ export class ReceiptOfGoodsComponent implements OnInit {
           const res = response;
           if (!this.commonService.checkNullOrUndefined(res) && res.status === StatusCodes.pass) {
             if (!this.commonService.checkNullOrUndefined(res.response)) {
-              this.formData.setValue(res.response['grmasters']);
-              this.sendDynTableData = { type: 'edit', data: res.response['grDetail'] };
+              this.formData.patchValue(res.response['grmasters']);
+              debugger
+              // this.sendDynTableData = { type: 'edit', data: res.response['grDetail'] };
+              this.tableData = res.response['grDetail'];
+
               this.formData.disable();
             }
           }
@@ -420,8 +492,8 @@ export class ReceiptOfGoodsComponent implements OnInit {
 
               row.data[row.index].lotNo.value = res.response['lotNum']
               //row.data[row.index].lotDate.value =JSON.stringify(this.grnDate);
-              this.sendDynTableData = { type: 'add', data: row.data };
-              this.tableData = row.data;
+              // this.sendDynTableData = { type: 'add', data: row.data };
+              // this.tableData = row.data;
             }
           }
           //this.spinner.hide();
@@ -447,7 +519,7 @@ export class ReceiptOfGoodsComponent implements OnInit {
   }
 
   save() {
-    this.tableData = this.commonService.formatTableData(this.tableData, 0);
+    // this.tableData = this.commonService.formatTableData(this.tableData, 0);
     if (this.tableData.length == 0 && this.formData.invalid) {
       return;
     }
@@ -487,7 +559,7 @@ export class ReceiptOfGoodsComponent implements OnInit {
   reset() {
     this.tableData = [];
     this.formData.reset();
-    this.sendDynTableData = { type: 'reset', data: this.tableData };
+    // this.sendDynTableData = { type: 'reset', data: this.tableData };
   }
 
 }

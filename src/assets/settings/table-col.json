@@ -1715,6 +1715,7 @@
         "totalTax":"Total Tax",
         "totalAmount":"Total Amount",
         "total": "Total",
+        "netWeight": "Net Weight",
     "delete": "Delete",
     "action": "Action"
   },
@@ -1736,9 +1737,12 @@
     "qualityCheck": "Quality Check",
     "inspectionNoteNo": "Inspection No",
     "materialCode": "Material code",
-    "description": "Description",
+      "qty": "QTY",
+
     "poqty": "Purchase Order Qty",
     "receivedQty": "Received QTY",
+      "rejectQty": "Reject QTY",
+     "netWeight": "Net Weight",
     "plant": "Plant",
     "storageLocation": "Storage Location",
     "profitCenter": "ProfitCenter",
@@ -1747,7 +1751,11 @@
     "movementType": "Movement Type",
     "lotNo": "Lot No",
     "lotDate": "Lot Date",
-    "delete": "Delete"
+    "description": "Description",
+
+    "delete": "Delete",
+        "action": "Action"
+
   },
   "inspectioncheck": {
     "checkAll": "Select",
@@ -2152,7 +2160,7 @@
         "orderDate": "Date",
         "poNumber": "PO Number",
         "poDate": "Date",
-        "dateofSupply": "Date Of Supply",
+        "dateofSupply": "Date",
         "placeOfSupply": "Place Of Supply",
         "documentUrl": "Document Url",
         "status": "Status",

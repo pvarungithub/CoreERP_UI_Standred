@@ -1946,7 +1946,6 @@
     "quotationDate": "Sale Order Date",
     "supplierCode": "Supplier Code",
     "gstno": "GST No",
-    "deliveryDate": "Delivery Date",
     "deliveryPeriod": "Delivery Period",
     "termsofDelivery": "Terms Of Delivery",
     "paymentTerms": "Payment Terms",
@@ -1979,11 +1978,14 @@
         "totalTax":"Total Tax",
         "totalAmount":"Total Amount",
         "total": "Total",
+        "netWeight": "Net Weight",
+    "deliveryDate": "Delivery Date",
     "delete": "Delete",
     "action": "Action"
   },
   "goodsreceipts": {
     "checkAll": "Select",
+       "purchaseOrderNumber": "Purchase Order Number",
     "title": "Goods Receipt",
     "purchaseOrderNo": "Purchase Order No",
     "company": "Company",
@@ -1992,6 +1994,7 @@
     "rrno": "RR Number",
     "vehicleNo": "Vehicle No",
     "supplierGinno": "Supplier GIN No",
+    "rejectQty": "Reject QTY",
     "receivedDate": "Receieved Date",
     "receiptDate": "Receipt Date",
     "receivedBy": "Receieved By",
@@ -2003,6 +2006,8 @@
     "description": "Description",
     "poqty": "Purchase Order Qty",
     "receivedQty": "Received QTY",
+         "netWeight": "Net Weight",
+      "qty": "QTY",
     "plant": "Plant",
     "storageLocation": "Storage Location",
     "profitCenter": "ProfitCenter",
@@ -2010,8 +2015,10 @@
     "branch": "Branch",
     "movementType": "Movement Type",
     "lotNo": "LotNo",
+    "totalAmount": "Total Amount",
     "lotDate": "LotDate",
-    "delete": "Delete"
+    "delete": "Delete",
+    "action": "Action"
   },
   "inspectioncheck": {
     "checkAll": "Select",

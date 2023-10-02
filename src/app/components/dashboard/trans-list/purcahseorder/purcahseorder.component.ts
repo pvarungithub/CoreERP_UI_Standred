@@ -103,7 +103,7 @@ export class PurchaseOrderComponent implements OnInit {
       branch: [null],
       profitCenter: [null],
       purchaseOrderType: [null],
-      quotationDate: [null],
+      // quotationDate: [null],
       supplierCode: [null],
       gstno: [null],
       deliveryDate: [null],
@@ -138,6 +138,7 @@ export class PurchaseOrderComponent implements OnInit {
       igst: 0,
       netWeight: 0,
       amount: [''],
+      deliveryDate: [''],
       total: [''],
       action: 'editDelete',
       index: 0
@@ -192,6 +193,9 @@ export class PurchaseOrderComponent implements OnInit {
           if (!this.commonService.checkNullOrUndefined(res) && res.status === StatusCodes.pass) {
             if (!this.commonService.checkNullOrUndefined(res.response)) {
               this.formData.patchValue(res.response['SaleOrderMasters']);
+              this.formData.patchValue({
+                saleOrderNo: res.response['SaleOrderMasters'].saleOrderNo ? +res.response['SaleOrderMasters'].saleOrderNo : ''
+              })
               res.response['SaleOrderDetails'].forEach((s: any, index: number) => { s.action = 'editDelete'; s.index = index + 1; })
               this.tableData = res.response['SaleOrderDetails'];
             }
@@ -467,6 +471,9 @@ export class PurchaseOrderComponent implements OnInit {
           if (!this.commonService.checkNullOrUndefined(res) && res.status === StatusCodes.pass) {
             if (!this.commonService.checkNullOrUndefined(res.response)) {
               this.formData.patchValue(res.response['pomasters']);
+              this.formData.patchValue({
+                saleOrderNo: res.response['pomasters'].saleOrderNo ? +res.response['pomasters'].saleOrderNo : ''
+              })
               // this.sendDynTableData = { type: 'edit', data: res.response['poDetail'] };
               this.formData.disable();
               this.tableData = res.response['poDetail'];
@@ -527,8 +534,8 @@ export class PurchaseOrderComponent implements OnInit {
     const cgst = obj.cgst ? ((+formObj.qty * +formObj.rate * +formObj.netWeight) * obj.cgst) / 100 : 0;
     const sgst = obj.sgst ? ((+formObj.qty * +formObj.rate * +formObj.netWeight) * obj.sgst) / 100 : 0;
     this.formData1.patchValue({
-      amount: (+formObj.qty * +formObj.rate),
-      total: (+formObj.qty * +formObj.rate) + (igst + sgst + cgst),
+      amount: (+formObj.qty * +formObj.rate * +formObj.netWeight),
+      total: (+formObj.qty * +formObj.rate * +formObj.netWeight) + (igst + sgst + cgst),
       igst: igst,
       cgst: cgst,
       sgst: sgst,
@@ -549,7 +556,7 @@ export class PurchaseOrderComponent implements OnInit {
         igst: this.formData.value.igst + t.igst,
         cgst: this.formData.value.cgst + t.cgst,
         sgst: this.formData.value.sgst + t.sgst,
-        amount: this.formData.value.amount + (t.qty * t.rate),
+        amount: this.formData.value.amount + (t.qty * t.rate * t.netWeight),
         totalTax: this.formData.value.totalTax + (t.igst + t.cgst + t.sgst),
       })
     })
@@ -577,7 +584,7 @@ export class PurchaseOrderComponent implements OnInit {
     const addprorder = String.Join('/', this.apiConfigService.addpurchaseorder);
     this.formData.controls.gstno.enable();
     const obj = this.formData.value;
-    obj.quotationDate = obj.quotationDate ? this.datepipe.transform(obj.quotationDate, 'MM-dd-yyyy') : '';
+    // obj.quotationDate = obj.quotationDate ? this.datepipe.transform(obj.quotationDate, 'MM-dd-yyyy') : '';
     obj.purchaseOrderDate = obj.purchaseOrderDate ? this.datepipe.transform(obj.purchaseOrderDate, 'MM-dd-yyyy') : '';
     obj.deliveryDate = obj.deliveryDate ? this.datepipe.transform(obj.deliveryDate, 'MM-dd-yyyy') : ''
     const requestObj = { poHdr: this.formData.value, poDtl: this.tableData };
