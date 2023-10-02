@@ -258,6 +258,10 @@ export class SalesorderComponent {
     this.formData1.patchValue({
       netWeight: obj.netWeight
     })
+    if (!obj.netWeight) {
+      this.alertService.openSnackBar('Net Weight has not provided for selected material..', Static.Close, SnackBar.error);
+    }
+
   }
 
 
