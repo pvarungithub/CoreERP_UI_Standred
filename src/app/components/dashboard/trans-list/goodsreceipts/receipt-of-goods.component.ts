@@ -117,7 +117,7 @@ export class ReceiptOfGoodsComponent implements OnInit {
 
 
     this.formData1 = this.formBuilder.group({
-      rejectQty: ['', Validators.required],
+      rejectQty: [''],
       receivedQty: ['', Validators.required],
       materialCode: [''],
       netWeight: [''],
@@ -240,39 +240,28 @@ export class ReceiptOfGoodsComponent implements OnInit {
 
   ponoselect() {
     let data = [];
-    // let newData = [];
+    let newData = [];
     if (!this.commonService.checkNullOrUndefined(this.formData.get('purchaseOrderNo').value)) {
       data = this.podetailsList.filter(resp => resp.purchaseOrderNumber == this.formData.get('purchaseOrderNo').value);
     }
     if (data.length) {
       debugger
       data.forEach((d: any, index: number) => {
-        d.rejectQty = d.rejectQty ? d.rejectQty : '';
-        d.receivedQty = d.receivedQty ? d.receivedQty : '' ;
-        d.description = d.description ? d.description : '' ;
-        d.action = 'editDelete';
-        d.index = index + 1
-        })
-      // console.log(data, this.tablePropsFunc());
-      // data.forEach((res, index) => {
-      //   newData.push(this.tablePropsFunc().tableData);
-      //   //this.getLotNumberData(res.materialCode);
-      //   newData[index].poqty.value = res.qty;
-      //   newData[index].materialCode.value = res.materialCode;
-      //   newData[index].storageLocation.value = res.location;
-      //   newData[index].description.value = res.description;
-      //   newData[index].project.value = res.joborProject;
-      //   newData[index].profitCenter.value = res.profitCenter;
-      //   newData[index].branch.value = res.branch;
-      //   newData[index].plant.value = res.plant;
-      //   newData[index].lotDate.value = new Date();
-      // })
-      this.tableData = data;
+        const obj = {
+          materialCode: d.materialCode ? d.materialCode : '',
+          netWeight: d.netWeight ? d.netWeight : '',
+          purchaseOrderNumber: d.purchaseOrderNumber ? d.purchaseOrderNumber : '',
+          rejectQty: d.rejectQty ? d.rejectQty : '',
+          qty: d.qty ? d.qty : '',
+          receivedQty: d.receivedQty ? d.receivedQty : '' ,
+          description: d.description ? d.description : '' ,
+          action: 'editDelete',
+          index: index + 1
+        }
+        newData.push(obj)
+      })
+      this.tableData = newData;
     }
-    //
-    debugger
-    // this.sendDynTableData = { type: 'add', data: newData };
-
   }
 
   getpurchaseOrderTypeData() {
@@ -472,9 +461,25 @@ export class ReceiptOfGoodsComponent implements OnInit {
             if (!this.commonService.checkNullOrUndefined(res.response)) {
               this.formData.patchValue(res.response['grmasters']);
               debugger
-              // this.sendDynTableData = { type: 'edit', data: res.response['grDetail'] };
-              this.tableData = res.response['grDetail'];
-
+              this.formData.patchValue({
+                purchaseOrderNo: +res.response['grmasters'].purchaseOrderNo
+              })
+              const arr = []
+              res.response['grDetail'].forEach((d: any, index: number) => {
+                const obj = {
+                  materialCode: d.materialCode ? d.materialCode : '',
+                  netWeight: d.netWeight ? d.netWeight : '',
+                  purchaseOrderNumber: d.purchaseOrderNumber ? d.purchaseOrderNumber : '',
+                  rejectQty: d.rejectQty ? d.rejectQty : '',
+                  qty: d.qty ? d.qty : '',
+                  receivedQty: d.receivedQty ? d.receivedQty : '',
+                  description: d.description ? d.description : '',
+                  action: 'editDelete',
+                  index: index + 1
+                }
+                arr.push(obj)
+              })
+              this.tableData = arr;
               this.formData.disable();
             }
           }
@@ -532,10 +537,10 @@ export class ReceiptOfGoodsComponent implements OnInit {
     this.apiService.apiPostRequest(addgoodsreceipt, requestObj).subscribe(
       response => {
         const res = response;
-        this.tableData = [];
         if (!this.commonService.checkNullOrUndefined(res) && res.status === StatusCodes.pass) {
           if (!this.commonService.checkNullOrUndefined(res.response)) {
             this.alertService.openSnackBar('Goods Receipt created Successfully..', Static.Close, SnackBar.success);
+            this.router.navigateByUrl('dashboard/transaction/goodsreceipts');
           }
           this.reset();
           this.spinner.hide();
