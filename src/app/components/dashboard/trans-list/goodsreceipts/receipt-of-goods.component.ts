@@ -29,6 +29,8 @@ export class ReceiptOfGoodsComponent implements OnInit {
   routeEdit = '';
 
   tableData = [];
+  materialCodeList = [];
+  perChaseOrderList = [];
 
 
   dynTableProps: any;
@@ -124,7 +126,8 @@ export class ReceiptOfGoodsComponent implements OnInit {
       purchaseOrderNumber: [''],
       description: [''],
       qty: [''],
-      action: 'editDelete',
+      type: [''],
+      // action: 'editDelete',
       index: 0
     });
   }
@@ -134,7 +137,7 @@ export class ReceiptOfGoodsComponent implements OnInit {
     this.formData1.reset();
     this.formData1.patchValue({
       index: 0,
-      action: 'editDelete'
+      // action: 'editDelete'
     });
   }
 
@@ -240,12 +243,12 @@ export class ReceiptOfGoodsComponent implements OnInit {
 
   ponoselect() {
     let data = [];
-    let newData = [];
+    this.perChaseOrderList = [];
     if (!this.commonService.checkNullOrUndefined(this.formData.get('purchaseOrderNo').value)) {
       data = this.podetailsList.filter(resp => resp.purchaseOrderNumber == this.formData.get('purchaseOrderNo').value);
     }
     if (data.length) {
-      debugger
+      // debugger
       data.forEach((d: any, index: number) => {
         const obj = {
           materialCode: d.materialCode ? d.materialCode : '',
@@ -255,13 +258,24 @@ export class ReceiptOfGoodsComponent implements OnInit {
           qty: d.qty ? d.qty : '',
           receivedQty: d.receivedQty ? d.receivedQty : '' ,
           description: d.description ? d.description : '' ,
-          action: 'editDelete',
+          // action: 'editDelete',
           index: index + 1
         }
-        newData.push(obj)
+        this.perChaseOrderList.push(obj)
       })
-      this.tableData = newData;
+      // this.tableData = this.perChaseOrderList;
+      const unique = [...new Set(this.perChaseOrderList.map(item => item.materialCode))]
+      this.materialCodeList = unique;
+      debugger
     }
+  }
+
+  materialCodeChange() {
+    const obj = this.perChaseOrderList.find((p: any) => p.materialCode == this.formData1.value.materialCode);
+    this.formData1.patchValue({
+      qty: obj.qty,
+      netWeight: obj.netWeight,
+    })
   }
 
   getpurchaseOrderTypeData() {
@@ -464,7 +478,7 @@ export class ReceiptOfGoodsComponent implements OnInit {
               this.formData.patchValue({
                 purchaseOrderNo: +res.response['grmasters'].purchaseOrderNo
               })
-              const arr = []
+              this.perChaseOrderList = []
               res.response['grDetail'].forEach((d: any, index: number) => {
                 const obj = {
                   materialCode: d.materialCode ? d.materialCode : '',
@@ -474,12 +488,15 @@ export class ReceiptOfGoodsComponent implements OnInit {
                   qty: d.qty ? d.qty : '',
                   receivedQty: d.receivedQty ? d.receivedQty : '',
                   description: d.description ? d.description : '',
-                  action: 'editDelete',
+                  type: 'edit',
+                  // action: 'editDelete',
                   index: index + 1
                 }
-                arr.push(obj)
+                this.perChaseOrderList.push(obj)
               })
-              this.tableData = arr;
+              this.tableData = this.perChaseOrderList;
+              const unique = [...new Set(this.perChaseOrderList.map(item => item.materialCode))]
+              this.materialCodeList = unique;
               this.formData.disable();
             }
           }
@@ -532,8 +549,9 @@ export class ReceiptOfGoodsComponent implements OnInit {
   }
 
   savegoodsreceipt() {
+    const arr = this.tableData.filter((d: any) => !d.type);
     const addgoodsreceipt = String.Join('/', this.apiConfigService.addgoodsreceipt);
-    const requestObj = { grHdr: this.formData.value, grDtl: this.tableData };
+    const requestObj = { grHdr: this.formData.value, grDtl: arr };
     this.apiService.apiPostRequest(addgoodsreceipt, requestObj).subscribe(
       response => {
         const res = response;
