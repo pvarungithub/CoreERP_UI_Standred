@@ -129,7 +129,7 @@ export class ReceiptOfGoodsComponent implements OnInit {
       description: [''],
       qty: [''],
       type: [''],
-      // action: 'editDelete',
+      action: 'editDelete',
       index: 0
     });
   }
@@ -139,7 +139,7 @@ export class ReceiptOfGoodsComponent implements OnInit {
     this.formData1.reset();
     this.formData1.patchValue({
       index: 0,
-      // action: 'editDelete'
+      action: 'editDelete'
     });
   }
 
@@ -148,8 +148,19 @@ export class ReceiptOfGoodsComponent implements OnInit {
     if (this.formData1.invalid) {
       return;
     }
-
     let data: any = this.tableData;
+    data = (data && data.length) ? data : [];
+    let qtyT = 0
+    data.forEach((t: any) => {
+      if (t.materialCode == this.formData1.value.materialCode) {
+        qtyT = qtyT + t.qty
+      }
+    })
+    const remainigQ = this.formData1.value.qty - qtyT;
+    if (remainigQ < this.formData1.value.receivedQty) {
+      this.alertService.openSnackBar("You can't recevie more Quantity", Static.Close, SnackBar.error);
+      return;
+    }
     this.tableData = null;
     this.tableComponent.defaultValues();
     if (this.formData1.value.index == 0) {
@@ -258,8 +269,8 @@ export class ReceiptOfGoodsComponent implements OnInit {
           purchaseOrderNumber: d.purchaseOrderNumber ? d.purchaseOrderNumber : '',
           rejectQty: d.rejectQty ? d.rejectQty : '',
           qty: d.qty ? d.qty : '',
-          receivedQty: d.receivedQty ? d.receivedQty : '' ,
-          description: d.description ? d.description : '' ,
+          receivedQty: d.receivedQty ? d.receivedQty : '',
+          description: d.description ? d.description : '',
           // action: 'editDelete',
           index: index + 1
         }
@@ -268,6 +279,11 @@ export class ReceiptOfGoodsComponent implements OnInit {
       // this.tableData = this.perChaseOrderList;
       const unique = [...new Set(this.perChaseOrderList.map(item => item.materialCode))]
       this.materialCodeList = unique;
+      this.formData1.patchValue({
+        qty: '',
+        netWeight: '',
+      })
+      this.tableData = null;
       debugger
     }
   }
