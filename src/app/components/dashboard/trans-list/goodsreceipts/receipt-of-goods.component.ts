@@ -12,6 +12,7 @@ import { AlertService } from '../../../../services/alert.service';
 import { DateAdapter, MAT_DATE_FORMATS } from '@angular/material/core';
 import { AppDateAdapter, APP_DATE_FORMATS } from '../../../../directives/format-datepicker';
 import { TableComponent } from 'src/app/reuse-components';
+import { DatePipe } from '@angular/common';
 
 @Component({
   selector: 'app-receipt-of-goods',
@@ -59,6 +60,7 @@ export class ReceiptOfGoodsComponent implements OnInit {
     private apiService: ApiService,
     private alertService: AlertService,
     private spinner: NgxSpinnerService,
+    private datepipe: DatePipe,
     public commonService: CommonService,
     public route: ActivatedRoute,
     private router: Router) {
@@ -551,7 +553,9 @@ export class ReceiptOfGoodsComponent implements OnInit {
   savegoodsreceipt() {
     const arr = this.tableData.filter((d: any) => !d.type);
     const addgoodsreceipt = String.Join('/', this.apiConfigService.addgoodsreceipt);
-    const requestObj = { grHdr: this.formData.value, grDtl: arr };
+    const formData = this.formData.value;
+    formData.receivedDate = this.formData.get('receivedDate').value ? this.datepipe.transform(this.formData.get('receivedDate').value, 'dd-MM-yyyy') : '';
+    const requestObj = { grHdr: formData, grDtl: arr };
     this.apiService.apiPostRequest(addgoodsreceipt, requestObj).subscribe(
       response => {
         const res = response;

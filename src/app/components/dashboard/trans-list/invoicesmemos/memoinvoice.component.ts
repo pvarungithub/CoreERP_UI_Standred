@@ -93,19 +93,19 @@ export class MemoinvoiceComponent implements OnInit {
   formDataGroup() {
     this.formData = this.formBuilder.group({
       company: [null, [Validators.required]],
-      branch: [null, [Validators.required]],
+      // branch: [null, [Validators.required]],
       voucherClass: [null],
       voucherType: [null, [Validators.required]],
       voucherDate: [new Date()],
       postingDate: [new Date()],
       partyInvoiceNo: [null, [Validators.required]],
       partyInvoiceDate: [null],
-      grnno: [null],
-      grndate: [null],
+      // grnno: [null],
+      // grndate: [null],
       period: [null],
       voucherNumber: [null, [Validators.required]],
       transactionType: [null],
-      paymentterms: [null],
+      // paymentterms: [null],
       natureofTransaction: [null],
       referenceNumber: [null],
       referenceDate: [null],
@@ -161,9 +161,9 @@ export class MemoinvoiceComponent implements OnInit {
         referenceDate: {
           value: new Date(), type: 'datepicker', width: 100
         },
-        functionalDept: {
-          value: null, type: 'dropdown', list: this.functionaldeptList, id: 'code', text: 'description', displayMul: false, width: 100
-        },
+        // functionalDept: {
+        //   value: null, type: 'dropdown', list: this.functionaldeptList, id: 'code', text: 'description', displayMul: false, width: 100
+        // },
         profitCenter: {
           value: null, type: 'dropdown', list: this.profitCenterList, id: 'id', text: 'text', displayMul: false, width: 100
         },
@@ -173,27 +173,27 @@ export class MemoinvoiceComponent implements OnInit {
         bttypes: {
           value: null, type: 'dropdown', list: this.btList, id: 'code', text: 'description', displayMul: false, width: 100
         },
-        costCenter: {
-          value: null, type: 'dropdown', list: this.costCenterList, id: 'id', text: 'text', displayMul: false, width: 100
-        },
+        // costCenter: {
+        //   value: null, type: 'dropdown', list: this.costCenterList, id: 'id', text: 'text', displayMul: false, width: 100
+        // },
         narration: {
           value: null, type: 'text', width: 100, maxLength: 50
         },
-        workBreakStructureElement: {
-          value: null, type: 'dropdown', list: this.wbsList, id: 'id', text: 'text', displayMul: false, width: 100
-        },
-        netWork: {
-          value: null, type: 'dropdown', list: this.costCenterList, id: 'id', text: 'text', displayMul: false, width: 100
-        },
+        // workBreakStructureElement: {
+        //   value: null, type: 'dropdown', list: this.wbsList, id: 'id', text: 'text', displayMul: false, width: 100
+        // },
+        // netWork: {
+        //   value: null, type: 'dropdown', list: this.costCenterList, id: 'id', text: 'text', displayMul: false, width: 100
+        // },
         orderNo: {
           value: null, type: 'dropdown', list: this.ordertypeList, id: 'orderType', text: 'description', displayMul: false, width: 100
         },
-        fundCenter: {
-          value: null, type: 'dropdown', list: this.fcList, id: 'code', text: 'description', displayMul: false, width: 100
-        },
-        commitment: {
-          value: null, type: 'dropdown', list: this.citemList, id: 'code', text: 'description', displayMul: false, width: 100
-        },
+        // fundCenter: {
+        //   value: null, type: 'dropdown', list: this.fcList, id: 'code', text: 'description', displayMul: false, width: 100
+        // },
+        // commitment: {
+        //   value: null, type: 'dropdown', list: this.citemList, id: 'code', text: 'description', displayMul: false, width: 100
+        // },
         hsnsac: {
           value: null, type: 'dropdown', list: this.hsnsacList, id: 'code', text: 'description', displayMul: false, width: 100
         },
@@ -243,24 +243,24 @@ export class MemoinvoiceComponent implements OnInit {
               this.companyList = res.response['companiesList'];
             }
           }
-          this.getBranchList();
-        });
-  }
-
-  getBranchList() {
-    const branchUrl = String.Join('/', this.apiConfigService.getBranchList);
-    this.apiService.apiGetRequest(branchUrl)
-      .subscribe(
-        response => {
-          const res = response;
-          if (!this.commonService.checkNullOrUndefined(res) && res.status === StatusCodes.pass) {
-            if (!this.commonService.checkNullOrUndefined(res.response)) {
-              this.branchList = res.response['branchsList'];
-            }
-          }
           this.getVoucherTypes();
         });
   }
+
+  // getBranchList() {
+  //   const branchUrl = String.Join('/', this.apiConfigService.getBranchList);
+  //   this.apiService.apiGetRequest(branchUrl)
+  //     .subscribe(
+  //       response => {
+  //         const res = response;
+  //         if (!this.commonService.checkNullOrUndefined(res) && res.status === StatusCodes.pass) {
+  //           if (!this.commonService.checkNullOrUndefined(res.response)) {
+  //             this.branchList = res.response['branchsList'];
+  //           }
+  //         }
+  //         this.getVoucherTypes();
+  //       });
+  // }
 
   getVoucherTypes() {
     const voucherTypes = String.Join('/', this.apiConfigService.getVoucherTypesList);
@@ -347,23 +347,23 @@ export class MemoinvoiceComponent implements OnInit {
               this.segmentList = res.response['segmentList'];
             }
           }
-          this.getfunctionaldeptList();
-        });
-  }
-  getfunctionaldeptList() {
-    const taxCodeUrl = String.Join('/', this.apiConfigService.getfunctionaldeptList);
-    this.apiService.apiGetRequest(taxCodeUrl)
-      .subscribe(
-        response => {
-          const res = response;
-          if (!this.commonService.checkNullOrUndefined(res) && res.status === StatusCodes.pass) {
-            if (!this.commonService.checkNullOrUndefined(res.response)) {
-              this.functionaldeptList = res.response['fdeptList'];
-            }
-          }
           this.getPartnerTypeList();
         });
   }
+  // getfunctionaldeptList() {
+  //   const taxCodeUrl = String.Join('/', this.apiConfigService.getfunctionaldeptList);
+  //   this.apiService.apiGetRequest(taxCodeUrl)
+  //     .subscribe(
+  //       response => {
+  //         const res = response;
+  //         if (!this.commonService.checkNullOrUndefined(res) && res.status === StatusCodes.pass) {
+  //           if (!this.commonService.checkNullOrUndefined(res.response)) {
+  //             this.functionaldeptList = res.response['fdeptList'];
+  //           }
+  //         }
+  //         this.getPartnerTypeList();
+  //       });
+  // }
   getPartnerTypeList() {
     const costCenUrl = String.Join('/', this.apiConfigService.getPartnerTypeList);
     this.apiService.apiGetRequest(costCenUrl)
@@ -387,27 +387,27 @@ export class MemoinvoiceComponent implements OnInit {
           const res = response;
           if (!this.commonService.checkNullOrUndefined(res) && res.status === StatusCodes.pass) {
             if (!this.commonService.checkNullOrUndefined(res.response)) {
-              this.bpList = res.response['bpList'];
+              this.bpList = res.response['BPList'];
 
             }
           }
-          this.getPaymenttermsList();
+          this.getHsnSacList();
         });
   }
-  getPaymenttermsList() {
-    const getpmList = String.Join('/', this.apiConfigService.getPaymentsTermsList);
-    this.apiService.apiGetRequest(getpmList)
-      .subscribe(
-        response => {
-          const res = response;
-          if (!this.commonService.checkNullOrUndefined(res) && res.status === StatusCodes.pass) {
-            if (!this.commonService.checkNullOrUndefined(res.response)) {
-              this.ptermsList = res.response['ptermsList'];
-            }
-          }
-          this.getHsnSacList()
-        });
-  }
+  // getPaymenttermsList() {
+  //   const getpmList = String.Join('/', this.apiConfigService.getPaymentsTermsList);
+  //   this.apiService.apiGetRequest(getpmList)
+  //     .subscribe(
+  //       response => {
+  //         const res = response;
+  //         if (!this.commonService.checkNullOrUndefined(res) && res.status === StatusCodes.pass) {
+  //           if (!this.commonService.checkNullOrUndefined(res.response)) {
+  //             this.ptermsList = res.response['ptermsList'];
+  //           }
+  //         }
+  //         this.getHsnSacList()
+  //       });
+  // }
 
   getHsnSacList() {
     const segUrl = String.Join('/', this.apiConfigService.getHsnSacList);
@@ -420,85 +420,87 @@ export class MemoinvoiceComponent implements OnInit {
               this.hsnsacList = res.response['hsnsacList'];
             }
           }
-          this.getWbsList();
-        });
-  }
-
-  getWbsList() {
-    const segUrl = String.Join('/', this.apiConfigService.getwbselement);
-    this.apiService.apiGetRequest(segUrl)
-      .subscribe(
-        response => {
-          const res = response;
-          if (!this.commonService.checkNullOrUndefined(res) && res.status === StatusCodes.pass) {
-            if (!this.commonService.checkNullOrUndefined(res.response)) {
-              this.wbsList = res.response['wbsList'];
-            }
-          }
-          this.getFundCenterList();
-        });
-  }
-  getFundCenterList() {
-    const fcUrl = String.Join('/', this.apiConfigService.getfundcenterList);
-    this.apiService.apiGetRequest(fcUrl)
-      .subscribe(
-        response => {
-          const res = response;
-          if (!this.commonService.checkNullOrUndefined(res) && res.status === StatusCodes.pass) {
-            if (!this.commonService.checkNullOrUndefined(res.response)) {
-              this.fcList = res.response['fcList'];
-            }
-          }
-          this.getCommitmentList();
-        });
-  }
-  getCommitmentList() {
-    const cmntUrl = String.Join('/', this.apiConfigService.getCommitmentList);
-    this.apiService.apiGetRequest(cmntUrl)
-      .subscribe(
-        response => {
-          const res = response;
-          if (!this.commonService.checkNullOrUndefined(res) && res.status === StatusCodes.pass) {
-            if (!this.commonService.checkNullOrUndefined(res.response)) {
-              this.citemList = res.response['citemList'];
-            }
-          }
           this.getordernoList();
         });
   }
+
+  // getWbsList() {
+  //   const segUrl = String.Join('/', this.apiConfigService.getwbselement);
+  //   this.apiService.apiGetRequest(segUrl)
+  //     .subscribe(
+  //       response => {
+  //         const res = response;
+  //         if (!this.commonService.checkNullOrUndefined(res) && res.status === StatusCodes.pass) {
+  //           if (!this.commonService.checkNullOrUndefined(res.response)) {
+  //             this.wbsList = res.response['wbsList'];
+  //           }
+  //         }
+  //         this.getFundCenterList();
+  //       });
+  // }
+  // getFundCenterList() {
+  //   const fcUrl = String.Join('/', this.apiConfigService.getfundcenterList);
+  //   this.apiService.apiGetRequest(fcUrl)
+  //     .subscribe(
+  //       response => {
+  //         const res = response;
+  //         if (!this.commonService.checkNullOrUndefined(res) && res.status === StatusCodes.pass) {
+  //           if (!this.commonService.checkNullOrUndefined(res.response)) {
+  //             this.fcList = res.response['fcList'];
+  //           }
+  //         }
+  //         this.getCommitmentList();
+  //       });
+  // }
+  // getCommitmentList() {
+  //   const cmntUrl = String.Join('/', this.apiConfigService.getCommitmentList);
+  //   this.apiService.apiGetRequest(cmntUrl)
+  //     .subscribe(
+  //       response => {
+  //         const res = response;
+  //         if (!this.commonService.checkNullOrUndefined(res) && res.status === StatusCodes.pass) {
+  //           if (!this.commonService.checkNullOrUndefined(res.response)) {
+  //             this.citemList = res.response['citemList'];
+  //           }
+  //         }
+  //         this.getordernoList();
+  //       });
+  // }
   getordernoList() {
     const onoUrl = String.Join('/', this.apiConfigService.getordernolist);
     this.apiService.apiGetRequest(onoUrl)
-      .subscribe(
-        response => {
-          const res = response;
-          if (!this.commonService.checkNullOrUndefined(res) && res.status === StatusCodes.pass) {
-            if (!this.commonService.checkNullOrUndefined(res.response)) {
-              this.ordertypeList = res.response['ordertypeList'];
-            }
-          }
-          this.getCostcenters();
-        });
-  }
-  getCostcenters() {
-    const costCenUrl = String.Join('/', this.apiConfigService.getCostCentersList);
-    this.apiService.apiGetRequest(costCenUrl)
       .subscribe(
         response => {
           this.spinner.hide();
           const res = response;
           if (!this.commonService.checkNullOrUndefined(res) && res.status === StatusCodes.pass) {
             if (!this.commonService.checkNullOrUndefined(res.response)) {
-              this.costCenterList = res.response['costcenterList'];
-
+              this.ordertypeList = res.response['ordertypeList'];
             }
           }
+
           this.dynTableProps = this.tablePropsFunc();
           if (this.routeEdit != '') {
             this.getIMDetail(this.routeEdit);
           }
+          // this.getCostcenters();
         });
   }
+  // getCostcenters() {
+  //   const costCenUrl = String.Join('/', this.apiConfigService.getCostCentersList);
+  //   this.apiService.apiGetRequest(costCenUrl)
+  //     .subscribe(
+  //       response => {
+  //         this.spinner.hide();
+  //         const res = response;
+  //         if (!this.commonService.checkNullOrUndefined(res) && res.status === StatusCodes.pass) {
+  //           if (!this.commonService.checkNullOrUndefined(res.response)) {
+  //             this.costCenterList = res.response['costcenterList'];
+
+  //           }
+  //         }
+  //       });
+  // }
 
   voucherTypeSelect() {
     const record = this.voucherTypeList.find(res => res.id == this.formData.get('voucherClass').value)
