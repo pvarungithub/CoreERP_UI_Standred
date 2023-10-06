@@ -153,11 +153,11 @@ export class ReceiptOfGoodsComponent implements OnInit {
     let qtyT = 0
     data.forEach((t: any) => {
       if (t.materialCode == this.formData1.value.materialCode) {
-        qtyT = qtyT + t.qty
+        qtyT = qtyT + (+t.receivedQty + +t.rejectQty)
       }
     })
     const remainigQ = this.formData1.value.qty - qtyT;
-    if (remainigQ < this.formData1.value.receivedQty) {
+    if (remainigQ < (+this.formData1.value.receivedQty + +this.formData1.value.rejectQty)) {
       this.alertService.openSnackBar("You can't recevie more Quantity", Static.Close, SnackBar.error);
       return;
     }
@@ -271,7 +271,7 @@ export class ReceiptOfGoodsComponent implements OnInit {
           qty: d.qty ? d.qty : '',
           receivedQty: d.receivedQty ? d.receivedQty : '',
           description: d.description ? d.description : '',
-          // action: 'editDelete',
+          action: '',
           index: index + 1
         }
         this.perChaseOrderList.push(obj)
@@ -507,7 +507,7 @@ export class ReceiptOfGoodsComponent implements OnInit {
                   receivedQty: d.receivedQty ? d.receivedQty : '',
                   description: d.description ? d.description : '',
                   type: 'edit',
-                  // action: 'editDelete',
+                  action: '',
                   index: index + 1
                 }
                 this.perChaseOrderList.push(obj)
@@ -570,7 +570,7 @@ export class ReceiptOfGoodsComponent implements OnInit {
     const arr = this.tableData.filter((d: any) => !d.type);
     const addgoodsreceipt = String.Join('/', this.apiConfigService.addgoodsreceipt);
     const formData = this.formData.value;
-    formData.receivedDate = this.formData.get('receivedDate').value ? this.datepipe.transform(this.formData.get('receivedDate').value, 'dd-MM-yyyy') : '';
+    formData.receivedDate = this.formData.get('receivedDate').value ? this.datepipe.transform(this.formData.get('receivedDate').value, 'MM-dd-yyyy') : '';
     const requestObj = { grHdr: formData, grDtl: arr };
     this.apiService.apiPostRequest(addgoodsreceipt, requestObj).subscribe(
       response => {

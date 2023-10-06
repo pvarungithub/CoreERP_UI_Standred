@@ -87,6 +87,7 @@ export class SalesorderComponent {
       rate: ['', Validators.required],
       discount: [''],
       sgst: [''],
+      id: [0],
       igst: [''],
       cgst: [''],
       amount: [''],
@@ -102,8 +103,13 @@ export class SalesorderComponent {
     this.formData1.reset();
     this.formData1.patchValue({
       index: 0,
-      action: 'editDelete'
+      action: 'editDelete',
+      id: 0
     });
+  }
+
+  emitTypeAheadValue(event: any) {
+
   }
 
   saveForm() {
