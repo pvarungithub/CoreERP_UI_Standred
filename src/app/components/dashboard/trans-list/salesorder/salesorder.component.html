@@ -72,7 +72,7 @@
                 <hr>
             </h3>
 
-            <form [formGroup]="formData1" autocomplete="off" >
+            <form [formGroup]="formData1" autocomplete="off">
 
 
 
@@ -87,6 +87,28 @@
                             </mat-option>
                         </mat-select>
                     </mat-form-field>
+                    
+                    <!-- <mat-form-field class="form-element">
+                        <mat-label>{{ 'saleorder.materialCode' | translate }}</mat-label>
+                        <mat-select formControlName="materialCode" tabIndex="10"
+                            (selectionChange)="materialCodeChange()">
+                            <mat-option>None</mat-option>
+                            <mat-option *ngFor="let material of materialList" [value]="material.text">
+                                {{material.text}}
+                            </mat-option>
+                        </mat-select>
+                    </mat-form-field> -->
+
+                    <mat-form-field class="form-element" >
+                        <!-- <input matInput placeholder="{{'saleorder.materialCode' | translate }}"
+                            [typeahead]="materialList" typeaheadOptionField='text'
+                            formControlName="materialCode" appFocusOnEnter tabIndex="1"> -->
+
+                            <input matInput formControlName="materialCode" [typeahead]="states" class="form-control">
+                            <!-- <pre class="card card-block card-header mb-3">Model: {{selectedState | json}}</pre> -->
+
+                    </mat-form-field>
+
 
                     <mat-form-field class="form-element">
                         <mat-label>{{ 'saleorder.taxCode' | translate }}</mat-label>
@@ -172,8 +194,7 @@
 
         <div>
 
-            <button mat-raised-button type="submit" class="button-color-bule mx-3 text-white"
-                (click)="save()">
+            <button mat-raised-button type="submit" class="button-color-bule mx-3 text-white" (click)="save()">
                 {{ 'COMMON.SAVE' | translate }}
             </button>
             <!-- <button [hidden]="routeEdit == ''" mat-raised-button type="submit" class="button-color-bule mx-3 text-white"

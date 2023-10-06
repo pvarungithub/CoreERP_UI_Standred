@@ -133,6 +133,7 @@ export class PurchaseOrderComponent implements OnInit {
       qty: ['', Validators.required],
       rate: ['', Validators.required],
       discount: [''],
+      availableQTY: [''],
       cgst: 0,
       sgst: 0,
       igst: 0,
@@ -199,13 +200,14 @@ export class PurchaseOrderComponent implements OnInit {
               res.response['SaleOrderDetails'].forEach((s: any, index: number) => {
                 s.action = 'editDelete';
                 s.index = index + 1;
-                s.qty = 0;
+                s.qty = s.qty ? s.qty : 0;
                 s.rate = 0;
                 s.discount = 0;
                 s.cgst = 0;
                 s.sgst = 0;
                 s.igst = 0;
-                s.taxCode = '';
+                s.taxCode = s.taxCode ? s.taxCode : '';
+                s.availableQTY = s.availableQTY ? s.availableQTY : '';
                 s.amount = 0;
                 s.total = 0;
               })

@@ -67,9 +67,9 @@ export class SalesorderComponent {
   formDataGroup() {
     this.formData = this.formBuilder.group({
       saleOrderNo: [0],
-      customerCode: [null],
+      customerCode: ['', Validators.required],
       orderDate: [null],
-      poNumber: [null],
+      poNumber: ['', Validators.required],
       poDate: [null],
       dateofSupply: [null],
       placeofSupply: [null],
@@ -87,6 +87,7 @@ export class SalesorderComponent {
       rate: ['', Validators.required],
       discount: [''],
       sgst: [''],
+      availableQTY: [''],
       id: [0],
       igst: [''],
       cgst: [''],
@@ -108,6 +109,17 @@ export class SalesorderComponent {
     });
   }
 
+
+    states: string[] = ['Alabama','Alaska','Arizona','Arkansas','California','Colorado',
+   'Connecticut','Delaware','Florida','Georgia','Hawaii','Idaho','Illinois',
+   'Indiana','Iowa','Kansas','Kentucky','Louisiana','Maine',
+   'Maryland','Massachusetts','Michigan','Minnesota','Mississippi',
+   'Missouri','Montana','Nebraska','Nevada','New Hampshire','New Jersey',
+   'New Mexico','New York','North Dakota','North Carolina','Ohio',
+   'Oklahoma','Oregon','Pennsylvania','Rhode Island','South Carolina',
+   'South Dakota','Tennessee','Texas','Utah','Vermont',
+   'Virginia','Washington','West Virginia','Wisconsin','Wyoming'];
+   
   emitTypeAheadValue(event: any) {
 
   }
