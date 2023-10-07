@@ -107,7 +107,7 @@ export class ReceiptOfGoodsComponent implements OnInit {
       // grndate: [null],
       // qualityCheck: [null],
       // storageLocation: [null],
-      inspectionNoteNo: [null, [Validators.required]],
+      customerName: [null],
       id: ['0'],
       // rrno: [null],
       vehicleNo: [null],
@@ -284,6 +284,10 @@ export class ReceiptOfGoodsComponent implements OnInit {
         netWeight: '',
       })
       this.tableData = null;
+      const obj = this.purchaseordernoList.find(resp => resp.id == this.formData.get('purchaseOrderNo').value);
+      this.formData.patchValue({
+        customerName: obj.text
+      })
       debugger
     }
   }

@@ -102,6 +102,7 @@ export class PurchaseOrderComponent implements OnInit {
       plant: [null],
       branch: [null],
       profitCenter: [null],
+      purchaseOrderNumber: [null],
       purchaseOrderType: [null],
       // quotationDate: [null],
       supplierCode: [null],
@@ -147,6 +148,26 @@ export class PurchaseOrderComponent implements OnInit {
 
   }
 
+
+  profitCenterChange() {
+    this.formData.patchValue({
+      purchaseOrderNumber: ''
+    })
+    const costCenUrl = String.Join('/', this.apiConfigService.getPurchaseOrderNumber, this.formData.value.profitCenter);
+    this.apiService.apiGetRequest(costCenUrl)
+      .subscribe(
+        response => {
+          this.spinner.hide();
+          const res = response;
+          if (!this.commonService.checkNullOrUndefined(res) && res.status === StatusCodes.pass) {
+            if (!this.commonService.checkNullOrUndefined(res.response)) {
+              this.formData.patchValue({
+                purchaseOrderNumber: res.response['PurchaseOrderNumber']
+              })
+            }
+          }
+        });
+  }
 
   getTaxRatesList() {
     const taxCodeUrl = String.Join('/', this.apiConfigService.getTaxRatesList);
@@ -485,11 +506,12 @@ export class PurchaseOrderComponent implements OnInit {
           if (!this.commonService.checkNullOrUndefined(res) && res.status === StatusCodes.pass) {
             if (!this.commonService.checkNullOrUndefined(res.response)) {
               this.formData.patchValue(res.response['pomasters']);
-              this.formData.patchValue({
-                saleOrderNo: res.response['pomasters'].saleOrderNo ? +res.response['pomasters'].saleOrderNo : ''
-              })
+              // this.formData.patchValue({
+              //   saleOrderNo: res.response['pomasters'].saleOrderNo ? +res.response['pomasters'].saleOrderNo : ''
+              // })
               // this.sendDynTableData = { type: 'edit', data: res.response['poDetail'] };
               this.formData.disable();
+              res.response['poDetail'].forEach((s: any, index: number) => { s.action = 'editDelete'; s.index = index + 1; })
               this.tableData = res.response['poDetail'];
 
             }

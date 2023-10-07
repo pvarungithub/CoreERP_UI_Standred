@@ -459,4 +459,8 @@ export class ApiConfigService {
    getSaleOrderDetail = `${this.environment.runtimeConfig.serverUrl}Transactions/GetSaleOrderDetail`;
    addSaleOrder = `${this.environment.runtimeConfig.serverUrl}Transactions/AddSaleOrder`;
 
+   getSaleOrderNumber = `${this.environment.runtimeConfig.serverUrl}Transactions/GetSaleOrderNumber`;
+   getPurchaseOrderNumber = `${this.environment.runtimeConfig.serverUrl}Transactions/GetPurchaseOrderNumber`;
+
+
 }

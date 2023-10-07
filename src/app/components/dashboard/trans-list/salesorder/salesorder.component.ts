@@ -38,6 +38,7 @@ export class SalesorderComponent {
   customerList = [];
   taxCodeList = [];
   materialList = [];
+  profitCenterList = [];
 
   routeEdit = '';
 
@@ -69,7 +70,9 @@ export class SalesorderComponent {
       saleOrderNo: [0],
       customerCode: ['', Validators.required],
       orderDate: [null],
+      profitCenter: ['', Validators.required],
       poNumber: ['', Validators.required],
+      saleOrderNumber: [''],
       poDate: [null],
       dateofSupply: [null],
       placeofSupply: [null],
@@ -110,36 +113,31 @@ export class SalesorderComponent {
   }
 
 
-    states: string[] = ['Alabama','Alaska','Arizona','Arkansas','California','Colorado',
-   'Connecticut','Delaware','Florida','Georgia','Hawaii','Idaho','Illinois',
-   'Indiana','Iowa','Kansas','Kentucky','Louisiana','Maine',
-   'Maryland','Massachusetts','Michigan','Minnesota','Mississippi',
-   'Missouri','Montana','Nebraska','Nevada','New Hampshire','New Jersey',
-   'New Mexico','New York','North Dakota','North Carolina','Ohio',
-   'Oklahoma','Oregon','Pennsylvania','Rhode Island','South Carolina',
-   'South Dakota','Tennessee','Texas','Utah','Vermont',
-   'Virginia','Washington','West Virginia','Wisconsin','Wyoming'];
-   
   emitTypeAheadValue(event: any) {
 
   }
 
   saveForm() {
+    debugger
     if (this.formData1.invalid) {
       return;
     }
     this.dataChange();
-
     let data: any = this.tableData;
     this.tableData = null;
     this.tableComponent.defaultValues();
-    if (this.formData1.value.index == 0) {
+    const obj = data.find((d: any) => d.materialCode == this.formData1.value.materialCode)
+    if (this.formData1.value.index == 0 && !obj) {
       this.formData1.patchValue({
         index: data ? (data.length + 1) : 1
       });
       data = [...data, this.formData1.value];
     } else {
-      data = data.map((res: any) => res = res.index == this.formData1.value.index ? this.formData1.value : res);
+      if (this.formData1.value.index == 0) {
+        data.forEach((res: any) => { if (res.materialCode == this.formData1.value.materialCode) { (res.qty = res.qty + this.formData1.value.qty) } });
+      } else {
+        data = data.map((res: any) => res = res.index == this.formData1.value.index ? this.formData1.value : res);
+      }
     }
     setTimeout(() => {
       this.tableData = data;
@@ -196,6 +194,31 @@ export class SalesorderComponent {
     }
   }
 
+  profitCenterChange() {
+    this.formData.patchValue({
+      saleOrderNumber: ''
+    })
+    const costCenUrl = String.Join('/', this.apiConfigService.getSaleOrderNumber, this.formData.value.profitCenter);
+    this.apiService.apiGetRequest(costCenUrl)
+      .subscribe(
+        response => {
+          this.spinner.hide();
+          const res = response;
+          if (!this.commonService.checkNullOrUndefined(res) && res.status === StatusCodes.pass) {
+            if (!this.commonService.checkNullOrUndefined(res.response)) {
+              this.formData.patchValue({
+                saleOrderNumber: res.response['SaleOrderNumber']
+              })
+            }
+          }
+        });
+  }
+
+  onSearchChange() {
+    this.formData1.value.materialCode;
+
+  }
+
   getCustomerList() {
     const costCenUrl = String.Join('/', this.apiConfigService.getCustomerList);
     this.apiService.apiGetRequest(costCenUrl)
@@ -209,7 +232,23 @@ export class SalesorderComponent {
               this.customerList = data;
             }
           }
-          this.getTaxRatesList();
+          this.getProfitcenterData();
+        });
+  }
+
+  getProfitcenterData() {
+    const getpcUrl = String.Join('/', this.apiConfigService.getProfitCentersList);
+    this.apiService.apiGetRequest(getpcUrl)
+      .subscribe(
+        response => {
+          const res = response;
+          if (!this.commonService.checkNullOrUndefined(res) && res.status === StatusCodes.pass) {
+            if (!this.commonService.checkNullOrUndefined(res.response)) {
+              this.profitCenterList = res.response['profitCenterList'];
+            }
+          }
+
+          this.getTaxRatesList()
         });
   }
 
@@ -319,6 +358,6 @@ export class SalesorderComponent {
     this.formData.reset();
   }
 
- 
+
 
 }
