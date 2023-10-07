@@ -86,12 +86,12 @@ export class LeaveopeningbalanceComponent implements OnInit {
       const getProductByProductCodeUrl = String.Join('/', this.apiConfigService.getEmpCode);
       this.apiService.apiPostRequest(getProductByProductCodeUrl, { Code: '4' }).subscribe(
         response => {
+          this.spinner.hide();
           const res = response.body;
           if (!this.commonService.checkNullOrUndefined(res) && res.status === StatusCodes.pass) {
             if (!this.commonService.checkNullOrUndefined(res.response)) {
               if (!this.commonService.checkNullOrUndefined(res.response['Empcodes'])) {
                 this.getProductByProductCodeArray = res.response['Empcodes'];
-                this.spinner.hide();
               }
             }
           }

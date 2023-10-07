@@ -78,7 +78,8 @@
 
                 <div class="d--flex p-1 mat-form-field-height">
 
-                    <mat-form-field class="form-element">
+                    {{ formData.value.materialCode }}
+                    <!-- <mat-form-field class="form-element">
                         <mat-label>{{ 'saleorder.materialCode' | translate }}</mat-label>
                         <mat-select formControlName="materialCode" tabIndex="10" (selectionChange)="materialCodeChange()">
                             <mat-option>None</mat-option>
@@ -86,28 +87,12 @@
                                 {{material.text}}
                             </mat-option>
                         </mat-select>
-                    </mat-form-field>
-                    
-                    <!-- <mat-form-field class="form-element">
-                        <mat-label>{{ 'saleorder.materialCode' | translate }}</mat-label>
-                        <mat-select formControlName="materialCode" tabIndex="10"
-                            (selectionChange)="materialCodeChange()">
-                            <mat-option>None</mat-option>
-                            <mat-option *ngFor="let material of materialList" [value]="material.text">
-                                {{material.text}}
-                            </mat-option>
-                        </mat-select>
                     </mat-form-field> -->
+                    
 
-                    <!-- <mat-form-field class="form-element" > -->
-                        <!-- <input matInput placeholder="{{'saleorder.materialCode' | translate }}"
-                            [typeahead]="materialList" typeaheadOptionField='text'
-                            formControlName="materialCode" appFocusOnEnter tabIndex="1"> -->
-
-                            <!-- <input matInput formControlName="materialCode" [typeahead]="states" class="form-control"> -->
-                            <!-- <pre class="card card-block card-header mb-3">Model: {{selectedState | json}}</pre> -->
-
-                    <!-- </mat-form-field> -->
+                    <div class="mat-mdc-form-field typeahead" >
+                            <input  placeholder="{{ 'saleorder.materialCode' | translate }}" formControlName="materialCode" [typeahead]="materialList" typeaheadOptionField='text' tabIndex="8" class="form-control ">
+                    </div>
 
 
                     <mat-form-field class="form-element">
