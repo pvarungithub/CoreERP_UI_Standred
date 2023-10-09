@@ -2452,7 +2452,7 @@
     "NARRATION": "Narration"
   },
   "saleorder": {
-    "title": "Sales Order",
+    "title": "Sale Order",
     "saleOrderNo": "Sale Order Number",
     "customerCode": "Customer Code",
     "orderDate": "Order Date",
@@ -2463,7 +2463,7 @@
     "documentUrl": "Document Url",
     "status": "Status",
     "taxCode": "Tax Code",
-
+    "saleOrderNumber": "Saleorder Number",
     "NEWORDER": "New Order",
     "salesOrderNumber": "Sales Order Number",
     "materialCode": "Material Code",
