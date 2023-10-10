@@ -44,7 +44,7 @@
             'ng--invalid': !formControls.materialCode.valid && formControls.materialCode.status != 'DISABLED'  }">
                 <mat-label [translate]="'materialsmaster.materialCode'"> </mat-label>
               <input matInput
-                formControlName="materialCode" maxlength="7" appFocusOnEnter tabIndex="3">
+                formControlName="materialCode" maxlength="50" appFocusOnEnter tabIndex="3">
               <mat-error *ngIf="isSubmitted && !formControls.materialCode.valid && formControls.materialCode.status != 'DISABLED'"
                 [ngClass]="{ 'ng--invalid': !formControls.materialCode.valid  }">Material Code is required</mat-error>
             </mat-form-field>
