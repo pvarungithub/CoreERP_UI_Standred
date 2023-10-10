@@ -144,39 +144,39 @@ export class PurchasingComponent implements OnInit {
               this.companyList = res.response['companiesList'];
             }
           }
-          this.getplantList();
-        });
-  }
-
-  getplantList() {
-    const getplantList = String.Join('/', this.apiConfigService.getplantList);
-    this.apiService.apiGetRequest(getplantList)
-      .subscribe(
-        response => {
-          const res = response;
-          if (!this.commonService.checkNullOrUndefined(res) && res.status === StatusCodes.pass) {
-            if (!this.commonService.checkNullOrUndefined(res.response)) {
-              this.plantList = res.response['plantList'];
-            }
-          }
-          this.getcostunitsData();
-        });
-  }
-  getcostunitsData() {
-    const getsecondelementUrl = String.Join('/', this.apiConfigService.getcostingunitsList);
-    this.apiService.apiGetRequest(getsecondelementUrl)
-      .subscribe(
-        response => {
-          const res = response;
-          if (!this.commonService.checkNullOrUndefined(res) && res.status === StatusCodes.pass) {
-            if (!this.commonService.checkNullOrUndefined(res.response)) {
-              this.costunitList = res.response['costunitList'];
-              this.costunitList = res.response['costunitList'].filter(resp => resp.costUnitType == 'Project')
-            }
-          }
           this.getdepartmentData();
         });
   }
+
+  // getplantList() {
+  //   const getplantList = String.Join('/', this.apiConfigService.getplantList);
+  //   this.apiService.apiGetRequest(getplantList)
+  //     .subscribe(
+  //       response => {
+  //         const res = response;
+  //         if (!this.commonService.checkNullOrUndefined(res) && res.status === StatusCodes.pass) {
+  //           if (!this.commonService.checkNullOrUndefined(res.response)) {
+  //             this.plantList = res.response['plantList'];
+  //           }
+  //         }
+  //         this.getcostunitsData();
+  //       });
+  // }
+  // getcostunitsData() {
+  //   const getsecondelementUrl = String.Join('/', this.apiConfigService.getcostingunitsList);
+  //   this.apiService.apiGetRequest(getsecondelementUrl)
+  //     .subscribe(
+  //       response => {
+  //         const res = response;
+  //         if (!this.commonService.checkNullOrUndefined(res) && res.status === StatusCodes.pass) {
+  //           if (!this.commonService.checkNullOrUndefined(res.response)) {
+  //             this.costunitList = res.response['costunitList'];
+  //             this.costunitList = res.response['costunitList'].filter(resp => resp.costUnitType == 'Project')
+  //           }
+  //         }
+  //         this.getdepartmentData();
+  //       });
+  // }
   getdepartmentData() {
     const getdepartmentTypeUrl = String.Join('/', this.apiConfigService.getfunctionaldeptList);
     this.apiService.apiGetRequest(getdepartmentTypeUrl)
@@ -188,39 +188,39 @@ export class PurchasingComponent implements OnInit {
               this.functionaldeptList = res.response['fdeptList'];
             }
           }
-          this.getBranchList();
-        });
-  }
-
-  getBranchList() {
-    const branchUrl = String.Join('/', this.apiConfigService.getBranchList);
-    this.apiService.apiGetRequest(branchUrl)
-      .subscribe(
-        response => {
-          const res = response;
-          if (!this.commonService.checkNullOrUndefined(res) && res.status === StatusCodes.pass) {
-            if (!this.commonService.checkNullOrUndefined(res.response)) {
-              this.branchList = res.response['branchsList'];
-            }
-          }
-          this.getCostCenterData();
-        });
-  }
-
-  getCostCenterData() {
-    const getccUrl = String.Join('/', this.apiConfigService.GetCostCenterList);
-    this.apiService.apiGetRequest(getccUrl)
-      .subscribe(
-        response => {
-          const res = response;
-          if (!this.commonService.checkNullOrUndefined(res) && res.status === StatusCodes.pass) {
-            if (!this.commonService.checkNullOrUndefined(res.response)) {
-              this.costcenterList = res.response['costcenterList'];
-            }
-          }
           this.getProfitcenterData();
         });
   }
+
+  // getBranchList() {
+  //   const branchUrl = String.Join('/', this.apiConfigService.getBranchList);
+  //   this.apiService.apiGetRequest(branchUrl)
+  //     .subscribe(
+  //       response => {
+  //         const res = response;
+  //         if (!this.commonService.checkNullOrUndefined(res) && res.status === StatusCodes.pass) {
+  //           if (!this.commonService.checkNullOrUndefined(res.response)) {
+  //             this.branchList = res.response['branchsList'];
+  //           }
+  //         }
+  //         this.getCostCenterData();
+  //       });
+  // }
+
+  // getCostCenterData() {
+  //   const getccUrl = String.Join('/', this.apiConfigService.GetCostCenterList);
+  //   this.apiService.apiGetRequest(getccUrl)
+  //     .subscribe(
+  //       response => {
+  //         const res = response;
+  //         if (!this.commonService.checkNullOrUndefined(res) && res.status === StatusCodes.pass) {
+  //           if (!this.commonService.checkNullOrUndefined(res.response)) {
+  //             this.costcenterList = res.response['costcenterList'];
+  //           }
+  //         }
+  //         this.getProfitcenterData();
+  //       });
+  // }
 
   getProfitcenterData() {
     const getpcUrl = String.Join('/', this.apiConfigService.getProfitCenterList);
@@ -258,34 +258,38 @@ export class PurchasingComponent implements OnInit {
     this.apiService.apiGetRequest(getmaterialUrl)
       .subscribe(
         response => {
+          this.spinner.hide();
           const res = response;
           if (!this.commonService.checkNullOrUndefined(res) && res.status === StatusCodes.pass) {
             if (!this.commonService.checkNullOrUndefined(res.response)) {
               this.materialList = res.response['materialList'];
             }
           }
-          this.getWbsList();
+          this.dynTableProps = this.tablePropsFunc();
+                   if (this.routeEdit != '') {
+                     this.getPurchasingDetails(this.routeEdit);
+                   }
         });
   }
 
-  getWbsList() {
-    const segUrl = String.Join('/', this.apiConfigService.getwbselement);
-    this.apiService.apiGetRequest(segUrl)
-      .subscribe(
-        response => {
-          this.spinner.hide();
-          const res = response;
-          if (!this.commonService.checkNullOrUndefined(res) && res.status === StatusCodes.pass) {
-            if (!this.commonService.checkNullOrUndefined(res.response)) {
-              this.wbsList = res.response['wbsList'];
-            }
-          }
-          this.dynTableProps = this.tablePropsFunc();
-          if (this.routeEdit != '') {
-            this.getPurchasingDetails(this.routeEdit);
-          }
-        });
-  }
+  // getWbsList() {
+  //   const segUrl = String.Join('/', this.apiConfigService.getwbselement);
+  //   this.apiService.apiGetRequest(segUrl)
+  //     .subscribe(
+  //       response => {
+  //         this.spinner.hide();
+  //         const res = response;
+  //         if (!this.commonService.checkNullOrUndefined(res) && res.status === StatusCodes.pass) {
+  //           if (!this.commonService.checkNullOrUndefined(res.response)) {
+  //             this.wbsList = res.response['wbsList'];
+  //           }
+  //         }
+  //         this.dynTableProps = this.tablePropsFunc();
+  //         if (this.routeEdit != '') {
+  //           this.getPurchasingDetails(this.routeEdit);
+  //         }
+  //       });
+  // }
 
   getPurchasingDetails(val) {
     const cashDetUrl = String.Join('/', this.apiConfigService.getpurchasereqDetail, val);
