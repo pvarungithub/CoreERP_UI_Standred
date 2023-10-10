@@ -73,31 +73,16 @@ export class PurchasingComponent implements OnInit {
     return {
       tableData: {
         materialCode: {
-          value: null, type: 'dropdown', list: this.materialList, id: 'id', text: 'text', displayMul: true, width: 100
-        },
-        description: {
-          value: null, type: 'text', width: 100, maxLength: 50
+          value: null, type: 'dropdown', list: this.materialList, id: 'id', text: 'text', displayMul: true, width: 200
         },
         requiredQty: {
           value: null, type: 'number', width: 100, maxLength: 50
         },
         stockQty: {
           value: null, type: 'number', width: 100, maxLength: 50
-        },
-        requiredDate: {
-          value: new Date(), type: 'datepicker', width: 100, disabled: true
-        },
-        purchaseGroup: {
-          value: null, type: 'dropdown', list: this.pcgroupList, id: 'pruchaseGroup', text: 'description', displayMul: true, width: 100
-        },
-        productionOrder: {
-          value: null, type: 'text', width: 100, maxLength: 50
-        },
-        reservationNumber: {
-          value: null, type: 'number', width: 100, maxLength: 50
-        },
+        },        
         delete: {
-          type: 'delete', width: 10
+          type: 'delete', width: 50
         }
       },
 
