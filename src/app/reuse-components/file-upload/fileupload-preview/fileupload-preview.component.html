@@ -1,0 +1,8 @@
+<div class="card-title d-flex justify-content-between">
+    <span class="popup-title">File Preview</span>
+    <span class="close-button" (click)="dialogRef.close()"><img src="assets/images/close.png" width="16px"
+            class="close-popup" alt="close"></span>
+</div>
+<ng-container *ngIf="data">
+    <img [height]="400" [width]="500" [src]="data">
+</ng-container>

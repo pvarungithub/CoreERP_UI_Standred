@@ -34,6 +34,8 @@ export class SalesorderComponent {
 
   tableData: any[] = [];
 
+  fileList: any;
+
   // header props
   customerList = [];
   taxCodeList = [];
@@ -321,6 +323,30 @@ export class SalesorderComponent {
 
   }
 
+  emitFilesList(event: any) {
+    debugger
+    this.fileList = event[0];
+    this.uploadFile()
+  }
+
+  uploadFile() {
+    const addsq = String.Join('/', this.apiConfigService.uploadFile);
+    const formData = new FormData();
+    formData.append("file", this.fileList);
+
+    this.apiService.apiPostRequest(addsq, formData).subscribe(
+      response => {
+        this.spinner.hide();
+        const res = response;
+        if (!this.commonService.checkNullOrUndefined(res) && res.status === StatusCodes.pass) {
+          if (!this.commonService.checkNullOrUndefined(res.response)) {
+            this.alertService.openSnackBar('Quotation Supplier created Successfully..', Static.Close, SnackBar.success);
+          }
+          this.router.navigate(['/dashboard/transaction/saleorder'])
+        }
+      });
+  }
+
 
   back() {
     this.router.navigate(['dashboard/transaction/saleorder'])
@@ -330,6 +356,7 @@ export class SalesorderComponent {
     if (this.tableData.length == 0 || this.formData.invalid) {
       return;
     }
+    // this.uploadFile();
     this.addSaleOrder();
   }
 

@@ -202,11 +202,10 @@ export class MaterialMasterComponent implements OnInit, OnDestroy {
           const res = response;
           if (!this.commonService.checkNullOrUndefined(res) && res.status === StatusCodes.pass) {
             if (!this.commonService.checkNullOrUndefined(res.response)) {
-
               this.materialnum = res.response['materialnum'];
-              this.modelFormData.patchValue({
-                materialCode: this.materialnum
-              });
+              // this.modelFormData.patchValue({
+              //   materialCode: this.materialnum
+              // });
             }
           }
           this.spinner.hide();

@@ -6,3 +6,4 @@ export { TransTableComponent } from './trans-table/trans-table.component';
 export { DynamicTableComponent } from './dynamic-table/dynamic-table.component';
 export { AutocompleteComponent } from './autocomplete/autocomplete.component';
 export { SaveItemComponent } from './save-item/save-item.component';
+export { FileUploadComponent } from './file-upload/file-upload.component';

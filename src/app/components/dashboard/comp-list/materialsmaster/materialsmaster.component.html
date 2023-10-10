@@ -31,7 +31,7 @@
 
             <mat-form-field>
               <mat-label>{{'materialsmaster.materialType' | translate }}</mat-label>
-              <mat-select formControlName="materialType" (selectionChange)="getmaterialNumberData()" appFocusOnEnter
+              <mat-select formControlName="materialType" appFocusOnEnter
                 tabIndex="3">
                 <mat-option>None</mat-option>
                 <mat-option *ngFor="let mtype of matypeList" [value]="mtype.code">
