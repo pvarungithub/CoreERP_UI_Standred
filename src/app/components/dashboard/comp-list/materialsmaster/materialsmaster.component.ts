@@ -104,7 +104,7 @@ export class MaterialMasterComponent implements OnInit, OnDestroy {
       company: [null],
       plant: [null],
       materialType: [null],
-      materialCode: [null, [Validators.required, Validators.minLength(1), Validators.maxLength(7)]],
+      materialCode: [null, [Validators.required, Validators.minLength(2), Validators.maxLength(50)]],
       description: [null],
       materialGroup: [null],
       size: [null],
