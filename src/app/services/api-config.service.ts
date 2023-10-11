@@ -463,5 +463,7 @@ export class ApiConfigService {
    getPurchaseOrderNumber = `${this.environment.runtimeConfig.serverUrl}Transactions/GetPurchaseOrderNumber`;
    uploadFile = `${this.environment.runtimeConfig.serverUrl}Transactions/UploadFile`;
 
+   getPRList = `${this.environment.runtimeConfig.serverUrl}Transactions/GetPRList`;
+
 
 }

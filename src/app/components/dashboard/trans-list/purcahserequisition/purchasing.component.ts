@@ -1,4 +1,4 @@
-import { Component, OnInit } from '@angular/core';
+import { Component, OnInit, ViewChild } from '@angular/core';
 import { FormGroup, FormBuilder, Validators } from '@angular/forms';
 import { ApiConfigService } from '../../../../services/api-config.service';
 import { String } from 'typescript-string-operations';
@@ -11,6 +11,7 @@ import { Static } from '../../../../enums/common/static';
 import { AlertService } from '../../../../services/alert.service';
 import { DateAdapter, MAT_DATE_FORMATS } from '@angular/material/core';
 import { AppDateAdapter, APP_DATE_FORMATS } from '../../../../directives/format-datepicker';
+import { TableComponent } from 'src/app/reuse-components';
 
 @Component({
   selector: 'app-purchasing',
@@ -23,8 +24,11 @@ import { AppDateAdapter, APP_DATE_FORMATS } from '../../../../directives/format-
 })
 export class PurchasingComponent implements OnInit {
 
+  @ViewChild(TableComponent, { static: false }) tableComponent: TableComponent;
+
   // form control
   formData: FormGroup;
+  formData1: FormGroup;
   sendDynTableData: any;
 
   // header props
@@ -69,28 +73,28 @@ export class PurchasingComponent implements OnInit {
     this.getPurchaseGroupData();
   }
 
-  tablePropsFunc() {
-    return {
-      tableData: {
-        materialCode: {
-          value: null, type: 'dropdown', list: this.materialList, id: 'id', text: 'text', displayMul: true, width: 200
-        },
-        requiredQty: {
-          value: null, type: 'number', width: 100, maxLength: 50
-        },
-        stockQty: {
-          value: null, type: 'number', width: 100, maxLength: 50
-        },        
-        delete: {
-          type: 'delete', width: 50
-        }
-      },
+  // tablePropsFunc() {
+  //   return {
+  //     tableData: {
+  //       materialCode: {
+  //         value: null, type: 'dropdown', list: this.materialList, id: 'id', text: 'text', displayMul: true, width: 200
+  //       },
+  //       requiredQty: {
+  //         value: null, type: 'number', width: 100, maxLength: 50
+  //       },
+  //       stockQty: {
+  //         value: null, type: 'number', width: 100, maxLength: 50
+  //       },        
+  //       delete: {
+  //         type: 'delete', width: 50
+  //       }
+  //     },
 
-      formControl: {
-        reservationNumber: [null, [Validators.required]],
-      }
-    };
-  }
+  //     formControl: {
+  //       reservationNumber: [null, [Validators.required]],
+  //     }
+  //   };
+  // }
 
   formDataGroup() {
     this.formData = this.formBuilder.group({
@@ -115,6 +119,14 @@ export class PurchasingComponent implements OnInit {
       approvedBy: null,
       approvedDate: [null],
       status: [null],
+    });
+
+    this.formData1 = this.formBuilder.group({
+      materialCode: ['', Validators.required],
+      requiredQty: ['', Validators.required],
+      stockQty: [''],
+      action: 'editDelete',
+      index: 0
     });
   }
 
@@ -250,10 +262,10 @@ export class PurchasingComponent implements OnInit {
               this.materialList = res.response['materialList'];
             }
           }
-          this.dynTableProps = this.tablePropsFunc();
-                   if (this.routeEdit != '') {
-                     this.getPurchasingDetails(this.routeEdit);
-                   }
+          // this.dynTableProps = this.tablePropsFunc();
+          if (this.routeEdit != '') {
+            this.getPurchasingDetails(this.routeEdit);
+          }
         });
   }
 
@@ -287,15 +299,56 @@ export class PurchasingComponent implements OnInit {
             if (!this.commonService.checkNullOrUndefined(res.response)) {
               this.formData.setValue(res.response['preqmasters']);
 
-              this.sendDynTableData = { type: 'edit', data: res.response['preqDetail'] };
               this.formData.disable();
+              res.response['preqDetail'].forEach((s: any, index: number) => { s.action = 'editDelete'; s.index = index + 1; })
+              this.tableData = res.response['preqDetail'];
+              // this.sendDynTableData = { type: 'edit', data: res.response['preqDetail'] };
             }
           }
         });
   }
 
-  emitColumnChanges(data) {
-    this.tableData = data.data;
+  // emitColumnChanges(data) {
+  //   this.tableData = data.data;
+  // }
+
+  resetForm() {
+    this.formData1.reset();
+    this.formData1.patchValue({
+      index: 0,
+      action: 'editDelete'
+    });
+  }
+
+  saveForm() {
+    debugger
+    if (this.formData1.invalid) {
+      return;
+    }
+    let data: any = this.tableData;
+    this.tableData = null;
+    this.tableComponent.defaultValues();
+    if (this.formData1.value.index == 0) {
+      this.formData1.patchValue({
+        index: data ? (data.length + 1) : 1
+      });
+      data = [...data, this.formData1.value];
+    } else {
+      data = data.map((res: any) => res = res.index == this.formData1.value.index ? this.formData1.value : res);
+    }
+    setTimeout(() => {
+      this.tableData = data;
+    });
+    this.resetForm();
+  }
+
+  editOrDeleteEvent(value) {
+    if (value.action === 'Delete') {
+      this.tableComponent.defaultValues();
+      this.tableData = this.tableData.filter((res: any) => res.index != value.item.index);
+    } else {
+      this.formData1.patchValue(value.item);
+    }
   }
 
 
@@ -305,7 +358,7 @@ export class PurchasingComponent implements OnInit {
   }
 
   save() {
-    this.tableData = this.commonService.formatTableData(this.tableData);
+    // this.tableData = this.commonService.formatTableData(this.tableData);
     if (this.tableData.length == 0 && this.formData.invalid) {
       return;
     }
@@ -322,7 +375,9 @@ export class PurchasingComponent implements OnInit {
         if (!this.commonService.checkNullOrUndefined(res) && res.status === StatusCodes.pass) {
           if (!this.commonService.checkNullOrUndefined(res.response)) {
             this.alertService.openSnackBar('Purchase Requisition created Successfully..', Static.Close, SnackBar.success);
-            //this.spinner.hide();
+            this.spinner.hide();
+            this.router.navigateByUrl('dashboard/transaction/purcahserequisition');
+
           }
           this.reset();
           this.spinner.hide();
