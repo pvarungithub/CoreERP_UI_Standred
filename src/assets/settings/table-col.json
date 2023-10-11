@@ -1586,26 +1586,17 @@
   "purcahserequisition": {
     "title": "Purcahse Requisition",
     "company": "Company",
-    "branch": "Branch",
-    "plant": "Plant",
     "department": "Department",
-    "costCenter": "Cost Center",
     "profitCenter": "Profit Center",
-    "wbs": "WBS",
-    "projectName": "Project Name",
     "requiredfor": "Requied For",
     "requisitionNumber": "Requisition Number",
     "requisitionDate": "Date",
-    "narration": "Narration",
     "materialCode": "Material code",
-    "description": "Description",
-    "requiredQty": "Required QTY",
+    "materialName": "Material Name",
+    "qty": "Required QTY",
     "stockQty": "Stock QTY",
-    "requiredDate": "Date",
-    "purchaseGroup": "Purchase Group",
-    "productionOrder": "Production Order",
-    "reservationNumber": "Reservation Number",
-    "delete": "Delete"
+    "delete": "Delete",
+        "action": "Action"
   },
   "sourceofsupply": {
     "title": "Source of Supply",
@@ -2156,6 +2147,8 @@
         "placeOfSupply": "Place Of Supply",
         "documentUrl": "Document Url",
         "status": "Status",
+            "materialName": "MaterialName",
+
         "NEWORDER": "New Order",
         "salesOrderNumber": "Sales Order Number",
         "materialCode": "Material Code",
@@ -2169,7 +2162,8 @@
         "amount": "Amount",
         "totalTax":"Total Tax",
         "totalAmount":"Total Amount",
-                "availableQTY": "Available QTY",
+            "stockQty": "Avaliable Stock QTY",
+
 
         "total": "Total",
         "deliveryDate": "Date",

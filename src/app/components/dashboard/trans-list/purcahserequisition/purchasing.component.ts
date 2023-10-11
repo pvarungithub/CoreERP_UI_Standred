@@ -123,8 +123,9 @@ export class PurchasingComponent implements OnInit {
 
     this.formData1 = this.formBuilder.group({
       materialCode: ['', Validators.required],
-      requiredQty: ['', Validators.required],
-      stockQty: [''],
+      materialName: [''],
+      qty: ['', Validators.required],
+      stockQty: [0],
       action: 'editDelete',
       index: 0
     });
@@ -300,7 +301,15 @@ export class PurchasingComponent implements OnInit {
               this.formData.setValue(res.response['preqmasters']);
 
               this.formData.disable();
-              res.response['preqDetail'].forEach((s: any, index: number) => { s.action = 'editDelete'; s.index = index + 1; })
+
+              res.response['preqDetail'].forEach((s: any, index: number) => {
+                const obj = this.materialList.find((m: any) => m.id == s.materialCode);
+                s.materialName = obj.text
+                s.action = 'editDelete';
+                s.index = index + 1;
+                s.qty = s.qty;
+                s.stockQty = obj.closingQty;
+              })
               this.tableData = res.response['preqDetail'];
               // this.sendDynTableData = { type: 'edit', data: res.response['preqDetail'] };
             }
@@ -352,6 +361,13 @@ export class PurchasingComponent implements OnInit {
   }
 
 
+  materialCodeChange() {
+    const obj = this.materialList.find((m: any) => m.id == this.formData1.value.materialCode);
+    this.formData1.patchValue({
+      stockQty: obj.closingQty,
+      materialName: obj.text
+    })
+  }
 
   back() {
     this.router.navigate(['dashboard/transaction/purcahserequisition'])
@@ -377,7 +393,6 @@ export class PurchasingComponent implements OnInit {
             this.alertService.openSnackBar('Purchase Requisition created Successfully..', Static.Close, SnackBar.success);
             this.spinner.hide();
             this.router.navigateByUrl('dashboard/transaction/purcahserequisition');
-
           }
           this.reset();
           this.spinner.hide();

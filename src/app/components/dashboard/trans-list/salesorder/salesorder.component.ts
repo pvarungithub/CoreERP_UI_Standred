@@ -74,7 +74,6 @@ export class SalesorderComponent {
       orderDate: [null],
       profitCenter: ['', Validators.required],
       poNumber: ['', Validators.required],
-      saleOrderNumber: [''],
       poDate: [null],
       dateofSupply: [null],
       placeofSupply: [null],
@@ -92,7 +91,6 @@ export class SalesorderComponent {
       rate: ['', Validators.required],
       discount: [''],
       sgst: [''],
-      availableQTY: [''],
       id: [0],
       igst: [''],
       cgst: [''],
@@ -100,6 +98,8 @@ export class SalesorderComponent {
       total: [''],
       netWeight: [''],
       deliveryDate: [''],
+      stockQty: [0],
+      materialName: [''],
       action: 'editDelete',
       index: 0
     });
@@ -198,7 +198,7 @@ export class SalesorderComponent {
 
   profitCenterChange() {
     this.formData.patchValue({
-      saleOrderNumber: ''
+      saleOrderNo: ''
     })
     const costCenUrl = String.Join('/', this.apiConfigService.getSaleOrderNumber, this.formData.value.profitCenter);
     this.apiService.apiGetRequest(costCenUrl)
@@ -209,7 +209,7 @@ export class SalesorderComponent {
           if (!this.commonService.checkNullOrUndefined(res) && res.status === StatusCodes.pass) {
             if (!this.commonService.checkNullOrUndefined(res.response)) {
               this.formData.patchValue({
-                saleOrderNumber: res.response['SaleOrderNumber']
+                saleOrderNo: res.response['SaleOrderNumber']
               })
             }
           }
@@ -301,7 +301,12 @@ export class SalesorderComponent {
             if (!this.commonService.checkNullOrUndefined(res.response)) {
               this.formData.patchValue(res.response['SaleOrderMasters']);
               this.formData.disable();
-              res.response['SaleOrderDetails'].forEach((s: any, index: number) => { s.action = 'editDelete'; s.index = index + 1; })
+              res.response['SaleOrderDetails'].forEach((s: any, index: number) => { 
+                const obj = this.materialList.find((m: any) => m.id == s.materialCode);
+                s.materialName = obj.text
+                s.stockQty = obj.closingQty;
+                s.action = 'editDelete'; s.index = index + 1; 
+              })
               this.tableData = res.response['SaleOrderDetails'];
             }
           }
@@ -313,9 +318,11 @@ export class SalesorderComponent {
   }
 
   materialCodeChange() {
-    const obj = this.materialList.find((m: any) => m.text == this.formData1.value.materialCode);
+    const obj = this.materialList.find((m: any) => m.id == this.formData1.value.materialCode);
     this.formData1.patchValue({
-      netWeight: obj.netWeight
+      netWeight: obj.netWeight,
+      stockQty: obj.closingQty,
+      materialName: obj.text
     })
     if (!obj.netWeight) {
       this.alertService.openSnackBar('Net Weight has not provided for selected material..', Static.Close, SnackBar.error);

@@ -102,6 +102,7 @@ export class PurchaseOrderComponent implements OnInit {
       plant: [null],
       branch: [null],
       profitCenter: [null],
+      saleOrder: [true],
       purchaseOrderNumber: [null],
       purchaseOrderType: [null],
       // quotationDate: [null],
@@ -148,6 +149,13 @@ export class PurchaseOrderComponent implements OnInit {
 
   }
 
+  toggle(flag: any) {
+    if (flag) {
+      this.getSaleOrderList();
+    } else {
+      this.getPRList();
+    }
+  }
 
   profitCenterChange() {
     this.formData.patchValue({
@@ -206,7 +214,7 @@ export class PurchaseOrderComponent implements OnInit {
 
   getSaleOrderDetail() {
     this.tableComponent.defaultValues();
-    const qsDetUrl = String.Join('/', this.apiConfigService.getSaleOrderDetail, this.formData.value.saleOrderNo);
+    const qsDetUrl = String.Join('/', this.formData.value.saleOrder ? this.apiConfigService.getSaleOrderDetail : this.apiConfigService.getPurchaseRequisitionDetail, this.formData.value.saleOrderNo);
     this.apiService.apiGetRequest(qsDetUrl)
       .subscribe(
         response => {
@@ -233,6 +241,21 @@ export class PurchaseOrderComponent implements OnInit {
                 s.total = 0;
               })
               this.tableData = res.response['SaleOrderDetails'];
+            }
+          }
+        });
+  }
+
+  getPRList() {
+    const companyUrl = String.Join('/', this.apiConfigService.getPRList);
+    this.apiService.apiGetRequest(companyUrl)
+      .subscribe(
+        response => {
+          this.spinner.hide();
+          const res = response;
+          if (!this.commonService.checkNullOrUndefined(res) && res.status === StatusCodes.pass) {
+            if (!this.commonService.checkNullOrUndefined(res.response)) {
+              this.qnoList = res.response['BPList'];
             }
           }
         });

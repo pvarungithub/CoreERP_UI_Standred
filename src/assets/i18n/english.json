@@ -1857,18 +1857,21 @@
     "wbs": "WBS",
     "projectName": "Project Name",
     "requiredfor": "Requied For",
-    "requisitionNumber": "Requisition Number",
+        "requisitionNumber": "Requisition Number",
+    "materialName": "Material Name",
     "requisitionDate": "Requisition Date",
     "narration": "Narration",
     "materialCode": "Material code",
     "description": "Description",
-    "requiredQty": "Required QTY",
-    "stockQty": "Stock QTY",
+    "qty": "Required QTY",
+    "stockQty": "Avaliable Stock QTY",
     "requiredDate": "Required Date",
     "purchaseGroup": "Purchase Group",
     "productionOrder": "Production Order",
     "reservationNumber": "Reservation Number",
-    "delete": "Delete"
+    "delete": "Delete",
+        "action": "Action"
+
   },
   "sourceofsupply": {
     "title": "Source of Supply",
@@ -2463,7 +2466,10 @@
     "documentUrl": "Document Url",
     "status": "Status",
     "taxCode": "Tax Code",
+        "materialName": "MaterialName",
+
     "saleOrderNumber": "Saleorder Number",
+        "stockQty": "Avaliable Stock QTY",
     "NEWORDER": "New Order",
     "salesOrderNumber": "Sales Order Number",
     "materialCode": "Material Code",

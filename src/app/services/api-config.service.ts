@@ -457,13 +457,14 @@ export class ApiConfigService {
   
    getSaleOrder = `${this.environment.runtimeConfig.serverUrl}Transactions/GetSaleOrder`;
    getSaleOrderDetail = `${this.environment.runtimeConfig.serverUrl}Transactions/GetSaleOrderDetail`;
+   getPurchaseRequisitionDetail = `${this.environment.runtimeConfig.serverUrl}Transactions/GetPurchaseRequisitionDetail`;
    addSaleOrder = `${this.environment.runtimeConfig.serverUrl}Transactions/AddSaleOrder`;
 
    getSaleOrderNumber = `${this.environment.runtimeConfig.serverUrl}Transactions/GetSaleOrderNumber`;
    getPurchaseOrderNumber = `${this.environment.runtimeConfig.serverUrl}Transactions/GetPurchaseOrderNumber`;
    uploadFile = `${this.environment.runtimeConfig.serverUrl}Transactions/UploadFile`;
 
-   getPRList = `${this.environment.runtimeConfig.serverUrl}Transactions/GetPRList`;
+   getPRList = `${this.environment.runtimeConfig.serverUrl}Common/GetPRList`;
 
 
 }

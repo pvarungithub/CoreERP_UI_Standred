@@ -59,6 +59,11 @@
                     </mat-select>
                 </mat-form-field> -->
 
+
+                <mat-slide-toggle formControlName="saleOrder"  (change)="toggle($event.checked)">
+                   Sale Order
+                </mat-slide-toggle>
+
                 <mat-form-field>
                     <mat-label>{{'purchaseorder.quotationNumber' | translate }}</mat-label>
                     <mat-select formControlName="saleOrderNo" appFocusOnEnter tabIndex="4"
