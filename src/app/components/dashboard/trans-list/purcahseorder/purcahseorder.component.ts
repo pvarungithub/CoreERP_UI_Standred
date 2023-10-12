@@ -136,6 +136,7 @@ export class PurchaseOrderComponent implements OnInit {
       rate: ['', Validators.required],
       discount: [''],
       availableQTY: [''],
+      purchaseOrderNumber: [''],
       cgst: 0,
       sgst: 0,
       igst: 0,
@@ -654,12 +655,12 @@ export class PurchaseOrderComponent implements OnInit {
 
   savepurcahseorder() {
     const addprorder = String.Join('/', this.apiConfigService.addpurchaseorder);
-    this.formData.controls.gstno.enable();
+    this.formData.enable();
     const obj = this.formData.value;
     // obj.quotationDate = obj.quotationDate ? this.datepipe.transform(obj.quotationDate, 'MM-dd-yyyy') : '';
     obj.purchaseOrderDate = obj.purchaseOrderDate ? this.datepipe.transform(obj.purchaseOrderDate, 'MM-dd-yyyy') : '';
     obj.deliveryDate = obj.deliveryDate ? this.datepipe.transform(obj.deliveryDate, 'MM-dd-yyyy') : ''
-    const requestObj = { poHdr: this.formData.value, poDtl: this.tableData };
+    const requestObj = { poHdr: obj, poDtl: this.tableData };
     this.apiService.apiPostRequest(addprorder, requestObj).subscribe(
       response => {
         const res = response;
