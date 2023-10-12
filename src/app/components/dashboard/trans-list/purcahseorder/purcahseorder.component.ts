@@ -234,6 +234,7 @@ export class PurchaseOrderComponent implements OnInit {
               // })
               obj['data1'].forEach((s: any, index: number) => {
                 s.action = 'editDelete';
+                s.id = 0;
                 s.index = index + 1;
                 s.qty = s.qty ? s.qty : 0;
                 s.rate = s.rate ? s.rate : 0;
