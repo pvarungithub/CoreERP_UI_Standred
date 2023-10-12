@@ -151,7 +151,7 @@ export class PurchaseOrderComponent implements OnInit {
 
   toggle(flag: any) {
     if (flag) {
-      this.getSaleOrderList();
+      this.getSaleOrderList(false);
     } else {
       this.getPRList();
     }
@@ -220,13 +220,18 @@ export class PurchaseOrderComponent implements OnInit {
         response => {
           this.spinner.hide();
           const res = response;
+          debugger
           if (!this.commonService.checkNullOrUndefined(res) && res.status === StatusCodes.pass) {
             if (!this.commonService.checkNullOrUndefined(res.response)) {
-              this.formData.patchValue(res.response['SaleOrderMasters']);
+              const obj = {
+                data: this.formData.value.saleOrder ? res.response['SaleOrderMasters'] : res.response['preqmasters'],
+                data1: this.formData.value.saleOrder ? res.response['SaleOrderDetails'] : res.response['preqDetail'],
+              }
+              this.formData.patchValue(obj['data']);
               this.formData.patchValue({
-                saleOrderNo: res.response['SaleOrderMasters'].saleOrderNo ? +res.response['SaleOrderMasters'].saleOrderNo : ''
+                saleOrderNo: obj['data'].saleOrderNo ? +obj['data'].saleOrderNo : ''
               })
-              res.response['SaleOrderDetails'].forEach((s: any, index: number) => {
+              obj['data1'].forEach((s: any, index: number) => {
                 s.action = 'editDelete';
                 s.index = index + 1;
                 s.qty = s.qty ? s.qty : 0;
@@ -240,7 +245,7 @@ export class PurchaseOrderComponent implements OnInit {
                 s.amount = 0;
                 s.total = 0;
               })
-              this.tableData = res.response['SaleOrderDetails'];
+              this.tableData = obj['data1'];
             }
           }
         });
@@ -320,7 +325,7 @@ export class PurchaseOrderComponent implements OnInit {
   //         this.getSaleOrderList();
   //       });
   // }
-  getSaleOrderList() {
+  getSaleOrderList(flag = true) {
     const getSaleOrderUrl = String.Join('/', this.apiConfigService.getSaleOrderList);
     this.apiService.apiGetRequest(getSaleOrderUrl)
       .subscribe(
@@ -331,7 +336,11 @@ export class PurchaseOrderComponent implements OnInit {
               this.qnoList = res.response['BPList'];
             }
           }
-          this.getpurchaseordertypetData();
+          if (flag) {
+            this.getpurchaseordertypetData();
+          } else {
+            this.spinner.hide();
+          }
         });
   }
   getpurchaseordertypetData() {

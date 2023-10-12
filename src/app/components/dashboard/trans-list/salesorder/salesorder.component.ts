@@ -13,6 +13,7 @@ import { DateAdapter, MAT_DATE_FORMATS } from '@angular/material/core';
 import { AppDateAdapter, APP_DATE_FORMATS } from '../../../../directives/format-datepicker';
 import { TableComponent } from 'src/app/reuse-components';
 import { DatePipe } from '@angular/common';
+import { HttpClient } from '@angular/common/http';
 
 @Component({
   selector: 'app-salesorder',
@@ -54,6 +55,7 @@ export class SalesorderComponent {
     private spinner: NgxSpinnerService,
     public route: ActivatedRoute,
     private router: Router,
+    private httpClient: HttpClient,
     private datepipe: DatePipe
   ) {
     if (!this.commonService.checkNullOrUndefined(this.route.snapshot.params.value)) {
@@ -301,11 +303,11 @@ export class SalesorderComponent {
             if (!this.commonService.checkNullOrUndefined(res.response)) {
               this.formData.patchValue(res.response['SaleOrderMasters']);
               this.formData.disable();
-              res.response['SaleOrderDetails'].forEach((s: any, index: number) => { 
+              res.response['SaleOrderDetails'].forEach((s: any, index: number) => {
                 const obj = this.materialList.find((m: any) => m.id == s.materialCode);
                 s.materialName = obj.text
                 s.stockQty = obj.closingQty;
-                s.action = 'editDelete'; s.index = index + 1; 
+                s.action = 'editDelete'; s.index = index + 1;
               })
               this.tableData = res.response['SaleOrderDetails'];
             }
@@ -337,12 +339,17 @@ export class SalesorderComponent {
   }
 
   uploadFile() {
+    debugger
     const addsq = String.Join('/', this.apiConfigService.uploadFile);
     const formData = new FormData();
     formData.append("file", this.fileList);
 
-    this.apiService.apiPostRequest(addsq, formData).subscribe(
-      response => {
+    return this.httpClient.post<any>(addsq, formData, {
+      reportProgress: true,
+      observe: 'events'
+    }).subscribe(
+      (response: any) => {
+        debugger
         this.spinner.hide();
         const res = response;
         if (!this.commonService.checkNullOrUndefined(res) && res.status === StatusCodes.pass) {
@@ -352,6 +359,18 @@ export class SalesorderComponent {
           this.router.navigate(['/dashboard/transaction/saleorder'])
         }
       });
+
+    // this.apiService.apiPostRequest(addsq, formData).subscribe(
+    //   response => {
+    //     this.spinner.hide();
+    //     const res = response;
+    //     if (!this.commonService.checkNullOrUndefined(res) && res.status === StatusCodes.pass) {
+    //       if (!this.commonService.checkNullOrUndefined(res.response)) {
+    //         this.alertService.openSnackBar('Quotation Supplier created Successfully..', Static.Close, SnackBar.success);
+    //       }
+    //       this.router.navigate(['/dashboard/transaction/saleorder'])
+    //     }
+    //   });
   }
 
 
