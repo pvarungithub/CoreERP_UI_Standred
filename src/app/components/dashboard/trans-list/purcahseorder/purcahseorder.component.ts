@@ -139,6 +139,7 @@ export class PurchaseOrderComponent implements OnInit {
       cgst: 0,
       sgst: 0,
       igst: 0,
+      id: 0,
       netWeight: 0,
       amount: [''],
       deliveryDate: [''],
@@ -227,10 +228,10 @@ export class PurchaseOrderComponent implements OnInit {
                 data: this.formData.value.saleOrder ? res.response['SaleOrderMasters'] : res.response['preqmasters'],
                 data1: this.formData.value.saleOrder ? res.response['SaleOrderDetails'] : res.response['preqDetail'],
               }
-              this.formData.patchValue(obj['data']);
-              this.formData.patchValue({
-                saleOrderNo: obj['data'].saleOrderNo ? +obj['data'].saleOrderNo : ''
-              })
+              // this.formData.patchValue(obj['data']);
+              // this.formData.patchValue({
+              //   saleOrderNo: obj['data'].saleOrderNo ? +obj['data'].saleOrderNo : ''
+              // })
               obj['data1'].forEach((s: any, index: number) => {
                 s.action = 'editDelete';
                 s.index = index + 1;

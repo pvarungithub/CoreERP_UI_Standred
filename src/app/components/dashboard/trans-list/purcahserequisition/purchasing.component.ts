@@ -123,9 +123,11 @@ export class PurchasingComponent implements OnInit {
 
     this.formData1 = this.formBuilder.group({
       materialCode: ['', Validators.required],
-      materialName: [''],
+      materialName: [''], 
+      netWeight: [0], 
       qty: ['', Validators.required],
       stockQty: [0],
+      id: [0],
       action: 'editDelete',
       index: 0
     });
@@ -365,7 +367,8 @@ export class PurchasingComponent implements OnInit {
     const obj = this.materialList.find((m: any) => m.id == this.formData1.value.materialCode);
     this.formData1.patchValue({
       stockQty: obj.closingQty,
-      materialName: obj.text
+      materialName: obj.text,
+      netWeight: obj.netWeight,
     })
   }
 
