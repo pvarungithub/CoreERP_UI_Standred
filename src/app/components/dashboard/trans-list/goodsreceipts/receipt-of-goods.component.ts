@@ -276,7 +276,7 @@ export class ReceiptOfGoodsComponent implements OnInit {
       })
       // this.tableData = this.perChaseOrderList;
       const unique = [...new Set(this.perChaseOrderList.map(item => item.materialCode))]
-      debugger
+      
       this.materialCodeList = unique;
       this.formData1.patchValue({
         qty: '',
@@ -491,7 +491,6 @@ export class ReceiptOfGoodsComponent implements OnInit {
         response => {
           this.spinner.hide();
           const res = response;
-          debugger
           if (!this.commonService.checkNullOrUndefined(res) && res.status === StatusCodes.pass) {
             if (!this.commonService.checkNullOrUndefined(res.response)) {
               this.formData.patchValue(res.response['grmasters']);
@@ -517,7 +516,6 @@ export class ReceiptOfGoodsComponent implements OnInit {
               this.tableData = this.perChaseOrderList;
               const arr = this.podetailsList.filter(resp => !this.perChaseOrderList.some((p: any) => p.materialCode == resp.materialCode));
               const unique = [...new Set(arr.map(item => item.materialCode))];
-              debugger
               this.materialCodeList = unique;
               this.formData.disable();
             }
