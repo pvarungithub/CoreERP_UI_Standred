@@ -85,6 +85,7 @@ export class SalesorderComponent {
       amount: [0],
       totalTax: [0],
       totalAmount: [0],
+      documentURL: [''],
     });
     this.formData1 = this.formBuilder.group({
       materialCode: ['', Validators.required],
@@ -333,12 +334,11 @@ export class SalesorderComponent {
 
   emitFilesList(event: any) {
     this.fileList = event[0];
-    this.uploadFile()
   }
 
   
   uploadFile() {
-    const addsq = String.Join('/', this.apiConfigService.uploadFile);
+    const addsq = String.Join('/', this.apiConfigService.uploadFile, this.formData.value.saleOrderNo);
     const formData = new FormData();
     formData.append("file", this.fileList);
 
@@ -353,8 +353,8 @@ export class SalesorderComponent {
           if (!this.commonService.checkNullOrUndefined(res.response)) {
             this.alertService.openSnackBar('Quotation Supplier created Successfully..', Static.Close, SnackBar.success);
           }
-          this.router.navigate(['/dashboard/transaction/saleorder'])
         }
+        this.router.navigate(['/dashboard/transaction/saleorder'])
       });
 
     // this.apiService.apiPostRequest(addsq, formData).subscribe(
@@ -389,6 +389,7 @@ export class SalesorderComponent {
     obj.orderDate = obj.orderDate ? this.datepipe.transform(obj.orderDate, 'MM-dd-yyyy') : '';
     obj.poDate = obj.poDate ? this.datepipe.transform(obj.poDate, 'MM-dd-yyyy') : '';
     obj.dateofSupply = obj.dateofSupply ? this.datepipe.transform(obj.dateofSupply, 'MM-dd-yyyy') : '';
+    obj.documentURL = obj.saleOrderNo;
     const requestObj = { qsHdr: this.formData.value, qsDtl: this.tableData };
     this.apiService.apiPostRequest(addsq, requestObj).subscribe(
       response => {
@@ -396,11 +397,22 @@ export class SalesorderComponent {
         const res = response;
         if (!this.commonService.checkNullOrUndefined(res) && res.status === StatusCodes.pass) {
           if (!this.commonService.checkNullOrUndefined(res.response)) {
+            this.uploadFile();
             this.alertService.openSnackBar('Quotation Supplier created Successfully..', Static.Close, SnackBar.success);
           }
-          this.router.navigate(['/dashboard/transaction/saleorder'])
         }
       });
+  }
+
+  downLoad() {
+    const url = String.Join('/', this.apiConfigService.getFile, this.formData.get('documentURL').value);
+    this.apiService.apiGetRequest(url)
+      .subscribe(
+        response => {
+          const res = response;
+          this.commonService.downloadFile(res.response)
+          this.spinner.hide();
+        });
   }
 
   reset() {

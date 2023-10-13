@@ -19,7 +19,7 @@ export class FileUploadComponent implements OnInit {
   @Input() id = '';
   @Input() multiple = false;
   @Input() type = ''
-  @Input() fileExtension = ['pdf', 'doc', 'docx', 'jpg'];
+  @Input() fileExtension = ['pdf'];
   @Input() fileUploadMessage: string;
 
 

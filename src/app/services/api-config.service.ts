@@ -294,7 +294,6 @@ export class ApiConfigService {
 
    /*******************************PrimeryCost****************************************************** */
    addpccost = `${this.environment.runtimeConfig.serverUrl}PrimaryCostElementsCreation/UpdatePcost`;
-   getFile = `${this.environment.runtimeConfig.serverUrl}Transactions/GetFile`;
    
    registerEmployee = `${this.environment.runtimeConfig.serverUrl}Employee/RegisterEmployee`;
    updateEmployee = `${this.environment.runtimeConfig.serverUrl}Employee/UpdateEmployee`;
@@ -463,6 +462,7 @@ export class ApiConfigService {
    getSaleOrderNumber = `${this.environment.runtimeConfig.serverUrl}Transactions/GetSaleOrderNumber`;
    getPurchaseOrderNumber = `${this.environment.runtimeConfig.serverUrl}Transactions/GetPurchaseOrderNumber`;
    uploadFile = `${this.environment.runtimeConfig.serverUrl}Transactions/UploadFile`;
+   getFile = `${this.environment.runtimeConfig.serverUrl}Transactions/GetFile`;
 
    getPRList = `${this.environment.runtimeConfig.serverUrl}Common/GetPRList`;
 
