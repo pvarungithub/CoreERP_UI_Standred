@@ -122,7 +122,6 @@ export class SalesorderComponent {
   }
 
   saveForm() {
-    debugger
     if (this.formData1.invalid) {
       return;
     }
@@ -333,14 +332,12 @@ export class SalesorderComponent {
   }
 
   emitFilesList(event: any) {
-    debugger
     this.fileList = event[0];
     this.uploadFile()
   }
 
   
   uploadFile() {
-    debugger
     const addsq = String.Join('/', this.apiConfigService.uploadFile);
     const formData = new FormData();
     formData.append("file", this.fileList);
@@ -350,7 +347,6 @@ export class SalesorderComponent {
       observe: 'events'
     }).subscribe(
       (response: any) => {
-        debugger
         this.spinner.hide();
         const res = response;
         if (!this.commonService.checkNullOrUndefined(res) && res.status === StatusCodes.pass) {
@@ -411,23 +407,6 @@ export class SalesorderComponent {
     this.tableData = [];
     this.formData.reset();
   }
-  onFileSelected(event) {
-
-    const file:File = event.target.files[0];
-
-    if (file) {
-
-       let fileName = file.name;
-
-        const formData = new FormData();
-
-        formData.append("thumbnail", file);
-        const addsq = String.Join('/', this.apiConfigService.uploadFile);
-        const upload$ = this.httpClient.post(addsq, formData).subscribe();
-
-        //upload$.subscribe();
-    }
-}
 
 
 }

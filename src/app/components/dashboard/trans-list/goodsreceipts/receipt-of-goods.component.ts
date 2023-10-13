@@ -144,7 +144,6 @@ export class ReceiptOfGoodsComponent implements OnInit {
   }
 
   saveForm() {
-    debugger
     if (this.formData1.invalid) {
       return;
     }
@@ -261,7 +260,6 @@ export class ReceiptOfGoodsComponent implements OnInit {
       data = this.podetailsList.filter(resp => resp.purchaseOrderNumber == this.formData.get('purchaseOrderNo').value);
     }
     if (data.length) {
-      // debugger
       data.forEach((d: any, index: number) => {
         const obj = {
           materialCode: d.materialCode ? d.materialCode : '',
@@ -288,7 +286,6 @@ export class ReceiptOfGoodsComponent implements OnInit {
       this.formData.patchValue({
         customerName: obj.text
       })
-      debugger
     }
   }
 
@@ -496,7 +493,6 @@ export class ReceiptOfGoodsComponent implements OnInit {
           if (!this.commonService.checkNullOrUndefined(res) && res.status === StatusCodes.pass) {
             if (!this.commonService.checkNullOrUndefined(res.response)) {
               this.formData.patchValue(res.response['grmasters']);
-              debugger
               this.formData.patchValue({
                 purchaseOrderNo: +res.response['grmasters'].purchaseOrderNo
               })

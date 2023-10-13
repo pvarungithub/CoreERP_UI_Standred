@@ -222,7 +222,6 @@ export class PurchaseOrderComponent implements OnInit {
         response => {
           this.spinner.hide();
           const res = response;
-          debugger
           if (!this.commonService.checkNullOrUndefined(res) && res.status === StatusCodes.pass) {
             if (!this.commonService.checkNullOrUndefined(res.response)) {
               const obj = {
@@ -565,7 +564,6 @@ export class PurchaseOrderComponent implements OnInit {
   }
 
   saveForm() {
-    debugger
     if (this.formData1.invalid) {
       return;
     }
@@ -600,7 +598,6 @@ export class PurchaseOrderComponent implements OnInit {
   }
 
   dataChange() {
-    debugger
     const formObj = this.formData1.value;
     const obj = this.taxCodeList.find((tax: any) => tax.taxRateCode == formObj.taxCode);
     const igst = obj.igst ? ((+formObj.qty * +formObj.rate * +formObj.netWeight) * obj.igst) / 100 : 0;
