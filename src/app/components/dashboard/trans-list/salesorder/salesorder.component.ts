@@ -338,6 +338,7 @@ export class SalesorderComponent {
     this.uploadFile()
   }
 
+  
   uploadFile() {
     debugger
     const addsq = String.Join('/', this.apiConfigService.uploadFile);
@@ -410,7 +411,23 @@ export class SalesorderComponent {
     this.tableData = [];
     this.formData.reset();
   }
+  onFileSelected(event) {
 
+    const file:File = event.target.files[0];
+
+    if (file) {
+
+       let fileName = file.name;
+
+        const formData = new FormData();
+
+        formData.append("thumbnail", file);
+        const addsq = String.Join('/', this.apiConfigService.uploadFile);
+        const upload$ = this.httpClient.post(addsq, formData).subscribe();
+
+        //upload$.subscribe();
+    }
+}
 
 
 }
