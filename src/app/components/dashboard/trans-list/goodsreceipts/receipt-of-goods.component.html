@@ -166,6 +166,15 @@
                     <input matInput type="text" formControlName="lotNo" appFocusOnEnter tabIndex="10">
                 </mat-form-field>
 
+                <div *ngIf="formData.value.documentURL" class="d-flex flex-column mt-3">
+                    <mat-label [translate]="'saleorder.attachedUrl'"></mat-label>
+                    <a [href]="url" download target="_blank"> <b> {{ formData.value.documentURL }} </b> </a>
+                </div>
+                <div *ngIf="!formData.value.documentURL">
+                    <app-file-upload [type]="'card'" (emitFilesList)="emitFilesList($event)"></app-file-upload>
+                </div>
+
+
                 <!-- <mat-slide-toggle formControlName="qualityCheck" (change)="approveOrReject($event.checked)">
                     {{(formData.get('qualityCheck').value != null) ? 'QuantityCheck' : 'Reject'}}
                 </mat-slide-toggle> -->

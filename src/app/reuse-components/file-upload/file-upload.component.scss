@@ -40,7 +40,7 @@
   border-radius: 8px;
   padding: 5px;
   background: #F3F1FF;
-  min-height: 110px;
+  min-height: 50px;
   }
 
   .image-dropping,
@@ -139,4 +139,8 @@
     a {
       text-decoration: none;
     }
+  }
+
+  .height-50 {
+    height: 60px;
   }

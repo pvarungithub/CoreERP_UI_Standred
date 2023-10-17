@@ -71,13 +71,13 @@
                     <input matInput type="text" formControlName="placeofSupply" appFocusOnEnter tabIndex="7">
                 </mat-form-field>
 
-                <div *ngIf="formData.value.documentURL">
-                    <b (click)="downLoad()"> {{ formData.value.documentURL }} </b>
+                <div *ngIf="formData.value.documentURL" class="d-flex flex-column mt-3">
+                    <mat-label [translate]="'saleorder.attachedUrl'"></mat-label>
+                    <a [href]="url" download target="_blank"> <b> {{ formData.value.documentURL }} </b> </a>
                 </div>
                 <div *ngIf="!formData.value.documentURL">
                     <app-file-upload [type]="'card'" (emitFilesList)="emitFilesList($event)"></app-file-upload>
-                     </div>
-                <!-- <input type="file" class="file-input"(change)="onFileSelected($event)" #fileupload> -->
+                </div>
 
             </div>
 

@@ -44,7 +44,7 @@ export class SalesorderComponent {
   profitCenterList = [];
 
   routeEdit = '';
-
+  url: string;
 
   constructor(
     private commonService: CommonService,
@@ -302,6 +302,9 @@ export class SalesorderComponent {
           if (!this.commonService.checkNullOrUndefined(res) && res.status === StatusCodes.pass) {
             if (!this.commonService.checkNullOrUndefined(res.response)) {
               this.formData.patchValue(res.response['SaleOrderMasters']);
+              if (this.formData.value.documentURL) {
+                this.downLoad();
+              }
               this.formData.disable();
               res.response['SaleOrderDetails'].forEach((s: any, index: number) => {
                 const obj = this.materialList.find((m: any) => m.id == s.materialCode);
@@ -356,18 +359,6 @@ export class SalesorderComponent {
         }
         this.router.navigate(['/dashboard/transaction/saleorder'])
       });
-
-    // this.apiService.apiPostRequest(addsq, formData).subscribe(
-    //   response => {
-    //     this.spinner.hide();
-    //     const res = response;
-    //     if (!this.commonService.checkNullOrUndefined(res) && res.status === StatusCodes.pass) {
-    //       if (!this.commonService.checkNullOrUndefined(res.response)) {
-    //         this.alertService.openSnackBar('Quotation Supplier created Successfully..', Static.Close, SnackBar.success);
-    //       }
-    //       this.router.navigate(['/dashboard/transaction/saleorder'])
-    //     }
-    //   });
   }
 
 
@@ -409,9 +400,9 @@ export class SalesorderComponent {
     this.apiService.apiGetRequest(url)
       .subscribe(
         response => {
-          const res = response;
-          this.commonService.downloadFile(res.response)
+          debugger
           this.spinner.hide();
+          this.url = response.response;
         });
   }
 

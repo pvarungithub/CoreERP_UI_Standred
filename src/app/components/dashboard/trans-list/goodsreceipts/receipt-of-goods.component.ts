@@ -13,6 +13,7 @@ import { DateAdapter, MAT_DATE_FORMATS } from '@angular/material/core';
 import { AppDateAdapter, APP_DATE_FORMATS } from '../../../../directives/format-datepicker';
 import { TableComponent } from 'src/app/reuse-components';
 import { DatePipe } from '@angular/common';
+import { HttpClient } from '@angular/common/http';
 
 @Component({
   selector: 'app-receipt-of-goods',
@@ -51,6 +52,10 @@ export class ReceiptOfGoodsComponent implements OnInit {
   podetailsList: any;
   bpaList: any;
 
+  fileList: any;
+  url: string;
+
+
   @ViewChild(TableComponent, { static: false }) tableComponent: TableComponent;
 
 
@@ -61,6 +66,7 @@ export class ReceiptOfGoodsComponent implements OnInit {
     private alertService: AlertService,
     private spinner: NgxSpinnerService,
     private datepipe: DatePipe,
+    private httpClient: HttpClient,
     public commonService: CommonService,
     public route: ActivatedRoute,
     private router: Router) {
@@ -117,6 +123,8 @@ export class ReceiptOfGoodsComponent implements OnInit {
       editDate: [null],
       totalAmount: [''],
       lotNo: [''],
+      documentURL: [''],
+
     });
 
 
@@ -497,6 +505,9 @@ export class ReceiptOfGoodsComponent implements OnInit {
               this.formData.patchValue({
                 purchaseOrderNo: +res.response['grmasters'].purchaseOrderNo
               })
+              if (this.formData.value.documentURL) {
+                this.downLoad();
+              }
               this.perChaseOrderList = []
               res.response['grDetail'].forEach((d: any, index: number) => {
                 const obj = {
@@ -573,20 +584,58 @@ export class ReceiptOfGoodsComponent implements OnInit {
     const addgoodsreceipt = String.Join('/', this.apiConfigService.addgoodsreceipt);
     const formData = this.formData.value;
     formData.receivedDate = this.formData.get('receivedDate').value ? this.datepipe.transform(this.formData.get('receivedDate').value, 'MM-dd-yyyy') : '';
+    formData.documentURL = formData.purchaseOrderNo;
     const requestObj = { grHdr: formData, grDtl: arr };
     this.apiService.apiPostRequest(addgoodsreceipt, requestObj).subscribe(
       response => {
         const res = response;
         if (!this.commonService.checkNullOrUndefined(res) && res.status === StatusCodes.pass) {
           if (!this.commonService.checkNullOrUndefined(res.response)) {
+            this.uploadFile();
             this.alertService.openSnackBar('Goods Receipt created Successfully..', Static.Close, SnackBar.success);
-            this.router.navigateByUrl('dashboard/transaction/goodsreceipts');
           }
           this.reset();
           this.spinner.hide();
         }
       });
   }
+
+  emitFilesList(event: any) {
+    this.fileList = event[0];
+  }
+
+  uploadFile() {
+    const addsq = String.Join('/', this.apiConfigService.uploadFile, this.formData.value.purchaseOrderNo);
+    const formData = new FormData();
+    formData.append("file", this.fileList);
+
+    return this.httpClient.post<any>(addsq, formData, {
+      reportProgress: true,
+      observe: 'events'
+    }).subscribe(
+      (response: any) => {
+        this.spinner.hide();
+        const res = response;
+        if (!this.commonService.checkNullOrUndefined(res) && res.status === StatusCodes.pass) {
+          if (!this.commonService.checkNullOrUndefined(res.response)) {
+            this.alertService.openSnackBar('Quotation Supplier created Successfully..', Static.Close, SnackBar.success);
+          }
+        }
+        this.router.navigateByUrl('dashboard/transaction/goodsreceipts');
+      });
+  }
+
+  downLoad() {
+    const url = String.Join('/', this.apiConfigService.getFile, this.formData.get('documentURL').value);
+    this.apiService.apiGetRequest(url)
+      .subscribe(
+        response => {
+          debugger
+          this.spinner.hide();
+          this.url = response.response;
+        });
+  }
+
 
   return() {
     const addCashBank = String.Join('/', this.apiConfigService.returngoodsreceipt, this.routeEdit);
