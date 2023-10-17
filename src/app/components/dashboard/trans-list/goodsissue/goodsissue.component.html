@@ -18,7 +18,7 @@
 
         </mat-form-field>
 
-        <mat-form-field>
+        <!-- <mat-form-field>
           <mat-label>{{'goodsissue.plant' | translate }}</mat-label>
           <mat-select formControlName="plant" appFocusOnEnter tabIndex="2">
             <mat-option>None</mat-option>
@@ -26,7 +26,7 @@
               {{plant.text}}
             </mat-option>
           </mat-select>
-        </mat-form-field>
+        </mat-form-field> -->
 
         <mat-form-field>
           <mat-label>{{'goodsissue.storesPerson' | translate }}</mat-label>
@@ -60,6 +60,16 @@
         </mat-form-field>
 
         <mat-form-field>
+          <mat-label>{{'goodsissue.productionPerson' | translate }}</mat-label>
+          <mat-select formControlName="productionPerson" appFocusOnEnter tabIndex="3">
+            <mat-option>None</mat-option>
+            <mat-option *ngFor="let emp of employeesList" [value]="emp.id">
+              {{emp.id}}- {{emp.text}}
+            </mat-option>
+          </mat-select>
+        </mat-form-field>
+
+        <!-- <mat-form-field>
           <mat-label>{{'goodsissue.movementType' | translate }}</mat-label>
           <mat-select formControlName="movementType" appFocusOnEnter tabIndex="6">
             <mat-option>None</mat-option>
@@ -67,7 +77,7 @@
               {{movement.description}}
             </mat-option>
           </mat-select>
-        </mat-form-field>
+        </mat-form-field> -->
         <mat-form-field class="form-element">
           <mat-label [translate]="'goodsissue.status'"></mat-label>
           <input matInput formControlName="status" appFocusOnEnter

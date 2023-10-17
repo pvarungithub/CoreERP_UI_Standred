@@ -103,26 +103,6 @@ export class GoodsissueComponent implements OnInit {
         qty: {
           value: null, type: 'text', width: 75, maxLength: 15, disabled: true,
         },
-        plant: {
-          value: null, type: 'text', width: 75, maxLength: 15, disabled: true,
-        },
-        location: {
-          value: null, type: 'text', width: 75, maxLength: 15, disabled: true,
-        },
-
-        joborProject: {
-          value: null, type: 'text', width: 100, maxLength: 50, disabled: true,
-        },
-        jobOrder: {
-          value: null, type: 'text', width: 75, maxLength: 15, disabled: true,
-        },
-
-        costCenter: {
-          value: null, type: 'text', width: 75, maxLength: 15, disabled: true,
-        },
-        wbs: {
-          value: null, type: 'text', width: 75, maxLength: 15, disabled: true,
-        },
         availableqty: {
           value: null, type: 'number', width: 100, maxLength: 7, disabled: true
         },
