@@ -1538,9 +1538,7 @@
   },
   "goodsissue": {
     "checkAll": "Select",
-    "id": "ID",
     "title": "Goods Issue",
-    "goodsIssueId": "ID",
     "company": "Company",
     "storesPerson": "Stores Person",
     "department": "Department",
@@ -1549,15 +1547,11 @@
     "status": "status",
     "materialCode": "Material Code",
     "qty": "Quantity",
-    "plant": "Plant",
-    "location": "Location",
-    "joborProject": "Job/ Project",
-    "jobOrder": "Job Order",
-    "costCenter": "Cost Center",
-    "wbs": "WBS",
+    "productionPerson": "productionPerson",
     "availableqty": "Available QTY",
     "allocatedqty": "Allocated QTY",
-    "delete": "Delete"
+    "delete": "Delete",
+            "action": "Action"
   },
   "materialrequisition": {
     "title": "Material Requisition",

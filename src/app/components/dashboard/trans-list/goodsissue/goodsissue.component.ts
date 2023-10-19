@@ -1,4 +1,4 @@
-import { Component, OnInit } from '@angular/core';
+import { Component, OnInit, ViewChild } from '@angular/core';
 import { FormGroup, FormBuilder, Validators } from '@angular/forms';
 import { ApiConfigService } from '../../../../services/api-config.service';
 import { String } from 'typescript-string-operations';
@@ -11,6 +11,7 @@ import { Static } from '../../../../enums/common/static';
 import { AlertService } from '../../../../services/alert.service';
 import { DateAdapter, MAT_DATE_FORMATS } from '@angular/material/core';
 import { AppDateAdapter, APP_DATE_FORMATS } from '../../../../directives/format-datepicker';
+import { TableComponent } from 'src/app/reuse-components';
 @Component({
   selector: 'app-goodsissue',
   templateUrl: './goodsissue.component.html',
@@ -25,7 +26,11 @@ export class GoodsissueComponent implements OnInit {
 
   sendDynTableData: any;
 
+  @ViewChild(TableComponent, { static: false }) tableComponent: TableComponent;
+
+
   formData: FormGroup;
+  formData1: FormGroup;
   routeEdit = '';
   hsnsacList = [];
   debitValue = 0;
@@ -81,41 +86,110 @@ export class GoodsissueComponent implements OnInit {
       plant: [null, [Validators.required]],
       goodsIssueId: ['0'],
       storesPerson: [null],
+      saleOrder: [true],
       department: [null],
       requisitionNumber: [null],
+      productionPerson: [null],
       movementType: [null],
-      status: [null],
+      // status: [null],
     });
+
+    this.formData1 = this.formBuilder.group({
+      allocatedqty: ['', Validators.required],
+      materialCode: [''],
+      qty: [''],
+      availableqty: [''],
+      action: 'edit',
+      index: 0
+    });
+
+
+  }
+
+  allocatedqtyChange() {
+    if ((this.formData1.value.allocatedqty > this.formData1.value.availableqty) || (this.formData1.value.allocatedqty > this.formData1.value.qty)) {
+      this.alertService.openSnackBar("Allocation Quatity cannot be greater than quatity", Static.Close, SnackBar.error);
+      this.formData1.patchValue({
+        allocatedqty: ''
+      })
+    }
   }
 
   tablePropsFunc() {
     return {
       tableData: {
 
-        checkAll:
-        {
-          value: false, type: 'checkbox'
-        },
+        // checkAll:
+        // {
+        //   value: false, type: 'checkbox'
+        // },
 
         materialCode: {
-          value: null, type: 'text', width: 75, maxLength: 15, disabled: true,
+          value: null, type: 'none', width: 75, maxLength: 15, disabled: true,
         },
         qty: {
-          value: null, type: 'text', width: 75, maxLength: 15, disabled: true,
+          value: null, type: 'none', width: 75, maxLength: 15, disabled: true,
         },
         availableqty: {
-          value: null, type: 'number', width: 100, maxLength: 7, disabled: true
+          value: null, type: 'none', width: 100, maxLength: 7, disabled: true
         },
         allocatedqty: {
-          value: null, type: 'number', width: 100, maxLength: 7, disabled: true, fieldEnable: true
+          value: null, type: 'number', width: 100, maxLength: 7, disabled: false, fieldEnable: true
         },
-        delete: {
-          type: 'delete', width: 10
-        }
+        // delete: {
+        //   type: 'delete', width: 10
+        // }
       },
       formControl: {
         costCenter: [null, [Validators.required]],
       }
+    }
+  }
+
+  resetForm() {
+    this.formData1.reset();
+    this.formData1.patchValue({
+      index: 0,
+      action: 'edit'
+    });
+  }
+
+  saveForm() {
+    if (this.formData1.invalid) {
+      return;
+    }
+    let data: any = this.tableData;
+    this.tableData = null;
+    this.tableComponent.defaultValues();
+    if (this.formData1.value.index == 0) {
+      this.formData1.patchValue({
+        index: data ? (data.length + 1) : 1
+      });
+      data = [...data, this.formData1.value];
+    } else {
+      data = data.map((res: any) => res = res.index == this.formData1.value.index ? this.formData1.value : res);
+    }
+    setTimeout(() => {
+      this.tableData = data;
+    });
+    this.resetForm();
+  }
+
+  editOrDeleteEvent(value) {
+    if (value.action === 'Delete') {
+      this.tableComponent.defaultValues();
+      this.tableData = this.tableData.filter((res: any) => res.index != value.item.index);
+    } else {
+      this.formData1.patchValue(value.item);
+    }
+  }
+
+
+  toggle(flag: any) {
+    if (flag) {
+      this.getreqList(false);
+    } else {
+      this.getPRList();
     }
   }
 
@@ -128,10 +202,21 @@ export class GoodsissueComponent implements OnInit {
           const res = response;
           if (!this.commonService.checkNullOrUndefined(res) && res.status === StatusCodes.pass) {
             if (!this.commonService.checkNullOrUndefined(res.response)) {
-              this.formData.setValue(res.response['goodsissueasters']);
+              debugger
+              this.formData.patchValue(res.response['goodsissueasters']);
               console.log(res.response['goodsissueastersDetail']);
-              this.sendDynTableData = { type: 'edit', data: res.response['goodsissueastersDetail'] };
+              // this.sendDynTableData = { type: 'edit', data: res.response['goodsissueastersDetail'] };
               this.formData.disable();
+              res.response['goodsissueastersDetail'].forEach((s: any, index: number) => {
+                s.action = 'edit';
+                s.id = 0;
+                s.index = index + 1;
+                s.qty = s.qty ? s.qty : 0;
+                s.materialCode = s.materialCode ? s.materialCode : 0;
+                s.availableqty = s.availableQTY ? s.availableQTY : 0;
+                s.allocatedqty = s.allocatedqty ? s.allocatedqty : 0;
+              })
+              this.tableData = res.response['goodsissueastersDetail'];
             }
           }
         });
@@ -253,18 +338,37 @@ export class GoodsissueComponent implements OnInit {
           this.getreqList();
         });
   }
-  getreqList() {
-    const getreqListUrl = String.Join('/', this.apiConfigService.getreqList);
-    this.apiService.apiGetRequest(getreqListUrl)
+  getreqList(flag = true) {
+    const getSaleOrderUrl = String.Join('/', this.apiConfigService.getSaleOrderList);
+    this.apiService.apiGetRequest(getSaleOrderUrl)
       .subscribe(
         response => {
           const res = response;
           if (!this.commonService.checkNullOrUndefined(res) && res.status === StatusCodes.pass) {
             if (!this.commonService.checkNullOrUndefined(res.response)) {
-              this.mreqList = res.response['mreqList'];
+              this.mreqList = res.response['BPList'];
             }
           }
-          this.getreqdetailsList();
+          if (flag) {
+            this.getreqdetailsList();
+          } else {
+            this.spinner.hide();
+          }
+        });
+  }
+
+  getPRList() {
+    const companyUrl = String.Join('/', this.apiConfigService.getPRList);
+    this.apiService.apiGetRequest(companyUrl)
+      .subscribe(
+        response => {
+          this.spinner.hide();
+          const res = response;
+          if (!this.commonService.checkNullOrUndefined(res) && res.status === StatusCodes.pass) {
+            if (!this.commonService.checkNullOrUndefined(res.response)) {
+              this.mreqList = res.response['BPList'];
+            }
+          }
         });
   }
 
@@ -362,6 +466,46 @@ export class GoodsissueComponent implements OnInit {
     this.sendDynTableData = { type: 'add', data: newData };
   }
 
+  getSaleOrderDetail() {
+    this.tableComponent.defaultValues();
+    const qsDetUrl = String.Join('/', this.formData.value.saleOrder ? this.apiConfigService.getSaleOrderDetail : this.apiConfigService.getPurchaseRequisitionDetail, this.formData.value.requisitionNumber);
+    this.apiService.apiGetRequest(qsDetUrl)
+      .subscribe(
+        response => {
+          this.spinner.hide();
+          const res = response;
+          if (!this.commonService.checkNullOrUndefined(res) && res.status === StatusCodes.pass) {
+            if (!this.commonService.checkNullOrUndefined(res.response)) {
+           
+              const obj = {
+                data: this.formData.value.saleOrder ? res.response['SaleOrderMasters'] : res.response['preqmasters'],
+                data1: this.formData.value.saleOrder ? res.response['SaleOrderDetails'] : res.response['preqDetail'],
+              }
+              // this.formData.patchValue(obj['data']);
+              // this.formData.patchValue({
+              //   saleOrderNo: obj['data'].saleOrderNo ? +obj['data'].saleOrderNo : ''
+              // })
+              obj['data1'].forEach((s: any, index: number) => {
+                s.action = 'edit';
+                s.id = 0;
+                s.index = index + 1;
+                s.qty = s.qty ? s.qty : 0;
+                s.materialCode = s.materialCode ? s.materialCode : 0;
+                s.availableqty = s.availableQTY ? s.availableQTY : 0;
+                s.allocatedqty = s.allocatedqty ? s.allocatedqty : 0;
+              })
+
+              // this.sendDynTableData = { type: 'add', data: newData };
+              this.tableData = obj['data1'];
+
+              // this.calculate();
+
+            }
+          }
+        });
+  }
+
+
 
 
   back() {
@@ -369,8 +513,8 @@ export class GoodsissueComponent implements OnInit {
   }
 
   save() {
-    this.tableData = this.commonService.formatTableData(this.tableData, 0);
-    if (this.tableData.length == 0) {
+    // this.tableData = this.commonService.formatTableData(this.tableData, 0);
+    if (this.tableData.length == 0 && this.formData.invalid) {
       return;
     }
 
@@ -382,7 +526,7 @@ export class GoodsissueComponent implements OnInit {
   reset() {
     this.tableData = [];
     this.formData.reset();
-    this.sendDynTableData = { type: 'reset', data: this.tableData };
+    // this.sendDynTableData = { type: 'reset', data: this.tableData };
   }
 
   savegoodsissue() {
@@ -395,8 +539,9 @@ export class GoodsissueComponent implements OnInit {
         if (!this.commonService.checkNullOrUndefined(res) && res.status === StatusCodes.pass) {
           if (!this.commonService.checkNullOrUndefined(res.response)) {
             this.alertService.openSnackBar('GoodsIssue created Successfully..', Static.Close, SnackBar.success);
+            this.router.navigate(['/dashboard/transaction/goodsissue'])
           }
-          this.reset();
+          // this.reset();
           this.spinner.hide();
         }
       });

@@ -1806,7 +1806,8 @@
     "company": "Company",
     "storesPerson": "Stores Person",
     "department": "Department",
-    "requisitionNumber": "Requisition Number",
+    "requisitionNumber": "Sale Order Number",
+    "productionPerson": "Production Incharge",
     "movementType": "Movement Type",
     "status": "Status",
     "materialCode": "Material Code",
@@ -1819,7 +1820,8 @@
     "wbs": "WBS",
     "availableqty": "Available QTY",
     "allocatedqty": "Allocated QTY",
-    "delete": "Delete"
+    "delete": "Delete",
+    "action": "Action"
   },
   "materialrequisition": {
     "title": "Material Requisition",
