@@ -1806,7 +1806,7 @@
     "company": "Company",
     "storesPerson": "Stores Person",
     "department": "Department",
-    "requisitionNumber": "Sale Order Number",
+    "saleOrderNumber": "Sale Order Number",
     "productionPerson": "Production Incharge",
     "movementType": "Movement Type",
     "status": "Status",
@@ -1820,6 +1820,7 @@
     "wbs": "WBS",
     "availableqty": "Available QTY",
     "allocatedqty": "Allocated QTY",
+    "requiredqty": "Required QTY",
     "delete": "Delete",
     "action": "Action"
   },
