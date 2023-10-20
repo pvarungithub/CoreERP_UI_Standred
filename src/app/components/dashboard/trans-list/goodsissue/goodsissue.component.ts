@@ -97,6 +97,7 @@ export class GoodsissueComponent implements OnInit {
       allocatedqty: ['', Validators.required],
       materialCode: [''],
       qty: [''],
+      id: 0,
       changed: true,
       availableqty: [''],
       requiredqty: [''],
