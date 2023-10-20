@@ -97,6 +97,8 @@ export class GoodsissueComponent implements OnInit {
       allocatedqty: ['', Validators.required],
       materialCode: [''],
       qty: [''],
+      id: 0,
+      changed: true,
       availableqty: [''],
       requiredqty: [''],
       action: 'edit',
@@ -164,6 +166,9 @@ export class GoodsissueComponent implements OnInit {
     if (this.formData1.invalid) {
       return;
     }
+    this.formData1.patchValue({
+      changed: true
+    });
     let data: any = this.tableData;
     this.tableData = null;
     this.tableComponent.defaultValues();
@@ -218,9 +223,10 @@ export class GoodsissueComponent implements OnInit {
                 const qty = this.mmasterList.find(resp => resp.id == s.materialCode);
                 let obj = {
                   action: 'edit',
-                  id: 0,
+                  id: s.id ? s.id : 0,
                   index: index + 1,
                   qty: s.qty ? s.qty : 0,
+                  changed: false,
                   materialCode: s.materialCode ? s.materialCode : 0,
                   availableqty: qty.availQTY ? qty.availQTY : 0,
                   allocatedqty: s.allocatedQTY ? s.allocatedQTY : 0,
@@ -502,6 +508,7 @@ export class GoodsissueComponent implements OnInit {
                 s.id = 0;
                 s.index = index + 1;
                 s.qty = s.qty ? s.qty : 0;
+                s.changed = true;
                 s.materialCode = s.materialCode ? s.materialCode : 0;
                 s.availableqty = s.availableQTY ? s.availableQTY : 0;
                 s.allocatedqty = s.allocatedqty ? s.allocatedqty : 0;
@@ -542,8 +549,9 @@ export class GoodsissueComponent implements OnInit {
   }
 
   savegoodsissue() {
+    const arr = this.tableData.filter((d: any) => d.changed);
     const addJournal = String.Join('/', this.apiConfigService.addGoodsissue);
-    const requestObj = { gibHdr: this.formData.value, gibDtl: this.tableData };
+    const requestObj = { gibHdr: this.formData.value, gibDtl: arr };
     this.apiService.apiPostRequest(addJournal, requestObj).subscribe(
       response => {
         const res = response;
