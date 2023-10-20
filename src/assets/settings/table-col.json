@@ -1542,7 +1542,7 @@
     "company": "Company",
     "storesPerson": "Stores Person",
     "department": "Department",
-    "requisitionNumber": "RequisitionNumber",
+    "saleOrderNumber": "saleOrderNumber",
     "movementType": "Movement Type",
     "status": "status",
     "materialCode": "Material Code",
@@ -1551,6 +1551,7 @@
     "availableqty": "Available QTY",
     "allocatedqty": "Allocated QTY",
     "delete": "Delete",
+        "requiredqty": "Required QTY",
             "action": "Action"
   },
   "materialrequisition": {

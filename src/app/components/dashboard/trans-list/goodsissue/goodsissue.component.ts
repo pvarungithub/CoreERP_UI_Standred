@@ -77,7 +77,6 @@ export class GoodsissueComponent implements OnInit {
   ngOnInit() {
     this.formDataGroup();
     this.getCompanyList();
-    this.getfunctionaldeptList();
   }
 
   formDataGroup() {
@@ -88,7 +87,7 @@ export class GoodsissueComponent implements OnInit {
       storesPerson: [null],
       saleOrder: [true],
       department: [null],
-      requisitionNumber: [null],
+      saleOrderNumber: [null],
       productionPerson: [null],
       movementType: [null],
       // status: [null],
@@ -99,6 +98,7 @@ export class GoodsissueComponent implements OnInit {
       materialCode: [''],
       qty: [''],
       availableqty: [''],
+      requiredqty: [''],
       action: 'edit',
       index: 0
     });
@@ -107,12 +107,18 @@ export class GoodsissueComponent implements OnInit {
   }
 
   allocatedqtyChange() {
-    if ((this.formData1.value.allocatedqty > this.formData1.value.availableqty) || (this.formData1.value.allocatedqty > this.formData1.value.qty)) {
-      this.alertService.openSnackBar("Allocation Quatity cannot be greater than quatity", Static.Close, SnackBar.error);
-      this.formData1.patchValue({
-        allocatedqty: ''
-      })
+    if ((this.formData1.value.requiredqty && (this.formData1.value.allocatedqty > this.formData1.value.requiredqty)) ||
+      (this.formData1.value.allocatedqty > this.formData1.value.availableqty) ||
+      ((this.formData1.value.availableqty > this.formData1.value.qty) && this.formData1.value.allocatedqty > this.formData1.value.qty)) {
+      this.qtyErrorMessage();
     }
+  }
+
+  qtyErrorMessage() {
+    this.alertService.openSnackBar("Allocation Quatity cannot be greater than quatity", Static.Close, SnackBar.error);
+    this.formData1.patchValue({
+      allocatedqty: ''
+    })
   }
 
   tablePropsFunc() {
@@ -207,16 +213,22 @@ export class GoodsissueComponent implements OnInit {
               console.log(res.response['goodsissueastersDetail']);
               // this.sendDynTableData = { type: 'edit', data: res.response['goodsissueastersDetail'] };
               this.formData.disable();
+              let arr = [];
               res.response['goodsissueastersDetail'].forEach((s: any, index: number) => {
-                s.action = 'edit';
-                s.id = 0;
-                s.index = index + 1;
-                s.qty = s.qty ? s.qty : 0;
-                s.materialCode = s.materialCode ? s.materialCode : 0;
-                s.availableqty = s.availableQTY ? s.availableQTY : 0;
-                s.allocatedqty = s.allocatedqty ? s.allocatedqty : 0;
+                const qty = this.mmasterList.find(resp => resp.id == s.materialCode);
+                let obj = {
+                  action: 'edit',
+                  id: 0,
+                  index: index + 1,
+                  qty: s.qty ? s.qty : 0,
+                  materialCode: s.materialCode ? s.materialCode : 0,
+                  availableqty: qty.availQTY ? qty.availQTY : 0,
+                  allocatedqty: s.allocatedQTY ? s.allocatedQTY : 0,
+                  requiredqty: s.qty - s.allocatedQTY
+                }
+                arr.push(obj);
               })
-              this.tableData = res.response['goodsissueastersDetail'];
+              this.tableData = arr;
             }
           }
         });
@@ -444,8 +456,8 @@ export class GoodsissueComponent implements OnInit {
   reqnoselect() {
     let data = [];
     let newData = [];
-    if (!this.commonService.checkNullOrUndefined(this.formData.get('requisitionNumber').value)) {
-      data = this.mreqdetailsList.filter(resp => resp.requisitionNumber == this.formData.get('requisitionNumber').value);
+    if (!this.commonService.checkNullOrUndefined(this.formData.get('saleOrderNumber').value)) {
+      data = this.mreqdetailsList.filter(resp => resp.saleOrderNumber == this.formData.get('saleOrderNumber').value);
     }
     if (data.length) {
       console.log(data, this.tablePropsFunc());
@@ -468,7 +480,7 @@ export class GoodsissueComponent implements OnInit {
 
   getSaleOrderDetail() {
     this.tableComponent.defaultValues();
-    const qsDetUrl = String.Join('/', this.formData.value.saleOrder ? this.apiConfigService.getSaleOrderDetail : this.apiConfigService.getPurchaseRequisitionDetail, this.formData.value.requisitionNumber);
+    const qsDetUrl = String.Join('/', this.formData.value.saleOrder ? this.apiConfigService.getSaleOrderDetail : this.apiConfigService.getPurchaseRequisitionDetail, this.formData.value.saleOrderNumber);
     this.apiService.apiGetRequest(qsDetUrl)
       .subscribe(
         response => {
@@ -476,14 +488,14 @@ export class GoodsissueComponent implements OnInit {
           const res = response;
           if (!this.commonService.checkNullOrUndefined(res) && res.status === StatusCodes.pass) {
             if (!this.commonService.checkNullOrUndefined(res.response)) {
-           
+
               const obj = {
                 data: this.formData.value.saleOrder ? res.response['SaleOrderMasters'] : res.response['preqmasters'],
                 data1: this.formData.value.saleOrder ? res.response['SaleOrderDetails'] : res.response['preqDetail'],
               }
               // this.formData.patchValue(obj['data']);
               // this.formData.patchValue({
-              //   saleOrderNo: obj['data'].saleOrderNo ? +obj['data'].saleOrderNo : ''
+              //   saleOrderNumber: obj['data'].saleOrderNumber ? +obj['data'].saleOrderNumber : ''
               // })
               obj['data1'].forEach((s: any, index: number) => {
                 s.action = 'edit';
