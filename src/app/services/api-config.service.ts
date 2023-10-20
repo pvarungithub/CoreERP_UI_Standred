@@ -229,11 +229,13 @@ export class ApiConfigService {
    getGoodsissueDetail = `${this.environment.runtimeConfig.serverUrl}Transactions/GetGoodsissueDetail`;
    getGoodsissueMaster = `${this.environment.runtimeConfig.serverUrl}Transactions/GetGoodsissue`;
    returnGoodsissue = `${this.environment.runtimeConfig.serverUrl}Transactions/ReturnGoodsissue`;
+   getTagsissueDetail = `${this.environment.runtimeConfig.serverUrl}Transactions/GetTagsissueDetail`;
 
    /*******************************Material Requisition ****************************************************** */
    addmareq = `${this.environment.runtimeConfig.serverUrl}Transactions/AddMaterialRequisition`;
    getmreqDetail = `${this.environment.runtimeConfig.serverUrl}Transactions/GetMaterialRequisitionDetail`;
    getmreqMaster = `${this.environment.runtimeConfig.serverUrl}Transactions/GetMaterialRequisition`;
+   getProductionissue = `${this.environment.runtimeConfig.serverUrl}Transactions/GetProductionissue`;
    returnmreq = `${this.environment.runtimeConfig.serverUrl}Transactions/ReturnMaterialRequisition`;
    /******************************* Work Center Creation ****************************************************** */
    //getPaymentsReceiptsDetail = `${this.environment.runtimeConfig.serverUrl}Transactions/GetPaymentsReceiptsDetail`;

@@ -1,8 +1,13 @@
 <mat-card>
 
-  <mat-card-content>
+  <mat-card-content class="mb-2">
 
-    <form [formGroup]="formData" autocomplete="off">
+      <h3>
+        Header Section
+        <hr>
+      </h3>
+
+    <!-- <form [formGroup]="formData" autocomplete="off">
 
       <div class="d--flex p-1 mat-form-field-height">
 
@@ -78,16 +83,32 @@
 
 
       </div>
-    </form>
+    </form> -->
 
     <div>
-      <app-dynamic-table [tableObJect]="dynTableProps" (emitColumnChanges)="emitColumnChanges($event);"
-        [dynamicTableUpdate]="sendDynTableData"></app-dynamic-table>
+      <!-- <app-dynamic-table [tableObJect]="dynTableProps" (emitColumnChanges)="emitColumnChanges($event);"
+        [dynamicTableUpdate]="sendDynTableData"></app-dynamic-table> -->
+          <app-table class="table-css" [tableData]="tableData" [showFilters]="false" (addOrUpdateEvent)="addOrUpdateEvent($event)">
+          </app-table>
     </div>
 
 
   </mat-card-content>
 
+  <mat-card-content >
+
+    <h3>
+      Header Section
+      <hr>
+    </h3>
+
+    <div>
+      <app-table class="table-css" [tableData]="tableData1" [showFilters]="false">
+      </app-table>
+    </div>
+
+
+  </mat-card-content>
   <mat-card-content class="d-flex justify-content-end py-1">
 
     <div>

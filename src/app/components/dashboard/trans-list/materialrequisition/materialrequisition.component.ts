@@ -32,6 +32,7 @@ export class MaterialrequisitionComponents implements OnInit {
   creditValue = 0;
   totalTaxValue = 0;
   tableData = [];
+  tableData1 = [];
   dynTableProps: any;
   btList = [];
   companyList = [];
@@ -69,9 +70,10 @@ export class MaterialrequisitionComponents implements OnInit {
   }
 
   ngOnInit() {
-    this.formDataGroup();
-    this.getCompanyList();
-    this.getfunctionaldeptList();
+    this.getGoodsissueDetail(this.routeEdit);
+    // this.formDataGroup();
+    // this.getCompanyList();
+    // this.getfunctionaldeptList();
     /// this.formData.controls['requisitionNumber'].disable();
   }
 
@@ -98,45 +100,42 @@ export class MaterialrequisitionComponents implements OnInit {
       tableData: {
 
         materialCode: {
-          value: null, type: 'dropdown', list: this.mmasterList, id: 'code', text: 'description', displayMul: false, width: 100
-        },
-        description: {
-          value: null, type: 'text', width: 75, maxLength: 15
+          value: null, type: 'none', width: 100
         },
         qty: {
-          value: null, type: 'number', width: 75, maxLength: 15
+          value: null, type: 'none', width: 75, maxLength: 15
         },
 
-        sotrageLocation: {
-          value: null, type: 'dropdown', list: this.locationList, id: 'locationId', text: 'description', displayMul: false, width: 100
-        },
+        // sotrageLocation: {
+        //   value: null, type: 'dropdown', list: this.locationList, id: 'locationId', text: 'description', displayMul: false, width: 100
+        // },
 
-        joborProject: {
-          value: null, type: 'dropdown', list: this.costunitList, id: 'id', text: 'text', displayMul: false, width: 100
-        },
-        costCenter: {
-          value: null, type: 'dropdown', list: this.costCenterList, id: 'id', text: 'text', displayMul: false, width: 100
-        },
+        // joborProject: {
+        //   value: null, type: 'dropdown', list: this.costunitList, id: 'id', text: 'text', displayMul: false, width: 100
+        // },
+        // costCenter: {
+        //   value: null, type: 'dropdown', list: this.costCenterList, id: 'id', text: 'text', displayMul: false, width: 100
+        // },
 
-        profitCenter: {
-          value: null, type: 'dropdown', list: this.profitCenterList, id: 'id', text: 'text', displayMul: false, width: 100
-        },
-        wbs: {
-          value: null, type: 'dropdown', list: this.wbsElementList, id: 'id', text: 'text', displayMul: false, width: 100
-        },
-        order: {
-          value: null, type: 'dropdown', list: this.ordertypeList, id: 'orderType', text: 'description', displayMul: false, width: 100
-        },
-        price: {
-          value: null, type: 'number', width: 75, maxLength: 15
-        },
-        value: {
-          value: null, type: 'text', width: 75, maxLength: 15
-        },
+        // profitCenter: {
+        //   value: null, type: 'dropdown', list: this.profitCenterList, id: 'id', text: 'text', displayMul: false, width: 100
+        // },
+        // wbs: {
+        //   value: null, type: 'dropdown', list: this.wbsElementList, id: 'id', text: 'text', displayMul: false, width: 100
+        // },
+        // order: {
+        //   value: null, type: 'dropdown', list: this.ordertypeList, id: 'orderType', text: 'description', displayMul: false, width: 100
+        // },
+        // price: {
+        //   value: null, type: 'number', width: 75, maxLength: 15
+        // },
+        // value: {
+        //   value: null, type: 'text', width: 75, maxLength: 15
+        // },
 
-        delete: {
-          type: 'delete', width: 10
-        }
+        // delete: {
+        //   type: 'delete', width: 10
+        // }
       },
       formControl: {
         costCenter: [null, [Validators.required]],
@@ -144,8 +143,9 @@ export class MaterialrequisitionComponents implements OnInit {
     }
   }
 
-  getMreqDetail(val) {
-    const jvDetUrl = String.Join('/', this.apiConfigService.getmreqDetail, val);
+  getGoodsissueDetail(val) {
+    debugger
+    const jvDetUrl = String.Join('/', this.apiConfigService.getGoodsissueDetail, val);
     this.apiService.apiGetRequest(jvDetUrl)
       .subscribe(
         response => {
@@ -153,10 +153,84 @@ export class MaterialrequisitionComponents implements OnInit {
           const res = response;
           if (!this.commonService.checkNullOrUndefined(res) && res.status === StatusCodes.pass) {
             if (!this.commonService.checkNullOrUndefined(res.response)) {
-              this.formData.setValue(res.response['mreqmasters']);
-              console.log(res.response['mreqDetail']);
-              this.sendDynTableData = { type: 'edit', data: res.response['mreqDetail'] };
-              this.formData.disable();
+              // this.formData.patchValue(res.response['goodsissueasters']);
+              // console.log(res.response['mreqDetail']);
+              let arr = [];
+              res.response['goodsissueastersDetail'].forEach((s: any, index: number) => {
+                // const qty = this.mmasterList.find(resp => resp.id == s.materialCode);
+                let obj = {
+                  // action: 'edit',
+                  // id: s.id ? s.id : 0,
+                  // index: index + 1,
+                  qty: s.qty ? s.qty : 0,
+                  // changed: false,
+                  materialCode: s.materialCode ? s.materialCode : 0,
+                  // availableqty: qty.availQTY ? qty.availQTY : 0,
+                  saleOrderNumber: s.saleOrderNumber ? s.saleOrderNumber : 0,
+                  allocatedqty: s.allocatedQTY ? s.allocatedQTY : 0,
+                  // requiredqty: s.qty - s.allocatedQTY
+                }
+                arr.push(obj);
+              })
+              this.tableData = arr;
+
+              // this.sendDynTableData = { type: 'edit', data: res.response['goodsissueastersDetail'] };
+              // this.formData.disable();
+            }
+          }
+        });
+  }
+
+  addOrUpdateEvent(event: any) {
+    debugger
+    this.getTagsissueDetail(event.item.saleOrderNumber, event.item.materialCode);
+  }
+
+  getTagsissueDetail(val, val1) {
+    this.tableData1 = null;
+    debugger
+    const jvDetUrl = String.Join('/', this.apiConfigService.getTagsissueDetail, val, val1);
+    this.apiService.apiGetRequest(jvDetUrl)
+      .subscribe(
+        response => {
+          this.spinner.hide();
+          const res = response;
+          if (!this.commonService.checkNullOrUndefined(res) && res.status === StatusCodes.pass) {
+            if (!this.commonService.checkNullOrUndefined(res.response)) {
+              // this.formData.patchValue(res.response['goodsissueasters']);
+              // console.log(res.response['mreqDetail']);
+              let arr = [];
+              res.response['tagsDetail'].forEach((s: any, index: number) => {
+                // const qty = this.mmasterList.find(resp => resp.id == s.materialCode);
+                let obj = {
+                  // action: 'edit',
+                  // id: s.id ? s.id : 0,
+                  // index: index + 1,
+                  // qty: s.qty ? s.qty : 0,
+                  // changed: false,
+                  // materialCode: s.materialCode ? s.materialCode : 0,
+                  // availableqty: qty.availQTY ? qty.availQTY : 0,
+                  // saleOrderNumber: s.saleOrderNumber ? s.saleOrderNumber : 0,
+                  // allocatedqty: s.allocatedQTY ? s.allocatedQTY : 0,
+                  // requiredqty: s.qty - s.allocatedQTY,
+                  allocatedPerson: s.allocatedPerson ? s.allocatedPerson : '',
+                  endDate: s.endDate ? s.endDate : '',
+                  isReject: s.isReject ? s.isReject : '',
+                  materialCode: s.materialCode ? s.materialCode : '',
+                  mechine: s.mechine ? s.mechine : '',
+                  productionTag: s.productionTag ? s.productionTag : '',
+                  remarks: s.remarks ? s.remarks : '',
+                  saleOrderNumber: s.saleOrderNumber ? s.saleOrderNumber : '',
+                  startDate: s.startDate ? s.startDate : '',
+                  typeofWork: s.typeofWork ? s.typeofWork : '',
+                  workStatus: s.workStatus ? s.workStatus : '',
+                }
+                arr.push(obj);
+              })
+              this.tableData1 = arr;
+
+              // this.sendDynTableData = { type: 'edit', data: res.response['goodsissueastersDetail'] };
+              // this.formData.disable();
             }
           }
         });
@@ -336,9 +410,10 @@ export class MaterialrequisitionComponents implements OnInit {
               this.costCenterList = res.response['costcenterList'];
             }
           }
+          debugger
           this.dynTableProps = this.tablePropsFunc();
           if (this.routeEdit != '') {
-            this.getMreqDetail(this.routeEdit);
+            this.getGoodsissueDetail(this.routeEdit);
           }
         });
   }
@@ -349,7 +424,7 @@ export class MaterialrequisitionComponents implements OnInit {
   }
 
   dataChange(row) {
-    this.sendDynTableData = { type: 'add', data: row.data };
+    // this.sendDynTableData = { type: 'add', data: row.data };
   }
 
 
@@ -372,7 +447,7 @@ export class MaterialrequisitionComponents implements OnInit {
   reset() {
     this.tableData = [];
     this.formData.reset();
-    this.sendDynTableData = { type: 'reset', data: this.tableData };
+    // this.sendDynTableData = { type: 'reset', data: this.tableData };
   }
 
   savemreq() {
