@@ -1,4 +1,4 @@
-import { Component, OnInit } from '@angular/core';
+import { Component, OnInit, ViewChild } from '@angular/core';
 import { FormGroup, FormBuilder, Validators } from '@angular/forms';
 import { ApiConfigService } from '../../../../services/api-config.service';
 import { String } from 'typescript-string-operations';
@@ -11,6 +11,7 @@ import { Static } from '../../../../enums/common/static';
 import { AlertService } from '../../../../services/alert.service';
 import { DateAdapter, MAT_DATE_FORMATS } from '@angular/material/core';
 import { AppDateAdapter, APP_DATE_FORMATS } from '../../../../directives/format-datepicker';
+import { TableComponent } from 'src/app/reuse-components';
 @Component({
   selector: 'app-materialrequisition',
   templateUrl: './materialrequisition.component.html',
@@ -25,6 +26,9 @@ export class MaterialrequisitionComponents implements OnInit {
 
   formData: FormGroup;
   sendDynTableData: any;
+
+  @ViewChild('tableRef', { static: false }) tableComponent: TableComponent;
+
 
   routeEdit = '';
   hsnsacList = [];
@@ -187,7 +191,7 @@ export class MaterialrequisitionComponents implements OnInit {
   }
 
   getTagsissueDetail(val, val1) {
-    this.tableData1 = null;
+    this.tableComponent.defaultValues();
     debugger
     const jvDetUrl = String.Join('/', this.apiConfigService.getTagsissueDetail, val, val1);
     this.apiService.apiGetRequest(jvDetUrl)
