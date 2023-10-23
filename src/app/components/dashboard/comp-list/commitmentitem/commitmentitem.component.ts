@@ -32,6 +32,8 @@ export class CommitmentItemComponent implements OnInit {
       { value: 'Capital Item', viewValue: 'Capital Item' },
       { value: 'Payments', viewValue: 'Payments' },
       { value: 'Receipts', viewValue: 'Receipts' },
+      { value: 'Production', viewValue: 'Production' },
+      { value: 'Mechenary', viewValue: 'Mechenary' },
     ];
   constructor(private commonService: CommonService,
     private addOrEditService: AddOrEditService,

@@ -218,6 +218,7 @@ export class MaterialrequisitionComponents implements OnInit {
                   // saleOrderNumber: s.saleOrderNumber ? s.saleOrderNumber : 0,
                   // allocatedqty: s.allocatedQTY ? s.allocatedQTY : 0,
                   // requiredqty: s.qty - s.allocatedQTY,
+                  materialName:s.materialName?s.materialName:null,
                   allocatedPerson: s.allocatedPerson ? s.allocatedPerson : '',
                   endDate: s.endDate ? s.endDate : '',
                   isReject: s.isReject ? s.isReject : '',
