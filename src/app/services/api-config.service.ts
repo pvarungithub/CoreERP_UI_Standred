@@ -466,6 +466,8 @@ export class ApiConfigService {
    uploadFile = `${this.environment.runtimeConfig.serverUrl}Transactions/UploadFile`;
    getFile = `${this.environment.runtimeConfig.serverUrl}Transactions/GetFile`;
 
+   addProductionissue = `${this.environment.runtimeConfig.serverUrl}Transactions/AddProductionissue`;
+
    getPRList = `${this.environment.runtimeConfig.serverUrl}Common/GetPRList`;
 
 

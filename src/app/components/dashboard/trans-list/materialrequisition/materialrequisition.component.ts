@@ -25,6 +25,7 @@ import { TableComponent } from 'src/app/reuse-components';
 export class MaterialrequisitionComponents implements OnInit {
 
   formData: FormGroup;
+  formData1: FormGroup;
   sendDynTableData: any;
 
   @ViewChild('tableRef', { static: false }) tableComponent: TableComponent;
@@ -49,7 +50,9 @@ export class MaterialrequisitionComponents implements OnInit {
   costCenterList = [];
   taxCodeList = [];
   functionaldeptList = [];
-  employeesList: any;
+  employeesList: any[] = [];
+  citemList: any[] = [];
+  mechenaryList: any[] = [];
   fdeptList: any;
   plantList: any;
   movementList: any;
@@ -75,28 +78,47 @@ export class MaterialrequisitionComponents implements OnInit {
 
   ngOnInit() {
     this.getGoodsissueDetail(this.routeEdit);
-    // this.formDataGroup();
+    this.formDataGroup();
+    this.getEmployeesList();
     // this.getCompanyList();
     // this.getfunctionaldeptList();
     /// this.formData.controls['requisitionNumber'].disable();
   }
 
   formDataGroup() {
-    this.formData = this.formBuilder.group({
-      company: [null, [Validators.required]],
-      plant: [null, [Validators.required]],
-      branch: [null],
-      project: [null],
-      department: [null],
-      requisitionNmber: [null],
-      bomorderNumber: [null],
-      requisitionDate: [null],
-      addWho: [null],
-      addDate: [null],
-      editDate: [null],
-      editWho: [null],
-      status: [null],
+    this.formData1 = this.formBuilder.group({
+      allocatedPerson: ['', Validators.required],
+      typeofWork: [''],
+      mechine: [''],
+      startDate: [''],
+      endDate: [''],
+      remarks: [''],
+      workStatus: [''],
+
+      materialName: [''],
+      materialCode: [''],
+      productionTag: [''],
+      saleOrderNumber: [''],
+
+      id: 0,
+      action: 'edit',
+      index: 0
     });
+    // this.formData = this.formBuilder.group({
+    //   company: [null, [Validators.required]],
+    //   plant: [null, [Validators.required]],
+    //   branch: [null],
+    //   project: [null],
+    //   department: [null],
+    //   requisitionNmber: [null],
+    //   bomorderNumber: [null],
+    //   requisitionDate: [null],
+    //   addWho: [null],
+    //   addDate: [null],
+    //   editDate: [null],
+    //   editWho: [null],
+    //   status: [null],
+    // });
   }
 
   tablePropsFunc() {
@@ -147,6 +169,82 @@ export class MaterialrequisitionComponents implements OnInit {
     }
   }
 
+  getEmployeesList() {
+    const getEmployeeList = String.Join('/', this.apiConfigService.getEmployeeList);
+    this.apiService.apiGetRequest(getEmployeeList)
+      .subscribe(
+        response => {
+          const res = response;
+          if (!this.commonService.checkNullOrUndefined(res) && res.status === StatusCodes.pass) {
+            if (!this.commonService.checkNullOrUndefined(res.response)) {
+              this.employeesList = res.response['emplist'];
+            }
+          }
+          this.getCommitmentList();
+        });
+  }
+
+  getCommitmentList() {
+    const cmntUrl = String.Join('/', this.apiConfigService.getCommitmentList);
+    this.apiService.apiGetRequest(cmntUrl)
+      .subscribe(
+        response => {
+          this.spinner.hide();
+          const res = response;
+          if (!this.commonService.checkNullOrUndefined(res) && res.status === StatusCodes.pass) {
+            if (!this.commonService.checkNullOrUndefined(res.response)) {
+              const list = res.response['citemList'].filter((c: any) => c.type == 'Production');
+              const listM = res.response['citemList'].filter((c: any) => c.type == 'Mechenary');
+              this.citemList = list;
+              this.mechenaryList = listM;
+            }
+          }
+        });
+  }
+  saveForm() {
+    debugger
+    if (this.formData1.invalid) {
+      return;
+    }
+    // this.formData1.patchValue({
+    //   changed: true
+    // });
+    let data: any = this.tableData1;
+    this.tableData1 = null;
+    this.tableComponent.defaultValues();
+    if (this.formData1.value.index == 0) {
+      this.formData1.patchValue({
+        index: data ? (data.length + 1) : 1
+      });
+      data = [...data, this.formData1.value];
+    } else {
+      data = data.map((res: any) => res = res.index == this.formData1.value.index ? this.formData1.value : res);
+    }
+    setTimeout(() => {
+      this.tableData1 = data;
+    });
+    this.resetForm();
+  }
+
+  resetForm() {
+    this.formData1.reset();
+    this.formData1.patchValue({
+      index: 0,
+      action: 'edit'
+    });
+  }
+
+
+  editOrDeleteEvent(value) {
+    if (value.action === 'Delete') {
+      this.tableComponent.defaultValues();
+      this.tableData1 = this.tableData1.filter((res: any) => res.index != value.item.index);
+    } else {
+      this.formData1.patchValue(value.item);
+    }
+  }
+
+
   getGoodsissueDetail(val) {
     debugger
     const jvDetUrl = String.Join('/', this.apiConfigService.getGoodsissueDetail, val);
@@ -171,7 +269,7 @@ export class MaterialrequisitionComponents implements OnInit {
                   materialCode: s.materialCode ? s.materialCode : 0,
                   // availableqty: qty.availQTY ? qty.availQTY : 0,
                   saleOrderNumber: s.saleOrderNumber ? s.saleOrderNumber : 0,
-                  materialName:s.materialName?s.materialName:null,
+                  materialName: s.materialName ? s.materialName : null,
                   allocatedqty: s.allocatedQTY ? s.allocatedQTY : 0,
                   // requiredqty: s.qty - s.allocatedQTY
                 }
@@ -186,9 +284,8 @@ export class MaterialrequisitionComponents implements OnInit {
         });
   }
 
-  addOrUpdateEvent(event: any) {
-    debugger
-    this.getTagsissueDetail(event.item.saleOrderNumber, event.item.materialCode);
+  onEditEmit(event: any) {
+    this.getTagsissueDetail(event.saleOrderNumber, event.materialCode);
   }
 
   getTagsissueDetail(val, val1) {
@@ -218,10 +315,10 @@ export class MaterialrequisitionComponents implements OnInit {
                   // saleOrderNumber: s.saleOrderNumber ? s.saleOrderNumber : 0,
                   // allocatedqty: s.allocatedQTY ? s.allocatedQTY : 0,
                   // requiredqty: s.qty - s.allocatedQTY,
-                  materialName:s.materialName?s.materialName:null,
+                  materialName: s.materialName ? s.materialName : null,
                   allocatedPerson: s.allocatedPerson ? s.allocatedPerson : '',
                   endDate: s.endDate ? s.endDate : '',
-                  isReject: s.isReject ? s.isReject : '',
+                  // isReject: s.isReject ? s.isReject : '',
                   materialCode: s.materialCode ? s.materialCode : '',
                   mechine: s.mechine ? s.mechine : '',
                   productionTag: s.productionTag ? s.productionTag : '',
@@ -230,6 +327,8 @@ export class MaterialrequisitionComponents implements OnInit {
                   startDate: s.startDate ? s.startDate : '',
                   typeofWork: s.typeofWork ? s.typeofWork : '',
                   workStatus: s.workStatus ? s.workStatus : '',
+                  action: 'edit',
+                  index: index + 1,
                 }
                 arr.push(obj);
               })
@@ -329,9 +428,9 @@ export class MaterialrequisitionComponents implements OnInit {
             }
           }
           this.dynTableProps = this.tablePropsFunc();
-                   if (this.routeEdit != '') {
-                     this.getGoodsissueDetail(this.routeEdit);
-                   }
+          if (this.routeEdit != '') {
+            this.getGoodsissueDetail(this.routeEdit);
+          }
           //this.getMaterialTypeData();
         });
   }
@@ -444,7 +543,7 @@ export class MaterialrequisitionComponents implements OnInit {
   }
 
   save() {
-    this.tableData = this.commonService.formatTableData(this.tableData);
+    // this.tableData = this.commonService.formatTableData(this.tableData);
     if (this.tableData.length == 0) {
       return;
     }
@@ -461,8 +560,8 @@ export class MaterialrequisitionComponents implements OnInit {
   }
 
   savemreq() {
-    const addJournal = String.Join('/', this.apiConfigService.addmareq);
-    const requestObj = { mreqHdr: this.formData.value, mreqDtl: this.tableData };
+    const addJournal = String.Join('/', this.apiConfigService.addProductionissue);
+    const requestObj = {  mreqDtl: this.tableData };
     this.apiService.apiPostRequest(addJournal, requestObj).subscribe(
       response => {
         const res = response;

@@ -39,6 +39,7 @@ export class TableComponent implements OnInit, OnChanges, AfterViewInit, OnDestr
 
   @Input() tableData: any;
   @Output() addOrUpdateEvent = new EventEmitter();
+  @Output() onEditEmit = new EventEmitter();
   @Output() editOrDeleteEvent = new EventEmitter();
   @Input() addOrUpdateData: any;
   @Input() showFilters = true;
@@ -119,6 +120,10 @@ export class TableComponent implements OnInit, OnChanges, AfterViewInit, OnDestr
       data.item = null;
       this.addOrUpdateEvent.emit(data);
     }
+  }
+
+  onEditClick(row: any) {
+    this.onEditEmit.emit(row);
   }
 
 

@@ -1858,7 +1858,9 @@
     "saleOrderNumber": "Sale Order Number",
     "price": "Price",
     "value": "Value",
-    "delete": "Delete"
+    "delete": "Delete",
+                    "action": "Action"
+
   },
   "purcahserequisition": {
     "id": "ID",
