@@ -202,7 +202,6 @@ export class MaterialrequisitionComponents implements OnInit {
         });
   }
   saveForm() {
-    debugger
     if (this.formData1.invalid) {
       return;
     }
@@ -246,7 +245,6 @@ export class MaterialrequisitionComponents implements OnInit {
 
 
   getGoodsissueDetail(val) {
-    debugger
     const jvDetUrl = String.Join('/', this.apiConfigService.getGoodsissueDetail, val);
     this.apiService.apiGetRequest(jvDetUrl)
       .subscribe(
@@ -290,7 +288,6 @@ export class MaterialrequisitionComponents implements OnInit {
 
   getTagsissueDetail(val, val1) {
     this.tableComponent.defaultValues();
-    debugger
     const jvDetUrl = String.Join('/', this.apiConfigService.getTagsissueDetail, val, val1);
     this.apiService.apiGetRequest(jvDetUrl)
       .subscribe(
@@ -327,6 +324,7 @@ export class MaterialrequisitionComponents implements OnInit {
                   startDate: s.startDate ? s.startDate : '',
                   typeofWork: s.typeofWork ? s.typeofWork : '',
                   workStatus: s.workStatus ? s.workStatus : '',
+                  id: s.id ? s.id : '',
                   action: 'edit',
                   index: index + 1,
                 }
@@ -519,7 +517,6 @@ export class MaterialrequisitionComponents implements OnInit {
   //             this.costCenterList = res.response['costcenterList'];
   //           }
   //         }
-  //         debugger
   //         this.dynTableProps = this.tablePropsFunc();
   //         if (this.routeEdit != '') {
   //           this.getGoodsissueDetail(this.routeEdit);

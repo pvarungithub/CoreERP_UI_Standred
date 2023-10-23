@@ -213,7 +213,6 @@ export class GoodsissueComponent implements OnInit {
           const res = response;
           if (!this.commonService.checkNullOrUndefined(res) && res.status === StatusCodes.pass) {
             if (!this.commonService.checkNullOrUndefined(res.response)) {
-              debugger
               this.formData.patchValue(res.response['goodsissueasters']);
               console.log(res.response['goodsissueastersDetail']);
               // this.sendDynTableData = { type: 'edit', data: res.response['goodsissueastersDetail'] };

@@ -400,7 +400,6 @@ export class SalesorderComponent {
     this.apiService.apiGetRequest(url)
       .subscribe(
         response => {
-          debugger
           this.spinner.hide();
           this.url = response.response;
         });
