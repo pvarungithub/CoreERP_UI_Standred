@@ -57,14 +57,14 @@ export class BillOfMaterialComponent implements OnInit {
   accountList = [];
   accountFilterList = [];
   glAccountList = [];
-  level = [{ id: '0', text: '0' }, { id: '1', text: '1' }, { id: '2', text: '2' }, { id: '3', text: '3' },
-  { id: '4', text: '4' }, { id: '5', text: '5' }, { id: '6', text: '6' },
-  { id: '7', text: '7' }, { id: '8', text: '8' }, { id: '9', text: '9' }, { id: '10', text: '10' }
-  ];
+  // level = [{ id: '0', text: '0' }, { id: '1', text: '1' }, { id: '2', text: '2' }, { id: '3', text: '3' },
+  // { id: '4', text: '4' }, { id: '5', text: '5' }, { id: '6', text: '6' },
+  // { id: '7', text: '7' }, { id: '8', text: '8' }, { id: '9', text: '9' }, { id: '10', text: '10' }
+  // ];
   maftype = [{ id: 'Sub Assembly', text: 'Sub Assembly' },
   { id: 'Raw Material', text: 'Raw Material' }];
 
-  type = [{ id: 'BOM', text: 'BOM' }, { id: 'Item', text: 'Item' }]
+  // type = [{ id: 'BOM', text: 'BOM' }, { id: 'Item', text: 'Item' }]
 
   profitCenterList = [];
   bpTypeList = [];
@@ -85,11 +85,11 @@ export class BillOfMaterialComponent implements OnInit {
       { value: 'Maintenance BOM', viewValue: 'Maintenance BOM' }
     ];
 
-  LevelType: LevelType[] =
-    [
-      { value: 'Single', viewValue: 'Single' },
-      { value: 'Multiple', viewValue: 'Multiple' }
-    ];
+  // LevelType: LevelType[] =
+  //   [
+  //     { value: 'Single', viewValue: 'Single' },
+  //     { value: 'Multiple', viewValue: 'Multiple' }
+  //   ];
 
   plantList: any;
   costunitList: any;
@@ -149,32 +149,32 @@ export class BillOfMaterialComponent implements OnInit {
       tableData: {
 
 
-        bomLevel: {
-          value: null, type: 'dropdown', list: this.level, id: 'id', text: 'text', displayMul: false, width: 100
-        },
+        // bomLevel: {
+        //   value: null, type: 'dropdown', list: this.level, id: 'id', text: 'text', displayMul: false, width: 100
+        // },
         component: {
           value: null, type: 'dropdown', list: this.mmasterList, id: 'id', text: 'text', displayMul: false, width: 100
         },
-        description: {
-          value: null, type: 'text', width: 100, maxLength: 50
-        },
+        // description: {
+        //   value: null, type: 'text', width: 100, maxLength: 50
+        // },
 
         manufacturingType: {
           value: null, type: 'dropdown', list: this.maftype, id: 'id', text: 'text', displayMul: false, width: 100
         },
-        type: {
-          value: null, type: 'dropdown', list: this.type, id: 'id', text: 'text', displayMul: false, width: 100
-        },
-        aboveLevel: {
-          value: null, type: 'dropdown', list: this.level, id: 'id', text: 'text', displayMul: false, width: 100
-        },
+        // type: {
+        //   value: null, type: 'dropdown', list: this.type, id: 'id', text: 'text', displayMul: false, width: 100
+        // },
+        // aboveLevel: {
+        //   value: null, type: 'dropdown', list: this.level, id: 'id', text: 'text', displayMul: false, width: 100
+        // },
 
         qty: {
           value: null, type: 'number', width: 75
         },
-        uom: {
-          value: null, type: 'dropdown', list: this.UomList, id: 'id', text: 'text', displayMul: false, width: 100
-        },
+        // uom: {
+        //   value: null, type: 'dropdown', list: this.UomList, id: 'id', text: 'text', displayMul: false, width: 100
+        // },
         delete: {
           type: 'delete', width: 10
         }
@@ -220,38 +220,38 @@ export class BillOfMaterialComponent implements OnInit {
               })
             }
           }
-          this.getplantData();
-        });
-  }
-  getplantData() {
-    const getplantUrl = String.Join('/', this.apiConfigService.getPlantsList);
-    this.apiService.apiGetRequest(getplantUrl)
-      .subscribe(
-        response => {
-          const res = response;
-          if (!this.commonService.checkNullOrUndefined(res) && res.status === StatusCodes.pass) {
-            if (!this.commonService.checkNullOrUndefined(res.response)) {
-              this.plantList = res.response['plantsList'];
-            }
-          }
-          this.getCostUnitList();
-        });
-  }
-
-  getCostUnitList() {
-    const voucherClassList = String.Join('/', this.apiConfigService.getCostUnitListList);
-    this.apiService.apiGetRequest(voucherClassList)
-      .subscribe(
-        response => {
-          const res = response;
-          if (!this.commonService.checkNullOrUndefined(res) && res.status === StatusCodes.pass) {
-            if (!this.commonService.checkNullOrUndefined(res.response)) {
-              this.costunitList = res.response['costunitList'];
-            }
-          }
           this.getMaterialList();
         });
   }
+  // getplantData() {
+  //   const getplantUrl = String.Join('/', this.apiConfigService.getPlantsList);
+  //   this.apiService.apiGetRequest(getplantUrl)
+  //     .subscribe(
+  //       response => {
+  //         const res = response;
+  //         if (!this.commonService.checkNullOrUndefined(res) && res.status === StatusCodes.pass) {
+  //           if (!this.commonService.checkNullOrUndefined(res.response)) {
+  //             this.plantList = res.response['plantsList'];
+  //           }
+  //         }
+  //         this.getCostUnitList();
+  //       });
+  // }
+
+  // getCostUnitList() {
+  //   const voucherClassList = String.Join('/', this.apiConfigService.getCostUnitListList);
+  //   this.apiService.apiGetRequest(voucherClassList)
+  //     .subscribe(
+  //       response => {
+  //         const res = response;
+  //         if (!this.commonService.checkNullOrUndefined(res) && res.status === StatusCodes.pass) {
+  //           if (!this.commonService.checkNullOrUndefined(res.response)) {
+  //             this.costunitList = res.response['costunitList'];
+  //           }
+  //         }
+  //         this.getMaterialList();
+  //       });
+  // }
 
   getMaterialList() {
     const voucherClassList = String.Join('/', this.apiConfigService.getmaterialdata);
