@@ -114,7 +114,7 @@
             <mat-label>{{'materialrequisition.typeofWork' | translate }}</mat-label>
             <mat-select formControlName="typeofWork" appFocusOnEnter tabIndex="1">
               <mat-option>None</mat-option>
-              <mat-option *ngFor="let emp of citemList" [value]="emp.code">
+              <mat-option *ngFor="let emp of citemList" [value]="emp.description">
                 {{emp.description}}
               </mat-option>
             </mat-select>
@@ -123,7 +123,7 @@
             <mat-label>{{'materialrequisition.allocatedPerson' | translate }}</mat-label>
             <mat-select formControlName="allocatedPerson" appFocusOnEnter tabIndex="2">
               <mat-option>None</mat-option>
-              <mat-option *ngFor="let emp of employeesList" [value]="emp.id">
+              <mat-option *ngFor="let emp of employeesList" [value]="emp.text">
                 {{emp.id}}- {{emp.text}}
               </mat-option>
             </mat-select>
@@ -132,7 +132,7 @@
             <mat-label>{{'materialrequisition.mechine' | translate }}</mat-label>
             <mat-select formControlName="mechine" appFocusOnEnter tabIndex="3">
               <mat-option>None</mat-option>
-              <mat-option *ngFor="let emp of mechenaryList" [value]="emp.code">
+              <mat-option *ngFor="let emp of mechenaryList" [value]="emp.description">
                 {{emp.description}}
               </mat-option>
             </mat-select>

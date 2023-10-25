@@ -11,8 +11,9 @@ import { Static } from '../../../../enums/common/static';
 import { AlertService } from '../../../../services/alert.service';
 import { DateAdapter, MAT_DATE_FORMATS } from '@angular/material/core';
 import { AppDateAdapter, APP_DATE_FORMATS } from '../../../../directives/format-datepicker';
-import { TableComponent } from 'src/app/reuse-components';
+import { PreviewComponent, TableComponent } from 'src/app/reuse-components';
 import { DatePipe } from '@angular/common';
+import { MatDialog } from '@angular/material/dialog';
 
 @Component({
   selector: 'app-purcahseorder',
@@ -76,7 +77,8 @@ export class PurchaseOrderComponent implements OnInit {
     private spinner: NgxSpinnerService,
     public route: ActivatedRoute,
     private router: Router,
-    private datepipe: DatePipe
+    private datepipe: DatePipe,
+    public dialog: MatDialog
   ) {
     this.loginUser = JSON.parse(localStorage.getItem('user'));
     if (!this.commonService.checkNullOrUndefined(this.route.snapshot.params.value)) {
@@ -727,8 +729,36 @@ export class PurchaseOrderComponent implements OnInit {
 
   reset() {
     this.tableData = [];
-    this.formData.reset();
+  this.formData.reset();
     // this.sendDynTableData = { type: 'reset', data: this.tableData };
+  }
+
+  print() {
+    const dialogRef = this.dialog.open(PreviewComponent, {
+      width: '1024px',
+      data: {
+        heading: 'Purchase Order',
+        headingObj: {
+          Company: this.formData.value.company,
+          "Profit Center": this.formData.value.profitCenter,
+          "Sale Order": this.formData.value.saleOrder,
+          "Purchase Order Number": this.formData.value.purchaseOrderNumber,
+          "Supplier Code": this.formData.value.supplierCode,
+          "Gst Number": this.formData.value.gstno,
+          "Delivery Date": this.formData.value.deliveryDate,
+          "Purchase Order Date": this.formData.value.purchaseOrderDate,
+          "Advance": this.formData.value.advance,
+          "Sale Order Number": this.formData.value.saleOrderNo,
+        },
+        detailArray: this.tableData.map((t: any) => { 
+          return { 
+            'Material Code': t.materialCode, 
+            'Tax Code': t.taxCode,
+            'Quantity': t.qty,
+          } })
+      },
+      disableClose: true
+    });
   }
 
 }

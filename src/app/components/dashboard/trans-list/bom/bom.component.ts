@@ -1,4 +1,4 @@
-import { Component, OnInit } from '@angular/core';
+import { Component, OnInit, ViewChild } from '@angular/core';
 import { FormGroup, FormBuilder, Validators } from '@angular/forms';
 import { ApiConfigService } from '../../../../services/api-config.service';
 import { String } from 'typescript-string-operations';
@@ -11,6 +11,7 @@ import { Static } from '../../../../enums/common/static';
 import { AlertService } from '../../../../services/alert.service';
 import { DateAdapter, MAT_DATE_FORMATS } from '@angular/material/core';
 import { AppDateAdapter, APP_DATE_FORMATS } from '../../../../directives/format-datepicker';
+import { TableComponent } from 'src/app/reuse-components';
 
 interface BomType {
   value: string;
@@ -44,6 +45,12 @@ export class BillOfMaterialComponent implements OnInit {
   sendDynTableData: any;
 
   formData: FormGroup;
+  formData1: FormGroup;
+
+  @ViewChild(TableComponent, { static: false }) tableComponent: TableComponent;
+
+  materialList = [];
+
   routeEdit = '';
   bpList = [];
   tableData = [];
@@ -138,8 +145,28 @@ export class BillOfMaterialComponent implements OnInit {
       material: [null],
       batch: [null],
       createdBy: [null],
-      levelType: [null]
+      levelType: [null],
+      profitCenter: [null],
 
+    });
+    this.formData1 = this.formBuilder.group({
+      materialCode: ['', Validators.required],
+      taxCode: ['', Validators.required],
+      qty: ['', Validators.required],
+      rate: ['', Validators.required],
+      discount: [''],
+      sgst: [''],
+      id: [0],
+      igst: [''],
+      cgst: [''],
+      amount: [''],
+      total: [''],
+      netWeight: [''],
+      deliveryDate: [''],
+      stockQty: [0],
+      materialName: [''],
+      action: 'editDelete',
+      index: 0
     });
     // this.checkTransType();
   }
@@ -186,6 +213,66 @@ export class BillOfMaterialComponent implements OnInit {
     };
   }
 
+
+  resetForm() {
+    this.formData1.reset();
+    this.formData1.patchValue({
+      index: 0,
+      action: 'editDelete',
+      id: 0
+    });
+  }
+
+  saveForm() {
+    if (this.formData1.invalid) {
+      return;
+    }
+    let data: any = this.tableData;
+    this.tableData = null;
+    this.tableComponent.defaultValues();
+    const obj = data.find((d: any) => d.materialCode == this.formData1.value.materialCode)
+    if (this.formData1.value.index == 0 && !obj) {
+      this.formData1.patchValue({
+        index: data ? (data.length + 1) : 1
+      });
+      data = [...data, this.formData1.value];
+    } else {
+      if (this.formData1.value.index == 0) {
+        data.forEach((res: any) => { if (res.materialCode == this.formData1.value.materialCode) { (res.qty = res.qty + this.formData1.value.qty) } });
+      } else {
+        data = data.map((res: any) => res = res.index == this.formData1.value.index ? this.formData1.value : res);
+      }
+    }
+    setTimeout(() => {
+      this.tableData = data;
+    });
+    this.resetForm();
+  }
+
+
+  editOrDeleteEvent(value) {
+    if (value.action === 'Delete') {
+      this.tableComponent.defaultValues();
+      this.tableData = this.tableData.filter((res: any) => res.index != value.item.index);
+    } else {
+      this.formData1.patchValue(value.item);
+    }
+  }
+
+
+  materialCodeChange() {
+    debugger
+    const obj = this.materialList.find((m: any) => m.id == this.formData1.value.materialCode);
+    this.formData1.patchValue({
+      netWeight: obj.netWeight,
+      stockQty: obj.closingQty,
+      materialName: obj.text
+    })
+    if (!obj.netWeight) {
+      this.alertService.openSnackBar('Net Weight has not provided for selected material..', Static.Close, SnackBar.error);
+    }
+
+  }
 
   getbomDetail(val) {
     const bomUrl = String.Join('/', this.apiConfigService.getBOMDetail, val);
@@ -279,6 +366,20 @@ export class BillOfMaterialComponent implements OnInit {
               this.employeesList = res.response['emplist'];
             }
           }
+          this.getprofircenterData();
+        });
+  }
+  getprofircenterData() {
+    const getprofircenterData = String.Join('/', this.apiConfigService.getProfitCentersList);
+    this.apiService.apiGetRequest(getprofircenterData)
+      .subscribe(
+        response => {
+          const res = response;
+          if (!this.commonService.checkNullOrUndefined(res) && res.status === StatusCodes.pass) {
+            if (!this.commonService.checkNullOrUndefined(res.response)) {
+              this.profitCenterList = res.response['profitCenterList'];
+            }
+          }
           this.getBatchList();
         });
   }
@@ -291,6 +392,22 @@ export class BillOfMaterialComponent implements OnInit {
           if (!this.commonService.checkNullOrUndefined(res) && res.status === StatusCodes.pass) {
             if (!this.commonService.checkNullOrUndefined(res.response)) {
               this.batchmasterList = res.response['batchmasterList'];
+            }
+          }
+          this.getmaterialData();
+        });
+  }
+
+  getmaterialData() {
+    const getmaterialUrl = String.Join('/', this.apiConfigService.getMaterialList);
+    this.apiService.apiGetRequest(getmaterialUrl)
+      .subscribe(
+        response => {
+          this.spinner.hide();
+          const res = response;
+          if (!this.commonService.checkNullOrUndefined(res) && res.status === StatusCodes.pass) {
+            if (!this.commonService.checkNullOrUndefined(res.response)) {
+              this.materialList = res.response['materialList'];
             }
           }
           this.getuomTypeData();

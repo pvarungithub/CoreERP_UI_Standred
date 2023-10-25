@@ -2,6 +2,12 @@
 
     <mat-card-content>
 
+        <div class="d-flex justify-content-end">
+            <button class="mx-2" mat-raised-button (click)="print()">
+                <mat-icon>print</mat-icon> Print
+            </button>
+        </div>
+
         <form [formGroup]="formData" autocomplete="off">
 
             <h3>
