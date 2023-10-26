@@ -1678,12 +1678,18 @@
   "bom": {
     "title": "BOM",
     "company": "Company",
+    "amount": "Amount",
     "plant": "Plant",
     "bomtype": "Bom Type",
     "bomnumber": "Bom Number",
     "costUnit": "Cost Unit",
     "material": "Material",
     "batch": "Batch",
+    "product": "Product",
+    "saleOrder": "Sale Order Number",
+                "netWeight": "Net Weight",
+                    "availableQty": "Available QTY",
+                    "rate": "Rate",
     "createdBy": "Created By",
     "levelType": "Level Type",
     "bomLevel": "Level",
@@ -1695,7 +1701,8 @@
     "aboveLevel": "Above Level",
     "qty": "Quantity",
     "uom": "UOM",
-    "delete": "Delete"
+    "delete": "Delete",
+        "action": "Action"
   },
   "workcentercreation": {
     "title": "Work Center Creation",

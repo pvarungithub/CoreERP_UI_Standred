@@ -1424,6 +1424,10 @@
     "createdBy": "Created By",
     "levelType": "Level Type",
     "bomLevel": "Level",
+     "netWeight": "Net Weight",
+                    "availableQty": "Available QTY",
+                    "rate": "Rate",
+                        "amount": "Amount",
     "component": "Component",
     "description": "Description",
     "manufacturingType": "Manufacturing Type",
@@ -1431,7 +1435,8 @@
     "aboveLevel": "Above Level",
     "qty": "Quantity",
     "uom": "UOM",
-    "delete": "Delete"
+    "delete": "Delete",
+    "action": "Action"
   },
   "workcentercreation": {
     "title": "Work Center Creation",
