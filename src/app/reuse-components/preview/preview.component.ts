@@ -3,9 +3,6 @@ import { MatDialogRef, MAT_DIALOG_DATA } from '@angular/material/dialog';
 import { NgxSpinnerService } from 'ngx-spinner';
 
 
-import jsPDF from 'jspdf';
-import html2canvas from 'html2canvas';
-
 @Component({
   selector: 'app-preview',
   templateUrl: './preview.component.html',
@@ -13,11 +10,13 @@ import html2canvas from 'html2canvas';
 })
 export class PreviewComponent {
 
-  constructor(
-    public dialogRef: MatDialogRef<PreviewComponent>,
-    private spinner: NgxSpinnerService,
-    // @Optional() is used to prevent error if no data is passed
-    @Optional() @Inject(MAT_DIALOG_DATA) public data: any) {}
+  data: any;
+
+  constructor( private spinner: NgxSpinnerService) {
+   const obj = localStorage.getItem('printData');
+   const newO = JSON.parse(obj);
+   this.data = newO;
+  }
 
 
   print() {
@@ -47,7 +46,4 @@ export class PreviewComponent {
     // });
   }
 
-  close() {
-    this.dialogRef.close();
-  }
 }

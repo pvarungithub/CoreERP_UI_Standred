@@ -8,6 +8,7 @@ import { TransListComponent } from './components/dashboard/trans-list/trans-list
 import { CompTabsComponent } from './components/dashboard/comp-list/comp-tabs/comp-tabs.component';
 import { PrimaryComponent } from './components/dashboard/primary/primary.component';
 import { CreateStockExcessComponent, CreateStockTransferComponent } from './components/dashboard/trans-list';
+import { PreviewComponent } from './reuse-components';
 const routes: Routes = [
   { path: 'login', component: LoginComponent },
   {
@@ -32,7 +33,8 @@ const routes: Routes = [
       { path: 'transactions/:id/createStockExcess/:id1', component: CreateStockExcessComponent, data: { title: 'Create StockExcess' }, canActivate: [AuthGuard] },
       
       // primary screens
-      { path: 'primary/:id', component: PrimaryComponent, canActivate: [AuthGuard], resolve: { routeConfig: AuthGuard } }
+      { path: 'primary/:id', component: PrimaryComponent, canActivate: [AuthGuard], resolve: { routeConfig: AuthGuard } },
+      { path: 'preview', component: PreviewComponent }
     ]
   },
   { path: '', redirectTo: '/login', pathMatch: 'full' },

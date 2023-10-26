@@ -1,5 +1,7 @@
-<div style="display: flex; justify-content: end; margin: 10px;">
-    <mat-icon style="cursor: pointer;" (click)="close()">close</mat-icon>
+<div class="form-element p-2 d-flex justify-content-end">
+    <button mat-raised-button type="submit" class="button-color-bule text-white mx-1" (click)="print()">
+        {{ 'COMMON.PRINT' | translate }}
+    </button>
 </div>
 <div style="margin: 10px;" id="printData">
     <div style="display: flex; justify-content: center">
@@ -26,12 +28,4 @@
             </tbody>
         </table>
     </div>
-</div>
-<div class="form-element p-2 d-flex justify-content-end">
-    <button mat-raised-button class="button-color-red text-white mx-1" (click)="close()">
-        {{ 'COMMON.CANCEL' | translate }}
-    </button>
-    <button mat-raised-button type="submit" class="button-color-bule text-white mx-1" (click)="print()">
-        {{ 'COMMON.PRINT' | translate }}
-    </button>
 </div>

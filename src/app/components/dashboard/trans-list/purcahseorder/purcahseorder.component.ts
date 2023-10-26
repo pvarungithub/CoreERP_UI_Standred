@@ -734,31 +734,34 @@ export class PurchaseOrderComponent implements OnInit {
   }
 
   print() {
-    const dialogRef = this.dialog.open(PreviewComponent, {
-      width: '1024px',
-      data: {
-        heading: 'Purchase Order',
-        headingObj: {
-          Company: this.formData.value.company,
-          "Profit Center": this.formData.value.profitCenter,
-          "Sale Order": this.formData.value.saleOrder,
-          "Purchase Order Number": this.formData.value.purchaseOrderNumber,
-          "Supplier Code": this.formData.value.supplierCode,
-          "Gst Number": this.formData.value.gstno,
-          "Delivery Date": this.formData.value.deliveryDate,
-          "Purchase Order Date": this.formData.value.purchaseOrderDate,
-          "Advance": this.formData.value.advance,
-          "Sale Order Number": this.formData.value.saleOrderNo,
-        },
-        detailArray: this.tableData.map((t: any) => { 
-          return { 
-            'Material Code': t.materialCode, 
-            'Tax Code': t.taxCode,
-            'Quantity': t.qty,
-          } })
+    const obj = {
+      heading: 'Purchase Order',
+      headingObj: {
+        Company: this.formData.value.company,
+        "Profit Center": this.formData.value.profitCenter,
+        "Sale Order": this.formData.value.saleOrder,
+        "Purchase Order Number": this.formData.value.purchaseOrderNumber,
+        "Supplier Code": this.formData.value.supplierCode,
+        "Gst Number": this.formData.value.gstno,
+        "Delivery Date": this.formData.value.deliveryDate,
+        "Purchase Order Date": this.formData.value.purchaseOrderDate,
+        "Advance": this.formData.value.advance,
+        "Sale Order Number": this.formData.value.saleOrderNo,
       },
-      disableClose: true
-    });
+      detailArray: this.tableData.map((t: any) => {
+        return {
+          'Material Code': t.materialCode,
+          'Tax Code': t.taxCode,
+          'Quantity': t.qty,
+        }
+      })
+    }
+    localStorage.setItem('printData', JSON.stringify(obj));
+    const url = this.router.serializeUrl(
+      this.router.createUrlTree([`dashboard/preview`])
+    );
+
+    window.open(url, "_blank");
   }
 
 }
