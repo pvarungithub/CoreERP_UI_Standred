@@ -138,12 +138,12 @@ export class BillOfMaterialComponent implements OnInit {
   formDataGroup() {
     this.formData = this.formBuilder.group({
       company: [null, [Validators.required]],
-      amount: [''],
+      // amount: [''],
       bomtype: [null],
       bomnumber: [null, [Validators.required]],
       profitCenter: [null],
       product: [null],
-      saleOrder: [null],
+      // saleOrder: [null],
     });
     this.formData1 = this.formBuilder.group({
       material: ['', Validators.required],
@@ -151,7 +151,7 @@ export class BillOfMaterialComponent implements OnInit {
       rate: ['', Validators.required],
       netWeight: [''],
       availableQty: [''],
-      amount: ['', Validators.required],
+      // amount: ['', Validators.required],
       id: [0],
       action: 'editDelete',
       index: 0
@@ -284,7 +284,7 @@ export class BillOfMaterialComponent implements OnInit {
                   rate: s.rate ? s.rate : '',
                   netWeight: s.netWeight ? s.netWeight : '',
                   availableQty: s.availableQty ? s.availableQty : '',
-                  amount: s.amount ? s.amount : '',
+                  // amount: s.amount ? s.amount : '',
                   action: 'editDelete',
                   index: index + 1,
                 }
@@ -468,6 +468,15 @@ export class BillOfMaterialComponent implements OnInit {
   //   }
 
   // }
+
+  materialChange() {
+    const obj = this.mmasterList.some((m: any) => m.id == this.formData1.value.material);
+    if (!obj) {
+      this.formData1.patchValue({
+        material: ''
+      })
+    }
+  }
 
 
   back() {
