@@ -138,7 +138,7 @@ export class BillOfMaterialComponent implements OnInit {
   formDataGroup() {
     this.formData = this.formBuilder.group({
       company: [null, [Validators.required]],
-      // amount: [''],
+      amount: [''],
       bomtype: [null],
       bomnumber: [null, [Validators.required]],
       profitCenter: [null],
@@ -146,10 +146,11 @@ export class BillOfMaterialComponent implements OnInit {
       // saleOrder: [null],
     });
     this.formData1 = this.formBuilder.group({
-      material: ['', Validators.required],
+      component: ['', Validators.required],
       qty: ['', Validators.required],
       rate: ['', Validators.required],
       netWeight: [''],
+      amount: [''],
       availableQty: [''],
       // amount: ['', Validators.required],
       id: [0],
@@ -215,10 +216,13 @@ export class BillOfMaterialComponent implements OnInit {
     if (this.formData1.invalid) {
       return;
     }
+    this.formData1.patchValue({
+      amount: (+this.formData1.value.qty) * (+this.formData1.value.rate) * (+this.formData1.value.netWeight)
+    })
     let data: any = this.tableData;
     this.tableData = null;
     this.tableComponent.defaultValues();
-    const obj = data.find((d: any) => d.material == this.formData1.value.material)
+    const obj = data.find((d: any) => d.component == this.formData1.value.component)
     if (this.formData1.value.index == 0 && !obj) {
       this.formData1.patchValue({
         index: data ? (data.length + 1) : 1
@@ -233,8 +237,20 @@ export class BillOfMaterialComponent implements OnInit {
     }
     setTimeout(() => {
       this.tableData = data;
+      this.calculate();
     });
     this.resetForm();
+  }
+
+  calculate() {
+    this.formData.patchValue({
+      amount: 0,
+    })
+    this.tableData && this.tableData.forEach((t: any) => {
+      this.formData.patchValue({
+        amount: this.formData.value.amount + t.amount,
+      })
+    })
   }
 
 
@@ -250,7 +266,7 @@ export class BillOfMaterialComponent implements OnInit {
 
   materialCodeChange() {
     debugger
-    const obj = this.mmasterList.find((m: any) => m.id == this.formData1.value.material);
+    const obj = this.mmasterList.find((m: any) => m.id == this.formData1.value.component);
     this.formData1.patchValue({
       netWeight: obj.netWeight,
       availableQty: obj.availQTY
@@ -278,12 +294,15 @@ export class BillOfMaterialComponent implements OnInit {
               debugger
               let arr = [];
               res.response['bomDetail'].forEach((s: any, index: number) => {
+                const mObj = this.mmasterList.find((m: any) => m.id == s.component);
+                debugger
                 const obj = {
-                  material: s.material ? s.material : '',
+                  component: s.component ? s.component : '',
                   qty: s.qty ? s.qty : '',
                   rate: s.rate ? s.rate : '',
                   netWeight: s.netWeight ? s.netWeight : '',
-                  availableQty: s.availableQty ? s.availableQty : '',
+                  amount: s.amount ? s.amount : '',
+                  availableQty: mObj.availQTY ? mObj.availQTY : '',
                   // amount: s.amount ? s.amount : '',
                   action: 'editDelete',
                   index: index + 1,
@@ -470,10 +489,10 @@ export class BillOfMaterialComponent implements OnInit {
   // }
 
   materialChange() {
-    const obj = this.mmasterList.some((m: any) => m.id == this.formData1.value.material);
+    const obj = this.mmasterList.some((m: any) => m.id == this.formData1.value.component);
     if (!obj) {
       this.formData1.patchValue({
-        material: ''
+        component: ''
       })
     }
   }

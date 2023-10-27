@@ -110,8 +110,8 @@
                     <div class="mat-mdc-form-field typeahead">
                         <input placeholder="{{ 'saleorder.materialCode' | translate }}" formControlName="materialCode"
                             [typeahead]="materialList" typeaheadOptionField='id' tabIndex="8" class="form-control "
-                            [typeaheadItemTemplate]="customItemTemplate" (typeaheadOnSelect)="materialCodeChange()">
-                        <ng-template #customItemTemplate let-model="item">
+                            [typeaheadItemTemplate]="customItemTemplate" (typeaheadOnSelect)="materialCodeChange()" (change)="materialChange()">
+                        <ng-template #customItemTemplate let-model="item" >
                             <span><strong>{{model.id}}</strong> - {{model.text}}</span>
                         </ng-template>
                     </div>

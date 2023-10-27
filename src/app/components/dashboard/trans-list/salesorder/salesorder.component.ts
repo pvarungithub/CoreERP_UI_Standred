@@ -165,6 +165,17 @@ export class SalesorderComponent {
     })
   }
 
+
+  materialChange() {
+    const obj = this.materialList.some((m: any) => m.id == this.formData1.value.materialCode);
+    if (!obj) {
+      this.alertService.openSnackBar('Please enter valid material code', Static.Close, SnackBar.error);
+      this.formData1.patchValue({
+        materialCode: ''
+      })
+    }
+  }
+
   calculate() {
     this.formData.patchValue({
       igst: 0,

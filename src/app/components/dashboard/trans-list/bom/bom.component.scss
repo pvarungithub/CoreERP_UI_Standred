@@ -27,3 +27,7 @@ mat-form-field {
       min-height: 4vh !important;
     }
   }
+
+  .form-control:disabled {
+    background-color: none !important;
+  }
