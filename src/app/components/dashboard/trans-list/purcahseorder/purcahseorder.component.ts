@@ -163,25 +163,25 @@ export class PurchaseOrderComponent implements OnInit {
     }
   }
 
-  profitCenterChange() {
-    this.formData.patchValue({
-      purchaseOrderNumber: ''
-    })
-    const costCenUrl = String.Join('/', this.apiConfigService.getPurchaseOrderNumber, this.formData.value.profitCenter);
-    this.apiService.apiGetRequest(costCenUrl)
-      .subscribe(
-        response => {
-          this.spinner.hide();
-          const res = response;
-          if (!this.commonService.checkNullOrUndefined(res) && res.status === StatusCodes.pass) {
-            if (!this.commonService.checkNullOrUndefined(res.response)) {
-              this.formData.patchValue({
-                purchaseOrderNumber: res.response['PurchaseOrderNumber']
-              })
-            }
-          }
-        });
-  }
+  // profitCenterChange() {
+  //   this.formData.patchValue({
+  //     purchaseOrderNumber: ''
+  //   })
+  //   const costCenUrl = String.Join('/', this.apiConfigService.getPurchaseOrderNumber, this.formData.value.profitCenter);
+  //   this.apiService.apiGetRequest(costCenUrl)
+  //     .subscribe(
+  //       response => {
+  //         this.spinner.hide();
+  //         const res = response;
+  //         if (!this.commonService.checkNullOrUndefined(res) && res.status === StatusCodes.pass) {
+  //           if (!this.commonService.checkNullOrUndefined(res.response)) {
+  //             this.formData.patchValue({
+  //               purchaseOrderNumber: res.response['PurchaseOrderNumber']
+  //             })
+  //           }
+  //         }
+  //       });
+  // }
 
   getTaxRatesList() {
     const taxCodeUrl = String.Join('/', this.apiConfigService.getTaxRatesList);

@@ -209,25 +209,25 @@ export class SalesorderComponent {
     }
   }
 
-  profitCenterChange() {
-    this.formData.patchValue({
-      saleOrderNo: ''
-    })
-    const costCenUrl = String.Join('/', this.apiConfigService.getSaleOrderNumber, this.formData.value.profitCenter);
-    this.apiService.apiGetRequest(costCenUrl)
-      .subscribe(
-        response => {
-          this.spinner.hide();
-          const res = response;
-          if (!this.commonService.checkNullOrUndefined(res) && res.status === StatusCodes.pass) {
-            if (!this.commonService.checkNullOrUndefined(res.response)) {
-              this.formData.patchValue({
-                saleOrderNo: res.response['SaleOrderNumber']
-              })
-            }
-          }
-        });
-  }
+  // profitCenterChange() {
+  //   this.formData.patchValue({
+  //     saleOrderNo: ''
+  //   })
+  //   const costCenUrl = String.Join('/', this.apiConfigService.getSaleOrderNumber, this.formData.value.profitCenter);
+  //   this.apiService.apiGetRequest(costCenUrl)
+  //     .subscribe(
+  //       response => {
+  //         this.spinner.hide();
+  //         const res = response;
+  //         if (!this.commonService.checkNullOrUndefined(res) && res.status === StatusCodes.pass) {
+  //           if (!this.commonService.checkNullOrUndefined(res.response)) {
+  //             this.formData.patchValue({
+  //               saleOrderNo: res.response['SaleOrderNumber']
+  //             })
+  //           }
+  //         }
+  //       });
+  // }
 
   onSearchChange() {
     this.formData1.value.materialCode;
