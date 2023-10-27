@@ -53,9 +53,19 @@
           </mat-select>
         </mat-form-field>
 
-        <mat-slide-toggle class="d-flex m-3" formControlName="saleOrder" (change)="toggle($event.checked)">
+        <!-- <mat-slide-toggle class="d-flex m-3" formControlName="saleOrder" (change)="toggle($event.checked)">
           Sale Order
-        </mat-slide-toggle>
+        </mat-slide-toggle> -->
+
+        <mat-form-field>
+          <mat-label>{{'goodsissue.poType' | translate }}</mat-label>
+          <mat-select formControlName="saleOrder" appFocusOnEnter tabIndex="4" (selectionChange)="toggle()">
+            <mat-option>None</mat-option>
+            <mat-option value="Sale Order"> Sale Order </mat-option>
+            <mat-option value="Master Saleorder"> Master Saleorder </mat-option>
+            <mat-option value="Bill of Material"> Bill of Material </mat-option>
+          </mat-select>
+        </mat-form-field>
 
         <mat-form-field>
           <mat-label>{{'goodsissue.saleOrderNumber' | translate }}</mat-label>

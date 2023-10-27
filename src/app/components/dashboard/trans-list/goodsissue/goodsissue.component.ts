@@ -196,11 +196,13 @@ export class GoodsissueComponent implements OnInit {
   }
 
 
-  toggle(flag: any) {
-    if (flag) {
+  toggle() {
+    if (this.formData.value.saleOrder == 'Sale Order') {
       this.getreqList(false);
-    } else {
+    } else if (this.formData.value.saleOrder == 'Master Saleorder') {
       this.getPRList();
+    } else if (this.formData.value.saleOrder == 'Bill of Material') {
+      this.getBOMList();
     }
   }
 
@@ -384,6 +386,22 @@ export class GoodsissueComponent implements OnInit {
           if (!this.commonService.checkNullOrUndefined(res) && res.status === StatusCodes.pass) {
             if (!this.commonService.checkNullOrUndefined(res.response)) {
               this.mreqList = res.response['BPList'];
+            }
+          }
+        });
+  }
+
+
+  getBOMList() {
+    const companyUrl = String.Join('/', this.apiConfigService.getBOMList);
+    this.apiService.apiGetRequest(companyUrl)
+      .subscribe(
+        response => {
+          this.spinner.hide();
+          const res = response;
+          if (!this.commonService.checkNullOrUndefined(res) && res.status === StatusCodes.pass) {
+            if (!this.commonService.checkNullOrUndefined(res.response)) {
+              this.mreqList = res.response['BOMList'];
             }
           }
         });
