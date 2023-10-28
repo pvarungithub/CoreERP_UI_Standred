@@ -4,10 +4,10 @@
 
         <form [formGroup]="formData" autocomplete="off">
 
-            <h3>
-                Header Section
+            <h6>
+               Requisition Header
                 <hr>
-            </h3>
+            </h6>
 
             <div class="d--flex p-1 mat-form-field-height">
 
@@ -103,11 +103,11 @@
                     </mat-select>
                 </mat-form-field>
 
-                <mat-form-field class="form-element">
+                <!-- <mat-form-field class="form-element">
                     <mat-label [translate]="'purcahserequisition.requisitionNumber'"></mat-label>
                     <input matInput type="text" formControlName="requisitionNumber" maxlength="50" appFocusOnEnter
                         tabIndex="2">
-                </mat-form-field>
+                </mat-form-field> -->
 
                 <mat-form-field class="form-element">
                     <mat-label [translate]="'purcahserequisition.requisitionDate'"></mat-label>
@@ -123,10 +123,10 @@
 
         <div class="p-2 card">
 
-            <h3>
-                Detail Section
+            <h6>
+                Material Details
                 <hr>
-            </h3>
+            </h6>
 
             <form [formGroup]="formData1" autocomplete="off">
 

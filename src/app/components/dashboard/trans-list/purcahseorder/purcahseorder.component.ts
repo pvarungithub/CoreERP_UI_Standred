@@ -133,6 +133,7 @@ export class PurchaseOrderComponent implements OnInit {
 
     this.formData1 = this.formBuilder.group({
       materialCode: [''],
+      materialName:[''],
       taxCode: [''],
       qty: ['', Validators.required],
       rate: ['', Validators.required],
@@ -768,6 +769,7 @@ export class PurchaseOrderComponent implements OnInit {
       detailArray: this.tableData.map((t: any) => {
         return {
           'Material Code': t.materialCode,
+          'Material Name':t.materialName,
           'Tax Code': t.taxCode,
           'Quantity': t.qty,
         }

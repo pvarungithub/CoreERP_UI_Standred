@@ -1834,7 +1834,7 @@
     "action": "Action"
   },
   "materialrequisition": {
-    "title": "Material Requisition",
+    "title": "Production Planning",
     "company": "Company",
     "plant": "Plant",
     "branch": "Branch",
@@ -1873,7 +1873,7 @@
   },
   "purcahserequisition": {
     "id": "ID",
-    "title": "Purcahse Requisition",
+    "title": "Master Saleorder",
     "company": "Company",
     "branch": "Branch",
     "plant": "Plant",

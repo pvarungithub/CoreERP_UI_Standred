@@ -1564,7 +1564,7 @@
   },
   "materialrequisition": {
     "saleOrderNumber": "saleOrderNumber",
-    "title": "Material Requisition",
+    "title": "Production Planning",
     "company": "Company",
     "plant": "Plant",
     "branch": "Branch",
@@ -1600,7 +1600,7 @@
                 "action": "Action"
   },
   "purcahserequisition": {
-    "title": "Purcahse Requisition",
+    "title": "Master Saleorder",
     "company": "Company",
     "department": "Department",
     "profitCenter": "Profit Center",
