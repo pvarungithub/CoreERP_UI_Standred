@@ -1697,6 +1697,7 @@
     "purchaseOrderDate": "Date",
     "advance": "Advance",
     "materialCode": "Material code",
+    "materialName": "Material Name",
     "description": "Description",
     "qty": "QTY",
     "rate": "Rate",

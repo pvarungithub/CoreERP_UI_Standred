@@ -104,7 +104,7 @@ export class PurchaseOrderComponent implements OnInit {
       plant: [null],
       branch: [null],
       profitCenter: [null],
-      saleOrder: [true],
+      saleOrderType: [true],
       purchaseOrderNumber: [null],
       purchaseOrderType: [null],
       // quotationDate: [null],
@@ -155,11 +155,11 @@ export class PurchaseOrderComponent implements OnInit {
   }
 
   toggle() {
-    if (this.formData.value.saleOrder == 'Sale Order') {
+    if (this.formData.value.saleOrderType == 'Sale Order') {
       this.getSaleOrderList(false);
-    } else if (this.formData.value.saleOrder == 'Master Saleorder') {
+    } else if (this.formData.value.saleOrderType == 'Master Saleorder') {
       this.getPRList();
-    } else if (this.formData.value.saleOrder == 'Bill of Material') {
+    } else if (this.formData.value.saleOrderType == 'Bill of Material') {
       this.getBOMList();
     }
   }
@@ -221,7 +221,7 @@ export class PurchaseOrderComponent implements OnInit {
 
   getSaleOrderDetail() {
     this.tableComponent.defaultValues();
-    const qsDetUrl = String.Join('/', this.formData.value.saleOrder ? this.apiConfigService.getSaleOrderDetail : this.apiConfigService.getPurchaseRequisitionDetail, this.formData.value.saleOrderNo);
+    const qsDetUrl = String.Join('/', this.formData.value.saleOrderType ? this.apiConfigService.getSaleOrderDetail : this.apiConfigService.getPurchaseRequisitionDetail, this.formData.value.saleOrderNo);
     this.apiService.apiGetRequest(qsDetUrl)
       .subscribe(
         response => {
@@ -230,8 +230,8 @@ export class PurchaseOrderComponent implements OnInit {
           if (!this.commonService.checkNullOrUndefined(res) && res.status === StatusCodes.pass) {
             if (!this.commonService.checkNullOrUndefined(res.response)) {
               const obj = {
-                data: this.formData.value.saleOrder ? res.response['SaleOrderMasters'] : res.response['preqmasters'],
-                data1: this.formData.value.saleOrder ? res.response['SaleOrderDetails'] : res.response['preqDetail'],
+                data: this.formData.value.saleOrderType ? res.response['SaleOrderMasters'] : res.response['preqmasters'],
+                data1: this.formData.value.saleOrderType ? res.response['SaleOrderDetails'] : res.response['preqDetail'],
               }
               // this.formData.patchValue(obj['data']);
               // this.formData.patchValue({
@@ -757,7 +757,7 @@ export class PurchaseOrderComponent implements OnInit {
       headingObj: {
         Company: this.formData.value.company,
         "Profit Center": this.formData.value.profitCenter,
-        "Sale Order": this.formData.value.saleOrder,
+        "Sale Order": this.formData.value.saleOrderType,
         "Purchase Order Number": this.formData.value.purchaseOrderNumber,
         "Supplier Code": this.formData.value.supplierCode,
         "Gst Number": this.formData.value.gstno,

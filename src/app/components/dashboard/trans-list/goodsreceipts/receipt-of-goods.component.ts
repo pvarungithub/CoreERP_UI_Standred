@@ -155,6 +155,9 @@ export class ReceiptOfGoodsComponent implements OnInit {
     if (this.formData1.invalid) {
       return;
     }
+    this.formData1.patchValue({
+      type: ''
+    })
     let data: any = this.tableData;
     data = (data && data.length) ? data : [];
     let qtyT = 0
@@ -291,19 +294,21 @@ export class ReceiptOfGoodsComponent implements OnInit {
         netWeight: '',
       })
       this.tableData = null;
-      const obj = this.purchaseordernoList.find(resp => resp.id == this.formData.get('purchaseOrderNo').value);
-      this.formData.patchValue({
-        customerName: obj.text
-      })
     }
+    const obj = this.purchaseordernoList.find(resp => resp.id == this.formData.get('purchaseOrderNo').value);
+    this.formData.patchValue({
+      customerName: obj.text
+    })
   }
 
   materialCodeChange() {
     const obj = this.perChaseOrderList.find((p: any) => p.materialCode == this.formData1.value.materialCode);
-    this.formData1.patchValue({
-      qty: obj.qty,
-      netWeight: obj.netWeight,
-    })
+    if(obj) {
+      this.formData1.patchValue({
+        qty: obj.qty,
+        netWeight: obj.netWeight,
+      })
+    }
   }
 
   getpurchaseOrderTypeData() {
@@ -501,10 +506,11 @@ export class ReceiptOfGoodsComponent implements OnInit {
           const res = response;
           if (!this.commonService.checkNullOrUndefined(res) && res.status === StatusCodes.pass) {
             if (!this.commonService.checkNullOrUndefined(res.response)) {
+              debugger
               this.formData.patchValue(res.response['grmasters']);
-              this.formData.patchValue({
-                purchaseOrderNo: +res.response['grmasters'].purchaseOrderNo
-              })
+              // this.formData.patchValue({
+              //   purchaseOrderNo: +res.response['grmasters'].purchaseOrderNo
+              // })
               if (this.formData.value.documentURL) {
                 this.downLoad();
               }
