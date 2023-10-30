@@ -1425,7 +1425,6 @@
     "createdBy": "Created By",
     "levelType": "Level Type",
     "bomLevel": "Level",
-                        "amount": "Amount",
     "description": "Description",
     "manufacturingType": "Manufacturing Type",
     "type": "Type",
@@ -1437,6 +1436,7 @@
     "aboveLevel": "Above Level",
     "uom": "UOM",
                     "availableQty": "Available QTY",
+                        "amount": "Amount",
 
     "delete": "Delete",
     "action": "Action"

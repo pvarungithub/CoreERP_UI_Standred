@@ -82,13 +82,15 @@
 
                 <mat-form-field>
                     <mat-label>{{'purchaseorder.quotationNumber' | translate }}</mat-label>
-                    <mat-select formControlName="saleOrderNo" appFocusOnEnter tabIndex="4"
+                    <mat-select formControlName="saleOrderNo" appFocusOnEnter tabIndex="4" *ngIf="!routeEdit"
                         (selectionChange)="quotationNumberChange()">
                         <mat-option>None</mat-option>
                         <mat-option *ngFor="let qno of qnoList" [value]="qno.saleOrderNo">
                             {{qno.saleOrderNo}}
                         </mat-option>
                     </mat-select>
+                                        <input matInput type="text" *ngIf="routeEdit" formControlName="saleOrderNo" maxlength="20" appFocusOnEnter tabIndex="2">
+
                 </mat-form-field>
 
 
