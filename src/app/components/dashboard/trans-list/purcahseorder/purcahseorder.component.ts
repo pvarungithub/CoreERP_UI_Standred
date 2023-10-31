@@ -133,7 +133,7 @@ export class PurchaseOrderComponent implements OnInit {
 
     this.formData1 = this.formBuilder.group({
       materialCode: [''],
-      materialName:[''],
+      materialName: [''],
       taxCode: [''],
       qty: ['', Validators.required],
       rate: ['', Validators.required],
@@ -221,7 +221,15 @@ export class PurchaseOrderComponent implements OnInit {
 
   getSaleOrderDetail() {
     this.tableComponent.defaultValues();
-    const qsDetUrl = String.Join('/', this.formData.value.saleOrderType ? this.apiConfigService.getSaleOrderDetail : this.apiConfigService.getPurchaseRequisitionDetail, this.formData.value.saleOrderNo);
+    let url = '';
+    if (this.formData.value.saleOrderType == 'Sale Order') {
+      url = this.apiConfigService.getSaleOrderDetail;
+    } else if (this.formData.value.saleOrderType == 'Master Saleorder') {
+      url = this.apiConfigService.getPurchaseRequisitionDetail;
+    } else if (this.formData.value.saleOrderType == 'Bill of Material') {
+      url = this.apiConfigService.getBOMDetail;
+    }
+    const qsDetUrl = String.Join('/', url, this.formData.value.saleOrderNo);
     this.apiService.apiGetRequest(qsDetUrl)
       .subscribe(
         response => {
@@ -229,9 +237,16 @@ export class PurchaseOrderComponent implements OnInit {
           const res = response;
           if (!this.commonService.checkNullOrUndefined(res) && res.status === StatusCodes.pass) {
             if (!this.commonService.checkNullOrUndefined(res.response)) {
-              const obj = {
-                data: this.formData.value.saleOrderType ? res.response['SaleOrderMasters'] : res.response['preqmasters'],
-                data1: this.formData.value.saleOrderType ? res.response['SaleOrderDetails'] : res.response['preqDetail'],
+              let obj = { data: {}, data1: [] }
+              if (this.formData.value.saleOrderType == 'Sale Order') {
+                obj.data = res.response['SaleOrderMasters'];
+                obj.data1 = res.response['SaleOrderDetails'];
+              } else if (this.formData.value.saleOrderType == 'Master Saleorder') {
+                obj.data = res.response['preqmasters']
+                obj.data1 = res.response['preqDetail']
+              } else if (this.formData.value.saleOrderType == 'Bill of Material') {
+                obj.data = res.response['bomMasters']
+                obj.data1 = res.response['bomDetail']
               }
               // this.formData.patchValue(obj['data']);
               // this.formData.patchValue({
@@ -748,7 +763,7 @@ export class PurchaseOrderComponent implements OnInit {
 
   reset() {
     this.tableData = [];
-  this.formData.reset();
+    this.formData.reset();
     // this.sendDynTableData = { type: 'reset', data: this.tableData };
   }
 
@@ -770,7 +785,7 @@ export class PurchaseOrderComponent implements OnInit {
       detailArray: this.tableData.map((t: any) => {
         return {
           'Material Code': t.materialCode,
-          'Material Name':t.materialName,
+          'Material Name': t.materialName,
           'Tax Code': t.taxCode,
           'Quantity': t.qty,
         }

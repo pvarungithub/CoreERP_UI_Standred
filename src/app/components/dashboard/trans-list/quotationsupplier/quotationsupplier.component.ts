@@ -148,21 +148,20 @@ export class QuotationSupplierComponent implements OnInit {
               this.materialList = res.response['materialList'];
             }
           }
-          this.getptypeList();
+          this.getCustomerList();
         });
   }
 
-  getptypeList() {
-    const getcurrencyList = String.Join('/', this.apiConfigService.getPartnerTypeList);
+  getCustomerList() {
+    const getcurrencyList = String.Join('/', this.apiConfigService.getCustomerList);
     this.apiService.apiGetRequest(getcurrencyList)
       .subscribe(
         response => {
           const res = response;
-
           if (!this.commonService.checkNullOrUndefined(res) && res.status === StatusCodes.pass) {
             if (!this.commonService.checkNullOrUndefined(res.response)) {
-              this.ptypeList = res.response['ptypeList'];
-              this.ptypeList = res.response['ptypeList'].filter(resp => resp.bpcategory == 'Vendor')
+              // this.ptypeList = res.response['bpList'];
+              this.ptypeList = res.response['bpList'].filter(resp => resp.bptype == 'Customer')
             }
           }
           this.getplantList();
