@@ -62,6 +62,7 @@ export class BillOfMaterialComponent implements OnInit {
   voucherTypeList = [];
   natureofTransactionList = ['Receipts', 'Payment'];
   accountList = [];
+  qnoList = [];
   accountFilterList = [];
   glAccountList = [];
   // level = [{ id: '0', text: '0' }, { id: '1', text: '1' }, { id: '2', text: '2' }, { id: '3', text: '3' },
@@ -125,6 +126,7 @@ export class BillOfMaterialComponent implements OnInit {
   ngOnInit() {
     this.formDataGroup();
     this.getCompanyList();
+    this.getSaleOrderList();
     // this.formData.controls['material'].disable();
   }
 
@@ -140,6 +142,7 @@ export class BillOfMaterialComponent implements OnInit {
       company: [null, [Validators.required]],
       amount: [''],
       bomtype: [null],
+      saleOrder: [null],
       // bomnumber: [null, [Validators.required]],
       profitCenter: [null],
       product: [null],
@@ -159,6 +162,20 @@ export class BillOfMaterialComponent implements OnInit {
       index: 0
     });
     // this.checkTransType();
+  }
+
+  getSaleOrderList() {
+    const getSaleOrderUrl = String.Join('/', this.apiConfigService.getSaleOrderList);
+    this.apiService.apiGetRequest(getSaleOrderUrl)
+      .subscribe(
+        response => {
+          const res = response;
+          if (!this.commonService.checkNullOrUndefined(res) && res.status === StatusCodes.pass) {
+            if (!this.commonService.checkNullOrUndefined(res.response)) {
+              this.qnoList = res.response['BPList'];
+            }
+          }
+        });
   }
 
   tablePropsFunc() {

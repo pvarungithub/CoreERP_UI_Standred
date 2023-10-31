@@ -64,7 +64,8 @@
 
         <div class="mat-mdc-form-field typeahead">
           <input placeholder="{{ 'bom.product' | translate }}" formControlName="product" [typeahead]="mmasterList"
-            typeaheadOptionField='id' tabIndex="6" class="form-control typeahead" [typeaheadItemTemplate]="customItemTemplate">
+            typeaheadOptionField='id' tabIndex="6" class="form-control typeahead"
+            [typeaheadItemTemplate]="customItemTemplate">
           <ng-template #customItemTemplate let-model="item">
             <span><strong>{{model.id}}</strong> - {{model.text}}</span>
           </ng-template>
@@ -127,6 +128,18 @@
           </mat-select>
         </mat-form-field> -->
 
+        <mat-form-field>
+          <mat-label>{{'bom.saleOrder' | translate }}</mat-label>
+          <mat-select formControlName="saleOrder" appFocusOnEnter tabIndex="4" >
+            <mat-option>None</mat-option>
+            <mat-option *ngFor="let qno of qnoList" [value]="qno.saleOrderNo">
+              {{qno.saleOrderNo}}
+            </mat-option>
+          </mat-select>
+          <!-- <input matInput type="text" *ngIf="routeEdit" formControlName="saleOrderNo" maxlength="20" appFocusOnEnter
+            tabIndex="2"> -->
+        </mat-form-field>
+
       </div>
 
     </form>
@@ -145,8 +158,8 @@
         <div class="d--flex p-1 mat-form-field-height">
 
           <div class="mat-mdc-form-field typeahead">
-            <input  formControlName="component" [typeahead]="mmasterList"
-              typeaheadOptionField='id' tabIndex="8" class="form-control " [typeaheadItemTemplate]="customItemTemplate"
+            <input formControlName="component" [typeahead]="mmasterList" typeaheadOptionField='id' tabIndex="8"
+              class="form-control " [typeaheadItemTemplate]="customItemTemplate"
               (typeaheadOnSelect)="materialCodeChange()" (change)="materialChange()">
             <ng-template #customItemTemplate let-model="item">
               <span><strong>{{model.id}}</strong> - {{model.text}}</span>

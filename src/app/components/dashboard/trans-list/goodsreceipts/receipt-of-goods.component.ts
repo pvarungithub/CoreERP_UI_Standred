@@ -291,9 +291,9 @@ export class ReceiptOfGoodsComponent implements OnInit {
         this.perChaseOrderList.push(obj)
       })
       // this.tableData = this.perChaseOrderList;
-      const unique = [...new Set(this.perChaseOrderList.map(item => item.materialCode))]
+      // const unique = [...new Set(this.perChaseOrderList.map(item => item.materialCode))]
       
-      this.materialCodeList = unique;
+      this.materialCodeList = this.perChaseOrderList;
       this.formData1.patchValue({
         qty: '',
         netWeight: '',
