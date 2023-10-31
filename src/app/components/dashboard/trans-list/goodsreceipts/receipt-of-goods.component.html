@@ -52,6 +52,11 @@
                     </mat-select>
                 </mat-form-field> -->
 
+                <mat-form-field class="form-element">
+                    <mat-label [translate]="'goodsreceipts.customerName'"></mat-label>
+                    <input matInput type="text" readonly formControlName="customerName" appFocusOnEnter tabIndex="8">
+                </mat-form-field>
+
 
                 <mat-form-field>
                     <mat-label>{{'goodsreceipts.profitCenter' | translate }}</mat-label>
@@ -151,10 +156,6 @@
                     <mat-datepicker #picker3></mat-datepicker>
                 </mat-form-field> -->
 
-                <mat-form-field class="form-element">
-                    <mat-label [translate]="'goodsreceipts.customerName'"></mat-label>
-                    <input matInput type="text" readonly formControlName="customerName" appFocusOnEnter tabIndex="8">
-                </mat-form-field>
 
                 <mat-form-field class="form-element">
                     <mat-label [translate]="'goodsreceipts.totalAmount'"></mat-label>
@@ -172,6 +173,14 @@
                 </div>
                 <div *ngIf="!formData.value.documentURL">
                     <app-file-upload [type]="'card'" (emitFilesList)="emitFilesList($event)"></app-file-upload>
+                </div>
+
+                <div *ngIf="formData.value.invoiceURL" class="d-flex flex-column mt-3">
+                    <mat-label [translate]="'saleorder.attachedUrl'"></mat-label>
+                    <a [href]="url1" download target="_blank"> <b> {{ formData.value.invoiceURL }} </b> </a>
+                </div>
+                <div *ngIf="!formData.value.invoiceURL">
+                    <app-file-upload [type]="'card'" (emitFilesList)="emitFilesList1($event)"></app-file-upload>
                 </div>
 
 
@@ -202,8 +211,8 @@
                             <mat-label>{{ 'goodsreceipts.materialCode' | translate }}</mat-label>
                             <mat-select formControlName="materialCode" tabIndex="11" (selectionChange)="materialCodeChange()">
                                 <mat-option>None</mat-option>
-                                <mat-option *ngFor="let material of materialCodeList" [value]="material">
-                                    {{material}}
+                                <mat-option *ngFor="let material of materialCodeList" [value]="material.materialCode">
+                                    {{material.materialCode}}
                                 </mat-option>
                             </mat-select>
                         </mat-form-field>

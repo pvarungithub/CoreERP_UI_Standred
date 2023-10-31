@@ -30,7 +30,8 @@ export class ApiConfigService {
    getpodetailsList = `${this.environment.runtimeConfig.serverUrl}Common/GetPOdetailsList`;
    getpurchasenoList = `${this.environment.runtimeConfig.serverUrl}Common/GetPurchaseOrdernoList`;
    getquotationnoList = `${this.environment.runtimeConfig.serverUrl}Common/GetQuotationnoList`;
-   getSaleOrderList  = `${this.environment.runtimeConfig.serverUrl}Common/GetSaleOrderList `;
+   getSaleOrderList  = `${this.environment.runtimeConfig.serverUrl}Common/GetSaleOrderList`;
+   getSaleOrderData   = `${this.environment.runtimeConfig.serverUrl}Common/GetSaleOrderData`;
    getCommitmentList = `${this.environment.runtimeConfig.serverUrl}CommitmentItem/GetCommitmentItemList`;
    getfundcenterList = `${this.environment.runtimeConfig.serverUrl}FundCenter/GetFundCenterList`;
    getWCList = `${this.environment.runtimeConfig.serverUrl}Common/GetWorkcenterList`;

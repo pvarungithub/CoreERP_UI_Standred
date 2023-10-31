@@ -64,7 +64,7 @@
 
         <div class="mat-mdc-form-field typeahead">
           <input placeholder="{{ 'bom.product' | translate }}" formControlName="product" [typeahead]="mmasterList"
-            typeaheadOptionField='id' tabIndex="6" class="form-control " [typeaheadItemTemplate]="customItemTemplate">
+            typeaheadOptionField='id' tabIndex="6" class="form-control typeahead" [typeaheadItemTemplate]="customItemTemplate">
           <ng-template #customItemTemplate let-model="item">
             <span><strong>{{model.id}}</strong> - {{model.text}}</span>
           </ng-template>

@@ -53,7 +53,9 @@ export class ReceiptOfGoodsComponent implements OnInit {
   bpaList: any;
 
   fileList: any;
+  fileList1: any;
   url: string;
+  url1: string;
 
 
   @ViewChild(TableComponent, { static: false }) tableComponent: TableComponent;
@@ -124,6 +126,7 @@ export class ReceiptOfGoodsComponent implements OnInit {
       totalAmount: [''],
       lotNo: [''],
       documentURL: [''],
+      invoiceURL: [''],
 
     });
 
@@ -512,7 +515,10 @@ export class ReceiptOfGoodsComponent implements OnInit {
               //   purchaseOrderNo: +res.response['grmasters'].purchaseOrderNo
               // })
               if (this.formData.value.documentURL) {
-                this.downLoad();
+                this.downLoad(this.formData.value.documentURL, 'document');
+              }
+              if (this.formData.value.invoiceURL) {
+                this.downLoad(this.formData.value.invoiceURL, 'invoice');
               }
               this.perChaseOrderList = []
               res.response['grDetail'].forEach((d: any, index: number) => {
@@ -525,16 +531,19 @@ export class ReceiptOfGoodsComponent implements OnInit {
                   receivedQty: d.receivedQty ? d.receivedQty : '',
                   description: d.description ? d.description : '',
                   type: 'edit',
-                  action: 'editDelete',
+                  // action: 'editDelete',
                   index: index + 1
                 }
                 this.perChaseOrderList.push(obj)
               })
               this.tableData = this.perChaseOrderList;
-              const arr = this.podetailsList.filter(resp => !this.perChaseOrderList.some((p: any) => p.materialCode == resp.materialCode));
-              const unique = [...new Set(arr.map(item => item.materialCode))];
-              this.materialCodeList = unique;
-              this.formData.disable();
+              // const arr = this.podetailsList.filter(resp => !this.perChaseOrderList.some((p: any) => p.materialCode == resp.materialCode));
+              // const unique = [...new Set(arr.map(item => item.materialCode))];
+              this.materialCodeList = this.podetailsList;
+              this.formData.controls.purchaseOrderNo.disable();
+              this.formData.controls.company.disable();
+              this.formData.controls.customerName.disable();
+              this.formData.controls.profitCenter.disable();
             }
           }
         });
@@ -597,7 +606,11 @@ export class ReceiptOfGoodsComponent implements OnInit {
         const res = response;
         if (!this.commonService.checkNullOrUndefined(res) && res.status === StatusCodes.pass) {
           if (!this.commonService.checkNullOrUndefined(res.response)) {
-            this.uploadFile();
+            if (this.fileList) {
+              this.uploadFile();
+            } else {
+              this.router.navigateByUrl('dashboard/transaction/goodsreceipts');
+            }
             this.alertService.openSnackBar('Goods Receipt created Successfully..', Static.Close, SnackBar.success);
           }
           this.reset();
@@ -607,13 +620,42 @@ export class ReceiptOfGoodsComponent implements OnInit {
   }
 
   emitFilesList(event: any) {
+    debugger
     this.fileList = event[0];
+  }
+  emitFilesList1(event: any) {
+    this.fileList1 = event[0];
   }
 
   uploadFile() {
-    const addsq = String.Join('/', this.apiConfigService.uploadFile, this.formData.value.purchaseOrderNo);
+    const addsq = String.Join('/', this.apiConfigService.uploadFile, this.fileList.name.split('.')[0]);
     const formData = new FormData();
     formData.append("file", this.fileList);
+
+    return this.httpClient.post<any>(addsq, formData, {
+      reportProgress: true,
+      observe: 'events'
+    }).subscribe(
+      (response: any) => {
+        this.spinner.hide();
+        const res = response;
+        if (!this.commonService.checkNullOrUndefined(res) && res.status === StatusCodes.pass) {
+          if (!this.commonService.checkNullOrUndefined(res.response)) {
+            this.alertService.openSnackBar('Quotation Supplier created Successfully..', Static.Close, SnackBar.success);
+          }
+        }
+        if(this.fileList1) {
+          this.uploadFile1();
+        } else {
+          this.router.navigateByUrl('dashboard/transaction/goodsreceipts');
+        }
+      });
+  }
+
+  uploadFile1() {
+    const addsq = String.Join('/', this.apiConfigService.uploadFile, this.fileList1.name.split('.')[0]);
+    const formData = new FormData();
+    formData.append("file", this.fileList1);
 
     return this.httpClient.post<any>(addsq, formData, {
       reportProgress: true,
@@ -631,13 +673,17 @@ export class ReceiptOfGoodsComponent implements OnInit {
       });
   }
 
-  downLoad() {
-    const url = String.Join('/', this.apiConfigService.getFile, this.formData.get('documentURL').value);
+  downLoad(id: any, flag: string) {
+    const url = String.Join('/', this.apiConfigService.getFile, id);
     this.apiService.apiGetRequest(url)
       .subscribe(
         response => {
           this.spinner.hide();
-          this.url = response.response;
+          if (flag == 'document') {
+            this.url = response.response;
+          } else {
+            this.url1 = response.response;
+          }
         });
   }
 

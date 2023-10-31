@@ -358,7 +358,7 @@ export class GoodsissueComponent implements OnInit {
         });
   }
   getreqList(flag = true) {
-    const getSaleOrderUrl = String.Join('/', this.apiConfigService.getSaleOrderList);
+    const getSaleOrderUrl = String.Join('/', this.apiConfigService.getSaleOrderData);
     this.apiService.apiGetRequest(getSaleOrderUrl)
       .subscribe(
         response => {
