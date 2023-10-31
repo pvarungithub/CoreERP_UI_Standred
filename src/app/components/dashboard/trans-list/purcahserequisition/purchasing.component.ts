@@ -327,7 +327,8 @@ export class PurchasingComponent implements OnInit {
     this.formData1.reset();
     this.formData1.patchValue({
       index: 0,
-      action: 'editDelete'
+      action: 'editDelete',
+      id: 0
     });
   }
 
