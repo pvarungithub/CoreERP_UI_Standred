@@ -135,6 +135,7 @@ export class ReceiptOfGoodsComponent implements OnInit {
       rejectQty: [''],
       receivedQty: ['', Validators.required],
       materialCode: [''],
+      materialName: [''],
       netWeight: [''],
       purchaseOrderNumber: [''],
       description: [''],
@@ -277,6 +278,7 @@ export class ReceiptOfGoodsComponent implements OnInit {
       data.forEach((d: any, index: number) => {
         const obj = {
           materialCode: d.materialCode ? d.materialCode : '',
+          materialName: d.materialName ? d.materialName : '',
           netWeight: d.netWeight ? d.netWeight : '',
           purchaseOrderNumber: d.purchaseOrderNumber ? d.purchaseOrderNumber : '',
           rejectQty: d.rejectQty ? d.rejectQty : '',
@@ -524,6 +526,7 @@ export class ReceiptOfGoodsComponent implements OnInit {
               res.response['grDetail'].forEach((d: any, index: number) => {
                 const obj = {
                   materialCode: d.materialCode ? d.materialCode : '',
+                  materialName: d.materialName ? d.materialName : '',
                   netWeight: d.netWeight ? d.netWeight : '',
                   purchaseOrderNumber: d.purchaseOrderNumber ? d.purchaseOrderNumber : '',
                   rejectQty: d.rejectQty ? d.rejectQty : '',

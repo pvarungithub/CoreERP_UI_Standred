@@ -1741,6 +1741,7 @@
     "qualityCheck": "Quality Check",
     "inspectionNoteNo": "Inspection No",
     "materialCode": "Material code",
+        "materialName": "Material Name",
       "qty": "QTY",
 
     "poqty": "Purchase Order Qty",
