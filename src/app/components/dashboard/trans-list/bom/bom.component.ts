@@ -286,7 +286,8 @@ export class BillOfMaterialComponent implements OnInit {
     const obj = this.mmasterList.find((m: any) => m.id == this.formData1.value.component);
     this.formData1.patchValue({
       netWeight: obj.netWeight,
-      availableQty: obj.availQTY
+      availableQty: obj.availQTY,
+        description: obj ? obj.text : ''
     })
     if (!obj.netWeight) {
       this.alertService.openSnackBar('Net Weight has not provided for selected material..', Static.Close, SnackBar.error);
