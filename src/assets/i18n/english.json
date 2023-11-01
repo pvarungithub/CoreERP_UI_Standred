@@ -2025,7 +2025,7 @@
     "purchaseOrderNo": "Purchase Order No",
     "company": "Company",
     "supplierCode": "Supplier Code",
-    "supplierReferenceNo": "Supplier Reference No",
+    "supplierReferenceNo": "Invoice No",
     "rrno": "RR Number",
     "vehicleNo": "Vehicle No",
     "supplierGinno": "Supplier GIN No",

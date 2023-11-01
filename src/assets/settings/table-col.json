@@ -1733,9 +1733,7 @@
     "purchaseOrderNo": "Purchase Order No",
     "company": "Company",
     "supplierCode": "Supplier Code",
-    "supplierReferenceNo": "Supplier Reference No",
     "vehicleNo": "Vehicle No",
-    "receivedDate": "Date",
     "receiptDate": "Date",
     "receivedBy": "Receieved By",
     "qualityCheck": "Quality Check",
@@ -1754,6 +1752,8 @@
     "lotNo": "Lot No",
     "lotDate": "Lot Date",
     "description": "Description",
+    "supplierReferenceNo": "Supplier Reference No",
+    "receivedDate": "Date",
 
     "delete": "Delete",
         "action": "Action"

@@ -13,12 +13,16 @@
 
                 <mat-form-field class="form-element">
                     <mat-label>{{ 'goodsreceipts.purchaseOrderNo' | translate }}</mat-label>
-                    <mat-select formControlName="purchaseOrderNo" (selectionChange)="ponoselect()" tabIndex="1">
+                    <mat-select formControlName="purchaseOrderNo" (selectionChange)="ponoselect()"
+                        *ngIf="routeEdit == ''" tabIndex="1">
                         <mat-option>None</mat-option>
                         <mat-option *ngFor="let poNo of purchaseordernoList" [value]="poNo.id">
                             {{poNo.id}}
                         </mat-option>
                     </mat-select>
+                    <input *ngIf="routeEdit != ''" matInput type="text" readonly formControlName="purchaseOrderNo"
+                        appFocusOnEnter tabIndex="1">
+
                 </mat-form-field>
 
                 <mat-form-field class="form-element">
@@ -195,7 +199,7 @@
         <div class="p-2 card">
 
             <h6>
-               Material Details
+                Material Details
                 <hr>
             </h6>
 
@@ -209,10 +213,11 @@
 
                         <mat-form-field class="form-element">
                             <mat-label>{{ 'goodsreceipts.materialCode' | translate }}</mat-label>
-                            <mat-select formControlName="materialCode" tabIndex="11" (selectionChange)="materialCodeChange()">
+                            <mat-select formControlName="materialCode" tabIndex="11"
+                                (selectionChange)="materialCodeChange()">
                                 <mat-option>None</mat-option>
                                 <mat-option *ngFor="let material of materialCodeList" [value]="material.materialCode">
-                                    {{material.materialCode}}
+                                    {{material.materialCode}} -- {{material.materialName}}
                                 </mat-option>
                             </mat-select>
                         </mat-form-field>
@@ -233,11 +238,16 @@
                         </mat-form-field>
                         <mat-form-field class="form-element">
                             <mat-label [translate]="'goodsreceipts.netWeight'"></mat-label>
-                            <input matInput readonly type="text" formControlName="netWeight" appFocusOnEnter tabIndex="15">
+                            <input matInput readonly type="text" formControlName="netWeight" appFocusOnEnter
+                                tabIndex="15">
                         </mat-form-field>
                         <mat-form-field class="form-element">
                             <mat-label [translate]="'goodsreceipts.qty'"></mat-label>
                             <input matInput type="text" readonly formControlName="qty" appFocusOnEnter tabIndex="16">
+                        </mat-form-field>
+                        <mat-form-field class="form-element">
+                            <mat-label [translate]="'goodsreceipts.pendingQty'"></mat-label>
+                            <input matInput type="text" readonly formControlName="pendingQty" appFocusOnEnter tabIndex="16">
                         </mat-form-field>
                     </div>
 

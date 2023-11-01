@@ -139,6 +139,7 @@ export class ReceiptOfGoodsComponent implements OnInit {
       netWeight: [''],
       purchaseOrderNumber: [''],
       description: [''],
+      pendingQty: [''],
       qty: [''],
       type: [''],
       action: 'editDelete',
@@ -292,7 +293,7 @@ export class ReceiptOfGoodsComponent implements OnInit {
       })
       // this.tableData = this.perChaseOrderList;
       // const unique = [...new Set(this.perChaseOrderList.map(item => item.materialCode))]
-      
+
       this.materialCodeList = this.perChaseOrderList;
       this.formData1.patchValue({
         qty: '',
@@ -307,13 +308,14 @@ export class ReceiptOfGoodsComponent implements OnInit {
   }
 
   materialCodeChange() {
-    const obj = this.perChaseOrderList.find((p: any) => p.materialCode == this.formData1.value.materialCode);
-    if(obj) {
-      this.formData1.patchValue({
-        qty: obj.qty,
-        netWeight: obj.netWeight,
-      })
-    }
+    const obj = this.materialCodeList.find((p: any) => p.materialCode == this.formData1.value.materialCode);
+    let pendingQty = 0;
+    (this.tableData && this.tableData.forEach((t: any) => pendingQty = (t.materialCode == this.formData1.value.materialCode) ? pendingQty + t.receivedQty : 0))
+    this.formData1.patchValue({
+      qty: obj ? obj.qty : '',
+      netWeight: obj ? obj.netWeight : '',
+      pendingQty: obj.qty - pendingQty
+    })
   }
 
   getpurchaseOrderTypeData() {
@@ -511,7 +513,6 @@ export class ReceiptOfGoodsComponent implements OnInit {
           const res = response;
           if (!this.commonService.checkNullOrUndefined(res) && res.status === StatusCodes.pass) {
             if (!this.commonService.checkNullOrUndefined(res.response)) {
-              debugger
               this.formData.patchValue(res.response['grmasters']);
               // this.formData.patchValue({
               //   purchaseOrderNo: +res.response['grmasters'].purchaseOrderNo
@@ -528,10 +529,13 @@ export class ReceiptOfGoodsComponent implements OnInit {
                   materialCode: d.materialCode ? d.materialCode : '',
                   materialName: d.materialName ? d.materialName : '',
                   netWeight: d.netWeight ? d.netWeight : '',
-                  pendingQty: (d.qty - d.receivedQty),
+                  // pendingQty: (d.qty - d.receivedQty),
                   purchaseOrderNumber: d.purchaseOrderNumber ? d.purchaseOrderNumber : '',
                   rejectQty: d.rejectQty ? d.rejectQty : '',
                   qty: d.qty ? d.qty : '',
+                  lotNo: d.lotNo ? d.lotNo : '',
+                  supplierReferenceNo: d.supplierReferenceNo ? d.supplierReferenceNo : '',
+                  receivedDate: d.receivedDate ? d.receivedDate : '',
                   receivedQty: d.receivedQty ? d.receivedQty : '',
                   description: d.description ? d.description : '',
                   type: 'edit',
@@ -608,7 +612,8 @@ export class ReceiptOfGoodsComponent implements OnInit {
     const addgoodsreceipt = String.Join('/', this.apiConfigService.addgoodsreceipt);
     const formData = this.formData.value;
     formData.receivedDate = this.formData.get('receivedDate').value ? this.datepipe.transform(this.formData.get('receivedDate').value, 'MM-dd-yyyy') : '';
-    formData.documentURL = formData.purchaseOrderNo;
+    formData.documentURL = this.fileList ? this.fileList.name.split('.')[0] : '';
+    formData.invoiceURL = this.fileList1 ? this.fileList1.name.split('.')[0] : '';
     const requestObj = { grHdr: formData, grDtl: arr };
     this.apiService.apiPostRequest(addgoodsreceipt, requestObj).subscribe(
       response => {
@@ -629,7 +634,6 @@ export class ReceiptOfGoodsComponent implements OnInit {
   }
 
   emitFilesList(event: any) {
-    debugger
     this.fileList = event[0];
   }
   emitFilesList1(event: any) {
@@ -653,7 +657,7 @@ export class ReceiptOfGoodsComponent implements OnInit {
             this.alertService.openSnackBar('Quotation Supplier created Successfully..', Static.Close, SnackBar.success);
           }
         }
-        if(this.fileList1) {
+        if (this.fileList1) {
           this.uploadFile1();
         } else {
           this.router.navigateByUrl('dashboard/transaction/goodsreceipts');

@@ -20,7 +20,6 @@ export class PreviewComponent {
 
 
   print() {
-    debugger
     // this.spinner.show();
     // setTimeout(() => {
       let DATA: any = document.getElementById('printData');

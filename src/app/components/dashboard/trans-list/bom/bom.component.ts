@@ -283,7 +283,6 @@ export class BillOfMaterialComponent implements OnInit {
 
 
   materialCodeChange() {
-    debugger
     const obj = this.mmasterList.find((m: any) => m.id == this.formData1.value.component);
     this.formData1.patchValue({
       netWeight: obj.netWeight,
@@ -309,11 +308,9 @@ export class BillOfMaterialComponent implements OnInit {
               this.formData.disable();
               // this.costunitSelect();
               //this.accountSelect();
-              debugger
               let arr = [];
               res.response['bomDetail'].forEach((s: any, index: number) => {
                 const mObj = this.mmasterList.find((m: any) => m.id == s.component);
-                debugger
                 const obj = {
                   component: s.component ? s.component : '',
                   qty: s.qty ? s.qty : '',
