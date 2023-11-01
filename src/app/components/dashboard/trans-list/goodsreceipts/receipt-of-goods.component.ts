@@ -528,6 +528,7 @@ export class ReceiptOfGoodsComponent implements OnInit {
                   materialCode: d.materialCode ? d.materialCode : '',
                   materialName: d.materialName ? d.materialName : '',
                   netWeight: d.netWeight ? d.netWeight : '',
+                  pendingQty: (d.qty - d.receivedQty),
                   purchaseOrderNumber: d.purchaseOrderNumber ? d.purchaseOrderNumber : '',
                   rejectQty: d.rejectQty ? d.rejectQty : '',
                   qty: d.qty ? d.qty : '',
@@ -599,6 +600,10 @@ export class ReceiptOfGoodsComponent implements OnInit {
   }
 
   savegoodsreceipt() {
+    this.formData.controls.purchaseOrderNo.enable();
+    this.formData.controls.company.enable();
+    this.formData.controls.customerName.enable();
+    this.formData.controls.profitCenter.enable();
     const arr = this.tableData.filter((d: any) => !d.type);
     const addgoodsreceipt = String.Join('/', this.apiConfigService.addgoodsreceipt);
     const formData = this.formData.value;

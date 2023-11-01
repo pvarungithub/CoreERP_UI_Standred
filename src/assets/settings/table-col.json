@@ -1746,6 +1746,7 @@
 
     "poqty": "Purchase Order Qty",
     "receivedQty": "Received QTY",
+    "pendingQty": "Pending Qty",
       "rejectQty": "Reject QTY",
      "netWeight": "Net Weight",
     "profitCenter": "ProfitCenter",

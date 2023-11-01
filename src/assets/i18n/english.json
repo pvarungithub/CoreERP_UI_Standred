@@ -2042,6 +2042,7 @@
     "customerName": "Customer Name",
     "description": "Description",
     "poqty": "Purchase Order Qty",
+      "pendingQty": "Pending Qty",
     "receivedQty": "Received QTY",
          "netWeight": "Net Weight",
       "qty": "QTY",
