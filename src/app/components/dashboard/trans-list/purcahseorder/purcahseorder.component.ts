@@ -268,6 +268,7 @@ export class PurchaseOrderComponent implements OnInit {
                 s.total = s.total ? s.total : 0;
               })
               this.tableData = obj['data1'];
+              this.calculate();
               // this.calculate();
 
             }
@@ -585,6 +586,7 @@ export class PurchaseOrderComponent implements OnInit {
               this.formData.disable();
               res.response['poDetail'].forEach((s: any, index: number) => { s.action = 'editDelete'; s.index = index + 1; })
               this.tableData = res.response['poDetail'];
+              this.calculate();
               // this.calculate();
             }
           }
