@@ -4,6 +4,11 @@
 
         <form [formGroup]="formData" autocomplete="off">
 
+            <h6>
+                Requisition Header
+                <hr>
+            </h6>
+
             <div class="d--flex p-1 mat-form-field-height">
 
                 <mat-form-field class="form-element">
@@ -75,16 +80,19 @@
 
                 <mat-form-field class="form-element">
                     <mat-label [translate]="'supplierquotation.deliveryPeriod'"></mat-label>
-                    <input matInput type="number" formControlName="deliveryPeriod" maxlength="50" appFocusOnEnter tabIndex="2">
+                    <input matInput type="number" formControlName="deliveryPeriod" maxlength="50" appFocusOnEnter
+                        tabIndex="2">
                 </mat-form-field>
 
                 <mat-form-field class="form-element">
                     <mat-label [translate]="'supplierquotation.creditDays'"></mat-label>
-                    <input matInput type="number"  formControlName="creditDays" maxlength="50" appFocusOnEnter tabIndex="2">
+                    <input matInput type="number" formControlName="creditDays" maxlength="50" appFocusOnEnter
+                        tabIndex="2">
                 </mat-form-field>
                 <mat-form-field class="form-element">
                     <mat-label [translate]="'supplierquotation.deliveryMethod'"></mat-label>
-                    <input matInput type="text"  formControlName="deliveryMethod" maxlength="50" appFocusOnEnter tabIndex="2">
+                    <input matInput type="text" formControlName="deliveryMethod" maxlength="50" appFocusOnEnter
+                        tabIndex="2">
                 </mat-form-field>
 
                 <mat-form-field class="form-element">
@@ -94,7 +102,8 @@
 
                 <mat-form-field class="form-element">
                     <mat-label [translate]="'supplierquotation.transportMethod'"></mat-label>
-                    <input matInput type="text" formControlName="transportMethod" maxlength="50" appFocusOnEnter tabIndex="2">
+                    <input matInput type="text" formControlName="transportMethod" maxlength="50" appFocusOnEnter
+                        tabIndex="2">
                 </mat-form-field>
 
             </div>
@@ -102,9 +111,101 @@
         </form>
 
 
-        <div>
-            <app-dynamic-table [tableObJect]="dynTableProps" (emitColumnChanges)="emitColumnChanges($event);"
-                [dynamicTableUpdate]="sendDynTableData"></app-dynamic-table>
+        <div class="p-2 card">
+
+            <h6>
+                Saleorder Details
+                <hr>
+            </h6>
+
+            <form [formGroup]="formData1" autocomplete="off">
+
+
+
+                <div class="d--flex p-1 mat-form-field-height">
+
+                    <!-- <mat-form-field class="form-element">
+                            <mat-label>{{ 'supplierquotation.materialCode' | translate }}</mat-label>
+                            <mat-select formControlName="materialCode" tabIndex="10" (selectionChange)="materialCodeChange()">
+                                <mat-option>None</mat-option>
+                                <mat-option *ngFor="let material of materialList" [value]="material.text">
+                                    {{material.text}}
+                                </mat-option>
+                            </mat-select>
+                        </mat-form-field> -->
+
+
+                    <div class="mat-mdc-form-field typeahead">
+                        <input placeholder="{{ 'supplierquotation.materialCode' | translate }}" formControlName="materialCode"
+                            [typeahead]="materialList" typeaheadOptionField='id' tabIndex="8" class="form-control "
+                            [typeaheadItemTemplate]="customItemTemplate" (typeaheadOnSelect)="materialCodeChange()"
+                            (change)="materialChange()">
+                        <ng-template #customItemTemplate let-model="item">
+                            <span><strong>{{model.id}}</strong> - {{model.text}}</span>
+                        </ng-template>
+                    </div>
+
+
+                    <mat-form-field class="form-element">
+                        <mat-label>{{ 'supplierquotation.taxCode' | translate }}</mat-label>
+                        <mat-select formControlName="taxCode" tabIndex="11">
+                            <mat-option>None</mat-option>
+                            <mat-option *ngFor="let tax of taxCodeList" [value]="tax.taxRateCode">
+                                {{tax.description}}
+                            </mat-option>
+                        </mat-select>
+                    </mat-form-field>
+
+                    <mat-form-field class="form-element">
+                        <mat-label [translate]="'supplierquotation.qty'"></mat-label>
+                        <input matInput type="number" formControlName="qty" appFocusOnEnter tabIndex="12">
+                    </mat-form-field>
+
+                    <mat-form-field class="form-element">
+                        <mat-label [translate]="'supplierquotation.rate'"></mat-label>
+                        <input matInput type="number" formControlName="rate" appFocusOnEnter tabIndex="13">
+                    </mat-form-field>
+
+                    <mat-form-field class="form-element">
+                        <mat-label [translate]="'supplierquotation.discount'"></mat-label>
+                        <input matInput type="number" formControlName="discount" appFocusOnEnter tabIndex="14">
+                    </mat-form-field>
+
+                    <!-- <mat-form-field class="form-element">
+                        <mat-label [translate]="'supplierquotation.stockQty'"></mat-label>
+                        <input matInput type="number" readonly formControlName="stockQty" appFocusOnEnter tabIndex="13">
+                    </mat-form-field> -->
+
+
+                    <mat-form-field class="form-element">
+                        <mat-label [translate]="'supplierquotation.deliveryDate'"></mat-label>
+                        <input matInput [matDatepicker]="picker13" [nonEditable]="picker13"
+                            formControlName="deliveryDate" appFocusOnEnter tabIndex="15">
+                        <mat-datepicker-toggle matSuffix [for]="picker13"></mat-datepicker-toggle>
+                        <mat-datepicker #picker13></mat-datepicker>
+                    </mat-form-field>
+
+                </div>
+
+                <div class="d-flex justify-content-end mb-3">
+
+                    <button mat-raised-button type="submit" class="button-color-bule mx-1 text-white"
+                        (click)="saveForm()">
+                        {{ 'COMMON.UPDATE' | translate }}
+                    </button>
+                    <button mat-raised-button class="button-color-red text-white mx-1" (click)="resetForm();">
+                        {{ 'COMMON.RESET' | translate }}
+                    </button>
+
+                </div>
+
+            </form>
+
+            <div>
+                <app-table class="table-css" [tableData]="tableData" [showFilters]="false"
+                    (editOrDeleteEvent)="editOrDeleteEvent($event)">
+                </app-table>
+            </div>
         </div>
 
 
@@ -112,21 +213,50 @@
 
     <mat-card-content class="d-flex justify-content-end py-1">
 
-        <button [hidden]="routeEdit != ''" mat-raised-button type="submit" class="button-color-bule mx-3 text-white"
-            (click)="save()">
-            {{ 'COMMON.SAVE' | translate }}
-        </button>
-        <button mat-raised-button class="button-color-red text-white mx-3" (click)="back();">
-            {{ 'COMMON.BACK' | translate }}
-        </button>
-        <button [hidden]="routeEdit != ''" mat-raised-button class="button-color-red text-white mx-3"
-            (click)="reset();">
-            {{ 'COMMON.RESET' | translate }}
-        </button>
-        <button [hidden]="routeEdit == ''" mat-raised-button class="button-color-red text-white mx-3"
-            (click)="return();">
-            {{ 'COMMON.RETURN' | translate }}
-        </button>
+        <div class="d-flex">
+            <div class="px-1"> <span class="px-1"> <b>{{ 'supplierquotation.igst' | translate }} </b></span> :
+                <b class="text-danger">{{ formData.value.igst }} </b>
+            </div>
+            <div class="px-1"> <span class="px-1"> <b> {{'supplierquotation.cgst' | translate }} </b></span> :
+                <b class="text-danger"> {{ formData.value.cgst}} </b>
+            </div>
+            <div class="px-1"> <span class="px-1"> <b> {{'supplierquotation.sgst' | translate }} </b></span> :
+                <b class="text-danger"> {{ formData.value.sgst}} </b>
+            </div>
+            <div class="px-1"> <span class="px-1"> <b> {{'supplierquotation.amount' | translate }} </b></span> :
+                <b class="text-danger"> {{ formData.value.amount}} </b>
+            </div>
+            <div class="px-1"> <span class="px-1"> <b> {{'supplierquotation.totalTax' | translate }} </b></span> :
+                <b class="text-danger"> {{ formData.value.totalTax}} </b>
+            </div>
+            <div class="px-1"> <span class="px-1"> <b> {{'supplierquotation.totalAmount' | translate }} </b></span> :
+                <b class="text-danger"> {{ formData.value.totalAmount}} </b>
+            </div>
+        </div>
+
+
+        <div>
+            <button [hidden]="routeEdit == ''" mat-raised-button type="submit" class="button-color-bule mx-3 text-white"
+                (click)="convertToSaleOrder()">
+                {{ 'supplierquotation.CONVERTTOSALEORDER' | translate }}
+            </button>
+            <button [hidden]="routeEdit != ''" mat-raised-button type="submit" class="button-color-bule mx-3 text-white"
+                (click)="save()">
+                {{ 'COMMON.SAVE' | translate }}
+            </button>
+            <button mat-raised-button class="button-color-red text-white mx-3" (click)="back();">
+                {{ 'COMMON.BACK' | translate }}
+            </button>
+            <button [hidden]="routeEdit != ''" mat-raised-button class="button-color-red text-white mx-3"
+                (click)="reset();">
+                {{ 'COMMON.RESET' | translate }}
+            </button>
+            <button [hidden]="routeEdit == ''" mat-raised-button class="button-color-red text-white mx-3"
+                (click)="return();">
+                {{ 'COMMON.RETURN' | translate }}
+            </button>
+
+        </div>
 
     </mat-card-content>
 

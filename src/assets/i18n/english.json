@@ -1938,13 +1938,27 @@
     "transportMethod": "Trasport Method",
     "itemCode": " code",
     "description": "Description",
-    "qty": "QTY",
     "price": "Price",
     "unit": "Unit",
-    "discount": "Discount",
     "discountAmount": "Discount Amount",
     "tax": "Tax",
-    "delete": "Delete"
+    "delete": "Delete",
+
+    "materialCode": "Material Code",
+    "taxCode": "Tax Code",
+    "qty": "Quantity",
+    "rate": "Rate",
+    "discount": "Discount",
+    "stockQty": "Avaliable Stock QTY",
+    "deliveryDate": "Delivery Date",
+       "igst": "igst",
+    "cgst": "cgst",
+    "sgst": "sgst",
+        "amount": "Amount",
+    "totalTax": "Total Tax",
+    "totalAmount": "Total Amount",
+    "CONVERTTOSALEORDER": "Convert To Sale Order"
+
   },
   "quotationanalysis": {
     "title": "Quotation Analysys",

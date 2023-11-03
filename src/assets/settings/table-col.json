@@ -1652,13 +1652,19 @@
     "transportMethod": "Trasport Method",
     "itemCode": " code",
     "description": "Description",
-    "qty": "QTY",
     "price": "Price",
     "unit": "Unit",
-    "discount": "Discount",
     "discountAmount": "Discount Amount",
     "tax": "Tax",
-    "delete": "Delete"
+    "materialCode": "Material Code",
+    "taxCode": "Tax Code",
+    "qty": "Quantity",
+    "rate": "Rate",
+    "discount": "Discount",
+    "stockQty": "Avaliable Stock QTY",
+    "deliveryDate": "Delivery Date",
+    "delete": "Delete",
+    "action": "Action"
   },
   "quotationanalysis": {
     "title": "Quotation Analysis",
