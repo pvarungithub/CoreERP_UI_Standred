@@ -1945,6 +1945,7 @@
     "delete": "Delete",
 
     "materialCode": "Material Code",
+        "materialName": "MaterialName",
     "taxCode": "Tax Code",
     "qty": "Quantity",
     "rate": "Rate",

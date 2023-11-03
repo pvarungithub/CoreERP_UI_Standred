@@ -308,12 +308,16 @@ export class ReceiptOfGoodsComponent implements OnInit {
   }
 
   materialCodeChange() {
+    debugger
     const obj = this.materialCodeList.find((p: any) => p.materialCode == this.formData1.value.materialCode);
     let pendingQty = 0;
-    (this.tableData && this.tableData.forEach((t: any) => pendingQty = (t.materialCode == this.formData1.value.materialCode) ? pendingQty + t.receivedQty : 0))
+    this.tableData && this.tableData.forEach((t: any) => { if(t.materialCode == this.formData1.value.materialCode) {
+      pendingQty = pendingQty + t.receivedQty
+    }})
     this.formData1.patchValue({
       qty: obj ? obj.qty : '',
       netWeight: obj ? obj.netWeight : '',
+      materialName: obj ? obj.materialName : '',
       pendingQty: obj.qty - pendingQty
     })
   }

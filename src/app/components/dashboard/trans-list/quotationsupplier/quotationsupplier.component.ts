@@ -421,8 +421,8 @@ export class QuotationSupplierComponent implements OnInit {
               //console.log(res.response['qsDetail']);
               // this.sendDynTableData = { type: 'edit', data: res.response['qsDetail'] };
               res.response['qsDetail'].forEach((s: any, index: number) => {
-                // const obj = this.materialList.find((m: any) => m.id == s.materialCode);
-                // s.materialName = obj.text
+                const obj = this.materialList.find((m: any) => m.id == s.materialCode);
+                s.materialName = obj.text
                 // s.stockQty = obj.closingQty;
                 s.action = 'editDelete'; s.index = index + 1;
               })

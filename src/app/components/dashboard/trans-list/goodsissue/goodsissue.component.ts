@@ -198,7 +198,7 @@ export class GoodsissueComponent implements OnInit {
 
   toggle() {
     if (this.formData.value.saleOrder == 'Sale Order') {
-      this.getreqList(false);
+      this.getreqList();
     } else if (this.formData.value.saleOrder == 'Master Saleorder') {
       this.getPRList();
     } else if (this.formData.value.saleOrder == 'Bill of Material') {
@@ -354,24 +354,20 @@ export class GoodsissueComponent implements OnInit {
               this.mmasterList = res.response['mmasterList'];
             }
           }
-          this.getreqList();
+          this.getreqdetailsList();
         });
   }
-  getreqList(flag = true) {
+  getreqList() {
     const getSaleOrderUrl = String.Join('/', this.apiConfigService.getSaleOrderData);
     this.apiService.apiGetRequest(getSaleOrderUrl)
       .subscribe(
         response => {
+          this.spinner.hide();
           const res = response;
           if (!this.commonService.checkNullOrUndefined(res) && res.status === StatusCodes.pass) {
             if (!this.commonService.checkNullOrUndefined(res.response)) {
               this.mreqList = res.response['BPList'];
             }
-          }
-          if (flag) {
-            this.getreqdetailsList();
-          } else {
-            this.spinner.hide();
           }
         });
   }
@@ -520,14 +516,17 @@ export class GoodsissueComponent implements OnInit {
               // this.formData.patchValue({
               //   saleOrderNumber: obj['data'].saleOrderNumber ? +obj['data'].saleOrderNumber : ''
               // })
+              debugger
               obj['data1'].forEach((s: any, index: number) => {
+                const qty = this.mmasterList.find(resp => resp.id == s.materialCode);
+
                 s.action = 'edit';
                 s.id = 0;
                 s.index = index + 1;
                 s.qty = s.qty ? s.qty : 0;
                 s.changed = true;
-                s.materialCode = s.materialCode ? s.materialCode : 0;
-                s.availableqty = s.availableQTY ? s.availableQTY : 0;
+                s.availableqty = qty.availQTY ? qty.availQTY : 0,
+                  s.materialCode = s.materialCode ? s.materialCode : 0;
                 s.allocatedqty = s.allocatedqty ? s.allocatedqty : 0;
               })
 
