@@ -25,8 +25,8 @@
             <div *ngIf="formControls.componentName.errors.required">Component Name is required</div>
           </mat-error>
         </mat-form-field>
-
-        <mat-form-field>
+       
+        <mat-form-field class="form-element">
           <mat-label>{{'componentmaster.componentType' | translate }}</mat-label>
           <mat-select formControlName="componentType">
             <mat-option *ngFor="let conflist of configureList" [value]="conflist.id">
@@ -52,6 +52,14 @@
             </mat-option>
           </mat-select>
         </mat-form-field>
+        <mat-form-field class="form-element">
+          <mat-label [translate]="'componentmaster.companyName'"></mat-label>
+          <mat-select formControlName="companyCode" appFocusOnEnter tabIndex="5">
+            <mat-option *ngFor="let comp of companyList" [value]="comp.id">
+              {{comp.text}}
+            </mat-option>
+          </mat-select>
+          </mat-form-field>
       </div>
       <mat-divider></mat-divider>
 

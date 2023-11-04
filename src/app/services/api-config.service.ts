@@ -347,13 +347,13 @@ export class ApiConfigService {
    // Component Master
    getComponentsList = `${this.environment.runtimeConfig.serverUrl}payroll/ComponentMaster/GetComponentsList`;
    registerComponent = `${this.environment.runtimeConfig.serverUrl}payroll/ComponentMaster/RegisterComponent`;
-   getConfigurationList = `${this.environment.runtimeConfig.serverUrl}payroll/ComponentMaster/GetConfigurationList`;
+   getConfigurationList = `${this.environment.runtimeConfig.serverUrl}Common/GetConfigurationList`;
    updateComponent = `${this.environment.runtimeConfig.serverUrl}payroll/ComponentMaster/UpdateComponent`;
    deleteComponent = `${this.environment.runtimeConfig.serverUrl}payroll/ComponentMaster/DeleteComponent`;
 
 
    //PF Master
-   getPfComponentsList = `${this.environment.runtimeConfig.serverUrl}payroll/PFMaster/GetComponentsList`;
+   getPfComponentsList = `${this.environment.runtimeConfig.serverUrl}Component/GetcomponentTypesList`;
    getPfList = `${this.environment.runtimeConfig.serverUrl}payroll/PFMaster/GetPFList`;
    registerPF = `${this.environment.runtimeConfig.serverUrl}payroll/PFMaster/RegisterPF`;
    updatePF = `${this.environment.runtimeConfig.serverUrl}payroll/PFMaster/UpdatePF`;

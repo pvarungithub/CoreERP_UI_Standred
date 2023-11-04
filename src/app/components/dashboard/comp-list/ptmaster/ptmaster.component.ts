@@ -1,10 +1,16 @@
 import { Component, Inject, Optional, OnInit } from '@angular/core';
+import { String } from 'typescript-string-operations';
+import { ApiService } from '../../../../services/api.service';
+import { Router, ActivatedRoute } from '@angular/router';
+import { MatDialog } from '@angular/material/dialog';
+import { NgxSpinnerService } from 'ngx-spinner';
 import { AlertService } from '../../../../services/alert.service';
+import { ApiConfigService } from '../../../../services/api-config.service';
 import { MatDialogRef, MAT_DIALOG_DATA } from '@angular/material/dialog';
-;
 import { FormBuilder, FormGroup, Validators } from '@angular/forms';
+import { CommonService } from '../../../../services/common.service';
 import { StatusCodes } from '../../../../enums/common/common';
-import { CommonService } from 'src/app/services/common.service';
+import { AddOrEditService } from '../add-or-edit.service';
 @Component({
   selector: 'app-ptmaster',
   templateUrl: './ptmaster.component.html',
@@ -22,6 +28,7 @@ export class PTMasterComponent implements OnInit {
     private formBuilder: FormBuilder,
     private commonService: CommonService,
     public dialogRef: MatDialogRef<PTMasterComponent>,
+    private addOrEditService: AddOrEditService,
     // @Optional() is used to prevent error if no data is passed
     @Optional() @Inject(MAT_DIALOG_DATA) public data: any) {
 
@@ -59,7 +66,10 @@ export class PTMasterComponent implements OnInit {
     }
     this.modelFormData.controls['id'].enable();
     this.formData.item = this.modelFormData.value;
-    this.dialogRef.close(this.formData);
+    this.addOrEditService[this.formData.action](this.formData, (res) => {
+      this.dialogRef.close(this.formData);
+    });
+    
   }
 
   cancel() {

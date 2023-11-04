@@ -1,7 +1,7 @@
 import { Component, Inject, Optional, OnInit } from '@angular/core';
 import { AlertService } from '../../../../services/alert.service';
 import { MatDialogRef, MAT_DIALOG_DATA } from '@angular/material/dialog';
-;
+import { AddOrEditService } from '../add-or-edit.service';
 import { FormBuilder, FormGroup, Validators } from '@angular/forms';
 import { StatusCodes } from '../../../../enums/common/common';
 import { NgxSpinnerService } from 'ngx-spinner';
@@ -32,6 +32,7 @@ export class PFMasterComponent implements OnInit {
   isSubmitted = false;
   formData: any;
   componentList: any;
+  companyList: any;
 
   limit: Limit[] =
     [
@@ -54,6 +55,7 @@ export class PFMasterComponent implements OnInit {
     private apiConfigService: ApiConfigService,
     private apiService: ApiService,
     private commonService: CommonService,
+    private addOrEditService: AddOrEditService,
     // @Optional() is used to prevent error if no data is passed
     @Optional() @Inject(MAT_DIALOG_DATA) public data: any) {
 
@@ -81,6 +83,22 @@ export class PFMasterComponent implements OnInit {
 
   ngOnInit() {
     this.getPfComponentsList();
+    this.getCompanyData();
+  }
+
+  getCompanyData() {
+    const getCompanyUrl = String.Join('/', this.apiConfigService.getCompanyList);
+    this.apiService.apiGetRequest(getCompanyUrl)
+      .subscribe(
+        response => {
+          const res = response;
+          if (!this.commonService.checkNullOrUndefined(res) && res.status === StatusCodes.pass) {
+            if (!this.commonService.checkNullOrUndefined(res.response)) {
+              this.companyList = res.response['companiesList'];
+            }
+          }
+          this.spinner.hide();
+        });
   }
 
   getPfComponentsList() {
@@ -88,10 +106,10 @@ export class PFMasterComponent implements OnInit {
     this.apiService.apiGetRequest(getPfComponentsList)
       .subscribe(
         response => {
-          const res = response.body;
+          const res = response;
           if (!this.commonService.checkNullOrUndefined(res) && res.status === StatusCodes.pass) {
             if (!this.commonService.checkNullOrUndefined(res.response)) {
-              this.componentList = res.response['ComponentList'];
+              this.componentList = res.response['ComponentTypesList'];
             }
           }
           this.spinner.hide();
@@ -109,7 +127,9 @@ export class PFMasterComponent implements OnInit {
       return;
     }
     this.formData.item = this.modelFormData.value;
-    this.dialogRef.close(this.formData);
+    this.addOrEditService[this.formData.action](this.formData, (res) => {
+      this.dialogRef.close(this.formData);
+    });
   }
 
   cancel() {

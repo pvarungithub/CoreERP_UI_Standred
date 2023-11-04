@@ -2326,7 +2326,8 @@
     "percentage": "Percentage",
     "duration": "Duration",
     "active": "Active",
-    "specificMonth": "Specific Month"
+    "specificMonth": "Specific Month",
+    "companyName": "Company Name"
   },
    "CTCBreakup": {
     "title": "CTC Breakup",
@@ -2421,7 +2422,8 @@
     "componentName": "Component Name",
     "employeeContribution": "Employee Contribution",
     "employerContribution": "Employer Contribution",
-    "contributionType": "Contribution Type"
+    "contributionType": "Contribution Type",
+    "companyName": "Company Name"
   },
   "stockexcess":{
     "title":"Stock Excess",

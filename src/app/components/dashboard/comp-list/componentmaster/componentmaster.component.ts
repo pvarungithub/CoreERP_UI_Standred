@@ -1,14 +1,16 @@
 import { Component, Inject, Optional, OnInit } from '@angular/core';
-import { AlertService } from '../../../../services/alert.service';
-import { MatDialogRef, MAT_DIALOG_DATA } from '@angular/material/dialog';
-;
-import { FormBuilder, FormGroup, Validators } from '@angular/forms';
-import { StatusCodes } from '../../../../enums/common/common';
-import { CommonService } from '../../../../services/common.service';
-import { NgxSpinnerService } from 'ngx-spinner';
-import { ApiConfigService } from '../../../../services/api-config.service';
-import { ApiService } from '../../../../services/api.service';
 import { String } from 'typescript-string-operations';
+import { ApiService } from '../../../../services/api.service';
+import { Router, ActivatedRoute } from '@angular/router';
+import { MatDialog } from '@angular/material/dialog';
+import { NgxSpinnerService } from 'ngx-spinner';
+import { AlertService } from '../../../../services/alert.service';
+import { ApiConfigService } from '../../../../services/api-config.service';
+import { MatDialogRef, MAT_DIALOG_DATA } from '@angular/material/dialog';
+import { FormBuilder, FormGroup, Validators } from '@angular/forms';
+import { CommonService } from '../../../../services/common.service';
+import { StatusCodes } from '../../../../enums/common/common';
+import { AddOrEditService } from '../add-or-edit.service';
 
 
 interface specificMonth {
@@ -31,6 +33,7 @@ export class ComponentMasterComponent implements OnInit {
   isSubmitted = false;
   formData: any;
   configureList: any;
+  companyList: any;
 
   duration: duration[] =
     [
@@ -63,6 +66,7 @@ export class ComponentMasterComponent implements OnInit {
     private spinner: NgxSpinnerService,
     private apiConfigService: ApiConfigService,
     private apiService: ApiService,
+    private addOrEditService: AddOrEditService,
     // @Optional() is used to prevent error if no data is passed
     @Optional() @Inject(MAT_DIALOG_DATA) public data: any) {
 
@@ -90,6 +94,22 @@ export class ComponentMasterComponent implements OnInit {
 
   ngOnInit() {
     this.getConfigurationList();
+    this.getCompanyData();
+  }
+
+  getCompanyData() {
+    const getCompanyUrl = String.Join('/', this.apiConfigService.getCompanyList);
+    this.apiService.apiGetRequest(getCompanyUrl)
+      .subscribe(
+        response => {
+          const res = response;
+          if (!this.commonService.checkNullOrUndefined(res) && res.status === StatusCodes.pass) {
+            if (!this.commonService.checkNullOrUndefined(res.response)) {
+              this.companyList = res.response['companiesList'];
+            }
+          }
+          this.spinner.hide();
+        });
   }
 
   getConfigurationList() {
@@ -97,10 +117,9 @@ export class ComponentMasterComponent implements OnInit {
     this.apiService.apiGetRequest(getConfigurationList)
       .subscribe(
         response => {
-          const res = response.body;
+          const res = response;
           if (!this.commonService.checkNullOrUndefined(res) && res.status === StatusCodes.pass) {
             if (!this.commonService.checkNullOrUndefined(res.response)) {
-              console.log(res);
               this.configureList = res.response['ConfigurationList'];
             }
           }
@@ -117,7 +136,9 @@ export class ComponentMasterComponent implements OnInit {
     }
     this.modelFormData.controls['componentCode'].enable();
     this.formData.item = this.modelFormData.value;
-    this.dialogRef.close(this.formData);
+    this.addOrEditService[this.formData.action](this.formData, (res) => {
+      this.dialogRef.close(this.formData);
+    });
   }
 
   cancel() {
