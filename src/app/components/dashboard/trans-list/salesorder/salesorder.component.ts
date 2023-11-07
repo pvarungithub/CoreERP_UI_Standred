@@ -316,7 +316,7 @@ export class SalesorderComponent {
               if (this.formData.value.documentURL) {
                 this.downLoad();
               }
-              this.formData.disable();
+              // this.formData.disable();
               res.response['SaleOrderDetails'].forEach((s: any, index: number) => {
                 const obj = this.materialList.find((m: any) => m.id == s.materialCode);
                 s.materialName = obj.text
@@ -392,7 +392,9 @@ export class SalesorderComponent {
     obj.poDate = obj.poDate ? this.datepipe.transform(obj.poDate, 'MM-dd-yyyy') : '';
     obj.dateofSupply = obj.dateofSupply ? this.datepipe.transform(obj.dateofSupply, 'MM-dd-yyyy') : '';
     obj.documentURL = obj.saleOrderNo;
-    const requestObj = { qsHdr: this.formData.value, qsDtl: this.tableData };
+    const arr = this.tableData;
+    arr.forEach((a: any) => a.deliveryDate = a.deliveryDate ? this.datepipe.transform(a.deliveryDate, 'dd-MM-yyyy') : '' )
+    const requestObj = { qsHdr: this.formData.value, qsDtl: arr };
     this.apiService.apiPostRequest(addsq, requestObj).subscribe(
       response => {
         this.spinner.hide();

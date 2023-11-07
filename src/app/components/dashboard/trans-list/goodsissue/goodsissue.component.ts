@@ -235,7 +235,9 @@ export class GoodsissueComponent implements OnInit {
                 }
                 arr.push(obj);
               })
+              debugger
               this.tableData = arr;
+              this.toggle();
             }
           }
         });

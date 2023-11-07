@@ -1831,7 +1831,7 @@
     "wbs": "WBS",
     "availableqty": "Available QTY",
     "allocatedqty": "Allocated QTY",
-    "requiredqty": "Required QTY",
+    "requiredqty": "Received QTY",
     "delete": "Delete",
     "action": "Action"
   },
