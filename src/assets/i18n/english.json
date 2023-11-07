@@ -1692,6 +1692,7 @@
                     "rate": "Rate",
     "createdBy": "Created By",
     "levelType": "Level Type",
+    "materialCode": "Material Code",
     "bomLevel": "Level",
     "totalAmount": "Total Amount",
     "profitCenter": "Profit Center",
@@ -1945,7 +1946,7 @@
     "delete": "Delete",
 
     "materialCode": "Material Code",
-        "materialName": "MaterialName",
+        "materialName": "Material Name",
     "taxCode": "Tax Code",
     "qty": "Quantity",
     "rate": "Rate",
@@ -1955,11 +1956,12 @@
        "igst": "igst",
     "cgst": "cgst",
     "sgst": "sgst",
+    "total": "Total",
         "amount": "Amount",
     "totalTax": "Total Tax",
     "totalAmount": "Total Amount",
-    "CONVERTTOSALEORDER": "Convert To Sale Order"
-
+    "CONVERTTOSALEORDER": "Convert To Sale Order",
+    "action": "Action"
   },
   "quotationanalysis": {
     "title": "Quotation Analysys",

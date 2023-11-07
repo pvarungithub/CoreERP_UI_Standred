@@ -427,6 +427,7 @@ export class QuotationSupplierComponent implements OnInit {
                 s.action = 'editDelete'; s.index = index + 1;
               })
               this.tableData = res.response['qsDetail'];
+              this.calculate();
               this.formData.disable();
             }
           }
@@ -473,11 +474,12 @@ export class QuotationSupplierComponent implements OnInit {
   convertToSaleOrder() {
     const addsq = String.Join('/', this.apiConfigService.addSaleOrder);
     const obj = this.formData.value;
+    obj.PONumber = this.formData.value.quotationNumber;
     // obj.orderDate = obj.orderDate ? this.datepipe.transform(obj.orderDate, 'MM-dd-yyyy') : '';
     // obj.poDate = obj.poDate ? this.datepipe.transform(obj.poDate, 'MM-dd-yyyy') : '';
     // obj.dateofSupply = obj.dateofSupply ? this.datepipe.transform(obj.dateofSupply, 'MM-dd-yyyy') : '';
     // obj.documentURL = obj.saleOrderNo;
-    const requestObj = { qsHdr: this.formData.value, qsDtl: this.tableData };
+    const requestObj = { qsHdr: obj, qsDtl: this.tableData };
     this.apiService.apiPostRequest(addsq, requestObj).subscribe(
       response => {
         this.spinner.hide();
@@ -508,7 +510,7 @@ export class QuotationSupplierComponent implements OnInit {
     this.tableData = [];
     this.formData.reset();
     //this.formData.controls['voucherNumber'].disable();
-    this.sendDynTableData = { type: 'reset', data: this.tableData };
+    // this.sendDynTableData = { type: 'reset', data: this.tableData };
   }
 
 }

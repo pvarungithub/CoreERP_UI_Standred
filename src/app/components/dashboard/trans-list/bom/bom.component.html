@@ -158,7 +158,7 @@
         <div class="d--flex p-1 mat-form-field-height">
 
           <div class="mat-mdc-form-field typeahead">
-            <input formControlName="component" [typeahead]="mmasterList" typeaheadOptionField='id' tabIndex="8"
+            <input formControlName="component" placeholder="{{ 'bom.materialCode' | translate }}" [typeahead]="mmasterList" typeaheadOptionField='id' tabIndex="8"
               class="form-control " [typeaheadItemTemplate]="customItemTemplate"
               (typeaheadOnSelect)="materialCodeChange()" (change)="materialChange()">
             <ng-template #customItemTemplate let-model="item">
