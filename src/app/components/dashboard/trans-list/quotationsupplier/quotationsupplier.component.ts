@@ -475,6 +475,7 @@ export class QuotationSupplierComponent implements OnInit {
     const addsq = String.Join('/', this.apiConfigService.addSaleOrder);
     const obj = this.formData.value;
     obj.PONumber = this.formData.value.quotationNumber;
+    this.tableData.forEach((t: any) => t.id = 0);
     // obj.orderDate = obj.orderDate ? this.datepipe.transform(obj.orderDate, 'MM-dd-yyyy') : '';
     // obj.poDate = obj.poDate ? this.datepipe.transform(obj.poDate, 'MM-dd-yyyy') : '';
     // obj.dateofSupply = obj.dateofSupply ? this.datepipe.transform(obj.dateofSupply, 'MM-dd-yyyy') : '';
