@@ -238,7 +238,7 @@ export class QuotationSupplierComponent implements OnInit {
       })
     })
     this.formData.patchValue({
-      totalAmount: this.formData.value.amount + this.formData.value.totalTax,
+      totalAmount: (+this.formData.value.amount) + (+this.formData.value.totalTax),
     })
   }
 

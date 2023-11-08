@@ -44,7 +44,7 @@ export class SalesorderComponent {
   profitCenterList = [];
 
   routeEdit = '';
-  url: string;
+  // url: string;
 
   constructor(
     private commonService: CommonService,
@@ -195,7 +195,7 @@ export class SalesorderComponent {
       })
     })
     this.formData.patchValue({
-      totalAmount: this.formData.value.amount + this.formData.value.totalTax,
+      totalAmount: (+this.formData.value.amount) + (+this.formData.value.totalTax),
     })
   }
 
@@ -313,9 +313,9 @@ export class SalesorderComponent {
           if (!this.commonService.checkNullOrUndefined(res) && res.status === StatusCodes.pass) {
             if (!this.commonService.checkNullOrUndefined(res.response)) {
               this.formData.patchValue(res.response['SaleOrderMasters']);
-              if (this.formData.value.documentURL) {
-                this.downLoad();
-              }
+              // if (this.formData.value.documentURL) {
+              //   this.downLoad();
+              // }
               // this.formData.disable();
               res.response['SaleOrderDetails'].forEach((s: any, index: number) => {
                 const obj = this.materialList.find((m: any) => m.id == s.materialCode);
@@ -327,6 +327,17 @@ export class SalesorderComponent {
               this.tableData = res.response['SaleOrderDetails'];
             }
           }
+        });
+  }
+
+
+  downLoadFile(event: any) {
+    const url = String.Join('/', this.apiConfigService.getFile, event.item[event.action]);
+    this.apiService.apiGetRequest(url)
+      .subscribe(
+        response => {
+          this.spinner.hide();
+          window.open(response.response, '_blank');
         });
   }
 
@@ -394,7 +405,7 @@ export class SalesorderComponent {
     obj.dateofSupply = obj.dateofSupply ? this.datepipe.transform(obj.dateofSupply, 'MM-dd-yyyy') : '';
     obj.documentURL = obj.saleOrderNo;
     const arr = this.tableData;
-    arr.forEach((a: any) => a.deliveryDate = a.deliveryDate ? this.datepipe.transform(a.deliveryDate, 'dd-MM-yyyy') : '')
+    arr.forEach((a: any) => a.deliveryDate = a.deliveryDate ? this.datepipe.transform(a.deliveryDate, 'MM-dd-yyyy') : '')
     const requestObj = { qsHdr: this.formData.value, qsDtl: arr };
     this.apiService.apiPostRequest(addsq, requestObj).subscribe(
       response => {
@@ -409,15 +420,15 @@ export class SalesorderComponent {
       });
   }
 
-  downLoad() {
-    const url = String.Join('/', this.apiConfigService.getFile, this.formData.get('documentURL').value);
-    this.apiService.apiGetRequest(url)
-      .subscribe(
-        response => {
-          this.spinner.hide();
-          this.url = response.response;
-        });
-  }
+  // downLoad() {
+  //   const url = String.Join('/', this.apiConfigService.getFile, this.formData.get('documentURL').value);
+  //   this.apiService.apiGetRequest(url)
+  //     .subscribe(
+  //       response => {
+  //         this.spinner.hide();
+  //         this.url = response.response;
+  //       });
+  // }
 
   reset() {
     this.tableData = [];

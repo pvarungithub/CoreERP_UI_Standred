@@ -70,11 +70,11 @@
                     <input matInput type="text" formControlName="placeofSupply" appFocusOnEnter tabIndex="7">
                 </mat-form-field>
 
-                <div *ngIf="formData.value.documentURL" class="d-flex flex-column mt-3">
+                <!-- <div *ngIf="formData.value.documentURL" class="d-flex flex-column mt-3">
                     <mat-label [translate]="'saleorder.attachedUrl'"></mat-label>
                     <a [href]="url" download target="_blank"> <b> {{ formData.value.documentURL }} </b> </a>
-                </div>
-                <div *ngIf="!formData.value.documentURL">
+                </div> -->
+                <div >
                     <app-file-upload [type]="'card'" (emitFilesList)="emitFilesList($event)"></app-file-upload>
                 </div>
 
@@ -173,7 +173,7 @@
 
             <div>
                 <app-table class="table-css" [tableData]="tableData" [showFilters]="false"
-                    (editOrDeleteEvent)="editOrDeleteEvent($event)">
+                    (editOrDeleteEvent)="editOrDeleteEvent($event)" (onLinkEmitEvent)="downLoadFile($event)">
                 </app-table>
             </div>
         </div>
