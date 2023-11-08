@@ -271,7 +271,7 @@
 
             <div>
                 <app-table class="table-css" [tableData]="tableData" [showFilters]="false"
-                    (editOrDeleteEvent)="editOrDeleteEvent($event)">
+                    (editOrDeleteEvent)="editOrDeleteEvent($event)" (onLinkEmitEvent)="downLoadFile($event)">
                 </app-table>
             </div>
         </div>

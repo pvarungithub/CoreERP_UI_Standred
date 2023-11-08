@@ -41,6 +41,7 @@ export class TableComponent implements OnInit, OnChanges, AfterViewInit, OnDestr
   @Output() addOrUpdateEvent = new EventEmitter();
   @Output() onEditEmit = new EventEmitter();
   @Output() editOrDeleteEvent = new EventEmitter();
+  @Output() onLinkEmitEvent = new EventEmitter();
   @Input() addOrUpdateData: any;
   @Input() showFilters = true;
 
@@ -86,6 +87,10 @@ export class TableComponent implements OnInit, OnChanges, AfterViewInit, OnDestr
     this.tableIndex = i;
     this.highlightedRows = [];
     this.highlightedRows.push(row);
+  }
+
+  onLink(action: any, element: any) {
+    this.onLinkEmitEvent.emit({ action: action, item: element });
   }
 
   @HostListener('document:keydown', ['$event'])
@@ -170,6 +175,7 @@ export class TableComponent implements OnInit, OnChanges, AfterViewInit, OnDestr
           }
         }
       }
+      debugger
       console.log(this.columnDefinitions);
       // });
     }

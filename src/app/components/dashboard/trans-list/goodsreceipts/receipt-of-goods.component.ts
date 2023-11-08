@@ -201,6 +201,18 @@ export class ReceiptOfGoodsComponent implements OnInit {
     }
   }
 
+
+  downLoadFile(event: any) {
+    const url = String.Join('/', this.apiConfigService.getFile, event.item[event.action]);
+    this.apiService.apiGetRequest(url)
+      .subscribe(
+        response => {
+          debugger;
+          this.spinner.hide();
+          window.open(response.response, '_blank');
+        });
+  }
+
   tablePropsFunc() {
     return {
       tableData: {
@@ -543,6 +555,8 @@ export class ReceiptOfGoodsComponent implements OnInit {
                   rejectQty: d.rejectQty ? d.rejectQty : '',
                   qty: d.qty ? d.qty : '',
                   lotNo: d.lotNo ? d.lotNo : '',
+                  documentURL: d.documentURL ? d.documentURL : '',
+                  invoiceURL: d.invoiceURL ? d.invoiceURL : '',
                   supplierReferenceNo: d.supplierReferenceNo ? d.supplierReferenceNo : '',
                   receivedDate: d.receivedDate ? d.receivedDate : '',
                   receivedQty: d.receivedQty ? d.receivedQty : '',

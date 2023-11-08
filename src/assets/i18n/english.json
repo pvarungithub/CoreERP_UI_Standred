@@ -2072,6 +2072,8 @@
     "lotNo": "LotNo",
     "totalAmount": "Total Amount",
     "lotDate": "LotDate",
+     "documentURL": "Document URL",
+    "invoiceURL": "Invoice URL",
     "delete": "Delete",
     "action": "Action"
   },
