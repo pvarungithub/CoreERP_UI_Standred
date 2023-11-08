@@ -54,8 +54,8 @@ export class ReceiptOfGoodsComponent implements OnInit {
 
   fileList: any;
   fileList1: any;
-  url: string;
-  url1: string;
+  // url: string;
+  // url1: string;
 
 
   @ViewChild(TableComponent, { static: false }) tableComponent: TableComponent;
@@ -538,12 +538,12 @@ export class ReceiptOfGoodsComponent implements OnInit {
               // this.formData.patchValue({
               //   purchaseOrderNo: +res.response['grmasters'].purchaseOrderNo
               // })
-              if (this.formData.value.documentURL) {
-                this.downLoad(this.formData.value.documentURL, 'document');
-              }
-              if (this.formData.value.invoiceURL) {
-                this.downLoad(this.formData.value.invoiceURL, 'invoice');
-              }
+              // if (this.formData.value.documentURL) {
+              //   this.downLoad(this.formData.value.documentURL, 'document');
+              // }
+              // if (this.formData.value.invoiceURL) {
+              //   this.downLoad(this.formData.value.invoiceURL, 'invoice');
+              // }
               this.perChaseOrderList = []
               res.response['grDetail'].forEach((d: any, index: number) => {
                 const obj = {
@@ -709,19 +709,19 @@ export class ReceiptOfGoodsComponent implements OnInit {
       });
   }
 
-  downLoad(id: any, flag: string) {
-    const url = String.Join('/', this.apiConfigService.getFile, id);
-    this.apiService.apiGetRequest(url)
-      .subscribe(
-        response => {
-          this.spinner.hide();
-          if (flag == 'document') {
-            this.url = response.response;
-          } else {
-            this.url1 = response.response;
-          }
-        });
-  }
+  // downLoad(id: any, flag: string) {
+  //   const url = String.Join('/', this.apiConfigService.getFile, id);
+  //   this.apiService.apiGetRequest(url)
+  //     .subscribe(
+  //       response => {
+  //         this.spinner.hide();
+  //         if (flag == 'document') {
+  //           this.url = response.response;
+  //         } else {
+  //           this.url1 = response.response;
+  //         }
+  //       });
+  // }
 
 
   return() {

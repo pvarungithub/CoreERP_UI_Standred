@@ -2516,7 +2516,7 @@
     "poDate": "PO Date",
     "dateofSupply": "Date Of Supply",
     "placeOfSupply": "Place Of Supply",
-    "documentUrl": "Document Url",
+    "documentURL": "Document Url",
     "status": "Status",
     "taxCode": "Tax Code",
         "materialName": "MaterialName",

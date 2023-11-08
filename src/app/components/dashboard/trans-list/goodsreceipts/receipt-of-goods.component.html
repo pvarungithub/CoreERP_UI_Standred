@@ -171,19 +171,19 @@
                     <input matInput type="text" formControlName="lotNo" appFocusOnEnter tabIndex="10">
                 </mat-form-field>
 
-                <div *ngIf="formData.value.documentURL" class="d-flex flex-column mt-3">
+                <!-- <div *ngIf="formData.value.documentURL" class="d-flex flex-column mt-3">
                     <mat-label [translate]="'saleorder.attachedUrl'"></mat-label>
                     <a [href]="url" download target="_blank"> <b> {{ formData.value.documentURL }} </b> </a>
-                </div>
-                <div *ngIf="!formData.value.documentURL">
+                </div> -->
+                <div >
                     <app-file-upload [type]="'card'" (emitFilesList)="emitFilesList($event)"></app-file-upload>
                 </div>
 
-                <div *ngIf="formData.value.invoiceURL" class="d-flex flex-column mt-3">
+                <!-- <div *ngIf="formData.value.invoiceURL" class="d-flex flex-column mt-3">
                     <mat-label [translate]="'saleorder.attachedUrl'"></mat-label>
                     <a [href]="url1" download target="_blank"> <b> {{ formData.value.invoiceURL }} </b> </a>
-                </div>
-                <div *ngIf="!formData.value.invoiceURL">
+                </div> -->
+                <div >
                     <app-file-upload [type]="'card'" (emitFilesList)="emitFilesList1($event)"></app-file-upload>
                 </div>
 

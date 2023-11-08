@@ -187,11 +187,11 @@ export class SalesorderComponent {
     })
     this.tableData && this.tableData.forEach((t: any) => {
       this.formData.patchValue({
-        igst: this.formData.value.igst + t.igst,
-        cgst: this.formData.value.cgst + t.cgst,
-        sgst: this.formData.value.sgst + t.sgst,
-        amount: this.formData.value.amount + (t.qty * t.rate),
-        totalTax: this.formData.value.totalTax + (t.igst + t.cgst + t.sgst),
+        igst: ((+this.formData.value.igst) + t.igst).toFixed(2),
+        cgst: ((+this.formData.value.cgst) + t.cgst).toFixed(2),
+        sgst: ((+this.formData.value.sgst) + t.sgst).toFixed(2),
+        amount: ((+this.formData.value.amount) + (t.qty * t.rate)).toFixed(2),
+        totalTax: ((+this.formData.value.totalTax) + (t.igst + t.cgst + t.sgst)).toFixed(2),
       })
     })
     this.formData.patchValue({
@@ -321,6 +321,7 @@ export class SalesorderComponent {
                 const obj = this.materialList.find((m: any) => m.id == s.materialCode);
                 s.materialName = obj.text
                 s.stockQty = obj.closingQty;
+                s.documentURL = s.documentURL ? s.documentURL : '',
                 s.action = 'editDelete'; s.index = index + 1;
               })
               this.tableData = res.response['SaleOrderDetails'];
@@ -350,7 +351,7 @@ export class SalesorderComponent {
     this.fileList = event[0];
   }
 
-  
+
   uploadFile() {
     const addsq = String.Join('/', this.apiConfigService.uploadFile, this.formData.value.saleOrderNo);
     const formData = new FormData();
@@ -393,7 +394,7 @@ export class SalesorderComponent {
     obj.dateofSupply = obj.dateofSupply ? this.datepipe.transform(obj.dateofSupply, 'MM-dd-yyyy') : '';
     obj.documentURL = obj.saleOrderNo;
     const arr = this.tableData;
-    arr.forEach((a: any) => a.deliveryDate = a.deliveryDate ? this.datepipe.transform(a.deliveryDate, 'dd-MM-yyyy') : '' )
+    arr.forEach((a: any) => a.deliveryDate = a.deliveryDate ? this.datepipe.transform(a.deliveryDate, 'dd-MM-yyyy') : '')
     const requestObj = { qsHdr: this.formData.value, qsDtl: arr };
     this.apiService.apiPostRequest(addsq, requestObj).subscribe(
       response => {

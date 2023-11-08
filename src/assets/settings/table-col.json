@@ -2180,7 +2180,6 @@
         "poDate": "Date",
         "dateofSupply": "Date",
         "placeOfSupply": "Place Of Supply",
-        "documentUrl": "Document Url",
         "status": "Status",
             "materialName": "MaterialName",
 
@@ -2202,6 +2201,7 @@
 
         "total": "Total",
         "deliveryDate": "Date",
+            "documentURL": "link",
         "delete": "Delete",
         "action": "Action"
       }
