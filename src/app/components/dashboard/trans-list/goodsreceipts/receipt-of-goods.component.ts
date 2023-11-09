@@ -105,7 +105,8 @@ export class ReceiptOfGoodsComponent implements OnInit {
       supplierCode: [null],
       //supplierName: [null],
       supplierReferenceNo: [null,Validators.required],
-
+      profitcenterName: [''],
+      companyName: [null],
       receivedBy: [null,Validators.required],
       receivedDate: [null,Validators.required],
       receiptDate: [null],
@@ -154,6 +155,20 @@ export class ReceiptOfGoodsComponent implements OnInit {
       index: 0,
       action: 'editDelete'
     });
+  }
+
+  companyChange() {
+    const obj = this.companyList.find((c: any) => c.id == this.formData.value.company);
+    this.formData.patchValue({
+      companyName: obj.text
+    })
+  }
+
+  profitChange() {
+    const obj = this.profitCenterList.find((c: any) => c.id == this.formData.value.profitCenter);
+    this.formData.patchValue({
+      profitcenterName: obj.text
+    })
   }
 
   saveForm() {

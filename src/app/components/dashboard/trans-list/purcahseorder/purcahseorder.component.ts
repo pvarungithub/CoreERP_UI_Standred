@@ -110,6 +110,9 @@ export class PurchaseOrderComponent implements OnInit {
       // quotationDate: [null],
       supplierCode: [null,[Validators.required]],
       gstno: [null],
+      profitcenterName: [''],
+      companyName: [null],
+      supplierName:[null],
       deliveryDate: [null],
       deliveryPeriod: [null],
       termsofDelivery: null,
@@ -212,7 +215,8 @@ export class PurchaseOrderComponent implements OnInit {
   supplierCodeChange() {
     const obj = this.bpaList.find((b: any) => b.text == this.formData.value.supplierCode);
     this.formData.patchValue({
-      gstno: obj.gstNo
+      gstno: obj.gstNo,
+      supplierName: obj.text,
     })
   }
   quotationNumberChange() {
@@ -600,6 +604,22 @@ export class PurchaseOrderComponent implements OnInit {
       action: 'editDelete'
     });
   }
+
+  companyChange() {
+    const obj = this.companyList.find((c: any) => c.id == this.formData.value.company);
+    this.formData.patchValue({
+      companyName: obj.text
+    })
+  }
+
+  profitChange() {
+    const obj = this.profitCenterList.find((c: any) => c.id == this.formData.value.profitCenter);
+    this.formData.patchValue({
+      profitcenterName: obj.text
+    })
+  }
+
+
 
   saveForm() {
     if (this.formData1.invalid) {

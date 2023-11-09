@@ -90,6 +90,9 @@ export class GoodsissueComponent implements OnInit {
       saleOrderNumber: [null,Validators.required],
       productionPerson: [null,Validators.required],
       movementType: [null],
+      profitcenterName: [''],
+      DepartmentName: [''],
+      companyName: [null],
       // status: [null],
     });
 
@@ -160,6 +163,27 @@ export class GoodsissueComponent implements OnInit {
       index: 0,
       action: 'edit'
     });
+  }
+
+  companyChange() {
+    const obj = this.companyList.find((c: any) => c.id == this.formData.value.company);
+    this.formData.patchValue({
+      companyName: obj.text
+    })
+  }
+
+  profitChange() {
+    const obj = this.fdeptList.find((c: any) => c.id == this.formData.value.profitCenter);
+    this.formData.patchValue({
+      profitcenterName: obj.text
+    })
+  }
+
+  customerChange() {
+    const obj = this.fdeptList.find((c: any) => c.id == this.formData.value.customerCode);
+    this.formData.patchValue({
+      DepartmentName: obj.description
+    })
   }
 
   saveForm() {
@@ -416,10 +440,24 @@ export class GoodsissueComponent implements OnInit {
               this.mreqdetailsList = res.response['mreqdetailsList'];
             }
           }
-          this.getfunctionaldeptList();
+          this.getProfitcenterData();
         });
   }
+getProfitcenterData() {
+    const getpcUrl = String.Join('/', this.apiConfigService.getProfitCentersList);
+    this.apiService.apiGetRequest(getpcUrl)
+      .subscribe(
+        response => {
+          const res = response;
+          if (!this.commonService.checkNullOrUndefined(res) && res.status === StatusCodes.pass) {
+            if (!this.commonService.checkNullOrUndefined(res.response)) {
+              this.profitCenterList = res.response['profitCenterList'];
+            }
+          }
 
+          this.getfunctionaldeptList()
+        });
+  }
   // getlocationList() {
   //   const getlocationUrl = String.Join('/', this.apiConfigService.getlocationList);
   //   this.apiService.apiGetRequest(getlocationUrl)
@@ -434,6 +472,7 @@ export class GoodsissueComponent implements OnInit {
   //         this.getfunctionaldeptList();
   //       });
   // }
+  
   getfunctionaldeptList() {
     const taxCodeUrl = String.Join('/', this.apiConfigService.getfunctionaldeptList);
     this.apiService.apiGetRequest(taxCodeUrl)
@@ -443,7 +482,7 @@ export class GoodsissueComponent implements OnInit {
           const res = response;
           if (!this.commonService.checkNullOrUndefined(res) && res.status === StatusCodes.pass) {
             if (!this.commonService.checkNullOrUndefined(res.response)) {
-              this.functionaldeptList = res.response['fdeptList'];
+              this.fdeptList = res.response['fdeptList'];
             }
           }
           this.dynTableProps = this.tablePropsFunc();
