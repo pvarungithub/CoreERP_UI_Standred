@@ -2510,7 +2510,7 @@
   "saleorder": {
     "title": "Sale Order",
     "saleOrderNo": "Sale Order Number",
-    "customerCode": "Customer Code",
+    "customerCode": "Customer Name",
     "orderDate": "Order Date",
     "poNumber": "PO Number",
     "poDate": "PO Date",
