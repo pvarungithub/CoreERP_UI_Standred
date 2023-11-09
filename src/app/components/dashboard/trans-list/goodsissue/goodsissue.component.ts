@@ -84,11 +84,11 @@ export class GoodsissueComponent implements OnInit {
       company: [null, [Validators.required]],
       plant: [null, [Validators.required]],
       goodsIssueId: ['0'],
-      storesPerson: [null],
-      saleOrder: [true],
-      department: [null],
-      saleOrderNumber: [null],
-      productionPerson: [null],
+      storesPerson: [null,Validators.required],
+      saleOrder: [true,Validators.required],
+      department: [null,Validators.required],
+      saleOrderNumber: [null,Validators.required],
+      productionPerson: [null,Validators.required],
       movementType: [null],
       // status: [null],
     });
@@ -96,7 +96,7 @@ export class GoodsissueComponent implements OnInit {
     this.formData1 = this.formBuilder.group({
       allocatedqty: ['', Validators.required],
       materialCode: [''],
-      qty: [''],
+      qty: ['',],
       id: 0,
       changed: true,
       availableqty: [''],
@@ -269,82 +269,82 @@ export class GoodsissueComponent implements OnInit {
               this.employeesList = res.response['emplist'];
             }
           }
-          this.getDepartmentData();
-        });
-  }
-
-  getDepartmentData() {
-    const getdepteUrl = String.Join('/', this.apiConfigService.getfunctionaldeptList);
-    this.apiService.apiGetRequest(getdepteUrl)
-      .subscribe(
-        response => {
-          const res = response;
-          if (!this.commonService.checkNullOrUndefined(res) && res.status === StatusCodes.pass) {
-            if (!this.commonService.checkNullOrUndefined(res.response)) {
-              this.fdeptList = res.response['fdeptList'];
-            }
-          }
-          this.getplantData();
-        });
-  }
-
-  getplantData() {
-    const getplantUrl = String.Join('/', this.apiConfigService.getPlantsList);
-    this.apiService.apiGetRequest(getplantUrl)
-      .subscribe(
-        response => {
-          const res = response;
-          if (!this.commonService.checkNullOrUndefined(res) && res.status === StatusCodes.pass) {
-            if (!this.commonService.checkNullOrUndefined(res.response)) {
-              this.plantList = res.response['plantsList'];
-            }
-          }
-          this.getMomentTypeList();
-        });
-  }
-
-  getMomentTypeList() {
-    const MomentTypeList = String.Join('/', this.apiConfigService.getmomenttypeList);
-    this.apiService.apiGetRequest(MomentTypeList)
-      .subscribe(
-        response => {
-          const res = response;
-          if (!this.commonService.checkNullOrUndefined(res) && res.status === StatusCodes.pass) {
-            if (!this.commonService.checkNullOrUndefined(res.response)) {
-              this.movementList = res.response['movementList'];
-            }
-          }
-          this.getWbselementList();
-        });
-  }
-  getWbselementList() {
-    const getwbselementUrl = String.Join('/', this.apiConfigService.getwbselement);
-    this.apiService.apiGetRequest(getwbselementUrl)
-      .subscribe(
-        response => {
-          const res = response;
-          if (!this.commonService.checkNullOrUndefined(res) && res.status === StatusCodes.pass) {
-            if (!this.commonService.checkNullOrUndefined(res.response)) {
-              this.wbsElementList = res.response['wbsList'];
-            }
-          }
-          this.getOrderTypeList();
-        });
-  }
-  getOrderTypeList() {
-    const getOrderTypeUrl = String.Join('/', this.apiConfigService.getordernolist);
-    this.apiService.apiGetRequest(getOrderTypeUrl)
-      .subscribe(
-        response => {
-          const res = response;
-          if (!this.commonService.checkNullOrUndefined(res) && res.status === StatusCodes.pass) {
-            if (!this.commonService.checkNullOrUndefined(res.response)) {
-              this.ordertypeList = res.response['ordertypeList'];
-            }
-          }
           this.getmaterialList();
         });
   }
+
+  // getDepartmentData() {
+  //   const getdepteUrl = String.Join('/', this.apiConfigService.getfunctionaldeptList);
+  //   this.apiService.apiGetRequest(getdepteUrl)
+  //     .subscribe(
+  //       response => {
+  //         const res = response;
+  //         if (!this.commonService.checkNullOrUndefined(res) && res.status === StatusCodes.pass) {
+  //           if (!this.commonService.checkNullOrUndefined(res.response)) {
+  //             this.fdeptList = res.response['fdeptList'];
+  //           }
+  //         }
+  //         this.getplantData();
+  //       });
+  // }
+
+  // getplantData() {
+  //   const getplantUrl = String.Join('/', this.apiConfigService.getPlantsList);
+  //   this.apiService.apiGetRequest(getplantUrl)
+  //     .subscribe(
+  //       response => {
+  //         const res = response;
+  //         if (!this.commonService.checkNullOrUndefined(res) && res.status === StatusCodes.pass) {
+  //           if (!this.commonService.checkNullOrUndefined(res.response)) {
+  //             this.plantList = res.response['plantsList'];
+  //           }
+  //         }
+  //         this.getMomentTypeList();
+  //       });
+  // }
+
+  // getMomentTypeList() {
+  //   const MomentTypeList = String.Join('/', this.apiConfigService.getmomenttypeList);
+  //   this.apiService.apiGetRequest(MomentTypeList)
+  //     .subscribe(
+  //       response => {
+  //         const res = response;
+  //         if (!this.commonService.checkNullOrUndefined(res) && res.status === StatusCodes.pass) {
+  //           if (!this.commonService.checkNullOrUndefined(res.response)) {
+  //             this.movementList = res.response['movementList'];
+  //           }
+  //         }
+  //         this.getWbselementList();
+  //       });
+  // }
+  // getWbselementList() {
+  //   const getwbselementUrl = String.Join('/', this.apiConfigService.getwbselement);
+  //   this.apiService.apiGetRequest(getwbselementUrl)
+  //     .subscribe(
+  //       response => {
+  //         const res = response;
+  //         if (!this.commonService.checkNullOrUndefined(res) && res.status === StatusCodes.pass) {
+  //           if (!this.commonService.checkNullOrUndefined(res.response)) {
+  //             this.wbsElementList = res.response['wbsList'];
+  //           }
+  //         }
+  //         this.getOrderTypeList();
+  //       });
+  // }
+  // getOrderTypeList() {
+  //   const getOrderTypeUrl = String.Join('/', this.apiConfigService.getordernolist);
+  //   this.apiService.apiGetRequest(getOrderTypeUrl)
+  //     .subscribe(
+  //       response => {
+  //         const res = response;
+  //         if (!this.commonService.checkNullOrUndefined(res) && res.status === StatusCodes.pass) {
+  //           if (!this.commonService.checkNullOrUndefined(res.response)) {
+  //             this.ordertypeList = res.response['ordertypeList'];
+  //           }
+  //         }
+  //         this.getmaterialList();
+  //       });
+  // }
   getmaterialList() {
     const getmaterialList = String.Join('/', this.apiConfigService.getmaterialdata);
     this.apiService.apiGetRequest(getmaterialList)
@@ -416,24 +416,24 @@ export class GoodsissueComponent implements OnInit {
               this.mreqdetailsList = res.response['mreqdetailsList'];
             }
           }
-          this.getlocationList();
-        });
-  }
-
-  getlocationList() {
-    const getlocationUrl = String.Join('/', this.apiConfigService.getlocationList);
-    this.apiService.apiGetRequest(getlocationUrl)
-      .subscribe(
-        response => {
-          const res = response;
-          if (!this.commonService.checkNullOrUndefined(res) && res.status === StatusCodes.pass) {
-            if (!this.commonService.checkNullOrUndefined(res.response)) {
-              this.locationList = res.response['locationList'];
-            }
-          }
           this.getfunctionaldeptList();
         });
   }
+
+  // getlocationList() {
+  //   const getlocationUrl = String.Join('/', this.apiConfigService.getlocationList);
+  //   this.apiService.apiGetRequest(getlocationUrl)
+  //     .subscribe(
+  //       response => {
+  //         const res = response;
+  //         if (!this.commonService.checkNullOrUndefined(res) && res.status === StatusCodes.pass) {
+  //           if (!this.commonService.checkNullOrUndefined(res.response)) {
+  //             this.locationList = res.response['locationList'];
+  //           }
+  //         }
+  //         this.getfunctionaldeptList();
+  //       });
+  // }
   getfunctionaldeptList() {
     const taxCodeUrl = String.Join('/', this.apiConfigService.getfunctionaldeptList);
     this.apiService.apiGetRequest(taxCodeUrl)
@@ -445,27 +445,30 @@ export class GoodsissueComponent implements OnInit {
               this.functionaldeptList = res.response['fdeptList'];
             }
           }
-          this.getCostcenters();
-        });
-  }
-  getCostcenters() {
-    const costCenUrl = String.Join('/', this.apiConfigService.getCostCentersList);
-    this.apiService.apiGetRequest(costCenUrl)
-      .subscribe(
-        response => {
-          this.spinner.hide();
-          const res = response;
-          if (!this.commonService.checkNullOrUndefined(res) && res.status === StatusCodes.pass) {
-            if (!this.commonService.checkNullOrUndefined(res.response)) {
-              this.costCenterList = res.response['costcenterList'];
-            }
-          }
           this.dynTableProps = this.tablePropsFunc();
           if (this.routeEdit != '') {
             this.getGIDetail(this.routeEdit);
           }
         });
   }
+  // getCostcenters() {
+  //   const costCenUrl = String.Join('/', this.apiConfigService.getCostCentersList);
+  //   this.apiService.apiGetRequest(costCenUrl)
+  //     .subscribe(
+  //       response => {
+  //         this.spinner.hide();
+  //         const res = response;
+  //         if (!this.commonService.checkNullOrUndefined(res) && res.status === StatusCodes.pass) {
+  //           if (!this.commonService.checkNullOrUndefined(res.response)) {
+  //             this.costCenterList = res.response['costcenterList'];
+  //           }
+  //         }
+  //         this.dynTableProps = this.tablePropsFunc();
+  //         if (this.routeEdit != '') {
+  //           this.getGIDetail(this.routeEdit);
+  //         }
+  //       });
+  // }
 
   emitColumnChanges(data) {
     this.tableData = data.data;
