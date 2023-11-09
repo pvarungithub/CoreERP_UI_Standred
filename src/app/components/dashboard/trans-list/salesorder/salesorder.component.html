@@ -15,7 +15,7 @@
                     <mat-label>{{ 'purcahserequisition.company' | translate }}</mat-label>
                     <mat-select formControlName="company" appFocusOnEnter tabIndex="1">
                         <mat-option>None</mat-option>
-                        <mat-option *ngFor="let comp of companyList" [value]="comp.id">
+                        <mat-option *ngFor="let comp of companyList" [value]="comp">
                             {{comp.text}}
                         </mat-option>
                     </mat-select>
@@ -25,7 +25,7 @@
                     <mat-label>{{'purchaseorder.profitCenter' | translate }}</mat-label>
                     <mat-select formControlName="profitCenter" appFocusOnEnter tabIndex="2">
                         <mat-option>None</mat-option>
-                        <mat-option *ngFor="let pft of profitCenterList" [value]="pft.id">
+                        <mat-option *ngFor="let pft of profitCenterList" [value]="pft">
                             {{pft.text}}
                         </mat-option>
                     </mat-select>
@@ -35,7 +35,7 @@
                     <mat-label>{{ 'saleorder.customerCode' | translate }}</mat-label>
                     <mat-select formControlName="customerCode" appFocusOnEnter tabIndex="3">
                         <mat-option>None</mat-option>
-                        <mat-option *ngFor="let comp of customerList" [value]="comp.text">
+                        <mat-option *ngFor="let comp of customerList" [value]="comp">
                             {{comp.text}}
                         </mat-option>
                     </mat-select>

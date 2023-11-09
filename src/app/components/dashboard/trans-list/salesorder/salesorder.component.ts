@@ -73,7 +73,7 @@ export class SalesorderComponent {
     this.formData = this.formBuilder.group({
       company: [null, [Validators.required]],
       saleOrderNo: [0],
-      materialCode: ['', Validators.required],
+      materialCode: [''],
       customerCode: ['', Validators.required],
       orderDate: [null],
       profitCenter: ['', Validators.required],
