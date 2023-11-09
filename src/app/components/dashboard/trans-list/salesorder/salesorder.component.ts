@@ -82,6 +82,7 @@ export class SalesorderComponent {
       profitcenterName: [''],
       poNumber: ['', Validators.required],
       poDate: [null],
+      gstNo: [null],
       dateofSupply: [null],
       placeofSupply: [null],
       igst: [0],
@@ -92,6 +93,8 @@ export class SalesorderComponent {
       totalAmount: [0],
       documentURL: [''],
     });
+
+
     this.formData1 = this.formBuilder.group({
       materialCode: ['', Validators.required],
       taxCode: ['', Validators.required],
@@ -108,6 +111,7 @@ export class SalesorderComponent {
       deliveryDate: [''],
       stockQty: [0],
       materialName: [''],
+      documentURL: [''],
       action: 'editDelete',
       index: 0
     });
@@ -139,7 +143,8 @@ export class SalesorderComponent {
   customerChange() {
     const obj = this.customerList.find((c: any) => c.id == this.formData.value.customerCode);
     this.formData.patchValue({
-      supplierName: obj.text
+      supplierName: obj.text,
+      gstNo: obj.gstNo
     })
   }
 
@@ -274,7 +279,7 @@ export class SalesorderComponent {
             }
           }
           this.getCompanyList();
-          
+
         });
   }
 
@@ -289,7 +294,7 @@ export class SalesorderComponent {
               this.companyList = res.response['companiesList'];
             }
           }
-          
+
           this.getProfitcenterData();
         });
   }
@@ -365,7 +370,7 @@ export class SalesorderComponent {
                 s.materialName = obj.text
                 s.stockQty = obj.closingQty;
                 s.documentURL = s.documentURL ? s.documentURL : '',
-                s.action = 'editDelete'; s.index = index + 1;
+                  s.action = 'editDelete'; s.index = index + 1;
               })
               this.tableData = res.response['SaleOrderDetails'];
             }
@@ -407,7 +412,7 @@ export class SalesorderComponent {
 
 
   uploadFile() {
-    const addsq = String.Join('/', this.apiConfigService.uploadFile, this.formData.value.saleOrderNo);
+    const addsq = String.Join('/', this.apiConfigService.uploadFile, this.fileList ? this.fileList.name.split('.')[0] : '');
     const formData = new FormData();
     formData.append("file", this.fileList);
 
@@ -446,9 +451,12 @@ export class SalesorderComponent {
     obj.orderDate = obj.orderDate ? this.datepipe.transform(obj.orderDate, 'MM-dd-yyyy') : '';
     obj.poDate = obj.poDate ? this.datepipe.transform(obj.poDate, 'MM-dd-yyyy') : '';
     obj.dateofSupply = obj.dateofSupply ? this.datepipe.transform(obj.dateofSupply, 'MM-dd-yyyy') : '';
-    obj.documentURL = obj.saleOrderNo;
+    obj.documentURL = this.fileList ? this.fileList.name.split('.')[0] : '';
     const arr = this.tableData;
-    arr.forEach((a: any) => a.deliveryDate = a.deliveryDate ? this.datepipe.transform(a.deliveryDate, 'MM-dd-yyyy') : '')
+    arr.forEach((a: any) => {
+      a.deliveryDate = a.deliveryDate ? this.datepipe.transform(a.deliveryDate, 'MM-dd-yyyy') : '';
+      a.documentURL = a.documentURL ? a.documentURL : (this.fileList ? this.fileList.name.split('.')[0] : '');
+    })
     const requestObj = { qsHdr: this.formData.value, qsDtl: arr };
     this.apiService.apiPostRequest(addsq, requestObj).subscribe(
       response => {
