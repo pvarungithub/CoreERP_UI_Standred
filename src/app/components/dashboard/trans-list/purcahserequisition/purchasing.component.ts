@@ -70,7 +70,6 @@ export class PurchasingComponent implements OnInit {
   ngOnInit() {
     this.formDataGroup();
     this.getCompanyList();
-    this.getPurchaseGroupData();
   }
 
   // tablePropsFunc() {
@@ -234,25 +233,25 @@ export class PurchasingComponent implements OnInit {
             }
           }
 
-          this.getPurchaseGroupData()
-        });
-  }
-  getPurchaseGroupData() {
-    const getpcUrl = String.Join('/', this.apiConfigService.getPurchaseGroupList);
-    this.apiService.apiGetRequest(getpcUrl)
-      .subscribe(
-        response => {
-          const res = response;
-          console.log(res);
-          if (!this.commonService.checkNullOrUndefined(res) && res.status === StatusCodes.pass) {
-            if (!this.commonService.checkNullOrUndefined(res.response)) {
-              this.pcgroupList = res.response['PCGroupsList'];
-            }
-          }
-
           this.getmaterialData()
         });
   }
+  // getPurchaseGroupData() {
+  //   const getpcUrl = String.Join('/', this.apiConfigService.getPurchaseGroupList);
+  //   this.apiService.apiGetRequest(getpcUrl)
+  //     .subscribe(
+  //       response => {
+  //         const res = response;
+  //         console.log(res);
+  //         if (!this.commonService.checkNullOrUndefined(res) && res.status === StatusCodes.pass) {
+  //           if (!this.commonService.checkNullOrUndefined(res.response)) {
+  //             this.pcgroupList = res.response['PCGroupsList'];
+  //           }
+  //         }
+
+  //         this.getmaterialData()
+  //       });
+  // }
   getmaterialData() {
     const getmaterialUrl = String.Join('/', this.apiConfigService.getMaterialList);
     this.apiService.apiGetRequest(getmaterialUrl)

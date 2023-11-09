@@ -323,54 +323,54 @@ export class QuotationSupplierComponent implements OnInit {
               this.ptypeList = res.response['bpList'].filter(resp => resp.bptype == 'Customer')
             }
           }
-          this.getplantList();
-        });
-  }
-  getplantList() {
-    const getplantList = String.Join('/', this.apiConfigService.getplantList);
-    this.apiService.apiGetRequest(getplantList)
-      .subscribe(
-        response => {
-          const res = response;
-          if (!this.commonService.checkNullOrUndefined(res) && res.status === StatusCodes.pass) {
-            if (!this.commonService.checkNullOrUndefined(res.response)) {
-              this.plantList = res.response['plantList'];
-            }
-          }
-          this.getuomList();
-        });
-  }
-
-
-  getuomList() {
-    const getsecondelementUrl = String.Join('/', this.apiConfigService.getuomList);
-    this.apiService.apiGetRequest(getsecondelementUrl)
-      .subscribe(
-        response => {
-          const res = response;
-
-          if (!this.commonService.checkNullOrUndefined(res) && res.status === StatusCodes.pass) {
-            if (!this.commonService.checkNullOrUndefined(res.response)) {
-              this.UomList = res.response['UOMList'];
-            }
-          }
-          this.getBranchList();
-        });
-  }
-  getBranchList() {
-    const branchUrl = String.Join('/', this.apiConfigService.getBranchList);
-    this.apiService.apiGetRequest(branchUrl)
-      .subscribe(
-        response => {
-          const res = response;
-          if (!this.commonService.checkNullOrUndefined(res) && res.status === StatusCodes.pass) {
-            if (!this.commonService.checkNullOrUndefined(res.response)) {
-              this.branchList = res.response['branchsList'];
-            }
-          }
           this.getProfitcenterData();
         });
   }
+  // getplantList() {
+  //   const getplantList = String.Join('/', this.apiConfigService.getplantList);
+  //   this.apiService.apiGetRequest(getplantList)
+  //     .subscribe(
+  //       response => {
+  //         const res = response;
+  //         if (!this.commonService.checkNullOrUndefined(res) && res.status === StatusCodes.pass) {
+  //           if (!this.commonService.checkNullOrUndefined(res.response)) {
+  //             this.plantList = res.response['plantList'];
+  //           }
+  //         }
+  //         this.getuomList();
+  //       });
+  // }
+
+
+  // getuomList() {
+  //   const getsecondelementUrl = String.Join('/', this.apiConfigService.getuomList);
+  //   this.apiService.apiGetRequest(getsecondelementUrl)
+  //     .subscribe(
+  //       response => {
+  //         const res = response;
+
+  //         if (!this.commonService.checkNullOrUndefined(res) && res.status === StatusCodes.pass) {
+  //           if (!this.commonService.checkNullOrUndefined(res.response)) {
+  //             this.UomList = res.response['UOMList'];
+  //           }
+  //         }
+  //         this.getBranchList();
+  //       });
+  // }
+  // getBranchList() {
+  //   const branchUrl = String.Join('/', this.apiConfigService.getBranchList);
+  //   this.apiService.apiGetRequest(branchUrl)
+  //     .subscribe(
+  //       response => {
+  //         const res = response;
+  //         if (!this.commonService.checkNullOrUndefined(res) && res.status === StatusCodes.pass) {
+  //           if (!this.commonService.checkNullOrUndefined(res.response)) {
+  //             this.branchList = res.response['branchsList'];
+  //           }
+  //         }
+  //         this.getProfitcenterData();
+  //       });
+  // }
 
 
   getProfitcenterData() {
@@ -378,6 +378,7 @@ export class QuotationSupplierComponent implements OnInit {
     this.apiService.apiGetRequest(getpcUrl)
       .subscribe(
         response => {
+          this.spinner.hide();
           const res = response;
           if (!this.commonService.checkNullOrUndefined(res) && res.status === StatusCodes.pass) {
             if (!this.commonService.checkNullOrUndefined(res.response)) {
@@ -385,28 +386,30 @@ export class QuotationSupplierComponent implements OnInit {
             }
           }
 
-          this.getWbsList();
-        });
-  }
-
-  getWbsList() {
-    const segUrl = String.Join('/', this.apiConfigService.getwbselement);
-    this.apiService.apiGetRequest(segUrl)
-      .subscribe(
-        response => {
-          this.spinner.hide();
-          const res = response;
-          if (!this.commonService.checkNullOrUndefined(res) && res.status === StatusCodes.pass) {
-            if (!this.commonService.checkNullOrUndefined(res.response)) {
-              this.wbsList = res.response['wbsList'];
-            }
-          }
-          // this.dynTableProps = this.tablePropsFunc();
           if (this.routeEdit != '') {
             this.getQuotationSuppliersDetails(this.routeEdit);
           }
         });
   }
+
+  // getWbsList() {
+  //   const segUrl = String.Join('/', this.apiConfigService.getwbselement);
+  //   this.apiService.apiGetRequest(segUrl)
+  //     .subscribe(
+  //       response => {
+  //         this.spinner.hide();
+  //         const res = response;
+  //         if (!this.commonService.checkNullOrUndefined(res) && res.status === StatusCodes.pass) {
+  //           if (!this.commonService.checkNullOrUndefined(res.response)) {
+  //             this.wbsList = res.response['wbsList'];
+  //           }
+  //         }
+  //         // this.dynTableProps = this.tablePropsFunc();
+  //         if (this.routeEdit != '') {
+  //           this.getQuotationSuppliersDetails(this.routeEdit);
+  //         }
+  //       });
+  // }
 
   getQuotationSuppliersDetails(val) {
     const qsDetUrl = String.Join('/', this.apiConfigService.getsupplierqsDetail, val);
