@@ -98,6 +98,9 @@ export class PurchasingComponent implements OnInit {
   formDataGroup() {
     this.formData = this.formBuilder.group({
       company: [null, [Validators.required]],
+      departmentName:[null],
+      profitcenterName: [''],
+      companyName: [null],
       plant: [null],
       department: [null,[Validators.required]],
       branch: [null],
@@ -329,6 +332,27 @@ export class PurchasingComponent implements OnInit {
       action: 'editDelete',
       id: 0
     });
+  }
+
+  companyChange() {
+    const obj = this.companyList.find((c: any) => c.id == this.formData.value.company);
+    this.formData.patchValue({
+      companyName: obj.text
+    })
+  }
+
+  profitChange() {
+    const obj = this.profitCenterList.find((c: any) => c.id == this.formData.value.profitCenter);
+    this.formData.patchValue({
+      profitcenterName: obj.name
+    })
+  }
+
+  customerChange() {
+    const obj = this.functionaldeptList.find((c: any) => c.id == this.formData.value.departmentName);
+    this.formData.patchValue({
+      departmentName: obj.description
+    })
   }
 
   saveForm() {

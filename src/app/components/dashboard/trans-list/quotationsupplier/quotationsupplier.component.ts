@@ -112,9 +112,13 @@ export class QuotationSupplierComponent implements OnInit {
   formDataGroup() {
     this.formData = this.formBuilder.group({
       company: [null, [Validators.required]],
+      profitcenterName: [''],
+      supplierName: [''],
+      companyName: [null],
       plant: [null],
       branch: [null],
       profitCenter: [null,[Validators.required]],
+      customerCode: ['', Validators.required],
       quotationNumber: [null],
       quotationDate: [null,[Validators.required]],
       supplierQuoteDate: [null],
@@ -124,7 +128,7 @@ export class QuotationSupplierComponent implements OnInit {
       deliveryMethod: [null],
       advance: [null],
       transportMethod: [null],
-
+      gstNo: [null],
       igst: [0],
       cgst: [0],
       sgst: [0],
@@ -164,6 +168,27 @@ export class QuotationSupplierComponent implements OnInit {
     });
   }
 
+  companyChange() {
+    const obj = this.companyList.find((c: any) => c.id == this.formData.value.company);
+    this.formData.patchValue({
+      companyName: obj.text
+    })
+  }
+
+  profitChange() {
+    const obj = this.profitCenterList.find((c: any) => c.id == this.formData.value.profitCenter);
+    this.formData.patchValue({
+      profitcenterName: obj.text
+    })
+  }
+
+  customerChange() {
+    const obj = this.ptypeList.find((c: any) => c.id == this.formData.value.customerCode);
+    this.formData.patchValue({
+      supplierName: obj.text,
+      gstNo: obj.gstNo
+    })
+  }
 
   saveForm() {
     if (this.formData1.invalid) {

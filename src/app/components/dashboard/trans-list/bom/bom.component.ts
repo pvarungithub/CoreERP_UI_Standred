@@ -49,8 +49,7 @@ export class BillOfMaterialComponent implements OnInit {
 
   @ViewChild(TableComponent, { static: false }) tableComponent: TableComponent;
 
-  materialList = [];
-
+  materialList = [];  
   routeEdit = '';
   bpList = [];
   tableData = [];
@@ -137,10 +136,13 @@ export class BillOfMaterialComponent implements OnInit {
   //   })
   // }
 
+
   formDataGroup() {
     this.formData = this.formBuilder.group({
       company: [null, [Validators.required]],
       amount: [''],
+      profitcenterName: [''],
+  companyName: [null],
       bomtype: ['',Validators.required],
       saleOrder: ['',Validators.required],
       // bomnumber: [null, [Validators.required]],
@@ -156,6 +158,7 @@ export class BillOfMaterialComponent implements OnInit {
       amount: [''],
       description: [''],
       availableQty: [''],
+      materialName: [''],
       // amount: ['', Validators.required],
       id: [0],
       action: 'editDelete',
@@ -230,6 +233,20 @@ export class BillOfMaterialComponent implements OnInit {
     });
   }
 
+  companyChange() {
+    const obj = this.companyList.find((c: any) => c.id == this.formData.value.company);
+    this.formData.patchValue({
+      companyName: obj.text
+    })
+  }
+
+  profitChange() {
+    const obj = this.profitCenterList.find((c: any) => c.id == this.formData.value.profitCenter);
+    this.formData.patchValue({
+      profitcenterName: obj.text
+    })
+  }
+
   saveForm() {
     if (this.formData1.invalid) {
       return;
@@ -287,7 +304,8 @@ export class BillOfMaterialComponent implements OnInit {
     this.formData1.patchValue({
       netWeight: obj.netWeight,
       availableQty: obj.availQTY,
-        description: obj ? obj.text : ''
+      description: obj ? obj.text : '',
+        materialName:obj? obj.text : ''
     })
     if (!obj.netWeight) {
       this.alertService.openSnackBar('Net Weight has not provided for selected material..', Static.Close, SnackBar.error);
@@ -319,6 +337,7 @@ export class BillOfMaterialComponent implements OnInit {
                   netWeight: s.netWeight ? s.netWeight : '',
                   amount: s.amount ? s.amount : '',
                   description: s.description ? s.description : '',
+                  materialName: s.description ? s.description : '',
                   availableQty: mObj.availQTY ? mObj.availQTY : '',
                   // amount: s.amount ? s.amount : '',
                   action: 'editDelete',
