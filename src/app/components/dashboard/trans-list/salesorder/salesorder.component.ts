@@ -32,7 +32,7 @@ export class SalesorderComponent {
   // form control
   formData: FormGroup;
   formData1: FormGroup;
-
+  companyList = [];
   tableData: any[] = [];
 
   fileList: any;
@@ -71,6 +71,7 @@ export class SalesorderComponent {
 
   formDataGroup() {
     this.formData = this.formBuilder.group({
+      company: [null, [Validators.required]],
       saleOrderNo: [0],
       customerCode: ['', Validators.required],
       orderDate: [null],
@@ -247,6 +248,23 @@ export class SalesorderComponent {
               this.customerList = data;
             }
           }
+          this.getCompanyList();
+          
+        });
+  }
+
+  getCompanyList() {
+    const companyUrl = String.Join('/', this.apiConfigService.getCompanyList);
+    this.apiService.apiGetRequest(companyUrl)
+      .subscribe(
+        response => {
+          const res = response;
+          if (!this.commonService.checkNullOrUndefined(res) && res.status === StatusCodes.pass) {
+            if (!this.commonService.checkNullOrUndefined(res.response)) {
+              this.companyList = res.response['companiesList'];
+            }
+          }
+          
           this.getProfitcenterData();
         });
   }
