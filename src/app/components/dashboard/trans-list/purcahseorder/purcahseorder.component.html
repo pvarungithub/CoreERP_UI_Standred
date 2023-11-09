@@ -19,7 +19,7 @@
 
                 <mat-form-field>
                     <mat-label>{{ 'purchaseorder.company' | translate }}</mat-label>
-                    <mat-select formControlName="company">
+                    <mat-select formControlName="company" appFocusOnEnter tabIndex="1">
                         <mat-option>None</mat-option>
                         <mat-option *ngFor="let comp of companyList" [value]="comp.id">
                             {{comp.text}}
@@ -40,7 +40,7 @@
 
                 <mat-form-field>
                     <mat-label>{{'purchaseorder.profitCenter' | translate }}</mat-label>
-                    <mat-select formControlName="profitCenter" appFocusOnEnter tabIndex="6">
+                    <mat-select formControlName="profitCenter" appFocusOnEnter tabIndex="2">
                         <mat-option>None</mat-option>
                         <mat-option *ngFor="let pft of profitCenterList" [value]="pft.id">
                             {{pft.text}}
@@ -71,7 +71,7 @@
 
                 <mat-form-field>
                     <mat-label>{{'purchaseorder.poType' | translate }}</mat-label>
-                    <mat-select formControlName="saleOrderType" appFocusOnEnter tabIndex="4"
+                    <mat-select formControlName="saleOrderType" appFocusOnEnter tabIndex="3"
                         (selectionChange)="toggle()">
                         <mat-option>None</mat-option>
                         <mat-option value="Sale Order"> Sale Order </mat-option>
@@ -89,7 +89,7 @@
                             {{qno.saleOrderNo}}
                         </mat-option>
                     </mat-select>
-                                        <input matInput type="text" *ngIf="routeEdit" formControlName="saleOrderNo" maxlength="20" appFocusOnEnter tabIndex="2">
+                    <input matInput type="text" *ngIf="routeEdit" formControlName="saleOrderNo" maxlength="20" appFocusOnEnter tabIndex="5">
 
                 </mat-form-field>
 
@@ -104,7 +104,7 @@
 
                 <mat-form-field>
                     <mat-label>{{'purchaseorder.purchaseOrderType' | translate }}</mat-label>
-                    <mat-select formControlName="purchaseOrderType" appFocusOnEnter tabIndex="5">
+                    <mat-select formControlName="purchaseOrderType" appFocusOnEnter tabIndex="6">
                         <mat-option>None</mat-option>
                         <mat-option *ngFor="let potype of porderList" [value]="potype.purchaseType">
                             {{potype.description}}
@@ -122,14 +122,14 @@
                 <mat-form-field class="form-element">
                     <mat-label [translate]="'purchaseorder.purchaseOrderDate'"></mat-label>
                     <input matInput [matDatepicker]="picker3" [nonEditable]="picker3"
-                        formControlName="purchaseOrderDate" appFocusOnEnter tabIndex="3">
+                        formControlName="purchaseOrderDate" appFocusOnEnter tabIndex="7">
                     <mat-datepicker-toggle matSuffix [for]="picker3"></mat-datepicker-toggle>
                     <mat-datepicker #picker3></mat-datepicker>
                 </mat-form-field>
 
                 <mat-form-field>
                     <mat-label [translate]="'purchaseorder.supplierCode'"></mat-label>
-                    <mat-select formControlName="supplierCode" appFocusOnEnter tabIndex="2"
+                    <mat-select formControlName="supplierCode" appFocusOnEnter tabIndex="8"
                         (selectionChange)="supplierCodeChange()">
                         <mat-option>None</mat-option>
                         <mat-option *ngFor="let bptype of bpaList" [value]="bptype.text">
@@ -141,14 +141,14 @@
 
                 <mat-form-field class="form-element">
                     <mat-label [translate]="'purchaseorder.gstno'"></mat-label>
-                    <input matInput type="text" formControlName="gstno" maxlength="20" appFocusOnEnter tabIndex="2">
+                    <input matInput type="text" formControlName="gstno" maxlength="20" appFocusOnEnter tabIndex="9">
                 </mat-form-field>
 
 
                 <mat-form-field class="form-element">
                     <mat-label [translate]="'purchaseorder.deliveryDate'"></mat-label>
                     <input matInput [matDatepicker]="picker2" [nonEditable]="picker2" formControlName="deliveryDate"
-                        appFocusOnEnter tabIndex="3">
+                        appFocusOnEnter tabIndex="10">
                     <mat-datepicker-toggle matSuffix [for]="picker2"></mat-datepicker-toggle>
                     <mat-datepicker #picker2></mat-datepicker>
                 </mat-form-field>
@@ -182,7 +182,7 @@
 
                 <mat-form-field class="form-element">
                     <mat-label [translate]="'purchaseorder.advance'"></mat-label>
-                    <input matInput type="number" formControlName="advance" appFocusOnEnter tabIndex="2">
+                    <input matInput type="number" formControlName="advance" appFocusOnEnter tabIndex="11">
                 </mat-form-field>
 
                 <!-- <input *ngIf="routeEdit == ''" id="file" type="file" class="form-control form__width"
@@ -217,12 +217,12 @@
 
                         <mat-form-field class="form-element">
                             <mat-label [translate]="'purchaseorder.rate'"></mat-label>
-                            <input matInput type="number" formControlName="rate" appFocusOnEnter tabIndex="12">
+                            <input matInput type="number" formControlName="rate" appFocusOnEnter tabIndex="13">
                         </mat-form-field>
 
                         <mat-form-field class="form-element">
                             <mat-label>{{ 'saleorder.taxCode' | translate }}</mat-label>
-                            <mat-select formControlName="taxCode" tabIndex="13">
+                            <mat-select formControlName="taxCode" appFocusOnEnter tabIndex="14">
                                 <mat-option>None</mat-option>
                                 <mat-option *ngFor="let tax of taxCodeList" [value]="tax.taxRateCode">
                                     {{tax.description}}
