@@ -71,12 +71,15 @@ export class SalesorderComponent {
 
   formDataGroup() {
     this.formData = this.formBuilder.group({
-      company: [null, [Validators.required]],
+      company: [null, Validators.required],
+      companyName: [null],
       saleOrderNo: [0],
       materialCode: [''],
       customerCode: ['', Validators.required],
+      supplierName: [''],
       orderDate: [null],
       profitCenter: ['', Validators.required],
+      profitcenterName: [''],
       poNumber: ['', Validators.required],
       poDate: [null],
       dateofSupply: [null],
@@ -117,6 +120,27 @@ export class SalesorderComponent {
       action: 'editDelete',
       id: 0
     });
+  }
+
+  companyChange() {
+    const obj = this.companyList.find((c: any) => c.id == this.formData.value.company);
+    this.formData.patchValue({
+      companyName: obj.text
+    })
+  }
+
+  profitChange() {
+    const obj = this.profitCenterList.find((c: any) => c.id == this.formData.value.profitCenter);
+    this.formData.patchValue({
+      profitcenterName: obj.text
+    })
+  }
+
+  customerChange() {
+    const obj = this.customerList.find((c: any) => c.id == this.formData.value.customerCode);
+    this.formData.patchValue({
+      supplierName: obj.text
+    })
   }
 
 
