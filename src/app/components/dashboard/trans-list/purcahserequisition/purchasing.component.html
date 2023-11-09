@@ -13,7 +13,7 @@
 
                 <mat-form-field class="form-element">
                     <mat-label>{{ 'purcahserequisition.company' | translate }}</mat-label>
-                    <mat-select formControlName="company">
+                    <mat-select formControlName="company" appFocusOnEnter tabIndex="1">
                         <mat-option>None</mat-option>
                         <mat-option *ngFor="let comp of companyList" [value]="comp.id">
                             {{comp.text}}
@@ -32,8 +32,18 @@
                 </mat-form-field> -->
 
                 <mat-form-field>
+                    <mat-label>{{'purcahserequisition.profitCenter' | translate }}</mat-label>
+                    <mat-select formControlName="profitCenter" appFocusOnEnter tabIndex="2">
+                        <mat-option>None</mat-option>
+                        <mat-option *ngFor="let pft of profitCenterList" [value]="pft.code">
+                            {{pft.name}}
+                        </mat-option>
+                    </mat-select>
+                </mat-form-field>
+
+                <mat-form-field>
                     <mat-label>{{'purcahserequisition.department' | translate }}</mat-label>
-                    <mat-select formControlName="department" appFocusOnEnter tabIndex="4">
+                    <mat-select formControlName="department" appFocusOnEnter tabIndex="3">
                         <mat-option>None</mat-option>
                         <mat-option *ngFor="let dept of functionaldeptList " [value]="dept.code">
                             {{dept.description}}
@@ -41,6 +51,7 @@
                     </mat-select>
                 </mat-form-field>
 
+                
                 <!-- <mat-form-field class="form-element">
                     <mat-label>{{ 'purcahserequisition.branch' | translate }}</mat-label>
                     <mat-select formControlName="branch">
@@ -61,15 +72,7 @@
                     </mat-select>
                 </mat-form-field> -->
 
-                <mat-form-field>
-                    <mat-label>{{'purcahserequisition.profitCenter' | translate }}</mat-label>
-                    <mat-select formControlName="profitCenter" appFocusOnEnter tabIndex="6">
-                        <mat-option>None</mat-option>
-                        <mat-option *ngFor="let pft of profitCenterList" [value]="pft.code">
-                            {{pft.name}}
-                        </mat-option>
-                    </mat-select>
-                </mat-form-field>
+               
 
                 <!-- <mat-form-field>
                     <mat-label>{{'purcahserequisition.wbs' | translate }}</mat-label>
@@ -95,7 +98,7 @@
 
                 <mat-form-field>
                     <mat-label>{{'purcahserequisition.requiredfor' | translate }}</mat-label>
-                    <mat-select formControlName="requiredfor" appFocusOnEnter tabIndex="6">
+                    <mat-select formControlName="requiredfor" appFocusOnEnter tabIndex="4">
                         <mat-option>None</mat-option>
                         <mat-option *ngFor="let prod of listOfProdList" [value]="prod.id">
                             {{prod.text}}
@@ -112,7 +115,7 @@
                 <mat-form-field class="form-element">
                     <mat-label [translate]="'purcahserequisition.requisitionDate'"></mat-label>
                     <input matInput [matDatepicker]="picker" [nonEditable]="picker" formControlName="requisitionDate"
-                        appFocusOnEnter tabIndex="3">
+                        appFocusOnEnter tabIndex="5">
                     <mat-datepicker-toggle matSuffix [for]="picker"></mat-datepicker-toggle>
                     <mat-datepicker #picker></mat-datepicker>
                 </mat-form-field>
@@ -139,21 +142,23 @@
                         <div class="mat-mdc-form-field typeahead">
                             <input placeholder="{{ 'purcahserequisition.materialCode' | translate }}" 
                                 formControlName="materialCode" [typeahead]="materialList" typeaheadOptionField='id' (typeaheadOnSelect)="materialCodeChange()"
-                                tabIndex="11" class="form-control" [typeaheadItemTemplate]="customItemTemplate">
+                                appFocusOnEnter tabIndex="6" class="form-control" [typeaheadItemTemplate]="customItemTemplate">
                             <ng-template #customItemTemplate let-model="item">
                                 <span><strong>{{model.id}}</strong> - {{model.text}}</span>
                             </ng-template>
                         </div>
 
                         <mat-form-field class="form-element">
-                            <mat-label [translate]="'purcahserequisition.qty'"></mat-label>
-                            <input matInput type="number" formControlName="qty" appFocusOnEnter tabIndex="12">
+                            <mat-label [translate]="'purcahserequisition.stockQty'"></mat-label>
+                            <input matInput type="number" readonly formControlName="stockQty" appFocusOnEnter tabIndex="7">
                         </mat-form-field>
 
                         <mat-form-field class="form-element">
-                            <mat-label [translate]="'purcahserequisition.stockQty'"></mat-label>
-                            <input matInput type="number" readonly formControlName="stockQty" appFocusOnEnter tabIndex="13">
+                            <mat-label [translate]="'purcahserequisition.qty'"></mat-label>
+                            <input matInput type="number" formControlName="qty" appFocusOnEnter tabIndex="8">
                         </mat-form-field>
+
+                        
 
                     </div>
 

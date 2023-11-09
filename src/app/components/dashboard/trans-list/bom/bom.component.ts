@@ -141,11 +141,11 @@ export class BillOfMaterialComponent implements OnInit {
     this.formData = this.formBuilder.group({
       company: [null, [Validators.required]],
       amount: [''],
-      bomtype: [null],
-      saleOrder: [null],
+      bomtype: ['',Validators.required],
+      saleOrder: ['',Validators.required],
       // bomnumber: [null, [Validators.required]],
-      profitCenter: [null],
-      product: [null],
+      profitCenter: ['',Validators.required],
+      product: ['',Validators.required],
       // saleOrder: [null],
     });
     this.formData1 = this.formBuilder.group({
