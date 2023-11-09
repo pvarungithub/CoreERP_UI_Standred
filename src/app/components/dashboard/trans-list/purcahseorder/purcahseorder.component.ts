@@ -142,7 +142,7 @@ export class PurchaseOrderComponent implements OnInit {
       rate: ['', Validators.required],
       discount: [''],
       availableQTY: [''],
-      purchaseOrderNumber: [''],
+      // purchaseOrderNumber: [''],
       cgst: 0,
       sgst: 0,
       igst: 0,
@@ -213,7 +213,7 @@ export class PurchaseOrderComponent implements OnInit {
   }
 
   supplierCodeChange() {
-    const obj = this.bpaList.find((b: any) => b.text == this.formData.value.supplierCode);
+    const obj = this.bpaList.find((b: any) => b.id == this.formData.value.supplierCode);
     this.formData.patchValue({
       gstno: obj.gstNo,
       supplierName: obj.text,

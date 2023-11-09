@@ -151,7 +151,7 @@ export class BillOfMaterialComponent implements OnInit {
       // saleOrder: [null],
     });
     this.formData1 = this.formBuilder.group({
-      component: ['', Validators.required],
+      materialCode: ['', Validators.required],
       qty: ['', Validators.required],
       rate: ['', Validators.required],
       netWeight: [''],
@@ -257,7 +257,7 @@ export class BillOfMaterialComponent implements OnInit {
     let data: any = this.tableData;
     this.tableData = null;
     this.tableComponent.defaultValues();
-    const obj = data.find((d: any) => d.component == this.formData1.value.component)
+    const obj = data.find((d: any) => d.materialCode == this.formData1.value.materialCode)
     if (this.formData1.value.index == 0 && !obj) {
       this.formData1.patchValue({
         index: data ? (data.length + 1) : 1
@@ -300,7 +300,7 @@ export class BillOfMaterialComponent implements OnInit {
 
 
   materialCodeChange() {
-    const obj = this.mmasterList.find((m: any) => m.id == this.formData1.value.component);
+    const obj = this.mmasterList.find((m: any) => m.id == this.formData1.value.materialCode);
     this.formData1.patchValue({
       netWeight: obj.netWeight,
       availableQty: obj.availQTY,
@@ -329,9 +329,9 @@ export class BillOfMaterialComponent implements OnInit {
               //this.accountSelect();
               let arr = [];
               res.response['bomDetail'].forEach((s: any, index: number) => {
-                const mObj = this.mmasterList.find((m: any) => m.id == s.component);
+                const mObj = this.mmasterList.find((m: any) => m.id == s.materialCode);
                 const obj = {
-                  component: s.component ? s.component : '',
+                  materialCode: s.materialCode ? s.materialCode : '',
                   qty: s.qty ? s.qty : '',
                   rate: s.rate ? s.rate : '',
                   netWeight: s.netWeight ? s.netWeight : '',
@@ -525,10 +525,10 @@ export class BillOfMaterialComponent implements OnInit {
   // }
 
   materialChange() {
-    const obj = this.mmasterList.some((m: any) => m.id == this.formData1.value.component);
+    const obj = this.mmasterList.some((m: any) => m.id == this.formData1.value.materialCode);
     if (!obj) {
       this.formData1.patchValue({
-        component: ''
+        materialCode: ''
       })
     }
   }

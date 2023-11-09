@@ -1419,7 +1419,7 @@
     "plant": "Plant",
     "bomtype": "Bom Type",
     "bomnumber": "Bom Number",
-    "component": "Component",
+    "materialCode": "Material Code",
     "costUnit": "Cost Unit",
     "levelType": "Level Type",
     "bomLevel": "Level",
