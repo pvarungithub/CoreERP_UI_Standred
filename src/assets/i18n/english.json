@@ -1693,6 +1693,7 @@
                 "netWeight": "Net Weight",
                     "availableQty": "Available QTY",
                     "rate": "Rate",
+                    "materialName":"Material Name",
     "createdBy": "Created By",
     "levelType": "Level Type",
     "materialCode": "Material Code",
