@@ -1669,7 +1669,7 @@
     "rate": "Rate",
     "discount": "Discount",
     "stockQty": "Avaliable Stock QTY",
-    "deliveryDate": "Delivery Date",
+    "deliveryDate": "Date",
     "delete": "Delete",
     "action": "Action"
   },

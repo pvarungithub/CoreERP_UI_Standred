@@ -176,14 +176,15 @@ export class QuotationSupplierComponent implements OnInit {
   }
 
   profitChange() {
-    const obj = this.profitCenterList.find((c: any) => c.id == this.formData.value.profitCenter);
+    debugger
+    const obj = this.profitCenterList.find((c: any) => c.code == this.formData.value.profitCenter);
     this.formData.patchValue({
       profitcenterName: obj.text
     })
   }
 
   customerChange() {
-    const obj = this.ptypeList.find((c: any) => c.id == this.formData.value.customerCode);
+    const obj = this.ptypeList.find((c: any) => c.id == this.formData.value.supplier);
     this.formData.patchValue({
       supplierName: obj.text,
       gstNo: obj.gstNo
