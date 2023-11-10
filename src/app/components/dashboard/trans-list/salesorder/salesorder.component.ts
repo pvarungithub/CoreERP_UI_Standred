@@ -368,7 +368,7 @@ export class SalesorderComponent {
               res.response['SaleOrderDetails'].forEach((s: any, index: number) => {
                 const obj = this.materialList.find((m: any) => m.id == s.materialCode);
                 s.materialName = obj.text
-                s.stockQty = obj.closingQty;
+                s.stockQty = obj.availQTY;
                 s.documentURL = s.documentURL ? s.documentURL : '',
                   s.action = 'editDelete'; s.index = index + 1;
               })
@@ -397,8 +397,9 @@ export class SalesorderComponent {
     const obj = this.materialList.find((m: any) => m.id == this.formData1.value.materialCode);
     this.formData1.patchValue({
       netWeight: obj.netWeight,
-      stockQty: obj.closingQty,
-      materialName: obj.text
+      stockQty: obj.availQTY,
+      materialName: obj.text,
+      
     })
     if (!obj.netWeight) {
       this.alertService.openSnackBar('Net Weight has not provided for selected material..', Static.Close, SnackBar.error);
