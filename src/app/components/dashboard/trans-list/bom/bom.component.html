@@ -76,7 +76,7 @@
         <div class="mat-mdc-form-field typeahead">
           <input placeholder="{{ 'bom.product' | translate }}" formControlName="product" [typeahead]="mmasterList"
             typeaheadOptionField='id' appFocusOnEnter tabIndex="5" class="form-control typeahead"
-            [typeaheadItemTemplate]="customItemTemplate">
+            [typeaheadItemTemplate]="customItemTemplate" (typeaheadOnSelect)="onProductChange()">
           <ng-template #customItemTemplate let-model="item">
             <span><strong>{{model.id}}</strong> - {{model.text}}</span>
           </ng-template>

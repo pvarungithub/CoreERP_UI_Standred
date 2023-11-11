@@ -142,12 +142,13 @@ export class BillOfMaterialComponent implements OnInit {
       company: [null, [Validators.required]],
       amount: [''],
       profitcenterName: [''],
-  companyName: [null],
+      companyName: [null],
       bomtype: ['',Validators.required],
       saleOrder: ['',Validators.required],
       // bomnumber: [null, [Validators.required]],
       profitCenter: ['',Validators.required],
       product: ['',Validators.required],
+      materialName: [''],
       // saleOrder: [null],
     });
     this.formData1 = this.formBuilder.group({
@@ -244,6 +245,14 @@ export class BillOfMaterialComponent implements OnInit {
     const obj = this.profitCenterList.find((c: any) => c.id == this.formData.value.profitCenter);
     this.formData.patchValue({
       profitcenterName: obj.text
+    })
+  }
+
+  onProductChange() {
+    debugger
+    const obj = this.mmasterList.find((c: any) => c.id == this.formData.value.product);
+    this.formData.patchValue({
+      materialName: obj.text
     })
   }
 
@@ -363,6 +372,7 @@ export class BillOfMaterialComponent implements OnInit {
               this.formData.patchValue({
                 company: this.companyList.length ? this.companyList[0].id : null
               })
+              this.companyChange();
             }
           }
           this.getprofircenterData();
@@ -572,6 +582,7 @@ export class BillOfMaterialComponent implements OnInit {
   }
 
   savebom() {
+    debugger
     // this.formData.controls['bomnumber'].enable();
     // this.formData.controls['material'].enable();
     const addbom = String.Join('/', this.apiConfigService.addBOM);
