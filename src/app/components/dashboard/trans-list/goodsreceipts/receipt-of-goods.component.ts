@@ -165,7 +165,7 @@ export class ReceiptOfGoodsComponent implements OnInit {
   }
 
   profitChange() {
-    const obj = this.profitCenterList.find((c: any) => c.id == this.formData.value.profitCenter);
+    const obj = this.profitCenterList.find((c: any) => c.code == this.formData.value.profitCenter);
     this.formData.patchValue({
       profitcenterName: obj.text
     })
