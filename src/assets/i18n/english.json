@@ -2109,7 +2109,7 @@
   },
   "inspectioncheck": {
     "checkAll": "Select",
-    "title": "Inspection Check",
+    "title": "Quality Control",
     "inspectionCheckNo": "Inspection Check Number",
     "company": "Company",
     "materialCode": "Material code",
