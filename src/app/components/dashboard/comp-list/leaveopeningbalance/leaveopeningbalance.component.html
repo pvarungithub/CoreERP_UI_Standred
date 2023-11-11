@@ -11,7 +11,7 @@
         <mat-form-field class="form-element" [ngClass]="{ 'ng--valid': formControls.empCode.valid }">
           <input matInput placeholder="{{'leaveopeningbalance.empCode' | translate }}"
                  (typeaheadOnSelect)="onSearchChange($event)"
-                 (input)="getProductByProductCode($event.target.value)"
+                 (input)="getProductByProductCode($event.target.value)" class="typeahead"
                  [typeahead]="getProductByProductCodeArray" typeaheadOptionField='id'
                  formControlName="empCode" appFocusOnEnter tabIndex="1">
           <mat-error *ngIf="formControls.empCode.errors" class="help-block">

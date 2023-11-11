@@ -344,6 +344,7 @@ export class BillOfMaterialComponent implements OnInit {
                   qty: s.qty ? s.qty : '',
                   rate: s.rate ? s.rate : '',
                   netWeight: s.netWeight ? s.netWeight : '',
+                  id: s.id ? s.id : '',
                   amount: s.amount ? s.amount : '',
                   materialName: s.materialName ? s.materialName : '',
                   availableQty: mObj.availQTY ? mObj.availQTY : '',

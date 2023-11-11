@@ -73,7 +73,7 @@
                         <td mat-cell *matCellDef="let element;">
                             <input class="typeAhead" [(ngModel)]="element.productCode" type="search"
                             id="productCode{{ dataSource.filteredData.indexOf(element) }}"
-                                [disabled]="element.text != 'obj'"
+                                [disabled]="element.text != 'obj'" class="typeahead"
                                 (typeaheadOnSelect)="getStockTransferDetailsSection($event, dataSource.filteredData.indexOf(element), 'qty')"
                                 (input)="getProductByProductCode($event.target.value)"
                                 [typeahead]="getProductByProductCodeArray" typeaheadOptionField='text'
@@ -86,7 +86,7 @@
                         <td mat-cell *matCellDef="let element;">
                             <input class="typeAhead" [(ngModel)]="element.productName" [matTooltip]="element.productName"
                                 [disabled]="element.text != 'obj'" (typeaheadOnSelect)="setProductName($event)"
-                                (input)="getProductByProductName($event.target.value)"
+                                (input)="getProductByProductName($event.target.value)" class="typeahead"
                                 [typeahead]="getProductByProductNameArray" typeaheadOptionField='text'
                                 autocomplete="off" [typeaheadMinLength]="0" [minLength]="1" [typeaheadWaitMs]="200" (keydown.enter)="save()">
                         </td>
