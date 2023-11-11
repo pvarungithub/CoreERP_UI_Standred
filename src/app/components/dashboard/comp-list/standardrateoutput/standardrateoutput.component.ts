@@ -9,6 +9,10 @@ import { ApiService } from '../../../../services/api.service';
 import { String } from 'typescript-string-operations';
 import { AddOrEditService } from '../add-or-edit.service';
 
+interface Type{
+  value: string;
+  viewValue: string;
+}
 
 @Component({
   selector: 'app-standardrateoutput',
@@ -22,6 +26,12 @@ export class StandardRateComponent implements OnInit {
   formData: any;
   UomList: any;
 
+  Type: Type[] =
+  [
+    { value: 'Balancing', viewValue: 'Balancing' },
+    { value: 'Inspection', viewValue: 'Inspection' },
+  ];
+
   constructor(private commonService: CommonService,
     private addOrEditService: AddOrEditService,
     private formBuilder: FormBuilder,
@@ -34,9 +44,13 @@ export class StandardRateComponent implements OnInit {
 
     this.modelFormData = this.formBuilder.group({
       code: [null, [Validators.required, Validators.minLength(1), Validators.maxLength(4)]],
-      noofShifts: [null],
+      parameter: [null],
       uom: [null],
-
+      type: [null],
+      minValue: [null],
+      maxValue: [null],
+      instrument: [null],
+      spec: [null],
     });
 
 

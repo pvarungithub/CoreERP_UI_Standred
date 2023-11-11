@@ -1623,11 +1623,20 @@
     "type": "Type"
   },
   "standardrateoutput": {
-    "title": " Standard Rate OutPut",
-    "code": "Standard Rate of OutPut",
-    "noofShifts": "No of Shifts",
+    "title": "QC Configurations",
+    "code": "Config Code",
+    "type":"QC Type",
+    "parameter": "Parameter",
+    "spec": "Specification",
+    "minval": "Minimum Value",
+    "maxval": "Maximum Value",
     "uom": "UOM",
-    "uomName": "UOM Name"
+    "uomName": "UOM Name",
+    "instrument": "Instrument",
+    "qctype":"QC Type",
+    "minValue": "Minimum Value",
+    "maxValue": "Maximum Value"
+    
   },
   "formulas": {
     "title": " Formulas",

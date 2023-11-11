@@ -19,23 +19,55 @@
 
         </mat-form-field>
 
-        <mat-form-field class="form-element">
-          <mat-label [translate]="'standardrateoutput.noofShifts'"></mat-label>
-          <input matInput  formControlName="noofShifts"
-            type="number" maxlength="7" appFocusOnEnter tabIndex="2">
-
+        <mat-form-field>
+          <mat-label>{{'standardrateoutput.qctype' | translate }}</mat-label>
+          <mat-select formControlName="type" appFocusOnEnter tabIndex="3">
+            <mat-option>None</mat-option>
+            <mat-option *ngFor="let type of Type" [value]="type.value">
+              {{type.viewValue}}
+            </mat-option>
+          </mat-select>
         </mat-form-field>
 
+        <mat-form-field class="form-element">
+          <mat-label [translate]="'standardrateoutput.parameter'"></mat-label>
+          <input matInput  formControlName="parameter"
+            type="text" maxlength="50" appFocusOnEnter tabIndex="2">
+        </mat-form-field>
+
+        <mat-form-field class="form-element">
+          <mat-label [translate]="'standardrateoutput.spec'"></mat-label>
+          <input matInput  formControlName="spec"
+            type="text" maxlength="50" appFocusOnEnter tabIndex="2">
+        </mat-form-field>
+        
         <mat-form-field>
           <mat-label>{{'standardrateoutput.uom' | translate }}</mat-label>
           <mat-select formControlName="uom" appFocusOnEnter tabIndex="3">
             <mat-option>None</mat-option>
-            <mat-option *ngFor="let uom of UomList" [value]="uom.id">
+            <mat-option *ngFor="let uom of UomList" [value]="uom.text">
               {{uom.text}}
             </mat-option>
           </mat-select>
         </mat-form-field>
 
+        <mat-form-field class="form-element">
+          <mat-label [translate]="'standardrateoutput.minval'"></mat-label>
+          <input matInput  formControlName="minValue"
+            type="text" maxlength="50" appFocusOnEnter tabIndex="2">
+        </mat-form-field>
+
+        <mat-form-field class="form-element">
+          <mat-label [translate]="'standardrateoutput.maxval'"></mat-label>
+          <input matInput  formControlName="maxValue"
+            type="text" maxlength="50" appFocusOnEnter tabIndex="2">
+        </mat-form-field>
+
+        <mat-form-field class="form-element">
+          <mat-label [translate]="'standardrateoutput.instrument'"></mat-label>
+          <input matInput  formControlName="instrument"
+            type="text" maxlength="50" appFocusOnEnter tabIndex="2">
+        </mat-form-field>
 
       </div>
       <mat-divider></mat-divider>
