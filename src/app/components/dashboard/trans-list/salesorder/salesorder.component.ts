@@ -47,7 +47,7 @@ export class SalesorderComponent {
   // url: string;
 
   constructor(
-    private commonService: CommonService,
+    public commonService: CommonService,
     private formBuilder: FormBuilder,
     private apiConfigService: ApiConfigService,
     private apiService: ApiService,
@@ -184,12 +184,15 @@ export class SalesorderComponent {
   dataChange() {
     const formObj = this.formData1.value
     const obj = this.taxCodeList.find((tax: any) => tax.taxRateCode == formObj.taxCode);
-    const igst = obj.igst ? ((+formObj.qty * +formObj.rate) * obj.igst) / 100 : 0;
-    const cgst = obj.cgst ? ((+formObj.qty * +formObj.rate) * obj.cgst) / 100 : 0;
-    const sgst = obj.sgst ? ((+formObj.qty * +formObj.rate) * obj.sgst) / 100 : 0;
+    const discountAmount = (((+formObj.qty * +formObj.rate) * ((+formObj.discount) / 100)));
+    const amount = (+formObj.qty * +formObj.rate) - discountAmount
+    const igst = obj.igst ? (amount * obj.igst) / 100 : 0;
+    const cgst = obj.cgst ? (amount * obj.cgst) / 100 : 0;
+    const sgst = obj.sgst ? (amount * obj.sgst) / 100 : 0;
+
     this.formData1.patchValue({
-      amount: (+formObj.qty * +formObj.rate),
-      total: (+formObj.qty * +formObj.rate) + (igst + sgst + cgst),
+      amount: amount,
+      total: (amount) + (igst + sgst + cgst),
       igst: igst,
       cgst: cgst,
       sgst: sgst,
@@ -221,7 +224,7 @@ export class SalesorderComponent {
         igst: ((+this.formData.value.igst) + t.igst).toFixed(2),
         cgst: ((+this.formData.value.cgst) + t.cgst).toFixed(2),
         sgst: ((+this.formData.value.sgst) + t.sgst).toFixed(2),
-        amount: ((+this.formData.value.amount) + (t.qty * t.rate)).toFixed(2),
+        amount: ((+this.formData.value.amount) + (t.amount)).toFixed(2),
         totalTax: ((+this.formData.value.totalTax) + (t.igst + t.cgst + t.sgst)).toFixed(2),
       })
     })
