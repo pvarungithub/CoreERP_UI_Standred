@@ -45,7 +45,7 @@
                     <mat-label>{{'purcahserequisition.department' | translate }}</mat-label>
                     <mat-select formControlName="department" appFocusOnEnter tabIndex="3" (selectionChange)="customerChange()">
                         <mat-option>None</mat-option>
-                        <mat-option *ngFor="let dept of functionaldeptList " [value]="dept.code">
+                        <mat-option *ngFor="let dept of functionaldeptList" [value]="dept.code">
                             {{dept.description}}
                         </mat-option>
                     </mat-select>

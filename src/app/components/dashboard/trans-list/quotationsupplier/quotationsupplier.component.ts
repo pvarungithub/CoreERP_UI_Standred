@@ -179,7 +179,7 @@ export class QuotationSupplierComponent implements OnInit {
     debugger
     const obj = this.profitCenterList.find((c: any) => c.code == this.formData.value.profitCenter);
     this.formData.patchValue({
-      profitcenterName: obj.text
+      profitcenterName: obj.name
     })
   }
 

@@ -335,6 +335,7 @@ export class PurchasingComponent implements OnInit {
   }
 
   companyChange() {
+    debugger
     const obj = this.companyList.find((c: any) => c.id == this.formData.value.company);
     this.formData.patchValue({
       companyName: obj.text
@@ -342,13 +343,15 @@ export class PurchasingComponent implements OnInit {
   }
 
   profitChange() {
-    const obj = this.profitCenterList.find((c: any) => c.id == this.formData.value.profitCenter);
+    debugger
+    const obj = this.profitCenterList.find((c: any) => c.code == this.formData.value.profitCenter);
     this.formData.patchValue({
       profitcenterName: obj.name
     })
   }
 
   customerChange() {
+    debugger
     const obj = this.functionaldeptList.find((c: any) => c.id == this.formData.value.departmentName);
     this.formData.patchValue({
       departmentName: obj.description
