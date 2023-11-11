@@ -1744,14 +1744,16 @@
     "companyName": "Company Name",
     "profitcenterName": "ProfitCenter Name",
     "purchaseOrderNo": "Purchase Order No",
+    "supplierReferenceNo": "Supplier Reference No",
     "customerName":"supplierName",
+    "totalAmount":"Total Amount",
     "vehicleNo": "Vehicle No",
     "receiptDate": "Date",
     "receivedBy": "Receieved By",
     "materialCode": "Material code",
         "materialName": "Material Name",
       "qty": "QTY",
-     
+   
     "poqty": "Purchase Order Qty",
     "receivedQty": "Received QTY",
       "rejectQty": "Reject QTY",
@@ -1761,7 +1763,7 @@
     "lotNo": "Lot No",
     "lotDate": "Lot Date",
     "description": "Description",
-    "supplierReferenceNo": "Supplier Reference No",
+    
     "receivedDate": "Date",
     "documentURL": "link",
     "invoiceURL": "link",
