@@ -212,13 +212,13 @@ export class PurchaseOrderComponent implements OnInit {
     }
   }
 
-  supplierCodeChange() {
-    const obj = this.bpaList.find((b: any) => b.id == this.formData.value.supplierCode);
-    this.formData.patchValue({
-      gstno: obj.gstNo,
-      supplierName: obj.text,
-    })
-  }
+  // supplierCodeChange() {
+  //   const obj = this.bpaList.find((b: any) => b.id == this.formData.value.supplierCode);
+  //   this.formData.patchValue({
+  //     gstno: obj.gstNo,
+  //     supplierName: obj.text,
+  //   })
+  // }
   quotationNumberChange() {
     this.getSaleOrderDetail();
   }
@@ -605,19 +605,19 @@ export class PurchaseOrderComponent implements OnInit {
     });
   }
 
-  companyChange() {
-    const obj = this.companyList.find((c: any) => c.id == this.formData.value.company);
-    this.formData.patchValue({
-      companyName: obj.text
-    })
-  }
+  // companyChange() {
+  //   const obj = this.companyList.find((c: any) => c.id == this.formData.value.company);
+  //   this.formData.patchValue({
+  //     companyName: obj.text
+  //   })
+  // }
 
-  profitChange() {
-    const obj = this.profitCenterList.find((c: any) => c.id == this.formData.value.profitCenter);
-    this.formData.patchValue({
-      profitcenterName: obj.text
-    })
-  }
+  // profitChange() {
+  //   const obj = this.profitCenterList.find((c: any) => c.id == this.formData.value.profitCenter);
+  //   this.formData.patchValue({
+  //     profitcenterName: obj.text
+  //   })
+  // }
 
 
 

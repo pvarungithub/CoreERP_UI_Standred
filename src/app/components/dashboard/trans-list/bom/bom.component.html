@@ -13,7 +13,7 @@
 
         <mat-form-field class="form-element">
           <mat-label>{{ 'bom.company' | translate }}</mat-label>
-          <mat-select formControlName="company" appFocusOnEnter tabIndex="1" (selectionChange)="companyChange()">
+          <mat-select formControlName="company" appFocusOnEnter tabIndex="1" >
             <mat-option>None</mat-option>
             <mat-option *ngFor="let comp of companyList" [value]="comp.id">
               {{comp.text}}
@@ -23,7 +23,7 @@
 
         <mat-form-field>
           <mat-label>{{'bom.profitCenter' | translate }}</mat-label>
-          <mat-select formControlName="profitCenter" appFocusOnEnter tabIndex="2" (selectionChange)="profitChange()">
+          <mat-select formControlName="profitCenter" appFocusOnEnter tabIndex="2" >
             <mat-option>None</mat-option>
             <mat-option *ngFor="let pft of profitCenterList" [value]="pft.id">
               {{pft.text}}
@@ -76,7 +76,7 @@
         <div class="mat-mdc-form-field typeahead">
           <input placeholder="{{ 'bom.product' | translate }}" formControlName="product" [typeahead]="mmasterList"
             typeaheadOptionField='id' appFocusOnEnter tabIndex="5" class="form-control typeahead"
-            [typeaheadItemTemplate]="customItemTemplate" (typeaheadOnSelect)="onProductChange()">
+            [typeaheadItemTemplate]="customItemTemplate" >
           <ng-template #customItemTemplate let-model="item">
             <span><strong>{{model.id}}</strong> - {{model.text}}</span>
           </ng-template>

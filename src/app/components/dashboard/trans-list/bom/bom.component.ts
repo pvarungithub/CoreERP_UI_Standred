@@ -234,27 +234,27 @@ export class BillOfMaterialComponent implements OnInit {
     });
   }
 
-  companyChange() {
-    const obj = this.companyList.find((c: any) => c.id == this.formData.value.company);
-    this.formData.patchValue({
-      companyName: obj.text
-    })
-  }
+  // companyChange() {
+  //   const obj = this.companyList.find((c: any) => c.id == this.formData.value.company);
+  //   this.formData.patchValue({
+  //     companyName: obj.text
+  //   })
+  // }
 
-  profitChange() {
-    const obj = this.profitCenterList.find((c: any) => c.id == this.formData.value.profitCenter);
-    this.formData.patchValue({
-      profitcenterName: obj.text
-    })
-  }
+  // profitChange() {
+  //   const obj = this.profitCenterList.find((c: any) => c.id == this.formData.value.profitCenter);
+  //   this.formData.patchValue({
+  //     profitcenterName: obj.text
+  //   })
+  // }
 
-  onProductChange() {
-    debugger
-    const obj = this.mmasterList.find((c: any) => c.id == this.formData.value.product);
-    this.formData.patchValue({
-      materialName: obj.text
-    })
-  }
+  // onProductChange() {
+  //   debugger
+  //   const obj = this.mmasterList.find((c: any) => c.id == this.formData.value.product);
+  //   this.formData.patchValue({
+  //     materialName: obj.text
+  //   })
+  // }
 
   saveForm() {
     if (this.formData1.invalid) {
@@ -373,7 +373,7 @@ export class BillOfMaterialComponent implements OnInit {
               this.formData.patchValue({
                 company: this.companyList.length ? this.companyList[0].id : null
               })
-              this.companyChange();
+              //this.companyChange();
             }
           }
           this.getprofircenterData();

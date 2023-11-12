@@ -2071,6 +2071,7 @@
     "company": "Company",
     "supplierCode": "Supplier Code",
     "supplierReferenceNo": "Invoice No",
+    "supplierRefno":"Invoice Number",
     "rrno": "RR Number",
     "vehicleNo": "Vehicle No",
     "supplierGinno": "Supplier GIN No",

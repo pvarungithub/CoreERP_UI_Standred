@@ -165,26 +165,26 @@ export class GoodsissueComponent implements OnInit {
     });
   }
 
-  companyChange() {
-    const obj = this.companyList.find((c: any) => c.id == this.formData.value.company);
-    this.formData.patchValue({
-      companyName: obj.text
-    })
-  }
+  // companyChange() {
+  //   const obj = this.companyList.find((c: any) => c.id == this.formData.value.company);
+  //   this.formData.patchValue({
+  //     companyName: obj.text
+  //   })
+  // }
 
-  profitChange() {
-    const obj = this.fdeptList.find((c: any) => c.id == this.formData.value.profitCenter);
-    this.formData.patchValue({
-      profitcenterName: obj.text
-    })
-  }
+  // profitChange() {
+  //   const obj = this.fdeptList.find((c: any) => c.id == this.formData.value.profitCenter);
+  //   this.formData.patchValue({
+  //     profitcenterName: obj.text
+  //   })
+  // }
 
-  customerChange() {
-    const obj = this.fdeptList.find((c: any) => c.id == this.formData.value.customerCode);
-    this.formData.patchValue({
-      DepartmentName: obj.description
-    })
-  }
+  // customerChange() {
+  //   const obj = this.fdeptList.find((c: any) => c.id == this.formData.value.customerCode);
+  //   this.formData.patchValue({
+  //     DepartmentName: obj.description
+  //   })
+  // }
 
   saveForm() {
     if (this.formData1.invalid) {

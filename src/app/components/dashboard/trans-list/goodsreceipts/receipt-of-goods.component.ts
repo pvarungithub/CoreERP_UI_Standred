@@ -157,19 +157,19 @@ export class ReceiptOfGoodsComponent implements OnInit {
     });
   }
 
-  companyChange() {
-    const obj = this.companyList.find((c: any) => c.id == this.formData.value.company);
-    this.formData.patchValue({
-      companyName: obj.text
-    })
-  }
+  // companyChange() {
+  //   const obj = this.companyList.find((c: any) => c.id == this.formData.value.company);
+  //   this.formData.patchValue({
+  //     companyName: obj.text
+  //   })
+  // }
 
-  profitChange() {
-    const obj = this.profitCenterList.find((c: any) => c.code == this.formData.value.profitCenter);
-    this.formData.patchValue({
-      profitcenterName: obj.text
-    })
-  }
+  // profitChange() {
+  //   const obj = this.profitCenterList.find((c: any) => c.code == this.formData.value.profitCenter);
+  //   this.formData.patchValue({
+  //     profitcenterName: obj.text
+  //   })
+  // }
 
   saveForm() {
     if (this.formData1.invalid) {
