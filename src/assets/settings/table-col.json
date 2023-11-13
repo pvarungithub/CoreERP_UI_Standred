@@ -2200,7 +2200,6 @@
 
         "total": "Total",
         "deliveryDate": "Date",
-            "documentURL": "link",
         "delete": "Delete",
         "action": "Action"
       }

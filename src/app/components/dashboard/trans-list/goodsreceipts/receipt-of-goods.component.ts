@@ -101,14 +101,14 @@ export class ReceiptOfGoodsComponent implements OnInit {
       company: [null, [Validators.required]],
       // plant: [null],
       // branch: [null],
-      profitCenter: [null,Validators.required],
+      profitCenter: [null, Validators.required],
       supplierCode: [null],
       //supplierName: [null],
-      supplierReferenceNo: [null,Validators.required],
+      supplierReferenceNo: [null, Validators.required],
       profitcenterName: [''],
       companyName: [null],
-      receivedBy: [null,Validators.required],
-      receivedDate: [null,Validators.required],
+      receivedBy: [null, Validators.required],
+      receivedDate: [null, Validators.required],
       receiptDate: [null],
       // supplierGinno: [null],
       // movementType: [null],
@@ -119,13 +119,13 @@ export class ReceiptOfGoodsComponent implements OnInit {
       customerName: [null],
       id: ['0'],
       // rrno: [null],
-      vehicleNo: [null,Validators.required],
+      vehicleNo: [null, Validators.required],
       addWho: [null],
       addDate: [null],
       editWho: [null],
       editDate: [null],
       totalAmount: [''],
-      lotNo: ['',Validators.required],
+      lotNo: ['', Validators.required],
       documentURL: [''],
       invoiceURL: [''],
 
@@ -135,13 +135,14 @@ export class ReceiptOfGoodsComponent implements OnInit {
     this.formData1 = this.formBuilder.group({
       rejectQty: [''],
       receivedQty: ['', Validators.required],
-      materialCode: ['',Validators.required],
+      materialCode: ['', Validators.required],
       materialName: [''],
       netWeight: [''],
       purchaseOrderNumber: [''],
       description: [''],
       pendingQty: [''],
       qty: [''],
+      highlight: false,
       type: [''],
       action: 'editDelete',
       index: 0
@@ -176,7 +177,8 @@ export class ReceiptOfGoodsComponent implements OnInit {
       return;
     }
     this.formData1.patchValue({
-      type: ''
+      type: '',
+      highlight: true
     })
     let data: any = this.tableData;
     data = (data && data.length) ? data : [];
@@ -197,7 +199,7 @@ export class ReceiptOfGoodsComponent implements OnInit {
       this.formData1.patchValue({
         index: data ? (data.length + 1) : 1
       });
-      data = [...data, this.formData1.value];
+      data = [this.formData1.value, ...data];
     } else {
       data = data.map((res: any) => res = res.index == this.formData1.value.index ? this.formData1.value : res);
     }
@@ -222,7 +224,6 @@ export class ReceiptOfGoodsComponent implements OnInit {
     this.apiService.apiGetRequest(url)
       .subscribe(
         response => {
-          debugger;
           this.spinner.hide();
           window.open(response.response, '_blank');
         });
@@ -335,12 +336,13 @@ export class ReceiptOfGoodsComponent implements OnInit {
   }
 
   materialCodeChange() {
-    debugger
     const obj = this.materialCodeList.find((p: any) => p.materialCode == this.formData1.value.materialCode);
     let pendingQty = 0;
-    this.tableData && this.tableData.forEach((t: any) => { if(t.materialCode == this.formData1.value.materialCode) {
-      pendingQty = pendingQty + t.receivedQty
-    }})
+    this.tableData && this.tableData.forEach((t: any) => {
+      if (t.materialCode == this.formData1.value.materialCode) {
+        pendingQty = pendingQty + t.receivedQty
+      }
+    })
     this.formData1.patchValue({
       qty: obj ? obj.qty : '',
       netWeight: obj ? obj.netWeight : '',

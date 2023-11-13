@@ -99,7 +99,7 @@ export class MaterialrequisitionComponents implements OnInit {
       materialCode: [''],
       productionTag: [''],
       saleOrderNumber: [''],
-
+      highlight: false,
       id: 0,
       action: 'edit',
       index: 0
@@ -205,9 +205,10 @@ export class MaterialrequisitionComponents implements OnInit {
     if (this.formData1.invalid) {
       return;
     }
-    // this.formData1.patchValue({
-    //   changed: true
-    // });
+    this.formData1.patchValue({
+      highlight: true,
+//   changed: true
+    });
     let data: any = this.tableData1;
     this.tableData1 = null;
     this.tableComponent.defaultValues();
@@ -215,7 +216,7 @@ export class MaterialrequisitionComponents implements OnInit {
       this.formData1.patchValue({
         index: data ? (data.length + 1) : 1
       });
-      data = [...data, this.formData1.value];
+      data = [this.formData1.value, ...data];
     } else {
       data = data.map((res: any) => res = res.index == this.formData1.value.index ? this.formData1.value : res);
     }
@@ -558,7 +559,7 @@ export class MaterialrequisitionComponents implements OnInit {
 
   savemreq() {
     const addJournal = String.Join('/', this.apiConfigService.addProductionissue);
-    const requestObj = {  mreqDtl: this.tableData1 };
+    const requestObj = { mreqDtl: this.tableData1 };
     this.apiService.apiPostRequest(addJournal, requestObj).subscribe(
       response => {
         const res = response;

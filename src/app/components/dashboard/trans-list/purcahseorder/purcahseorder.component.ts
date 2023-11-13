@@ -103,21 +103,21 @@ export class PurchaseOrderComponent implements OnInit {
       company: [null, [Validators.required]],
       plant: [null],
       branch: [null],
-      profitCenter: [null,[Validators.required]],
-      saleOrderType: [true,[Validators.required]],
+      profitCenter: [null, [Validators.required]],
+      saleOrderType: [true, [Validators.required]],
       purchaseOrderNumber: [null],
-      purchaseOrderType: [null,[Validators.required]],
+      purchaseOrderType: [null, [Validators.required]],
       // quotationDate: [null],
-      supplierCode: [null,[Validators.required]],
+      supplierCode: [null, [Validators.required]],
       gstno: [null],
       profitcenterName: [''],
       companyName: [null],
-      supplierName:[null],
+      supplierName: [null],
       deliveryDate: [null],
       deliveryPeriod: [null],
       termsofDelivery: null,
       paymentTerms: [null],
-      purchaseOrderDate: [null,Validators.required],
+      purchaseOrderDate: [null, Validators.required],
       addWho: [null],
       addDate: [null],
       editWho: null,
@@ -137,7 +137,7 @@ export class PurchaseOrderComponent implements OnInit {
     this.formData1 = this.formBuilder.group({
       materialCode: [''],
       materialName: [''],
-      taxCode: ['',[Validators.required]],
+      taxCode: ['', [Validators.required]],
       qty: ['', Validators.required],
       rate: ['', Validators.required],
       discount: [''],
@@ -148,6 +148,7 @@ export class PurchaseOrderComponent implements OnInit {
       igst: 0,
       id: 0,
       netWeight: 0,
+      highlight: false,
       amount: [''],
       deliveryDate: [''],
       total: [''],
@@ -626,7 +627,9 @@ export class PurchaseOrderComponent implements OnInit {
       return;
     }
     this.dataChange();
-
+    this.formData1.patchValue({
+      highlight: true,
+    });
     let data: any = this.tableData;
     this.tableData = null;
     this.tableComponent.defaultValues();
@@ -634,7 +637,7 @@ export class PurchaseOrderComponent implements OnInit {
       this.formData1.patchValue({
         index: data ? (data.length + 1) : 1
       });
-      data = [...data, this.formData1.value];
+      data = [this.formData1.value, ...data];
     } else {
       data = data.map((res: any) => res = res.index == this.formData1.value.index ? this.formData1.value : res);
     }

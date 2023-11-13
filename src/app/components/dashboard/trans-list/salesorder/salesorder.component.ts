@@ -111,7 +111,8 @@ export class SalesorderComponent {
       deliveryDate: [''],
       stockQty: [0],
       materialName: [''],
-      documentURL: [''],
+      highlight: false,
+      // documentURL: [''],
       action: 'editDelete',
       index: 0
     });
@@ -157,6 +158,9 @@ export class SalesorderComponent {
     if (this.formData1.invalid) {
       return;
     }
+    this.formData1.patchValue({
+      highlight: true
+    });
     this.dataChange();
     let data: any = this.tableData;
     this.tableData = null;
@@ -166,7 +170,7 @@ export class SalesorderComponent {
       this.formData1.patchValue({
         index: data ? (data.length + 1) : 1
       });
-      data = [...data, this.formData1.value];
+      data = [this.formData1.value, ...data];
     } else {
       if (this.formData1.value.index == 0) {
         data.forEach((res: any) => { if (res.materialCode == this.formData1.value.materialCode) { (res.qty = res.qty + this.formData1.value.qty) } });
@@ -372,8 +376,8 @@ export class SalesorderComponent {
                 const obj = this.materialList.find((m: any) => m.id == s.materialCode);
                 s.materialName = obj.text
                 s.stockQty = obj.availQTY;
-                s.documentURL = s.documentURL ? s.documentURL : '',
-                  s.action = 'editDelete'; s.index = index + 1;
+                // s.documentURL = s.documentURL ? s.documentURL : '',
+                s.action = 'editDelete'; s.index = index + 1;
               })
               this.tableData = res.response['SaleOrderDetails'];
             }
@@ -402,7 +406,7 @@ export class SalesorderComponent {
       netWeight: obj.netWeight,
       stockQty: obj.availQTY,
       materialName: obj.text,
-      
+
     })
     if (!obj.netWeight) {
       this.alertService.openSnackBar('Net Weight has not provided for selected material..', Static.Close, SnackBar.error);
@@ -459,7 +463,7 @@ export class SalesorderComponent {
     const arr = this.tableData;
     arr.forEach((a: any) => {
       a.deliveryDate = a.deliveryDate ? this.datepipe.transform(a.deliveryDate, 'MM-dd-yyyy') : '';
-      a.documentURL = a.documentURL ? a.documentURL : (this.fileList ? this.fileList.name.split('.')[0] : '');
+      // a.documentURL = a.documentURL ? a.documentURL : (this.fileList ? this.fileList.name.split('.')[0] : '');
     })
     const requestObj = { qsHdr: this.formData.value, qsDtl: arr };
     this.apiService.apiPostRequest(addsq, requestObj).subscribe(

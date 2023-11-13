@@ -117,12 +117,12 @@ export class QuotationSupplierComponent implements OnInit {
       companyName: [null],
       plant: [null],
       branch: [null],
-      profitCenter: [null,[Validators.required]],
+      profitCenter: [null, [Validators.required]],
       customerCode: ['', Validators.required],
       quotationNumber: [null],
-      quotationDate: [null,[Validators.required]],
+      quotationDate: [null, [Validators.required]],
       supplierQuoteDate: [null],
-      supplier: [null,[Validators.required]],
+      supplier: [null, [Validators.required]],
       deliveryPeriod: [null],
       creditDays: [null],
       deliveryMethod: [null],
@@ -151,6 +151,7 @@ export class QuotationSupplierComponent implements OnInit {
       total: [''],
       netWeight: [''],
       deliveryDate: [''],
+      highlight: false,
       // stockQty: [0],
       materialName: [''],
       action: 'editDelete',
@@ -176,7 +177,6 @@ export class QuotationSupplierComponent implements OnInit {
   // }
 
   // profitChange() {
-  //   debugger
   //   const obj = this.profitCenterList.find((c: any) => c.code == this.formData.value.profitCenter);
   //   this.formData.patchValue({
   //     profitcenterName: obj.name
@@ -195,6 +195,9 @@ export class QuotationSupplierComponent implements OnInit {
     if (this.formData1.invalid) {
       return;
     }
+    this.formData1.patchValue({
+      highlight: true,
+    });
     this.dataChange();
     let data: any = this.tableData;
     this.tableData = null;
@@ -204,7 +207,7 @@ export class QuotationSupplierComponent implements OnInit {
       this.formData1.patchValue({
         index: data ? (data.length + 1) : 1
       });
-      data = [...data, this.formData1.value];
+      data = [this.formData1.value, ...data];
     } else {
       if (this.formData1.value.index == 0) {
         data.forEach((res: any) => { if (res.materialCode == this.formData1.value.materialCode) { (res.qty = res.qty + this.formData1.value.qty) } });
@@ -260,10 +263,10 @@ export class QuotationSupplierComponent implements OnInit {
     this.tableData && this.tableData.forEach((t: any) => {
       this.formData.patchValue({
         igst: ((+this.formData.value.igst) + t.igst).toFixed(2),
-          cgst: ((+this.formData.value.cgst) + t.cgst).toFixed(2),
-            sgst: ((+this.formData.value.sgst) + t.sgst).toFixed(2),
+        cgst: ((+this.formData.value.cgst) + t.cgst).toFixed(2),
+        sgst: ((+this.formData.value.sgst) + t.sgst).toFixed(2),
         amount: ((+this.formData.value.amount) + (t.amount)).toFixed(2),
-            totalTax: ((+this.formData.value.totalTax) + (t.igst + t.cgst + t.sgst)).toFixed(2),
+        totalTax: ((+this.formData.value.totalTax) + (t.igst + t.cgst + t.sgst)).toFixed(2),
       })
     })
     this.formData.patchValue({
@@ -282,7 +285,6 @@ export class QuotationSupplierComponent implements OnInit {
   }
 
   materialCodeChange() {
-    debugger
     const obj = this.materialList.find((m: any) => m.id == this.formData1.value.materialCode);
     this.formData1.patchValue({
       netWeight: obj.netWeight,

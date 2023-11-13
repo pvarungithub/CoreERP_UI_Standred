@@ -89,7 +89,7 @@
           </td>
         </ng-container>
         <tr mat-header-row *matHeaderRowDef="getDisplayedColumns()"></tr>
-        <tr mat-row *matRowDef="let row; columns: getDisplayedColumns();" (click)="onEditClick(row)" (dblclick)="openDialog('Edit', row)"
+        <tr mat-row *matRowDef="let row; columns: getDisplayedColumns();" (click)="onEditClick(row)" [ngClass]="{ 'highlight' : row?.highlight }" (dblclick)="openDialog('Edit', row)"
           [style.background]="
         highlightedRows.indexOf(row) != -1 ? 'lightblue' : ''
       "></tr>

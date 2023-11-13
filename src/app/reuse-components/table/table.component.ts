@@ -134,7 +134,6 @@ export class TableComponent implements OnInit, OnChanges, AfterViewInit, OnDestr
 
   ngOnChanges() {
     this.highlightedRows = [];
-
     if (!this.commonService.checkNullOrUndefined(this.tableData)) {
       if (this.tableData.length) {
         this.showDataNotFound = false;
@@ -175,7 +174,6 @@ export class TableComponent implements OnInit, OnChanges, AfterViewInit, OnDestr
           }
         }
       }
-      debugger
       console.log(this.columnDefinitions);
       // });
     }

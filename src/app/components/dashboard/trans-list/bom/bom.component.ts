@@ -49,7 +49,7 @@ export class BillOfMaterialComponent implements OnInit {
 
   @ViewChild(TableComponent, { static: false }) tableComponent: TableComponent;
 
-  materialList = [];  
+  materialList = [];
   routeEdit = '';
   bpList = [];
   tableData = [];
@@ -143,11 +143,11 @@ export class BillOfMaterialComponent implements OnInit {
       amount: [''],
       profitcenterName: [''],
       companyName: [null],
-      bomtype: ['',Validators.required],
-      saleOrder: ['',Validators.required],
+      bomtype: ['', Validators.required],
+      saleOrder: ['', Validators.required],
       // bomnumber: [null, [Validators.required]],
-      profitCenter: ['',Validators.required],
-      product: ['',Validators.required],
+      profitCenter: ['', Validators.required],
+      product: ['', Validators.required],
       materialName: [''],
       // saleOrder: [null],
     });
@@ -160,6 +160,7 @@ export class BillOfMaterialComponent implements OnInit {
       description: [''],
       availableQty: [''],
       materialName: [''],
+      highlight: false,
       // amount: ['', Validators.required],
       id: [0],
       action: 'editDelete',
@@ -249,7 +250,6 @@ export class BillOfMaterialComponent implements OnInit {
   // }
 
   // onProductChange() {
-  //   debugger
   //   const obj = this.mmasterList.find((c: any) => c.id == this.formData.value.product);
   //   this.formData.patchValue({
   //     materialName: obj.text
@@ -261,7 +261,8 @@ export class BillOfMaterialComponent implements OnInit {
       return;
     }
     this.formData1.patchValue({
-      amount: (+this.formData1.value.qty) * (+this.formData1.value.rate) * (+this.formData1.value.netWeight)
+      amount: (+this.formData1.value.qty) * (+this.formData1.value.rate) * (+this.formData1.value.netWeight),
+      highlight: true
     })
     let data: any = this.tableData;
     this.tableData = null;
@@ -271,7 +272,7 @@ export class BillOfMaterialComponent implements OnInit {
       this.formData1.patchValue({
         index: data ? (data.length + 1) : 1
       });
-      data = [...data, this.formData1.value];
+      data = [this.formData1.value, ...data];
     } else {
       // if (this.formData1.value.index == 0) {
       //   data.forEach((res: any) => { if (res.material == this.formData1.value.material) { (res.qty = res.qty + this.formData1.value.qty) } });
@@ -314,7 +315,7 @@ export class BillOfMaterialComponent implements OnInit {
       netWeight: obj.netWeight,
       availableQty: obj.availQTY,
       description: obj ? obj.text : '',
-        materialName:obj? obj.text : ''
+      materialName: obj ? obj.text : ''
     })
     if (!obj.netWeight) {
       this.alertService.openSnackBar('Net Weight has not provided for selected material..', Static.Close, SnackBar.error);
@@ -583,7 +584,6 @@ export class BillOfMaterialComponent implements OnInit {
   }
 
   savebom() {
-    debugger
     // this.formData.controls['bomnumber'].enable();
     // this.formData.controls['material'].enable();
     const addbom = String.Join('/', this.apiConfigService.addBOM);

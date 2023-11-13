@@ -84,11 +84,11 @@ export class GoodsissueComponent implements OnInit {
       company: [null, [Validators.required]],
       plant: [null, [Validators.required]],
       goodsIssueId: ['0'],
-      storesPerson: [null,Validators.required],
-      saleOrder: [true,Validators.required],
-      department: [null,Validators.required],
-      saleOrderNumber: [null,Validators.required],
-      productionPerson: [null,Validators.required],
+      storesPerson: [null, Validators.required],
+      saleOrder: [true, Validators.required],
+      department: [null, Validators.required],
+      saleOrderNumber: [null, Validators.required],
+      productionPerson: [null, Validators.required],
       movementType: [null],
       profitcenterName: [''],
       DepartmentName: [''],
@@ -103,6 +103,7 @@ export class GoodsissueComponent implements OnInit {
       id: 0,
       changed: true,
       availableqty: [''],
+      highlight: false,
       requiredqty: [''],
       action: 'edit',
       index: 0
@@ -191,7 +192,8 @@ export class GoodsissueComponent implements OnInit {
       return;
     }
     this.formData1.patchValue({
-      changed: true
+      changed: true,
+      highlight: true
     });
     let data: any = this.tableData;
     this.tableData = null;
@@ -200,7 +202,7 @@ export class GoodsissueComponent implements OnInit {
       this.formData1.patchValue({
         index: data ? (data.length + 1) : 1
       });
-      data = [...data, this.formData1.value];
+      data = [this.formData1.value, ...data];
     } else {
       data = data.map((res: any) => res = res.index == this.formData1.value.index ? this.formData1.value : res);
     }
@@ -259,7 +261,6 @@ export class GoodsissueComponent implements OnInit {
                 }
                 arr.push(obj);
               })
-              debugger
               this.tableData = arr;
               this.toggle();
             }
@@ -443,7 +444,7 @@ export class GoodsissueComponent implements OnInit {
           this.getProfitcenterData();
         });
   }
-getProfitcenterData() {
+  getProfitcenterData() {
     const getpcUrl = String.Join('/', this.apiConfigService.getProfitCentersList);
     this.apiService.apiGetRequest(getpcUrl)
       .subscribe(
@@ -472,7 +473,7 @@ getProfitcenterData() {
   //         this.getfunctionaldeptList();
   //       });
   // }
-  
+
   getfunctionaldeptList() {
     const taxCodeUrl = String.Join('/', this.apiConfigService.getfunctionaldeptList);
     this.apiService.apiGetRequest(taxCodeUrl)
@@ -561,7 +562,6 @@ getProfitcenterData() {
               // this.formData.patchValue({
               //   saleOrderNumber: obj['data'].saleOrderNumber ? +obj['data'].saleOrderNumber : ''
               // })
-              debugger
               obj['data1'].forEach((s: any, index: number) => {
                 const qty = this.mmasterList.find(resp => resp.id == s.materialCode);
 

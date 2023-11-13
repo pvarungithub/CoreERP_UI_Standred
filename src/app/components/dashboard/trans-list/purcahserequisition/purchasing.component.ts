@@ -98,19 +98,19 @@ export class PurchasingComponent implements OnInit {
   formDataGroup() {
     this.formData = this.formBuilder.group({
       company: [null, [Validators.required]],
-      departmentName:[null],
+      departmentName: [null],
       profitcenterName: [''],
       companyName: [null],
       plant: [null],
-      department: [null,[Validators.required]],
+      department: [null, [Validators.required]],
       branch: [null],
       costCenter: [null],
-      profitCenter: [null,[Validators.required]],
+      profitCenter: [null, [Validators.required]],
       wbs: [null],
-      requiredfor: [null,[Validators.required]],
+      requiredfor: [null, [Validators.required]],
       projectName: [null],
       requisitionNumber: [null],
-      requisitionDate: [null,[Validators.required]],
+      requisitionDate: [null, [Validators.required]],
       narration: [null],
       addWho: [null],
       addDate: [null],
@@ -125,11 +125,12 @@ export class PurchasingComponent implements OnInit {
 
     this.formData1 = this.formBuilder.group({
       materialCode: ['', Validators.required],
-      materialName: [''], 
-      netWeight: [0], 
+      materialName: [''],
+      netWeight: [0],
       qty: ['', Validators.required],
       stockQty: [0],
       id: [0],
+      highlight: false,
       action: 'editDelete',
       index: 0
     });
@@ -335,7 +336,6 @@ export class PurchasingComponent implements OnInit {
   }
 
   // companyChange() {
-  //   debugger
   //   const obj = this.companyList.find((c: any) => c.id == this.formData.value.company);
   //   this.formData.patchValue({
   //     companyName: obj.text
@@ -343,7 +343,6 @@ export class PurchasingComponent implements OnInit {
   // }
 
   // profitChange() {
-  //   debugger
   //   const obj = this.profitCenterList.find((c: any) => c.code == this.formData.value.profitCenter);
   //   this.formData.patchValue({
   //     profitcenterName: obj.name
@@ -351,7 +350,6 @@ export class PurchasingComponent implements OnInit {
   // }
 
   // customerChange() {
-  //   debugger
   //   const obj = this.functionaldeptList.find((c: any) => c.id == this.formData.value.departmentName);
   //   this.formData.patchValue({
   //     departmentName: obj.description
@@ -362,6 +360,9 @@ export class PurchasingComponent implements OnInit {
     if (this.formData1.invalid) {
       return;
     }
+    this.formData1.patchValue({
+      highlight: true,
+    });
     let data: any = this.tableData;
     this.tableData = null;
     this.tableComponent.defaultValues();
@@ -369,7 +370,7 @@ export class PurchasingComponent implements OnInit {
       this.formData1.patchValue({
         index: data ? (data.length + 1) : 1
       });
-      data = [...data, this.formData1.value];
+      data = [this.formData1.value, ...data];
     } else {
       data = data.map((res: any) => res = res.index == this.formData1.value.index ? this.formData1.value : res);
     }
