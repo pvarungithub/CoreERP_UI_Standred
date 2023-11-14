@@ -106,6 +106,7 @@ export class SalesorderComponent {
       igst: [''],
       cgst: [''],
       amount: [''],
+      totalTax:[''],
       total: [''],
       netWeight: [''],
       deliveryDate: [''],
@@ -197,6 +198,7 @@ export class SalesorderComponent {
 
     this.formData1.patchValue({
       amount: amount,
+      totalTax:(igst + sgst + cgst),
       total: (amount) + (igst + sgst + cgst),
       totalTax: igst + sgst + cgst,
       igst: igst,
@@ -377,7 +379,8 @@ export class SalesorderComponent {
               res.response['SaleOrderDetails'].forEach((s: any, index: number) => {
                 const obj = this.materialList.find((m: any) => m.id == s.materialCode);
                 s.materialName = obj.text
-                s.stockQty = obj.availQTY;
+                s.stockQty = obj.availQTY
+                s.totalTax=obj.totalTax
                 // s.documentURL = s.documentURL ? s.documentURL : '',
                 s.action = 'editDelete'; s.index = index + 1;
               })
