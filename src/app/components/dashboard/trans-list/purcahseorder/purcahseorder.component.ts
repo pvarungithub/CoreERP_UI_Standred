@@ -505,6 +505,7 @@ export class PurchaseOrderComponent implements OnInit {
     this.apiService.apiGetRequest(getEmployeeList)
       .subscribe(
         response => {
+          this.spinner.hide();
           const res = response;
           if (!this.commonService.checkNullOrUndefined(res) && res.status === StatusCodes.pass) {
             if (!this.commonService.checkNullOrUndefined(res.response)) {
@@ -512,7 +513,10 @@ export class PurchaseOrderComponent implements OnInit {
               this.employeesList = res.response['roleList'].filter(resp => resp.roleId == this.loginUser.role)
             }
           }
-          this.getmaterialData();
+          if (this.routeEdit != '') {
+            this.getPurchaseorderDetails(this.routeEdit);
+          }
+          // this.getmaterialData();
         });
   }
   // getPurchaseGroupData() {
@@ -543,9 +547,9 @@ export class PurchaseOrderComponent implements OnInit {
             }
           }
           // this.dynTableProps = this.tablePropsFunc();
-          if (this.routeEdit != '') {
-            this.getPurchaseorderDetails(this.routeEdit);
-          }
+          // if (this.routeEdit != '') {
+          //   this.getPurchaseorderDetails(this.routeEdit);
+          // }
           // this.getWbsList();
         });
   }
@@ -619,6 +623,7 @@ export class PurchaseOrderComponent implements OnInit {
 
 
   saveForm() {
+    debugger
     if (this.formData1.invalid) {
       return;
     }
@@ -657,12 +662,12 @@ export class PurchaseOrderComponent implements OnInit {
   dataChange() {
     const formObj = this.formData1.value;
     const obj = this.taxCodeList.find((tax: any) => tax.taxRateCode == formObj.taxCode);
-    const igst = obj.igst ? ((+formObj.qty * +formObj.rate * +formObj.netWeight) * obj.igst) / 100 : 0;
-    const cgst = obj.cgst ? ((+formObj.qty * +formObj.rate * +formObj.netWeight) * obj.cgst) / 100 : 0;
-    const sgst = obj.sgst ? ((+formObj.qty * +formObj.rate * +formObj.netWeight) * obj.sgst) / 100 : 0;
+    const igst = obj.igst ? ((+formObj.qty * +formObj.rate * +(formObj.netWeight ? formObj.netWeight : 1)) * obj.igst) / 100 : 0;
+    const cgst = obj.cgst ? ((+formObj.qty * +formObj.rate * +(formObj.netWeight ? formObj.netWeight : 1)) * obj.cgst) / 100 : 0;
+    const sgst = obj.sgst ? ((+formObj.qty * +formObj.rate * +(formObj.netWeight ? formObj.netWeight : 1)) * obj.sgst) / 100 : 0;
     this.formData1.patchValue({
-      amount: (+formObj.qty * +formObj.rate * +formObj.netWeight),
-      total: (+formObj.qty * +formObj.rate * +formObj.netWeight) + (igst + sgst + cgst),
+      amount: (+formObj.qty * +formObj.rate * +(formObj.netWeight ? formObj.netWeight : 1)),
+      total: (+formObj.qty * +formObj.rate * +(formObj.netWeight ? formObj.netWeight : 1)) + (igst + sgst + cgst),
       igst: igst,
       cgst: cgst,
       sgst: sgst,

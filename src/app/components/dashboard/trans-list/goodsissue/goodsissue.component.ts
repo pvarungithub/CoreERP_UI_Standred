@@ -90,6 +90,7 @@ export class GoodsissueComponent implements OnInit {
       saleOrderNumber: [null, Validators.required],
       productionPerson: [null, Validators.required],
       movementType: [null],
+      profitCenter: [''],
       profitcenterName: [''],
       DepartmentName: [''],
       companyName: [null],

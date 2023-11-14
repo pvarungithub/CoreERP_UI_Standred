@@ -575,6 +575,7 @@ export class ReceiptOfGoodsComponent implements OnInit {
                   documentURL: d.documentURL ? d.documentURL : '',
                   invoiceURL: d.invoiceURL ? d.invoiceURL : '',
                   supplierReferenceNo: d.supplierReferenceNo ? d.supplierReferenceNo : '',
+                  supplierRefno: d.supplierRefno ? d.supplierRefno : '',
                   receivedDate: d.receivedDate ? d.receivedDate : '',
                   receivedQty: d.receivedQty ? d.receivedQty : '',
                   description: d.description ? d.description : '',
@@ -584,6 +585,7 @@ export class ReceiptOfGoodsComponent implements OnInit {
                 }
                 this.perChaseOrderList.push(obj)
               })
+              debugger
               this.tableData = this.perChaseOrderList;
               // const arr = this.podetailsList.filter(resp => !this.perChaseOrderList.some((p: any) => p.materialCode == resp.materialCode));
               // const unique = [...new Set(arr.map(item => item.materialCode))];

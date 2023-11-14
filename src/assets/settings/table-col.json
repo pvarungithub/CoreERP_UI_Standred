@@ -1744,7 +1744,6 @@
     "companyName": "Company Name",
     "profitcenterName": "ProfitCenter Name",
     "purchaseOrderNo": "Purchase Order No",
-    "supplierReferenceNo": "Invoice No",
     "supplierRefno":"Invoice Number",
     "customerName":"supplierName",
     "totalAmount":"Total Amount",
@@ -2195,10 +2194,8 @@
                "amount": "Amount",
         "totalTax":"Total Tax",
         "totalAmount":"Total Amount",
-            "stockQty": "Avaliable Stock QTY",
-
-
         "total": "Total",
+            "stockQty": "Avaliable Stock QTY",
         "deliveryDate": "Date",
         "delete": "Delete",
         "action": "Action"

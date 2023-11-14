@@ -10,7 +10,7 @@
             <div class="resume-uplod file-uploaded height-50" *ngFor="let file of fileList; let i = index">
                 <div class="d-flex">
                     <!-- <img src="assets/images/{{ getFileExtension(file.name) }}.svg" class="mb-2 mt-2" height="40px" width="40px" alt="logo"> -->
-                    <h5 class="file-name cursor-p"><a (click)="openFile(file)"> <span>{{ file.name }} </span></a> </h5>
+                    <b class="file-name cursor-p"><a (click)="openFile(file)"> <span>{{ file.name }} </span></a> </b>
 
                 </div>
                 <mat-icon class="d-flex align-items-center" (click)="clearFile(i)"> close </mat-icon>

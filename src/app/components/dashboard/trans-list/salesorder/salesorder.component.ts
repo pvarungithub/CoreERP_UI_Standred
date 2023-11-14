@@ -110,6 +110,7 @@ export class SalesorderComponent {
       netWeight: [''],
       deliveryDate: [''],
       stockQty: [0],
+      totalTax: [0],
       materialName: [''],
       highlight: false,
       // documentURL: [''],
@@ -197,6 +198,7 @@ export class SalesorderComponent {
     this.formData1.patchValue({
       amount: amount,
       total: (amount) + (igst + sgst + cgst),
+      totalTax: igst + sgst + cgst,
       igst: igst,
       cgst: cgst,
       sgst: sgst,
