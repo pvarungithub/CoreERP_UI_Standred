@@ -160,7 +160,7 @@ export class PurchaseOrderComponent implements OnInit {
 
   toggle() {
     if (this.formData.value.saleOrderType == 'Sale Order') {
-      this.getSaleOrderList(false);
+      this.getSaleOrderList();
     } else if (this.formData.value.saleOrderType == 'Master Saleorder') {
       this.getPRList();
     } else if (this.formData.value.saleOrderType == 'Bill of Material') {
@@ -353,7 +353,7 @@ export class PurchaseOrderComponent implements OnInit {
 
             }
           }
-          this.getSaleOrderList();
+          this.getpurchaseordertypetData();
         });
   }
   // getplantList() {
@@ -370,21 +370,17 @@ export class PurchaseOrderComponent implements OnInit {
   //         this.getSaleOrderList();
   //       });
   // }
-  getSaleOrderList(flag = true) {
+  getSaleOrderList() {
     const getSaleOrderUrl = String.Join('/', this.apiConfigService.getSaleOrderList);
     this.apiService.apiGetRequest(getSaleOrderUrl)
       .subscribe(
         response => {
+          this.spinner.hide();
           const res = response;
           if (!this.commonService.checkNullOrUndefined(res) && res.status === StatusCodes.pass) {
             if (!this.commonService.checkNullOrUndefined(res.response)) {
               this.qnoList = res.response['BPList'];
             }
-          }
-          if (flag) {
-            this.getpurchaseordertypetData();
-          } else {
-            this.spinner.hide();
           }
         });
   }

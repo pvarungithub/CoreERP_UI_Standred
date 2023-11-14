@@ -89,7 +89,7 @@
                 </div> -->
                 <div>
                     <!-- <mat-label [translate]="'saleorder.attachedUrl'"></mat-label> -->
-                    <app-file-upload [type]="'card'" [oldFileList]="formData.value.documentURL" (emitFilesList)="emitFilesList($event)"></app-file-upload>
+                    <app-file-upload [type]="'card'" [oldFileList]="formData.value.documentURL" (uploadeFile)="downLoad($event)" (emitFilesList)="emitFilesList($event)"></app-file-upload>
                 </div>
 
             </div>

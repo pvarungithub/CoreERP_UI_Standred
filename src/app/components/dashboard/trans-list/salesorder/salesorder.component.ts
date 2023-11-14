@@ -479,15 +479,16 @@ export class SalesorderComponent {
       });
   }
 
-  // downLoad() {
-  //   const url = String.Join('/', this.apiConfigService.getFile, this.formData.get('documentURL').value);
-  //   this.apiService.apiGetRequest(url)
-  //     .subscribe(
-  //       response => {
-  //         this.spinner.hide();
-  //         this.url = response.response;
-  //       });
-  // }
+  downLoad(event: any) {
+    debugger
+    const url = String.Join('/', this.apiConfigService.getFile, this.formData.get('documentURL').value);
+    this.apiService.apiGetRequest(url)
+      .subscribe(
+        response => {
+          this.spinner.hide();
+          window.open(response.response, '_blank');
+        });
+  }
 
   reset() {
     this.tableData = [];
