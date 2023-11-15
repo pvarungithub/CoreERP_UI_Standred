@@ -157,9 +157,9 @@ export class TransListService {
       case 'inspectioncheck': {
         debugger
         this.dynamicComp.component = InspectioncheckComponent;
-        this.dynamicComp.tableUrl = this.apiConfigService.getinspectioncheck;
-        this.dynamicComp.list = 'icdetails';
-        this.dynamicComp.editKey = 'inspectionCheckNo';
+        this.dynamicComp.tableUrl = this.apiConfigService.getProductionissue;
+        this.dynamicComp.list = 'Productionissue';
+        this.dynamicComp.editKey = 'saleOrderNumber';
         return this.dynamicComp;
         break;
       }
