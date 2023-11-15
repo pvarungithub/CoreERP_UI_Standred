@@ -22,7 +22,7 @@ import { TableComponent } from 'src/app/reuse-components';
   ]
 })
 export class InspectioncheckComponent implements OnInit {
-  
+
   formData: FormGroup;
   formData1: FormGroup;
   sendDynTableData: any;
@@ -86,22 +86,25 @@ export class InspectioncheckComponent implements OnInit {
 
   formDataGroup() {
     this.formData1 = this.formBuilder.group({
-      allocatedPerson: ['', Validators.required],
-      typeofWork: [''],
-      mechine: [''],
-      startDate: [''],
-      endDate: [''],
-      remarks: [''],
-      workStatus: [''],
 
-      materialName: [''],
-      materialCode: [''],
-      productionTag: [''],
-      saleOrderNumber: [''],
-      highlight: false,
-      id: 0,
-      action: 'edit',
-      index: 0
+      completionDate: [''],
+      status: [''],
+      inspectionType: [''],
+      inspectionTypeValue: [''],
+      completedBy: [''],
+      description: [''],
+
+
+      // typeofWork: [''],
+      // mechine: [''],
+      // startDate: [''],
+      // endDate: [''],
+      // remarks: [''],
+      // workStatus: [''],
+      // materialName: [''],
+      // materialCode: [''],
+      // productionTag: [''],
+      // saleOrderNumber: [''],
     });
     // this.formData = this.formBuilder.group({
     //   company: [null, [Validators.required]],
@@ -118,6 +121,12 @@ export class InspectioncheckComponent implements OnInit {
     //   editWho: [null],
     //   status: [null],
     // });
+  }
+
+  approveOrReject() {
+    this.formData1.patchValue({
+      inspectionType: this.formData1.value.inspectionTypeValue ? 'Sampling Inspection' : '100% Inspection',
+    });
   }
 
   tablePropsFunc() {
@@ -173,13 +182,14 @@ export class InspectioncheckComponent implements OnInit {
     this.apiService.apiGetRequest(getEmployeeList)
       .subscribe(
         response => {
+          this.spinner.hide();
           const res = response;
           if (!this.commonService.checkNullOrUndefined(res) && res.status === StatusCodes.pass) {
             if (!this.commonService.checkNullOrUndefined(res.response)) {
               this.employeesList = res.response['emplist'];
             }
           }
-          this.getCommitmentList();
+          // this.getCommitmentList();
         });
   }
 
@@ -325,8 +335,9 @@ export class InspectioncheckComponent implements OnInit {
                   typeofWork: s.typeofWork ? s.typeofWork : '',
                   workStatus: s.workStatus ? s.workStatus : '',
                   id: s.id ? s.id : '',
-                  action: 'edit',
-                  index: index + 1,
+                  checkbox: false
+                  // action: 'edit',
+                  // index: index + 1,
                 }
                 arr.push(obj);
               })
@@ -337,6 +348,12 @@ export class InspectioncheckComponent implements OnInit {
             }
           }
         });
+  }
+
+  tableCheckboxEvent(event: any) {
+    debugger
+    this.tableData1.forEach((res: any) => res.checkbox = (res.id == event.item.id) ? event.flag.checked : res.checkbox);
+    console.log(this.tableData1);
   }
 
   getCompanyList() {
@@ -557,8 +574,9 @@ export class InspectioncheckComponent implements OnInit {
   }
 
   savemreq() {
-    const addJournal = String.Join('/', this.apiConfigService.addProductionissue);
-    const requestObj = { mreqDtl: this.tableData1 };
+    const arr = this.tableData1.filter((t: any) => t.checkbox);
+    const addJournal = String.Join('/', this.apiConfigService.addinspectioncheck);
+    const requestObj = { icDtl: arr, icHdr: this.formData1.value };
     this.apiService.apiPostRequest(addJournal, requestObj).subscribe(
       response => {
         const res = response;
@@ -566,7 +584,7 @@ export class InspectioncheckComponent implements OnInit {
         if (!this.commonService.checkNullOrUndefined(res) && res.status === StatusCodes.pass) {
           if (!this.commonService.checkNullOrUndefined(res.response)) {
             this.alertService.openSnackBar('Material Req created Successfully..', Static.Close, SnackBar.success);
-            this.router.navigate(['/dashboard/transaction/materialrequisition'])
+            this.router.navigate(['/dashboard/transaction/inspectioncheck'])
           }
           // this.reset();
           this.spinner.hide();

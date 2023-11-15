@@ -1774,6 +1774,7 @@
   "inspectioncheck": {
     "checkAll": "Select",
     "title": "Inspection Check",
+    "checkbox": "",
     "inspectionCheckNo": "Inspection Check Number",
     "company": "Company",
     "materialCode": "Material code",

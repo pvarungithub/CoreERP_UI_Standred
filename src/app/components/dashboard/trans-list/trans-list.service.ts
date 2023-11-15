@@ -98,7 +98,6 @@ export class TransListService {
         break;
       }
       case 'materialrequisition': {
-        debugger
         this.dynamicComp.component = MaterialrequisitionComponents;
         this.dynamicComp.tableUrl = this.apiConfigService.getProductionissue;
         this.dynamicComp.list = 'Productionissue';
@@ -155,7 +154,6 @@ export class TransListService {
         break;
       }
       case 'inspectioncheck': {
-        debugger
         this.dynamicComp.component = InspectioncheckComponent;
         this.dynamicComp.tableUrl = this.apiConfigService.getProductionissue;
         this.dynamicComp.list = 'Productionissue';

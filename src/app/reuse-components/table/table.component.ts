@@ -42,6 +42,7 @@ export class TableComponent implements OnInit, OnChanges, AfterViewInit, OnDestr
   @Output() onEditEmit = new EventEmitter();
   @Output() editOrDeleteEvent = new EventEmitter();
   @Output() onLinkEmitEvent = new EventEmitter();
+  @Output() tableCheckboxEvent = new EventEmitter();
   @Input() addOrUpdateData: any;
   @Input() showFilters = true;
 
@@ -91,6 +92,10 @@ export class TableComponent implements OnInit, OnChanges, AfterViewInit, OnDestr
 
   onLink(action: any, element: any) {
     this.onLinkEmitEvent.emit({ action: action, item: element });
+  }
+
+  tableCheckboxCheck(flag: any, element: any) {
+    this.tableCheckboxEvent.emit({ flag: flag, item: element });
   }
 
   @HostListener('document:keydown', ['$event'])

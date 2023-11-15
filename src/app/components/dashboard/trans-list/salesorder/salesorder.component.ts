@@ -483,7 +483,6 @@ export class SalesorderComponent {
   }
 
   downLoad(event: any) {
-    debugger
     const url = String.Join('/', this.apiConfigService.getFile, this.formData.get('documentURL').value);
     this.apiService.apiGetRequest(url)
       .subscribe(

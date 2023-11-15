@@ -585,7 +585,6 @@ export class ReceiptOfGoodsComponent implements OnInit {
                 }
                 this.perChaseOrderList.push(obj)
               })
-              debugger
               this.tableData = this.perChaseOrderList;
               // const arr = this.podetailsList.filter(resp => !this.perChaseOrderList.some((p: any) => p.materialCode == resp.materialCode));
               // const unique = [...new Set(arr.map(item => item.materialCode))];
