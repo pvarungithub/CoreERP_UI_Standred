@@ -9,7 +9,7 @@
   </mat-card-title> -->
   <div class="background-header-boarder">
     <div class="d-flex justify-content-between align-items-center border" *ngIf="showFilters">
-      <div class="">
+      <div class="" *ngIf="showButtons">
         <button class="mx-2" mat-raised-button (click)="openDialog('Add')"
           [hidden]="!commonService.userPermission?.canAdd">
           <mat-icon>add</mat-icon> New

@@ -45,6 +45,7 @@ export class TableComponent implements OnInit, OnChanges, AfterViewInit, OnDestr
   @Output() tableCheckboxEvent = new EventEmitter();
   @Input() addOrUpdateData: any;
   @Input() showFilters = true;
+  @Input() showButtons = true;
 
   @ViewChild(MatTable, { static: true }) table: MatTable<any>;
   @ViewChild(MatPaginator, { static: true }) paginator: MatPaginator;

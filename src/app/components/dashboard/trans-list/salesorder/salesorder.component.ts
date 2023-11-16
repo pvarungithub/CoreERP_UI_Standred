@@ -374,15 +374,17 @@ export class SalesorderComponent {
               //   this.downLoad();
               // }
               // this.formData.disable();
+              debugger
               res.response['SaleOrderDetails'].forEach((s: any, index: number) => {
                 const obj = this.materialList.find((m: any) => m.id == s.materialCode);
                 s.materialName = obj.text
                 s.stockQty = obj.availQTY
-                s.totalTax=obj.totalTax
+                // s.totalTax=obj.totalTax
                 // s.documentURL = s.documentURL ? s.documentURL : '',
                 s.action = 'editDelete'; s.index = index + 1;
               })
               this.tableData = res.response['SaleOrderDetails'];
+              this.calculate();
             }
           }
         });

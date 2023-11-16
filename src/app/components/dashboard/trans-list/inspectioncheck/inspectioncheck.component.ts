@@ -351,7 +351,6 @@ export class InspectioncheckComponent implements OnInit {
   }
 
   tableCheckboxEvent(event: any) {
-    debugger
     this.tableData1.forEach((res: any) => res.checkbox = (res.id == event.item.id) ? event.flag.checked : res.checkbox);
     console.log(this.tableData1);
   }
