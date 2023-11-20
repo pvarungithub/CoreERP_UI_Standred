@@ -20,6 +20,7 @@ import { InspectioncheckComponent } from './inspectioncheck/inspectioncheck.comp
 import { SampleRequisitionFormComponent } from './samplerequisitionform/samplerequisitionform.component'
 import { SampleServiceComponent } from './sampleservice/sampleservice.component';
 import { SalesorderComponent } from './salesorder/salesorder.component';
+import { StandardRateComponent } from '../comp-list';
 @Injectable({
   providedIn: 'root'
 })
@@ -155,6 +156,14 @@ export class TransListService {
       }
       case 'inspectioncheck': {
         this.dynamicComp.component = InspectioncheckComponent;
+        this.dynamicComp.tableUrl = this.apiConfigService.getProductionissue;
+        this.dynamicComp.list = 'Productionissue';
+        this.dynamicComp.editKey = 'saleOrderNumber';
+        return this.dynamicComp;
+        break;
+      }
+      case 'standardrateoutput': {
+        this.dynamicComp.component = StandardRateComponent;
         this.dynamicComp.tableUrl = this.apiConfigService.getProductionissue;
         this.dynamicComp.list = 'Productionissue';
         this.dynamicComp.editKey = 'saleOrderNumber';

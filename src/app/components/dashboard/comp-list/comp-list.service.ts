@@ -597,10 +597,10 @@ export class CompListService {
         this.dynamicComp.component = DownTimeReasonComponent;
         return this.dynamicComp.component;
         break;
-      case 'standardrateoutput':
-        this.dynamicComp.component = StandardRateComponent;
-        return this.dynamicComp.component;
-        break;
+      // case 'standardrateoutput':
+      //   this.dynamicComp.component = StandardRateComponent;
+      //   return this.dynamicComp.component;
+      //   break;
       case 'formulas':
         this.dynamicComp.component = FormulasComponent;
         return this.dynamicComp.component;

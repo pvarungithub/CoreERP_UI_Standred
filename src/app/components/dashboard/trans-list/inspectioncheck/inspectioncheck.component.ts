@@ -270,7 +270,7 @@ export class InspectioncheckComponent implements OnInit {
                 // const qty = this.mmasterList.find(resp => resp.id == s.materialCode);
                 let obj = {
                   // action: 'edit',
-                  // id: s.id ? s.id : 0,
+                  id: s.id ? s.id : 0,
                   // index: index + 1,
                   qty: s.qty ? s.qty : 0,
                   // changed: false,
