@@ -9,7 +9,7 @@
         <div>
           <mat-form-field>
             <mat-label [translate]="'COMMON.SEARCH'"></mat-label>
-            <input matInput formControlName="searchCriteria" />
+            <input matInput formControlName="searchCriteria" (input)="doFilter($event.target.value)" />
           </mat-form-field>
         </div>
         <div class="p-2 mx-3">

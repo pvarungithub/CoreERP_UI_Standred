@@ -51,6 +51,11 @@ export class TransTableComponent implements OnInit {
     this.tableData = [];
   }
 
+
+  public doFilter = (value: string) => {
+    this.dataSource.filter = value.trim().toLocaleLowerCase();
+  }
+  
   constructor(
     private formBuilder: FormBuilder,
     private translate: TranslateService,
