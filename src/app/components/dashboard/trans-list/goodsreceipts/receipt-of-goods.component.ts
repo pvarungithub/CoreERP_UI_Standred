@@ -589,7 +589,6 @@ export class ReceiptOfGoodsComponent implements OnInit {
               // const arr = this.podetailsList.filter(resp => !this.perChaseOrderList.some((p: any) => p.materialCode == resp.materialCode));
               // const unique = [...new Set(arr.map(item => item.materialCode))];
               // this.materialCodeList = this.podetailsList;
-              debugger
               this.materialCodeList = this.podetailsList.filter(resp => resp.purchaseOrderNumber == this.formData.get('purchaseOrderNo').value);
               this.formData.controls.purchaseOrderNo.disable();
               this.formData.controls.company.disable();

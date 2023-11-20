@@ -374,7 +374,6 @@ export class SalesorderComponent {
               //   this.downLoad();
               // }
               // this.formData.disable();
-              debugger
               res.response['SaleOrderDetails'].forEach((s: any, index: number) => {
                 const obj = this.materialList.find((m: any) => m.id == s.materialCode);
                 s.materialName = obj.text

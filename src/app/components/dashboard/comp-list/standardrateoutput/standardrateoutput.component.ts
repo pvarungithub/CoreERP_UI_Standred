@@ -119,7 +119,6 @@ export class StandardRateComponent implements OnInit {
   }
 
   getCommitmentList(flag) {
-    debugger
     this.tableData = [];
     if (this.tableComponent) {
       this.tableComponent.defaultValues();
@@ -153,7 +152,6 @@ export class StandardRateComponent implements OnInit {
   }
 
   saveForm() {
-    debugger
     if (this.formData1.invalid) {
       return;
     }

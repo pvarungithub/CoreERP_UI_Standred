@@ -589,7 +589,6 @@ export class PurchaseOrderComponent implements OnInit {
               // })
               // this.sendDynTableData = { type: 'edit', data: res.response['poDetail'] };
               this.formData.disable();
-              debugger
               res.response['poDetail'].forEach((s: any, index: number) => { 
                 s.availableQTY = s.availableQTY ? s.availableQTY : '';
                 s.action = 'editDelete';

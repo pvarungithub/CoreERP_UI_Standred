@@ -88,7 +88,7 @@
     <div>
       <!-- <app-dynamic-table [tableObJect]="dynTableProps" (emitColumnChanges)="emitColumnChanges($event);"
         [dynamicTableUpdate]="sendDynTableData"></app-dynamic-table> -->
-      <app-table class="table-css" [tableData]="tableData" [showFilters]="false" (onEditEmit)="onEditEmit($event)">
+      <app-table class="table-css" [tableData]="tableData" [showButtons]="false" (onEditEmit)="onEditEmit($event)">
       </app-table>
     </div>
 
@@ -226,7 +226,7 @@
     </form>
 
     <div>
-      <app-table #tableRef class="table-css" [tableData]="tableData1" [showFilters]="false"
+      <app-table #tableRef class="table-css" [tableData]="tableData1" [showButtons]="false"
         (editOrDeleteEvent)="editOrDeleteEvent($event)" (tableCheckboxEvent)="tableCheckboxEvent($event)">
       </app-table>
     </div>
