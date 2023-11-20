@@ -1,19 +1,20 @@
-<div class="position-relative popup-class">
-  <mat-card-title class="boader--color d-flex justify-content-between position-absolute w-100">
-    <span> {{'standardrateoutput.title' | translate }} </span>
-    <mat-icon class="my-2 cursor--pointer" (click)="cancel()">close</mat-icon>
-  </mat-card-title>
+<mat-card>
 
-  <mat-card-content class="pt-5 p-2 m-0 overflow-auto">
-    <form [formGroup]="modelFormData" autocomplete="off">
+  <mat-card-content>
 
-      <div class="d--flex">
+    <form [formGroup]="formData" class="card p-2 mb-3" autocomplete="off">
+
+      <h6>
+        Saleorder Master
+        <hr>
+      </h6>
+
+      <div class="d--flex p-1 mat-form-field-height">
 
         <mat-form-field class="form-element" [ngClass]="{ 'ng--valid': formControls.code.valid && formControls.code.status != 'DISABLED',
            'ng--invalid': !formControls.code.valid&& formControls.code.status != 'DISABLED'  }">
           <mat-label [translate]="'standardrateoutput.code'"></mat-label>
-          <input matInput  formControlName="code" maxlength="5"
-            appFocusOnEnter tabIndex="1">
+          <input matInput formControlName="code" maxlength="5" appFocusOnEnter tabIndex="1">
           <mat-error *ngIf="!formControls.code.valid && formControls.code.status != 'DISABLED'"
             [ngClass]="{ 'ng--invalid': !formControls.code.valid  }">Code is required</mat-error>
 
@@ -21,67 +22,115 @@
 
         <mat-form-field>
           <mat-label>{{'standardrateoutput.qctype' | translate }}</mat-label>
-          <mat-select formControlName="type" appFocusOnEnter tabIndex="3">
+          <mat-select formControlName="type" appFocusOnEnter tabIndex="3" (selectionChange)="getCommitmentList(formData.value.type)">
             <mat-option>None</mat-option>
             <mat-option *ngFor="let type of Type" [value]="type.value">
               {{type.viewValue}}
             </mat-option>
           </mat-select>
+          <mat-error *ngIf="!formControls.type.valid && formControls.type.status != 'DISABLED'"
+            [ngClass]="{ 'ng--invalid': !formControls.type.valid  }">Type is required</mat-error>
         </mat-form-field>
 
-        <mat-form-field class="form-element">
-          <mat-label [translate]="'standardrateoutput.parameter'"></mat-label>
-          <input matInput  formControlName="parameter"
-            type="text" maxlength="50" appFocusOnEnter tabIndex="2">
-        </mat-form-field>
+        <div class="mat-mdc-form-field typeahead">
+          <input placeholder="{{ 'standardrateoutput.materialCode' | translate }}" formControlName="materialCode"
+            [typeahead]="materialList" typeaheadOptionField='id' appFocusOnEnter tabIndex="9"
+            class="form-control typeahead" [typeaheadItemTemplate]="customItemTemplate">
+          <ng-template #customItemTemplate let-model="item">
+            <span><strong>{{model.id}}</strong> - {{model.text}}</span>
+          </ng-template>
+          <mat-error *ngIf="!formControls.materialCode.valid && formControls.materialCode.status != 'DISABLED'"
+            [ngClass]="{ 'ng--invalid': !formControls.materialCode.valid  }">Material Code is required</mat-error>
+        </div>
 
-        <mat-form-field class="form-element">
-          <mat-label [translate]="'standardrateoutput.spec'"></mat-label>
-          <input matInput  formControlName="spec"
-            type="text" maxlength="50" appFocusOnEnter tabIndex="2">
-        </mat-form-field>
-        
-        <mat-form-field>
-          <mat-label>{{'standardrateoutput.uom' | translate }}</mat-label>
-          <mat-select formControlName="uom" appFocusOnEnter tabIndex="3">
-            <mat-option>None</mat-option>
-            <mat-option *ngFor="let uom of UomList" [value]="uom.text">
-              {{uom.text}}
-            </mat-option>
-          </mat-select>
-        </mat-form-field>
-
-        <mat-form-field class="form-element">
-          <mat-label [translate]="'standardrateoutput.minval'"></mat-label>
-          <input matInput  formControlName="minValue"
-            type="text" maxlength="50" appFocusOnEnter tabIndex="2">
-        </mat-form-field>
-
-        <mat-form-field class="form-element">
-          <mat-label [translate]="'standardrateoutput.maxval'"></mat-label>
-          <input matInput  formControlName="maxValue"
-            type="text" maxlength="50" appFocusOnEnter tabIndex="2">
-        </mat-form-field>
-
-        <mat-form-field class="form-element">
-          <mat-label [translate]="'standardrateoutput.instrument'"></mat-label>
-          <input matInput  formControlName="instrument"
-            type="text" maxlength="50" appFocusOnEnter tabIndex="2">
-        </mat-form-field>
 
       </div>
-      <mat-divider></mat-divider>
+
     </form>
 
+    <div class="p-2 card">
+
+      <h6>
+        Saleorder Details
+        <hr>
+      </h6>
+
+      <form [formGroup]="formData1" autocomplete="off">
+
+        <div class="d--flex p-1 mat-form-field-height">
+
+          <mat-form-field class="form-element">
+            <mat-label [translate]="'standardrateoutput.spec'"></mat-label>
+            <input matInput formControlName="spec" type="text" maxlength="50" appFocusOnEnter tabIndex="2">
+          </mat-form-field>
+
+          <mat-form-field class="form-element">
+            <mat-label [translate]="'standardrateoutput.minval'"></mat-label>
+            <input matInput formControlName="minValue" type="text" maxlength="50" appFocusOnEnter tabIndex="2">
+          </mat-form-field>
+          
+          <mat-form-field class="form-element">
+            <mat-label [translate]="'standardrateoutput.maxval'"></mat-label>
+            <input matInput formControlName="maxValue" type="text" maxlength="50" appFocusOnEnter tabIndex="2">
+          </mat-form-field>
+
+          <mat-form-field>
+            <mat-label>{{'standardrateoutput.uom' | translate }}</mat-label>
+            <mat-select formControlName="uom" appFocusOnEnter tabIndex="3">
+              <mat-option>None</mat-option>
+              <mat-option *ngFor="let uom of UomList" [value]="uom.text">
+                {{uom.text}}
+              </mat-option>
+            </mat-select>
+          </mat-form-field>
+
+          <mat-form-field class="form-element">
+            <mat-label [translate]="'standardrateoutput.instrument'"></mat-label>
+            <mat-select formControlName="uom" appFocusOnEnter tabIndex="3">
+              <mat-option>None</mat-option>
+              <mat-option *ngFor="let instrument of instruments" [value]="instrument.code">
+                {{instrument.description}}
+              </mat-option>
+            </mat-select>
+          </mat-form-field>
+
+        </div>
+
+        <div class="d-flex justify-content-end mb-3">
+
+          <button mat-raised-button type="submit" class="button-color-bule mx-1 text-white" (click)="saveForm()">
+            {{ 'COMMON.UPDATE' | translate }}
+          </button>
+          <button mat-raised-button class="button-color-red text-white mx-1" (click)="resetForm();">
+            {{ 'COMMON.RESET' | translate }}
+          </button>
+
+        </div>
+
+      </form>
+
+      <div>
+        <app-table class="table-css" [tableData]="tableData" [showButtons]="false"
+          (editOrDeleteEvent)="editOrDeleteEvent($event)">
+        </app-table>
+      </div>
+    </div>
+
+
   </mat-card-content>
-  <div class="form-element p-2 d-flex justify-content-end">
-    <button mat-raised-button class="button-color-red text-white mx-1" (click)="cancel()">
 
-      {{ 'COMMON.CANCEL' | translate }}
-    </button>
-    <button mat-raised-button type="submit" class="button-color-bule text-white mx-1" (click)="save()">
+  <mat-card-content class="d-flex justify-content-end py-1">
 
+    <button mat-raised-button type="submit" class="button-color-bule mx-3 text-white" (click)="save()">
       {{ 'COMMON.SAVE' | translate }}
     </button>
-  </div>
-</div>
+    <button mat-raised-button class="button-color-red text-white mx-3" (click)="back();">
+      {{ 'COMMON.BACK' | translate }}
+    </button>
+    <button [hidden]="routeEdit != ''" mat-raised-button class="button-color-red text-white mx-3" (click)="reset();">
+      {{ 'COMMON.RESET' | translate }}
+    </button>
+
+  </mat-card-content>
+
+</mat-card>

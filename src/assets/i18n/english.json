@@ -1631,11 +1631,14 @@
     "minval": "Minimum Value",
     "maxval": "Maximum Value",
     "uom": "UOM",
+    "description": "Parameter",
     "uomName": "UOM Name",
     "instrument": "Instrument",
     "qctype":"QC Type",
     "minValue": "Minimum Value",
-    "maxValue": "Maximum Value"
+    "maxValue": "Maximum Value",
+    "materialCode": "Material Code",
+    "action": "Action"
     
   },
   "formulas": {
