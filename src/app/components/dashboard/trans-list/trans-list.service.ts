@@ -164,9 +164,9 @@ export class TransListService {
       }
       case 'standardrateoutput': {
         this.dynamicComp.component = StandardRateComponent;
-        this.dynamicComp.tableUrl = this.apiConfigService.getProductionissue;
-        this.dynamicComp.list = 'Productionissue';
-        this.dynamicComp.editKey = 'saleOrderNumber';
+        this.dynamicComp.tableUrl = this.apiConfigService.getStandardRateList;
+        this.dynamicComp.list = 'sropList';
+        this.dynamicComp.editKey = 'code';
         return this.dynamicComp;
         break;
       }

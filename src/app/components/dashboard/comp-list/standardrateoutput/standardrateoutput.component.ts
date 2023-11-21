@@ -85,6 +85,10 @@ export class StandardRateComponent implements OnInit {
     this.getmaterialData();
     this.getuomTypeData();
     this.getCommitmentList('instruments');
+    if (!this.commonService.checkNullOrUndefined(this.route.snapshot.params.value)) {
+      this.routeEdit = this.route.snapshot.params.value;
+      this.getCommitmentList('edit');
+    }
   }
 
   getuomTypeData() {
@@ -123,7 +127,7 @@ export class StandardRateComponent implements OnInit {
     if (this.tableComponent) {
       this.tableComponent.defaultValues();
     }
-    const bomUrl = String.Join('/', this.apiConfigService.getCommitmentList, flag);
+    const bomUrl = String.Join('/', flag == 'edit' ? this.apiConfigService.getQCConfigDetail : this.apiConfigService.getCommitmentList, flag == 'edit' ? this.routeEdit : flag);
     this.apiService.apiGetRequest(bomUrl)
       .subscribe(
         response => {
@@ -131,21 +135,31 @@ export class StandardRateComponent implements OnInit {
           const res = response;
           if (!this.commonService.checkNullOrUndefined(res) && res.status === StatusCodes.pass) {
             if (!this.commonService.checkNullOrUndefined(res.response)) {
+              let arr = [];
+              let arr1 = [];
               if (flag == 'instruments') {
                 this.instruments = res.response.citemList;
+                return;
+              } else if (flag == 'edit') {
+                this.formData.patchValue(res.response.QCConfigDetailMaster);
+                arr = res.response['QCConfigDetail'];
+                this.formData.disable();
               } else {
-                res.response['citemList'].forEach((s: any, index: number) => {
-                  s.parameter = s.description;
-                  s.uom = s.uom;
-                  s.spec = s.spec;
-                  s.minValue = s.minValue;
-                  s.maxValue = s.maxValue;
-                  s.instrument = s.instrument;
-                  s.action = 'edit';
-                  s.index = index + 1;
-                })
-                this.tableData = res.response.citemList;
+                arr = res.response['citemList'];
               }
+              arr.forEach((s: any, index: number) => {
+                arr1.push({
+                  parameter: flag == 'edit' ? s.parameter : s.description,
+                  uom: s.uom,
+                  spec: s.spec,
+                  minValue: s.minValue,
+                  maxValue: s.maxValue,
+                  instrument: s.instrument,
+                  action: 'edit',
+                  index: index + 1
+                })
+              })
+              this.tableData = arr1;
             }
           }
         });

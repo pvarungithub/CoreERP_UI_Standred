@@ -591,7 +591,7 @@ export class PurchaseOrderComponent implements OnInit {
               this.formData.disable();
               res.response['poDetail'].forEach((s: any, index: number) => { 
                 s.availableQTY = s.availableQTY ? s.availableQTY : '';
-                s.action = 'editDelete';
+                s.action = 'edit';
                 s.index = index + 1; 
               })
               this.tableData = res.response['poDetail'];

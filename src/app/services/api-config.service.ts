@@ -238,6 +238,9 @@ export class ApiConfigService {
    getmreqMaster = `${this.environment.runtimeConfig.serverUrl}Transactions/GetMaterialRequisition`;
    getProductionissue = `${this.environment.runtimeConfig.serverUrl}Transactions/GetProductionissue`;
    returnmreq = `${this.environment.runtimeConfig.serverUrl}Transactions/ReturnMaterialRequisition`;
+   getQCConfigDetail = `${this.environment.runtimeConfig.serverUrl}StandardRate/GetQCConfigDetail`;
+   getStandardRateList = `${this.environment.runtimeConfig.serverUrl}StandardRate/GetStandardRateList`;
+
    /******************************* Work Center Creation ****************************************************** */
    //getPaymentsReceiptsDetail = `${this.environment.runtimeConfig.serverUrl}Transactions/GetPaymentsReceiptsDetail`;
    addWCr = `${this.environment.runtimeConfig.serverUrl}WorkCenterCreation/RegisterWorkCenterCreation`;
