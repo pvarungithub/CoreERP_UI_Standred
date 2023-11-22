@@ -60,7 +60,6 @@ export class InspectionComponent {
   }
 
   resultChange() {
-    debugger
     if(!((+(this.formData.value.result) > +(this.formData.value.minValue)) && (+(this.formData.value.result) < +(this.formData.value.maxValue)))) {
       this.formData.patchValue({
         result: ''
@@ -74,7 +73,7 @@ export class InspectionComponent {
     if (this.tableComponent) {
       this.tableComponent.defaultValues();
     }
-    const url = String.Join('/', this.apiConfigService.getSaleOrderDetailbymaterialcode, '200X6B3020B65XX');
+    const url = String.Join('/', this.apiConfigService.getSaleOrderDetailbymaterialcode, this.data.materialcode);
     this.apiService.apiGetRequest(url)
       .subscribe(
         response => {
@@ -103,7 +102,6 @@ export class InspectionComponent {
   }
 
   saveForm() {
-    debugger
     if (this.formData.invalid) {
       return;
     }
@@ -154,7 +152,7 @@ export class InspectionComponent {
   }
 
   save() {
-    if (this.tableData.length == 0 || this.formData.invalid) {
+    if (this.tableData.length == 0) {
       return;
     }
     this.registerQCResults();
@@ -162,7 +160,9 @@ export class InspectionComponent {
 
   registerQCResults() {
     const addsq = String.Join('/', this.apiConfigService.registerQCResults);
-    const requestObj = this.tableData;
+    this.data.tableData.forEach((d: any) => d.qtyResult = this.tableData);
+    const requestObj = this.data.tableData;
+
     this.apiService.apiPostRequest(addsq, requestObj).subscribe(
       response => {
         this.spinner.hide();

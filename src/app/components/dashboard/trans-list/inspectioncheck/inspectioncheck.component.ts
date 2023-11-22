@@ -601,10 +601,16 @@ export class InspectioncheckComponent implements OnInit {
   }
 
   inspectioncheck() {
+    const arr = this.tableData1.filter((t: any) => t.checkbox);
+
+    if(!arr.length) {
+      this.alertService.openSnackBar('Please select production tag', Static.Close, SnackBar.error);
+      return;
+    }
     this.dialog.open(InspectionComponent, {
       width: '100%',
       height: '700px',
-      data: this.materialcode
+      data: { materialcode: this.materialcode, tableData: arr }
     });
 
    
