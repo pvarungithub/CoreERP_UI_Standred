@@ -104,7 +104,7 @@ export class InspectioncheckComponent implements OnInit {
       // materialName: [''],
       // materialCode: [''],
       // productionTag: [''],
-      // saleOrderNumber: [''],
+      saleOrderNumber: [''],
     });
     // this.formData = this.formBuilder.group({
     //   company: [null, [Validators.required]],
@@ -340,6 +340,9 @@ export class InspectioncheckComponent implements OnInit {
                   // index: index + 1,
                 }
                 arr.push(obj);
+              })
+              this.formData1.patchValue({
+                saleOrderNumber: val
               })
               this.tableData1 = arr;
 
