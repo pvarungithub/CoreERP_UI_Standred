@@ -12,6 +12,8 @@ import { AlertService } from '../../../../services/alert.service';
 import { DateAdapter, MAT_DATE_FORMATS } from '@angular/material/core';
 import { AppDateAdapter, APP_DATE_FORMATS } from '../../../../directives/format-datepicker';
 import { TableComponent } from 'src/app/reuse-components';
+import { InspectionComponent } from './inspection/inspection.component';
+import { MatDialog } from '@angular/material/dialog';
 @Component({
   selector: 'app-inspectioncheck',
   templateUrl: './inspectioncheck.component.html',
@@ -61,6 +63,8 @@ export class InspectioncheckComponent implements OnInit {
   mmasterList: any;
   costunitList: any;
 
+  materialcode: any;
+
   constructor(private commonService: CommonService,
     private formBuilder: FormBuilder,
     private apiConfigService: ApiConfigService,
@@ -68,6 +72,7 @@ export class InspectioncheckComponent implements OnInit {
     private alertService: AlertService,
     private spinner: NgxSpinnerService,
     public route: ActivatedRoute,
+    public dialog: MatDialog,
     private router: Router
   ) {
     if (!this.commonService.checkNullOrUndefined(this.route.snapshot.params.value)) {
@@ -344,6 +349,7 @@ export class InspectioncheckComponent implements OnInit {
               this.formData1.patchValue({
                 saleOrderNumber: val
               })
+              this.materialcode = val1;
               this.tableData1 = arr;
 
               // this.sendDynTableData = { type: 'edit', data: res.response['goodsissueastersDetail'] };
@@ -593,4 +599,15 @@ export class InspectioncheckComponent implements OnInit {
         }
       });
   }
+
+  inspectioncheck() {
+    this.dialog.open(InspectionComponent, {
+      width: '100%',
+      height: '700px',
+      data: this.materialcode
+    });
+
+   
+  }
+  
 }

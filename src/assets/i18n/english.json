@@ -1638,6 +1638,7 @@
     "minValue": "Minimum Value",
     "maxValue": "Maximum Value",
     "materialCode": "Material Code",
+    "result": "Result",
     "action": "Action"
     
   },
@@ -2159,6 +2160,8 @@
     "saleOrderNumber": "Sale Order Number",
     "price": "Price",
     "value": "Value",
+    "result": "Result",
+    "inspectioncheck": "Inspection Check",
                     "action": "Action"
   },
   "invoiceverification": {

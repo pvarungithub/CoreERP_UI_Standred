@@ -73,6 +73,7 @@ import { MaxlengthDirective } from './directives/maxlength.directive';
 import { NonEditableDatepicker } from './directives/format-datepicker';
 import { EmployeeComponent } from './components/dashboard/comp-list/employee/employee.component';
 import { DatePipe } from '@angular/common';
+import { InspectionComponent } from './components/dashboard/trans-list/inspectioncheck/inspection/inspection.component';
 
 //import { AccountKeyComponent } from './components/dashboard/comp-list/assetblock/accountkey/accountkey.component';
 // AoT requires an exported function for factories
@@ -149,7 +150,8 @@ export function HttpLoaderFactory(httpClient: HttpClient) {
     DesignationComponent,
     SalesorderComponent,
     FileUploadComponent,
-    PreviewComponent
+    PreviewComponent,
+    InspectionComponent
   ],
   imports: [
     AppRoutingModule,

@@ -130,7 +130,6 @@ export class TransTableComponent implements OnInit {
   }
 
   tableDataFunc() {
-    debugger
     this.highlightedRows = [];
     this.dataSource = new MatTableDataSource();
 

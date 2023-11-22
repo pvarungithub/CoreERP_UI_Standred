@@ -1373,10 +1373,11 @@
     "maxValue": "Maximum Value",
     "instrument": "Instrument",
     "uom": "UOM Name",
-    "action": "Action",
     "code": "Code",
     "materialCode": "Material Code",
-    "type": "Type"
+    "result": "Result",
+    "type": "Type",
+    "action": "Action"
   },
   "formulas": {
     "title": " Formulas",
