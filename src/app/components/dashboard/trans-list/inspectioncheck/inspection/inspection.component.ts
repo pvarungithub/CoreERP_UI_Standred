@@ -160,8 +160,8 @@ export class InspectionComponent {
 
   registerQCResults() {
     const addsq = String.Join('/', this.apiConfigService.registerQCResults);
-    this.data.tableData.forEach((d: any) => d.qtyResult = this.tableData);
-    const requestObj = this.data.tableData;
+    // this.data.tableData.forEach((d: any) => d.qtyResult = this.tableData);
+    const requestObj = { qtyResult:  this.tableData, qtyDtl: this.data.tableData };
 
     this.apiService.apiPostRequest(addsq, requestObj).subscribe(
       response => {
