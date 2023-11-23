@@ -231,6 +231,7 @@ export class ApiConfigService {
    getGoodsissueMaster = `${this.environment.runtimeConfig.serverUrl}Transactions/GetGoodsissue`;
    returnGoodsissue = `${this.environment.runtimeConfig.serverUrl}Transactions/ReturnGoodsissue`;
    getTagsissueDetail = `${this.environment.runtimeConfig.serverUrl}Transactions/GetTagsissueDetail`;
+   getQCissueDetail = `${this.environment.runtimeConfig.serverUrl}Transactions/GetQCissueDetail`;
 
    /*******************************Material Requisition ****************************************************** */
    addmareq = `${this.environment.runtimeConfig.serverUrl}Transactions/AddMaterialRequisition`;

@@ -298,12 +298,12 @@ export class InspectioncheckComponent implements OnInit {
   }
 
   onEditEmit(event: any) {
-    this.getTagsissueDetail(event.saleOrderNumber, event.materialCode);
+    this.getQCissueDetail(event.saleOrderNumber, event.materialCode);
   }
 
-  getTagsissueDetail(val, val1) {
+  getQCissueDetail(val, val1) {
     this.tableComponent.defaultValues();
-    const jvDetUrl = String.Join('/', this.apiConfigService.getTagsissueDetail, val, val1);
+    const jvDetUrl = String.Join('/', this.apiConfigService.getQCissueDetail, val, val1);
     this.apiService.apiGetRequest(jvDetUrl)
       .subscribe(
         response => {
