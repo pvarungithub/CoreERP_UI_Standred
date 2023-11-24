@@ -1,6 +1,6 @@
 import { Component, Inject, Optional, ViewChild } from '@angular/core';
 import { MAT_DIALOG_DATA, MatDialogRef } from '@angular/material/dialog';
-import { FormGroup, FormBuilder, Validators } from '@angular/forms';
+import { FormGroup, FormBuilder, Validators, FormArray } from '@angular/forms';
 import { String } from 'typescript-string-operations';
 import { NgxSpinnerService } from 'ngx-spinner';
 import { ActivatedRoute, Router } from '@angular/router';
@@ -46,21 +46,42 @@ export class InspectionComponent {
       maxValue: [''],
       instrument: [''],
       id: [0],
-      result: ['',Validators.required],
+      result: [''],
       action: 'edit',
+      tags: this.formBuilder.array([]),
       index: 0
     });
-
   }
+
+
+  model() {
+    return this.formBuilder.group({
+      tagName: [''],
+      tagAmount: [''],
+      trackingId: this.generateUniqueId(),
+    });
+  }
+
+  generateUniqueId() {
+    return (
+      Math.random().toString(36).substring(2, 15) +
+      Math.random().toString(36).substring(2, 15)
+    );
+  }
+
+  trackByFn(index: number, item: any) {
+    return item.trackingId;
+  }
+
 
   get formControls() { return this.formData.controls; }
 
   ngOnInit() {
-   this.getCommitmentList();
+    this.getCommitmentList();
   }
 
   resultChange() {
-    if(!((+(this.formData.value.result) > +(this.formData.value.minValue)) && (+(this.formData.value.result) < +(this.formData.value.maxValue)))) {
+    if (!((+(this.formData.value.result) > +(this.formData.value.minValue)) && (+(this.formData.value.result) < +(this.formData.value.maxValue)))) {
       this.formData.patchValue({
         result: ''
       })
@@ -144,6 +165,15 @@ export class InspectionComponent {
     if (value.action === 'Delete') {
     } else {
       this.formData.patchValue(value.item);
+      let items: any = this.formData.get('tags') as FormArray;
+      items.clear();
+      this.data.tableData.forEach((t: any) => {
+        const obj = this.model();
+        obj.patchValue({
+          tagName: t.productionTag
+        })
+        items.push(obj);
+      })
     }
   }
 
@@ -161,9 +191,9 @@ export class InspectionComponent {
   registerQCResults() {
     const addsq = String.Join('/', this.apiConfigService.registerQCResults);
     // this.data.tableData.forEach((d: any) => d.qtyResult = this.tableData);
-    const requestObj = { qtyResult:  this.tableData, qtyDtl: this.data.tableData };
+    // const requestObj = { qtyResult:  this.tableData, qtyDtl: this.data.tableData };
 
-    this.apiService.apiPostRequest(addsq, requestObj).subscribe(
+    this.apiService.apiPostRequest(addsq, this.tableData).subscribe(
       response => {
         this.spinner.hide();
         const res = response;
