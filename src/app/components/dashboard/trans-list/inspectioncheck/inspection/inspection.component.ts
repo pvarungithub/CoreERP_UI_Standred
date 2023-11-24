@@ -189,9 +189,22 @@ export class InspectionComponent {
   }
 
   registerQCResults() {
+    debugger
     const addsq = String.Join('/', this.apiConfigService.registerQCResults);
-    // this.data.tableData.forEach((d: any) => d.qtyResult = this.tableData);
-    // const requestObj = { qtyResult:  this.tableData, qtyDtl: this.data.tableData };
+    this.data.tableData.forEach((d: any) => {
+      const arr = [];
+      this.tableData.forEach((t: any) => {
+        let result: any;
+        if (t && t.tags && t.tags.length) {
+          const obj = t.tags.find((t: any) => t.tagName == d.productionTag);
+          result = obj ? obj.tagAmount : ''
+        }
+        t.result = result;
+        arr.push(t);
+      });
+      d.inspectionCheck = arr;
+    });
+    const requestObj = { qtyDtl: this.data.tableData };
 
     this.apiService.apiPostRequest(addsq, this.tableData).subscribe(
       response => {
