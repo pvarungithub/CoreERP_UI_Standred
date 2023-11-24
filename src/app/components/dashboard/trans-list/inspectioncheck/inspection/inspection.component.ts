@@ -206,7 +206,7 @@ export class InspectionComponent {
     });
     const requestObj = { qtyDtl: this.data.tableData };
 
-    this.apiService.apiPostRequest(addsq, this.tableData).subscribe(
+    this.apiService.apiPostRequest(addsq, requestObj).subscribe(
       response => {
         this.spinner.hide();
         const res = response;
