@@ -139,6 +139,7 @@ import { odApprovalComponent } from './odapproval/odapproval.component';
 import { PermissionApprovalsComponent } from './permissionapproval/permissionapproval.component';
 import { LeaveApprovalComponent } from './leaveapproval/leaveapproval.component';
 import { DesignationComponent } from './designation/designation.component';
+import { StructureCreationComponent} from './structurecreation/structurecreation.component';
 @Injectable({
   providedIn: 'root'
 })
@@ -704,7 +705,10 @@ export class CompListService {
       case 'designation':
         this.dynamicComp.component = DesignationComponent;
         return this.dynamicComp.component;
-        break;
+        case 'structurecreation':
+          this.dynamicComp.component = StructureCreationComponent;
+          return this.dynamicComp.component;
+          break;
       default:
     }
   }

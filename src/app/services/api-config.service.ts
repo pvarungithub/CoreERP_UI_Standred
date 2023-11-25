@@ -357,6 +357,13 @@ export class ApiConfigService {
    updateComponent = `${this.environment.runtimeConfig.serverUrl}payroll/ComponentMaster/UpdateComponent`;
    deleteComponent = `${this.environment.runtimeConfig.serverUrl}payroll/ComponentMaster/DeleteComponent`;
 
+    // Structure Creation
+    getStructuresList = `${this.environment.runtimeConfig.serverUrl}payroll/StructureCreation/GetStructuresList`;
+    registerStructure = `${this.environment.runtimeConfig.serverUrl}payroll/StructureCreation/RegisterStructure`;
+    updateStructure = `${this.environment.runtimeConfig.serverUrl}payroll/StructureCreation/UpdateStructure`;
+    deleteStructure = `${this.environment.runtimeConfig.serverUrl}payroll/StructureCreation/DeleteStructure`;
+    getStructureComponentsList = `${this.environment.runtimeConfig.serverUrl}payroll/StructureCreation/GetComponentsList`;
+    getPFList = `${this.environment.runtimeConfig.serverUrl}payroll/StructureCreation/GetPFList`;
 
    //PF Master
    getPfComponentsList = `${this.environment.runtimeConfig.serverUrl}Component/GetcomponentTypesList`;

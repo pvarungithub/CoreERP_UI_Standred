@@ -139,3 +139,4 @@ export { odApprovalComponent } from './odapproval/odapproval.component';
 export { PermissionApprovalsComponent } from './permissionapproval/permissionapproval.component';
 export { LeaveApprovalComponent } from './leaveapproval/leaveapproval.component';
 export { DesignationComponent } from './designation/designation.component';
+export { StructureCreationComponent} from './structurecreation/structurecreation.component';

@@ -2611,5 +2611,24 @@
     "amount": "Amount",
     "action": "Action"
 
+  },
+  "structurecreation": {
+    "title": "Structure Creation",
+    "structureCode": "Structure Code",
+    "companyCode": "Company Code",
+    "branchCode": "Branch Code",
+    "componentCode": "Component Code",
+    "componentName": "Component Name",
+    "componentType": "Component Type",
+    "remarks": "Remarks",
+    "amount": "Amount",
+    "percentage": "Percentage",
+    "structureName": "Structure Name",
+    "amountType": "Amount Type",
+    "active": "Active"
+  },
+  "StructionCreation": {
+    "fixedComponents": "Fixed Components",
+    "structionName": "Struction Name"
   }
 }
