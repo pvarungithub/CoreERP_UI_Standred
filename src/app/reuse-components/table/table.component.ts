@@ -43,6 +43,7 @@ export class TableComponent implements OnInit, OnChanges, AfterViewInit, OnDestr
   @Output() editOrDeleteEvent = new EventEmitter();
   @Output() onLinkEmitEvent = new EventEmitter();
   @Output() tableCheckboxEvent = new EventEmitter();
+  @Output() tableButtonEvent = new EventEmitter();
   @Input() addOrUpdateData: any;
   @Input() showFilters = true;
   @Input() showButtons = true;
@@ -98,6 +99,10 @@ export class TableComponent implements OnInit, OnChanges, AfterViewInit, OnDestr
 
   tableCheckboxCheck(flag: any, element: any) {
     this.tableCheckboxEvent.emit({ flag: flag, item: element });
+  }
+
+  tableButtonCheck(flag: any, element: any) {
+    this.tableButtonEvent.emit({ flag: flag, item: element });
   }
 
   @HostListener('document:keydown', ['$event'])

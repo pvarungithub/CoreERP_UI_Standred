@@ -46,9 +46,9 @@ export class InspectionComponent {
       maxValue: [''],
       instrument: [''],
       id: [0],
-      result: [''],
+      result: ['',Validators.required],
       action: 'edit',
-      tags: this.formBuilder.array([]),
+      // tags: this.formBuilder.array([]),
       index: 0
     });
   }
@@ -94,7 +94,8 @@ export class InspectionComponent {
     if (this.tableComponent) {
       this.tableComponent.defaultValues();
     }
-    const url = String.Join('/', this.apiConfigService.getSaleOrderDetailbymaterialcode, this.data.materialcode);
+    debugger
+    const url = String.Join('/', this.apiConfigService.getSaleOrderDetailbymaterialcode, this.data.materialCode);
     this.apiService.apiGetRequest(url)
       .subscribe(
         response => {
@@ -165,15 +166,15 @@ export class InspectionComponent {
     if (value.action === 'Delete') {
     } else {
       this.formData.patchValue(value.item);
-      let items: any = this.formData.get('tags') as FormArray;
-      items.clear();
-      this.data.tableData.forEach((t: any) => {
-        const obj = this.model();
-        obj.patchValue({
-          tagName: t.productionTag
-        })
-        items.push(obj);
-      })
+      // let items: any = this.formData.get('tags') as FormArray;
+      // items.clear();
+      // this.data.tableData.forEach((t: any) => {
+      //   const obj = this.model();
+      //   obj.patchValue({
+      //     tagName: t.productionTag
+      //   })
+      //   items.push(obj);
+      // })
     }
   }
 
@@ -191,21 +192,22 @@ export class InspectionComponent {
   registerQCResults() {
     debugger
     const addsq = String.Join('/', this.apiConfigService.registerQCResults);
-    this.data.tableData.forEach((d: any) => {
-      const arr = [];
-      this.tableData.forEach((t: any) => {
-        let result: any;
-        if (t && t.tags && t.tags.length) {
-          const obj = t.tags.find((t: any) => t.tagName == d.productionTag);
-          result = obj ? obj.tagAmount : ''
-        }
-        t.result = result;
-        arr.push(t);
-      });
-      d.inspectionCheck = arr;
-    });
-    const requestObj = { qtyDtl: this.data.tableData };
-
+    // this.data.tableData.forEach((d: any) => {
+    //   const arr = [];
+    //   this.tableData.forEach((t: any) => {
+    //     let result: any;
+    //     if (t && t.tags && t.tags.length) {
+    //       const obj = t.tags.find((t: any) => t.tagName == d.productionTag);
+    //       result = obj ? obj.tagAmount : ''
+    //     }
+    //     t.result = result;
+    //     arr.push(t);
+    //   });
+    //   d.inspectionCheck = arr;
+    // });
+    // const requestObj = { qtyDtl: this.data.tableData };
+    // this.data.tableData.forEach((d: any) => d.qtyResult = this.tableData);
+    const requestObj = { qtyResult:  this.tableData, qtyDtl: this.data };
     this.apiService.apiPostRequest(addsq, requestObj).subscribe(
       response => {
         this.spinner.hide();

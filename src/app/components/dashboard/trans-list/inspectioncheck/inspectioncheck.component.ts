@@ -340,7 +340,8 @@ export class InspectioncheckComponent implements OnInit {
                   typeofWork: s.typeofWork ? s.typeofWork : '',
                   workStatus: s.workStatus ? s.workStatus : '',
                   id: s.id ? s.id : '',
-                  checkbox: false
+                  checkbox: false,
+                  button: 'Inspection Check'
                   // action: 'edit',
                   // index: index + 1,
                 }
@@ -363,6 +364,7 @@ export class InspectioncheckComponent implements OnInit {
     this.tableData1.forEach((res: any) => res.checkbox = (res.id == event.item.id) ? event.flag.checked : res.checkbox);
     console.log(this.tableData1);
   }
+
 
   getCompanyList() {
     const companyUrl = String.Join('/', this.apiConfigService.getCompanyList);
@@ -600,17 +602,19 @@ export class InspectioncheckComponent implements OnInit {
       });
   }
 
-  inspectioncheck() {
-    const arr = this.tableData1.filter((t: any) => t.checkbox);
 
-    if(!arr.length) {
-      this.alertService.openSnackBar('Please select production tag', Static.Close, SnackBar.error);
-      return;
-    }
+  tableButtonEvent(event: any) {
+    this.inspectioncheck(event);
+  }
+
+
+  inspectioncheck(event: any) {
+    debugger
+
     this.dialog.open(InspectionComponent, {
       width: '100%',
       height: '700px',
-      data: { materialcode: this.materialcode, tableData: arr }
+      data: event.item
     });
 
    

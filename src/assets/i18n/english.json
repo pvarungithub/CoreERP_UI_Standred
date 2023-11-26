@@ -2162,7 +2162,8 @@
     "value": "Value",
     "result": "Result",
     "inspectioncheck": "Inspection Check",
-                    "action": "Action"
+                    "action": "Action",
+                    "button": "Inspection Check"
   },
   "invoiceverification": {
     "title": "Invoice Verification",

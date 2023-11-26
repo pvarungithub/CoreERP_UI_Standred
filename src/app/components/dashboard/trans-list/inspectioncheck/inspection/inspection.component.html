@@ -18,6 +18,15 @@
                 <div>
 
                     <mat-form-field class="form-element">
+                        <mat-label [translate]="'inspectioncheck.result'"></mat-label>
+                        <input matInput formControlName="result" (keypress)="commonService.numberOnly($event)"
+                            appFocusOnEnter tabIndex="1" (change)="resultChange()">
+                        <mat-error *ngIf="!formControls.result.valid &&formControls.result.status != 'DISABLED'"
+                            [ngClass]="{ 'ng--invalid': !formControls.result.valid  }"> Result is
+                            required</mat-error>
+                    </mat-form-field>
+
+                    <mat-form-field class="form-element">
                         <mat-label [translate]="'standardrateoutput.minValue'"></mat-label>
                         <input matInput formControlName="minValue" readonly>
                     </mat-form-field>
@@ -26,7 +35,7 @@
                         <input matInput formControlName="maxValue" readonly>
                     </mat-form-field>
 
-                    <div formArrayName="tags" class="d-flex">
+                    <!-- <div formArrayName="tags" class="d-flex">
 
                     <div  *ngFor="let time of formData.controls.tags?.value; let o = index;trackBy:trackByFn"
                     [formGroupName]="o">
@@ -39,14 +48,14 @@
                             <mat-label [translate]="'inspectioncheck.result'"></mat-label>
                             <input matInput formControlName="tagAmount" (keypress)="commonService.numberOnly($event)"
                                 appFocusOnEnter tabIndex="1" (change)="resultChange()">
-                            <!-- <mat-error *ngIf="!formControls.result.valid &&formControls.result.status != 'DISABLED'"
+                            <mat-error *ngIf="!formControls.result.valid &&formControls.result.status != 'DISABLED'"
                                 [ngClass]="{ 'ng--invalid': !formControls.result.valid  }"> Result is
-                                required</mat-error> -->
+                                required</mat-error>
                         </mat-form-field>
 
                     </div>
 
-                    </div>
+                    </div> -->
 
 
                 </div>

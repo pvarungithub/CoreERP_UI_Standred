@@ -1813,7 +1813,8 @@
     "order": "Order",
     "price": "Price",
     "value": "Value",
-                "action": "Action"
+                "action": "Action",
+                "button": "button"
   },
   "invoiceverification": {
     "title": "Invoice Verification",
