@@ -14,6 +14,7 @@ import { AppDateAdapter, APP_DATE_FORMATS } from '../../../../directives/format-
 import { TableComponent } from 'src/app/reuse-components';
 import { InspectionComponent } from './inspection/inspection.component';
 import { MatDialog } from '@angular/material/dialog';
+import { BalanceCertificateComponent } from './balance-certificate/balance-certificate.component';
 @Component({
   selector: 'app-inspectioncheck',
   templateUrl: './inspectioncheck.component.html',
@@ -618,6 +619,22 @@ export class InspectioncheckComponent implements OnInit {
     });
 
    
+  }
+
+  balanceCertificate() {
+    const arr = this.tableData1.filter((t: any) => t.checkbox);
+
+    if(!arr.length) {
+      this.alertService.openSnackBar('Please select production tag', Static.Close, SnackBar.error);
+      return;
+    }
+
+    this.dialog.open(BalanceCertificateComponent, {
+      width: '100%',
+      height: '700px',
+      data: { materialcode: this.materialcode, tableData: arr }
+    });
+
   }
   
 }

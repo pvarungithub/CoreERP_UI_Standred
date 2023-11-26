@@ -113,8 +113,7 @@
 
           <mat-form-field>
             <mat-label>{{'inspectioncheck.completionDate' | translate }}</mat-label>
-            <input matInput [matDatepicker]="picker"
-              formControlName="completionDate">
+            <input matInput [matDatepicker]="picker" formControlName="completionDate">
             <mat-datepicker-toggle matSuffix [for]="picker"></mat-datepicker-toggle>
             <mat-datepicker #picker></mat-datepicker>
           </mat-form-field>
@@ -227,7 +226,8 @@
 
     <div>
       <app-table #tableRef class="table-css" [tableData]="tableData1" [showButtons]="false"
-        (editOrDeleteEvent)="editOrDeleteEvent($event)" (tableButtonEvent)="tableButtonEvent($event)" (tableCheckboxEvent)="tableCheckboxEvent($event)">
+        (editOrDeleteEvent)="editOrDeleteEvent($event)" (tableButtonEvent)="tableButtonEvent($event)"
+        (tableCheckboxEvent)="tableCheckboxEvent($event)">
       </app-table>
     </div>
 
@@ -236,6 +236,9 @@
   <mat-card-content class="d-flex justify-content-end py-1">
 
     <div>
+      <button mat-raised-button type="submit" class="button-color-bule mx-3 text-white" (click)="balanceCertificate()">
+        {{ 'inspectioncheck.balancecertificate' | translate }}
+      </button>
       <!-- <button mat-raised-button type="submit" class="button-color-bule mx-3 text-white" (click)="inspectioncheck()">
         {{ 'inspectioncheck.inspectioncheck' | translate }}
       </button> -->

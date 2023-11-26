@@ -74,6 +74,7 @@ import { NonEditableDatepicker } from './directives/format-datepicker';
 import { EmployeeComponent } from './components/dashboard/comp-list/employee/employee.component';
 import { DatePipe } from '@angular/common';
 import { InspectionComponent } from './components/dashboard/trans-list/inspectioncheck/inspection/inspection.component';
+import { BalanceCertificateComponent } from './components/dashboard/trans-list/inspectioncheck/balance-certificate/balance-certificate.component';
 
 //import { AccountKeyComponent } from './components/dashboard/comp-list/assetblock/accountkey/accountkey.component';
 // AoT requires an exported function for factories
@@ -151,7 +152,7 @@ export function HttpLoaderFactory(httpClient: HttpClient) {
     SalesorderComponent,
     FileUploadComponent,
     PreviewComponent,
-    InspectionComponent,StructureCreationComponent
+    InspectionComponent,StructureCreationComponent, BalanceCertificateComponent
   ],
   imports: [
     AppRoutingModule,
