@@ -207,7 +207,7 @@ export class InspectionComponent {
     // });
     // const requestObj = { qtyDtl: this.data.tableData };
     // this.data.tableData.forEach((d: any) => d.qtyResult = this.tableData);
-    const requestObj = { qtyResult:  this.tableData, qtyDtl: this.data };
+    const requestObj = { qtyResult:  this.tableData, qtyDtl: [this.data] };
     this.apiService.apiPostRequest(addsq, requestObj).subscribe(
       response => {
         this.spinner.hide();
