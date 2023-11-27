@@ -90,12 +90,13 @@ export class InspectionComponent {
   }
 
   getCommitmentList() {
+    debugger
     this.tableData = [];
     if (this.tableComponent) {
       this.tableComponent.defaultValues();
     }
     debugger
-    const url = String.Join('/', this.apiConfigService.getSaleOrderDetailbymaterialcode, this.data.materialCode);
+    const url = String.Join('/', this.apiConfigService.getSaleOrderDetailbymaterialcode, this.data.materialCode, this.data.productionTag);
     this.apiService.apiGetRequest(url)
       .subscribe(
         response => {
