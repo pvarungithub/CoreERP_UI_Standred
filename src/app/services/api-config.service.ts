@@ -300,6 +300,7 @@ export class ApiConfigService {
    /*******************************Invoice Verification  ****************************************************** */
    addinvoice = `${this.environment.runtimeConfig.serverUrl}Transactions/AddInvoiceverificationDetail`;
    getinvoiceDetail = `${this.environment.runtimeConfig.serverUrl}Transactions/GetInvoiceverificationDetail`;
+   getQCReportDetail = `${this.environment.runtimeConfig.serverUrl}Transactions/GetQCReportDetail`;
 
    /*******************************PrimeryCost****************************************************** */
    addpccost = `${this.environment.runtimeConfig.serverUrl}PrimaryCostElementsCreation/UpdatePcost`;

@@ -636,5 +636,19 @@ export class InspectioncheckComponent implements OnInit {
     });
 
   }
+
+  print() {
+    const getQCReportDetail = String.Join('/', this.apiConfigService.getQCReportDetail, this.formData1.value.saleOrderNumber, this.materialcode);
+    this.apiService.apiGetRequest(getQCReportDetail)
+      .subscribe(
+        response => {
+          const res = response;
+          if (!this.commonService.checkNullOrUndefined(res) && res.status === StatusCodes.pass) {
+            if (!this.commonService.checkNullOrUndefined(res.response)) {
+              // this.profitCenterList = res.response['profitCenterList'];
+            }
+          }
+        });
+  }
   
 }
