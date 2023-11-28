@@ -618,13 +618,13 @@ export class InspectioncheckComponent implements OnInit {
       data: event.item
     });
 
-   
+
   }
 
   balanceCertificate() {
     const arr = this.tableData1.filter((t: any) => t.checkbox);
 
-    if(!arr.length) {
+    if (!arr.length) {
       this.alertService.openSnackBar('Please select production tag', Static.Close, SnackBar.error);
       return;
     }
@@ -638,17 +638,61 @@ export class InspectioncheckComponent implements OnInit {
   }
 
   print() {
+    localStorage.setItem('printData', '');
     const getQCReportDetail = String.Join('/', this.apiConfigService.getQCReportDetail, this.formData1.value.saleOrderNumber, this.materialcode);
     this.apiService.apiGetRequest(getQCReportDetail)
       .subscribe(
         response => {
+          this.spinner.hide();
           const res = response;
           if (!this.commonService.checkNullOrUndefined(res) && res.status === StatusCodes.pass) {
             if (!this.commonService.checkNullOrUndefined(res.response)) {
               // this.profitCenterList = res.response['profitCenterList'];
+              this.printData(res.response);
             }
           }
         });
   }
-  
+
+  printData(res) {
+    debugger
+    let arr = [];
+    if (res.tagsDetail && res.tagsDetail.length) {
+      res.tagsDetail.forEach((t: any) => {
+        const obj = {
+          Parameter: t.parameter,
+          Specification: t.spec,
+          UOM: t.uom,
+          Instrument: t.instrument,
+          [t.tagName]: t.result
+        }
+        if (!arr.length) {
+          arr.push(obj);
+        } else {
+          const index = arr.findIndex((a: any) => a.Parameter == t.parameter);
+          if(index != -1) {
+            arr[index][t.tagName] = t.result
+          } else {
+            arr.push(obj);
+          }
+        }
+      })
+    }
+    const obj = {
+      heading: 'Quality Control',
+      headingObj: {
+        Amount: res.SaleorderMaster.amount,
+        'company': res.SaleorderMaster.company,
+
+      },
+      detailArray: arr
+    }
+    localStorage.setItem('printData', JSON.stringify(obj));
+    const url = this.router.serializeUrl(
+      this.router.createUrlTree([`dashboard/preview`])
+    );
+
+    window.open(url, "_blank");
+  }
+
 }
