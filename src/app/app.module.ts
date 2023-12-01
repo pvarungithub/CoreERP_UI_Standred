@@ -40,10 +40,11 @@ import {
 import {
   CashbankComponent, JournalComponent, GoodsissueComponent, MemoinvoiceComponent, SourceOfSupplyComponent, InspectioncheckComponent,
   QuotationAnalysisComponent, QuotationSupplierComponent, PurchasingComponent, PurchaseOrderComponent, ReceiptOfGoodsComponent,
-  ReceiptspaymentsComponent, BillOfMaterialComponent, MaterialrequisitionComponents, PurchasesaleassetComponent, SaleassetComponent,SampleRequisitionFormComponent,SampleServiceComponent, StockExcessComponent, CreateStockExcessComponent, CreateStockTransferComponent, StocktransferComponent, SalesorderComponent
+  ReceiptspaymentsComponent, BillOfMaterialComponent, MaterialrequisitionComponents, PurchasesaleassetComponent, SaleassetComponent,SampleRequisitionFormComponent,SampleServiceComponent, StockExcessComponent, CreateStockExcessComponent, CreateStockTransferComponent, StocktransferComponent, SalesorderComponent,
+  PreviewComponent
 } from './components/dashboard/trans-list/index';
 
-import { NavbarComponent, TableComponent, DeleteItemComponent, SearchFilterTableComponent, TransTableComponent, DynamicTableComponent, AutocompleteComponent, SaveItemComponent, FileUploadComponent, PreviewComponent } from './reuse-components/index';
+import { NavbarComponent, TableComponent, DeleteItemComponent, SearchFilterTableComponent, TransTableComponent, DynamicTableComponent, AutocompleteComponent, SaveItemComponent, FileUploadComponent } from './reuse-components/index';
 import {
   DashboardComponent, LoginComponent, SidebarComponent, NotFoundComponent
 } from './components/index';

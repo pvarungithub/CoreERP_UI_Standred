@@ -11,7 +11,7 @@ import { Static } from '../../../../enums/common/static';
 import { AlertService } from '../../../../services/alert.service';
 import { DateAdapter, MAT_DATE_FORMATS } from '@angular/material/core';
 import { AppDateAdapter, APP_DATE_FORMATS } from '../../../../directives/format-datepicker';
-import { PreviewComponent, TableComponent } from 'src/app/reuse-components';
+import { TableComponent } from 'src/app/reuse-components';
 import { DatePipe } from '@angular/common';
 import { MatDialog } from '@angular/material/dialog';
 
@@ -798,27 +798,29 @@ export class PurchaseOrderComponent implements OnInit {
 
   print() {
     const obj = {
-      heading: 'Purchase Order',
-      headingObj: {
-        Company: this.formData.value.company,
-        "Profit Center": this.formData.value.profitCenter,
-        "Sale Order": this.formData.value.saleOrderType,
-        "Purchase Order Number": this.formData.value.purchaseOrderNumber,
-        "Supplier Code": this.formData.value.supplierCode,
-        "Gst Number": this.formData.value.gstno,
-        "Delivery Date": this.formData.value.deliveryDate,
-        "Purchase Order Date": this.formData.value.purchaseOrderDate,
-        "Advance": this.formData.value.advance,
-        "Sale Order Number": this.formData.value.saleOrderNo,
-      },
-      detailArray: this.tableData.map((t: any) => {
-        return {
-          'Material Code': t.materialCode,
-          'Material Name': t.materialName,
-          'Tax Code': t.taxCode,
-          'Quantity': t.qty,
-        }
-      })
+      heading: 'PURCHASE ORDER',
+      headingObj: this.formData.value,
+      detailArray: this.tableData
+      //  {
+      //   Company: this.formData.value.company,
+      //   "Profit Center": this.formData.value.profitCenter,
+      //   "Sale Order": this.formData.value.saleOrderType,
+      //   "Purchase Order Number": this.formData.value.purchaseOrderNumber,
+      //   "Supplier Code": this.formData.value.supplierCode,
+      //   "Gst Number": this.formData.value.gstno,
+      //   "Delivery Date": this.formData.value.deliveryDate,
+      //   "Purchase Order Date": this.formData.value.purchaseOrderDate,
+      //   "Advance": this.formData.value.advance,
+      //   "Sale Order Number": this.formData.value.saleOrderNo,
+      // },
+      // detailArray: this.tableData.map((t: any) => {
+      //   return {
+      //     'Material Code': t.materialCode,
+      //     'Material Name': t.materialName,
+      //     'Tax Code': t.taxCode,
+      //     'Quantity': t.qty,
+      //   }
+      // })
     }
     localStorage.setItem('printData', JSON.stringify(obj));
     const url = this.router.serializeUrl(

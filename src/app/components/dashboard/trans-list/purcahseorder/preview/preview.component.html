@@ -1,0 +1,265 @@
+<div class="form-element p-2 d-flex justify-content-end">
+    <button mat-raised-button type="submit" class="button-color-bule text-white mx-1" (click)="print()">
+        {{ 'COMMON.PRINT' | translate }}
+    </button>
+</div>
+<div style="margin: 10px;" id="printData">
+    <div style="display: flex;">
+        <img src="assets/images/header.jpg" style="height: 100px;
+        width: 80%;">
+        <h3 style="padding: 24px;
+        background: rgb(22 106 132);
+        color: white;
+        font-size: 20px;
+        width: 20%;
+        align-items: center;
+        justify-content: space-around;
+        display: flex;
+        height: 100px;
+    "> {{ data.heading }} </h3>
+    </div>
+
+    <div style="border-top: 1px solid black; display: flex;">
+        <div style="width: 50%;padding-left: 15px;border-right: 1px solid black;">
+            <b> PO Number </b>
+            <span style="padding-left: 80px;">: {{ data?.headingObj?.purchaseOrderNumber }} </span>
+        </div>
+        <div style="width: 50%;padding-left: 15px;">
+            <b> Date </b>
+            <span style="padding-left: 80px;">: {{ data?.headingObj?.deliveryDate }} </span>
+        </div>
+    </div>
+
+    <div style="border-top: 1px solid black; display: flex;">
+        <div style="width: 50%;padding-left: 15px;border-right: 1px solid black;padding-top: 10px;">
+            <b> ADDRESS </b>
+            <div>AMT POWER TRANSMISSION</div>
+            <div>Plot No:40(PART/1), ROAD No: 2, PHASE 1,</div>
+            <div>IDA, Jeedimetla,</div>
+            <div>Hyderabad-500055,</div>
+            <div>Phone: 97042 88499,</div>
+            <div>Email: mmp@amtpowertransmission.com</div>
+        </div>
+        <div style="width: 50%;padding-left: 15px;padding-top: 10px;">
+            <div style="display: flex;">
+                <span style="width: 200px;"> Dispatch Mode </span>
+                <span style="padding-left: 80px;">: By Road </span>
+            </div>
+            <div style="display: flex;">
+                <span style="width: 200px;"> Terms of delivery </span>
+                <span style="padding-left: 80px;">: Need by 28.10.2023 </span>
+            </div>
+            <div style="display: flex;">
+                <span style="width: 200px;"> Terms of payment </span>
+                <span style="padding-left: 80px;">: Need by 28.10.2023 </span>
+            </div>
+            <div style="display: flex;">
+                <span style="width: 200px;"> Currency </span>
+                <span style="padding-left: 80px;">: Need by 28.10.2023 </span>
+            </div>
+            <div style="display: flex;">
+                <span style="width: 200px;"> Our enquiry reference </span>
+                <span style="padding-left: 80px;">: Need by 28.10.2023 </span>
+            </div>
+            <div style="display: flex;">
+                <span style="width: 200px;"> Material </span>
+                <span style="padding-left: 80px;">: Need by 28.10.2023 </span>
+            </div>
+        </div>
+    </div>
+
+    <div style="border-top: 1px solid black; display: flex;">
+        <div style="width: 50%;padding-left: 15px;border-right: 1px solid black;">
+            <b> Vendor Name & Address </b>
+        </div>
+        <div style="width: 50%;padding-left: 15px;">
+            <b> Deliver to this address </b>
+        </div>
+    </div>
+
+    <div style="border-top: 1px solid black; display: flex; ">
+        <div
+            style="width: 50%;padding-left: 15px;border-right: 1px solid black;padding-top: 10px;padding-bottom: 10px;">
+            <b> Shiv Shakti Steel Tubes </b>
+            <div>Dhoolapally Road</div>
+            <div>IDA Jeedimetla, Hyderabad - 500055</div>
+
+            <b style="margin-top: 10px;"> GSTIN : 36ASBPC7187R1Z3</b>
+        </div>
+        <div style="width: 50%;padding-left: 15px;padding-top: 10px;padding-bottom: 10px;">
+            <b> AMT POWER TRANSMISSION </b>
+            <div>Plot No:40(PART/1), ROAD No: 2, PHASE 1,</div>
+            <div>IDA, Jeedimetla,</div>
+            <div>Hyderabad-500055,</div>
+            <div>Phone: 97042 88499,</div>
+            <div>Email: mmp@amtpowertransmission.com</div>
+
+            <b style="margin-top: 10px;"> GSTIN : 36ASBPC7187R1Z3</b>
+        </div>
+    </div>
+
+    <div style="border-top: 1px solid black;" *ngIf="data.detailArray && data.detailArray.length">
+        <table style="width: 100%;text-align: center;">
+            <thead>
+                <tr>
+                    <th style="border-right: 1px solid black;"> S.No </th>
+                    <th style="border-right: 1px solid black;"> Product Code </th>
+                    <th style="border-right: 1px solid black;"> Description </th>
+                    <th style="border-right: 1px solid black;"> Quantity </th>
+                    <th style="border-right: 1px solid black;"> Unit Weight </th>
+                    <th style="border-right: 1px solid black;"> Total Weight </th>
+                    <th style="border-right: 1px solid black;"> Price/KG </th>
+                    <th> Total Amount </th>
+                </tr>
+            </thead>
+            <tbody>
+                <tr style="border-top: 1px solid black;" *ngFor="let row of data.detailArray; let i = index">
+                    <td style="border-right: 1px solid black;"> {{ i + 1 }} </td>
+                    <td style="border-right: 1px solid black;"> RECT. PIPE 80X40X2.9THK </td>
+                    <td style="border-right: 1px solid black;"> 6000MM Length </td>
+                    <td style="border-right: 1px solid black;"> 6000MM Length </td>
+                    <td style="border-right: 1px solid black;"> 6000MM Length </td>
+                    <td style="border-right: 1px solid black;"> 6000MM Length </td>
+                    <td style="border-right: 1px solid black;"> 6000MM Length </td>
+                    <td style="border-right: 1px solid black;"> 6000MM Length </td>
+                </tr>
+                <tr style="border-top: 1px solid black; text-align: start;font-weight: bold;">
+                    <td style="border-right: 1px solid black;" colspan="2"> Grand Totals </td>
+                    <td style="border-right: 1px solid black;"></td>
+                    <td style="border-right: 1px solid black;"></td>
+                    <td style="border-right: 1px solid black;text-align: center;">Weight</td>
+                    <td style="border-right: 1px solid black;text-align: center;">1220.99</td>
+                    <td style="border-right: 1px solid black;text-align: center;">Amount</td>
+                    <td style="border-right: 1px solid black;text-align: center;">80890.59</td>
+                </tr>
+            </tbody>
+        </table>
+    </div>
+
+
+    <div style="border-top: 1px solid black; display: flex; ">
+        <div style="width: 50%;padding-left: 15px;padding-top: 10px;padding-bottom: 10px;">
+            <b> Total amount in words: </b>
+            <div>Ninety Five Thousands Four Hundreds Fifty and Eighty Ni</div>
+
+        </div>
+        <div style="width: 50%;padding-left: 5px;padding-bottom: 10px;">
+            <div style="padding-left: 15px;padding-top: 10px;">
+                <div style="display: flex;">
+                    <b style="width: 300px;"> Total Amount Before Tax </b>
+                    <span style="padding-left: 80px;"> 80890.59 </span>
+                </div>
+                <div style="display: flex;border-top: 1px solid black;">
+                    <b style="width: 300px;"> Add: CGST @ 9% </b>
+                    <span style="padding-left: 80px;"> 80890.59 </span>
+                </div>
+                <div style="display: flex;border-top: 1px solid black;">
+                    <b style="width: 300px;"> Add: SGST @ 9% </b>
+                    <span style="padding-left: 80px;"> 80890.59 </span>
+                </div>
+                <div style="display: flex;border-top: 1px solid black;">
+                    <b style="width: 300px;"> Add: IGST @ 0% </b>
+                    <span style="padding-left: 80px;"> 80890.59 </span>
+                </div>
+                <div style="display: flex;border-top: 1px solid black;">
+                    <b style="width: 300px;"> Total Amount with GST </b>
+                    <span style="padding-left: 80px;"> 80890.59 </span>
+                </div>
+                <div style="display: flex;border-top: 1px solid black;">
+                    <b style="width: 300px;"> Total Payable Reverse Charges </b>
+                    <span style="padding-left: 80px;"> 80890.59 </span>
+                </div>
+            </div>
+        </div>
+    </div>
+
+    <div style="border-top: 1px solid black;">
+        The "TERMS AND CONDITIONS OF PURCHASE" ATTACHED TO THIS PURCHASE ORDER ARE A PART HEREOF, SHALL GOVERNTHE
+        PURCHASE OF THE ABOVE ITEMS, ARE BINDING UPON THE PARTIES, AND SUPPLIER ANY INCONSISTENT TERMS CONTAINED IN
+        SUPPLIER'S INVOICE OR OTHER DOCUMENT. PLEASE NOTE THAT AMT POWER TRANSMISSION RESERVES THE RIGHT TO WITH HOLD
+        ANY PAYMENT UNTIL SUCH TIME THAT A VALID TAX INVOICE IS PROVIDE
+    </div>
+
+    <div style="display: flex;">
+        <img src="assets/images/header.jpg" style="height: 100px;
+        width: 80%;">
+        <h3 style="padding: 24px;
+        background: rgb(22 106 132);
+        color: white;
+        font-size: 20px;
+        width: 20%;
+        align-items: center;
+        justify-content: space-around;
+        display: flex;
+        height: 100px;
+    "> {{ data.heading }} </h3>
+    </div>
+
+    <div style="margin-bottom: 15px;">
+        <b>WARRANTIES:</b>
+        <div>
+            The supplier shall guarantee that the goods are made from best material with first class workmanship and
+            will qualify to all quality
+            specifications and performance specification with us. The supplier shall guarantee the goods will give
+            satisfactory performance for the
+            period of 18 months from the date of putting in to operation or the date of invoice whichever is later. In
+            case of repair, replacement, it
+            would be at the expense of supplier only and the warranty period will be proportionately extended.
+        </div>
+    </div>
+
+    <div style="margin-bottom: 15px;">
+        <b>GENERAL NOTES:</b>
+        <ol>
+            <li>The supplier shall thoroughly inspect before dispatch of goods.</li>
+            <li>A pre dispatch inspection report is mandatory which will state clearly the invoice Number and our PO
+                details.</li>
+            <li> Supplier should comply the requirements mentioned in our PO with respect to grade or material,
+                international standards to be
+                followed.</li>
+            <li>Our end customer may visit your premises during our business audit or ISO audit. You are requested to
+                cooperate for the same.</li>
+            <li>'Heat No. should be mentioned in the pre dispatch inspection report.</li>
+            <li> Hereby you are agreed to maintain secrecy of our specifications mentioned in our purchase order and
+                should not disclosed outside
+                people who are there in the similar line of business with you.</li>
+        </ol>
+
+    </div>
+
+    <div style="margin-bottom: 15px;">
+        <b>GENERAL TERMS:</b>
+        <ol>
+            <li>Please send acceptance of PO within seven days; Non-receipt of acceptance within seven days shall be
+                considered as acceptance of
+                the order.</li>
+            <li> In case of insurance by TPP, please furnish dispatch details by fax, email, immediately.</li>
+            <li> Material which is not as per specification mentioned in the P.O is liable to be rejected and returned
+                at your cost and risk</li>
+            <li>Submit bill in duplicate.</li>
+            <li> Kindly address all your correspondence to the address as given above.</li>
+            <li>All disputes shall be under the provisions of The India Arbitration and Reconciliations Act 1996 and
+                shall be subject to jurisdiction of
+                Hyderabad Courts, Telangana, India only.</li>
+        </ol>
+
+    </div>
+
+    <div style="margin-bottom: 15px;display: flex;">
+
+        <div style="width: 50%;">
+            <b> Prepared By: </b>
+        </div>
+        <div style="width: 50%;">
+            <b> For AMT Power Transmission </b>
+        </div>
+
+    </div>
+
+    <div style="margin-bottom: 15px;">
+
+            <b> Signature/Date..................................................................... </b>
+
+    </div>
+
+</div>

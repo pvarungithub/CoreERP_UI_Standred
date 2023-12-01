@@ -7,8 +7,8 @@ import { RolesprevilagesComponent } from './components/dashboard/rolesprevilages
 import { TransListComponent } from './components/dashboard/trans-list/trans-list.component';
 import { CompTabsComponent } from './components/dashboard/comp-list/comp-tabs/comp-tabs.component';
 import { PrimaryComponent } from './components/dashboard/primary/primary.component';
-import { CreateStockExcessComponent, CreateStockTransferComponent } from './components/dashboard/trans-list';
-import { PreviewComponent } from './reuse-components';
+import { CreateStockExcessComponent, CreateStockTransferComponent, PreviewComponent } from './components/dashboard/trans-list';
+
 const routes: Routes = [
   { path: 'login', component: LoginComponent },
   {
