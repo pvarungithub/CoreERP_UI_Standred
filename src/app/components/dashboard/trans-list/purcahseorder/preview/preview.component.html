@@ -5,18 +5,20 @@
 </div>
 <div style="margin: 10px;" id="printData">
     <div style="display: flex;">
-        <img src="assets/images/header.jpg" style="height: 100px;
-        width: 80%;">
-        <h3 style="padding: 24px;
-        background: rgb(22 106 132);
+        <img src="/assets/images/header.jpg" style="height: 100px;
+        width: 65%;">
+        <div style="padding: 24px;
+        border-top: 1px solid black;
+        -webkit-print-color-adjust: exact;
+        background: rgb(22 106 132) !important;
         color: white;
         font-size: 20px;
-        width: 20%;
+        width: 35%;
         align-items: center;
         justify-content: space-around;
         display: flex;
-        height: 100px;
-    "> {{ data.heading }} </h3>
+        height: 50px;
+    "> {{ data.heading }} </div>
     </div>
 
     <div style="border-top: 1px solid black; display: flex;">
@@ -26,7 +28,7 @@
         </div>
         <div style="width: 50%;padding-left: 15px;">
             <b> Date </b>
-            <span style="padding-left: 80px;">: {{ data?.headingObj?.deliveryDate }} </span>
+            <span style="padding-left: 80px;">: {{ data?.headingObj?.deliveryDate | date }} </span>
         </div>
     </div>
 
@@ -98,46 +100,46 @@
         </div>
     </div>
 
-    <div style="border-top: 1px solid black;" *ngIf="data.detailArray && data.detailArray.length">
-        <table style="width: 100%;text-align: center;">
+    <div style="border-top: 1px solid black;-webkit-print-color-adjust: exact;" *ngIf="data.detailArray && data.detailArray.length">
+        <table style="width: 100%;text-align: center; font-size: 14px;-webkit-print-color-adjust: exact;">
             <thead>
                 <tr>
-                    <th style="border-right: 1px solid black;"> S.No </th>
-                    <th style="border-right: 1px solid black;"> Product Code </th>
-                    <th style="border-right: 1px solid black;"> Description </th>
-                    <th style="border-right: 1px solid black;"> Quantity </th>
-                    <th style="border-right: 1px solid black;"> Unit Weight </th>
-                    <th style="border-right: 1px solid black;"> Total Weight </th>
-                    <th style="border-right: 1px solid black;"> Price/KG </th>
+                    <th style="border-right: 1px solid black; -webkit-print-color-adjust: exact;"> S.No </th>
+                    <th style="border-right: 1px solid black; -webkit-print-color-adjust: exact;"> Product Code </th>
+                    <th style="border-right: 1px solid black; -webkit-print-color-adjust: exact;"> Description </th>
+                    <th style="border-right: 1px solid black; -webkit-print-color-adjust: exact;"> Quantity </th>
+                    <th style="border-right: 1px solid black; -webkit-print-color-adjust: exact;"> Unit Weight </th>
+                    <th style="border-right: 1px solid black; -webkit-print-color-adjust: exact;"> Total Weight </th>
+                    <th style="border-right: 1px solid black; -webkit-print-color-adjust: exact;"> Price/KG </th>
                     <th> Total Amount </th>
                 </tr>
             </thead>
             <tbody>
-                <tr style="border-top: 1px solid black;" *ngFor="let row of data.detailArray; let i = index">
-                    <td style="border-right: 1px solid black;"> {{ i + 1 }} </td>
-                    <td style="border-right: 1px solid black;"> RECT. PIPE 80X40X2.9THK </td>
-                    <td style="border-right: 1px solid black;"> 6000MM Length </td>
-                    <td style="border-right: 1px solid black;"> 6000MM Length </td>
-                    <td style="border-right: 1px solid black;"> 6000MM Length </td>
-                    <td style="border-right: 1px solid black;"> 6000MM Length </td>
-                    <td style="border-right: 1px solid black;"> 6000MM Length </td>
-                    <td style="border-right: 1px solid black;"> 6000MM Length </td>
+                <tr style="border-top: 1px solid black;-webkit-print-color-adjust: exact;" *ngFor="let row of data.detailArray; let i = index">
+                    <td style="border-right: 1px solid black;-webkit-print-color-adjust: exact;"> {{ i + 1 }} </td>
+                    <td style="border-right: 1px solid black;-webkit-print-color-adjust: exact;"> RECT. PIPE 80X40X2.9THK </td>
+                    <td style="border-right: 1px solid black;-webkit-print-color-adjust: exact;"> 6000MM Length </td>
+                    <td style="border-right: 1px solid black;-webkit-print-color-adjust: exact;"> 6000MM Length </td>
+                    <td style="border-right: 1px solid black;-webkit-print-color-adjust: exact;"> 6000MM Length </td>
+                    <td style="border-right: 1px solid black;-webkit-print-color-adjust: exact;"> 6000MM Length </td>
+                    <td style="border-right: 1px solid black;-webkit-print-color-adjust: exact;"> 6000MM Length </td>
+                    <td style="border-right: 1px solid black;-webkit-print-color-adjust: exact;"> 6000MM Length </td>
                 </tr>
-                <tr style="border-top: 1px solid black; text-align: start;font-weight: bold;">
-                    <td style="border-right: 1px solid black;" colspan="2"> Grand Totals </td>
-                    <td style="border-right: 1px solid black;"></td>
-                    <td style="border-right: 1px solid black;"></td>
-                    <td style="border-right: 1px solid black;text-align: center;">Weight</td>
-                    <td style="border-right: 1px solid black;text-align: center;">1220.99</td>
-                    <td style="border-right: 1px solid black;text-align: center;">Amount</td>
-                    <td style="border-right: 1px solid black;text-align: center;">80890.59</td>
+                <tr style="border-top: 1px solid black; text-align: start;font-weight: bold;-webkit-print-color-adjust: exact;">
+                    <td style="border-right: 1px solid black;-webkit-print-color-adjust: exact;" colspan="2"> Grand Totals </td>
+                    <td style="border-right: 1px solid black;-webkit-print-color-adjust: exact;"></td>
+                    <td style="border-right: 1px solid black;-webkit-print-color-adjust: exact;"></td>
+                    <td style="border-right: 1px solid black;-webkit-print-color-adjust: exact;text-align: center;">Weight</td>
+                    <td style="border-right: 1px solid black;-webkit-print-color-adjust: exact;text-align: center;">1220.99</td>
+                    <td style="border-right: 1px solid black;-webkit-print-color-adjust: exact;text-align: center;">Amount</td>
+                    <td style="border-right: 1px solid black;-webkit-print-color-adjust: exact;text-align: center;">80890.59</td>
                 </tr>
             </tbody>
         </table>
     </div>
 
 
-    <div style="border-top: 1px solid black; display: flex; ">
+    <div style="border-top: 1px solid black; display: flex; font-size: 15px;">
         <div style="width: 50%;padding-left: 15px;padding-top: 10px;padding-bottom: 10px;">
             <b> Total amount in words: </b>
             <div>Ninety Five Thousands Four Hundreds Fifty and Eighty Ni</div>
@@ -173,25 +175,32 @@
         </div>
     </div>
 
-    <div style="border-top: 1px solid black;">
+    <div style="border-top: 1px solid black;font-size: 15px;">
         The "TERMS AND CONDITIONS OF PURCHASE" ATTACHED TO THIS PURCHASE ORDER ARE A PART HEREOF, SHALL GOVERNTHE
         PURCHASE OF THE ABOVE ITEMS, ARE BINDING UPON THE PARTIES, AND SUPPLIER ANY INCONSISTENT TERMS CONTAINED IN
         SUPPLIER'S INVOICE OR OTHER DOCUMENT. PLEASE NOTE THAT AMT POWER TRANSMISSION RESERVES THE RIGHT TO WITH HOLD
         ANY PAYMENT UNTIL SUCH TIME THAT A VALID TAX INVOICE IS PROVIDE
     </div>
 
+    <div style="text-align: center;">
+        <img src="/assets/images/footer.jpg" style="height: 100px;
+        width: 20%;">
+    </div>
+
     <div style="display: flex;">
-        <img src="assets/images/header.jpg" style="height: 100px;
-        width: 80%;">
+        <img src="/assets/images/header.jpg" style="height: 100px;
+        width: 65%;">
         <h3 style="padding: 24px;
-        background: rgb(22 106 132);
+        border-top: 1px solid black;
+        -webkit-print-color-adjust: exact;
+        background: rgb(22 106 132) !important;
         color: white;
         font-size: 20px;
-        width: 20%;
+        width: 35%;
         align-items: center;
         justify-content: space-around;
         display: flex;
-        height: 100px;
+        height: 50px;
     "> {{ data.heading }} </h3>
     </div>
 

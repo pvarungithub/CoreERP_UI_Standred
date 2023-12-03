@@ -1,6 +1,5 @@
-import { Component, Inject, Optional } from '@angular/core';
-import { MatDialogRef, MAT_DIALOG_DATA } from '@angular/material/dialog';
-import { NgxSpinnerService } from 'ngx-spinner';
+import { Component } from '@angular/core';
+import { DomSanitizer } from "@angular/platform-browser";
 
 
 @Component({
@@ -12,7 +11,7 @@ export class PreviewComponent {
 
   data: any;
 
-  constructor( private spinner: NgxSpinnerService) {
+  constructor(public sanitizer: DomSanitizer) {
    const obj = localStorage.getItem('printData');
    const newO = JSON.parse(obj);
    this.data = newO;
