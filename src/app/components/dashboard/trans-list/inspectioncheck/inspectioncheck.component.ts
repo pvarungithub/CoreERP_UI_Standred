@@ -678,18 +678,18 @@ export class InspectioncheckComponent implements OnInit {
         }
       })
     }
+    debugger
     const obj = {
-      heading: 'Quality Control',
+      heading: 'INSPECTION REPORT',
       headingObj: {
         Amount: res.SaleorderMaster.amount,
         'company': res.SaleorderMaster.company,
-
       },
       detailArray: arr
     }
-    localStorage.setItem('printData', JSON.stringify(obj));
+    localStorage.setItem('inspectionPrintData', JSON.stringify(obj));
     const url = this.router.serializeUrl(
-      this.router.createUrlTree([`dashboard/preview`])
+      this.router.createUrlTree([`dashboard/inspection-preview`])
     );
 
     window.open(url, "_blank");

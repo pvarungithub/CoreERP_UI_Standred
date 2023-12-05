@@ -38,7 +38,7 @@ import {
 } from './components/dashboard/comp-list/index';
 
 import {
-  CashbankComponent, JournalComponent, GoodsissueComponent, MemoinvoiceComponent, SourceOfSupplyComponent, InspectioncheckComponent,
+  CashbankComponent, JournalComponent, GoodsissueComponent, MemoinvoiceComponent, SourceOfSupplyComponent, InspectioncheckComponent, InspectionPreviewComponent,
   QuotationAnalysisComponent, QuotationSupplierComponent, PurchasingComponent, PurchaseOrderComponent, ReceiptOfGoodsComponent,
   ReceiptspaymentsComponent, BillOfMaterialComponent, MaterialrequisitionComponents, PurchasesaleassetComponent, SaleassetComponent,SampleRequisitionFormComponent,SampleServiceComponent, StockExcessComponent, CreateStockExcessComponent, CreateStockTransferComponent, StocktransferComponent, SalesorderComponent,
   PreviewComponent
@@ -153,7 +153,7 @@ export function HttpLoaderFactory(httpClient: HttpClient) {
     SalesorderComponent,
     FileUploadComponent,
     PreviewComponent,
-    InspectionComponent,StructureCreationComponent, BalanceCertificateComponent
+    InspectionComponent,StructureCreationComponent, BalanceCertificateComponent, InspectionPreviewComponent
   ],
   imports: [
     AppRoutingModule,

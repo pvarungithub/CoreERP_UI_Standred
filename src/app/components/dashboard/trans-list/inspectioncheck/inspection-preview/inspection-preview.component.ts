@@ -1,17 +1,17 @@
 import { Component } from '@angular/core';
-
+import { DomSanitizer } from "@angular/platform-browser";
 
 @Component({
-  selector: 'app-preview',
-  templateUrl: './preview.component.html',
-  styleUrls: ['./preview.component.scss']
+  selector: 'app-inspection-preview',
+  templateUrl: './inspection-preview.component.html',
+  styleUrls: ['./inspection-preview.component.scss']
 })
-export class PreviewComponent {
+export class InspectionPreviewComponent {
 
   data: any;
 
   constructor() {
-   const obj = localStorage.getItem('printData');
+   const obj = localStorage.getItem('inspectionPrintData');
    const newO = JSON.parse(obj);
    this.data = newO;
   }
@@ -20,7 +20,7 @@ export class PreviewComponent {
   print() {
     // this.spinner.show();
     // setTimeout(() => {
-      let DATA: any = document.getElementById('printData');
+      let DATA: any = document.getElementById('inspectionPrintData');
       const WindowPrt = window.open('', '', 'left=0,top=0,width=900,height=900,toolbar=0,scrollbars=0,status=0');
       WindowPrt.document.write(DATA.innerHTML);
       WindowPrt.document.close();
