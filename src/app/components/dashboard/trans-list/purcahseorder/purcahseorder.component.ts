@@ -312,7 +312,7 @@ export class PurchaseOrderComponent implements OnInit {
   }
 
   getCompanyList() {
-    const companyUrl = String.Join('/', this.apiConfigService.getCompanyList);
+    const companyUrl = String.Join('/', this.apiConfigService.getCompanysList);
     this.apiService.apiGetRequest(companyUrl)
       .subscribe(
         response => {
@@ -340,17 +340,16 @@ export class PurchaseOrderComponent implements OnInit {
   //       });
   // }
   getsuppliercodeList() {
-    const getsuppliercodeList = String.Join('/', this.apiConfigService.getCustomerList);
+    const getsuppliercodeList = String.Join('/', this.apiConfigService.getBusienessPartnersAccList);
     this.apiService.apiGetRequest(getsuppliercodeList)
       .subscribe(
         response => {
           const res = response;
           if (!this.commonService.checkNullOrUndefined(res) && res.status === StatusCodes.pass) {
             if (!this.commonService.checkNullOrUndefined(res.response)) {
-              const resp = res.response['bpList'];
-              const data = resp.length && resp.filter((t: any) => t.bptype == 'Vendor');
+              const resp = res.response['bpaList'];
+              const data = resp.length && resp.filter((t: any) => t.bpTypeName == 'Vendor');
               this.bpaList = data;
-
             }
           }
           this.getpurchaseordertypetData();
@@ -486,7 +485,7 @@ export class PurchaseOrderComponent implements OnInit {
   // }
 
   getProfitcenterData() {
-    const getpcUrl = String.Join('/', this.apiConfigService.getProfitCentersList);
+    const getpcUrl = String.Join('/', this.apiConfigService.getProfitCenterList);
     this.apiService.apiGetRequest(getpcUrl)
       .subscribe(
         response => {
@@ -589,10 +588,10 @@ export class PurchaseOrderComponent implements OnInit {
               // })
               // this.sendDynTableData = { type: 'edit', data: res.response['poDetail'] };
               this.formData.disable();
-              res.response['poDetail'].forEach((s: any, index: number) => { 
+              res.response['poDetail'].forEach((s: any, index: number) => {
                 s.availableQTY = s.availableQTY ? s.availableQTY : '';
                 s.action = 'edit';
-                s.index = index + 1; 
+                s.index = index + 1;
               })
               this.tableData = res.response['poDetail'];
               this.calculate();
@@ -696,7 +695,7 @@ export class PurchaseOrderComponent implements OnInit {
       })
     })
     this.formData.patchValue({
-      totalAmount: (+this.formData.value.amount) + (+this.formData.value.totalTax),
+      totalAmount: ((+this.formData.value.amount) + (+this.formData.value.totalTax)).toFixed(2),
     })
   }
   // emitColumnChanges(data) {
@@ -797,10 +796,54 @@ export class PurchaseOrderComponent implements OnInit {
   }
 
   print() {
+    debugger
+    let formObj = this.formData.value;
+    if (this.companyList.length) {
+      const cObj = this.companyList.find((c: any) => c.companyCode == formObj.company);
+      formObj['address'] = {
+        companyName: cObj.companyName,
+        address: cObj.address,
+        address1: cObj.address1,
+        city: cObj.city,
+        stateName: cObj.stateName,
+        pin: cObj.pin,
+        phone: cObj.phone,
+        email: cObj.email,
+      }
+    }
+    if (this.bpaList.length) {
+      const cObj = this.bpaList.find((c: any) => c.bpnumber == formObj.supplierCode);
+      formObj['vAddress'] = {
+        name: cObj.name,
+        address: cObj.address,
+        address1: cObj.address1,
+        city: cObj.city,
+        stateName: cObj.stateName,
+        pin: cObj.pin,
+        phone: cObj.phone,
+        email: cObj.email,
+        gstno: cObj.gstno,
+      }
+    }
+    if (this.profitCenterList.length) {
+      const cObj = this.profitCenterList.find((c: any) => c.code == formObj.profitCenter);
+      formObj['pAddress'] = {
+        name: cObj.name,
+        address: cObj.address,
+        address1: cObj.address1,
+        city: cObj.city,
+        stateName: cObj.stateName,
+        pin: cObj.pin,
+        phone: cObj.phone,
+        email: cObj.email,
+        gstno: cObj.gstno,
+      }
+    }
     const obj = {
       heading: 'PURCHASE ORDER',
-      headingObj: this.formData.value,
-      detailArray: this.tableData
+      headingObj: formObj,
+      detailArray: this.tableData,
+      headingObj1: this.formData1.value
       //  {
       //   Company: this.formData.value.company,
       //   "Profit Center": this.formData.value.profitCenter,

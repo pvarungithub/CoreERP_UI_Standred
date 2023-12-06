@@ -24,64 +24,64 @@
     <div style="border-top: 1px solid black; display: flex;">
         <div style="width: 50%;padding-left: 15px;border-right: 1px solid black;">
             <b> Customer Name </b>
-            <span style="padding-left: 80px;">: {{ data?.headingObj?.purchaseOrderNumber }} </span>
+            <span style="padding-left: 80px;">: {{ data?.headingObj?.supplierName }} </span>
         </div>
         <div style="width: 50%;padding-left: 15px;">
             <b> Item Description </b>
-            <span style="padding-left: 80px;">: {{ data?.headingObj?.deliveryDate }} </span>
+            <span style="padding-left: 80px;">: {{ data?.headingObj?.description }} </span>
         </div>
     </div>
 
     <div style="border-top: 1px solid black; display: flex;">
         <div style="width: 25%;padding-left: 15px;border-right: 1px solid black;">
             <b> Invoice Number </b>
-            <span style="padding-left: 80px;">: {{ data?.headingObj?.purchaseOrderNumber }} </span>
+            <span style="padding-left: 80px;">:  </span>
         </div>
         <div style="width: 25%;padding-left: 15px;border-right: 1px solid black;">
             <b> PO Number </b>
-            <span style="padding-left: 80px;">: {{ data?.headingObj?.deliveryDate }} </span>
+            <span style="padding-left: 80px;">: {{ data?.headingObj?.poNumber }} </span>
         </div>
         <div style="width: 25%;padding-left: 15px;border-right: 1px solid black;">
             <b> Heat Number </b>
-            <span style="padding-left: 80px;">: {{ data?.headingObj?.purchaseOrderNumber }} </span>
+            <span style="padding-left: 80px;">: {{ data?.headingObj?.heatNumber }} </span>
         </div>
         <div style="width: 25%;padding-left: 15px;">
             <b> Report Date </b>
-            <span style="padding-left: 80px;">: {{ data?.headingObj?.deliveryDate | date }} </span>
+            <span style="padding-left: 80px;">: {{ date | date }} </span>
         </div>
     </div>
 
     <div style="border-top: 1px solid black; display: flex;">
         <div style="width: 25%;padding-left: 15px;border-right: 1px solid black;">
             <b> Invoice Date </b>
-            <span style="padding-left: 80px;">: {{ data?.headingObj?.purchaseOrderNumber | date }} </span>
+            <span style="padding-left: 80px;">:  </span>
         </div>
         <div style="width: 25%;padding-left: 15px;border-right: 1px solid black;">
             <b> PO Date </b>
-            <span style="padding-left: 80px;">: {{ data?.headingObj?.deliveryDate | date }} </span>
+            <span style="padding-left: 80px;">: {{ data?.headingObj?.poDate | date }} </span>
         </div>
         <div style="width: 25%;padding-left: 15px;border-right: 1px solid black;">
             <b> Part/Drg No </b>
-            <span style="padding-left: 80px;">: {{ data?.headingObj?.purchaseOrderNumber }} </span>
+            <span style="padding-left: 80px;">: {{ data?.headingObj?.drgNo }} </span>
         </div>
         <div style="width: 25%;padding-left: 15px;">
             <b> Drawing Rev. No </b>
-            <span style="padding-left: 80px;">: {{ data?.headingObj?.deliveryDate }} </span>
+            <span style="padding-left: 80px;">:  </span>
         </div>
     </div>
 
     <div style="border-top: 1px solid black; display: flex;">
         <div style="width: 25%;padding-left: 15px;border-right: 1px solid black;">
             <b> Invoice Quantity </b>
-            <span style="padding-left: 80px;">: {{ data?.headingObj?.purchaseOrderNumber | date }} </span>
+            <span style="padding-left: 80px;">:  </span>
         </div>
         <div style="width: 25%;padding-left: 15px;border-right: 1px solid black;">
             <b> PO Quantity </b>
-            <span style="padding-left: 80px;">: {{ data?.headingObj?.deliveryDate | date }} </span>
+            <span style="padding-left: 80px;">:  </span>
         </div>
         <div style="width: 25%;padding-left: 15px">
-            <b> Page </b>
-            <span style="padding-left: 80px;">: {{ data?.headingObj?.purchaseOrderNumber }} </span>
+            <!-- <b> Page </b>
+            <span style="padding-left: 80px;">: {{ data?.headingObj?.purchaseOrderNumber }} </span> -->
         </div>
         <div style="width: 25%;padding-left: 15px;">
 
@@ -107,7 +107,7 @@
                         </th>
                     </ng-container>
                     <!-- <th style="border-right: 1px solid black; -webkit-print-color-adjust: exact;"> Remarks </th> -->
-                    <th> Total Amount </th>
+                    <th > Remarks </th>
                 </tr>
             </thead>
             <tbody>
@@ -127,7 +127,7 @@
                             style="border-right: 1px solid black;-webkit-print-color-adjust: exact;"> {{ cell.value }}
                         </td>
                     </ng-container>
-                    <!-- <td style="border-right: 1px solid black;-webkit-print-color-adjust: exact;"> {{ row.Remarks }} </td> -->
+                    <td > {{ row.description }} </td>
                 </tr>
             </tbody>
         </table>
@@ -137,15 +137,15 @@
     <div style="border-top: 1px solid black;border-bottom: 1px solid black; display: flex;margin-top: 20px;">
         <div style="width: 33.33%;padding-left: 15px;border-right: 1px solid black;">
             <b> Prepared By : </b>
-            <span style="padding-left: 80px;">: {{ data?.headingObj?.purchaseOrderNumber | date }} </span>
+            <span style="padding-left: 80px;">:  </span>
         </div>
         <div style="width: 33.33%;padding-left: 15px;border-right: 1px solid black;">
             <b> Checked By : </b>
-            <span style="padding-left: 80px;">: {{ data?.headingObj?.deliveryDate | date }} </span>
+            <span style="padding-left: 80px;">:  </span>
         </div>
         <div style="width: 33.33%;padding-left: 15px">
             <b> Approved By : </b>
-            <span style="padding-left: 80px;">: {{ data?.headingObj?.purchaseOrderNumber }} </span>
+            <span style="padding-left: 80px;">:  </span>
         </div>
     </div>
 

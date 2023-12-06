@@ -10,6 +10,8 @@ export class InspectionPreviewComponent {
 
   data: any;
 
+  date = new Date();
+
   constructor() {
    const obj = localStorage.getItem('inspectionPrintData');
    const newO = JSON.parse(obj);

@@ -55,7 +55,6 @@ export class BalanceCertificateComponent {
   get formControls() { return this.formData.controls; }
 
   ngOnInit() {
-    debugger
     this.getCommitmentList();
   }
 
@@ -73,7 +72,6 @@ export class BalanceCertificateComponent {
     if (this.tableComponent) {
       this.tableComponent.defaultValues();
     }
-    debugger
     const url = String.Join('/', this.apiConfigService.getCommitmentList, 'Balancing');
     this.apiService.apiGetRequest(url)
       .subscribe(
@@ -169,9 +167,7 @@ export class BalanceCertificateComponent {
   }
 
   registerQCResults() {
-    debugger
     const addsq = String.Join('/', this.apiConfigService.registerQCResults);
- 
     this.data.tableData.forEach((d: any) => d.qtyResult = this.tableData);
     const requestObj = { qtyResult:  this.tableData, qtyDtl: this.data.tableData };
     this.apiService.apiPostRequest(addsq, requestObj).subscribe(

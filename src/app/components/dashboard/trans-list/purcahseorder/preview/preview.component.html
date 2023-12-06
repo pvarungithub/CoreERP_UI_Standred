@@ -28,19 +28,18 @@
         </div>
         <div style="width: 50%;padding-left: 15px;">
             <b> Date </b>
-            <span style="padding-left: 80px;">: {{ data?.headingObj?.deliveryDate | date }} </span>
+            <span style="padding-left: 80px;">: {{ data?.headingObj?.purchaseOrderDate | date }} </span>
         </div>
     </div>
 
     <div style="border-top: 1px solid black; display: flex;">
         <div style="width: 50%;padding-left: 15px;border-right: 1px solid black;padding-top: 10px;">
             <b> ADDRESS </b>
-            <div>AMT POWER TRANSMISSION</div>
-            <div>Plot No:40(PART/1), ROAD No: 2, PHASE 1,</div>
-            <div>IDA, Jeedimetla,</div>
-            <div>Hyderabad-500055,</div>
-            <div>Phone: 97042 88499,</div>
-            <div>Email: mmp@amtpowertransmission.com</div>
+            <div>{{ data?.headingObj?.address.companyName }}</div>
+            <div>{{ data?.headingObj?.address.address }}, {{ data?.headingObj?.address.address1 }}</div>
+            <div>{{ data?.headingObj?.address.city }}, {{ data?.headingObj?.address.stateName }}, {{ data?.headingObj?.address.pin }}</div>
+            <div>Phone: {{ data?.headingObj?.address.phone  }}</div>
+            <div>Email: {{ data?.headingObj?.address.email  }}</div>
         </div>
         <div style="width: 50%;padding-left: 15px;padding-top: 10px;">
             <div style="display: flex;">
@@ -49,23 +48,23 @@
             </div>
             <div style="display: flex;">
                 <span style="width: 200px;"> Terms of delivery </span>
-                <span style="padding-left: 80px;">: Need by 28.10.2023 </span>
+                <span style="padding-left: 80px;">:  </span>
             </div>
             <div style="display: flex;">
                 <span style="width: 200px;"> Terms of payment </span>
-                <span style="padding-left: 80px;">: Need by 28.10.2023 </span>
+                <span style="padding-left: 80px;">:  </span>
             </div>
             <div style="display: flex;">
                 <span style="width: 200px;"> Currency </span>
-                <span style="padding-left: 80px;">: Need by 28.10.2023 </span>
+                <span style="padding-left: 80px;">: Rs </span>
             </div>
             <div style="display: flex;">
                 <span style="width: 200px;"> Our enquiry reference </span>
-                <span style="padding-left: 80px;">: Need by 28.10.2023 </span>
+                <span style="padding-left: 80px;">:  </span>
             </div>
             <div style="display: flex;">
                 <span style="width: 200px;"> Material </span>
-                <span style="padding-left: 80px;">: Need by 28.10.2023 </span>
+                <span style="padding-left: 80px;">:  </span>
             </div>
         </div>
     </div>
@@ -82,21 +81,22 @@
     <div style="border-top: 1px solid black; display: flex; ">
         <div
             style="width: 50%;padding-left: 15px;border-right: 1px solid black;padding-top: 10px;padding-bottom: 10px;">
-            <b> Shiv Shakti Steel Tubes </b>
-            <div>Dhoolapally Road</div>
-            <div>IDA Jeedimetla, Hyderabad - 500055</div>
+            <div>{{ data?.headingObj?.vAddress?.companyName }}</div>
+            <div>{{ data?.headingObj?.vAddress?.address }}, {{ data?.headingObj?.vAddress?.address1 }}</div>
+            <div>{{ data?.headingObj?.vAddress?.city }}, {{ data?.headingObj?.vAddress?.stateName }}, {{ data?.headingObj?.vAddress?.pin }}</div>
+            <!-- <div>Phone: {{ data?.headingObj?.vAddress?.phone  }}</div>
+            <div>Email: {{ data?.headingObj?.vAddress?.email  }}</div> -->
 
-            <b style="margin-top: 10px;"> GSTIN : 36ASBPC7187R1Z3</b>
+            <b style="margin-top: 10px;"> GSTIN : {{ data?.headingObj?.vAddress?.gstno }}</b>
         </div>
         <div style="width: 50%;padding-left: 15px;padding-top: 10px;padding-bottom: 10px;">
-            <b> AMT POWER TRANSMISSION </b>
-            <div>Plot No:40(PART/1), ROAD No: 2, PHASE 1,</div>
-            <div>IDA, Jeedimetla,</div>
-            <div>Hyderabad-500055,</div>
-            <div>Phone: 97042 88499,</div>
-            <div>Email: mmp@amtpowertransmission.com</div>
+            <div>{{ data?.headingObj?.pAddress?.companyName }}</div>
+            <div>{{ data?.headingObj?.pAddress?.address }}, {{ data?.headingObj?.pAddress?.address1 }}</div>
+            <div>{{ data?.headingObj?.pAddress?.city }}, {{ data?.headingObj?.pAddress?.stateName }}, {{ data?.headingObj?.pAddress?.pin }}</div>
+            <div>Phone: {{ data?.headingObj?.pAddress?.phone  }}</div>
+            <div>Email: {{ data?.headingObj?.pAddress?.email  }}</div>
 
-            <b style="margin-top: 10px;"> GSTIN : 36ASBPC7187R1Z3</b>
+            <b style="margin-top: 10px;"> GSTIN : {{ data?.headingObj?.vAddress?.gstno }}</b>
         </div>
     </div>
 
@@ -117,22 +117,22 @@
             <tbody>
                 <tr style="border-top: 1px solid black;-webkit-print-color-adjust: exact;" *ngFor="let row of data.detailArray; let i = index">
                     <td style="border-right: 1px solid black;-webkit-print-color-adjust: exact;"> {{ i + 1 }} </td>
-                    <td style="border-right: 1px solid black;-webkit-print-color-adjust: exact;"> RECT. PIPE 80X40X2.9THK </td>
-                    <td style="border-right: 1px solid black;-webkit-print-color-adjust: exact;"> 6000MM Length </td>
-                    <td style="border-right: 1px solid black;-webkit-print-color-adjust: exact;"> 6000MM Length </td>
-                    <td style="border-right: 1px solid black;-webkit-print-color-adjust: exact;"> 6000MM Length </td>
-                    <td style="border-right: 1px solid black;-webkit-print-color-adjust: exact;"> 6000MM Length </td>
-                    <td style="border-right: 1px solid black;-webkit-print-color-adjust: exact;"> 6000MM Length </td>
-                    <td style="border-right: 1px solid black;-webkit-print-color-adjust: exact;"> 6000MM Length </td>
+                    <td style="border-right: 1px solid black;-webkit-print-color-adjust: exact;"> {{ row.materialCode }} </td>
+                    <td style="border-right: 1px solid black;-webkit-print-color-adjust: exact;"> {{ row.materialName }} </td>
+                    <td style="border-right: 1px solid black;-webkit-print-color-adjust: exact;"> {{ row.qty }} </td>
+                    <td style="border-right: 1px solid black;-webkit-print-color-adjust: exact;"> {{ row.netWeight }} </td>
+                    <td style="border-right: 1px solid black;-webkit-print-color-adjust: exact;"> {{ row.qty * row.netWeight}} </td>
+                    <td style="border-right: 1px solid black;-webkit-print-color-adjust: exact;"> {{ row.rate }} </td>
+                    <td style="border-right: 1px solid black;-webkit-print-color-adjust: exact;"> {{ row.amount }} </td>
                 </tr>
                 <tr style="border-top: 1px solid black; text-align: start;font-weight: bold;-webkit-print-color-adjust: exact;">
                     <td style="border-right: 1px solid black;-webkit-print-color-adjust: exact;" colspan="2"> Grand Totals </td>
                     <td style="border-right: 1px solid black;-webkit-print-color-adjust: exact;"></td>
                     <td style="border-right: 1px solid black;-webkit-print-color-adjust: exact;"></td>
                     <td style="border-right: 1px solid black;-webkit-print-color-adjust: exact;text-align: center;">Weight</td>
-                    <td style="border-right: 1px solid black;-webkit-print-color-adjust: exact;text-align: center;">1220.99</td>
+                    <td style="border-right: 1px solid black;-webkit-print-color-adjust: exact;text-align: center;">{{ data.headingObj1.amount }}</td>
                     <td style="border-right: 1px solid black;-webkit-print-color-adjust: exact;text-align: center;">Amount</td>
-                    <td style="border-right: 1px solid black;-webkit-print-color-adjust: exact;text-align: center;">80890.59</td>
+                    <td style="border-right: 1px solid black;-webkit-print-color-adjust: exact;text-align: center;">{{ data.headingObj1.totalAmount }}</td>
                 </tr>
             </tbody>
         </table>
@@ -142,34 +142,34 @@
     <div style="border-top: 1px solid black; display: flex; font-size: 15px;">
         <div style="width: 50%;padding-left: 15px;padding-top: 10px;padding-bottom: 10px;">
             <b> Total amount in words: </b>
-            <div>Ninety Five Thousands Four Hundreds Fifty and Eighty Ni</div>
+            <div> {{ convertNumberToWords(data.headingObj?.totalAmount) }} </div>
 
         </div>
         <div style="width: 50%;padding-left: 5px;padding-bottom: 10px;">
             <div style="padding-left: 15px;padding-top: 10px;">
                 <div style="display: flex;">
                     <b style="width: 300px;"> Total Amount Before Tax </b>
-                    <span style="padding-left: 80px;"> 80890.59 </span>
+                    <span style="padding-left: 80px;"> {{ data.headingObj?.amount }} </span>
                 </div>
                 <div style="display: flex;border-top: 1px solid black;">
-                    <b style="width: 300px;"> Add: CGST @ 9% </b>
-                    <span style="padding-left: 80px;"> 80890.59 </span>
+                    <b style="width: 300px;"> Add: {{ data.headingObj1?.taxCode }} </b>
+                    <span style="padding-left: 80px;"> {{ data.headingObj?.cgst }} </span>
                 </div>
                 <div style="display: flex;border-top: 1px solid black;">
-                    <b style="width: 300px;"> Add: SGST @ 9% </b>
-                    <span style="padding-left: 80px;"> 80890.59 </span>
+                    <b style="width: 300px;"> Add: {{ data.headingObj1?.taxCode }} </b>
+                    <span style="padding-left: 80px;"> {{ data.headingObj?.sgst }} </span>
                 </div>
                 <div style="display: flex;border-top: 1px solid black;">
-                    <b style="width: 300px;"> Add: IGST @ 0% </b>
-                    <span style="padding-left: 80px;"> 80890.59 </span>
+                    <b style="width: 300px;"> Add: {{ data.headingObj1?.taxCode }} </b>
+                    <span style="padding-left: 80px;"> {{ data.headingObj?.igst }} </span>
                 </div>
                 <div style="display: flex;border-top: 1px solid black;">
                     <b style="width: 300px;"> Total Amount with GST </b>
-                    <span style="padding-left: 80px;"> 80890.59 </span>
+                    <span style="padding-left: 80px;"> {{ data.headingObj?.totalAmount }} </span>
                 </div>
                 <div style="display: flex;border-top: 1px solid black;">
                     <b style="width: 300px;"> Total Payable Reverse Charges </b>
-                    <span style="padding-left: 80px;"> 80890.59 </span>
+                    <span style="padding-left: 80px;">  </span>
                 </div>
             </div>
         </div>

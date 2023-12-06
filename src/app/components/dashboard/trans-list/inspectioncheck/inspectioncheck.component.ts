@@ -610,15 +610,11 @@ export class InspectioncheckComponent implements OnInit {
 
 
   inspectioncheck(event: any) {
-    debugger
-
     this.dialog.open(InspectionComponent, {
       width: '100%',
       height: '700px',
       data: event.item
     });
-
-
   }
 
   balanceCertificate() {
@@ -655,7 +651,6 @@ export class InspectioncheckComponent implements OnInit {
   }
 
   printData(res) {
-    debugger
     let arr = [];
     if (res.tagsDetail && res.tagsDetail.length) {
       res.tagsDetail.forEach((t: any) => {
@@ -664,7 +659,8 @@ export class InspectioncheckComponent implements OnInit {
           Specification: t.spec,
           UOM: t.uom,
           Instrument: t.instrument,
-          [t.tagName]: t.result
+          [t.tagName]: t.result,
+          description: t.description,
         }
         if (!arr.length) {
           arr.push(obj);
@@ -678,12 +674,17 @@ export class InspectioncheckComponent implements OnInit {
         }
       })
     }
-    debugger
     const obj = {
       heading: 'INSPECTION REPORT',
       headingObj: {
         Amount: res.SaleorderMaster.amount,
         'company': res.SaleorderMaster.company,
+        supplierName: res.SaleorderMaster.supplierName,
+        poNumber: res.SaleorderMaster.poNumber,
+        poDate: res.SaleorderMaster.poDate,
+        description: res.QCData.materialName,
+        heatNumber: res.QCData.heatNumber,
+        drgNo: res.QCData.drgNo,
       },
       detailArray: arr
     }
