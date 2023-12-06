@@ -812,17 +812,17 @@ export class PurchaseOrderComponent implements OnInit {
       }
     }
     if (this.bpaList.length) {
-      const cObj = this.bpaList.find((c: any) => c.bpnumber == formObj.supplierCode);
+      const bpaObj = this.bpaList.find((c: any) => c.bpnumber == formObj.supplierCode);
       formObj['vAddress'] = {
-        name: cObj.name,
-        address: cObj.address,
-        address1: cObj.address1,
-        city: cObj.city,
-        stateName: cObj.stateName,
-        pin: cObj.pin,
-        phone: cObj.phone,
-        email: cObj.email,
-        gstno: cObj.gstno,
+        name: bpaObj.name,
+        address: bpaObj.address,
+        address1: bpaObj.address1,
+        city: bpaObj.city,
+        stateName: bpaObj.stateName,
+        pin: bpaObj.pin,
+        phone: bpaObj.phone,
+        email: bpaObj.email,
+        gstno: bpaObj.gstno,
       }
     }
     if (this.profitCenterList.length) {

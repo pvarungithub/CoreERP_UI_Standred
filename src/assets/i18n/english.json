@@ -2155,6 +2155,8 @@
     "startDate": "Start Date",
     "typeofWork": "Type Of Work",
     "workStatus": "Work Status",
+    "heatNumber": "Heat Number",
+    "partDrgNo": "Part/Drg No",
     "wbs": "WBS",
     "order": "Order",
     "saleOrderNumber": "Sale Order Number",

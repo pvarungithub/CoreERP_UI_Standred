@@ -99,6 +99,8 @@ export class InspectioncheckComponent implements OnInit {
       inspectionTypeValue: [''],
       completedBy: [''],
       description: [''],
+      heatNumber : [''],
+      partDrgNo  : [''],
 
 
       // typeofWork: [''],
