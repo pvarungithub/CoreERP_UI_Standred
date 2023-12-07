@@ -72,7 +72,7 @@ export class BalanceCertificateComponent {
     if (this.tableComponent) {
       this.tableComponent.defaultValues();
     }
-    const url = String.Join('/', this.apiConfigService.getCommitmentList, 'Balancing');
+    const url = String.Join('/', this.apiConfigService.getCommitmentList, this.data.materialcode, this.data.saleOrderNumber, 'Balancing');
     this.apiService.apiGetRequest(url)
       .subscribe(
         response => {
@@ -160,7 +160,6 @@ export class BalanceCertificateComponent {
   }
 
   save() {
-    debugger
     if (this.tableData.length == 0) {
       return;
     }

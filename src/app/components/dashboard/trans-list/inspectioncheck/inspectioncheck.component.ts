@@ -353,7 +353,6 @@ export class InspectioncheckComponent implements OnInit {
                 }
                 arr.push(obj);
               })
-              debugger
               this.formData1.patchValue({
                 saleOrderNumber: val,
                 inspectionCheckNo: res.response.tagsData.inspectionCheckNo
@@ -592,7 +591,6 @@ export class InspectioncheckComponent implements OnInit {
   }
 
   savemreq() {
-    debugger
     const arr = this.tableData1.filter((t: any) => t.checkbox);
     const addJournal = String.Join('/', this.apiConfigService.addinspectioncheck);
     const requestObj = { icDtl: arr, icHdr: this.formData1.value };
@@ -618,7 +616,6 @@ export class InspectioncheckComponent implements OnInit {
 
 
   inspectioncheck(event: any) {
-    debugger
     this.dialog.open(InspectionComponent, {
       width: '100%',
       height: '700px',
@@ -627,7 +624,6 @@ export class InspectioncheckComponent implements OnInit {
   }
 
   balanceCertificate() {
-    debugger
     const arr = this.tableData1.filter((t: any) => t.checkbox);
 
     if (!arr.length) {
@@ -638,7 +634,7 @@ export class InspectioncheckComponent implements OnInit {
     this.dialog.open(BalanceCertificateComponent, {
       width: '100%',
       height: '700px',
-      data: { materialcode: this.materialcode, tableData: arr }
+      data: { materialcode: this.materialcode, saleOrderNumber: this.formData1.value.saleOrderNumber, tableData: arr }
     });
 
   }

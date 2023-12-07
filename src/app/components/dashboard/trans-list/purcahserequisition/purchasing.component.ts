@@ -391,7 +391,6 @@ export class PurchasingComponent implements OnInit {
 
 
   materialCodeChange() {
-    debugger
     const obj = this.materialList.find((m: any) => m.id == this.formData1.value.materialCode);
     this.formData1.patchValue({
       stockQty: obj.closingQty,

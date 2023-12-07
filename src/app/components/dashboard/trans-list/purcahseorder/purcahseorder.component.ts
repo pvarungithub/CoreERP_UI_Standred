@@ -796,7 +796,6 @@ export class PurchaseOrderComponent implements OnInit {
   }
 
   print() {
-    debugger
     let formObj = this.formData.value;
     if (this.companyList.length) {
       const cObj = this.companyList.find((c: any) => c.companyCode == formObj.company);

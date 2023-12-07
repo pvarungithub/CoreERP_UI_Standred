@@ -46,7 +46,7 @@ export class InspectionComponent {
       maxValue: [''],
       instrument: [''],
       id: [0],
-      result: ['',Validators.required],
+      result: ['', Validators.required],
       action: 'edit',
       // tags: this.formBuilder.array([]),
       index: 0
@@ -94,7 +94,7 @@ export class InspectionComponent {
     if (this.tableComponent) {
       this.tableComponent.defaultValues();
     }
-    const url = String.Join('/', this.apiConfigService.getSaleOrderDetailbymaterialcode, this.data.materialCode, this.data.productionTag);
+    const url = String.Join('/', this.apiConfigService.getSaleOrderDetailbymaterialcode, this.data.materialCode, this.data.productionTag, 'Inspection');
     this.apiService.apiGetRequest(url)
       .subscribe(
         response => {
@@ -190,7 +190,6 @@ export class InspectionComponent {
   }
 
   registerQCResults() {
-    debugger
     const addsq = String.Join('/', this.apiConfigService.registerQCResults);
     // this.data.tableData.forEach((d: any) => {
     //   const arr = [];
@@ -207,7 +206,8 @@ export class InspectionComponent {
     // });
     // const requestObj = { qtyDtl: this.data.tableData };
     // this.data.tableData.forEach((d: any) => d.qtyResult = this.tableData);
-    const requestObj = { qtyResult:  this.tableData, qtyDtl: [this.data] };
+    this.data['type'] = this.tableData.every((t: any) => !t.result) ? 'new' : 'edit';
+    const requestObj = { qtyResult: this.tableData, qtyDtl: [this.data] };
     this.apiService.apiPostRequest(addsq, requestObj).subscribe(
       response => {
         this.spinner.hide();
