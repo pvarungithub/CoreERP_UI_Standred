@@ -76,6 +76,7 @@ import { EmployeeComponent } from './components/dashboard/comp-list/employee/emp
 import { DatePipe } from '@angular/common';
 import { InspectionComponent } from './components/dashboard/trans-list/inspectioncheck/inspection/inspection.component';
 import { BalanceCertificateComponent } from './components/dashboard/trans-list/inspectioncheck/balance-certificate/balance-certificate.component';
+import { HashLocationStrategy, LocationStrategy } from '@angular/common';
 
 //import { AccountKeyComponent } from './components/dashboard/comp-list/assetblock/accountkey/accountkey.component';
 // AoT requires an exported function for factories
@@ -170,6 +171,7 @@ export function HttpLoaderFactory(httpClient: HttpClient) {
     }),
   ],
   providers: [
+    {provide: LocationStrategy, useClass: HashLocationStrategy},
     RuntimeConfigService,
     {
       provide: APP_INITIALIZER,
