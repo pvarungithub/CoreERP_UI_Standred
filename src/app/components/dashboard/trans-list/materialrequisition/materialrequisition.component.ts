@@ -322,6 +322,7 @@ export class MaterialrequisitionComponents implements OnInit {
                   mechine: s.mechine ? s.mechine : '',
                   productionTag: s.productionTag ? s.productionTag : '',
                   remarks: s.remarks ? s.remarks : '',
+                  status: s.status ? s.status : '',
                   saleOrderNumber: s.saleOrderNumber ? s.saleOrderNumber : '',
                   startDate: s.startDate ? s.startDate : '',
                   typeofWork: s.typeofWork ? s.typeofWork : '',

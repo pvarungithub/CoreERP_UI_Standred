@@ -101,6 +101,7 @@ export class InspectioncheckComponent implements OnInit {
       description: [''],
       heatNumber : [''],
       partDrgNo  : [''],
+      inspectionCheckNo  : [''],
 
 
       // typeofWork: [''],
@@ -315,7 +316,6 @@ export class InspectioncheckComponent implements OnInit {
           const res = response;
           if (!this.commonService.checkNullOrUndefined(res) && res.status === StatusCodes.pass) {
             if (!this.commonService.checkNullOrUndefined(res.response)) {
-              // this.formData.patchValue(res.response['goodsissueasters']);
               // console.log(res.response['mreqDetail']);
               let arr = [];
               res.response['tagsDetail'].forEach((s: any, index: number) => {
@@ -353,8 +353,10 @@ export class InspectioncheckComponent implements OnInit {
                 }
                 arr.push(obj);
               })
+              debugger
               this.formData1.patchValue({
-                saleOrderNumber: val
+                saleOrderNumber: val,
+                inspectionCheckNo: res.response.tagsData.inspectionCheckNo
               })
               this.materialcode = val1;
               this.tableData1 = arr;
@@ -590,6 +592,7 @@ export class InspectioncheckComponent implements OnInit {
   }
 
   savemreq() {
+    debugger
     const arr = this.tableData1.filter((t: any) => t.checkbox);
     const addJournal = String.Join('/', this.apiConfigService.addinspectioncheck);
     const requestObj = { icDtl: arr, icHdr: this.formData1.value };

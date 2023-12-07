@@ -1581,7 +1581,6 @@
     "requisitionNmber": "Requisition Number",
     "requisitionDate": "Date",
     "bomorderNumber": "BOM Number",
-    "status": "Status",
     "materialCode": "Material Code",
     "materialName":"Material Name",
     "productionTag": "productionTag",
@@ -1604,6 +1603,7 @@
     "order": "Order",
     "price": "Price",
     "value": "Value",
+    "status": "Status",
     "delete": "Delete",
                 "action": "Action"
   },
