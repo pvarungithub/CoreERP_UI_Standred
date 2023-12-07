@@ -109,6 +109,7 @@ export class InspectionComponent {
                   uom: s.uom,
                   spec: s.spec,
                   minValue: s.minValue,
+                  id: s.id ? s.id : 0,
                   maxValue: s.maxValue,
                   instrument: s.instrument,
                   action: 'edit',

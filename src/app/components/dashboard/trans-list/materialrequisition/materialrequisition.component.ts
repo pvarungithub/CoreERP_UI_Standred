@@ -265,6 +265,7 @@ export class MaterialrequisitionComponents implements OnInit {
                   // index: index + 1,
                   qty: s.qty ? s.qty : 0,
                   // changed: false,
+                  status: s.status ? s.status : '',
                   materialCode: s.materialCode ? s.materialCode : 0,
                   // availableqty: qty.availQTY ? qty.availQTY : 0,
                   saleOrderNumber: s.saleOrderNumber ? s.saleOrderNumber : 0,
