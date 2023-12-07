@@ -189,6 +189,7 @@ export class InspectionComponent {
   }
 
   registerQCResults() {
+    debugger
     const addsq = String.Join('/', this.apiConfigService.registerQCResults);
     // this.data.tableData.forEach((d: any) => {
     //   const arr = [];

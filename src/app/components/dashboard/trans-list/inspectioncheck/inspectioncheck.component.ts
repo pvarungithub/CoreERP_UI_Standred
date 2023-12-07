@@ -342,6 +342,7 @@ export class InspectioncheckComponent implements OnInit {
                   startDate: s.startDate ? s.startDate : '',
                   typeofWork: s.typeofWork ? s.typeofWork : '',
                   workStatus: s.workStatus ? s.workStatus : '',
+                  inspectionCheckNo: s.inspectionCheckNo ? s.inspectionCheckNo : '',
                   id: s.id ? s.id : '',
                   checkbox: false,
                   button: 'Inspection Check'
@@ -612,6 +613,7 @@ export class InspectioncheckComponent implements OnInit {
 
 
   inspectioncheck(event: any) {
+    debugger
     this.dialog.open(InspectionComponent, {
       width: '100%',
       height: '700px',
@@ -620,6 +622,7 @@ export class InspectioncheckComponent implements OnInit {
   }
 
   balanceCertificate() {
+    debugger
     const arr = this.tableData1.filter((t: any) => t.checkbox);
 
     if (!arr.length) {
@@ -661,6 +664,7 @@ export class InspectioncheckComponent implements OnInit {
           Specification: t.spec,
           UOM: t.uom,
           Instrument: t.instrument,
+          inspectionCheckNo: t.inspectionCheckNo,
           [t.tagName]: t.result,
           description: t.description,
         }

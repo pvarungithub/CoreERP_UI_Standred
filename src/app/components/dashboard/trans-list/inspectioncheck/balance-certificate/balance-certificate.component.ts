@@ -160,6 +160,7 @@ export class BalanceCertificateComponent {
   }
 
   save() {
+    debugger
     if (this.tableData.length == 0) {
       return;
     }
