@@ -68,11 +68,12 @@ export class BalanceCertificateComponent {
   }
 
   getCommitmentList() {
+    debugger
     this.tableData = [];
     if (this.tableComponent) {
       this.tableComponent.defaultValues();
     }
-    const url = String.Join('/', this.apiConfigService.getCommitmentList, this.data.materialcode, this.data.saleOrderNumber, 'Balancing');
+    const url = String.Join('/', this.apiConfigService.getCommitmentList, this.data.materialCode, this.data.productionTag, 'Balancing');
     this.apiService.apiGetRequest(url)
       .subscribe(
         response => {
@@ -168,8 +169,7 @@ export class BalanceCertificateComponent {
 
   registerQCResults() {
     const addsq = String.Join('/', this.apiConfigService.registerQCResults);
-    this.data.tableData.forEach((d: any) => d.qtyResult = this.tableData);
-    const requestObj = { qtyResult:  this.tableData, qtyDtl: this.data.tableData };
+    const requestObj = { qtyResult:  this.tableData, qtyDtl: [this.data] };
     this.apiService.apiPostRequest(addsq, requestObj).subscribe(
       response => {
         this.spinner.hide();

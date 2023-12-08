@@ -1815,7 +1815,8 @@
     "status": "Status",
 
                 "action": "Action",
-                "button": "button"
+                "button": "button",
+                "button1": "button1"
   },
   "invoiceverification": {
     "title": "Invoice Verification",

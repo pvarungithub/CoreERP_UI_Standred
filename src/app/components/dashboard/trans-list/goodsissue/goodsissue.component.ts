@@ -546,7 +546,15 @@ export class GoodsissueComponent implements OnInit {
 
   getSaleOrderDetail() {
     this.tableComponent.defaultValues();
-    const qsDetUrl = String.Join('/', this.formData.value.saleOrder ? this.apiConfigService.getSaleOrderDetail : this.apiConfigService.getPurchaseRequisitionDetail, this.formData.value.saleOrderNumber);
+    let url = '';
+    if (this.formData.value.saleOrderType == 'Sale Order') {
+      url = this.apiConfigService.getSaleOrderDetail;
+    } else if (this.formData.value.saleOrderType == 'Master Saleorder') {
+      url = this.apiConfigService.getPurchaseRequisitionDetail;
+    } else if (this.formData.value.saleOrderType == 'Bill of Material') {
+      url = this.apiConfigService.getBOMDetail;
+    }
+    const qsDetUrl = String.Join('/', url, this.formData.value.saleOrderNumber);
     this.apiService.apiGetRequest(qsDetUrl)
       .subscribe(
         response => {
@@ -555,9 +563,16 @@ export class GoodsissueComponent implements OnInit {
           if (!this.commonService.checkNullOrUndefined(res) && res.status === StatusCodes.pass) {
             if (!this.commonService.checkNullOrUndefined(res.response)) {
 
-              const obj = {
-                data: this.formData.value.saleOrder ? res.response['SaleOrderMasters'] : res.response['preqmasters'],
-                data1: this.formData.value.saleOrder ? res.response['SaleOrderDetails'] : res.response['preqDetail'],
+              let obj = { data: {}, data1: [] }
+              if (this.formData.value.saleOrderType == 'Sale Order') {
+                obj.data = res.response['SaleOrderMasters'];
+                obj.data1 = res.response['SaleOrderDetails'];
+              } else if (this.formData.value.saleOrderType == 'Master Saleorder') {
+                obj.data = res.response['preqmasters']
+                obj.data1 = res.response['preqDetail']
+              } else if (this.formData.value.saleOrderType == 'Bill of Material') {
+                obj.data = res.response['bomMasters']
+                obj.data1 = res.response['bomDetail']
               }
               // this.formData.patchValue(obj['data']);
               // this.formData.patchValue({

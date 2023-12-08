@@ -66,6 +66,9 @@ export class InspectioncheckComponent implements OnInit {
 
   materialcode: any;
 
+  data: any;
+  date = new Date();
+  
   constructor(private commonService: CommonService,
     private formBuilder: FormBuilder,
     private apiConfigService: ApiConfigService,
@@ -347,7 +350,8 @@ export class InspectioncheckComponent implements OnInit {
                   inspectionCheckNo: s.inspectionCheckNo ? s.inspectionCheckNo : '',
                   id: s.id ? s.id : '',
                   checkbox: false,
-                  button: 'Inspection Check'
+                  button: 'Inspection Check',
+                  button1: 'Balanceing Certificate',
                   // action: 'edit',
                   // index: index + 1,
                 }
@@ -611,7 +615,13 @@ export class InspectioncheckComponent implements OnInit {
 
 
   tableButtonEvent(event: any) {
-    this.inspectioncheck(event);
+    debugger
+    if(event.flag == 'button') {
+      this.inspectioncheck(event);
+    }
+    if(event.flag == 'button1') {
+      this.balanceCertificate(event);
+    }
   }
 
 
@@ -623,18 +633,11 @@ export class InspectioncheckComponent implements OnInit {
     });
   }
 
-  balanceCertificate() {
-    const arr = this.tableData1.filter((t: any) => t.checkbox);
-
-    if (!arr.length) {
-      this.alertService.openSnackBar('Please select production tag', Static.Close, SnackBar.error);
-      return;
-    }
-
+  balanceCertificate(event: any) {
     this.dialog.open(BalanceCertificateComponent, {
       width: '100%',
       height: '700px',
-      data: { materialcode: this.materialcode, saleOrderNumber: this.formData1.value.saleOrderNumber, tableData: arr }
+      data: event.item
     });
 
   }
@@ -695,12 +698,23 @@ export class InspectioncheckComponent implements OnInit {
       },
       detailArray: arr
     }
-    localStorage.setItem('inspectionPrintData', JSON.stringify(obj));
-    const url = this.router.serializeUrl(
-      this.router.createUrlTree([`dashboard/inspection-preview`])
-    );
+    // localStorage.setItem('inspectionPrintData', JSON.stringify(obj));
+    // const url = this.router.serializeUrl(
+    //   this.router.createUrlTree([`dashboard/inspection-preview`])
+    // );
 
-    window.open(url, "_blank");
+    // window.open(url, "_blank");
+
+    this.data = obj;
+
+    setTimeout(() => {
+      var w = window.open();
+      var html = document.getElementById('inspectionPrintData').innerHTML;
+      w.document.body.innerHTML = html;
+      this.data = null;
+      w.print();
+    }, 1000);
+
   }
 
 }

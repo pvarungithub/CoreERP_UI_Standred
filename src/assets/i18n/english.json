@@ -2166,7 +2166,8 @@
     "inspectioncheck": "Inspection Check",
     "balancecertificate": "Balanceing Certificate",
                     "action": "Action",
-                    "button": "Inspection Check"
+                    "button": "Inspection Check",
+                    "button1": "Balanceing Certificate"
   },
   "invoiceverification": {
     "title": "Invoice Verification",
