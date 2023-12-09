@@ -88,9 +88,9 @@
                   <mat-checkbox  (change)="tableCheckboxCheck($event, element)">  </mat-checkbox>
               </ng-container>
               <ng-container *ngIf="column == 'button' || column == 'button1'">
-                <button class="mx-2" mat-raised-button (click)="tableButtonCheck(column, element)">
+                <a class="mx-2"  (click)="tableButtonCheck(column, element)">
                   {{ element[column] }}
-                </button>
+                </a>
             </ng-container>
             </span>
             <ng-template #other_content>{{ element[column] }}</ng-template>

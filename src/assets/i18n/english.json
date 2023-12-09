@@ -2025,6 +2025,7 @@
     "saleOrderNo":"SaleOrder Number",
     "status":"Status",
     "saleOrderType": "SaleorderType",
+    "modelPattern": "Model/Pattern",
     "profitcenterName": "ProfitCenter",
     "gstno": "GST No",
     "deliveryPeriod": "Delivery Period",

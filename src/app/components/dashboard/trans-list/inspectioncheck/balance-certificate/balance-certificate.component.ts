@@ -168,6 +168,7 @@ export class BalanceCertificateComponent {
   }
 
   registerQCResults() {
+    this.data['type'] = 'Balancing';
     const addsq = String.Join('/', this.apiConfigService.registerQCResults);
     const requestObj = { qtyResult:  this.tableData, qtyDtl: [this.data] };
     this.apiService.apiPostRequest(addsq, requestObj).subscribe(

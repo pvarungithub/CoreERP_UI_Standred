@@ -207,6 +207,7 @@ export class InspectionComponent {
     // });
     // const requestObj = { qtyDtl: this.data.tableData };
     // this.data.tableData.forEach((d: any) => d.qtyResult = this.tableData);
+    this.data['type'] = 'Inspection';
     const requestObj = { qtyResult: this.tableData, qtyDtl: [this.data] };
     this.apiService.apiPostRequest(addsq, requestObj).subscribe(
       response => {

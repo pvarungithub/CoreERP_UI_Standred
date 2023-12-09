@@ -67,6 +67,7 @@ export class PurchaseOrderComponent implements OnInit {
   bpaList: any;
   imgShow: any;
   taxCodeList = [];
+  mpatternList = [];
 
   data: any;
 
@@ -92,6 +93,7 @@ export class PurchaseOrderComponent implements OnInit {
     this.formDataGroup();
     this.getCompanyList();
     this.getTaxRatesList();
+    this.getModelPatternList();
     // this.getPurchaseGroupData();
     setTimeout(() => {
       this.spinner.hide();
@@ -113,6 +115,7 @@ export class PurchaseOrderComponent implements OnInit {
       supplierCode: [null, [Validators.required]],
       gstno: [null],
       profitcenterName: [''],
+      modelPattern: [''],
       companyName: [null],
       supplierName: [null],
       deliveryDate: [null],
@@ -203,6 +206,21 @@ export class PurchaseOrderComponent implements OnInit {
               this.taxCodeList = data;
             }
           }
+        });
+  }
+
+  getModelPatternList() {
+    const getmpList = String.Join('/', this.apiConfigService.getModelPatternList);
+    this.apiService.apiGetRequest(getmpList)
+      .subscribe(
+        response => {
+          const res = response;
+          if (!this.commonService.checkNullOrUndefined(res) && res.status === StatusCodes.pass) {
+            if (!this.commonService.checkNullOrUndefined(res.response)) {
+              this.mpatternList = res.response['mpatternList'];
+            }
+          }
+          this.spinner.hide();
         });
   }
 

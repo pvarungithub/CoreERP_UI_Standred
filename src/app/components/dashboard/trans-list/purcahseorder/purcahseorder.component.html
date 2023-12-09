@@ -32,9 +32,10 @@
             <b> ADDRESS </b>
             <div>{{ data?.headingObj?.address.companyName }}</div>
             <div>{{ data?.headingObj?.address.address }}, {{ data?.headingObj?.address.address1 }}</div>
-            <div>{{ data?.headingObj?.address.city }}, {{ data?.headingObj?.address.stateName }}, {{ data?.headingObj?.address.pin }}</div>
-            <div>Phone: {{ data?.headingObj?.address.phone  }}</div>
-            <div>Email: {{ data?.headingObj?.address.email  }}</div>
+            <div>{{ data?.headingObj?.address.city }}, {{ data?.headingObj?.address.stateName }}, {{
+                data?.headingObj?.address.pin }}</div>
+            <div>Phone: {{ data?.headingObj?.address.phone }}</div>
+            <div>Email: {{ data?.headingObj?.address.email }}</div>
         </div>
         <div style="width: 50%;padding-left: 15px;padding-top: 10px;">
             <div style="display: flex;">
@@ -43,11 +44,11 @@
             </div>
             <div style="display: flex;">
                 <span style="width: 200px;"> Terms of delivery </span>
-                <span style="padding-left: 80px;">:  </span>
+                <span style="padding-left: 80px;">: </span>
             </div>
             <div style="display: flex;">
                 <span style="width: 200px;"> Terms of payment </span>
-                <span style="padding-left: 80px;">:  </span>
+                <span style="padding-left: 80px;">: </span>
             </div>
             <div style="display: flex;">
                 <span style="width: 200px;"> Currency </span>
@@ -55,11 +56,11 @@
             </div>
             <div style="display: flex;">
                 <span style="width: 200px;"> Our enquiry reference </span>
-                <span style="padding-left: 80px;">:  </span>
+                <span style="padding-left: 80px;">: </span>
             </div>
             <div style="display: flex;">
                 <span style="width: 200px;"> Material </span>
-                <span style="padding-left: 80px;">:  </span>
+                <span style="padding-left: 80px;">: </span>
             </div>
         </div>
     </div>
@@ -78,7 +79,8 @@
             style="width: 50%;padding-left: 15px;border-right: 1px solid black;padding-top: 10px;padding-bottom: 10px;">
             <div>{{ data?.headingObj?.vAddress?.companyName }}</div>
             <div>{{ data?.headingObj?.vAddress?.address }}, {{ data?.headingObj?.vAddress?.address1 }}</div>
-            <div>{{ data?.headingObj?.vAddress?.city }}, {{ data?.headingObj?.vAddress?.stateName }}, {{ data?.headingObj?.vAddress?.pin }}</div>
+            <div>{{ data?.headingObj?.vAddress?.city }}, {{ data?.headingObj?.vAddress?.stateName }}, {{
+                data?.headingObj?.vAddress?.pin }}</div>
             <!-- <div>Phone: {{ data?.headingObj?.vAddress?.phone  }}</div>
             <div>Email: {{ data?.headingObj?.vAddress?.email  }}</div> -->
 
@@ -87,15 +89,17 @@
         <div style="width: 50%;padding-left: 15px;padding-top: 10px;padding-bottom: 10px;">
             <div>{{ data?.headingObj?.pAddress?.companyName }}</div>
             <div>{{ data?.headingObj?.pAddress?.address }}, {{ data?.headingObj?.pAddress?.address1 }}</div>
-            <div>{{ data?.headingObj?.pAddress?.city }}, {{ data?.headingObj?.pAddress?.stateName }}, {{ data?.headingObj?.pAddress?.pin }}</div>
-            <div>Phone: {{ data?.headingObj?.pAddress?.phone  }}</div>
-            <div>Email: {{ data?.headingObj?.pAddress?.email  }}</div>
+            <div>{{ data?.headingObj?.pAddress?.city }}, {{ data?.headingObj?.pAddress?.stateName }}, {{
+                data?.headingObj?.pAddress?.pin }}</div>
+            <div>Phone: {{ data?.headingObj?.pAddress?.phone }}</div>
+            <div>Email: {{ data?.headingObj?.pAddress?.email }}</div>
 
             <b style="margin-top: 10px;"> GSTIN : {{ data?.headingObj?.pAddress?.gstno }}</b>
         </div>
     </div>
 
-    <div style="border-top: 1px solid black;-webkit-print-color-adjust: exact;" *ngIf="data.detailArray && data.detailArray.length">
+    <div style="border-top: 1px solid black;-webkit-print-color-adjust: exact;"
+        *ngIf="data.detailArray && data.detailArray.length">
         <table style="width: 100%;text-align: center; font-size: 14px;-webkit-print-color-adjust: exact;">
             <thead>
                 <tr>
@@ -110,24 +114,35 @@
                 </tr>
             </thead>
             <tbody>
-                <tr style="border-top: 1px solid black;-webkit-print-color-adjust: exact;" *ngFor="let row of data.detailArray; let i = index">
+                <tr style="border-top: 1px solid black;-webkit-print-color-adjust: exact;"
+                    *ngFor="let row of data.detailArray; let i = index">
                     <td style="border-right: 1px solid black;-webkit-print-color-adjust: exact;"> {{ i + 1 }} </td>
-                    <td style="border-right: 1px solid black;-webkit-print-color-adjust: exact;"> {{ row.materialCode }} </td>
-                    <td style="border-right: 1px solid black;-webkit-print-color-adjust: exact;"> {{ row.materialName }} </td>
+                    <td style="border-right: 1px solid black;-webkit-print-color-adjust: exact;"> {{ row.materialCode }}
+                    </td>
+                    <td style="border-right: 1px solid black;-webkit-print-color-adjust: exact;"> {{ row.materialName }}
+                    </td>
                     <td style="border-right: 1px solid black;-webkit-print-color-adjust: exact;"> {{ row.qty }} </td>
-                    <td style="border-right: 1px solid black;-webkit-print-color-adjust: exact;"> {{ row.netWeight }} </td>
-                    <td style="border-right: 1px solid black;-webkit-print-color-adjust: exact;"> {{ row.qty * row.netWeight}} </td>
+                    <td style="border-right: 1px solid black;-webkit-print-color-adjust: exact;"> {{ row.netWeight }}
+                    </td>
+                    <td style="border-right: 1px solid black;-webkit-print-color-adjust: exact;"> {{ row.qty *
+                        row.netWeight}} </td>
                     <td style="border-right: 1px solid black;-webkit-print-color-adjust: exact;"> {{ row.rate }} </td>
                     <td style="border-right: 1px solid black;-webkit-print-color-adjust: exact;"> {{ row.amount }} </td>
                 </tr>
-                <tr style="border-top: 1px solid black; text-align: start;font-weight: bold;-webkit-print-color-adjust: exact;">
-                    <td style="border-right: 1px solid black;-webkit-print-color-adjust: exact;" colspan="2"> Grand Totals </td>
+                <tr
+                    style="border-top: 1px solid black; text-align: start;font-weight: bold;-webkit-print-color-adjust: exact;">
+                    <td style="border-right: 1px solid black;-webkit-print-color-adjust: exact;" colspan="2"> Grand
+                        Totals </td>
                     <td style="border-right: 1px solid black;-webkit-print-color-adjust: exact;"></td>
                     <td style="border-right: 1px solid black;-webkit-print-color-adjust: exact;"></td>
-                    <td style="border-right: 1px solid black;-webkit-print-color-adjust: exact;text-align: center;">Weight</td>
-                    <td style="border-right: 1px solid black;-webkit-print-color-adjust: exact;text-align: center;">{{ data.headingObj1.amount }}</td>
-                    <td style="border-right: 1px solid black;-webkit-print-color-adjust: exact;text-align: center;">Amount</td>
-                    <td style="border-right: 1px solid black;-webkit-print-color-adjust: exact;text-align: center;">{{ data.headingObj1.totalAmount }}</td>
+                    <td style="border-right: 1px solid black;-webkit-print-color-adjust: exact;text-align: center;">
+                        Weight</td>
+                    <td style="border-right: 1px solid black;-webkit-print-color-adjust: exact;text-align: center;">{{
+                        data.headingObj1.amount }}</td>
+                    <td style="border-right: 1px solid black;-webkit-print-color-adjust: exact;text-align: center;">
+                        Amount</td>
+                    <td style="border-right: 1px solid black;-webkit-print-color-adjust: exact;text-align: center;">{{
+                        data.headingObj1.totalAmount }}</td>
                 </tr>
             </tbody>
         </table>
@@ -164,7 +179,7 @@
                 </div>
                 <div style="display: flex;border-top: 1px solid black;">
                     <b style="width: 300px;"> Total Payable Reverse Charges </b>
-                    <span style="padding-left: 80px;">  </span>
+                    <span style="padding-left: 80px;"> </span>
                 </div>
             </div>
         </div>
@@ -262,7 +277,7 @@
 
     <div style="margin-bottom: 15px;">
 
-            <b> Signature/Date..................................................................... </b>
+        <b> Signature/Date..................................................................... </b>
 
     </div>
 
@@ -290,7 +305,7 @@
 
                 <mat-form-field>
                     <mat-label>{{ 'purchaseorder.company' | translate }}</mat-label>
-                    <mat-select formControlName="company" appFocusOnEnter tabIndex="1" >
+                    <mat-select formControlName="company" appFocusOnEnter tabIndex="1">
                         <mat-option>None</mat-option>
                         <mat-option *ngFor="let comp of companyList" [value]="comp.companyCode">
                             {{comp.companyName}}
@@ -311,7 +326,7 @@
 
                 <mat-form-field>
                     <mat-label>{{'purchaseorder.profitCenter' | translate }}</mat-label>
-                    <mat-select formControlName="profitCenter" appFocusOnEnter tabIndex="2" >
+                    <mat-select formControlName="profitCenter" appFocusOnEnter tabIndex="2">
                         <mat-option>None</mat-option>
                         <mat-option *ngFor="let pft of profitCenterList" [value]="pft.code">
                             {{pft.name}}
@@ -360,7 +375,8 @@
                             {{qno.saleOrderNo}}
                         </mat-option>
                     </mat-select>
-                    <input matInput type="text" *ngIf="routeEdit" formControlName="saleOrderNo" maxlength="20" appFocusOnEnter tabIndex="5">
+                    <input matInput type="text" *ngIf="routeEdit" formControlName="saleOrderNo" maxlength="20"
+                        appFocusOnEnter tabIndex="5">
 
                 </mat-form-field>
 
@@ -455,6 +471,17 @@
                     <input matInput type="number" formControlName="advance" appFocusOnEnter tabIndex="11">
                 </mat-form-field>
 
+                <mat-form-field>
+                    <mat-label>{{'purchaseorder.modelPattern' | translate }}</mat-label>
+                    <mat-select formControlName="modelPattern" appFocusOnEnter tabIndex="8">
+                        <mat-option>None</mat-option>
+                        <mat-option *ngFor="let mpattern of mpatternList" [value]="mpattern.code">
+                            {{mpattern.description}}
+                        </mat-option>
+                    </mat-select>
+                </mat-form-field>
+
+
                 <!-- <input *ngIf="routeEdit == ''" id="file" type="file" class="form-control form__width"
                     (change)="uploadFile($event)"> -->
 
@@ -473,7 +500,7 @@
                 <hr>
             </h6>
 
-            <form [formGroup]="formData1" autocomplete="off" >
+            <form [formGroup]="formData1" autocomplete="off">
 
 
 
@@ -552,8 +579,7 @@
         </div>
 
         <div>
-            <button  mat-raised-button type="submit" class="button-color-bule mx-3 text-white"
-                (click)="save()">
+            <button mat-raised-button type="submit" class="button-color-bule mx-3 text-white" (click)="save()">
                 {{ 'COMMON.SAVE' | translate }}
             </button>
             <button mat-raised-button class="button-color-red text-white mx-3" (click)="back();">
