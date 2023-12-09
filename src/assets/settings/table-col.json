@@ -1913,6 +1913,13 @@
         "companyCode": "companyCode",
         "companyName": "companyName"
       },
+      "structurecreation":{
+          "title":"Structure Creation",
+          "structureCode": "Structure Code", 
+          "structureName": "Structure Name", 
+          "companyCode": "Company Code",
+           "active": "Active"
+      },
       "leaveopeningbalance": {
         "title": "Leaveopening Balances",
         "empCode": "EmpCode",
