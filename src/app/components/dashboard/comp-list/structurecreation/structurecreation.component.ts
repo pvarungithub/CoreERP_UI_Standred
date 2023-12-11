@@ -25,7 +25,8 @@ export class StructureCreationComponent implements OnInit {
   structionName: any;
   dataSource: MatTableDataSource<any>;
   displayedColumns: string[] = ['id', "text", "amount", "percentage", "select"];
-
+  componentList: any;
+  
   @ViewChild(MatPaginator, { static: true }) paginator: MatPaginator;
 
   constructor(
@@ -45,15 +46,14 @@ export class StructureCreationComponent implements OnInit {
   }
 
   getComponentsList() {
-    const getComponentsListUrl = String.Join('/', this.apiConfigService.getStructureComponentsList);
-    this.apiService.apiGetRequest(getComponentsListUrl)
+    const getPfComponentsList = String.Join('/', this.apiConfigService.getPfComponentsList);
+    this.apiService.apiGetRequest(getPfComponentsList)
       .subscribe(
         response => {
-          const res = response.body;
+          const res = response;
           if (!this.commonService.checkNullOrUndefined(res) && res.status === StatusCodes.pass) {
             if (!this.commonService.checkNullOrUndefined(res.response)) {
-              this.dataSource = res.response['ComponentsList'];
-              this.dataSource.paginator = this.paginator;
+              this.componentList = res.response['ComponentTypesList'];
             }
           }
           this.spinner.hide();
