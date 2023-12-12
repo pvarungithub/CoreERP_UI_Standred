@@ -46,7 +46,10 @@ export class BalanceCertificateComponent {
           value: null,  width: 150
         },
         result: {
-          value: 0, type: 'text', width: 150
+          value: 0, type: 'text'
+        },
+        id: {
+          value: 0, width: 150
         }
       },
 
@@ -83,9 +86,11 @@ export class BalanceCertificateComponent {
                   // action: 'edit',
                   result: s.result,
                   // index: index + 1
+                  id: s.id ? s.id : 0,
                 })
               })
               debugger
+              this.data['type'] = arr.every((t: any) => !t.result) ? 'new' : 'edit';
               this.dynTableProps = this.tablePropsFunc();
               this.sendDynTableData = { type: 'edit', data: arr };
             }
@@ -112,7 +117,7 @@ export class BalanceCertificateComponent {
   }
 
   registerQCResults() {
-    this.data['type'] = 'Balancing';
+    this.data['inspectionType'] = 'Balancing';
     const arr = [];
     this.tableData.forEach((t: any) => {
       const keys = Object.keys(t);

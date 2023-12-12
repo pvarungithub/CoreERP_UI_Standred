@@ -15,6 +15,7 @@
       font-size: 11px;
       vertical-align: middle;
       border: none !important;
+      padding: 7px;
     }
     & th {
       vertical-align: middle;
@@ -58,6 +59,8 @@
   height: 25px !important;
   cursor: pointer;
 }
+
+
 
 :host ::ng-deep .filter {
   & .mat-form-field-wrapper {
