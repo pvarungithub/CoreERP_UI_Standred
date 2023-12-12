@@ -2162,6 +2162,7 @@
     "order": "Order",
     "saleOrderNumber": "Sale Order Number",
     "price": "Price",
+    "parameter": "Parameter",
     "value": "Value",
     "result": "Result",
     "inspectioncheck": "Inspection Check",

@@ -21,6 +21,9 @@ export class DynamicTableComponent implements OnInit {
     if (!this.commonService.checkNullOrUndefined(res)) {
       this.tableData = [res.tableData];
       this.formControl = res.formControl;
+      if(res.routeParam) {
+        this.routeParam = res.routeParam;
+      }
       this.tableForm = this.formBuilder.group(this.formControl);
       this.setTableData();
     }
@@ -34,6 +37,7 @@ export class DynamicTableComponent implements OnInit {
         editData.push(this.tableData[0])
         this.dataSource = new MatTableDataSource(JSON.parse(JSON.stringify(editData)));
       } else if (res.type == 'edit') {
+        debugger
         this.dataSource = new MatTableDataSource(JSON.parse(JSON.stringify(this.formalTableData(res.data))));
       } else if (res.type == 'reset') {
         this.setTableData();
@@ -87,7 +91,7 @@ export class DynamicTableComponent implements OnInit {
       const obj = JSON.parse(JSON.stringify(this.tableData[0]))
       for (let t in obj) {
         obj[t].value = list[l][t];
-        obj[t].type = 'none';
+        obj[t].type = obj[t].type ? obj[t].type: 'none';
       }
       data.push(obj);
     }
@@ -112,6 +116,10 @@ export class DynamicTableComponent implements OnInit {
   setTypeAheadValue(val, col, indx) {
     this.dataSource.data[indx][col].value = val;
     this.formControlValid(col, this.dataSource.data[indx][col], val, indx);
+  }
+
+  setBackgroundClass(element: any) {
+    return 'lightred'
   }
 
   formControlValid(col, val, data, indx) {
@@ -193,6 +201,7 @@ export class DynamicTableComponent implements OnInit {
       if (!this.routeParam) {
         this.routeParam = this.router.url.split('/').pop();
       }
+      debugger
       // tslint:disable-next-line:forin
       for (let key in this.runtimeConfigService.tableColumnsData[this.routeParam]) {
         for (let c = 0; c < col.length; c++) {

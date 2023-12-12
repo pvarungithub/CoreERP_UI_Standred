@@ -180,12 +180,13 @@ export class MaterialrequisitionComponents implements OnInit {
               this.employeesList = res.response['emplist'];
             }
           }
-          this.getCommitmentList();
+          this.getCommitmentList('Production');
+          this.getCommitmentList('Mechenary');
         });
   }
 
-  getCommitmentList() {
-    const cmntUrl = String.Join('/', this.apiConfigService.getCommitmentList);
+  getCommitmentList(type: any) {
+    const cmntUrl = String.Join('/', this.apiConfigService.getCommitmentList, type);
     this.apiService.apiGetRequest(cmntUrl)
       .subscribe(
         response => {
@@ -193,10 +194,13 @@ export class MaterialrequisitionComponents implements OnInit {
           const res = response;
           if (!this.commonService.checkNullOrUndefined(res) && res.status === StatusCodes.pass) {
             if (!this.commonService.checkNullOrUndefined(res.response)) {
-              const list = res.response['citemList'].filter((c: any) => c.type == 'Production');
-              const listM = res.response['citemList'].filter((c: any) => c.type == 'Mechenary');
-              this.citemList = list;
-              this.mechenaryList = listM;
+              // const list = res.response['citemList'].filter((c: any) => c.type == 'Production');
+              // const listM = res.response['citemList'].filter((c: any) => c.type == 'Mechenary');
+              if (type == 'Production') {
+                this.citemList = res.response['citemList'];
+              } else if (type == 'Mechenary') {
+                this.mechenaryList = res.response['citemList'];
+              }
             }
           }
         });
@@ -207,7 +211,7 @@ export class MaterialrequisitionComponents implements OnInit {
     }
     this.formData1.patchValue({
       highlight: true,
-//   changed: true
+      //   changed: true
     });
     let data: any = this.tableData1;
     this.tableData1 = null;

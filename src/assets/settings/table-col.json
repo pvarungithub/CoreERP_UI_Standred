@@ -1813,7 +1813,8 @@
     "price": "Price",
     "value": "Value",
     "status": "Status",
-
+    "parameter": "Parameter",
+    "result": "Result",
                 "action": "Action",
                 "button": "button",
                 "button1": "button1"

@@ -4,7 +4,6 @@ import { FormGroup, FormBuilder, Validators, FormArray } from '@angular/forms';
 import { String } from 'typescript-string-operations';
 import { NgxSpinnerService } from 'ngx-spinner';
 import { ActivatedRoute, Router } from '@angular/router';
-import { TableComponent } from 'src/app/reuse-components';
 import { CommonService } from 'src/app/services/common.service';
 import { ApiConfigService } from 'src/app/services/api-config.service';
 import { ApiService } from 'src/app/services/api.service';
@@ -19,12 +18,10 @@ import { Static } from 'src/app/enums/common/static';
 })
 export class BalanceCertificateComponent {
 
-  @ViewChild(TableComponent, { static: false }) tableComponent: TableComponent;
-
-
-  formData: FormGroup;
-
   tableData = [];
+  dynTableProps = this.tablePropsFunc()
+  sendDynTableData: any;
+
 
   constructor(public commonService: CommonService,
     private formBuilder: FormBuilder,
@@ -35,44 +32,42 @@ export class BalanceCertificateComponent {
     public router: Router,
     private alertService: AlertService,
     public dialogRef: MatDialogRef<BalanceCertificateComponent>,
-    // @Optional() is used to prevent error if no data is passed
     @Optional() @Inject(MAT_DIALOG_DATA) public data: any) {
-
-    this.formData = this.formBuilder.group({
-      parameter: [''],
-      // uom: [''],
-      // spec: [''],
-      // minValue: [''],
-      // maxValue: [''],
-      // instrument: [''],
-      id: [0],
-      result: ['',Validators.required],
-      action: 'edit',
-      index: 0
-    });
   }
-
-  get formControls() { return this.formData.controls; }
 
   ngOnInit() {
     this.getCommitmentList();
   }
 
-  resultChange() {
-    if (!((+(this.formData.value.result) > +(this.formData.value.minValue)) && (+(this.formData.value.result) < +(this.formData.value.maxValue)))) {
-      this.formData.patchValue({
-        result: ''
-      })
-      this.alertService.openSnackBar('Result Should be in between min and max value', Static.Close, SnackBar.error);
+  tablePropsFunc() {
+    return {
+      tableData: {
+        parameter: {
+          value: null,  width: 150
+        },
+        result: {
+          value: 0, type: 'text', width: 150
+        }
+      },
+
+      formControl: {
+        result: ['']
+      },
+      routeParam: 'inspectioncheck'
     }
   }
 
-  getCommitmentList() {
-    debugger
+  emitColumnChanges(data) {
+    this.tableData = data.data;
+  }
+
+  reset() {
     this.tableData = [];
-    if (this.tableComponent) {
-      this.tableComponent.defaultValues();
-    }
+    this.sendDynTableData = { type: 'reset', data: this.tableData };
+  }
+
+  getCommitmentList() {
+    this.tableData = [];
     const url = String.Join('/', this.apiConfigService.getCommitmentList, this.data.materialCode, this.data.productionTag, 'Balancing');
     this.apiService.apiGetRequest(url)
       .subscribe(
@@ -85,83 +80,32 @@ export class BalanceCertificateComponent {
               res.response.citemList.forEach((s: any, index: number) => {
                 arr.push({
                   parameter: s.description,
-                  // uom: s.uom,
-                  // spec: s.spec,
-                  // minValue: s.minValue,
-                  // maxValue: s.maxValue,
-                  // instrument: s.instrument,
-                  action: 'edit',
+                  // action: 'edit',
                   result: s.result,
-                  index: index + 1
+                  // index: index + 1
                 })
               })
-              this.tableData = arr;
+              debugger
+              this.dynTableProps = this.tablePropsFunc();
+              this.sendDynTableData = { type: 'edit', data: arr };
             }
           }
         });
   }
 
-  saveForm() {
-    if (this.formData.invalid) {
-      return;
-    }
-    this.formData.patchValue({
-      highlight: true
-    });
-    let data: any = this.tableData;
-    this.tableData = null;
-    this.tableComponent.defaultValues();
-    const obj = data.find((d: any) => d.parameter == this.formData.value.parameter)
-    if (this.formData.value.index == 0 && !obj) {
-      this.formData.patchValue({
-        index: data ? (data.length + 1) : 1
-      });
-      data = [this.formData.value, ...data];
-    } else {
-      if (this.formData.value.index == 0) {
-        // data.forEach((res: any) => { if (res.parameter == this.formData.value.parameter) { (res.qty = res.qty + this.formData.value.qty) } });
-      } else {
-        data = data.map((res: any) => res = res.index == this.formData.value.index ? this.formData.value : res);
-      }
-    }
-    setTimeout(() => {
-      this.tableData = data;
-    });
-    this.resetForm();
-  }
 
-  resetForm() {
-    this.formData.reset();
-    this.formData.patchValue({
-      index: 0,
-      action: 'edit',
-      id: 0
-    });
-  }
-
-
-  editOrDeleteEvent(value) {
-    if (value.action === 'Delete') {
-    } else {
-      this.formData.patchValue(value.item);
-      // let items: any = this.formData.get('tags') as FormArray;
-      // items.clear();
-      // this.data.tableData.forEach((t: any) => {
-      //   const obj = this.model();
-      //   obj.patchValue({
-      //     tagName: t.productionTag
-      //   })
-      //   items.push(obj);
-      // })
-    }
-  }
-
-  back() {
-    this.dialogRef.close();
+  resultChange() {
+    // if (!((+(this.formData.value.result) > +(this.formData.value.minValue)) && (+(this.formData.value.result) < +(this.formData.value.maxValue)))) {
+    //   this.formData.patchValue({
+    //     result: ''
+    //   })
+    //   this.alertService.openSnackBar('Result Should be in between min and max value', Static.Close, SnackBar.error);
+    // }
   }
 
   save() {
-    if (this.tableData.length == 0) {
+    if (!this.tableData.length) {
+      this.alertService.openSnackBar('Please fill atleast one result', Static.Close, SnackBar.success);
       return;
     }
     this.registerQCResults();
@@ -169,8 +113,20 @@ export class BalanceCertificateComponent {
 
   registerQCResults() {
     this.data['type'] = 'Balancing';
+    const arr = [];
+    this.tableData.forEach((t: any) => {
+      const keys = Object.keys(t);
+      let obj = {};
+      keys.forEach((k: any) => {
+        obj = {
+          ...obj,
+          [k]: t[k].value
+        }
+      })
+      arr.push(obj);
+    })
     const addsq = String.Join('/', this.apiConfigService.registerQCResults);
-    const requestObj = { qtyResult:  this.tableData, qtyDtl: [this.data] };
+    const requestObj = { qtyResult: arr, qtyDtl: [this.data] };
     this.apiService.apiPostRequest(addsq, requestObj).subscribe(
       response => {
         this.spinner.hide();
@@ -184,9 +140,9 @@ export class BalanceCertificateComponent {
       });
   }
 
-  reset() {
-    this.tableData = [];
-    this.formData.reset();
+
+  back() {
+    this.dialogRef.close();
   }
 
 }

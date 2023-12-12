@@ -8,7 +8,7 @@
 
     <mat-card-content class="pt-5 p-2 m-0 ">
 
-        <form [formGroup]="formData" autocomplete="off">
+        <!-- <form [formGroup]="formData" autocomplete="off">
 
 
 
@@ -25,15 +25,6 @@
                             [ngClass]="{ 'ng--invalid': !formControls.result.valid  }"> Result is
                             required</mat-error>
                     </mat-form-field>
-
-                    <!-- <mat-form-field class="form-element">
-                        <mat-label [translate]="'standardrateoutput.minValue'"></mat-label>
-                        <input matInput formControlName="minValue" readonly>
-                    </mat-form-field>
-                    <mat-form-field class="form-element">
-                        <mat-label [translate]="'standardrateoutput.maxValue'"></mat-label>
-                        <input matInput formControlName="maxValue" readonly>
-                    </mat-form-field> -->
                     
 
                 </div>
@@ -58,8 +49,10 @@
             <app-table #tableRef class="table-css" [routerParam]="'standardrateoutput'" [tableData]="tableData"
                 [showButtons]="false" (editOrDeleteEvent)="editOrDeleteEvent($event)">
             </app-table>
-        </div>
+        </div> -->
 
+        <app-dynamic-table [tableObJect]="dynTableProps" (emitColumnChanges)="emitColumnChanges($event);"
+        [dynamicTableUpdate]="sendDynTableData"></app-dynamic-table>
 
     </mat-card-content>
 
