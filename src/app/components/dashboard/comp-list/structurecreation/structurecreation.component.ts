@@ -45,7 +45,8 @@ export class StructureCreationComponent implements OnInit {
     this.getComponentsList();
   }
 
-  getComponentsList() {
+  
+   getComponentsList() {
     const getPfComponentsList = String.Join('/', this.apiConfigService.getPfComponentsList);
     this.apiService.apiGetRequest(getPfComponentsList)
       .subscribe(
@@ -53,7 +54,8 @@ export class StructureCreationComponent implements OnInit {
           const res = response;
           if (!this.commonService.checkNullOrUndefined(res) && res.status === StatusCodes.pass) {
             if (!this.commonService.checkNullOrUndefined(res.response)) {
-              this.componentList = res.response['ComponentTypesList'];
+              this.dataSource = new MatTableDataSource(res.response['ComponentTypesList']);
+              this.dataSource.paginator = this.paginator;
             }
           }
           this.spinner.hide();
@@ -79,7 +81,7 @@ export class StructureCreationComponent implements OnInit {
     if (this.commonService.checkNullOrUndefined(this.structionName) && this.structionName == '') {
       return;
     }
-
+   
     let select = false;
     for (let s = 0; s < this.dataSource.data.length; s++) {
       if (this.dataSource.data[s]['select']) {
