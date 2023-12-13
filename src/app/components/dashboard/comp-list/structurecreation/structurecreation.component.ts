@@ -26,7 +26,9 @@ export class StructureCreationComponent implements OnInit {
   dataSource: MatTableDataSource<any>;
   displayedColumns: string[] = ['id', "text", "amount", "percentage", "select"];
   componentList: any;
-  
+
+  formData: any;
+
   @ViewChild(MatPaginator, { static: true }) paginator: MatPaginator;
 
   constructor(
@@ -34,19 +36,24 @@ export class StructureCreationComponent implements OnInit {
     private commonService: CommonService,
     private apiService: ApiService,
     private spinner: NgxSpinnerService,
-    public dialogRef: MatDialogRef<StructureCreationComponent>,
+    private addOrEditService: AddOrEditService,
+    private router: Router,
+
+    // public dialogRef: MatDialogRef<StructureCreationComponent>,
     // @Optional() is used to prevent error if no data is passed
-    @Optional() @Inject(MAT_DIALOG_DATA) public data: any
+    // @Optional() @Inject(MAT_DIALOG_DATA) public data: any
   ) {
-    console.log(data);
+    // console.log(data);
+    this.formData = { ...this.addOrEditService.editData };
+
   }
 
   ngOnInit() {
     this.getComponentsList();
   }
 
-  
-   getComponentsList() {
+
+  getComponentsList() {
     const getPfComponentsList = String.Join('/', this.apiConfigService.getPfComponentsList);
     this.apiService.apiGetRequest(getPfComponentsList)
       .subscribe(
@@ -81,7 +88,7 @@ export class StructureCreationComponent implements OnInit {
     if (this.commonService.checkNullOrUndefined(this.structionName) && this.structionName == '') {
       return;
     }
-   
+
     let select = false;
     for (let s = 0; s < this.dataSource.data.length; s++) {
       if (this.dataSource.data[s]['select']) {
@@ -91,11 +98,27 @@ export class StructureCreationComponent implements OnInit {
     if (select) {
       console.log(this.structionName, this.dataSource);
     }
+
+    const arr = this.dataSource.data.filter((d: any) => d.select)
+
+    const obj = {
+      item: {
+        structionName: this.structionName,
+        components: arr
+      }
+    }
+
+    this.addOrEditService[this.formData.action](obj, (res) => {
+      if (res) {
+        this.router.navigate(['/dashboard/master/structurecreation']);
+      }
+    });
+
   }
 
 
   cancel() {
-    this.dialogRef.close();
+    // this.dialogRef.close();
   }
 
 

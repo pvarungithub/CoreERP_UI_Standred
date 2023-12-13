@@ -41,7 +41,7 @@
                         <ng-container matColumnDef="select">
                             <th mat-header-cell *matHeaderCellDef> Select </th>
                             <td mat-cell *matCellDef="let element;">
-                                <mat-checkbox
+                                <mat-checkbox [(ngModel)]="element.select" [value]="element.select"
                                     [disabled]="(element.select == undefined || element.select) ? true : false"
                                     ></mat-checkbox>
                             </td>
