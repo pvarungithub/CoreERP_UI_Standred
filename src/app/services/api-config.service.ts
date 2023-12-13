@@ -483,6 +483,8 @@ export class ApiConfigService {
 
    addProductionissue = `${this.environment.runtimeConfig.serverUrl}Transactions/AddProductionissue`;
 
+   getProductionStatus = `${this.environment.runtimeConfig.serverUrl}Transactions/GetProductionStatus`;
+
    getPRList = `${this.environment.runtimeConfig.serverUrl}Common/GetPRList`;
    getBOMList = `${this.environment.runtimeConfig.serverUrl}Common/GetBOMList`;
 

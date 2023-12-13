@@ -12,6 +12,8 @@ import { AlertService } from '../../../../services/alert.service';
 import { DateAdapter, MAT_DATE_FORMATS } from '@angular/material/core';
 import { AppDateAdapter, APP_DATE_FORMATS } from '../../../../directives/format-datepicker';
 import { TableComponent } from 'src/app/reuse-components';
+import { MatDialog } from '@angular/material/dialog';
+import { MaterialRequisitionViewComponent } from './material-requisition-view/material-requisition-view.component';
 @Component({
   selector: 'app-materialrequisition',
   templateUrl: './materialrequisition.component.html',
@@ -69,7 +71,8 @@ export class MaterialrequisitionComponents implements OnInit {
     private alertService: AlertService,
     private spinner: NgxSpinnerService,
     public route: ActivatedRoute,
-    private router: Router
+    private router: Router,
+    public dialog: MatDialog,
   ) {
     if (!this.commonService.checkNullOrUndefined(this.route.snapshot.params.value)) {
       this.routeEdit = this.route.snapshot.params.value;
@@ -332,6 +335,7 @@ export class MaterialrequisitionComponents implements OnInit {
                   typeofWork: s.typeofWork ? s.typeofWork : '',
                   workStatus: s.workStatus ? s.workStatus : '',
                   id: s.id ? s.id : '',
+                  button: 'View',
                   action: 'edit',
                   index: index + 1,
                 }
@@ -345,6 +349,22 @@ export class MaterialrequisitionComponents implements OnInit {
           }
         });
   }
+
+
+  tableButtonEvent(event: any) {
+    this.inspectioncheck(event);
+  }
+
+  inspectioncheck(event: any) {
+    debugger
+    this.dialog.open(MaterialRequisitionViewComponent, {
+      width: '100%',
+      height: '700px',
+      data: event.item
+    });
+  }
+
+
 
   getCompanyList() {
     const companyUrl = String.Join('/', this.apiConfigService.getCompanyList);

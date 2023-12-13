@@ -1885,10 +1885,12 @@
     "workStatus": "Work Status",
     "wbs": "WBS",
     "order": "Order",
+    "duration": "Duration",
     "saleOrderNumber": "Sale Order Number",
     "price": "Price",
     "value": "Value",
     "delete": "Delete",
+    "button": "View",
                     "action": "Action"
 
   },
@@ -2637,5 +2639,14 @@
   "StructionCreation": {
     "fixedComponents": "Fixed Components",
     "structionName": "Struction Name"
+  },
+  "attendance": {
+    "title": "Attendance",
+    "employeeCode" : "Employee Code",
+    "employeeName" : "Employee Name",
+    "duration" : "Duration",
+    "logintime" : "Login time",
+    "logouttime" : "Logout time",
+    "status" : "Status"
   }
 }

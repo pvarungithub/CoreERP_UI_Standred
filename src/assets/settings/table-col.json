@@ -1598,6 +1598,7 @@
     "remarks": "remarks",
     "startDate": "Date",
     "endDate": "Date",
+    "duration": "Duration",
     "workStatus": "workStatus",
     "wbs": "WBS",
     "order": "Order",
@@ -1605,6 +1606,7 @@
     "value": "Value",
     "status": "Status",
     "delete": "Delete",
+    "button": true,
                 "action": "Action"
   },
   "purcahserequisition": {
@@ -2233,5 +2235,13 @@
         "deliveryDate": "Date",
         "delete": "Delete",
         "action": "Action"
+      },
+      "attendance": {
+        "duration" : "duration",
+        "employeeCode" : "employeeCode",
+        "employeeName" : "employeeName",
+        "logintime" : "logintime",
+        "logouttime" : "logouttime",
+        "status" : "status"
       }
 }
