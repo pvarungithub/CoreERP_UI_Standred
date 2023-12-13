@@ -1869,6 +1869,7 @@
     "materialName" :"Material Name",
     "description": "Description",
     "qty": "Quantity",
+    "productionStatus": "Production Status",
     "sotrageLocation": "Storage Location",
     "joborProject": "Job/Project",
     "costCenter": "Cost Center",
