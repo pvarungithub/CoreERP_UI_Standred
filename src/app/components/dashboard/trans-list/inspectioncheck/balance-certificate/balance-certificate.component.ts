@@ -1,6 +1,6 @@
-import { Component, Inject, Optional, ViewChild } from '@angular/core';
+import { Component, Inject, Optional } from '@angular/core';
 import { MAT_DIALOG_DATA, MatDialogRef } from '@angular/material/dialog';
-import { FormGroup, FormBuilder, Validators, FormArray } from '@angular/forms';
+import { FormBuilder } from '@angular/forms';
 import { String } from 'typescript-string-operations';
 import { NgxSpinnerService } from 'ngx-spinner';
 import { ActivatedRoute, Router } from '@angular/router';
@@ -24,7 +24,6 @@ export class BalanceCertificateComponent {
 
 
   constructor(public commonService: CommonService,
-    private formBuilder: FormBuilder,
     private spinner: NgxSpinnerService,
     private apiConfigService: ApiConfigService,
     private apiService: ApiService,
@@ -96,16 +95,6 @@ export class BalanceCertificateComponent {
             }
           }
         });
-  }
-
-
-  resultChange() {
-    // if (!((+(this.formData.value.result) > +(this.formData.value.minValue)) && (+(this.formData.value.result) < +(this.formData.value.maxValue)))) {
-    //   this.formData.patchValue({
-    //     result: ''
-    //   })
-    //   this.alertService.openSnackBar('Result Should be in between min and max value', Static.Close, SnackBar.error);
-    // }
   }
 
   save() {

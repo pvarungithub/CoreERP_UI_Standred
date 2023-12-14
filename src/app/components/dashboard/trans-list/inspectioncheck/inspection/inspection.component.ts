@@ -19,12 +19,10 @@ import { Static } from 'src/app/enums/common/static';
 })
 export class InspectionComponent {
 
-  @ViewChild(TableComponent, { static: false }) tableComponent: TableComponent;
-
-
-  formData: FormGroup;
 
   tableData = [];
+  dynTableProps = this.tablePropsFunc()
+  sendDynTableData: any;
 
   constructor(public commonService: CommonService,
     private formBuilder: FormBuilder,
@@ -38,62 +36,42 @@ export class InspectionComponent {
     // @Optional() is used to prevent error if no data is passed
     @Optional() @Inject(MAT_DIALOG_DATA) public data: any) {
 
-    this.formData = this.formBuilder.group({
-      parameter: [''],
-      uom: [''],
-      spec: [''],
-      minValue: [''],
-      maxValue: [''],
-      instrument: [''],
-      id: [0],
-      result: ['', Validators.required],
-      action: 'edit',
-      // tags: this.formBuilder.array([]),
-      index: 0
-    });
   }
-
-
-  model() {
-    return this.formBuilder.group({
-      tagName: [''],
-      tagAmount: [''],
-      trackingId: this.generateUniqueId(),
-    });
-  }
-
-  generateUniqueId() {
-    return (
-      Math.random().toString(36).substring(2, 15) +
-      Math.random().toString(36).substring(2, 15)
-    );
-  }
-
-  trackByFn(index: number, item: any) {
-    return item.trackingId;
-  }
-
-
-  get formControls() { return this.formData.controls; }
 
   ngOnInit() {
     this.getCommitmentList();
   }
 
-  resultChange() {
-    if (!((+(this.formData.value.result) > +(this.formData.value.minValue)) && (+(this.formData.value.result) < +(this.formData.value.maxValue)))) {
-      this.formData.patchValue({
-        result: ''
-      })
-      this.alertService.openSnackBar('Result Should be in between min and max value', Static.Close, SnackBar.error);
+  tablePropsFunc() {
+    return {
+      tableData: {
+        parameter: { value: null,  width: 150  },
+        uom: { value: null,  width: 150  },
+        spec: { value: null,  width: 150  },
+        minValue: { value: null,  width: 150  },
+        maxValue: { value: null,  width: 150  },
+        instrument: { value: null,  width: 150  },
+        result: { value: 0, type: 'text' },
+        id: { value: 0, width: 150 }
+      },
+      formControl: {
+        result: ['']
+      },
+      routeParam: 'standardrateoutput'
     }
+  }
+
+  emitColumnChanges(data) {
+    this.tableData = data.data;
+  }
+
+  reset() {
+    this.tableData = [];
+    this.sendDynTableData = { type: 'reset', data: this.tableData };
   }
 
   getCommitmentList() {
     this.tableData = [];
-    if (this.tableComponent) {
-      this.tableComponent.defaultValues();
-    }
     const url = String.Join('/', this.apiConfigService.getSaleOrderDetailbymaterialcode, this.data.materialCode, this.data.productionTag, 'Inspection');
     this.apiService.apiGetRequest(url)
       .subscribe(
@@ -117,98 +95,39 @@ export class InspectionComponent {
                   index: index + 1
                 })
               })
-              this.tableData = arr;
-              this.data['type'] = this.tableData.every((t: any) => !t.result) ? 'new' : 'edit';
+
+              this.data['type'] = arr.every((t: any) => !t.result) ? 'new' : 'edit';
+              this.dynTableProps = this.tablePropsFunc();
+              this.sendDynTableData = { type: 'edit', data: arr };
             }
           }
         });
   }
 
-  saveForm() {
-    if (this.formData.invalid) {
-      return;
-    }
-    this.formData.patchValue({
-      highlight: true
-    });
-    let data: any = this.tableData;
-    this.tableData = null;
-    this.tableComponent.defaultValues();
-    const obj = data.find((d: any) => d.parameter == this.formData.value.parameter)
-    if (this.formData.value.index == 0 && !obj) {
-      this.formData.patchValue({
-        index: data ? (data.length + 1) : 1
-      });
-      data = [this.formData.value, ...data];
-    } else {
-      if (this.formData.value.index == 0) {
-        // data.forEach((res: any) => { if (res.parameter == this.formData.value.parameter) { (res.qty = res.qty + this.formData.value.qty) } });
-      } else {
-        data = data.map((res: any) => res = res.index == this.formData.value.index ? this.formData.value : res);
-      }
-    }
-    setTimeout(() => {
-      this.tableData = data;
-    });
-    this.resetForm();
-  }
-
-  resetForm() {
-    this.formData.reset();
-    this.formData.patchValue({
-      index: 0,
-      action: 'edit',
-      id: 0
-    });
-  }
-
-
-  editOrDeleteEvent(value) {
-    if (value.action === 'Delete') {
-    } else {
-      this.formData.patchValue(value.item);
-      // let items: any = this.formData.get('tags') as FormArray;
-      // items.clear();
-      // this.data.tableData.forEach((t: any) => {
-      //   const obj = this.model();
-      //   obj.patchValue({
-      //     tagName: t.productionTag
-      //   })
-      //   items.push(obj);
-      // })
-    }
-  }
-
-  back() {
-    this.dialogRef.close();
-  }
-
   save() {
-    if (this.tableData.length == 0) {
+    if (!this.tableData.length) {
+      this.alertService.openSnackBar('Please fill atleast one result', Static.Close, SnackBar.success);
       return;
     }
     this.registerQCResults();
   }
 
   registerQCResults() {
-    const addsq = String.Join('/', this.apiConfigService.registerQCResults);
-    // this.data.tableData.forEach((d: any) => {
-    //   const arr = [];
-    //   this.tableData.forEach((t: any) => {
-    //     let result: any;
-    //     if (t && t.tags && t.tags.length) {
-    //       const obj = t.tags.find((t: any) => t.tagName == d.productionTag);
-    //       result = obj ? obj.tagAmount : ''
-    //     }
-    //     t.result = result;
-    //     arr.push(t);
-    //   });
-    //   d.inspectionCheck = arr;
-    // });
-    // const requestObj = { qtyDtl: this.data.tableData };
-    // this.data.tableData.forEach((d: any) => d.qtyResult = this.tableData);
     this.data['inspectionType'] = 'Inspection';
-    const requestObj = { qtyResult: this.tableData, qtyDtl: [this.data] };
+    const arr = [];
+    this.tableData.forEach((t: any) => {
+      const keys = Object.keys(t);
+      let obj = {};
+      keys.forEach((k: any) => {
+        obj = {
+          ...obj,
+          [k]: t[k].value
+        }
+      })
+      arr.push(obj);
+    })
+    const addsq = String.Join('/', this.apiConfigService.registerQCResults);
+    const requestObj = { qtyResult: arr, qtyDtl: [this.data] };
     this.apiService.apiPostRequest(addsq, requestObj).subscribe(
       response => {
         this.spinner.hide();
@@ -222,9 +141,10 @@ export class InspectionComponent {
       });
   }
 
-  reset() {
-    this.tableData = [];
-    this.formData.reset();
+  back() {
+    this.dialogRef.close();
   }
+
+
 
 }
