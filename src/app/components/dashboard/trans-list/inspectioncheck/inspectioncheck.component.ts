@@ -635,8 +635,8 @@ export class InspectioncheckComponent implements OnInit {
 
   balanceCertificate(event: any) {
     this.dialog.open(BalanceCertificateComponent, {
-      width: '100%',
-      height: '700px',
+      width: '40%',
+      height: '600px',
       data: event.item
     });
 
