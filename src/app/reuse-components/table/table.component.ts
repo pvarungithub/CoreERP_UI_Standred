@@ -59,7 +59,6 @@ export class TableComponent implements OnInit, OnChanges, AfterViewInit, OnDestr
   filterColData = [];
   doubleClick = 0;
   keys = [];
-  showDataNotFound = true;
   user: User;
   routeParam: any;
   tableIndex: any;
@@ -84,7 +83,6 @@ export class TableComponent implements OnInit, OnChanges, AfterViewInit, OnDestr
     this.columnDefinitions = [];
     this.filterColData = [];
     this.keys = [];
-    this.showDataNotFound = true;
   }
 
   setIndex(row, i) {
@@ -148,10 +146,8 @@ export class TableComponent implements OnInit, OnChanges, AfterViewInit, OnDestr
     this.highlightedRows = [];
     if (!this.commonService.checkNullOrUndefined(this.tableData)) {
       if (this.tableData.length) {
-        this.showDataNotFound = false;
         this.dataSource = new MatTableDataSource(this.tableData);
       } else {
-        this.showDataNotFound = true;
       }
     }
     if (!this.commonService.checkNullOrUndefined(this.dataSource)) {

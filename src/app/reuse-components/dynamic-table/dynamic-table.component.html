@@ -1,6 +1,4 @@
-<div *ngIf="!dataSource" class="d-flex justify-content-center align-items-center">
-  <img class="text-bottom" width="500" height="300" src="assets/images/Data_not_found.png">
-</div>
+
 <div class="table">
   <table class="w-100" mat-table [dataSource]="dataSource" matSort #mytableb cellspacing="0" cellpadding="0">
     <ng-container *ngFor="let column of getDisplayedColumns()" [matColumnDef]="column">
@@ -30,7 +28,7 @@
           <textarea matInput hidden></textarea>
         </mat-form-field>
 
-        <div class="form-element" *ngSwitchCase="'text'" [ngStyle]="{'width': element[column].width + 'px'}">
+        <div class="form-element text-center" *ngSwitchCase="'text'" [ngStyle]="{'width': element[column].width + 'px'}">
           <input *ngIf="element[column].maxLength" id="{{column}}{{dataSource.filteredData.indexOf(element)}}" 
             [disabled]="element[column].disabled" [value]="element[column].value" [(ngModel)]="element[column].value"
             [maxLength]="element[column].maxLength"
@@ -101,5 +99,15 @@
     </ng-container>
     <tr mat-header-row *matHeaderRowDef="getDisplayedColumns()"></tr>
     <tr mat-row *matRowDef="let row; columns: getDisplayedColumns();"></tr>
+
+    <tr class="mat-row" *matNoDataRow>
+      <td class="mat-cell" [attr.colspan]="getDisplayedColumns().length">
+        <div  class="d-flex justify-content-center align-items-center">
+          <img class="text-bottom" width="500" height="300" src="assets/images/Data_not_found.png">
+        </div>
+      </td>
+    </tr>
+    
   </table>
 </div>
+
