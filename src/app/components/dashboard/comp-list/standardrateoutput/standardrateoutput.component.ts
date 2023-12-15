@@ -154,6 +154,7 @@ export class StandardRateComponent implements OnInit {
                   spec: s.spec,
                   minValue: s.minValue,
                   maxValue: s.maxValue,
+                  id: s.id,
                   instrument: s.instrument,
                   action: 'edit',
                   index: index + 1

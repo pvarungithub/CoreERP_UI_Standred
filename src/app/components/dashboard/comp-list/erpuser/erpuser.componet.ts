@@ -7,6 +7,7 @@ import { NgxSpinnerService } from 'ngx-spinner';
 import { ApiConfigService } from '../../../../services/api-config.service';
 import { ApiService } from '../../../../services/api.service';
 import { String } from 'typescript-string-operations';
+import { AddOrEditService } from '../add-or-edit.service';
 
 @Component({
   selector: 'app-erpuser',
@@ -26,6 +27,7 @@ export class ErpUsersComponent implements OnInit {
     private apiService: ApiService,
     private apiConfigService: ApiConfigService,
     private spinner: NgxSpinnerService,
+    private addOrEditService: AddOrEditService,
     private formBuilder: FormBuilder,
     public dialogRef: MatDialogRef<ErpUsersComponent>,
     // @Optional() is used to prevent error if no data is passed
@@ -43,6 +45,9 @@ export class ErpUsersComponent implements OnInit {
     this.formData = { ...data };
     if (!this.commonService.checkNullOrUndefined(this.formData.item)) {
       this.modelFormData.patchValue(this.formData.item);
+      this.modelFormData.patchValue({
+        role: this.formData.item.role ? +this.formData.item.role : null
+      })
       this.modelFormData.controls['userName'].disable();
     }
   }
@@ -94,7 +99,13 @@ export class ErpUsersComponent implements OnInit {
     }
     this.modelFormData.controls['userName'].enable();
     this.formData.item = this.modelFormData.value;
-    this.dialogRef.close(this.formData);
+    this.addOrEditService[this.formData.action](this.formData, (res) => {
+      this.dialogRef.close(this.formData);
+    });
+    if (this.formData.action == 'Edit') {
+      this.modelFormData.controls['userName'].disable();
+    }
+
   }
 
   cancel() {
