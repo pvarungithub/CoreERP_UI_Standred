@@ -73,8 +73,11 @@ export class LoginComponent implements OnInit {
           const res = response;
           if (!this.commonService.checkNullOrUndefined(res) && res.status === StatusCodes.pass) {
             if (!this.commonService.checkNullOrUndefined(res.response)) {
-              this.getBranchesForUser(res.response['User']);
+            //  this.getBranchesForUser(res.response['User']);
               localStorage.setItem('Token', JSON.stringify(res.response['Token']));
+              this.authService.login(res.response.User);
+              this.router.navigate(['dashboard']);
+
             }
           }
           this.spinner.hide();
