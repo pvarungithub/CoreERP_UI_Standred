@@ -2152,6 +2152,7 @@
         "completedBy": "Completed By",
     "endDate": "End Date",
     "isReject": "Is Reject",
+    "BALANCECERTIFICATEPRINT": "Balance Certificate Print",
     "productionTag": "Production Tag",
     "mechine": "Mechine",
     "remarks": "Remarks",

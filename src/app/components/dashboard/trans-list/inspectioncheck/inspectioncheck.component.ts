@@ -67,6 +67,7 @@ export class InspectioncheckComponent implements OnInit {
   materialcode: any;
 
   data: any;
+  balanceCertificateData: any;
   date = new Date();
   
   constructor(private commonService: CommonService,
@@ -712,6 +713,81 @@ export class InspectioncheckComponent implements OnInit {
       var html = document.getElementById('inspectionPrintData').innerHTML;
       w.document.body.innerHTML = html;
       this.data = null;
+      w.print();
+    }, 1000);
+
+  }
+
+  balanceingCertificatePrint() {
+    const getQCReportDetail = String.Join('/', this.apiConfigService.getQCReportDetail, this.formData1.value.saleOrderNumber, this.materialcode, 'Balancing');
+    this.apiService.apiGetRequest(getQCReportDetail)
+      .subscribe(
+        response => {
+          this.spinner.hide();
+          const res = response;
+          if (!this.commonService.checkNullOrUndefined(res) && res.status === StatusCodes.pass) {
+            if (!this.commonService.checkNullOrUndefined(res.response)) {
+              // this.profitCenterList = res.response['profitCenterList'];
+              this.printBalanceingCertificateData(res.response);
+            }
+          }
+        });
+  }
+
+  printBalanceingCertificateData(res) {
+    debugger
+    let arr = [];
+    if (res.tagsDetail && res.tagsDetail.length) {
+      res.tagsDetail.forEach((t: any) => {
+        const obj = {
+          Parameter: t.parameter,
+          Specification: t.spec,
+          UOM: t.uom,
+          Instrument: t.instrument,
+          inspectionCheckNo: t.inspectionCheckNo,
+          [t.tagName]: t.result,
+          description: t.description,
+        }
+        if (!arr.length) {
+          arr.push(obj);
+        } else {
+          const index = arr.findIndex((a: any) => a.Parameter == t.parameter);
+          if(index != -1) {
+            arr[index][t.tagName] = t.result
+          } else {
+            arr.push(obj);
+          }
+        }
+      })
+    }
+    const obj = {
+      heading: 'DYNAMIC BALANCING CERTIFICATE',
+      headingObj: {
+        Amount: res.SaleorderMaster.amount,
+        'company': res.SaleorderMaster.company,
+        supplierName: res.SaleorderMaster.supplierName,
+        poNumber: res.SaleorderMaster.poNumber,
+        poDate: res.SaleorderMaster.poDate,
+        description: res.QCData.materialName,
+        heatNumber: res.QCData.heatNumber,
+        drgNo: res.QCData.drgNo,
+      },
+      detailArray: arr
+    }
+    // localStorage.setItem('balanceCertificatePrintData', JSON.stringify(obj));
+    // const url = this.router.serializeUrl(
+    //   this.router.createUrlTree([`dashboard/balanceing-certificate-preview`])
+    // );
+
+    // window.open(url, "_self");
+
+    this.balanceCertificateData = obj;
+
+    setTimeout(() => {
+      var w = window.open();
+      var html = document.getElementById('balanceCertificatePrintData').innerHTML;
+      w.document.body.innerHTML = html;
+      this.balanceCertificateData = null;
       w.print();
     }, 1000);
 
