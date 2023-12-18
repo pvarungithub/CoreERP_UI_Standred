@@ -645,7 +645,7 @@ export class InspectioncheckComponent implements OnInit {
 
   print() {
     localStorage.setItem('printData', '');
-    const getQCReportDetail = String.Join('/', this.apiConfigService.getQCReportDetail, this.formData1.value.saleOrderNumber, this.materialcode);
+    const getQCReportDetail = String.Join('/', this.apiConfigService.getQCReportDetail, this.formData1.value.saleOrderNumber, this.materialcode, 'Inspection');
     this.apiService.apiGetRequest(getQCReportDetail)
       .subscribe(
         response => {
@@ -736,30 +736,6 @@ export class InspectioncheckComponent implements OnInit {
 
   printBalanceingCertificateData(res) {
     debugger
-    let arr = [];
-    if (res.tagsDetail && res.tagsDetail.length) {
-      res.tagsDetail.forEach((t: any) => {
-        const obj = {
-          Parameter: t.parameter,
-          Specification: t.spec,
-          UOM: t.uom,
-          Instrument: t.instrument,
-          inspectionCheckNo: t.inspectionCheckNo,
-          [t.tagName]: t.result,
-          description: t.description,
-        }
-        if (!arr.length) {
-          arr.push(obj);
-        } else {
-          const index = arr.findIndex((a: any) => a.Parameter == t.parameter);
-          if(index != -1) {
-            arr[index][t.tagName] = t.result
-          } else {
-            arr.push(obj);
-          }
-        }
-      })
-    }
     const obj = {
       heading: 'DYNAMIC BALANCING CERTIFICATE',
       headingObj: {
@@ -772,7 +748,7 @@ export class InspectioncheckComponent implements OnInit {
         heatNumber: res.QCData.heatNumber,
         drgNo: res.QCData.drgNo,
       },
-      detailArray: arr
+      detailArray: res.tagsDetail
     }
     // localStorage.setItem('balanceCertificatePrintData', JSON.stringify(obj));
     // const url = this.router.serializeUrl(
