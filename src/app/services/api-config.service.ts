@@ -181,6 +181,7 @@ export class ApiConfigService {
    getMenuUrl = `${this.environment.runtimeConfig.serverUrl}Auth/getMenu`;
    //getMenuUrl = 'http://localhost:5000/api/Auth/getMenu';
     getrolelist = `${this.environment.runtimeConfig.serverUrl}UserCreation/GetRoleList`;
+    getUserCreation = `${this.environment.runtimeConfig.serverUrl}UserCreation/GetUserCreation`;
    //getrolelist = 'http://localhost:5000/api/UserCreation/GetRoleList';
 
 
