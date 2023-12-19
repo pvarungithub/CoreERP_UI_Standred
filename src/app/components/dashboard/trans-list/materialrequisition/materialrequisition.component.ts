@@ -104,7 +104,7 @@ export class MaterialrequisitionComponents implements OnInit {
       saleOrderNumber: [''],
       highlight: false,
       id: 0,
-      action: 'edit',
+      action: 'editView',
       index: 0
     });
     // this.formData = this.formBuilder.group({
@@ -237,7 +237,7 @@ export class MaterialrequisitionComponents implements OnInit {
     this.formData1.reset();
     this.formData1.patchValue({
       index: 0,
-      action: 'edit'
+      action: 'editView'
     });
   }
 
@@ -246,8 +246,10 @@ export class MaterialrequisitionComponents implements OnInit {
     if (value.action === 'Delete') {
       this.tableComponent.defaultValues();
       this.tableData1 = this.tableData1.filter((res: any) => res.index != value.item.index);
-    } else {
+    } else if(value.action === 'Edit') {
       this.formData1.patchValue(value.item);
+    } else {
+      this.inspectioncheck(value);
     }
   }
 
@@ -267,7 +269,7 @@ export class MaterialrequisitionComponents implements OnInit {
               res.response['goodsissueastersDetail'].forEach((s: any, index: number) => {
                 // const qty = this.mmasterList.find(resp => resp.id == s.materialCode);
                 let obj = {
-                  // action: 'edit',
+                  // action: 'editView',
                   // id: s.id ? s.id : 0,
                   // index: index + 1,
                   qty: s.qty ? s.qty : 0,
@@ -284,7 +286,7 @@ export class MaterialrequisitionComponents implements OnInit {
               })
               this.tableData = arr;
 
-              // this.sendDynTableData = { type: 'edit', data: res.response['goodsissueastersDetail'] };
+              // this.sendDynTableData = { type: 'editView', data: res.response['goodsissueastersDetail'] };
               // this.formData.disable();
             }
           }
@@ -311,7 +313,7 @@ export class MaterialrequisitionComponents implements OnInit {
               res.response['tagsDetail'].forEach((s: any, index: number) => {
                 // const qty = this.mmasterList.find(resp => resp.id == s.materialCode);
                 let obj = {
-                  // action: 'edit',
+                  // action: 'editView',
                   // id: s.id ? s.id : 0,
                   // index: index + 1,
                   // qty: s.qty ? s.qty : 0,
@@ -335,25 +337,20 @@ export class MaterialrequisitionComponents implements OnInit {
                   typeofWork: s.typeofWork ? s.typeofWork : '',
                   workStatus: s.workStatus ? s.workStatus : '',
                   id: s.id ? s.id : '',
-                  button: 'View',
-                  action: 'edit',
+                  action: 'editView',
                   index: index + 1,
                 }
                 arr.push(obj);
               })
               this.tableData1 = arr;
 
-              // this.sendDynTableData = { type: 'edit', data: res.response['goodsissueastersDetail'] };
+              // this.sendDynTableData = { type: 'editView', data: res.response['goodsissueastersDetail'] };
               // this.formData.disable();
             }
           }
         });
   }
 
-
-  tableButtonEvent(event: any) {
-    this.inspectioncheck(event);
-  }
 
   inspectioncheck(event: any) {
     debugger

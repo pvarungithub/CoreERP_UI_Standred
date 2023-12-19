@@ -616,7 +616,6 @@ export class InspectioncheckComponent implements OnInit {
 
 
   tableButtonEvent(event: any) {
-    debugger
     if(event.flag == 'button') {
       this.inspectioncheck(event);
     }
@@ -735,7 +734,6 @@ export class InspectioncheckComponent implements OnInit {
   }
 
   printBalanceingCertificateData(res) {
-    debugger
     const obj = {
       heading: 'DYNAMIC BALANCING CERTIFICATE',
       headingObj: {

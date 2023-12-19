@@ -67,10 +67,11 @@ export class ApprovalTypeComponent implements OnInit {
       immediateReporting: [null],
       reportingTo: [null],
       approvedBy: [null],
+      recommendedBy: [null],
       company: [null],
-      department: [null],
+      // department: [null],
       companyName: [null],
-      departmentName: [null],
+      // departmentName: [null],
       approveName: [null]
     });
 
@@ -95,11 +96,10 @@ export class ApprovalTypeComponent implements OnInit {
     this.apiService.apiGetRequest(getCashAccBranchesList)
       .subscribe(
         response => {
-          const res = response.body;
-          if (!this.commonService.checkNullOrUndefined(res) && res.status === StatusCodes.pass) {
-            if (!this.commonService.checkNullOrUndefined(res.response)) {
-              console.log(res);
-              this.branchesList = res.response['BranchesList'];
+          if (!this.commonService.checkNullOrUndefined(response) && response.status === StatusCodes.pass) {
+            if (!this.commonService.checkNullOrUndefined(response.response)) {
+              console.log(response);
+              this.branchesList = response.response['BranchesList'];
             }
           }
           this.spinner.hide();
@@ -107,15 +107,14 @@ export class ApprovalTypeComponent implements OnInit {
   }
 
   getCompiniesList() {
-    const getCompiniesListList = String.Join('/', this.apiConfigService.getCompaniesList);
+    const getCompiniesListList = String.Join('/', this.apiConfigService.getCompanyList);
     this.apiService.apiGetRequest(getCompiniesListList)
       .subscribe(
         response => {
-          const res = response.body;
-          if (!this.commonService.checkNullOrUndefined(res) && res.status === StatusCodes.pass) {
-            if (!this.commonService.checkNullOrUndefined(res.response)) {
-              console.log(res);
-              this.compiniesList = res.response['CompaniesList'];
+          if (!this.commonService.checkNullOrUndefined(response) && response.status === StatusCodes.pass) {
+            if (!this.commonService.checkNullOrUndefined(response.response)) {
+              console.log(response);
+              this.compiniesList = response.response['companiesList'];
             }
           }
           this.spinner.hide();
@@ -124,15 +123,14 @@ export class ApprovalTypeComponent implements OnInit {
 
 
   getEmployeesList() {
-    const getEmployeeList = String.Join('/', this.apiConfigService.getempList);
+    const getEmployeeList = String.Join('/', this.apiConfigService.getEmployeeList);
     this.apiService.apiGetRequest(getEmployeeList)
       .subscribe(
         response => {
-          const res = response.body;
-          if (!this.commonService.checkNullOrUndefined(res) && res.status === StatusCodes.pass) {
-            if (!this.commonService.checkNullOrUndefined(res.response)) {
-              console.log(res);
-              this.employeesList = res.response['EmployeesList'];
+          if (!this.commonService.checkNullOrUndefined(response) && response.status === StatusCodes.pass) {
+            if (!this.commonService.checkNullOrUndefined(response.response)) {
+              console.log(response);
+              this.employeesList = response.response['emplist'];
             }
           }
           this.spinner.hide();

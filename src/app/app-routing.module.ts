@@ -16,7 +16,7 @@ const routes: Routes = [
     children: [
 
       // standard screens
-      { path: 'rolePrevilages', component: RolesprevilagesComponent, canActivate: [AuthGuard], resolve: { routeConfig: AuthGuard } },
+      { path: 'rolePrevilages', component: RolesprevilagesComponent },
 
       // masters screen
       { path: 'master/:id/:id1', component: CompTabsComponent, canActivate: [AuthGuard], resolve: { routeConfig: AuthGuard } },

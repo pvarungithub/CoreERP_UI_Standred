@@ -545,7 +545,6 @@ export class GoodsissueComponent implements OnInit {
   }
 
   getSaleOrderDetail() {
-    debugger
     this.tableComponent.defaultValues();
     let url = '';
     if (this.formData.value.saleOrder == 'Sale Order') {

@@ -1158,7 +1158,14 @@
     "delete": "Delete"
   },
   "rolePrevilages": {
-    "title": "Role Previlages"
+    "title": "Role Previlages",
+    "role": "Role",
+    "menuName": "Menu Name",
+    "headerMenu": "Header Menu",
+    "active": "Active",
+    "add": "Add",
+    "edit": "Edit",
+    "delete": "Delete"
   },
   "dashboard": {
     "title": "Dashboard"
@@ -2153,6 +2160,7 @@
     "endDate": "End Date",
     "isReject": "Is Reject",
     "BALANCECERTIFICATEPRINT": "Balance Certificate Print",
+    "INSPECTIONPRINT": "Inspection Print",
     "productionTag": "Production Tag",
     "mechine": "Mechine",
     "remarks": "Remarks",
@@ -2530,17 +2538,18 @@
     "shiftId":"Shift Id"
   },
    "approvaltype": {
-    "title": "ApprovalType",
+    "title": "Approval Type",
     "id": "Id",
     "approvalType1": "ApprovalType1",
-    "immediateReporting": "ImmediateReporting",
-    "reportingTo": "ReportingTo",
-    "approvedBy": "ApprovedBy",
+    "immediateReporting": "Immediate Reporting",
+    "reportingTo": "Reporting To",
+    "approvedBy": "Approved By",
+    "recommendedBy": "Recommended By",
     "company": "Company",
     "department": "Department",
-    "companyName": "CompanyName",
-    "departmentName": "DepartmentName",
-    "approveName": "ApproveName"
+    "companyName": "Company Name",
+    "departmentName": "Department Name",
+    "approveName": "Approve Name"
   },
    "openingBalance":{
     "title":"Opening Balance",

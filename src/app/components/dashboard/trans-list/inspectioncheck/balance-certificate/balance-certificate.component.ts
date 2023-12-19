@@ -88,7 +88,6 @@ export class BalanceCertificateComponent {
                   id: s.id ? s.id : 0,
                 })
               })
-              debugger
               this.data['type'] = arr.every((t: any) => !t.result) ? 'new' : 'edit';
               this.dynTableProps = this.tablePropsFunc();
               this.sendDynTableData = { type: 'edit', data: arr };

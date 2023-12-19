@@ -37,7 +37,6 @@ export class DynamicTableComponent implements OnInit {
         editData.push(this.tableData[0])
         this.dataSource = new MatTableDataSource(JSON.parse(JSON.stringify(editData)));
       } else if (res.type == 'edit') {
-        debugger
         this.dataSource = new MatTableDataSource(JSON.parse(JSON.stringify(this.formalTableData(res.data))));
       } else if (res.type == 'reset') {
         this.setTableData();
@@ -201,7 +200,6 @@ export class DynamicTableComponent implements OnInit {
       if (!this.routeParam) {
         this.routeParam = this.router.url.split('/').pop();
       }
-      debugger
       // tslint:disable-next-line:forin
       for (let key in this.runtimeConfigService.tableColumnsData[this.routeParam]) {
         for (let c = 0; c < col.length; c++) {

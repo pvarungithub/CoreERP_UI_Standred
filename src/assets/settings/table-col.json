@@ -981,10 +981,20 @@
     "accumulatedValue": "AccumulatedValue",
     "delete": "Delete"
   },
+  "rolePrevilages": {
+    "title": "Role Previlages",
+    "id": "id",
+    "text": "text"
+  },
   "purchasinggroups": {
-    "title": "Purchasing Groups",
-    "pruchaseGroup": "PurchaseGroup",
-    "description": "Description"
+    "title": "Role Previlages",
+    "role": "Role",
+    "menuName": "Menu Name",
+    "headerMenu": "Header Menu",
+    "active": "Active",
+    "add": "Add",
+    "edit": "Edit",
+    "delete": "Delete"
   },
   "purchasingperson": {
     "personName": "Purchasig Person Name",
