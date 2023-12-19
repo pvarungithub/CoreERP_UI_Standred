@@ -38,11 +38,7 @@ export class ApprovalTypeComponent implements OnInit {
   formData: any;
  
 
-  aptypes: ApprovalType[] =
-    [
-      { value: 'Vehicle Requisition', viewValue: 'Vehicle Requisition' },
-      { value: 'Applyod', viewValue: 'Applyod' }
-    ];
+  aptypes: any[] = [];
   EmpName: any;
   pipe = new DatePipe('en-US');
   now = Date.now();
@@ -86,9 +82,25 @@ export class ApprovalTypeComponent implements OnInit {
   }
 
   ngOnInit() {
+    this.getFormListList();
     this.getCashAccBranchesList();
     this.getCompiniesList();
     this.getEmployeesList();
+  }
+
+  getFormListList() {
+    const getFormListList = String.Join('/', this.apiConfigService.getFormList);
+    this.apiService.apiGetRequest(getFormListList)
+      .subscribe(
+        response => {
+          if (!this.commonService.checkNullOrUndefined(response) && response.status === StatusCodes.pass) {
+            if (!this.commonService.checkNullOrUndefined(response.response)) {
+              console.log(response);
+              this.aptypes = response.response['ConfigurationList'];
+            }
+          }
+          this.spinner.hide();
+        });
   }
 
   getCashAccBranchesList() {

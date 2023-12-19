@@ -487,6 +487,7 @@ export class ApiConfigService {
 
    getPRList = `${this.environment.runtimeConfig.serverUrl}Common/GetPRList`;
    getBOMList = `${this.environment.runtimeConfig.serverUrl}Common/GetBOMList`;
+   getFormList = `${this.environment.runtimeConfig.serverUrl}Common/GetFormList`;
 
    registerStandardRate = `${this.environment.runtimeConfig.serverUrl}StandardRate/RegisterStandardRate`;
 
