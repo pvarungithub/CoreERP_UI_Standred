@@ -135,14 +135,14 @@ export class ApprovalTypeComponent implements OnInit {
 
 
   getEmployeesList() {
-    const getEmployeeList = String.Join('/', this.apiConfigService.getEmployeeList);
+    const getEmployeeList = String.Join('/', this.apiConfigService.getUserCreation);
     this.apiService.apiGetRequest(getEmployeeList)
       .subscribe(
         response => {
           if (!this.commonService.checkNullOrUndefined(response) && response.status === StatusCodes.pass) {
             if (!this.commonService.checkNullOrUndefined(response.response)) {
               console.log(response);
-              this.employeesList = response.response['emplist'];
+              this.employeesList = response.response['userList'];
             }
           }
           this.spinner.hide();

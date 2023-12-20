@@ -37,8 +37,8 @@
         <mat-form-field>
           <mat-label>{{'approvaltype.recommendedBy' | translate }}</mat-label>
           <mat-select formControlName="recommendedBy">
-            <mat-option *ngFor="let emp of employeesList" [value]="emp.id">
-              {{emp.text}}
+            <mat-option *ngFor="let emp of employeesList" [value]="emp.userName">
+              {{emp.userName}}
             </mat-option>
           </mat-select>
         </mat-form-field>
@@ -46,8 +46,8 @@
         <mat-form-field>
           <mat-label>{{'approvaltype.approvedBy' | translate }}</mat-label>
           <mat-select formControlName="approvedBy">
-            <mat-option *ngFor="let emp of employeesList" [value]="emp.id">
-              {{emp.text}}
+            <mat-option *ngFor="let emp of employeesList" [value]="emp.userName">
+              {{emp.userName}}
             </mat-option>
           </mat-select>
         </mat-form-field>

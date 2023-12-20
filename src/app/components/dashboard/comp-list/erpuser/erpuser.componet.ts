@@ -20,7 +20,7 @@ export class ErpUsersComponent implements OnInit {
   isSubmitted = false;
   formData: any;
   companyList: any;
-  employeesList: any;
+  employeesList: any[] = [];
   RolesList: any;
 
   constructor(private commonService: CommonService,
@@ -55,6 +55,22 @@ export class ErpUsersComponent implements OnInit {
   ngOnInit() {
     this.getRolesList();
     //this.getTableData();
+    this.getEmployeesList();
+  }
+
+  getEmployeesList() {
+    const getEmployeeList = String.Join('/', this.apiConfigService.getEmployeeList);
+    this.apiService.apiGetRequest(getEmployeeList)
+      .subscribe(
+        response => {
+          const res = response;
+          if (!this.commonService.checkNullOrUndefined(res) && res.status === StatusCodes.pass) {
+            if (!this.commonService.checkNullOrUndefined(res.response)) {
+              this.employeesList = res.response['emplist'];
+            }
+          }
+          this.spinner.hide();
+        });
   }
 
   getRolesList() {
