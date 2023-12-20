@@ -1157,7 +1157,7 @@
     "accumulatedValue": "AccumulatedValue",
     "delete": "Delete"
   },
-  "rolePrevilages": {
+  "rolePrevilages/role": {
     "title": "Role Previlages",
     "role": "Role",
     "menuName": "Menu Name",

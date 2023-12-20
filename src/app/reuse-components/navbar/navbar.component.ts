@@ -38,6 +38,7 @@ export class NavbarComponent implements OnInit {
   ) { }
 
   ngOnInit() {
+    debugger
   }
 
   logout() {
