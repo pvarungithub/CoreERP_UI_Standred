@@ -353,7 +353,6 @@ export class MaterialrequisitionComponents implements OnInit {
 
 
   inspectioncheck(event: any) {
-    debugger
     this.dialog.open(MaterialRequisitionViewComponent, {
       width: '100%',
       height: '700px',

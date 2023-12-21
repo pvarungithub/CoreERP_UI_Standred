@@ -55,7 +55,7 @@ export class TransTableComponent implements OnInit {
   public doFilter = (value: string) => {
     this.dataSource.filter = value.trim().toLocaleLowerCase();
   }
-  
+
   constructor(
     private formBuilder: FormBuilder,
     private translate: TranslateService,
@@ -176,7 +176,7 @@ export class TransTableComponent implements OnInit {
 
     }
 
-    
+
 
 
   }
@@ -194,6 +194,24 @@ export class TransTableComponent implements OnInit {
 
   selectRow(row, index) {
     console.log(row, index)
+  }
+
+  setClass(element: any) {
+    debugger
+    if (this.routeParam == 'saleorder') {
+      if (new Date(element.dateofSupply) > new Date() && element.status != "Completed") {
+        return 'background-red';
+      }
+      if (new Date(element.dateofSupply) < new Date() && element.status == "Completed") {
+        return 'background-green';
+      }
+    }
+    if (element.result && element.result.condition == 'inspection' && element.result.value) {
+      if ((element.result.value < element.minValue.value) || (element.result.value > element.maxValue.value)) {
+        return element.result.addClass;
+      }
+    }
+    return ''
   }
 
 }

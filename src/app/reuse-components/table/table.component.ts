@@ -148,6 +148,7 @@ export class TableComponent implements OnInit, OnChanges, AfterViewInit, OnDestr
       if (this.tableData.length) {
         this.dataSource = new MatTableDataSource(this.tableData);
       } else {
+        this.dataSource = new MatTableDataSource();
       }
     }
     if (!this.commonService.checkNullOrUndefined(this.dataSource)) {
@@ -180,6 +181,9 @@ export class TableComponent implements OnInit, OnChanges, AfterViewInit, OnDestr
         if (this.runtimeConfigService.tableColumnsData[this.routeParam][key] == 'Date') {
           this.formatDate(key)
         }
+        if (this.runtimeConfigService.tableColumnsData[this.routeParam][key] == 'DateTime') {
+          this.formatDateTime(key)
+        }
         for (let c = 0; c < col.length; c++) {
           if (key == col[c].def) {
             this.columnDefinitions.push(col[c]);
@@ -204,6 +208,10 @@ export class TableComponent implements OnInit, OnChanges, AfterViewInit, OnDestr
 
   formatDate(col) {
     this.tableData.map(res => !this.commonService.checkNullOrUndefined(res[col]) ? res[col] = this.commonService.formatDateValue(res[col]) : '');
+  }
+
+  formatDateTime(col) {
+    this.tableData.map(res => !this.commonService.checkNullOrUndefined(res[col]) ? res[col] = this.commonService.formatReportDate(res[col]) : '');
   }
 
 
@@ -280,6 +288,10 @@ export class TableComponent implements OnInit, OnChanges, AfterViewInit, OnDestr
 
   editOrDelete(action: string, item: any) {
     this.editOrDeleteEvent.emit({ action: action, item: item });
+  }
+
+  getCount(name) {
+    return this.dataSource && this.dataSource.data.filter(o => o.status === name).length;
   }
 
 }

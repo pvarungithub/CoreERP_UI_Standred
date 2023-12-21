@@ -37,6 +37,7 @@ export class ErpUsersComponent implements OnInit {
       password: ['', [Validators.required, Validators.minLength(2)]],
       role: [null],
       seqId: ['0'],
+      active: [null],
       branchCode: [null],
       companyCode: [null],
       addDate: [null]
@@ -107,6 +108,15 @@ export class ErpUsersComponent implements OnInit {
         });
   }
 
+  
+  approveOrReject(event) {
+      this.modelFormData.patchValue({
+        active: event ? 1 : 0,
+      });
+  }
+
+
+
   get formControls() { return this.modelFormData.controls; }
 
   save() {
@@ -123,6 +133,8 @@ export class ErpUsersComponent implements OnInit {
     }
 
   }
+
+  
 
   cancel() {
     this.dialogRef.close();

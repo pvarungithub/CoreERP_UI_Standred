@@ -111,7 +111,21 @@
       
       </table>
     </div>
-    <mat-paginator [pageSizeOptions]="[10 ,25, 50, 100]" showFirstLastButtons></mat-paginator>
+    <ng-container >
+      <div class="d-flex justify-content-end">
+        <ng-container *ngIf="routeParam == 'attendance'">
+          <div class="p-3">
+            <b> Total Present </b> : {{ getCount('Present') }}
+          </div>
+          <div class="p-3">
+            <b> Total Absent </b> : {{ getCount('Absent') }}
+          </div>
+        </ng-container>
+        <div>
+          <mat-paginator [pageSizeOptions]="[10 ,25, 50, 100]" showFirstLastButtons></mat-paginator>
+        </div>
+      </div>
+    </ng-container>
   </div>
   <!-- </div> -->
 </mat-card>

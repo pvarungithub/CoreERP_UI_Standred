@@ -48,6 +48,12 @@
           </mat-select>
         </mat-form-field>
 
+        <div class="d-flex align-items-center p-2">
+          <mat-slide-toggle formControlName="active" (change)="approveOrReject($event.checked)">
+            {{(modelFormData.get('active').value != null) ? 'Active' : 'InActive '}}
+          </mat-slide-toggle>
+        </div>
+
       </div>
       <mat-divider></mat-divider>
     </form>

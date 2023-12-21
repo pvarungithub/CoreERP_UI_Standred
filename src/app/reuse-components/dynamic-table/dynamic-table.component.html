@@ -29,13 +29,13 @@
         </mat-form-field>
 
         <div class="form-element text-center" *ngSwitchCase="'text'" [ngStyle]="{'width': element[column].width + 'px'}">
-          <input *ngIf="element[column].maxLength" id="{{column}}{{dataSource.filteredData.indexOf(element)}}" 
+          <input *ngIf="element[column].maxLength" [ngClass]="setClass(element)" id="{{column}}{{dataSource.filteredData.indexOf(element)}}" 
             [disabled]="element[column].disabled" [value]="element[column].value" [(ngModel)]="element[column].value"
             [maxLength]="element[column].maxLength"
             (input)="formControlValid(column, element, $event.target.value, dataSource.filteredData.indexOf(element));"
             (keydown.enter)="setFocus(column, dataSource.filteredData.indexOf(element), $event.target.value);" />
 
-          <input *ngIf="!element[column].maxLength" id="{{column}}{{dataSource.filteredData.indexOf(element)}}" [ngStyle]="{ 'backgroundClass': setBackgroundClass(element) }" 
+          <input *ngIf="!element[column].maxLength" [ngClass]="setClass(element)" id="{{column}}{{dataSource.filteredData.indexOf(element)}}" [ngStyle]="{ 'backgroundClass': setBackgroundClass(element) }" 
             [disabled]="element[column].disabled" [value]="element[column].value" [(ngModel)]="element[column].value"
             (input)="formControlValid(column, element, $event.target.value, dataSource.filteredData.indexOf(element));"
             (keydown.enter)="setFocus(column, dataSource.filteredData.indexOf(element), $event.target.value);" />

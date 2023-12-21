@@ -2250,8 +2250,8 @@
         "duration" : "duration",
         "employeeCode" : "employeeCode",
         "employeeName" : "employeeName",
-        "logintime" : "Date",
-        "logouttime" : "Date~`",
+        "logintime" : "DateTime",
+        "logouttime" : "DateTime",
         "status" : "status"
       }
 }

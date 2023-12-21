@@ -21,7 +21,7 @@ export class DynamicTableComponent implements OnInit {
     if (!this.commonService.checkNullOrUndefined(res)) {
       this.tableData = [res.tableData];
       this.formControl = res.formControl;
-      if(res.routeParam) {
+      if (res.routeParam) {
         this.routeParam = res.routeParam;
       }
       this.tableForm = this.formBuilder.group(this.formControl);
@@ -90,7 +90,7 @@ export class DynamicTableComponent implements OnInit {
       const obj = JSON.parse(JSON.stringify(this.tableData[0]))
       for (let t in obj) {
         obj[t].value = list[l][t];
-        obj[t].type = obj[t].type ? obj[t].type: 'none';
+        obj[t].type = obj[t].type ? obj[t].type : 'none';
       }
       data.push(obj);
     }
@@ -260,6 +260,15 @@ export class DynamicTableComponent implements OnInit {
       }
     }
     return true;
+  }
+
+  setClass(element: any) {
+    if (element.result && element.result.condition == 'inspection' && element.result.value) {
+      if((element.result.value < element.minValue.value) || (element.result.value > element.maxValue.value)) {
+        return element.result.addClass;
+      }
+    }
+    return ''
   }
 
 
