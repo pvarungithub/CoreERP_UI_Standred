@@ -649,7 +649,8 @@
     "role": "Role",
     "branchCode": "Branch Code",
     "companyCode": "Company Code",
-    "addDate": "Add Date"
+    "addDate": "Add Date",
+    "active": "Active"
   },
   "depreciationcode": {
     "title": "Depreciation Code",

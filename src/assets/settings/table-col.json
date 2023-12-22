@@ -542,9 +542,8 @@
     "userName": "User Name",
     "password": "Password",
     "role": "Role",
-    "branchCode": "Branch Code",
     "companyCode": "Company Code",
-    "addDate": "Add Date"
+    "active": "Active"
   },
   "businesspartner": {
     "title": "Busieness Partner Master",
