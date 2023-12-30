@@ -34,7 +34,7 @@ import {
   StandardRateComponent, DownTimeReasonComponent, TasksComponent, InvoiceverificationComponent, RoutingFileComponent, VehicleRequisitionsComponent,
   PTMasterComponent, PFMasterComponent, PermissionRequestComponent, CTCBreakupComponent, ComponentMasterComponent, 
   AdvanceComponent, ApplyodComponent, LeaveRequestComponent, LeaveopeningbalanceComponent, LeavetypeComponent, ApprovalTypeComponent, OpeningBalanceComponent, VehicleApprovalsComponent, advanceApprovalComponent, odApprovalComponent, PermissionApprovalsComponent, LeaveApprovalComponent, DesignationComponent,
-  StructureCreationComponent
+  StructureCreationComponent, CreateBillComponent, SalesInvoiceComponent
 } from './components/dashboard/comp-list/index';
 
 import {
@@ -155,7 +155,8 @@ export function HttpLoaderFactory(httpClient: HttpClient) {
     SalesorderComponent,
     FileUploadComponent,
     PreviewComponent,
-    InspectionComponent,StructureCreationComponent, BalanceCertificateComponent, InspectionPreviewComponent, MaterialRequisitionViewComponent
+    InspectionComponent,StructureCreationComponent, BalanceCertificateComponent, InspectionPreviewComponent, MaterialRequisitionViewComponent, SalesInvoiceComponent,
+    CreateBillComponent, SalesInvoiceComponent
   ],
   imports: [
     AppRoutingModule,
@@ -212,7 +213,7 @@ export function HttpLoaderFactory(httpClient: HttpClient) {
     PermissionApprovalsComponent, LeaveApprovalComponent,
 
     DesignationComponent,
-    SalesorderComponent,StructureCreationComponent
+    SalesorderComponent,StructureCreationComponent, CreateBillComponent, SalesInvoiceComponent
   ]
 })
 export class AppModule { }

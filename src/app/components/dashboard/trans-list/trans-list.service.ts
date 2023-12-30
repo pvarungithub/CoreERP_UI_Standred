@@ -20,7 +20,7 @@ import { InspectioncheckComponent } from './inspectioncheck/inspectioncheck.comp
 import { SampleRequisitionFormComponent } from './samplerequisitionform/samplerequisitionform.component'
 import { SampleServiceComponent } from './sampleservice/sampleservice.component';
 import { SalesorderComponent } from './salesorder/salesorder.component';
-import { StandardRateComponent } from '../comp-list';
+import { SalesInvoiceComponent, StandardRateComponent } from '../comp-list';
 @Injectable({
   providedIn: 'root'
 })
@@ -193,6 +193,13 @@ export class TransListService {
         this.dynamicComp.editKey = 'saleOrderNo';
         return this.dynamicComp;
         break;
+      }
+      case 'salesinvoice': {
+        this.dynamicComp.component = SalesInvoiceComponent;
+        this.dynamicComp.tableUrl = this.apiConfigService.getInvoiceList;
+        this.dynamicComp.list = 'InvoiceList';
+        this.dynamicComp.editKey = 'saleOrderNo';
+        return this.dynamicComp;
       }
       default:
         this.dynamicComp.component = NotFoundComponent;
