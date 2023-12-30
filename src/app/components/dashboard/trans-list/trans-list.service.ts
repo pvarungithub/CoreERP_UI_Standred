@@ -184,7 +184,6 @@ export class TransListService {
         this.dynamicComp.list = 'CashBankMasters';
         this.dynamicComp.editKey = 'voucherNumber';
         return this.dynamicComp;
-        break;
       }
       case 'saleorder': {
         this.dynamicComp.component = SalesorderComponent;
