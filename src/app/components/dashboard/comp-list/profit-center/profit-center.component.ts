@@ -52,7 +52,13 @@ export class ProfitCenterComponent implements OnInit {
       responsiblePerson: [null],
       email: [null],
       location: [null],
-      active: ['Y']
+      active: ['Y'],
+      poNumber: [''],
+      poPrefix: [''],
+      soNumber: [''],
+      soPrefix: [''],
+      gstNo: [''],
+
     });
 
     this.formData = { ...data };

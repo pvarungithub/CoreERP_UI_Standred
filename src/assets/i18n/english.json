@@ -131,7 +131,12 @@
     "responsiblePerson": "Responsible Person",
     "responsibleName": "Responsible Person",
     "phone": "Phone",
-    "mobile": "Mobile"
+    "mobile": "Mobile",
+    "poNumber": "Po Number",
+    "poPrefix": "Po Prefix",
+    "soNumber": "So Number",
+    "soPrefix": "So Prefix",
+    "gstNo": "Gst No"
   },
   "branches": {
     "title": "Branch",
